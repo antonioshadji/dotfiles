@@ -27,6 +27,7 @@
 (setq show-trailing-whitespace t)
 (setq suggest-key-bindings t)
 (setq vc-follow-symlinks t)
+(global-linum-mode 1)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -75,3 +76,4 @@
 (require 'jade-mode)    
 (add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
 (add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
+
