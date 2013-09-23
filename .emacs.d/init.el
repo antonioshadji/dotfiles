@@ -28,6 +28,11 @@
 (setq suggest-key-bindings t)
 (setq vc-follow-symlinks t)
 (global-linum-mode 1)
+;; http://stackoverflow.com/questions/151945/how-do-i-control-how-emacs-makes-backup-files
+(setq backup-directory-alist `(("." . "~/.emacs_backup")))
+(setq backup-by-copying t)
+(setq delete-old-versions t
+      version-control t) 
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
