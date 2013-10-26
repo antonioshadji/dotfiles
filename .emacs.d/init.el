@@ -28,6 +28,7 @@
 (setq suggest-key-bindings t)
 (setq vc-follow-symlinks t)
 (global-linum-mode 1)
+;;(load-theme 'tango-dark t)
 ;; http://stackoverflow.com/questions/151945/how-do-i-control-how-emacs-makes-backup-files
 (setq backup-directory-alist `(("." . "~/.emacs_backup")))
 (setq backup-by-copying t)
@@ -82,3 +83,9 @@
 (add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
 (add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
 
+;;----------------------------
+;;-- Solarized additions -----
+;;----------------------------
+;;https://github.com/sellout/emacs-color-theme-solarized
+(add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
+(load-theme 'solarized-dark t)

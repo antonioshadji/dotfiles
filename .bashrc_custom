@@ -1,1 +1,3 @@
-
+# setup LS_COLORS for dircolors command. Solarize color pallette shows only greytones in terminal
+d=.dircolors
+test -r $d && eval "$(dircolors $d)"
