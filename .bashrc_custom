@@ -1,3 +1,7 @@
 # setup LS_COLORS for dircolors command. Solarize color pallette shows only greytones in terminal
 d=.dircolors
 test -r $d && eval "$(dircolors $d)"
+
+# Add RVM to PATH for scripting
+PATH=$PATH:$HOME/.rvm/bin
+
