@@ -11,6 +11,12 @@ set background=dark
 colorscheme solarized
 set t_Co=16             " overide gnome-terminal reporting that it only handles 8 colors
 
+" Use bundles config {
+    if filereadable(expand("~/.vimrc.bundles"))
+        source ~/.vimrc.bundles
+    endif
+" }
+
 "custom settings chosen by me from SPF13{
 "https://github.com/spf13/spf13-vim
 " General Settings {
