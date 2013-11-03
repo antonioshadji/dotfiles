@@ -1,5 +1,4 @@
-" vim: foldmarker={,} foldlevel=0 foldmethod=marker
-
+" vim: foldmarker={,} foldlevel=1 foldmethod=marker
 set nocompatible
 
 filetype off                   " required!
@@ -11,20 +10,29 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " original repos on github
+" Git integration
 Bundle 'tpope/vim-fugitive'
+" Status line
 Bundle 'bling/vim-airline'
+" line numbering
 Bundle 'myusuf3/numbers.vim'
+" Syntax checking jshint + others
+Bundle 'scrooloose/syntastic'
 
-" vim-scripts repos
- "       Bundle 'L9'
- "        Bundle 'FuzzyFinder'
-" non github repos
- "          Bundle 'git://git.wincent.com/command-t.git'
- " git repos on your local machine (ie. when working on your own plugin
- "            Bundle 'file:///Users/gmarik/path/to/plugin
- " } end bundle list
+
+" } end bundle list
 
 filetype plugin indent on     " required!
+
+" More examples of how to use vundle {
+"   vim-scripts repos
+"       Bundle 'L9'
+"       Bundle 'FuzzyFinder'
+"   non github repos
+"       Bundle 'git://git.wincent.com/command-t.git'
+"   git repos on your local machine (ie. when working on your own plugin
+"       Bundle 'file:///Users/gmarik/path/to/plugin
+"  }
 
 " https://github.com/gmarik/vundle
 " Brief help
@@ -33,5 +41,5 @@ filetype plugin indent on     " required!
 " :BundleSearch(!) foo - search(or refresh cache first) for foo
 " :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
 
-" see :h vundle for more details or wiki for FAQ
+" see :help vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed..

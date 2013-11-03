@@ -143,7 +143,6 @@ if [ "$PS1" ]; then
 
     # Turn on checkwinsize
     shopt -s checkwinsize
-
     #Prompt edited from default
     [ "$PS1" = "\\s-\\v\\\$ " ] && PS1="[\u \w]\\$ "
 
@@ -160,9 +159,14 @@ fi
 # See: http://www.tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html
 shopt -s histappend
 
+parse_git_branch() {
+        git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
 # Make prompt informative
+# Git Branch in prompt http://amix.dk/blog/post/19571
 # See:  http://www.ukuug.org/events/linux2003/papers/bash_tips/
-PS1="\[\033[0;34m\][\u@\h:\w]$\[\033[0m\]"
+PS1="\[\033[0;34m\][\u@\h:\w]\$(parse_git_branch)$\[\033[0m\]"
 
 ## -----------------------
 ## -- 2) Set up aliases --
@@ -226,4 +230,7 @@ fi
 ## ------------------------------
 
 ## Define any user-specific variables you want here.
-source ~/.bashrc_custom
+# setup LS_COLORS for dircolors command. Solarize color pallette shows only greytones in terminal
+d=.dircolors
+test -r $d && eval "$(dircolors $d)"
+

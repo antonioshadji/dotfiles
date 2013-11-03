@@ -1,15 +1,14 @@
 " modeline {
-" vim: set foldmarker={,} foldlevel=0 foldmethod=marker :
+" vim: set foldmarker={,} foldlevel=1 foldmethod=marker :
 " }
-" Set 'nocompatible' to ward off unexpected things that your distro might
-" have made, as well as sanely reset options when re-sourcing .vimrc
+" Set to ward off unexpected things, and sanely reset options when re-sourcing .vimrc
 set nocompatible
 
 " solarized configuration suggestions
 syntax enable           "Enable syntax highlighting
 set background=dark
 colorscheme solarized
-set t_Co=16             " overide gnome-terminal reporting that it only handles 8 colors
+set t_Co=16             " override gnome-terminal reporting that it only handles 8 colors
 
 " Use bundles config {
     if filereadable(expand("~/.vimrc.bundles"))
@@ -20,12 +19,12 @@ set t_Co=16             " overide gnome-terminal reporting that it only handles 
 "custom settings chosen by me from SPF13{
 "https://github.com/spf13/spf13-vim
 " General Settings {
-filetype plugin indent on 
+filetype plugin indent on
 set encoding=utf-8      " show buffer as utf-8 https://github.com/square/maximum-awesome (**MUST BE EARLY IN FILE**)
 scriptencoding utf-8
-set autoread		        " auto re-load files when changed on disk https://github.com/square/maximum-awesome
-set mouse=a                 " Automatically enable mouse usage
-set mousehide               " Hide the mouse cursor while typing
+set autoread            " auto re-load files when changed on disk https://github.com/square/maximum-awesome
+set mouse=a             " Automatically enable mouse usage
+set mousehide           " Hide the mouse cursor while typing
 
 if has ('x') && has ('gui') " On Linux use + register for copy-paste
     set clipboard=unnamedplus
@@ -132,6 +131,13 @@ map <up> <nop>
 map <down> <nop>
 map <left> <nop>
 map <right> <nop>
+
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
+
+
 "} end keyboard shortcuts
 "} end MY customizations
 
