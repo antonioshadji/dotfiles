@@ -148,10 +148,10 @@ if [ "$PS1" ]; then
 
     if [ "x$SHLVL" != "x1" ]; then # We're not a login shell
         for i in /etc/profile.d/*.sh; do
-	    if [ -r "$i" ]; then
-	        . $i
-	    fi
-	done
+        if [ -r "$i" ]; then
+            . $i
+        fi
+    done
     fi
 fi
 
@@ -173,7 +173,7 @@ PS1="\[\033[0;34m\][\u@\h:\w]\$(parse_git_branch)$\[\033[0m\]"
 ## -----------------------
 # 2.0) My custom aliases
 alias ping="ping -c 1"
-  
+
 # 2.1) Safety
 alias rm="rm -i"
 alias mv="mv -i"
@@ -231,6 +231,10 @@ fi
 
 ## Define any user-specific variables you want here.
 # setup LS_COLORS for dircolors command. Solarize color pallette shows only greytones in terminal
-d=.dircolors
+d=~/.dircolors
 test -r $d && eval "$(dircolors $d)"
 
+# set vi mode to edit like vim
+# insert mode by default
+# esc to go to command mode
+set -o vi

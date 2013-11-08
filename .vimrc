@@ -76,23 +76,24 @@ if has('statusline')
         set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 endif
 
-set backspace=indent,eol,start		" fix backspace 
-set number              " show line numbers
-set showmatch		" jump cursor to matching brace when entered
-set incsearch		" search as you type
-set hlsearch        " highlight search terms :noh to clear
-set ignorecase		" case-insensitive search
-set smartcase           " use case sensitive search if any caps present
+set backspace=indent,eol,start	" fix backspace
+set number                      " show line numbers
+set showmatch		            " jump cursor to matching brace when entered
+set incsearch           		" search as you type
+set hlsearch                    " highlight search terms :noh to clear
+set ignorecase		            " case-insensitive search
+set smartcase                   " use case sensitive search if any caps present
 set wildmenu                    " Show list instead of just completing
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 set scrolloff=5                 " Minimum lines to keep above and below cursor
 set foldenable                  " Auto fold code
-set listchars=tab:›\ ,trail:∙,extends:#,nbsp:. " Highlight problematic whitespace
+set listchars=tab:›\ ,trail:∙,extends:≫,precedes:≪,nbsp:. " Highlight problematic whitespace
 set list
 "} end Vim UI 
 
 " Formatting {
+set nowrap              " do not wrap long lines, show indicator instead
 set autoindent 	    	" always autoindent
 set shiftwidth=4	    " number of spaces to use for autoindent
 set expandtab	    	" expands tabs to spaces
