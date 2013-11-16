@@ -202,7 +202,7 @@ export VISUAL='gvim'
 
 # 2.4) grep options
 export GREP_OPTIONS='--color=auto'
-export GREP_COLOR='1;31' # green for matches
+export GREP_COLOR='0;32' # green for matches
 
 # 2.5) sort options
 # Ensures cross-platform sorting behavior of GNU sort.
@@ -238,3 +238,18 @@ test -r $d && eval "$(dircolors $d)"
 # insert mode by default
 # esc to go to command mode
 set -o vi
+
+# Configure PATH
+#  - These are line by line so that you can kill one without affecting the others.
+#  - Lowest priority first, highest priority last.
+export PATH=$PATH
+export PATH=$HOME/bin:$PATH
+export PATH=/usr/bin:$PATH
+export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/sbin:$PATH
+export PATH=/usr/local/heroku/bin:$PATH # Heroku: https://toolbelt.heroku.com/standalone
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
