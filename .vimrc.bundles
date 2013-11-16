@@ -18,10 +18,16 @@ Bundle 'bling/vim-airline'
 Bundle 'myusuf3/numbers.vim'
 " Syntax checking jshint + others
 Bundle 'scrooloose/syntastic'
+" highlighting of indented blocks
+Bundle 'nathanaelkane/vim-indent-guides'
+" use ack in vim http://beyondgrep.com/
+Bundle 'mileszs/ack.vim'
 
 " vim scripts repo
 " SQL Formatting tool
-Bundle 'SQLUtilities'
+"Bundle 'SQLUtilities'
+" Highlight hex codes in actual color
+Bundle 'hexHighlight.vim'
 
 " } end bundle list
 
