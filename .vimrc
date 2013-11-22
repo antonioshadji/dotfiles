@@ -35,14 +35,17 @@ endif
 set viewoptions=folds,options,cursor,unix,slash "see :help viewoptions
 set virtualedit=onemore " Allow for cursor beyond last character
 set history=1000	    " command history length extra long
-set spell               " spell checker
+"set spell               " spell checker
 set hidden		        " Allow buffer switching without saving
 
 set backup                  "See :help backup
 if has('persistent_undo')
     set undofile        "if ~/.vim/undo exists file put there, otherwise CWD
     set undolevels=1000
-"    set undoreload=10000 "see :help undoreload
+" no undo files left in CWD
+    set undodir=~/.vim/undo//,/var/tmp//
+
+   " set undoreload=10000 "see :help undoreload
 endif
 "}
 
@@ -116,6 +119,9 @@ endif
 " set it to the first line when editing a git commit message
 autocmd FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 
+" Always switch to the current file directory
+autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
+
 "} end SPF13 enhancements
 
 " MY customizations {
@@ -123,20 +129,18 @@ autocmd FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1
 set backupdir=~/.vim/backup//,/var/tmp//
 " no swap files left in CWD
 set directory=~/.vim/backup//,/var/tmp//
-" no undo files left in CWD
-set undodir=~/.vim/undo//,/var/tmp//
 
 "Keyboard Shortcuts {
 "force myself to use hjkl instead of arrow keys <nop> only normal mode
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
+"map <up> <nop>
+"map <down> <nop>
+"map <left> <nop>
+"map <right> <nop>
 
-imap <up> <nop>
-imap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>
+"imap <up> <nop>
+"imap <down> <nop>
+"imap <left> <nop>
+"imap <right> <nop>
 
 
 "} end keyboard shortcuts
