@@ -132,18 +132,26 @@ set directory=~/.vim/backup//,/var/tmp//
 
 "Keyboard Shortcuts {
 "force myself to use hjkl instead of arrow keys <nop> only normal mode
-"map <up> <nop>
-"map <down> <nop>
-"map <left> <nop>
-"map <right> <nop>
+" jk <down><up> ht<left><right>
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
 
 "imap <up> <nop>
 "imap <down> <nop>
 "imap <left> <nop>
 "imap <right> <nop>
 
+"dvorak remap normal mode movement key to make sense
+nmap t l
+
+" https://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee %
 
 "} end keyboard shortcuts
+"
 "} end MY customizations
 
 if filereadable(expand("~/.vimrc.plugins"))

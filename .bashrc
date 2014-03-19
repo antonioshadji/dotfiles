@@ -9,7 +9,7 @@
 #    3) .bash_profile imports .bashrc, but not vice versa.
 #    4) .bashrc imports .bashrc_custom, which can be used to override
 #        variables specified here.
-#           
+#
 # When using GNU screen:
 #
 #    1) .bash_profile is loaded the first time you login, and should be used
@@ -37,8 +37,6 @@
 #      ~/.bashrc, if that file exists. This may be inhibited by using the
 #      --norc option. The --rcfile file option will force Bash to read and
 #      execute commands from file instead of ~/.bashrc.
-
-
 
 # -----------------------------------
 # -- 1.1) Set up umask permissions --
@@ -96,7 +94,7 @@ if [ "$PS1" ]; then
 		if [ -e /etc/sysconfig/bash-prompt-xterm ]; then
 			PROMPT_COMMAND=/etc/sysconfig/bash-prompt-xterm
 		else
-	    	PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\007"'
+            PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\007"'
 		fi
 		;;
 	screen)
@@ -109,7 +107,7 @@ if [ "$PS1" ]; then
 	*)
 		[ -e /etc/sysconfig/bash-prompt-default ] && PROMPT_COMMAND=/etc/sysconfig/bash-prompt-default
 
-	    ;;
+        ;;
     esac
 
     # Bash eternal history
@@ -196,9 +194,10 @@ alias treeacl='tree -A -C -L 2'
 
 # 2.3) Text and editor commands
 alias em='emacs -nw'     # No X11 windows
+alias v='vim'
 #alias eqq='emacs -nw -Q' # No config and no X11
 export EDITOR='vim'
-export VISUAL='gvim'
+export VISUAL='vim'
 
 # 2.4) grep options
 export GREP_OPTIONS='--color=auto'
@@ -222,7 +221,7 @@ export NODE_DISABLE_COLORS=1
 if [ -s ~/.nvm/nvm.sh ]; then
     NVM_DIR=~/.nvm
     source ~/.nvm/nvm.sh
-    nvm use v0.10.12 &> /dev/null # silence nvm use; needed for rsync
+    nvm use v0.10 &> /dev/null # silence nvm use; needed for rsync
 fi
 
 ## ------------------------------
@@ -239,6 +238,15 @@ test -r $d && eval "$(dircolors $d)"
 # esc to go to command mode
 set -o vi
 
+# virtualenvwrapper configuration
+# http://virtualenvwrapper.readthedocs.org/en/latest/install.html
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/code/python/@projects
+source /usr/local/bin/virtualenvwrapper.sh
+
+# ruby rvm setup
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
 # Configure PATH
 #  - These are line by line so that you can kill one without affecting the others.
 #  - Lowest priority first, highest priority last.
@@ -248,8 +256,4 @@ export PATH=/usr/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/heroku/bin:$PATH # Heroku: https://toolbelt.heroku.com/standalone
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+export PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
