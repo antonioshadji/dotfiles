@@ -230,10 +230,7 @@ fi
 
 ## Define any user-specific variables you want here.
 # setup LS_COLORS for dircolors command. Solarize color pallette shows only greytones in terminal
-if [ -s ~/.dircolors ]; then
-    d=~/.dircolors
-    test -r $d && eval "$(dircolors $d)"
-fi
+test -r $HOME/.dircolors && eval "$(dircolors $HOME/.dircolors)"
 
 # set vi mode to edit like vim
 # insert mode by default
