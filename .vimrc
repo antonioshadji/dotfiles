@@ -145,6 +145,7 @@ map <right> <nop>
 
 "dvorak remap normal mode movement key to make sense
 nmap t l
+vmap t l
 
 " https://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work
 " Allow saving of files as sudo when I forgot to start vim using sudo.

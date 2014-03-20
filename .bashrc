@@ -221,7 +221,7 @@ export NODE_DISABLE_COLORS=1
 if [ -s ~/.nvm/nvm.sh ]; then
     NVM_DIR=~/.nvm
     source ~/.nvm/nvm.sh
-    nvm use v0.10 &> /dev/null # silence nvm use; needed for rsync
+    nvm use v0.10 &> /dev/null # silence nvm use; needed for rsync (I removed minor version .12)
 fi
 
 ## ------------------------------
@@ -230,8 +230,10 @@ fi
 
 ## Define any user-specific variables you want here.
 # setup LS_COLORS for dircolors command. Solarize color pallette shows only greytones in terminal
-d=~/.dircolors
-test -r $d && eval "$(dircolors $d)"
+if [ -s ~/.dircolors ]; then
+    d=~/.dircolors
+    test -r $d && eval "$(dircolors $d)"
+fi
 
 # set vi mode to edit like vim
 # insert mode by default
