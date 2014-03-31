@@ -195,8 +195,8 @@ alias treeacl='tree -A -C -L 2'
 
 # 2.3) Text and editor commands
 alias em='emacs -nw'     # No X11 windows
-alias v='vim'
-alias vv='gvim --remote-silent'
+alias vv='vim'
+alias v='gvim --remote-silent'
 #alias eqq='emacs -nw -Q' # No config and no X11
 export EDITOR='vim'
 export VISUAL='vim'
@@ -242,7 +242,7 @@ set -o vi
 # virtualenvwrapper configuration
 # http://virtualenvwrapper.readthedocs.org/en/latest/install.html
 export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/code/python/@projects
+export PROJECT_HOME=$HOME/code/python/0_projects
 source /usr/local/bin/virtualenvwrapper.sh
 
 # ruby rvm setup
