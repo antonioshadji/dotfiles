@@ -129,14 +129,15 @@ autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 set backupdir=~/.vim/backup//,/var/tmp//
 " no swap files left in CWD
 set directory=~/.vim/backup//,/var/tmp//
+" undodir set from spf13
 
 "Keyboard Shortcuts {
 "force myself to use hjkl instead of arrow keys <nop> only normal mode
-" jk <down><up> ht<left><right>
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
+" jk <down><up> hl<left><right>
+"map <up> <nop>
+"map <down> <nop>
+"map <left> <nop>
+"map <right> <nop>
 
 "imap <up> <nop>
 "imap <down> <nop>
@@ -144,12 +145,12 @@ map <right> <nop>
 "imap <right> <nop>
 
 "dvorak remap normal mode movement key to make sense
-nmap t l
-vmap t l
+"nmap t l
+"vmap t l
 
 " https://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work
 " Allow saving of files as sudo when I forgot to start vim using sudo.
-cmap w!! w !sudo tee %
+cmap w!! w !sudo tee > /dev/null %
 
 "} end keyboard shortcuts
 "

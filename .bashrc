@@ -164,7 +164,8 @@ parse_git_branch() {
 # Make prompt informative
 # Git Branch in prompt http://amix.dk/blog/post/19571
 # See:  http://www.ukuug.org/events/linux2003/papers/bash_tips/
-PS1="\[\033[0;34m\][\u@\h:\w]\$(parse_git_branch)$\[\033[0m\]"
+#PS1="\[\033[0;34m\][\u@\h:\w]\$(parse_git_branch)$\[\033[0m\]"
+PS1="\[\033[0;34m\][\h:\w]\$(parse_git_branch)$\[\033[0m\]"
 
 ## -----------------------
 ## -- 2) Set up aliases --
@@ -195,6 +196,7 @@ alias treeacl='tree -A -C -L 2'
 # 2.3) Text and editor commands
 alias em='emacs -nw'     # No X11 windows
 alias v='vim'
+alias vv='gvim --remote-silent'
 #alias eqq='emacs -nw -Q' # No config and no X11
 export EDITOR='vim'
 export VISUAL='vim'
