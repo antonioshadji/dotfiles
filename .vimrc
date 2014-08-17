@@ -98,10 +98,10 @@ set list
 " Formatting {
 set nowrap              " do not wrap long lines, show indicator instead
 set autoindent 	    	" always autoindent
-set shiftwidth=4	    " number of spaces to use for autoindent
+set shiftwidth=2	    " number of spaces to use for autoindent
 set expandtab	    	" expands tabs to spaces
-set tabstop=4           " actual tabs occupy 4 spaces
-set softtabstop=4       " insert mode tab and backspace
+set tabstop=2           " actual tabs occupy 4 spaces
+set softtabstop=2       " insert mode tab and backspace
 set splitright          " puts new vsplit windows to the right
 set splitbelow          " puts new hsplit windows below current
 set pastetoggle=<F12>   " sane indentation on pastes
@@ -109,7 +109,7 @@ set pastetoggle=<F12>   " sane indentation on pastes
 
 " GUI Settings (here instead of .gvimrc) {
 if has('gui_running')
-    set guifont=Anonymous\ Pro\ for\ Powerline\ 12  "Set my preferred fhnt with comma separated list(spaces must be escaped)
+    set guifont=Anonymous\ Pro\ for\ Powerline\ 12  "Set my preferred font with comma separated list(spaces must be escaped)
     set guioptions-=T               "Remove tool bar
     set lines=40                    "Larger window than 24 row terminal
 endif
@@ -151,9 +151,18 @@ set directory=~/.vim/backup//,/var/tmp//
 " https://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
-
 "} end keyboard shortcuts
 "
+
+" http://vim.wikia.com/wiki/Shebang_line_automatically_generated
+augroup Shebang
+  autocmd BufNewFile *.py 0put =\"#!/usr/bin/env python\<nl># -*- coding: utf-8 -*-\<nl>\"|$
+  autocmd BufNewFile *.rb 0put =\"#!/usr/bin/env ruby\<nl># -*- coding: utf-8 -*-\<nl>\"|$
+  autocmd BufNewFile *.sh 0put =\"#!/usr/bin/env bash\<nl># -*- coding: utf-8 -*-\<nl>\"|$
+augroup END
+" set default clipboard to linux system clipboard
+set clipboard=unnamedplus
+
 "} end MY customizations
 
 if filereadable(expand("~/.vimrc.plugins"))

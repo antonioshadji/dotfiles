@@ -25,7 +25,7 @@ Bundle 'mileszs/ack.vim'
 
 " vim scripts repo
 " SQL Formatting tool
-"Bundle 'SQLUtilities'
+Bundle 'SQLUtilities'
 " Highlight hex codes in actual color
 Bundle 'hexHighlight.vim'
 
