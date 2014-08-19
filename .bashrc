@@ -153,18 +153,19 @@ if [ "$PS1" ]; then
     fi
 fi
 
-# Append to history
-# See: http://www.tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html
-shopt -s histappend
-
-parse_git_branch() {
-        git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-}
-
-# Make prompt informative
-# Git Branch in prompt http://amix.dk/blog/post/19571
 # See:  http://www.ukuug.org/events/linux2003/papers/bash_tips/
-PS1="\[\033[0;34m\][\u@\h:\w]\$(parse_git_branch)\n$\[\033[0m\]"
+# Append to history, don't overwrite
+shopt -s histappend
+# update after every command
+PROMPT_COMMAND='history -a'
+
+# don't put duplicate lines in the history. See bash(1) for more options
+# ... or force ignoredups and ignorespace
+# HISTCONTROL=ignoredups:ignorespace
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+# HISTSIZE=10000
+# HISTFILESIZE=10000
 
 ##################################################
 # Prompt escapes				 #
@@ -223,39 +224,66 @@ PS1="\[\033[0;34m\][\u@\h:\w]\$(parse_git_branch)\n$\[\033[0m\]"
 # Color chart					 #
 ##################################################
 
-txtblk='\e[0;30m' # Black - Regular
-txtred='\e[0;31m' # Red
-txtgrn='\e[0;32m' # Green
-txtylw='\e[0;33m' # Yellow
-txtblu='\e[0;34m' # Blue
-txtpur='\e[0;35m' # Purple
-txtcyn='\e[0;36m' # Cyan
-txtwht='\e[0;37m' # White
-bldblk='\e[1;30m' # Black - Bold
-bldred='\e[1;31m' # Red
-bldgrn='\e[1;32m' # Green
-bldylw='\e[1;33m' # Yellow
-bldblu='\e[1;34m' # Blue
-bldpur='\e[1;35m' # Purple
-bldcyn='\e[1;36m' # Cyan
-bldwht='\e[1;37m' # White
-unkblk='\e[4;30m' # Black - Underline
-undred='\e[4;31m' # Red
-undgrn='\e[4;32m' # Green
-undylw='\e[4;33m' # Yellow
-undblu='\e[4;34m' # Blue
-undpur='\e[4;35m' # Purple
-undcyn='\e[4;36m' # Cyan
-undwht='\e[4;37m' # White
-bakblk='\e[40m'   # Black - Background
-bakred='\e[41m'   # Red
-badgrn='\e[42m'   # Green
-bakylw='\e[43m'   # Yellow
-bakblu='\e[44m'   # Blue
-bakpur='\e[45m'   # Purple
-bakcyn='\e[46m'   # Cyan
-bakwht='\e[47m'   # White
-txtrst='\e[0m'    # Text Reset
+TXTBLK='\e[0;30m' # Black - Regular
+TXTRED='\e[0;31m' # Red
+TXTGRN='\e[0;32m' # Green
+TXTYLW='\e[0;33m' # Yellow
+TXTBLU='\e[0;34m' # Blue
+TXTPUR='\e[0;35m' # Purple
+TXTCYN='\e[0;36m' # Cyan
+TXTWHT='\e[0;37m' # White
+BLDBLK='\e[1;30m' # Black - Bold
+BLDRED='\e[1;31m' # Red
+BLDGRN='\e[1;32m' # Green
+BLDYLW='\e[1;33m' # Yellow
+BLDBLU='\e[1;34m' # Blue
+BLDPUR='\e[1;35m' # Purple
+BLDCYN='\e[1;36m' # Cyan
+BLDWHT='\e[1;37m' # White
+UNKBLK='\e[4;30m' # Black - Underline
+UNDRED='\e[4;31m' # Red
+UNDGRN='\e[4;32m' # Green
+UNDYLW='\e[4;33m' # Yellow
+UNDBLU='\e[4;34m' # Blue
+UNDPUR='\e[4;35m' # Purple
+UNDCYN='\e[4;36m' # Cyan
+UNDWHT='\e[4;37m' # White
+BAKBLK='\e[40m'   # Black - Background
+BAKRED='\e[41m'   # Red
+BADGRN='\e[42m'   # Green
+BAKYLW='\e[43m'   # Yellow
+BAKBLU='\e[44m'   # Blue
+BAKPUR='\e[45m'   # Purple
+BAKCYN='\e[46m'   # Cyan
+BAKWHT='\e[47m'   # White
+TXTRST='\e[0m'    # Text Reset
+
+# Git Branch in prompt http://amix.dk/blog/post/19571
+parse_git_branch() {
+        git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+# https://coderwall.com/p/pn8f0g
+# this function is not working
+# try reviewing this for ideas: https://github.com/twolfson/sexy-bash-prompt
+#git_color() {
+#  local git_status="$(git status 2> /dev/null)"
+#
+#  if [[ $git_status =~ "nothing to commit, working directory clean" ]]; then
+#    echo -e $TXTGRN
+#  elif [[ $git_status =~ "fatal:" ]]; then
+#    echo -e $TXTBLU
+#  else
+#    echo -e $TXTRED
+#  fi
+#}
+
+# Make prompt informative
+#PS1="\[\033[0;34m\][\u@\h:\w]\n"
+PS1="\[$TXTBLU\][\u@\h:\w]\n"
+# PS1+="\[$(git_color)\]"
+PS1+="\$(parse_git_branch)$"
+PS1+="\[$TXTRST\]" #reset color to default
 
 ## -----------------------
 ## -- 2) Set up aliases --
@@ -327,6 +355,15 @@ test -r $HOME/.dircolors && eval "$(dircolors $HOME/.dircolors)"
 # insert mode by default
 # esc to go to command mode
 set -o vi
+
+# Turn on bash command completion
+# http://embraceubuntu.com/2006/01/28/turn-on-bash-smart-completion/
+if [ -f /etc/bash_completion ]; then
+  . /etc/bash_completion
+fi
+
+# https://superuser.com/questions/288714/bash-autocomplete-like-zsh
+bind 'TAB:menu-complete'
 
 # virtualenvwrapper configuration
 # http://virtualenvwrapper.readthedocs.org/en/latest/install.html
