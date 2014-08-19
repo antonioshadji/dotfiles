@@ -263,6 +263,9 @@ parse_git_branch() {
         git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
 
+# git status -sbuno shows single line status with ahead/behind details
+# pipe to head -n 1 for first line only
+# pipe to sed -n 2p for second line only
 # https://coderwall.com/p/pn8f0g
 # this function is not working
 # try reviewing this for ideas: https://github.com/twolfson/sexy-bash-prompt
