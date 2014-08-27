@@ -5,6 +5,9 @@
 set nocompatible
 
 " solarized configuration suggestions
+" https://github.com/huyz/dircolors-solarized
+" http://www.xorcode.com/2011/04/11/solarized-vim-eclipse-ubuntu/
+" https://github.com/sigurdga/gnome-terminal-colors-solarized
 syntax enable           "Enable syntax highlighting
 set background=dark
 colorscheme solarized

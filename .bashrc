@@ -371,11 +371,12 @@ bind 'TAB:menu-complete'
 # virtualenvwrapper configuration
 # http://virtualenvwrapper.readthedocs.org/en/latest/install.html
 export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/code/python/0_projects
-source /usr/local/bin/virtualenvwrapper.sh
+export PROJECT_HOME=$HOME/code/python/
+[[ -s /usr/local/bin/virtualenvwrapper.sh ]] && source /usr/local/bin/virtualenvwrapper.sh
 
 # ruby rvm setup
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# Load RVM into a shell session *as a function*
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
 
 # Configure PATH
 #  - These are line by line so that you can kill one without affecting the others.
@@ -385,5 +386,15 @@ export PATH=$HOME/bin:$PATH
 export PATH=/usr/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
+#TODO: verify heroku is installed before setting or remove to .bashrc_local
 export PATH=/usr/local/heroku/bin:$PATH # Heroku: https://toolbelt.heroku.com/standalone
 export PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
+
+
+if [ "$(uname -s)" == 'Darwin' ]; then
+  # add all mac osx specific bits inside an if statement like this.
+  alias ll='ls -AFlhG'
+  alias llt='ls - AFlhrtG'
+  alias la='ls -AFG'
+  alias l='ls -CFG'
+fi
