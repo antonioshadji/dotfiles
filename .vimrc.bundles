@@ -22,6 +22,12 @@ Bundle 'scrooloose/syntastic'
 Bundle 'nathanaelkane/vim-indent-guides'
 " use ack in vim http://beyondgrep.com/
 Bundle 'mileszs/ack.vim'
+" A Vim plugin which shows a git diff in the gutter (sign column) and stages/reverts hunks.
+Bundle 'airblade/vim-gitgutter'
+" With bufexplorer, you can quickly and easily switch between buffers by using the one of the default public interfaces:
+Bundle 'jlanzarotta/bufexplorer'
+" Surround.vim is all about 'surroundings': parentheses, brackets, quotes, XML tags, and more.
+Bundle 'tpope/vim-surround'
 
 " vim scripts repo
 " SQL Formatting tool

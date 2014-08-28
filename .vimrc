@@ -150,6 +150,8 @@ set directory=~/.vim/backup//,/var/tmp//
 "dvorak remap normal mode movement key to make sense
 "nmap t l
 "vmap t l
+"http://www.bestofvim.com/tip/leave-ex-mode-good/
+nnoremap Q <nop>
 
 " https://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work
 " Allow saving of files as sudo when I forgot to start vim using sudo.
