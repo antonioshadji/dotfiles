@@ -370,9 +370,9 @@ bind 'TAB:menu-complete'
 
 # virtualenvwrapper configuration
 # http://virtualenvwrapper.readthedocs.org/en/latest/install.html
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/code/python/
-[[ -s /usr/local/bin/virtualenvwrapper.sh ]] && source /usr/local/bin/virtualenvwrapper.sh
+[[ -d "$HOME/.virtualenvs" ]] && export WORKON_HOME=$HOME/.virtualenv
+[[ -d "$HOME/code/python" ]] && export PROJECT_HOME=$HOME/code/python/
+[[ -s "/usr/local/bin/virtualenvwrapper.sh" ]] && source /usr/local/bin/virtualenvwrapper.sh
 
 # ruby rvm setup
 # Load RVM into a shell session *as a function*
@@ -382,14 +382,18 @@ export PROJECT_HOME=$HOME/code/python/
 #  - These are line by line so that you can kill one without affecting the others.
 #  - Lowest priority first, highest priority last.
 export PATH=$PATH
-export PATH=$HOME/bin:$PATH
+# set PATH so it includes user's private bin if it exists
+[[ -d "$HOME/bin" ]] && export PATH="$HOME/bin:$PATH"
 export PATH=/usr/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
-#TODO: verify heroku is installed before setting or remove to .bashrc_local
-export PATH=/usr/local/heroku/bin:$PATH # Heroku: https://toolbelt.heroku.com/standalone
-export PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
 
+# set PATH so it includes heroku if it exists  - remove to .bashrc_local?
+# Heroku: https://toolbelt.heroku.com/standalone
+[[ -d "/usr/local/heroku/bin" ]] && export PATH=/usr/local/heroku/bin:$PATH 
+# set PATH so it includes rvm if it exists  - remove to .bashrc_local?
+# Add RVM to PATH for scripting
+[[ -d "$HOME/.rvm/bin" ]] && export PATH=$HOME/.rvm/bin:$PATH 
 
 if [ "$(uname -s)" == 'Darwin' ]; then
   # add all mac osx specific bits inside an if statement like this.
@@ -398,3 +402,4 @@ if [ "$(uname -s)" == 'Darwin' ]; then
   alias la='ls -AFG'
   alias l='ls -CFG'
 fi
+
