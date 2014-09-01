@@ -29,9 +29,10 @@ set autoread            " auto re-load files when changed on disk https://github
 set mouse=a             " Automatically enable mouse usage
 set mousehide           " Hide the mouse cursor while typing
 
-if has ('x') && has ('gui') " On Linux use + register for copy-paste
-    set clipboard=unnamedplus
-elseif has ('gui')          " On Mac & Win use * register for copy-paste
+" https://stackoverflow.com/questions/2842078/how-do-i-detect-os-x-in-my-vimrc-file-so-certain-configurations-will-only-appl
+if system("uname") == "Linux\n"       " has ('x') && has ('gui')  On Linux use + register for copy-paste
+  set clipboard=unnamedplus
+elseif system("uname") == "Darwin\n"  "has ('gui') On Mac & Win use * register for copy-paste
     set clipboard=unnamed
 endif
 
@@ -155,7 +156,7 @@ nnoremap Q <nop>
 
 " https://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work
 " Allow saving of files as sudo when I forgot to start vim using sudo.
-cmap w!! w !sudo tee > /dev/null %
+cmap w!! :w !sudo tee > /dev/null %
 "} end keyboard shortcuts
 "
 
@@ -165,8 +166,6 @@ augroup Shebang
   autocmd BufNewFile *.rb 0put =\"#!/usr/bin/env ruby\<nl># -*- coding: utf-8 -*-\<nl>\"|$
   autocmd BufNewFile *.sh 0put =\"#!/usr/bin/env bash\<nl># -*- coding: utf-8 -*-\<nl>\"|$
 augroup END
-" set default clipboard to linux system clipboard
-set clipboard=unnamedplus
 
 "} end MY customizations
 

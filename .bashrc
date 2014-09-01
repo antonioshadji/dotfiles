@@ -314,7 +314,6 @@ alias du='du -ch --max-depth=1'
 alias treeacl='tree -A -C -L 2'
 
 # 2.3) Text and editor commands
-alias em='emacs -nw'     # No X11 windows
 alias vv='vim'
 alias v='gvim --remote-silent'
 #alias eqq='emacs -nw -Q' # No config and no X11
@@ -343,7 +342,7 @@ export NODE_DISABLE_COLORS=1
 if [ -s ~/.nvm/nvm.sh ]; then
     NVM_DIR=~/.nvm
     source ~/.nvm/nvm.sh
-    nvm use v0.10 &> /dev/null # silence nvm use; needed for rsync (I removed minor version .12)
+    # nvm use v0.10 &> /dev/null # silence nvm use; needed for rsync (I removed minor version .12)
 fi
 
 ## ------------------------------
@@ -361,16 +360,14 @@ set -o vi
 
 # Turn on bash command completion
 # http://embraceubuntu.com/2006/01/28/turn-on-bash-smart-completion/
-if [ -f /etc/bash_completion ]; then
-  . /etc/bash_completion
-fi
+[[ -f /etc/bash_completion ]] && . /etc/bash_completion
 
 # https://superuser.com/questions/288714/bash-autocomplete-like-zsh
 bind 'TAB:menu-complete'
 
 # virtualenvwrapper configuration
 # http://virtualenvwrapper.readthedocs.org/en/latest/install.html
-[[ -d "$HOME/.virtualenvs" ]] && export WORKON_HOME=$HOME/.virtualenv
+[[ -d "$HOME/.virtualenvs" ]] && export WORKON_HOME=$HOME/.virtualenvs
 [[ -d "$HOME/code/python" ]] && export PROJECT_HOME=$HOME/code/python/
 [[ -s "/usr/local/bin/virtualenvwrapper.sh" ]] && source /usr/local/bin/virtualenvwrapper.sh
 
