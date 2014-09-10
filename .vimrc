@@ -46,10 +46,8 @@ set backup                  "See :help backup
 if has('persistent_undo')
     set undofile        "if ~/.vim/undo exists file put there, otherwise CWD
     set undolevels=1000
-" no undo files left in CWD
+    " no undo files left in CWD
     set undodir=~/.vim/undo//,/var/tmp//
-
-   " set undoreload=10000 "see :help undoreload
 endif
 "}
 
@@ -136,27 +134,30 @@ set directory=~/.vim/backup//,/var/tmp//
 " undodir set from spf13
 
 "Keyboard Shortcuts {
-"force myself to use hjkl instead of arrow keys <nop> only normal mode
-" jk <down><up> hl<left><right>
-"map <up> <nop>
-"map <down> <nop>
-"map <left> <nop>
-"map <right> <nop>
+" http://learnvimscriptthehardway.stevelosh.com/chapters/06.html
+let mapleader = "-"
 
-"imap <up> <nop>
-"imap <down> <nop>
-"imap <left> <nop>
-"imap <right> <nop>
-
-"dvorak remap normal mode movement key to make sense
-"nmap t l
-"vmap t l
 "http://www.bestofvim.com/tip/leave-ex-mode-good/
 nnoremap Q <nop>
 
-" https://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work
+" http://nvie.com/posts/how-i-boosted-my-vim/
+" The following trick is a really small one, but a super-efficient one,
+" since it strips off two full keystrokes from almost every Vim command:
+nnoremap ; :
+"force myself to use hjkl instead of arrow keys <nop> only normal mode
+" jk <down><up> hl<left><right>
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+" Easy window navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
 " Allow saving of files as sudo when I forgot to start vim using sudo.
-cmap w!! :w !sudo tee > /dev/null %
+cmap w!! w !sudo tee % >/dev/null
 "} end keyboard shortcuts
 "
 
