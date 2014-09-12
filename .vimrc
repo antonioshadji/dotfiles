@@ -160,6 +160,9 @@ map <C-l> <C-w>l
 cmap w!! w !sudo tee % >/dev/null
 "} end keyboard shortcuts
 "
+" https://github.com/tpope/vim-markdown
+" recognize .md files as markdown instead of modula2
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 " http://vim.wikia.com/wiki/Shebang_line_automatically_generated
 augroup Shebang
