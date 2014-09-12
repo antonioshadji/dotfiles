@@ -6,6 +6,7 @@ Anonymice Powerline
 :Source: http://www.marksimonson.com/fonts/view/anonymous-pro
 :License: SIL OPEN FONT LICENSE Version 1.1
 :Patched by: `Carl X. Su <https://github.com/bcbcarl>`_
+:From: https://github.com/Lokaltog/powerline-fonts
 
 Anonymous Pro (2009) is a family of four fixed-width fonts designed
 especially with coding in mind. Characters that could be mistaken for
