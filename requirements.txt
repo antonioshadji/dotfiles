@@ -1,0 +1,26 @@
+# sudo pip install --upgrade -r requirements.txt
+# Required for Gnucash python bindings??
+Cython
+# Generally useful python tools
+dropbox
+Fabric
+gdata
+googlecl
+speedtest-cli
+selenium
+awscli
+# Data Science Tools
+ipython
+matplotlib
+numpy
+pandas
+scikit-learn
+scikits.statsmodels
+scipy
+statsmodels
+sympy
+# Environment Maintenance
+virtualenv
+virtualenvwrapper
+pip-tools
+pip
