@@ -269,22 +269,22 @@ parse_git_branch() {
 # https://coderwall.com/p/pn8f0g
 # this function is not working
 # try reviewing this for ideas: https://github.com/twolfson/sexy-bash-prompt
-#git_color() {
-#  local git_status="$(git status 2> /dev/null)"
-#
-#  if [[ $git_status =~ "nothing to commit, working directory clean" ]]; then
-#    echo -e $TXTGRN
-#  elif [[ $git_status =~ "fatal:" ]]; then
-#    echo -e $TXTBLU
-#  else
-#    echo -e $TXTRED
-#  fi
-#}
+git_color() {
+  local git_status="$(git status -uno | ack '# Changes not staged for commit:')"
+
+  if [[ $git_status == '# Changes not staged for commit:' ]]; then
+    echo -e $TXTRED
+  elif [[ $git_status =~ "fatal:" ]]; then
+    echo -e $TXTGRN
+  else
+    echo -e $TXTWHT
+  fi
+}
 
 # Make prompt informative
 #PS1="\[\033[0;34m\][\u@\h:\w]\n"
 PS1="\[$TXTBLU\][\u@\h:\w]\n"
-# PS1+="\[$(git_color)\]"
+#PS1+="\[$(git_color)\]"
 PS1+="\$(parse_git_branch)$"
 PS1+="\[$TXTRST\]" #reset color to default
 
