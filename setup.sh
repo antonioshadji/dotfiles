@@ -52,7 +52,7 @@ fi
 if [ -d .vim/ ]; then
     mv .vim .vim.old
 fi
-git clone git@github.com:Antonios007/dotfiles.git
+git clone git@github.com:AntoniosHadji/dotfiles.git
 ln -sb dotfiles/.screenrc .
 ln -sb dotfiles/.bash_profile .
 ln -sb dotfiles/.bashrc .

@@ -20,3 +20,8 @@ git clone https://github.com/startup-class/setup.git
 See also http://github.com/startup-class/dotfiles and
 [Startup Engineering Video Lectures 4a/4b](https://class.coursera.org/startup-001/lecture/index)
 for more details.
+
+TODO:
+=====
+[ ] Vundle must be git cloned before it can manage other plugins  
+[ ] Vundle interface change requires update to .vimrc.bundles
