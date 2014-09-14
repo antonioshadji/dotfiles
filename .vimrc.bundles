@@ -1,60 +1,55 @@
 " vim: foldmarker={,} foldlevel=1 foldmethod=marker
-set nocompatible
+set nocompatible              " be iMproved, required
+filetype off                  " required!
 
-filetype off                   " required!
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-" Bundle List {
-"Vundle manages Vundle
-Bundle 'gmarik/vundle'
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+" Plugin List {
 
-" original repos on github
+" plugin on GitHub repo
 " Git integration
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 " Status line
-Bundle 'bling/vim-airline'
+Plugin 'bling/vim-airline'
 " line numbering
-Bundle 'myusuf3/numbers.vim'
+Plugin 'myusuf3/numbers.vim'
 " Syntax checking jshint + others
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 " highlighting of indented blocks
-Bundle 'nathanaelkane/vim-indent-guides'
+Plugin 'nathanaelkane/vim-indent-guides'
 " use ack in vim http://beyondgrep.com/
-Bundle 'mileszs/ack.vim'
+Plugin 'mileszs/ack.vim'
 " A Vim plugin which shows a git diff in the gutter (sign column) and stages/reverts hunks.
-Bundle 'airblade/vim-gitgutter'
+Plugin 'airblade/vim-gitgutter'
 " With bufexplorer, you can quickly and easily switch between buffers by using the one of the default public interfaces:
-Bundle 'jlanzarotta/bufexplorer'
+Plugin 'jlanzarotta/bufexplorer'
 " Surround.vim is all about 'surroundings': parentheses, brackets, quotes, XML tags, and more.
-Bundle 'tpope/vim-surround'
+Plugin 'tpope/vim-surround'
 
 " vim scripts repo
 " SQL Formatting tool
-Bundle 'SQLUtilities'
+Plugin 'SQLUtilities'
 " Highlight hex codes in actual color
-Bundle 'hexHighlight.vim'
+Plugin 'hexHighlight.vim'
 
 " } end bundle list
-
-filetype plugin indent on     " required!
-
-" More examples of how to use vundle {
-"   vim-scripts repos
-"       Bundle 'L9'
-"       Bundle 'FuzzyFinder'
-"   non github repos
-"       Bundle 'git://git.wincent.com/command-t.git'
-"   git repos on your local machine (ie. when working on your own plugin
-"       Bundle 'file:///Users/gmarik/path/to/plugin
-"  }
-
-" https://github.com/gmarik/vundle
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
 " Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-
-" see :help vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Plugin command are not allowed..
