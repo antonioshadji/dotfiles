@@ -15,22 +15,24 @@ Plugin 'gmarik/Vundle.vim'
 " plugin on GitHub repo
 " Git integration
 Plugin 'tpope/vim-fugitive'
+" Surround.vim is all about 'surroundings': parentheses, brackets, quotes, XML tags, and more.
+Plugin 'tpope/vim-surround'
 " Status line
 Plugin 'bling/vim-airline'
 " line numbering
 Plugin 'myusuf3/numbers.vim'
 " Syntax checking jshint + others
 Plugin 'scrooloose/syntastic'
+" for intensely orgasmic commenting 
+Plugin 'scrooloose/nerdcommenter'
 " highlighting of indented blocks
 Plugin 'nathanaelkane/vim-indent-guides'
 " use ack in vim http://beyondgrep.com/
 Plugin 'mileszs/ack.vim'
 " A Vim plugin which shows a git diff in the gutter (sign column) and stages/reverts hunks.
 Plugin 'airblade/vim-gitgutter'
-" With bufexplorer, you can quickly and easily switch between buffers by using the one of the default public interfaces:
-Plugin 'jlanzarotta/bufexplorer'
-" Surround.vim is all about 'surroundings': parentheses, brackets, quotes, XML tags, and more.
-Plugin 'tpope/vim-surround'
+" precision colorscheme
+Plugin 'altercation/vim-colors-solarized'
 
 " vim scripts repo
 " SQL Formatting tool
