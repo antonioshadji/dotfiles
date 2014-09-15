@@ -67,3 +67,7 @@ ln -sf dotfiles/.fonts .
 sudo fc-cache -f
 # Vundle must be installed via git before it can managed itself and others
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle
+# gnome terminal colors
+# git@github.com:Anthony25/gnome-terminal-colors-solarized.git
+# https://github.com/Anthony25/gnome-terminal-colors-solarized.git
+

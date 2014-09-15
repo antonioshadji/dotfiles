@@ -4,6 +4,12 @@
 " Set to ward off unexpected things, and sanely reset options when re-sourcing .vimrc
 set nocompatible
 
+" Use bundles config {
+    if filereadable(expand("~/.vimrc.bundles"))
+        source ~/.vimrc.bundles
+    endif
+" }
+
 " solarized configuration suggestions
 " https://github.com/huyz/dircolors-solarized
 " http://www.xorcode.com/2011/04/11/solarized-vim-eclipse-ubuntu/
@@ -12,12 +18,6 @@ syntax enable           "Enable syntax highlighting
 set background=dark
 colorscheme solarized
 set t_Co=16             " override gnome-terminal reporting that it only handles 8 colors
-
-" Use bundles config {
-    if filereadable(expand("~/.vimrc.bundles"))
-        source ~/.vimrc.bundles
-    endif
-" }
 
 "custom settings chosen by me from SPF13{
 "https://github.com/spf13/spf13-vim
@@ -135,7 +135,8 @@ set directory=~/.vim/backup//,/var/tmp//
 
 "Keyboard Shortcuts {
 " http://learnvimscriptthehardway.stevelosh.com/chapters/06.html
-let mapleader = "-"
+" default mapleader is \
+" let mapleader = "-"
 
 "http://www.bestofvim.com/tip/leave-ex-mode-good/
 nnoremap Q <nop>
