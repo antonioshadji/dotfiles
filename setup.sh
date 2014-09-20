@@ -70,4 +70,11 @@ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle
 # gnome terminal colors
 # git@github.com:Anthony25/gnome-terminal-colors-solarized.git
 # https://github.com/Anthony25/gnome-terminal-colors-solarized.git
+# Fonts
+# create dir ~/.config/fontconfig/conf.d/
+# install wget https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
+# into created directory
+# install wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf
+# into ~/.fonts directory
+# run sudo fc-cache -vf ~/.fonts
 

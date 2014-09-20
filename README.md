@@ -2,8 +2,6 @@ Dotfiles
 ========
 This is my dot files collection for cloning my Ubuntu Linux configuration.
 
-oh-my-zsh is setup here for testing purposes only. currently using bash.
-
 setup.git
 =========
 Clone and run this on a new EC2 instance running Ubuntu 12.04.2 LTS to
@@ -24,4 +22,5 @@ for more details.
 TODO:
 =====
 [ ] Vundle must be git cloned before it can manage other plugins  
-[ ] Vundle interface change requires update to .vimrc.bundles
+[X] Vundle interface change requires update to .vimrc.bundles
+[ ] configure tmux https://github.com/christoomey/vim-tmux-navigator

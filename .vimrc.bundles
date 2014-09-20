@@ -35,6 +35,9 @@ Plugin 'mileszs/ack.vim'
 Plugin 'airblade/vim-gitgutter'
 " precision colorscheme
 Plugin 'altercation/vim-colors-solarized'
+" Work with python virtualenvs 
+Plugin 'jmcantrell/vim-virtualenv'
+
 
 " vim scripts repo
 " Highlight hex codes in actual color

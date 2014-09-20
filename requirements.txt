@@ -1,14 +1,15 @@
-# sudo pip install --upgrade -r requirements.txt
+# sudo pip install --upgrade -r ~/dotfiles/requirements.txt
 # Required for Gnucash python bindings??
 Cython
 # Generally useful python tools
 dropbox
-Fabric
+fabric
 gdata
 googlecl
 speedtest-cli
 selenium
 awscli
+grip
 # Data Science Tools
 ipython
 matplotlib
@@ -24,3 +25,5 @@ virtualenv
 virtualenvwrapper
 pip-tools
 pip
+# Required by Fabric
+ecdsa

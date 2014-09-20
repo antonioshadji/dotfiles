@@ -134,6 +134,8 @@ set directory=~/.vim/backup//,/var/tmp//
 " undodir set from spf13
 
 "Keyboard Shortcuts {
+" <C-c> is an alternative to Esc but does not run autocmd by default
+imap <C-c> <Esc>
 " http://learnvimscriptthehardway.stevelosh.com/chapters/06.html
 " default mapleader is \
 " let mapleader = "-"
@@ -144,7 +146,8 @@ nnoremap Q <nop>
 " http://nvie.com/posts/how-i-boosted-my-vim/
 " The following trick is a really small one, but a super-efficient one,
 " since it strips off two full keystrokes from almost every Vim command:
-nnoremap ; :
+" nnoremap ; :
+
 "force myself to use hjkl instead of arrow keys <nop> only normal mode
 " jk <down><up> hl<left><right>
 map <up> <nop>
@@ -171,6 +174,14 @@ augroup Shebang
   autocmd BufNewFile *.rb 0put =\"#!/usr/bin/env ruby\<nl># -*- coding: utf-8 -*-\<nl>\"|$
   autocmd BufNewFile *.sh 0put =\"#!/usr/bin/env bash\<nl># -*- coding: utf-8 -*-\<nl>\"|$
 augroup END
+
+" http://www.bestofvim.com/tip/auto-reload-your-vimrc/
+" this does not reload plugins on terminal vim
+"augroup Reload.vimrc
+"  autocmd!
+"  autocmd BufWritePost $MYVIMRC source $MYVIMRC
+"augroup END
+
 
 "} end MY customizations
 
