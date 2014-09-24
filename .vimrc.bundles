@@ -17,6 +17,8 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 " Surround.vim is all about 'surroundings': parentheses, brackets, quotes, XML tags, and more.
 Plugin 'tpope/vim-surround'
+" Software caps lock
+Plugin 'tpope/vim-capslock'
 " Status line
 Plugin 'bling/vim-airline'
 " line numbering
@@ -37,7 +39,6 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
 " Work with python virtualenvs 
 Plugin 'jmcantrell/vim-virtualenv'
-
 
 " vim scripts repo
 " Highlight hex codes in actual color

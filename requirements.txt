@@ -10,6 +10,7 @@ speedtest-cli
 selenium
 awscli
 grip
+requests
 # Data Science Tools
 ipython
 matplotlib
