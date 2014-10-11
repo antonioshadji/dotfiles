@@ -107,6 +107,7 @@ set softtabstop=2       " insert mode tab and backspace
 set splitright          " puts new vsplit windows to the right
 set splitbelow          " puts new hsplit windows below current
 set pastetoggle=<F12>   " sane indentation on pastes
+set printoptions=formfeed:y  "insert Ctrl-V Ctrl-L (^L) to create print pagebreak
 " }
 
 " GUI Settings (here instead of .gvimrc) {

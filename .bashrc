@@ -371,10 +371,6 @@ bind 'TAB:menu-complete'
 [[ -d "$HOME/code/python" ]] && export PROJECT_HOME=$HOME/code/python/
 [[ -s "/usr/local/bin/virtualenvwrapper.sh" ]] && source /usr/local/bin/virtualenvwrapper.sh
 
-# ruby rvm setup
-# Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
-
 # Configure PATH
 #  - These are line by line so that you can kill one without affecting the others.
 #  - Lowest priority first, highest priority last.
@@ -385,12 +381,17 @@ export PATH=/usr/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 
-# set PATH so it includes heroku if it exists  - remove to .bashrc_local?
-# Heroku: https://toolbelt.heroku.com/standalone
-[[ -d "/usr/local/heroku/bin" ]] && export PATH=/usr/local/heroku/bin:$PATH 
+# ruby rvm setup - remove to .bashrc_local?
+# Load RVM into a shell session *as a function*
+#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
+
 # set PATH so it includes rvm if it exists  - remove to .bashrc_local?
 # Add RVM to PATH for scripting
-[[ -d "$HOME/.rvm/bin" ]] && export PATH=$HOME/.rvm/bin:$PATH 
+#[[ -d "$HOME/.rvm/bin" ]] && export PATH=$HOME/.rvm/bin:$PATH
+
+# set PATH so it includes heroku if it exists  - remove to .bashrc_local?
+# Heroku: https://toolbelt.heroku.com/standalone
+#[[ -d "/usr/local/heroku/bin" ]] && export PATH=/usr/local/heroku/bin:$PATH 
 
 if [ "$(uname -s)" == 'Darwin' ]; then
   # add all mac osx specific bits inside an if statement like this.
