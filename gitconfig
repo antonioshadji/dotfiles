@@ -1,0 +1,20 @@
+[user]
+	name = Antonios Hadjigeorgalis
+	email = Antoniosx@gmail.com
+[credential]
+	helper = cache --timeout=3600
+[color]
+	ui = true
+[grep]
+	lineNumber = true
+	extendRegexp = true
+[alias]
+	g = grep --break --heading --line-number
+[push]
+	default = matching
+[core]
+	autocrlf = input
+[status]
+	showUntrackedFiles = no
+	branch = true
+	short = true
