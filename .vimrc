@@ -112,9 +112,16 @@ set printoptions=formfeed:y  "insert Ctrl-V Ctrl-L (^L) to create print pagebrea
 
 " GUI Settings (here instead of .gvimrc) {
 if has('gui_running')
-    set guifont=Anonymous\ Pro\ for\ Powerline\ 12  "Set my preferred font with comma separated list(spaces must be escaped)
+    "set guifont=Anonymous\ Pro\ for\ Powerline\ 12  "Set my preferred font with comma separated list(spaces must be escaped)
+    set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12  "Set my preferred font with comma separated list(spaces must be escaped)
     set guioptions-=T               "Remove tool bar
-    set lines=40                    "Larger window than 24 row terminal
+    set lines=48                    "Larger window than 24 row terminal
+    "http://stackoverflow.com/questions/18752175/gvim-makes-altletter-key-produce-an-accented-character-instead-of-exiting-ins
+    "set guioptions -=m
+    "inoremap <M-l> <Esc>l
+    "inoremap <M-j> <Esc>j
+    "inoremap <M-k> <Esc>k
+    "inoremap <M-h> <Esc>h
 endif
 "} end GUI settings
 
@@ -135,6 +142,7 @@ set directory=~/.vim/backup//,/var/tmp//
 " undodir set from spf13
 
 "Keyboard Shortcuts {
+" http://vim.wikia.com/wiki/Avoid_the_escape_key
 " <C-c> is an alternative to Esc but does not run autocmd by default
 imap <C-c> <Esc>
 " http://learnvimscriptthehardway.stevelosh.com/chapters/06.html
@@ -151,10 +159,10 @@ nnoremap Q <nop>
 
 "force myself to use hjkl instead of arrow keys <nop> only normal mode
 " jk <down><up> hl<left><right>
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
+" map <up> <nop>
+" map <down> <nop>
+" map <left> <nop>
+" map <right> <nop>
 " Easy window navigation
 map <C-h> <C-w>h
 map <C-j> <C-w>j
