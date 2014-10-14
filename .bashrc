@@ -121,6 +121,7 @@ if [ "$PS1" ]; then
     # The way it works is that after each command is executed and
     # before a prompt is displayed, a line with the last command (and
     # some metadata) is appended to ~/.bash_eternal_history.
+    # ** make sure to chmod 600 ~/.bash_eternal_history
     #
     # This file is a tab-delimited, timestamped file, with the following
     # columns:
@@ -164,8 +165,8 @@ PROMPT_COMMAND='history -a'
 HISTCONTROL=ignoredups:ignorespace
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=10000
-HISTFILESIZE=10000
+HISTSIZE=-1
+HISTFILESIZE=-1
 
 ##################################################
 # Prompt escapes				 #
