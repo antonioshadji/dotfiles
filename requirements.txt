@@ -1,6 +1,4 @@
 # sudo pip install --upgrade -r ~/dotfiles/requirements.txt
-# Required for Gnucash python bindings??
-Cython
 # Generally useful python tools
 dropbox
 fabric

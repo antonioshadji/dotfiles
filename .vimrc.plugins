@@ -19,3 +19,8 @@ let g:indent_guides_space_guides = 1
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_exclude_filetypes = ['help', 'markdown']
 " }
+
+" syntastic configuration {
+" # pylint: disable=C0301 can be used inside a file to disable warnings
+let g:syntastic_python_pylint_args = '--disable=C0301'
+" }

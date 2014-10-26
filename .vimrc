@@ -191,6 +191,9 @@ augroup END
 "  autocmd BufWritePost $MYVIMRC source $MYVIMRC
 "augroup END
 
+" http://www.reddit.com/r/vim/comments/232j45/save_file_on_insert_mode_exit/
+" write file when leaving insert mode if changes have been made
+" autocmd InsertLeave * update
 
 "} end MY customizations
 
