@@ -21,6 +21,6 @@ for more details.
 
 TODO:
 =====
-[ ] Vundle must be git cloned before it can manage other plugins  
-[X] Vundle interface change requires update to .vimrc.bundles
-[ ] configure tmux https://github.com/christoomey/vim-tmux-navigator
+[X] Vundle must be git cloned before it can manage other plugins  
+[X] Vundle interface change requires update to .vimrc.bundles  
+[ ] configure tmux https://github.com/christoomey/vim-tmux-navigator  

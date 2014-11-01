@@ -1,10 +1,11 @@
-" Indent Python in the Google way.
-
+" Ensure that this file is only loaded once
 if exists("g:loaded_google_python_indent")
     finish
 endif
 let g:loaded_google_python_indent = 1
 
+" Indent Python in the Google way.
+"https://google-styleguide.googlecode.com/svn/trunk/google_python_style.vim
 setlocal indentexpr=GetGooglePythonIndent(v:lnum)
 
 let s:maxoff = 50 " maximum number of lines to look backwards.
