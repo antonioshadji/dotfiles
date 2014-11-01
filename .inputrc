@@ -1,0 +1,7 @@
+set editing-mode vi
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+"\e[C": forward-char
+"\e[D": backward-char
+# https://stackoverflow.com/questions/7179642/how-can-i-make-bash-tab-completion-behave-like-vim-tab-completion#answer-7179810
+"C-f": menu-complete
