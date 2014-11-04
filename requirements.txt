@@ -26,3 +26,5 @@ pip-tools
 pip
 # Required by Fabric
 ecdsa
+# added as needed in day to day use
+subprocess32

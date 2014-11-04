@@ -1,0 +1,6 @@
+[Default Applications]
+text/plain=gvim.desktop;
+application/javascript=gvim.desktop;
+application/x-perl=gvim.desktop;
+text/x-python=gvim.desktop;
+
