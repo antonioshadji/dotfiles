@@ -24,5 +24,5 @@ TODO:
 [X] Vundle must be git cloned before it can manage other plugins  
 [X] Vundle interface change requires update to .vimrc.bundles  
 [ ] configure tmux https://github.com/christoomey/vim-tmux-navigator  
-[ ] convert solarize.sh to python script
-[ ] create fabfile for workstation setup tasks
+[ ] convert solarize.sh to python script (add to fabfile.py)  
+[ ] create fabfile for workstation setup tasks  
