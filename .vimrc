@@ -145,6 +145,9 @@ set directory=/var/tmp//
 " http://vim.wikia.com/wiki/Avoid_the_escape_key
 " <C-c> is an alternative to Esc but does not run autocmd by default
 imap <C-c> <Esc>
+imap <Up> <Esc><Up>
+imap <Down> <Esc><Down>
+
 " http://learnvimscriptthehardway.stevelosh.com/chapters/06.html
 " default mapleader is \
 " let mapleader = "-"
