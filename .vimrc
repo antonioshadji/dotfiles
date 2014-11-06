@@ -136,9 +136,9 @@ autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 
 " MY customizations {
 " no backup files left in CWD
-set backupdir=~/.vim/backup//,/var/tmp//
+set backupdir=/var/tmp//
 " no swap files left in CWD
-set directory=~/.vim/backup//,/var/tmp//
+set directory=/var/tmp//
 " undodir set from spf13
 
 "Keyboard Shortcuts {
@@ -183,6 +183,22 @@ augroup Shebang
   autocmd BufNewFile *.rb 0put =\"#!/usr/bin/env ruby\<nl># -*- coding: utf-8 -*-\<nl>\"|$
   autocmd BufNewFile *.sh 0put =\"#!/usr/bin/env bash\<nl># -*- coding: utf-8 -*-\<nl>\"|$
 augroup END
+
+" If buffer modified, update any 'Last modified: ' in the first 20 lines.
+" 'Last modified: ' can have up to 10 characters before (they are retained).
+" Restores cursor and window position using save_cursor variable.
+function! LastModified()
+  if &modified
+    let save_cursor = getpos(".")
+    let n = min([20, line("$")])
+    keepjumps exe '1,' . n . 's#^\(.\{,10}Last modified: \).*#\1' .
+          \ strftime('%a %b %d, %Y  %I:%M%p') . '#e'
+    call histdel('search', -1)
+    call setpos('.', save_cursor)
+  endif
+endfunction
+"autocmd Bufwritepre,filewritepre *.mkd exe "1," . "10" . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
+autocmd BufWritePre,FileWritePre *.mkd :call LastModified()
 
 " http://www.bestofvim.com/tip/auto-reload-your-vimrc/
 " this does not reload plugins on terminal vim
