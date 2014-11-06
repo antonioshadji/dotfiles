@@ -95,6 +95,17 @@ def update_dot():
         run('git clone -o github https://github.com/AntoniosHadji/dotfiles.git')
 
     # TODO: programmatically find .files and creat symlinks for all
+     # find . -maxdepth 2 -type f -name '.*'
+     #install_dotfiles () {
+     # info 'installing dotfiles'
+
+     # local overwrite_all=false backup_all=false skip_all=false
+
+     # for src in $(find "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink')
+     # do
+     #   dst="$HOME/.$(basename "${src%.*}")"
+     #   link_file "$src" "$dst"
+     # done
     run('ln -sb dotfiles/.bash_profile .')
     run('ln -sb dotfiles/.bash_rc .')
     run('ln -sb dotfiles/.gitconfig .')

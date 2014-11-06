@@ -14,7 +14,7 @@ set nocompatible
 " https://github.com/huyz/dircolors-solarized
 " http://www.xorcode.com/2011/04/11/solarized-vim-eclipse-ubuntu/
 " https://github.com/sigurdga/gnome-terminal-colors-solarized
-syntax enable           "Enable syntax highlighting
+syntax enable           "Enable syntax highlighting and don't overwrite colorscheme
 set background=dark
 colorscheme solarized
 set t_Co=16             " override gnome-terminal reporting that it only handles 8 colors
@@ -47,7 +47,7 @@ if has('persistent_undo')
     set undofile        "if ~/.vim/undo exists file put there, otherwise CWD
     set undolevels=1000
     " no undo files left in CWD
-    set undodir=~/.vim/undo//,/var/tmp//
+    set undodir=/var/tmp//
 endif
 "}
 
