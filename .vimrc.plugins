@@ -23,7 +23,7 @@ let g:indent_guides_exclude_filetypes = ['help', 'markdown']
 " syntastic configuration {
 " # pylint: disable=C0301 can be used inside a file to disable warnings
 let g:syntastic_python_pylint_args = '--disable=C0301'
-let g:syntastic_python_checkers=['flake8', 'pylint', 'pyflakes', 'python']
+let g:syntastic_python_checkers=['pylint', 'flake8', 'pyflakes', 'python']
 "}
 
 " neocomplete default suggested configuration {
@@ -116,6 +116,7 @@ autocmd FileType markdown NeoCompleteLock
 " }
 
 "{ vim-markdown configuration 
+"
 
 let g:vim_markdown_initial_foldlevel=1
 "}
