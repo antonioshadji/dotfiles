@@ -1,5 +1,5 @@
 "All setup configurations for vim plugins; sourced after .vimrc
-" vim: set foldmarker={,} foldlevel=1 foldmethod=marker :
+" vim: set foldmarker={,} foldlevel=0 foldmethod=marker :
 
 " vim-airline {
 let g:airline#extensions#tabline#enabled = 1
@@ -23,7 +23,7 @@ let g:indent_guides_exclude_filetypes = ['help', 'markdown']
 " syntastic configuration {
 " # pylint: disable=C0301 can be used inside a file to disable warnings
 let g:syntastic_python_pylint_args = '--disable=C0301'
-let g:syntastic_python_checkers=['pyflakes']"
+let g:syntastic_python_checkers=['flake8', 'pylint', 'pyflakes', 'python']
 "}
 
 " neocomplete default suggested configuration {
@@ -71,7 +71,7 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
 " Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
+inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
 
 " For cursor moving in insert mode(Not recommended)
 "inoremap <expr><Left>  neocomplete#close_popup() . "\<Left>"
@@ -110,4 +110,21 @@ endif
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 "let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
+" turn off neocomplete for markdown files
+autocmd FileType markdown NeoCompleteLock
 " }
+
+"{ vim-markdown configuration 
+
+let g:vim_markdown_initial_foldlevel=1
+"}
+
+"{ suan/vim-instant-markdown
+let g:instant_markdown_autostart = 0
+
+"}
+
+" vim-pandoc {
+let g:pandoc#folding#level = 1
+"}

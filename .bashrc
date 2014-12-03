@@ -402,3 +402,9 @@ if [ "$(uname -s)" == 'Darwin' ]; then
   alias l='ls -CFG'
 fi
 
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/mnt/storage/code/google-cloud-sdk/path.bash.inc'
+
+# The next line enables bash completion for gcloud.
+source '/mnt/storage/code/google-cloud-sdk/completion.bash.inc'

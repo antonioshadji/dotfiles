@@ -28,3 +28,5 @@ pip
 ecdsa
 # added as needed in day to day use
 subprocess32
+google-api-python-client
+flake8

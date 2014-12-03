@@ -8,6 +8,7 @@ from fabric.api import run, task, hosts, sudo, put, env, roles, cd
 from fabric.contrib import files
 from fabric.context_managers import settings
 
+env.use_ssh_config = True
 env.roledefs.update({
     'ubuntu': ['localhost', 'E6400-DELL.home', 'ThinkPad-T420s.home'],
     'mac': ['Simonas-MBP.home']
@@ -106,18 +107,20 @@ def update_dot():
      #   dst="$HOME/.$(basename "${src%.*}")"
      #   link_file "$src" "$dst"
      # done
-    run('ln -sb dotfiles/.bash_profile .')
-    run('ln -sb dotfiles/.bash_rc .')
-    run('ln -sb dotfiles/.gitconfig .')
-    run('ln -sb dotfiles/.dircolors .')
-    run('ln -sb dotfiles/.vimrc .')
-    run('ln -sb dotfiles/.vim .')
-    run('ln -sb dotfiles/.vimrc.plugins .')
-    run('ln -sb dotfiles/.vimrc.bundles .')
-    run('ln -sb dotfiles/.curlrc .')
-    run('ln -sb dotfiles/.tmux.conf .')
-    run('ln -sb dotfiles/.fonts .')
-    run('ln -sb dotfiles/defaults.list ~/.local/share/applications/.')
+    run('ln -sf dotfiles/.bash_profile .')
+    run('ln -sf dotfiles/.bash_rc .')
+    run('ln -sf dotfiles/.gitconfig .')
+    run('ln -sf dotfiles/.dircolors .')
+    run('ln -sf dotfiles/.vimrc .')
+    run('ln -sf dotfiles/.vim .')
+    run('ln -sf dotfiles/.vimrc.plugins .')
+    run('ln -sf dotfiles/.vimrc.bundles .')
+    run('ln -sf dotfiles/.curlrc .')
+    run('ln -sf dotfiles/.tmux.conf .')
+    run('ln -sf dotfiles/.fonts .')
+    # TODO: test if this line is correct and is reading the local machine
+    home = run('echo $HOME')
+    run('ln -sf dotfiles/defaults.list ' + home + '/.local/share/applications/.')
 
 @task
 def install_vundle():
@@ -171,3 +174,9 @@ def make_sure_memcached_is_installed_and_running():
 def test():
     result = run('which pip')
     print(result)
+    result_list = run('find dotfiles/ -maxdepth 1 -type f -name ".*"')
+    print(type(result_list))
+    #ctr = 0
+    #for f in result_list:
+    #    ctr += 1
+    #    print(ctr, f)

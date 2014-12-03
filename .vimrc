@@ -130,7 +130,8 @@ endif
 autocmd FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 
 " Always switch to the current file directory
-autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
+"autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
+set autochdir
 
 "} end SPF13 enhancements
 
@@ -202,6 +203,9 @@ function! LastModified()
 endfunction
 "autocmd Bufwritepre,filewritepre *.mkd exe "1," . "10" . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
 autocmd BufWritePre,FileWritePre *.mkd :call LastModified()
+
+"http://ku1ik.com/2011/09/08/formatting-xml-in-vim-with-indent-command.html
+au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -
 
 " http://www.bestofvim.com/tip/auto-reload-your-vimrc/
 " this does not reload plugins on terminal vim
