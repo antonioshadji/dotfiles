@@ -17,12 +17,12 @@ set noshowmode
 let g:indent_guides_guide_size = 1
 let g:indent_guides_space_guides = 1
 let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_exclude_filetypes = ['help', 'markdown']
+let g:indent_guides_exclude_filetypes = ['help', 'markdown', 'pandoc']
 " }
 
 " syntastic configuration {
 " # pylint: disable=C0301 can be used inside a file to disable warnings
-let g:syntastic_python_pylint_args = '--disable=C0301'
+let g:syntastic_python_pylint_args = '--disable=C0301,E501'
 let g:syntastic_python_checkers=['pylint', 'flake8', 'pyflakes', 'python']
 "}
 
@@ -115,17 +115,8 @@ endif
 autocmd FileType markdown NeoCompleteLock
 " }
 
-"{ vim-markdown configuration 
-"
-
-let g:vim_markdown_initial_foldlevel=1
-"}
-
-"{ suan/vim-instant-markdown
-let g:instant_markdown_autostart = 0
-
-"}
 
 " vim-pandoc {
-let g:pandoc#folding#level = 1
+let g:pandoc#folding#level = 2
+au FileType pandoc setlocal softtabstop=4
 "}

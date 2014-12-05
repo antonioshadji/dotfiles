@@ -4,15 +4,15 @@
 
 import os.path
 
-from fabric.api import run, task, hosts, sudo, put, env, roles, cd
+from fabric.api import run, task, hosts, sudo, put, env, roles, cd, local
 from fabric.contrib import files
 from fabric.context_managers import settings
 
 env.use_ssh_config = True
 env.roledefs.update({
-    'ubuntu': ['localhost', 'E6400-DELL.home', 'ThinkPad-T420s.home'],
-    'mac': ['Simonas-MBP.home']
-})
+        'ubuntu': ['localhost', 'E6400-DELL.home', 'ThinkPad-T420s.home'],
+        'mac': ['Simonas-MBP.home']
+        })
 env.skip_bad_hosts = True
 
 @hosts('Simonas-MBP.home')
@@ -171,12 +171,11 @@ def make_sure_memcached_is_installed_and_running():
 
 @hosts('localhost')
 @task
-def test():
-    result = run('which pip')
-    print(result)
-    result_list = run('find dotfiles/ -maxdepth 1 -type f -name ".*"')
-    print(type(result_list))
-    #ctr = 0
-    #for f in result_list:
-    #    ctr += 1
-    #    print(ctr, f)
+def screen():
+    result = local('gsettings get org.gnome.desktop.session idle-delay')
+    if result == 'uint32 600\n':
+        local('gsettings set org.gnome.desktop.session idle-delay 0')
+        print("no screen blank")
+    else:
+        local('gsettings set org.gnome.desktop.session idle-delay 600')
+        print("10 minute screen blank")

@@ -48,14 +48,12 @@ Plugin 'Shougo/neosnippet-snippets'
 " Highlight colors in css files
 Plugin 'skammer/vim-css-color'
 " Markdown utilities 
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
+"Plugin 'godlygeek/tabular'
+"Plugin 'plasticboy/vim-markdown'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 " a calendar app for vim
 Plugin 'itchyny/calendar.vim'
-" Go development plugin for Vim
-Plugin 'fatih/vim-go'
 " Vim plugin that displays tags in a window, ordered by scope
 Plugin 'majutsushi/tagbar'
 "Work fast, think well.  https://groups.google.com/forum/#!forum/vimoutliner
