@@ -10,10 +10,11 @@ from fabric.context_managers import settings
 
 env.use_ssh_config = True
 env.roledefs.update({
-        'ubuntu': ['localhost', 'E6400-DELL.home', 'ThinkPad-T420s.home'],
-        'mac': ['Simonas-MBP.home']
-        })
+    'ubuntu': ['localhost', 'E6400-DELL.home', 'ThinkPad-T420s.home'],
+    'mac': ['Simonas-MBP.home']
+    })
 env.skip_bad_hosts = True
+
 
 @hosts('Simonas-MBP.home')
 @task
@@ -32,6 +33,7 @@ def sync_audio():
     to_dir = 'antonios@antonios-linux.local:~/Audio-Recording'
     run("rsync -ruh --progress --stats '%s'/* %s" % (from_dir, to_dir))
 
+
 @task
 def setup_ssh_access():
     '''
@@ -39,6 +41,7 @@ def setup_ssh_access():
     copy ssh public key to remote machine
     https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2
     '''
+
 
 @task
 def push_key():
@@ -52,6 +55,7 @@ def push_key():
     run('cat %s >> ~/.ssh/authorized_keys' % keyfile)
     run('rm %s' % keyfile)
 
+
 @roles('ubuntu')
 @task
 def update_all():
@@ -64,6 +68,7 @@ def update_all():
     update_dot()
     update_python()
     run('vim +PluginInstall +qall')
+
 
 @task
 def setup_new_machine():
@@ -79,8 +84,8 @@ def setup_new_machine():
     # antonios ALL=(ALL) NOPASSWD: ALL
     '''
     update_dot()
-    # TODO: this requests password for private key when run on localhost
     sudo('ln -s $HOME/dotfiles/root_links/antonios.sudoers /etc/sudoers.d/10-local')
+
 
 @task
 def update_dot():
@@ -96,17 +101,17 @@ def update_dot():
         run('git clone -o github https://github.com/AntoniosHadji/dotfiles.git')
 
     # TODO: programmatically find .files and creat symlinks for all
-     # find . -maxdepth 2 -type f -name '.*'
-     #install_dotfiles () {
-     # info 'installing dotfiles'
+    dotfiles = run("find . -maxdepth 2 -type f -name '.*'")
+    # install_dotfiles () {
+    # info 'installing dotfiles'
 
-     # local overwrite_all=false backup_all=false skip_all=false
+    # local overwrite_all=false backup_all=false skip_all=false
 
-     # for src in $(find "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink')
-     # do
-     #   dst="$HOME/.$(basename "${src%.*}")"
-     #   link_file "$src" "$dst"
-     # done
+    # for src in $(find "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink')
+    # do
+    #   dst="$HOME/.$(basename "${src%.*}")"
+    #   link_file "$src" "$dst"
+    # done
     run('ln -sf dotfiles/.bash_profile .')
     run('ln -sf dotfiles/.bash_rc .')
     run('ln -sf dotfiles/.gitconfig .')
@@ -117,10 +122,12 @@ def update_dot():
     run('ln -sf dotfiles/.vimrc.bundles .')
     run('ln -sf dotfiles/.curlrc .')
     run('ln -sf dotfiles/.tmux.conf .')
-    run('ln -sf dotfiles/.fonts .')
+    # run('ln -sf dotfiles/.fonts .')
     # TODO: test if this line is correct and is reading the local machine
     home = run('echo $HOME')
     run('ln -sf dotfiles/defaults.list ' + home + '/.local/share/applications/.')
+    run('ln -sf dotfiles/fonts ' + home + '/.local/share/')
+
 
 @task
 def install_vundle():
@@ -136,6 +143,7 @@ def install_vundle():
         target = home + '/dotfiles/.vim/bundle/vundle'
         run('git clone ' + repo + ' ' + target)
 
+
 @task
 def update_python():
     '''
@@ -149,6 +157,7 @@ def update_python():
     if files.exists(home + dotfile):
         sudo('pip install -U -r ' + home + dotfile)
 
+
 # from https://stackoverflow.com/questions/14904560/in-fabric-how-can-i-check-if-a-debian-or-ubuntu-package-exists-and-install-it-i
 # functions to test if program installed
 def package_installed(pkg_name):
@@ -159,15 +168,18 @@ def package_installed(pkg_name):
         result = run(cmd)
     return result.succeeded
 
+
 def yes_install(pkg_name):
     """ref: http://stackoverflow.com/a/10439058/1093087"""
     run('apt-get --force-yes --yes install %s' % (pkg_name))
+
 
 def make_sure_memcached_is_installed_and_running():
     if not package_installed('memcached'):
         yes_install('memcached')
     with settings(warn_only=True):
         run('/etc/init.d/memcached restart', pty=False)
+
 
 @hosts('localhost')
 @task

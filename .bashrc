@@ -370,7 +370,7 @@ bind 'TAB:menu-complete'
 # http://virtualenvwrapper.readthedocs.org/en/latest/install.html
 [[ -d "$HOME/.virtualenvs" ]] && export WORKON_HOME=$HOME/.virtualenvs
 [[ -d "$HOME/code/python" ]] && export PROJECT_HOME=$HOME/code/python/
-[[ -s "/usr/local/bin/virtualenvwrapper.sh" ]] && source /usr/local/bin/virtualenvwrapper.sh
+[[ -f "/usr/local/bin/virtualenvwrapper.sh" ]] && source /usr/local/bin/virtualenvwrapper.sh
 
 # Configure PATH
 #  - These are line by line so that you can kill one without affecting the others.
@@ -402,9 +402,13 @@ if [ "$(uname -s)" == 'Darwin' ]; then
   alias l='ls -CFG'
 fi
 
+# http://wp-cli.org/ bash completion
+[[ -f "$HOME/dotfiles/bash/wp-completion.bash" ]] && source $HOME/dotfiles/bash/wp-completion.bash
 
-# The next line updates PATH for the Google Cloud SDK.
-source '/mnt/storage/code/google-cloud-sdk/path.bash.inc'
+if [ -d '/mnt/storage/code/google-cloud-sdk/' ]; then
+  # The next line updates PATH for the Google Cloud SDK.
+  source '/mnt/storage/code/google-cloud-sdk/path.bash.inc'
+  # The next line enables bash completion for gcloud.
+  source '/mnt/storage/code/google-cloud-sdk/completion.bash.inc'
+fi
 
-# The next line enables bash completion for gcloud.
-source '/mnt/storage/code/google-cloud-sdk/completion.bash.inc'
