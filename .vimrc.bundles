@@ -2,6 +2,10 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required!
 
+if !isdirectory(expand("~/.vim/bundle/Vundle.vim/.git"))
+  !git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+endif
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
@@ -46,10 +50,8 @@ Plugin 'Shougo/neocomplete'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
 " Highlight colors in css files
-Plugin 'skammer/vim-css-color'
+Plugin 'ap/vim-css-color'
 " Markdown utilities 
-"Plugin 'godlygeek/tabular'
-"Plugin 'plasticboy/vim-markdown'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 " a calendar app for vim

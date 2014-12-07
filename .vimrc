@@ -10,19 +10,19 @@ set nocompatible
     endif
 " }
 
-" solarized configuration suggestions
+" solarized configuration suggestions {
 " https://github.com/huyz/dircolors-solarized
 " http://www.xorcode.com/2011/04/11/solarized-vim-eclipse-ubuntu/
 " https://github.com/sigurdga/gnome-terminal-colors-solarized
 syntax enable           "Enable syntax highlighting and don't overwrite colorscheme
 set background=dark
 colorscheme solarized
-set t_Co=16             " override gnome-terminal reporting that it only handles 8 colors
+set t_Co=256           " override gnome-terminal reporting that it only handles 8 colors, set to 16 or 256
+" }
 
 "custom settings chosen by me from SPF13{
 "https://github.com/spf13/spf13-vim
 " General Settings {
-filetype plugin indent on
 set encoding=utf-8      " show buffer as utf-8 https://github.com/square/maximum-awesome (**MUST BE EARLY IN FILE**)
 scriptencoding utf-8
 set autoread            " auto re-load files when changed on disk https://github.com/square/maximum-awesome
@@ -38,9 +38,9 @@ endif
 
 set viewoptions=folds,options,cursor,unix,slash "see :help viewoptions
 set virtualedit=onemore " Allow for cursor beyond last character
-set history=1000	    " command history length extra long
+set history=10000    " command history length extra long
 "set spell               " spell checker
-set hidden		        " Allow buffer switching without saving
+set hidden        " Allow buffer switching without saving
 
 set backup                  "See :help backup
 if has('persistent_undo')
@@ -55,53 +55,28 @@ endif
 set showmode                    " Display the current mode
 set cursorline                  " Highlight current line
 
-if has('cmdline_info')
-        set ruler                                               " Show the ruler
-        set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)      " A ruler on steroids
-        set showcmd                     " Show partial commands in status line and
-                                        " Selected characters/lines in visual mode
-endif
-
-if has('statusline')
-        set laststatus=2
-        " Broken down into easily includeable segments
-        set statusline=%<%f\                     " Filename
-        set statusline+=%w%h%m%r                 " Options
-        " Insert Git branch without plug-in http://amix.dk/blog/post/19571
-        function! GitBranch()
-            let branch = system("git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* //'")
-            if branch != ''
-                return '   Git Branch:' . substitute(branch, '\n', '', 'g')
-            endif
-            return ''
-        endfunction
-        set statusline+=%{GitBranch()}
-        set statusline+=\ [%{&ff}/%Y]            " Filetype
-        set statusline+=\ [%{getcwd()}]          " Current dir
-        set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
-endif
-
-set backspace=indent,eol,start	" fix backspace
+set backspace=indent,eol,start  " fix backspace
 set number                      " show line numbers
-set showmatch		            " jump cursor to matching brace when entered
-set incsearch           		" search as you type
+set showmatch                   " jump cursor to matching brace when entered
+set incsearch                   " search as you type
 set hlsearch                    " highlight search terms :noh to clear
-set ignorecase		            " case-insensitive search
+set ignorecase                  " case-insensitive search
 set smartcase                   " use case sensitive search if any caps present
-set wildmenu                    " Show list instead of just completing
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
+set wildmenu                    " Show list instead of just completing
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 set scrolloff=5                 " Minimum lines to keep above and below cursor
 set foldenable                  " Auto fold code
-set listchars=tab:›\ ,trail:∙,extends:≫,precedes:≪,nbsp:. " Highlight problematic whitespace
+"  To insert special character - in insert mode CTRL-K two character code from :digraphs command
+set listchars=tab:›\ ,trail:∙,extends:≫,precedes:≪,nbsp:.   " Highlight problematic whitespace
 set list
 "} end Vim UI 
 
 " Formatting {
 set nowrap              " do not wrap long lines, show indicator instead
-set autoindent 	    	" always autoindent
-set shiftwidth=2	    " number of spaces to use for autoindent
-set expandtab	    	" expands tabs to spaces
+set autoindent          " always autoindent
+set shiftwidth=2        " number of spaces to use for autoindent
+set expandtab           " expands tabs to spaces
 set tabstop=2           " actual tabs occupy 4 spaces
 set softtabstop=2       " insert mode tab and backspace
 set splitright          " puts new vsplit windows to the right
@@ -112,8 +87,8 @@ set printoptions=formfeed:y  "insert Ctrl-V Ctrl-L (^L) to create print pagebrea
 
 " GUI Settings (here instead of .gvimrc) {
 if has('gui_running')
-    "set guifont=Anonymous\ Pro\ for\ Powerline\ 12  "Set my preferred font with comma separated list(spaces must be escaped)
     set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12  "Set my preferred font with comma separated list(spaces must be escaped)
+    "set guifont=Ubuntu\ Mono\ 12  "Set my preferred font with comma separated list(spaces must be escaped)
     set guioptions-=T               "Remove tool bar
     set lines=48                    "Larger window than 24 row terminal
     "http://stackoverflow.com/questions/18752175/gvim-makes-altletter-key-produce-an-accented-character-instead-of-exiting-ins
@@ -188,7 +163,7 @@ augroup Shebang
   autocmd BufNewFile *.sh 0put =\"#!/usr/bin/env bash\<nl># -*- coding: utf-8 -*-\<nl>\"|$
 augroup END
 
-" If buffer modified, update any 'Last modified: ' in the first 20 lines.
+" If buffer modified, update any 'Last modified: ' in the first 20 lines {
 " 'Last modified: ' can have up to 10 characters before (they are retained).
 " Restores cursor and window position using save_cursor variable.
 function! LastModified()
@@ -201,8 +176,8 @@ function! LastModified()
     call setpos('.', save_cursor)
   endif
 endfunction
-"autocmd Bufwritepre,filewritepre *.mkd exe "1," . "10" . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
 autocmd BufWritePre,FileWritePre *.mkd :call LastModified()
+"}
 
 "http://ku1ik.com/2011/09/08/formatting-xml-in-vim-with-indent-command.html
 au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -

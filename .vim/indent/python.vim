@@ -1,5 +1,10 @@
-" Indent Python in the Google way.
+" ensure only loads once
+if exists("g:loaded_google_python_vim")
+    finish
+endif
+let g:loaded_google_python_vim = 1
 
+" Indent Python in the Google way.
 setlocal indentexpr=GetGooglePythonIndent(v:lnum)
 
 let s:maxoff = 50 " maximum number of lines to look backwards.
