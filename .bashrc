@@ -330,6 +330,10 @@ export GREP_COLOR='0;32' # green for matches
 # http://www.gnu.org/software/coreutils/faq/coreutils-faq.html#Sort-does-not-sort-in-normal-order_0021
 unset LANG
 export LC_ALL=POSIX
+#Change first day of week to Monday
+export LC_TIME=en_GB.UTF-8
+#Change to metric system
+export LC_MEASUREMENT=en_GB.UTF-8
 
 # 2.6) Install rlwrap if not present
 # http://stackoverflow.com/a/677212
@@ -375,7 +379,7 @@ bind 'TAB:menu-complete'
 # Configure PATH
 #  - These are line by line so that you can kill one without affecting the others.
 #  - Lowest priority first, highest priority last.
-#export PATH=$PATH
+export PATH=$PATH
 # set PATH so it includes user's private bin if it exists
 #[[ -d "$HOME/bin" ]] && export PATH="$HOME/bin:$PATH"
 #export PATH=/usr/bin:$PATH
@@ -393,6 +397,9 @@ bind 'TAB:menu-complete'
 # set PATH so it includes heroku if it exists  - remove to .bashrc_local?
 # Heroku: https://toolbelt.heroku.com/standalone
 #[[ -d "/usr/local/heroku/bin" ]] && export PATH=/usr/local/heroku/bin:$PATH 
+
+# set PATH to include latest version of pandoc
+PATH=$HOME/.cabal/bin/:$PATH
 
 if [ "$(uname -s)" == 'Darwin' ]; then
   # add all mac osx specific bits inside an if statement like this.

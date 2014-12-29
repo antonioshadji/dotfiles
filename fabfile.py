@@ -58,16 +58,52 @@ def push_key():
 
 @roles('ubuntu')
 @task
-def update_all():
+def update_linux():
     '''
     update all software and settings on a linux machine
     '''
     sudo('apt-get update')
     sudo('apt-get upgrade -y')
     sudo('apt-get autoremove -y')
-    update_dot()
-    update_python()
+
+
+@roles('ubuntu')
+@task
+def update_pandoc():
+    '''
+    update all software and settings on a linux machine
+    '''
+    run('cabal update')
+    run('cabal install cabal-install')
+    run('cabal install --force-reinstall pandoc')
+    run('cabal list --installed Pandoc')
+
+@roles('ubuntu')
+@task
+def update_ack():
+    '''
+    update all software and settings on a linux machine
+    '''
+    sudo('cpan App::Ack')
+
+@roles('ubuntu')
+@task
+def update_vim():
+    '''
+    update vim
+    '''
     run('vim +PluginInstall +qall')
+
+
+@roles('ubuntu')
+@task
+def update_all():
+    '''
+    update all software and settings on a linux machine
+    '''
+#    update_dot()
+#    update_python()
+#    run('vim +PluginInstall +qall')
 
 
 @task

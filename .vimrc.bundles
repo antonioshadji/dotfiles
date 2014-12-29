@@ -22,9 +22,9 @@ Plugin 'tpope/vim-fugitive'
 " gitk for Vim requires fugitive
 Plugin 'gregsexton/gitv'
 " Surround.vim is all about 'surroundings': parentheses, brackets, quotes, XML tags, and more.
-Plugin 'tpope/vim-surround'
-" Software caps lock
-Plugin 'tpope/vim-capslock'
+" Plugin 'tpope/vim-surround'
+" asynchronous build and test dispatcher
+" Plugin 'tpope/vim-dispatch'
 " Status line
 Plugin 'bling/vim-airline'
 " line numbering
@@ -46,9 +46,9 @@ Plugin 'altercation/vim-colors-solarized'
 " Work with python virtualenvs 
 Plugin 'jmcantrell/vim-virtualenv'
 " Next generation completion framework
-Plugin 'Shougo/neocomplete'
-Plugin 'Shougo/neosnippet'
-Plugin 'Shougo/neosnippet-snippets'
+"Plugin 'Shougo/neocomplete'
+"Plugin 'Shougo/neosnippet'
+"Plugin 'Shougo/neosnippet-snippets'
 " Highlight colors in css files
 Plugin 'ap/vim-css-color'
 " Markdown utilities 
@@ -60,7 +60,12 @@ Plugin 'itchyny/calendar.vim'
 Plugin 'majutsushi/tagbar'
 "Work fast, think well.  https://groups.google.com/forum/#!forum/vimoutliner
 "Plugin 'vimoutliner/vimoutliner'
-
+" Software caps lock
+" moved to end of list 12/20/2014
+" not working as of 12/7/2014 and might not be needed
+Plugin 'tpope/vim-capslock'
+" A code-completion engine for Vim http://valloric.github.io/YouCompleteMe/
+Plugin 'Valloric/YouCompleteMe'
 " } end bundle list
 
 " All of your Plugins must be added before the following line
