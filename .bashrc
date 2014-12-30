@@ -381,7 +381,7 @@ bind 'TAB:menu-complete'
 #  - Lowest priority first, highest priority last.
 export PATH=$PATH
 # set PATH so it includes user's private bin if it exists
-#[[ -d "$HOME/bin" ]] && export PATH="$HOME/bin:$PATH"
+[[ -d "$HOME/bin" ]] && export PATH="$HOME/bin:$PATH"
 #export PATH=/usr/bin:$PATH
 #export PATH=/usr/local/bin:$PATH
 #export PATH=/usr/local/sbin:$PATH
@@ -399,7 +399,7 @@ export PATH=$PATH
 #[[ -d "/usr/local/heroku/bin" ]] && export PATH=/usr/local/heroku/bin:$PATH 
 
 # set PATH to include latest version of pandoc
-PATH=$HOME/.cabal/bin/:$PATH
+[[ -d "$HOME/.cabal/bin/" ]] && export PATH="$HOME/.cabal/bin/:$PATH"
 
 if [ "$(uname -s)" == 'Darwin' ]; then
   # add all mac osx specific bits inside an if statement like this.
@@ -419,3 +419,4 @@ if [ -d '/mnt/storage/code/google-cloud-sdk/' ]; then
   source '/mnt/storage/code/google-cloud-sdk/completion.bash.inc'
 fi
 
+[[ -f "$HOME/.bashrc.local" ]] && source $HOME/.bashrc.local
