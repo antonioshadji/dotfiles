@@ -164,6 +164,7 @@ PROMPT_COMMAND='history -a'
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace
 
+# Only for bash>=4.3 otherwise use HIST= format
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=-1
 HISTFILESIZE=-1

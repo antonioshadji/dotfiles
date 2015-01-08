@@ -80,9 +80,9 @@ def update_pandoc():
 
 @roles('ubuntu')
 @task
-def update_ack():
+def update_perl():
     '''
-    update all software and settings on a linux machine
+    update all perl software and settings on a linux machine
     '''
     sudo('cpan App::Ack')
 
@@ -90,7 +90,7 @@ def update_ack():
 @task
 def update_vim():
     '''
-    update vim
+    update vim plugins
     '''
     run('vim +PluginInstall +qall')
 
@@ -113,6 +113,9 @@ def setup_new_machine():
      [X] - dotfiles
      [ ] - ssh automatic login
      [ ] - install pip if not installed
+     [ ] - install mercurial to download latest vim
+     [ ] - build latest vim
+     [ ] - if using YouCompleteMe install cmake first
     # tutorial including how to get rid of sudo password request
     # http://awaseroot.wordpress.com/2012/04/23/fabric-tutorial-1-take-command-of-your-network/
     # sudo visudo

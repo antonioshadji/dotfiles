@@ -88,7 +88,7 @@ set printoptions=formfeed:y  "insert Ctrl-V Ctrl-L (^L) to create print pagebrea
 " GUI Settings (here instead of .gvimrc) {
 if has('gui_running')
   " vim-airline requires patched fonts from Powerline
-  set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12  "Set my preferred font with comma separated list(spaces must be escaped)
+  set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 14  "Set my preferred font with comma separated list(spaces must be escaped)
   "set guifont=Ubuntu\ Mono\ 12  "Set my preferred font with comma separated list(spaces must be escaped)
   set guioptions-=T               "Remove tool bar
   set lines=48                    "Larger window than 24 row terminal
@@ -128,8 +128,8 @@ set directory=/var/tmp/vimswap//
 " <C-c> is an alternative to Esc but does not run autocmd by default
 imap <C-c> <Esc>
 " these keys are mapped in YouCompleteMe so are now disabeled until I update
-" imap <Up> <Esc><Up>
-" imap <Down> <Esc><Down>
+imap <Up> <Esc><Up>
+imap <Down> <Esc><Down>
 
 " http://learnvimscriptthehardway.stevelosh.com/chapters/06.html
 " default mapleader is \
@@ -166,7 +166,8 @@ cmap w!! w !sudo tee % >/dev/null
 
 " Open url under cursor in default browser
 " http://vim.wikia.com/wiki/Open_a_web-browser_with_the_URL_in_the_current_line
-nnoremap gx :silent !xdg-open <C-R>=escape("<C-R><C-F>", "#?&;\|%")<CR><CR>
+" this is mapped via pandoc plugin
+" nnoremap gx :silent !xdg-open <C-R>=escape("<C-R><C-F>", "#?&;\|%")<CR><CR>
 
 "https://bitbucket.org/sjl/dotfiles/src/cbbbc897e9b3/vim/vimrc
 " Toggle 'keep current line in the center of the screen' mode
