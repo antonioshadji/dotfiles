@@ -70,7 +70,7 @@ set foldenable                  " Auto fold code
 "  To insert special character - in insert mode CTRL-K two character code from :digraphs command
 set listchars=tab:›\ ,trail:∙,extends:≫,precedes:≪,nbsp:.   " Highlight problematic whitespace
 set list
-"} end Vim UI 
+"} end Vim UI
 
 " Formatting {
 set nowrap              " do not wrap long lines, show indicator instead
@@ -190,6 +190,7 @@ augroup Shebang
   autocmd BufNewFile *.py 0put =\"#!/usr/bin/env python\<nl># -*- coding: utf-8 -*-\<nl>\"|$
   autocmd BufNewFile *.rb 0put =\"#!/usr/bin/env ruby\<nl># -*- coding: utf-8 -*-\<nl>\"|$
   autocmd BufNewFile *.sh 0put =\"#!/usr/bin/env bash\<nl># -*- coding: utf-8 -*-\<nl>\"|$
+  autocmd BufNewFile *.js 0put =\"#!/usr/bin/env node\<nl># -*- coding: utf-8 -*-\<nl>\"|$
 augroup END
 " }
 
@@ -207,7 +208,7 @@ function! LastModified()
     call setpos('.', save_cursor)
   endif
 endfunction
-autocmd BufWritePre,FileWritePre *.mkd :call LastModified()
+autocmd BufWritePre,FileWritePre *.md :call LastModified()
 "}
 
 "http://ku1ik.com/2011/09/08/formatting-xml-in-vim-with-indent-command.html {

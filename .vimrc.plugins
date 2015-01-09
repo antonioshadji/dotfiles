@@ -41,23 +41,21 @@ au FileType pandoc setlocal nospell
 " http://www.xorcode.com/2011/04/11/solarized-vim-eclipse-ubuntu/
 " https://github.com/sigurdga/gnome-terminal-colors-solarized
 syntax enable       "Enable syntax highlighting and don't overwrite colorscheme
-"set background=dark
-"colorscheme solarized
-" override gnome-terminal reporting that it only handles 8 colors, set to 16 or 256
-set t_Co=256
+" http://askubuntu.com/questions/67/how-do-i-enable-full-color-support-in-vim
+set t_Co=256         "Override gnome-terminal 3.6 reporting only 8 colors, set to 16 or 256
 " call this function to enable ToggleBG command
 call togglebg#map("")
 
 " https://benjamintanweihao.github.io/blog/2014/04/10/switch-solarized-light-slash-dark-depending-on-the-time-of-day/
+" modified by me based on experimentation 1/8/2015
 let hour = strftime("%H")
-if 7 <= hour && hour < 17
-  set background=dark
-else
+if has('gui_running') && hour > 17
   set background=light
+else
+  set background=dark
 endif
 
 colorscheme solarized
-
 " }
 
 " YouCompleteMe {
