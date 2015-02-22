@@ -329,12 +329,12 @@ export GREP_COLOR='0;32' # green for matches
 # 2.5) sort options
 # Ensures cross-platform sorting behavior of GNU sort.
 # http://www.gnu.org/software/coreutils/faq/coreutils-faq.html#Sort-does-not-sort-in-normal-order_0021
-unset LANG
-export LC_ALL=POSIX
+unset LC_ALL
+export LANG='en_US.UTF-8'
 #Change first day of week to Monday
-export LC_TIME=en_GB.UTF-8
+export LC_TIME='en_GB.UTF-8'
 #Change to metric system
-export LC_MEASUREMENT=en_GB.UTF-8
+export LC_MEASUREMENT='en_GB.UTF-8'
 
 # 2.6) Install rlwrap if not present
 # http://stackoverflow.com/a/677212
@@ -344,13 +344,13 @@ command -v rlwrap >/dev/null 2>&1 || { echo >&2 "Install rlwrap to use node: sud
 # http://nodejs.org/api/repl.html#repl_repl
 alias node="env NODE_NO_READLINE=1 rlwrap node"
 alias node_repl="node -e \"require('repl').start({ignoreUndefined: true})\""
-export NODE_DISABLE_COLORS=1
+# export NODE_DISABLE_COLORS=1
 if [ -s ~/.nvm/nvm.sh ]; then
     NVM_DIR=~/.nvm
     source ~/.nvm/nvm.sh
     # nvm use v0.10 &> /dev/null # silence nvm use; needed for rsync (I removed minor version .12)
 fi
-
+[[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
 ## ------------------------------
 ## -- 3) User-customized code  --
 ## ------------------------------
@@ -369,6 +369,7 @@ set -o vi
 [[ -f /etc/bash_completion ]] && . /etc/bash_completion
 
 # https://superuser.com/questions/288714/bash-autocomplete-like-zsh
+bind 'set show-all-if-ambiguous on'
 bind 'TAB:menu-complete'
 
 # virtualenvwrapper configuration
@@ -389,7 +390,7 @@ export PATH=$PATH
 
 # ruby rvm setup - remove to .bashrc_local?
 # Load RVM into a shell session *as a function*
-#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
+#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # set PATH so it includes rvm if it exists  - remove to .bashrc_local?
 # Add RVM to PATH for scripting

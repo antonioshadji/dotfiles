@@ -48,6 +48,7 @@ set cursorline                  " Highlight current line
 set backspace=indent,eol,start  " fix backspace
 set number                      " show line numbers
 set showmatch                   " jump cursor to matching brace when entered
+set showcmd
 set incsearch                   " search as you type
 set hlsearch                    " highlight search terms :noh to clear
 set ignorecase                  " case-insensitive search
@@ -91,6 +92,7 @@ if has('gui_running')
   set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 14  "Set my preferred font with comma separated list(spaces must be escaped)
   "set guifont=Ubuntu\ Mono\ 12  "Set my preferred font with comma separated list(spaces must be escaped)
   set guioptions-=T               "Remove tool bar
+  set guioptions+=c               "Use console dialogs
   set lines=48                    "Larger window than 24 row terminal
   set columns=85                  "Wider to accomodate gutter plugins
   "http://stackoverflow.com/questions/18752175/gvim-makes-altletter-key-produce-an-accented-character-instead-of-exiting-ins
@@ -119,9 +121,9 @@ set directory=/var/tmp/vimswap//
 "}
 
 "Keyboard Shortcuts {
-"When you have a problem about vim mappings.
+" When you have a problem about vim mappings.
 " Check :verbose inoremap at the first.
-" If you know the keys which have problem, 
+" If you know the keys which have problem,
 " then do it with specified key, for example :verbose inoremap <esc>.
 
 " http://vim.wikia.com/wiki/Avoid_the_escape_key
@@ -137,7 +139,7 @@ let mapleader = "-"
 let localmapleader = "\\"
 
 "http://www.bestofvim.com/tip/leave-ex-mode-good/
-nnoremap Q <nop>
+nnoremap Q q
 
 " http://nvie.com/posts/how-i-boosted-my-vim/
 " The following trick is a really small one, but a super-efficient one,
@@ -162,12 +164,14 @@ map <C-up> <C-w>k
 map <C-right> <C-w>l
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
-cmap w!! w !sudo tee % >/dev/null
+" https://github.com/square/maximum-awesome/blob/master/vimrc
+cnoremap w!! %!sudo tee > /dev/null %
 
 " Open url under cursor in default browser
 " http://vim.wikia.com/wiki/Open_a_web-browser_with_the_URL_in_the_current_line
-" this is mapped via pandoc plugin
+" not working 1/12/15
 " nnoremap gx :silent !xdg-open <C-R>=escape("<C-R><C-F>", "#?&;\|%")<CR><CR>
+
 
 "https://bitbucket.org/sjl/dotfiles/src/cbbbc897e9b3/vim/vimrc
 " Toggle 'keep current line in the center of the screen' mode
@@ -211,15 +215,25 @@ endfunction
 autocmd BufWritePre,FileWritePre *.md :call LastModified()
 "}
 
+" md is markdown > use pandoc filetype {
+autocmd BufRead,BufNewFile *.md set filetype=pandoc
+" Enable spellchecking for Markdown
+autocmd FileType pandoc setlocal spell
+" }
+
 "http://ku1ik.com/2011/09/08/formatting-xml-in-vim-with-indent-command.html {
 au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -
-"} 
-
-z" http://www.reddit.com/r/vim/comments/232j45/save_file_on_insert_mode_exit/ {
-" write file when leaving insert mode if changes have been made
-" autocmd InsertLeave * :silent update
 "}
 
+" write file when leaving insert mode if changes have been made {
+" http://www.reddit.com/r/vim/comments/232j45/save_file_on_insert_mode_exit/
+autocmd InsertLeave * :silent update
+"}
+
+" save on FocusLost {
+" https://github.com/mscoutermarsh/dotfiles/blob/master/vimrc
+autocmd FocusLost * :wa
+" }
 endif
 " end Auto Commands: }
 

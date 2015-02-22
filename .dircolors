@@ -68,9 +68,9 @@ TERM xterm-debian
 #NORMAL 00 # no color code at all
 #FILE 00 # regular file: use no color at all
 RESET 0 # reset to "normal" color
-DIR 01;35 # directory 
-LINK target # 00;36 # symbolic link. (If you set this to 'target' instead of a
- # numerical value, the color is as for the file pointed to.)
+DIR 01;35 # directory
+#(Set this to 'target' and the color will be as for the file pointed to.)
+LINK target # 00;36 # symbolic link.
 MULTIHARDLINK 00 # regular file with more than one link
 FIFO 40;33 # pipe
 SOCK 40;33 # socket
@@ -89,6 +89,7 @@ EXEC 00;32
 # List any file extensions like '.gz' or '.tar' that you would like ls
 # to colorize below. Put the extension, a space, and the color init string.
 # (and any comments you want to add after a '#')
+# http://wiki.xiph.org/index.php/MIME_Types_and_File_Extensions
 # If you use DOS-style suffixes, you may want to uncomment the following:
 #.cmd 01;32 # executables (bright green)
 #.exe 01;32
@@ -133,57 +134,56 @@ EXEC 00;32
 .7z 00;31
 .rz 00;31
 # image formats
-.jpg 01;37
-.jpeg 01;37
-.JPG 01;37
-.gif 01;37
-.bmp 01;37
-.pbm 01;37
-.pgm 01;37
-.ppm 01;37
-.tga 01;37
-.xbm 01;37
-.xpm 01;37
-.tif 01;37
-.tiff 01;37
-.png 01;37
-.svg 01;37
-.svgz 01;37
-.mng 01;37
-.pcx 01;37
-.mov 01;37
-.mpg 01;37
-.mpeg 01;37
-.m2v 01;37
-.mkv 01;37
-.webm 01;37
-.ogm 01;37
-.mp4 01;37
-.m4v 01;37
-.mp4v 01;37
-.vob 01;37
-.qt 01;37
-.nuv 01;37
-.wmv 01;37
+.anx 01;37
 .asf 01;37
-.rm 01;37
-.rmvb 01;37
-.flc 01;37
 .avi 01;37
+.axv 01;37
+.bmp 01;37
+.cgm 01;37
+.dl 01;37
+.emf 01;37
+.flc 01;37
 .fli 01;37
 .flv 01;37
+.gif 01;37
 .gl 01;37
-.dl 01;37
-.xcf 01;37
-.xwd 01;37
-.yuv 01;37
-.cgm 01;37
-.emf 01;37
-# http://wiki.xiph.org/index.php/MIME_Types_and_File_Extensions
-.axv 01;37
-.anx 01;37
+.jpeg 01;37
+.jpg 01;37
+.m2v 01;37
+.m4v 01;37
+.mkv 01;37
+.mng 01;37
+.mov 01;37
+.mp4 01;37
+.mp4v 01;37
+.mpeg 01;37
+.mpg 01;37
+.nuv 01;37
+.ogm 01;37
 .ogv 01;37
 .ogx 01;37
+.pbm 01;37
+.pcx 01;37
+.pdf 01;37
+.pgm 01;37
+.png 01;37
+.ppm 01;37
+.qt 01;37
+.rm 01;37
+.rmvb 01;37
+.svg 01;37
+.svgz 01;37
+.tga 01;37
+.tif 01;37
+.tiff 01;37
+.vob 01;37
+.webm 01;37
+.wmv 01;37
+.xbm 01;37
+.xcf 01;37
+.xpm 01;37
+.xwd 01;37
+.yuv 01;37
 # audio formats
 .aac 00;35
 .au 00;35
@@ -197,7 +197,6 @@ EXEC 00;32
 .ra 00;35
 .wav 00;35
 .m4a 00;35
-# http://wiki.xiph.org/index.php/MIME_Types_and_File_Extensions
 .axa 00;35
 .oga 00;35
 .spx 00;35

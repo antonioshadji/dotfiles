@@ -3,13 +3,13 @@
 "}
 
 " vim-airline {
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled=1
+let g:airline_powerline_fonts=1
 " http://vim.wikia.com/wiki/Insert-mode_only_Caps_Lock
 " ?? i think this is Insert mode soft capslock
 " * enable iminsert detection >
-let g:airline_detect_iminsert=1
-set timeoutlen=50
+"let g:airline_detect_iminsert=1
+set ttimeoutlen=50
 set laststatus=2
 set noshowmode
 
