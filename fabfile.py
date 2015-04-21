@@ -58,6 +58,16 @@ def push_key():
 
 @roles('ubuntu')
 @task
+def update_linux_local():
+    '''
+    update all software and settings on a linux machine
+    '''
+    local('apt-get update')
+    local('apt-get upgrade -y')
+    local('apt-get autoremove -y')
+
+@roles('ubuntu')
+@task
 def update_linux():
     '''
     update all software and settings on a linux machine

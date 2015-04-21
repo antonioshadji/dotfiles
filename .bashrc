@@ -66,11 +66,12 @@
 #  Conversely, if the default group name is *different* from the username
 #  AND the user id is greater than 99, we're on the server, and set umask
 #  022 for easy collaborative editing.
-if [ "`id -gn`" == "`id -un`" -a `id -u` -gt 99 ]; then
-	umask 002
-else
-	umask 022
-fi
+# March 29 2015 Is this necessary? remove to use ubuntu default
+#if [ "`id -gn`" == "`id -un`" -a `id -u` -gt 99 ]; then
+#umask 002
+#else
+#	umask 022
+#fi
 
 # ---------------------------------------------------------
 # -- 1.2) Set up bash prompt and ~/.bash_eternal_history --
@@ -312,7 +313,7 @@ alias ..='cd ..'
 alias ...='cd ..;cd ..'
 alias md='mkdir'
 alias cl='clear'
-alias du='du -ch --max-depth=1'
+alias du='du -sh'
 alias treeacl='tree -A -C -L 2'
 
 # 2.3) Text and editor commands
@@ -415,10 +416,12 @@ fi
 [[ -f "$HOME/dotfiles/bash/wp-completion.bash" ]] && source $HOME/dotfiles/bash/wp-completion.bash
 
 if [ -d '/mnt/storage/code/google-cloud-sdk/' ]; then
-  # The next line updates PATH for the Google Cloud SDK.
-  source '/mnt/storage/code/google-cloud-sdk/path.bash.inc'
-  # The next line enables bash completion for gcloud.
-  source '/mnt/storage/code/google-cloud-sdk/completion.bash.inc'
+# The next line updates PATH for the Google Cloud SDK.
+source '/mnt/storage/code/google-cloud-sdk/path.bash.inc'
+
+# The next line enables bash completion for gcloud.
+source '/mnt/storage/code/google-cloud-sdk/completion.bash.inc'
 fi
 
 [[ -f "$HOME/.bashrc.local" ]] && source $HOME/.bashrc.local
+
