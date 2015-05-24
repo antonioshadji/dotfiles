@@ -102,7 +102,7 @@ def update_vim():
     '''
     update vim plugins
     '''
-    run('vim +PluginInstall +qall')
+    run('vim +PluginUpdate +qall')
 
 
 @roles('ubuntu')
@@ -193,6 +193,7 @@ def install_vundle():
         run('git clone ' + repo + ' ' + target)
 
 
+@roles('ubuntu')
 @task
 def update_python():
     '''

@@ -19,6 +19,10 @@ scikits.statsmodels
 scipy
 statsmodels
 sympy
+# required by ipython notebook
+tornado
+pyzmq
+jsonschema
 # Environment Maintenance
 virtualenv
 virtualenvwrapper

@@ -415,13 +415,18 @@ fi
 # http://wp-cli.org/ bash completion
 [[ -f "$HOME/dotfiles/bash/wp-completion.bash" ]] && source $HOME/dotfiles/bash/wp-completion.bash
 
-if [ -d '/mnt/storage/code/google-cloud-sdk/' ]; then
-# The next line updates PATH for the Google Cloud SDK.
-source '/mnt/storage/code/google-cloud-sdk/path.bash.inc'
-
-# The next line enables bash completion for gcloud.
-source '/mnt/storage/code/google-cloud-sdk/completion.bash.inc'
-fi
-
 [[ -f "$HOME/.bashrc.local" ]] && source $HOME/.bashrc.local
 
+if [ -f /var/run/reboot-required ]; then 
+  echo 'Reboot required'
+  cat /var/run/reboot-required.pkgs
+  uptime
+fi
+
+#if [ -d '$HOME/bin/google-cloud-sdk/' ]; then
+#fi
+# The next line updates PATH for the Google Cloud SDK.
+source '/home/antonios/bin/google-cloud-sdk/path.bash.inc'
+
+# The next line enables bash completion for gcloud.
+source '/home/antonios/bin/google-cloud-sdk/completion.bash.inc'
