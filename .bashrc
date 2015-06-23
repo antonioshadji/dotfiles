@@ -346,7 +346,8 @@ export LC_MEASUREMENT='en_GB.UTF-8'
 
 # 2.6) Install rlwrap if not present
 # http://stackoverflow.com/a/677212
-command -v rlwrap >/dev/null 2>&1 || { echo >&2 "Install rlwrap to use node: sudo (apt-get or brew) install rlwrap";}
+#command -v rlwrap >/dev/null 2>&1 || { echo >&2 "Install rlwrap to use node: sudo (apt-get or brew) install rlwrap";}
+command -v rlwrap >/dev/null 2>&1
 
 # 2.7) node.js and nvm
 # http://nodejs.org/api/repl.html#repl_repl
