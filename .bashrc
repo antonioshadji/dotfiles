@@ -415,7 +415,7 @@ export PATH=$PATH
 if [ "$(uname -s)" == 'Darwin' ]; then
   # add all mac osx specific bits inside an if statement like this.
   alias ll='ls -AFlhG'
-  alias llt='ls - AFlhrtG'
+  alias llt='ls -AFlhrtG'
   alias la='ls -AFG'
   alias l='ls -CFG'
   HISTSIZE=1000000
