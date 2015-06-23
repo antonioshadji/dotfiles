@@ -38,6 +38,13 @@
 #      --norc option. The --rcfile file option will force Bash to read and
 #      execute commands from file instead of ~/.bashrc.
 
+#------------------------------------
+# -- 1.0) Set up global default variables - antonios
+#------------------------------------
+
+os=`uname -s`
+host=`hostname | cut -d. -f1`
+
 # -----------------------------------
 # -- 1.1) Set up umask permissions --
 # -----------------------------------
@@ -410,6 +417,8 @@ if [ "$(uname -s)" == 'Darwin' ]; then
   alias llt='ls - AFlhrtG'
   alias la='ls -AFG'
   alias l='ls -CFG'
+  HISTSIZE=1000000
+  HISTFILESIZE=1000000
 fi
 
 # http://wp-cli.org/ bash completion
@@ -423,10 +432,10 @@ if [ -f /var/run/reboot-required ]; then
   uptime
 fi
 
-#if [ -d '$HOME/bin/google-cloud-sdk/' ]; then
-#fi
+if [ -d '$HOME/bin/google-cloud-sdk/' ]; then
 # The next line updates PATH for the Google Cloud SDK.
 source '/home/antonios/bin/google-cloud-sdk/path.bash.inc'
 
 # The next line enables bash completion for gcloud.
 source '/home/antonios/bin/google-cloud-sdk/completion.bash.inc'
+fi
