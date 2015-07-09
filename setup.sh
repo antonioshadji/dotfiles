@@ -11,8 +11,8 @@ curl https://raw.github.com/creationix/nvm/master/install.sh | sh
 
 # Load nvm and install latest production node
 source $HOME/.nvm/nvm.sh
-nvm install v0.10
-nvm use v0.10
+nvm install
+# nvm use v0.10
 
 # Install jshint to allow checking of JS code within emacs
 # http://jshint.com/
@@ -29,7 +29,7 @@ sudo apt-get install -y rlwrap
 # sudo apt-get install -y emacs24 emacs24-el emacs24-common-non-dfsg
 
 #Install 32bit libraries required for Android development with Eclipse
-sudo apt-get install -y libstdc++6:i386 libgcc1:i386 zlib1g:i386 libncurses5:i386 libsdl1.2debian:i386
+# sudo apt-get install -y libstdc++6:i386 libgcc1:i386 zlib1g:i386 libncurses5:i386 libsdl1.2debian:i386
 
 #Install other various utilities
 sudo apt-get install -y tree
