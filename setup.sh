@@ -78,3 +78,7 @@ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle
 # into ~/.fonts directory
 # run sudo fc-cache -vf ~/.fonts
 
+# http://askubuntu.com/questions/51925/how-do-i-configure-a-new-ubuntu-installation-to-accept-ssh-connections
+# un-comment these lines to enable ssh access
+# sudo apt-get install -y openssh-server
+# sudo ufw allow 22
