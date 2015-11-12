@@ -10,7 +10,7 @@ from fabric.context_managers import settings
 
 env.use_ssh_config = True
 env.roledefs.update({
-    'ubuntu': ['localhost', 'E6400-DELL.home', 'ThinkPad-T420s.home'],
+    'ubuntu': ['localhost', 'E6400-DELL.home', 'T420s-laptop.home'],
     'mac': ['Simonas-MBP.home']
     })
 env.skip_bad_hosts = True

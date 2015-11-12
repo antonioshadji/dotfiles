@@ -165,7 +165,9 @@ map <C-right> <C-w>l
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 " https://github.com/square/maximum-awesome/blob/master/vimrc
-cnoremap w!! %!sudo tee > /dev/null %
+" cnoremap w!! %!sudo tee > /dev/null %
+" http://www.geekyboy.com/archives/629
+cnoremap w!! :w !sudo tee %
 
 " Open url under cursor in default browser
 " http://vim.wikia.com/wiki/Open_a_web-browser_with_the_URL_in_the_current_line
