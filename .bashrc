@@ -427,13 +427,13 @@ fi
 
 [[ -f "$HOME/.bashrc.local" ]] && source $HOME/.bashrc.local
 
-if [ -f /var/run/reboot-required ]; then 
+if [ -f /var/run/reboot-required ]; then
   echo 'Reboot required'
   cat /var/run/reboot-required.pkgs
   uptime
 fi
 
-if [ -d '$HOME/bin/google-cloud-sdk/' ]; then
+if [ -d "$HOME/bin/google-cloud-sdk/" ]; then
   # The next line updates PATH for the Google Cloud SDK.
   source '/home/antonios/bin/google-cloud-sdk/path.bash.inc'
 
@@ -441,6 +441,11 @@ if [ -d '$HOME/bin/google-cloud-sdk/' ]; then
   source '/home/antonios/bin/google-cloud-sdk/completion.bash.inc'
 fi
 
-if [ -d '$HOME/code/gowork/' ]; then
+if [ -d $HOME/code/gowork/ ]; then
   export GOPATH=$HOME/code/gowork
 fi
+
+if [ -d /usr/local/go/bin/ ]; then
+  export PATH=$PATH:/usr/local/go/bin
+fi
+

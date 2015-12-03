@@ -11,6 +11,7 @@ grip
 requests
 # Data Science Tools
 ipython
+jupyter
 matplotlib
 numpy
 pandas
