@@ -12,18 +12,12 @@ requests
 # Data Science Tools
 ipython
 jupyter
-matplotlib
 numpy
 pandas
-scikit-learn
-scikits.statsmodels
-scipy
-statsmodels
-sympy
 # required by ipython notebook
-tornado
-pyzmq
-jsonschema
+# tornado
+# pyzmq
+# jsonschema
 # Environment Maintenance
 virtualenv
 virtualenvwrapper
@@ -35,3 +29,13 @@ ecdsa
 subprocess32
 google-api-python-client
 flake8
+# More Data Science this failed to install and stopped install process
+# must apt-get install libpng12-dev libfreetype6-dev to install
+matplotlib
+# must be installed before scikit
+# requires apt-get install libblas-dev liblapack-dev gfortran
+scipy
+scikit-learn
+scikits.statsmodels
+statsmodels
+sympy

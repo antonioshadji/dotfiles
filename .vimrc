@@ -105,7 +105,7 @@ endif
 "} end GUI settings
 
 " Backup and undo settings {
-" the directories listed here were created manually
+" the directories listed here were created manually TODO: must be automated
 if has('persistent_undo')
     set undofile        "if ~/.vim/undo exists file put there, otherwise CWD
     set undolevels=1000
