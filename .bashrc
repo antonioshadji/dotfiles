@@ -434,8 +434,7 @@ if [ -f /var/run/reboot-required ]; then
 fi
 
 if [ -d "$HOME/bin/google-cloud-sdk/" ]; then
-  # The next line updates PATH for the Google Cloud SDK.
-  source '/home/antonios/bin/google-cloud-sdk/path.bash.inc'
+  
 
   # The next line enables bash completion for gcloud.
   source '/home/antonios/bin/google-cloud-sdk/completion.bash.inc'
@@ -449,3 +448,9 @@ if [ -d /usr/local/go/bin/ ]; then
   export PATH=$PATH:/usr/local/go/bin
 fi
 
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/home/antonios/bin/google-cloud-sdk/path.bash.inc'
+
+# The next line enables shell command completion for gcloud.
+source '/home/antonios/bin/google-cloud-sdk/completion.bash.inc'
