@@ -1,5 +1,8 @@
 #!/bin/bash
-# Simple setup.sh for configuring Ubuntu 12.04 LTS EC2 instance for headless setup.
+# Simple setup.sh originally for for configuring Ubuntu 12.04 LTS EC2 instance for headless setup.
+
+#setup vim -- this was added when setting up clean machine ubuntu desktop
+sudo apt-get install -y vim vim-doc
 
 # Install and configure Git
 sudo apt-get install -y git-core
@@ -21,15 +24,6 @@ npm install -g jshint
 # Install rlwrap to provide libreadline features with node
 # See: http://nodejs.org/api/repl.html#repl_repl
 sudo apt-get install -y rlwrap
-
-# Install emacs24
-# https://launchpad.net/~cassou/+archive/emacs
-# sudo apt-add-repository -y ppa:cassou/emacs
-# sudo apt-get update
-# sudo apt-get install -y emacs24 emacs24-el emacs24-common-non-dfsg
-
-#Install 32bit libraries required for Android development with Eclipse
-# sudo apt-get install -y libstdc++6:i386 libgcc1:i386 zlib1g:i386 libncurses5:i386 libsdl1.2debian:i386
 
 #Install other various utilities
 sudo apt-get install -y tree
@@ -80,5 +74,5 @@ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle
 # run sudo fc-cache -vf ~/.fonts
 
 # enable ssh access - as of 15.10 sudo ufw allow 22 command not necessary
-# sudo apt-get install -y openssh-server
+sudo apt-get install -y openssh-server
 
