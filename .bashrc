@@ -433,13 +433,6 @@ if [ -f /var/run/reboot-required ]; then
   uptime
 fi
 
-if [ -d "$HOME/bin/google-cloud-sdk/" ]; then
-  
-
-  # The next line enables bash completion for gcloud.
-  source '/home/antonios/bin/google-cloud-sdk/completion.bash.inc'
-fi
-
 if [ -d $HOME/code/gowork/ ]; then
   export GOPATH=$HOME/code/gowork
 fi
