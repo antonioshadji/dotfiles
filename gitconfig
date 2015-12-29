@@ -1,6 +1,6 @@
 [user]
 	name = Antonios Hadjigeorgalis
-	email = Antoniosx@gmail.com
+	email = Antonios@antonios-linux
 [credential]
 	helper = cache --timeout=3600
 [color]

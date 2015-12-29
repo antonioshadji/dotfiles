@@ -36,6 +36,7 @@ set autoread            " auto re-load files when changed on disk https://github
 
 " Setup clipboard to work with desktop copy / paste {
 " https://stackoverflow.com/questions/2842078/how-do-i-detect-os-x-in-my-vimrc-file-so-certain-configurations-will-only-appl
+" works with modern mac osx El Capitan and Ubuntu 12.04 or later
 if system("uname") == "Linux\n"       " has ('x') && has ('gui')  On Linux use + register for copy-paste
   set clipboard=unnamedplus
 elseif system("uname") == "Darwin\n"  "has ('gui') On Mac & Win use * register for copy-paste
@@ -107,16 +108,25 @@ endif
 " Backup and undo settings {
 " the directories listed here were created manually TODO: must be automated
 if has('persistent_undo')
-    set undofile        "if ~/.vim/undo exists file put there, otherwise CWD
+    set undofile        "if ~/.vim/undo exists file put there
     set undolevels=1000
     " no undo files left in CWD
-    set undodir=/var/tmp/vimundo//
+    if !isdirectory(expand("~/.vim/undo/"))
+      !mkdir -p ~/.vim/undo/
+    endif
+    set undodir=~/.vim/undo//
 endif
 set backup                  "See :help backup
 " no backup files left in CWD
-set backupdir=/var/tmp/vimbackup//
+if !isdirectory(expand("~/.vim/backup/"))
+  !mkdir -p ~/.vim/backup/
+endif
+set backupdir=~/.vim/backup//
 " no swap files left in CWD
-set directory=/var/tmp/vimswap//
+if !isdirectory(expand("~/.vim/swap/"))
+  !mkdir -p ~/.vim/swap/
+endif
+set directory=~/.vim/swap//
 " undodir set from spf13
 "}
 
