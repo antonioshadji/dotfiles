@@ -57,6 +57,7 @@
 # git clone git@github.com:AntoniosHadji/dotfiles.git
 ln -sb $HOME/dotfiles/.bash_profile $HOME/.
 ln -sb $HOME/dotfiles/.bashrc $HOME/.
+ln -sb $HOME/dotfiles/.inputrc $HOME/.
 # disabled for first run on clean osx
 # ln -sb $HOME/dotfiles/.dircolors $HOME/.
 ln -sb $HOME/dotfiles/.vimrc $HOME/.
