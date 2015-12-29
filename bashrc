@@ -167,7 +167,8 @@ fi
 shopt -s histappend
 # update after every command in every terminal
 # https://www.digitalocean.com/community/tutorials/how-to-use-bash-history-commands-and-expansions-on-a-linux-vps
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+# to reload immediately all term history >> history -c; history -r; 
+export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
