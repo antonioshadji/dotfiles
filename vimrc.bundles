@@ -62,15 +62,14 @@ if v:version > 704
   Plugin 'vim-pandoc/vim-pandoc'
   Plugin 'vim-pandoc/vim-pandoc-syntax'
 else
-  echo v:version
+  echo "Cannot load vim-pandoc version" v:version "is less than 704"
 endif
 
 if v:version > 703 && has("patch598")
  " A code-completion engine for Vim http://valloric.github.io/YouCompleteMe/
   Plugin 'Valloric/YouCompleteMe'
 else
-  echo v:version
-  echo has("patch598")
+  echo "Cannot load YouCompleteMe has('patch598') returned" has('patch598')
 endif
 
 " } end bundle list

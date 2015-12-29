@@ -3,3 +3,6 @@
 
 # Compiled spelling list files
 *.spl
+
+# all real notes will go in README.md
+notes/*
