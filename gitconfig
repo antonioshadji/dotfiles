@@ -1,6 +1,6 @@
 [user]
 	name = Antonios Hadjigeorgalis
-	email = Antonios@antonios-linux
+	email = Antonios@Mac-Mini.home
 [credential]
 	helper = cache --timeout=3600
 [color]

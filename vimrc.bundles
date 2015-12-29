@@ -40,40 +40,27 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'jmcantrell/vim-virtualenv'
 " Highlight colors in css files
 Plugin 'ap/vim-css-color'
-" Markdown utilities 
-Plugin 'vim-pandoc/vim-pandoc'
-Plugin 'vim-pandoc/vim-pandoc-syntax'
 "Distraction-free writing in Vim
 Plugin 'junegunn/goyo.vim'
 " a calendar app for vim
 Plugin 'itchyny/calendar.vim'
 " Vim plugin that displays tags in a window, ordered by scope
 Plugin 'majutsushi/tagbar'
-" A code-completion engine for Vim http://valloric.github.io/YouCompleteMe/
-Plugin 'Valloric/YouCompleteMe'
 " Tern Plugin http://ternjs.net/
 Plugin 'marijnh/tern_for_vim'
 Plugin 'cmather/vim-meteor-snippets'
 " Interactive command execution in Vim. Required by vimshell
 Plugin 'Shougo/vimproc.vim'
 " Software caps lock
-" moved to end of list 12/20/2014
-" not working as of 12/7/2014 and might not be needed
 Plugin 'tpope/vim-capslock'
-" Powerful shell implemented by vim. does not work with autochdir
-"Plugin 'Shougo/vimshell.vim'
-" Next generation completion framework
-"Plugin 'Shougo/neocomplete'
-"Plugin 'Shougo/neosnippet'
-"Plugin 'Shougo/neosnippet-snippets'
-"Work fast, think well.  https://groups.google.com/forum/#!forum/vimoutliner
-"Plugin 'vimoutliner/vimoutliner'
-" Surround.vim is all about 'surroundings': parentheses, brackets, quotes, XML tags, and more.
-"Plugin 'tpope/vim-surround'
-" asynchronous build and test dispatcher
-"Plugin 'tpope/vim-dispatch'
-" A Vim plugin which shows a git diff in the gutter (sign column) and stages/reverts hunks.
-"Plugin 'airblade/vim-gitgutter'
+" These plugins do not work on MAC OSX
+if system("uname") == "Linux\n"
+  " Markdown utilities 
+  Plugin 'vim-pandoc/vim-pandoc'
+  Plugin 'vim-pandoc/vim-pandoc-syntax'
+  " A code-completion engine for Vim http://valloric.github.io/YouCompleteMe/
+  Plugin 'Valloric/YouCompleteMe'
+endif
 
 " } end bundle list
 

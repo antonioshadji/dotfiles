@@ -19,14 +19,6 @@ ln -sf $HOME/dotfiles/vim/ $HOME/.nvim
 ln -sf $HOME/dotfiles/vimrc $HOME/.nvimrc
 vim +PluginInstall +qall
 
-# Airline Font Configuration
-# Linux Only ** TODO: this needs further research, or use powerline
-if [ "$(uname -s)" == 'Linux' ]; then
-  trgt=$HOME/dotfiles/config/fontconfig/font.conf/10-powerline-symbols.conf
-  dest=$HOME/.config/fontconfig/fonts.conf/.
-  ln -sf $trgt $dest
-fi
-
 # Git Configuration
 ln -sf $HOME/dotfiles/gitconfig $HOME/.gitconfig
 git config --global user.email "Antonios@$HOSTNAME"
@@ -40,5 +32,14 @@ ln -sf $HOME/dotfiles/curlrc $HOME/.curlrc
 # Tmux Configuration
 ln -sf $HOME/dotfiles/tmux.conf $HOME/.tmux.conf
 
-# Terminal Colors Configuration
-ln -sf $HOME/dotfiles/dircolors $HOME/.dircolors
+# Linux Only
+if [ "$(uname -s)" == 'Linux' ]; then
+  # Airline Font Configuration
+  # TODO: this needs further research, or use powerline
+  trgt=$HOME/dotfiles/config/fontconfig/font.conf/10-powerline-symbols.conf
+  dest=$HOME/.config/fontconfig/fonts.conf/.
+  ln -sf $trgt $dest
+
+    # Terminal Colors Configuration
+  ln -sf $HOME/dotfiles/dircolors $HOME/.dircolors
+fi
