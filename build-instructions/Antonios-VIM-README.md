@@ -1,6 +1,7 @@
 ## Configuration
 
 ./configure \
+  --with-features=huge \
   --enable-pythoninterp=dynamic \
   --enable-cscope \
   --enable-gui=auto \
@@ -12,3 +13,12 @@ cd src
 make distclean  # if you build Vim before
 make
 sudo make install
+
+
+
+
+
+
+" modeline {
+" vim: set foldmarker={,} foldlevel=1 foldmethod=marker :
+" }

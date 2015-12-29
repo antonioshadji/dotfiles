@@ -1,2 +1,5 @@
 # Compiled python
 *.pyc
+
+# all real notes will go in README.md
+notes/*
