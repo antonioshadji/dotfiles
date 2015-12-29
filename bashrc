@@ -326,6 +326,7 @@ if [ -f $HOME/dotfiles/bash-git-prompt/gitprompt.sh ]; then
   source $HOME/dotfiles/bash-git-prompt/gitprompt.sh
 fi
 
+
 ## -----------------------
 ## -- 2) Set up aliases --
 ## -----------------------
