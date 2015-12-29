@@ -165,8 +165,9 @@ fi
 # See:  http://www.ukuug.org/events/linux2003/papers/bash_tips/
 # Append to history, don't overwrite
 shopt -s histappend
-# update after every command
-PROMPT_COMMAND='history -a'
+# update after every command in every terminal
+# https://www.digitalocean.com/community/tutorials/how-to-use-bash-history-commands-and-expansions-on-a-linux-vps
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
@@ -441,9 +442,10 @@ if [ -d /usr/local/go/bin/ ]; then
   export PATH=$PATH:/usr/local/go/bin
 fi
 
+if [ -d $HOME/bin/google-cloud-sdk/ ]; then
+  # The next line updates PATH for the Google Cloud SDK.
+  source $HOME/bin/google-cloud-sdk/path.bash.inc
+  # The next line enables shell command completion for gcloud.
+  source $HOME/bin/google-cloud-sdk/completion.bash.inc
+fi
 
-# The next line updates PATH for the Google Cloud SDK.
-source '/home/antonios/bin/google-cloud-sdk/path.bash.inc'
-
-# The next line enables shell command completion for gcloud.
-source '/home/antonios/bin/google-cloud-sdk/completion.bash.inc'
