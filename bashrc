@@ -299,6 +299,14 @@ PS1="\[$TXTBLU\][\u@\h:\w]\n"
 PS1+="\$(parse_git_branch)$"
 PS1+="\[$TXTRST\]" #reset color to default
 
+## -----------------------------------------------------
+## -- 1.3) https://github.com/magicmonty/bash-git-prompt
+## --      Customized git prompt
+## -----------------------------------------------------
+#if [ -f $HOME/dotfiles/bash-git-prompt/gitprompt.sh ]; then
+#  source $HOME/dotfiles/bash-git-prompt/gitprompt.sh
+#fi
+
 ## -----------------------
 ## -- 2) Set up aliases --
 ## -----------------------
