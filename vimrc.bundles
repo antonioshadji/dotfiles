@@ -57,7 +57,7 @@ Plugin 'Shougo/vimproc.vim'
 Plugin 'tpope/vim-capslock'
 
 " These plugins do not work on MAC OSX with default vim
-if v:version > 704
+if v:version >= 704
   " Markdown utilities
   Plugin 'vim-pandoc/vim-pandoc'
   Plugin 'vim-pandoc/vim-pandoc-syntax'
