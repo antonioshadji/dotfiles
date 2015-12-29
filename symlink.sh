@@ -55,20 +55,21 @@
 #     mv .vim .vim.old
 # fi
 # git clone git@github.com:AntoniosHadji/dotfiles.git
-ln -sb $HOME/dotfiles/.bash_profile $HOME/.
-ln -sb $HOME/dotfiles/.bashrc $HOME/.
-ln -sb $HOME/dotfiles/.inputrc $HOME/.
+ln -sf $HOME/dotfiles/.bash_profile $HOME/.
+ln -sf $HOME/dotfiles/.bashrc $HOME/.
+ln -sf $HOME/dotfiles/.inputrc $HOME/.
 # disabled for first run on clean osx
 # ln -sb $HOME/dotfiles/.dircolors $HOME/.
-ln -sb $HOME/dotfiles/.vimrc $HOME/.
-ln -sb $HOME/dotfiles/.vimrc.plugins $HOME/.
-ln -sb $HOME/dotfiles/.vimrc.bundles $HOME/.
-ln -sf $HOME/dotfiles/.vim $HOME/.
+ln -sf $HOME/dotfiles/.vimrc $HOME/.
+ln -sf $HOME/dotfiles/.vimrc.plugins $HOME/.
+ln -sf $HOME/dotfiles/.vimrc.bundles $HOME/.
+mv $HOME/.vim $HOME/.vim-pre-symlink
+ln -sf $HOME/dotfiles/.vim/ $HOME/.
 # font lines disabled for run on osx
 # ln -sf $HOME/dotfiles/.fonts $HOME/.
 # sudo fc-cache -f
 # Vundle must be installed via git before it can managed itself and others
-git clone https://github.com/gmarik/Vundle.vim.git $HOME/.vim/bundle/vundle
+# git clone https://github.com/gmarik/Vundle.vim.git $HOME/.vim/bundle/vundle
 # gnome terminal colors
 # git@github.com:Anthony25/gnome-terminal-colors-solarized.git
 # https://github.com/Anthony25/gnome-terminal-colors-solarized.git
