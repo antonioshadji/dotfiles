@@ -1,5 +1,6 @@
 #!/bin/bash
-# Simple setup.sh for configuring Ubuntu 12.04 LTS EC2 instance for headless setup.
+# Originally a Simple setup.sh for configuring Ubuntu 12.04 LTS EC2 instance for headless setup.
+# since modified to work on OSX and various flavors of linux
 
 # Install and configure Git
 # sudo apt-get install -y git-core
@@ -54,18 +55,17 @@
 #     mv .vim .vim.old
 # fi
 # git clone git@github.com:AntoniosHadji/dotfiles.git
-ln -sb $HOME/dotfiles/.screenrc $HOME/.
 ln -sb $HOME/dotfiles/.bash_profile $HOME/.
 ln -sb $HOME/dotfiles/.bashrc $HOME/.
-ln -sb $HOME/dotfiles/.bashrc_custom $HOME/.
-ln -sf $HOME/dotfiles/.emacs.d $HOME/.
-ln -sb $HOME/dotfiles/.dircolors $HOME/.
+# disabled for first run on clean osx
+# ln -sb $HOME/dotfiles/.dircolors $HOME/.
 ln -sb $HOME/dotfiles/.vimrc $HOME/.
 ln -sb $HOME/dotfiles/.vimrc.plugins $HOME/.
 ln -sb $HOME/dotfiles/.vimrc.bundles $HOME/.
 ln -sf $HOME/dotfiles/.vim $HOME/.
-ln -sf $HOME/dotfiles/.fonts $HOME/.
-sudo fc-cache -f
+# font lines disabled for run on osx
+# ln -sf $HOME/dotfiles/.fonts $HOME/.
+# sudo fc-cache -f
 # Vundle must be installed via git before it can managed itself and others
 git clone https://github.com/gmarik/Vundle.vim.git $HOME/.vim/bundle/vundle
 # gnome terminal colors
