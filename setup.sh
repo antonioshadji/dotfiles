@@ -15,8 +15,8 @@ ln -sf $HOME/dotfiles/vim/ $HOME/.vim
 ln -sf $HOME/dotfiles/vimrc $HOME/.vimrc
 ln -sf $HOME/dotfiles/vimrc.plugins $HOME/.vimrc.plugins
 ln -sf $HOME/dotfiles/vimrc.bundles $HOME/.vimrc.bundles
-ln -sf $HOME/dotfiles/vim/ $HOME/.nvim
-ln -sf $HOME/dotfiles/vimrc $HOME/.nvimrc
+ln -sf $HOME/dotfiles/vim/ $HOME/.config/nvim
+ln -sf $HOME/dotfiles/vimrc $HOME/.config/nvim/init.vim
 vim +PluginInstall +qall
 
 # Git Configuration
