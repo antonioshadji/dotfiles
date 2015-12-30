@@ -450,6 +450,7 @@ if [ "$(uname -s)" == 'Darwin' ]; then
   alias l='ls -CFG'
   HISTSIZE=1000000
   HISTFILESIZE=1000000
+  export LSCOLORS=FxgxdadacxDaDahbadacec
 fi
 
 # http://wp-cli.org/ bash completion
