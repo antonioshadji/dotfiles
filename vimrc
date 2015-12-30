@@ -42,6 +42,8 @@ if system("uname") == "Linux\n"       " has ('x') && has ('gui')  On Linux use +
 elseif system("uname") == "Darwin\n"  "has ('gui') On Mac & Win use * register for copy-paste
     set clipboard=unnamed
 endif
+" this should work for nvim on linux based on this
+" https://neovim.io/doc/user/nvim_clipboard.html#nvim-clipboard
 " }
 
 " Vim UI {
@@ -70,7 +72,7 @@ set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 set scrolloff=5                 " Minimum lines to keep above and below cursor
 set foldenable                  " Auto fold code
 "  To insert special character - in insert mode CTRL-K two character code from :digraphs command
-set listchars=tab:›\ ,trail:∙,extends:≫,precedes:≪,nbsp:.   " Highlight problematic whitespace
+set listchars=tab:›\ ,trail:∙,extends:≫,precedes:≪,nbsp:†   " Highlight problematic whitespace
 set list
 "} end Vim UI
 
@@ -85,6 +87,7 @@ set splitright          " puts new vsplit windows to the right
 set splitbelow          " puts new hsplit windows below current
 set pastetoggle=<F12>   " sane indentation on pastes
 set printoptions=formfeed:y  "insert Ctrl-V Ctrl-L (^L) to create print pagebreak
+
 " }
 
 " GUI Settings (here instead of .gvimrc) {
@@ -106,25 +109,28 @@ endif
 "} end GUI settings
 
 " Backup and undo settings {
-" the directories listed here were created manually TODO: must be automated
 if has('persistent_undo')
-    set undofile        "if ~/.vim/undo exists file put there
+    set undofile
     set undolevels=1000
     " no undo files left in CWD
     if !isdirectory(expand("~/.vim/undo/"))
-      !mkdir -p ~/.vim/undo/
+      " help mkdir for more information on use
+      mkdir(expand("~/.vim/undo/"), "p")
+      "!mkdir -p ~/.vim/undo/
     endif
     set undodir=~/.vim/undo//
 endif
 set backup                  "See :help backup
 " no backup files left in CWD
 if !isdirectory(expand("~/.vim/backup/"))
-  !mkdir -p ~/.vim/backup/
+  mkdir(expand("~/.vim/backup/"), "p")
+  "!mkdir -p ~/.vim/backup/
 endif
 set backupdir=~/.vim/backup//
 " no swap files left in CWD
 if !isdirectory(expand("~/.vim/swap/"))
-  !mkdir -p ~/.vim/swap/
+  mkdir(expand("~/.vim/swap/"), "p")
+  "!mkdir -p ~/.vim/swap/
 endif
 set directory=~/.vim/swap//
 " undodir set from spf13
@@ -253,4 +259,17 @@ endif
 if filereadable(expand("~/.vimrc.plugins"))
     source ~/.vimrc.plugins
 endif
+"}
+
+" Neovim settings to make vim work just like Neovim {
+" https://neovim.io/doc/user/options.html#'complete'
+set formatoptions+=tcqj     " https://neovim.io/doc/user/options.html#'formatoptions'
+set langnoremap             " https://neovim.io/doc/user/options.html#'langnoremap'
+set laststatus=2            " https://neovim.io/doc/user/options.html#'laststatus'
+set nrformats=hex           " https://neovim.io/doc/user/options.html#'nrformats'
+" https://neovim.io/doc/user/options.html#'sessionoptions'
+set sessionoptions+=blank,buffers,curdir,folds,help,tabpages,winsize
+set smarttab                " https://neovim.io/doc/user/options.html#'smarttab'
+" 50 vs 10 for https://neovim.io/doc/user/options.html#'tabpagemax'
+set tags+=./tags;,tags      " https://neovim.io/doc/user/options.html#'tags'
 "}
