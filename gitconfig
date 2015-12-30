@@ -15,6 +15,5 @@
 [core]
 	autocrlf = input
 [status]
-	showUntrackedFiles = no
 	branch = true
 	short = true

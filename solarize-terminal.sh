@@ -8,6 +8,11 @@
 # Adapted from these sources:
 # https://gist.github.com/1280177
 # http://www.xorcode.com/2011/04/11/solarized-vim-eclipse-ubuntu/
+echo "
+this script is broken as of late 2016
+Test on a VM before using on work machine
+"
+exit
 
 case "$1" in
 	"dark")

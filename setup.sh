@@ -43,3 +43,10 @@ if [ "$(uname -s)" == 'Linux' ]; then
     # Terminal Colors Configuration
   ln -sf $HOME/dotfiles/dircolors $HOME/.dircolors
 fi
+
+# Mac OSX Only
+if [ "$(unname -s)" == 'Darwin' ]; then
+  # TODO: Automatically import and delete. Manual go to Preferences > Profiles
+  wget https://raw.githubusercontent.com/altercation/solarized/master/iterm2-colors-solarized/Solarized%20Dark.itermcolors
+  wget https://raw.githubusercontent.com/altercation/solarized/master/iterm2-colors-solarized/Solarized%20Light.itermcolors
+fi
