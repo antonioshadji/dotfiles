@@ -20,11 +20,11 @@ ln -sf $HOME/dotfiles/vim/ $HOME/.config/nvim
 ln -sf $HOME/dotfiles/vimrc $HOME/.config/nvim/init.vim
 vim +PluginInstall +qall
 if [ -d $HOME/.vim/bundle/YouCompleteMe/ ]; then
-  sudo apt-get install -y cmake
-  # http://stackoverflow.com/questions/786376/how-do-i-run-a-program-with-a-different-working-directory-from-current-from-lin
-  (cd $HOME/.vim/bundle/YouCompleteMe/ && ./install.py)
-else 
-  echo "YouCompleteMe not found"
+  if [ ! -f $HOME/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_client_support.so ]; then
+    sudo apt-get install -y build-essential cmake python-dev
+    # http://stackoverflow.com/questions/786376/how-do-i-run-a-program-with-a-different-working-directory-from-current-from-lin
+    (cd $HOME/.vim/bundle/YouCompleteMe/ && ./install.py)
+  fi
 fi
 
 # Git Configuration
