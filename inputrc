@@ -1,7 +1,12 @@
 set editing-mode vi
+# http://askubuntu.com/questions/59846/bash-history-search-partial-up-arrow
+# arrow up
 "\e[A": history-search-backward
+# arrow down
 "\e[B": history-search-forward
-"\e[C": forward-char
-"\e[D": backward-char
 # https://stackoverflow.com/questions/7179642/how-can-i-make-bash-tab-completion-behave-like-vim-tab-completion#answer-7179810
 "C-f": menu-complete
+
+# removed 12-31-2015 think it might be emacs related
+# "\e[C": forward-char
+# "\e[D": backward-char
