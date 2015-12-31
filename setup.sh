@@ -42,6 +42,10 @@ git config --global push.default simple
 git config --global core.autocrlf input
 git config --global status.branch true
 git config --global status.short true
+# http://haacked.com/archive/2014/07/28/github-flow-aliases/
+# TODO: create aliases for 
+# git clone --recursive (always want to recurse submodules)
+# git pull --recurse-submodules (always want latest submodule)
 
 # Curl Configuration
 ln -sf $HOME/dotfiles/curlrc $HOME/.curlrc
