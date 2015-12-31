@@ -245,7 +245,7 @@ au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -
 
 " write file when leaving insert mode if changes have been made {
 " http://www.reddit.com/r/vim/comments/232j45/save_file_on_insert_mode_exit/
-autocmd InsertLeave * :silent update
+autocmd InsertLeave * :silent! update
 "}
 
 " save on FocusLost {
