@@ -250,7 +250,7 @@ autocmd InsertLeave * :silent! update
 
 " save on FocusLost {
 " https://github.com/mscoutermarsh/dotfiles/blob/master/vimrc
-autocmd FocusLost * :wa
+autocmd FocusLost * :silent! wa
 " }
 endif
 " end Auto Commands: }
