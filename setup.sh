@@ -46,6 +46,7 @@ if [ "$(uname -s)" == 'Linux' ]; then
   # TODO: this needs further research, or use powerline
   trgt=$HOME/dotfiles/config/fontconfig/font.conf/10-powerline-symbols.conf
   dest=$HOME/.config/fontconfig/fonts.conf/.
+  mkdir -p $dest
   ln -sf $trgt $dest
 
     # Terminal Colors Configuration
@@ -53,7 +54,7 @@ if [ "$(uname -s)" == 'Linux' ]; then
 fi
 
 # Mac OSX Only
-if [ "$(unname -s)" == 'Darwin' ]; then
+if [ "$(uname -s)" == 'Darwin' ]; then
   # TODO: Automatically import and delete. Manual go to Preferences > Profiles
   wget https://raw.githubusercontent.com/altercation/solarized/master/iterm2-colors-solarized/Solarized%20Dark.itermcolors
   wget https://raw.githubusercontent.com/altercation/solarized/master/iterm2-colors-solarized/Solarized%20Light.itermcolors
