@@ -115,7 +115,7 @@ if has('persistent_undo')
     " no undo files left in CWD
     if !isdirectory(expand("~/.vim/undo/"))
       " help mkdir for more information on use
-      mkdir(expand("~/.vim/undo/"), "p")
+      call mkdir(expand("~/.vim/undo/"), "p")
       "!mkdir -p ~/.vim/undo/
     endif
     set undodir=~/.vim/undo//
@@ -123,13 +123,13 @@ endif
 set backup                  "See :help backup
 " no backup files left in CWD
 if !isdirectory(expand("~/.vim/backup/"))
-  mkdir(expand("~/.vim/backup/"), "p")
+  call mkdir(expand("~/.vim/backup/"), "p")
   "!mkdir -p ~/.vim/backup/
 endif
 set backupdir=~/.vim/backup//
 " no swap files left in CWD
 if !isdirectory(expand("~/.vim/swap/"))
-  mkdir(expand("~/.vim/swap/"), "p")
+  call mkdir(expand("~/.vim/swap/"), "p")
   "!mkdir -p ~/.vim/swap/
 endif
 set directory=~/.vim/swap//
