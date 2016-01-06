@@ -8,6 +8,13 @@
 # Adapted from these sources:
 # https://gist.github.com/1280177
 # http://www.xorcode.com/2011/04/11/solarized-vim-eclipse-ubuntu/
+
+
+if [ "$(uname -s)" == 'Darwin' ]; then
+  echo "This script is only for Linux"
+  exit
+fi
+
 if [ $# -ne 2 ]; then
   echo "Usage: solarize [light | dark] [Profile Folder]"
   exit
