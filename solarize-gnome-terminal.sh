@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 #
 # Shell script that configures gnome-terminal to use solarized theme
 # colors. Written for Ubuntu 14.04, untested on anything else.
@@ -10,7 +10,7 @@
 # http://www.xorcode.com/2011/04/11/solarized-vim-eclipse-ubuntu/
 
 
-if [ "$(uname -s)" == 'Darwin' ]; then
+if [ "$(uname -s)" == "Darwin" ]; then
   echo "This script is only for Linux"
   exit
 fi
