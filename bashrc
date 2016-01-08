@@ -42,8 +42,8 @@
 # -- 1.0) Set up global default variables - antonios
 #------------------------------------
 
-os=`uname -s`
-host=`hostname | cut -d. -f1`
+#os=`uname -s`
+#host=`hostname | cut -d. -f1`
 
 # -----------------------------------
 # -- 1.1) Set up umask permissions --
@@ -73,7 +73,8 @@ host=`hostname | cut -d. -f1`
 #  Conversely, if the default group name is *different* from the username
 #  AND the user id is greater than 99, we're on the server, and set umask
 #  022 for easy collaborative editing.
-# March 29 2015 Is this necessary? remove to use ubuntu default
+
+# TODO: March 29 2015 Is this necessary? remove to use ubuntu default
 #if [ "`id -gn`" == "`id -un`" -a `id -u` -gt 99 ]; then
 #umask 002
 #else
@@ -148,12 +149,14 @@ if [ "$PS1" ]; then
     # a patch or pull request.
     PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ; }"'echo -e $$\\t$USER\\t$HOSTNAME\\tscreen $WINDOW\\t`date +%D%t%T%t%Y%t%s`\\t$PWD"$(history 1)" >> ~/.bash_eternal_history'
 
-    # Turn on checkwinsize
+    # If set, bash checks the window size after each command and,
+    # if necessary, updates the values of LINES and COLUMNS.
     shopt -s checkwinsize
+
     #Prompt edited from default
     [ "$PS1" = "\\s-\\v\\\$ " ] && PS1="[\u \w]\\$ "
 
-    if [ "x$SHLVL" != "x1" ]; then # We're not a login shell
+    if [ "$SHLVL" != "1" ]; then # We're not a login shell
         for i in /etc/profile.d/*.sh; do
         if [ -r "$i" ]; then
             . $i
@@ -163,7 +166,9 @@ if [ "$PS1" ]; then
 fi
 
 # See:  http://www.ukuug.org/events/linux2003/papers/bash_tips/
-# Append to history, don't overwrite
+# If  set,  the history list is appended to the file named by
+# the value of the HISTFILE variable when  the  shell  exits,
+# rather than overwriting the file.
 shopt -s histappend
 # update after every command in every terminal
 # https://www.digitalocean.com/community/tutorials/how-to-use-bash-history-commands-and-expansions-on-a-linux-vps
@@ -172,11 +177,42 @@ export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
-HISTCONTROL=ignoredups:ignorespace
+
+ #HISTCONTROL
+ #             A colon-separated list of values controlling how commands are saved
+ #             on  the  history list.  If the list of values includes ignorespace,
+ #             lines which begin with a space character are not saved in the  his‐
+ #             tory  list.  A value of ignoredups causes lines matching the previ‐
+ #             ous history entry to not be saved.  A value of ignoreboth is short‐
+ #             hand  for  ignorespace and ignoredups.  A value of erasedups causes
+ #             all previous lines matching the current line to be removed from the
+ #             history list before that line is saved.  Any value not in the above
+ #             list is ignored.  If HISTCONTROL is unset, or does  not  include  a
+ #             valid  value,  all  lines read by the shell parser are saved on the
+ #             history list, subject to the value of HISTIGNORE.  The  second  and
+ #             subsequent  lines  of a multi-line compound command are not tested,
+ #             and are added to the history regardless of the  value  of  HISTCON‐
+ #             TROL.
+HISTCONTROL=erasedups:ignorespace
 
 # Only for bash>=4.3 otherwise use HIST= format
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+#HISTSIZE
+#              The number of commands to remember in the command history (see HIS‐
+#              TORY below).  If the value is 0, commands are not saved in the his‐
+#              tory  list.   Numeric values less than zero result in every command
+#              being saved on the history list (there is  no  limit).   The  shell
+#              sets the default value to 500 after reading any startup files.
 HISTSIZE=-1
+#HISTFILESIZE
+#              The  maximum  number  of lines contained in the history file.  When
+#              this variable is assigned a value, the history file  is  truncated,
+#              if  necessary,  to  contain  no  more  than that number of lines by
+#              removing the oldest entries.  The history file is also truncated to
+#              this  size after writing it when a shell exits.  If the value is 0,
+#              the history file is truncated to zero size.  Non-numeric values and
+#              numeric  values  less than zero inhibit truncation.  The shell sets
+#              the default value to  the  value  of  HISTSIZE  after  reading  any
+#              startup files.
 HISTFILESIZE=-1
 
 ##################################################

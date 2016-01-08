@@ -1,4 +1,9 @@
+#bash man Readline Variables
 set editing-mode vi
+set keymap vi
+set colored-stats on
+set match-hidden-files off
+
 # http://askubuntu.com/questions/59846/bash-history-search-partial-up-arrow
 # arrow up
 "\e[A": history-search-backward
