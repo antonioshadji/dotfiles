@@ -185,11 +185,6 @@ map <C-right> <C-w>l
 " http://www.geekyboy.com/archives/629
 cnoremap w!! :w !sudo tee %
 
-" Open url under cursor in default browser
-" http://vim.wikia.com/wiki/Open_a_web-browser_with_the_URL_in_the_current_line
-" not working 1/12/15
-" nnoremap gx :silent !xdg-open <C-R>=escape("<C-R><C-F>", "#?&;\|%")<CR><CR>
-
 
 "https://bitbucket.org/sjl/dotfiles/src/cbbbc897e9b3/vim/vimrc
 " Toggle 'keep current line in the center of the screen' mode

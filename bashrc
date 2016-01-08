@@ -38,13 +38,6 @@
 #      --norc option. The --rcfile file option will force Bash to read and
 #      execute commands from file instead of ~/.bashrc.
 
-#------------------------------------
-# -- 1.0) Set up global default variables - antonios
-#------------------------------------
-
-#os=`uname -s`
-#host=`hostname | cut -d. -f1`
-
 # -----------------------------------
 # -- 1.1) Set up umask permissions --
 # -----------------------------------
@@ -74,96 +67,16 @@
 #  AND the user id is greater than 99, we're on the server, and set umask
 #  022 for easy collaborative editing.
 
-# TODO: March 29 2015 Is this necessary? remove to use ubuntu default
-#if [ "`id -gn`" == "`id -un`" -a `id -u` -gt 99 ]; then
-#umask 002
-#else
-#	umask 022
-#fi
-
 # ---------------------------------------------------------
-# -- 1.2) Set up bash prompt and ~/.bash_eternal_history --
+# -- 1.2) Set up bash prompt
 # ---------------------------------------------------------
-#  Set various bash parameters based on whether the shell is 'interactive'
-#  or not.  An interactive shell is one you type commands into, a
-#  non-interactive one is the bash environment used in scripts.
-if [ "$PS1" ]; then
 
-    if [ -x /usr/bin/tput ]; then
-      if [ "x`tput kbs`" != "x" ]; then # We can't do this with "dumb" terminal
-        stty erase `tput kbs`
-      elif [ -x /usr/bin/wc ]; then
-        if [ "`tput kbs|wc -c `" -gt 0 ]; then # We can't do this with "dumb" terminal
-          stty erase `tput kbs`
-        fi
-      fi
-    fi
-    case $TERM in
-	xterm*)
-		if [ -e /etc/sysconfig/bash-prompt-xterm ]; then
-			PROMPT_COMMAND=/etc/sysconfig/bash-prompt-xterm
-		else
-            PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\007"'
-		fi
-		;;
-	screen)
-		if [ -e /etc/sysconfig/bash-prompt-screen ]; then
-			PROMPT_COMMAND=/etc/sysconfig/bash-prompt-screen
-		else
-		PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\033\\"'
-		fi
-		;;
-	*)
-		[ -e /etc/sysconfig/bash-prompt-default ] && PROMPT_COMMAND=/etc/sysconfig/bash-prompt-default
+# set title of terminal window to user@hostname:pwd
+PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\007"'
 
-        ;;
-    esac
-
-    # Bash eternal history
-    # --------------------
-    # This snippet allows infinite recording of every command you've ever
-    # entered on the machine, without using a large HISTFILESIZE variable,
-    # and keeps track if you have multiple screens and ssh sessions into the
-    # same machine. It is adapted from:
-    # http://www.debian-administration.org/articles/543.
-    #
-    # The way it works is that after each command is executed and
-    # before a prompt is displayed, a line with the last command (and
-    # some metadata) is appended to ~/.bash_eternal_history.
-    # ** make sure to chmod 600 ~/.bash_eternal_history
-    #
-    # This file is a tab-delimited, timestamped file, with the following
-    # columns:
-    #
-    # 1) user
-    # 2) hostname
-    # 3) screen window (in case you are using GNU screen)
-    # 4) date/time
-    # 5) current working directory (to see where a command was executed)
-    # 6) the last command you executed
-    #
-    # The only minor bug: if you include a literal newline or tab (e.g. with
-    # awk -F"\t"), then that will be included verbatime. It is possible to
-    # define a bash function which escapes the string before writing it; if you
-    # have a fix for that which doesn't slow the command down, please submit
-    # a patch or pull request.
-    PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ; }"'echo -e $$\\t$USER\\t$HOSTNAME\\tscreen $WINDOW\\t`date +%D%t%T%t%Y%t%s`\\t$PWD"$(history 1)" >> ~/.bash_eternal_history'
-
-    # If set, bash checks the window size after each command and,
-    # if necessary, updates the values of LINES and COLUMNS.
-    shopt -s checkwinsize
-
-    #Prompt edited from default
-    [ "$PS1" = "\\s-\\v\\\$ " ] && PS1="[\u \w]\\$ "
-
-    if [ "$SHLVL" != "1" ]; then # We're not a login shell
-        for i in /etc/profile.d/*.sh; do
-        if [ -r "$i" ]; then
-            . $i
-        fi
-    done
-    fi
-fi
+# If set, bash checks the window size after each command and,
+# if necessary, updates the values of LINES and COLUMNS.
+shopt -s checkwinsize
 
 # See:  http://www.ukuug.org/events/linux2003/papers/bash_tips/
 # If  set,  the history list is appended to the file named by
@@ -306,10 +219,11 @@ HISTFILESIZE=-1
 # BAKWHT='\e[47m'   # White
 # TXTRST='\e[0m'    # Text Reset
 
-# http://eefret.me/modifying-and-pimping-bash-prompt/
 # Make prompt informative when not in git repo
-PS1="\e[1;34m[\u@\h:\w]\n"
-PS1+="\A\e[0m $ "
+# https://www.maketecheasier.com/8-useful-and-interesting-bash-prompts/
+# Show full path
+PS1="\[\e[1;34m\][\u@\h:\w]\[\e[0m\]\n"
+PS1+="\[\e[1;34m\]\A\[\e[1;33m\] $ \[\e[0m\]"
 
 ## -----------------------------------------------------
 ## -- 1.3) https://github.com/magicmonty/bash-git-prompt
@@ -318,12 +232,12 @@ PS1+="\A\e[0m $ "
 # gitprompt configuration
 
  # Set config variables first
- GIT_PROMPT_ONLY_IN_REPO=1
+GIT_PROMPT_ONLY_IN_REPO=1
 
  # GIT_PROMPT_FETCH_REMOTE_STATUS=0   # uncomment to avoid fetching remote status
 
  # GIT_PROMPT_SHOW_UPSTREAM=1 # uncomment to show upstream tracking branch
-GIT_PROMPT_SHOW_UNTRACKED_FILES=all # can be no, normal or all; determines counting of untracked files
+GIT_PROMPT_SHOW_UNTRACKED_FILES=normal # can be no, normal or all; determines counting of untracked files
 
  # GIT_PROMPT_STATUS_COMMAND=gitstatus_pre-1.7.10.sh # uncomment to support Git older than 1.7.10
 
@@ -332,7 +246,7 @@ GIT_PROMPT_SHOW_UNTRACKED_FILES=all # can be no, normal or all; determines count
 
  # as last entry source the gitprompt script
  # GIT_PROMPT_THEME=Custom # use custom .git-prompt-colors.sh
- GIT_PROMPT_THEME=Solarized # use theme optimized for solarized color scheme
+ GIT_PROMPT_THEME=Solarized_Ubuntu # use theme optimized for solarized color scheme
 
 if [ -f $HOME/dotfiles/bash-git-prompt/gitprompt.sh ]; then
   source $HOME/dotfiles/bash-git-prompt/gitprompt.sh
@@ -387,8 +301,8 @@ export LC_MEASUREMENT='en_GB.UTF-8'
 
 # 2.6) Install rlwrap if not present
 # http://stackoverflow.com/a/677212
-#command -v rlwrap >/dev/null 2>&1 || { echo >&2 "Install rlwrap to use node: sudo (apt-get or brew) install rlwrap";}
-command -v rlwrap >/dev/null 2>&1
+command -v rlwrap >/dev/null 2>&1 || { echo >&2 "Install rlwrap to use node: sudo (apt-get or brew) install rlwrap";}
+#command -v rlwrap >/dev/null 2>&1
 
 # 2.7) node.js and nvm
 # http://nodejs.org/api/repl.html#repl_repl
