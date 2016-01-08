@@ -66,6 +66,10 @@
 #  Conversely, if the default group name is *different* from the username
 #  AND the user id is greater than 99, we're on the server, and set umask
 #  022 for easy collaborative editing.
+# umask is set like this by default 
+# this allows anyone on the machine access to my files
+# TODO: find a definitive answer to best practice
+# in meantime chmod ug+rw,o-rwx
 
 # ---------------------------------------------------------
 # -- 1.2) Set up bash prompt
@@ -299,22 +303,26 @@ export LC_TIME='en_GB.UTF-8'
 #Change to metric system
 export LC_MEASUREMENT='en_GB.UTF-8'
 
-# 2.6) Install rlwrap if not present
-# http://stackoverflow.com/a/677212
-command -v rlwrap >/dev/null 2>&1 || { echo >&2 "Install rlwrap to use node: sudo (apt-get or brew) install rlwrap";}
-#command -v rlwrap >/dev/null 2>&1
+if hash node 2>/dev/null; then
+  # 2.7) node.js and nvm
+  # http://nodejs.org/api/repl.html#repl_repl
+  alias node="env NODE_NO_READLINE=1 rlwrap node"
+  alias node_repl="node -e \"require('repl').start({ignoreUndefined: true})\""
 
-# 2.7) node.js and nvm
-# http://nodejs.org/api/repl.html#repl_repl
-alias node="env NODE_NO_READLINE=1 rlwrap node"
-alias node_repl="node -e \"require('repl').start({ignoreUndefined: true})\""
-# export NODE_DISABLE_COLORS=1
-if [ -s ~/.nvm/nvm.sh ]; then
-    NVM_DIR=~/.nvm
-    source ~/.nvm/nvm.sh
-    # nvm use v0.10 &> /dev/null # silence nvm use; needed for rsync (I removed minor version .12)
+  if [ -s ~/.nvm/nvm.sh ]; then
+      NVM_DIR=~/.nvm
+      source ~/.nvm/nvm.sh
+      # nvm use v0.10 &> /dev/null # silence nvm use; needed for rsync (I removed minor version .12)
+  fi
+  [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
+
+  # 2.6) Install rlwrap if not present
+  # http://stackoverflow.com/a/677212
+  command -v rlwrap >/dev/null 2>&1 || { echo >&2 "Install rlwrap to use node: sudo (apt-get or brew) install rlwrap";}
+  #command -v rlwrap >/dev/null 2>&1
 fi
-[[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
+
+
 ## ------------------------------
 ## -- 3) User-customized code  --
 ## ------------------------------
