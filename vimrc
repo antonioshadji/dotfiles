@@ -92,9 +92,9 @@ set printoptions=formfeed:y  "insert Ctrl-V Ctrl-L (^L) to create print pagebrea
 
 " GUI Settings (here instead of .gvimrc) {
 if has('gui_running')
-  " vim-airline requires patched fonts from Powerline
-  set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 14  "Set my preferred font with comma separated list(spaces must be escaped)
-  "set guifont=Ubuntu\ Mono\ 12  "Set my preferred font with comma separated list(spaces must be escaped)
+  " vim-airline requires patched fonts from Powerline for GUI
+  " Set my preferred font with comma separated list(spaces must be escaped)
+  set guifont=Ubuntu\ Mono\ for\ Powerline\ 14
   set guioptions-=T               "Remove tool bar
   set guioptions+=c               "Use console dialogs
   set lines=48                    "Larger window than 24 row terminal
