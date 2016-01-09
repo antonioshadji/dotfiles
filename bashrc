@@ -75,6 +75,7 @@
 # -- 1.2) Set up bash prompt
 # ---------------------------------------------------------
 
+#http://tldp.org/HOWTO/Xterm-Title-3.html
 # set title of terminal window to user@hostname:pwd
 PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\007"'
 
