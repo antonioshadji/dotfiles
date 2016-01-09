@@ -256,15 +256,19 @@ if filereadable(expand("~/.vimrc.plugins"))
 endif
 "}
 
-" Neovim settings to make vim work just like Neovim {
+" Neovim settings to make latest vim work like Neovim {
 " https://neovim.io/doc/user/options.html#'complete'
-set formatoptions+=tcqj     " https://neovim.io/doc/user/options.html#'formatoptions'
-set langnoremap             " https://neovim.io/doc/user/options.html#'langnoremap'
-set laststatus=2            " https://neovim.io/doc/user/options.html#'laststatus'
-set nrformats=hex           " https://neovim.io/doc/user/options.html#'nrformats'
-" https://neovim.io/doc/user/options.html#'sessionoptions'
-set sessionoptions+=blank,buffers,curdir,folds,help,tabpages,winsize
-set smarttab                " https://neovim.io/doc/user/options.html#'smarttab'
-" 50 vs 10 for https://neovim.io/doc/user/options.html#'tabpagemax'
-set tags+=./tags;,tags      " https://neovim.io/doc/user/options.html#'tags'
+if v:version >= 704
+  set formatoptions+=tcqj     " https://neovim.io/doc/user/options.html#'formatoptions'
+  set langnoremap             " https://neovim.io/doc/user/options.html#'langnoremap'
+  set laststatus=2            " https://neovim.io/doc/user/options.html#'laststatus'
+  set nrformats=hex           " https://neovim.io/doc/user/options.html#'nrformats'
+  " https://neovim.io/doc/user/options.html#'sessionoptions'
+  set sessionoptions+=blank,buffers,curdir,folds,help,tabpages,winsize
+  set smarttab                " https://neovim.io/doc/user/options.html#'smarttab'
+  " 50 vs 10 for https://neovim.io/doc/user/options.html#'tabpagemax'
+  set tags+=./tags;,tags      " https://neovim.io/doc/user/options.html#'tags'
+else
+  echo "Not running with Neovim compatibility settings"
+endif
 "}

@@ -2,9 +2,10 @@
 # -*- coding: utf-8 -*-
 
 # Git Configuration
-if [ "$(uname -s)" == 'Linux' ]; then
-  sudo apt-get install -y git-core
-fi
+# TODO: test if git is installed, install in setup
+#if [ "$(uname -s)" == 'Linux' ]; then
+#  sudo apt-get install -y git-core
+#fi
 git config --global user.email "Antonios@$HOSTNAME"
 git config --global user.name "Antonios Hadjigeorgalis"
 git config --global color.ui true
