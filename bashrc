@@ -20,7 +20,7 @@
 #
 # Do 'man bashrc' for the long version or see here:
 # http://en.wikipedia.org/wiki/Bash#Startup_scripts
-#
+# https://www.gnu.org/software/bash/manual/bash.html#Bash-Startup-Files
 # When Bash starts, it executes the commands in a variety of different scripts.
 #
 #   1) When Bash is invoked as an interactive login shell, it first reads
@@ -95,21 +95,21 @@ export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
 
- #HISTCONTROL
- #             A colon-separated list of values controlling how commands are saved
- #             on  the  history list.  If the list of values includes ignorespace,
- #             lines which begin with a space character are not saved in the  his‐
- #             tory  list.  A value of ignoredups causes lines matching the previ‐
- #             ous history entry to not be saved.  A value of ignoreboth is short‐
- #             hand  for  ignorespace and ignoredups.  A value of erasedups causes
- #             all previous lines matching the current line to be removed from the
- #             history list before that line is saved.  Any value not in the above
- #             list is ignored.  If HISTCONTROL is unset, or does  not  include  a
- #             valid  value,  all  lines read by the shell parser are saved on the
- #             history list, subject to the value of HISTIGNORE.  The  second  and
- #             subsequent  lines  of a multi-line compound command are not tested,
- #             and are added to the history regardless of the  value  of  HISTCON‐
- #             TROL.
+#HISTCONTROL
+#             A colon-separated list of values controlling how commands are saved
+#             on  the  history list.  If the list of values includes ignorespace,
+#             lines which begin with a space character are not saved in the  his‐
+#             tory  list.  A value of ignoredups causes lines matching the previ‐
+#             ous history entry to not be saved.  A value of ignoreboth is short‐
+#             hand  for  ignorespace and ignoredups.  A value of erasedups causes
+#             all previous lines matching the current line to be removed from the
+#             history list before that line is saved.  Any value not in the above
+#             list is ignored.  If HISTCONTROL is unset, or does  not  include  a
+#             valid  value,  all  lines read by the shell parser are saved on the
+#             history list, subject to the value of HISTIGNORE.  The  second  and
+#             subsequent  lines  of a multi-line compound command are not tested,
+#             and are added to the history regardless of the  value  of  HISTCON‐
+#             TROL.
 HISTCONTROL=erasedups:ignorespace
 
 # Only for bash>=4.3 otherwise use HIST= format
@@ -205,14 +205,6 @@ HISTFILESIZE=-1
 # BLDPUR='\e[1;35m' # Purple
 # BLDCYN='\e[1;36m' # Cyan
 # BLDWHT='\e[1;37m' # White
-# UNKBLK='\e[4;30m' # Black - Underline
-# UNDRED='\e[4;31m' # Red
-# UNDGRN='\e[4;32m' # Green
-# UNDYLW='\e[4;33m' # Yellow
-# UNDBLU='\e[4;34m' # Blue
-# UNDPUR='\e[4;35m' # Purple
-# UNDCYN='\e[4;36m' # Cyan
-# UNDWHT='\e[4;37m' # White
 # BAKBLK='\e[40m'   # Black - Background
 # BAKRED='\e[41m'   # Red
 # BADGRN='\e[42m'   # Green
@@ -223,11 +215,34 @@ HISTFILESIZE=-1
 # BAKWHT='\e[47m'   # White
 # TXTRST='\e[0m'    # Text Reset
 
+# http://ethanschoonover.com/solarized
+# http://ethanschoonover.com/solarized/img/solarized-palette.png
+# SOLARIZED HEX     16/8 TERMCOL  XTERM/HEX   L*A*B      RGB         HSB
+# --------- ------- ---- -------  ----------- ---------- ----------- -----------
+# base02    #073642  0/4 black    235 #262626 20 -12 -12   7  54  66 192  90  26
+# red       #dc322f  1/1 red      160 #d70000 50  65  45 220  50  47   1  79  86
+# green     #859900  2/2 green     64 #5f8700 60 -20  65 133 153   0  68 100  60
+# yellow    #b58900  3/3 yellow   136 #af8700 60  10  65 181 137   0  45 100  71
+# blue      #268bd2  4/4 blue      33 #0087ff 55 -10 -45  38 139 210 205  82  82
+# magenta   #d33682  5/5 magenta  125 #af005f 50  65 -05 211  54 130 331  74  83
+# cyan      #2aa198  6/6 cyan      37 #00afaf 60 -35 -05  42 161 152 175  74  63
+# base2     #eee8d5  7/7 white    254 #e4e4e4 92 -00  10 238 232 213  44  11  93
+# base03    #002b36  8/4 brblack  234 #1c1c1c 15 -12 -12   0  43  54 193 100  21
+# orange    #cb4b16  9/3 brred    166 #d75f00 50  50  55 203  75  22  18  89  80
+# base01    #586e75 10/7 brgreen  240 #585858 45 -07 -07  88 110 117 194  25  46
+# base00    #657b83 11/7 bryellow 241 #626262 50 -07 -07 101 123 131 195  23  51
+# base0     #839496 12/6 brblue   244 #808080 60 -06 -03 131 148 150 186  13  59
+# violet    #6c71c4 13/5 brmagenta 61 #5f5faf 50  15 -45 108 113 196 237  45  77
+# base1     #93a1a1 14/4 brcyan   245 #8a8a8a 65 -05 -02 147 161 161 180   9  63
+# base3     #fdf6e3 15/7 brwhite  230 #ffffd7 97  00  10 253 246 227  44  10  99
+# gnome-terminal is 16 color
+# color palette top row is 30-37 [0;30m
+# color palette bottom row is bold 30-37 [1;30m
+
 # Make prompt informative when not in git repo
 # https://www.maketecheasier.com/8-useful-and-interesting-bash-prompts/
-# Show full path
-PS1="\[\e[1;34m\][\u@\h:\w]\[\e[0m\]\n"
-PS1+="\[\e[1;34m\]\A\[\e[1;33m\] $ \[\e[0m\]"
+# PS1="\[\e[1;34m\][\u@\h:\w]\[\e[0m\]\n"
+# PS1+="\[\e[1;37m\]\A\[\e[1;34m\] $ \[\e[0m\]"
 
 ## -----------------------------------------------------
 ## -- 1.3) https://github.com/magicmonty/bash-git-prompt
@@ -235,24 +250,25 @@ PS1+="\[\e[1;34m\]\A\[\e[1;33m\] $ \[\e[0m\]"
 ## -----------------------------------------------------
 # gitprompt configuration
 
- # Set config variables first
-GIT_PROMPT_ONLY_IN_REPO=1
+# Set config variables first
+GIT_PROMPT_ONLY_IN_REPO=0
 
- # GIT_PROMPT_FETCH_REMOTE_STATUS=0   # uncomment to avoid fetching remote status
+# GIT_PROMPT_FETCH_REMOTE_STATUS=0   # uncomment to avoid fetching remote status
 
- # GIT_PROMPT_SHOW_UPSTREAM=1 # uncomment to show upstream tracking branch
+# GIT_PROMPT_SHOW_UPSTREAM=1 # uncomment to show upstream tracking branch
 GIT_PROMPT_SHOW_UNTRACKED_FILES=normal # can be no, normal or all; determines counting of untracked files
 
- # GIT_PROMPT_STATUS_COMMAND=gitstatus_pre-1.7.10.sh # uncomment to support Git older than 1.7.10
+# GIT_PROMPT_STATUS_COMMAND=gitstatus_pre-1.7.10.sh # uncomment to support Git older than 1.7.10
 
- # GIT_PROMPT_START=...    # uncomment for custom prompt start sequence
- # GIT_PROMPT_END=...      # uncomment for custom prompt end sequence
+# GIT_PROMPT_START=...    # uncomment for custom prompt start sequence
+# GIT_PROMPT_END=...      # uncomment for custom prompt end sequence
 
- # as last entry source the gitprompt script
- # GIT_PROMPT_THEME=Custom # use custom .git-prompt-colors.sh
- GIT_PROMPT_THEME=Solarized_Ubuntu # use theme optimized for solarized color scheme
+# as last entry source the gitprompt script
+# GIT_PROMPT_THEME=Custom # use custom .git-prompt-colors.sh
+GIT_PROMPT_THEME=Solarized_Ubuntu # use theme optimized for solarized color scheme
 
-if [ -f $HOME/dotfiles/bash-git-prompt/gitprompt.sh ]; then
+# https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions
+if [[ -r $HOME/dotfiles/bash-git-prompt/gitprompt.sh ]]; then
   source $HOME/dotfiles/bash-git-prompt/gitprompt.sh
 fi
 
@@ -304,25 +320,24 @@ export LC_TIME='en_GB.UTF-8'
 #Change to metric system
 export LC_MEASUREMENT='en_GB.UTF-8'
 
-if hash node 2>/dev/null; then
+# http://stackoverflow.com/a/677212
+if command -v node >/dev/null; then
   # 2.7) node.js and nvm
   # http://nodejs.org/api/repl.html#repl_repl
   alias node="env NODE_NO_READLINE=1 rlwrap node"
   alias node_repl="node -e \"require('repl').start({ignoreUndefined: true})\""
 
-  if [ -s ~/.nvm/nvm.sh ]; then
-      NVM_DIR=~/.nvm
-      source ~/.nvm/nvm.sh
-      # nvm use v0.10 &> /dev/null # silence nvm use; needed for rsync (I removed minor version .12)
+  # https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions
+  if [[ -r $HOME/.nvm/nvm.sh ]]; then
+    NVM_DIR=$HOME/.nvm
+    source $HOME/.nvm/nvm.sh
+    # nvm use v0.10 &> /dev/null # silence nvm use; needed for rsync (I removed minor version .12)
   fi
   [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
 
   # 2.6) Install rlwrap if not present
-  # http://stackoverflow.com/a/677212
   command -v rlwrap >/dev/null 2>&1 || { echo >&2 "Install rlwrap to use node: sudo (apt-get or brew) install rlwrap";}
-  #command -v rlwrap >/dev/null 2>&1
 fi
-
 
 ## ------------------------------
 ## -- 3) User-customized code  --
@@ -330,7 +345,8 @@ fi
 
 ## Define any user-specific variables you want here.
 # setup LS_COLORS for dircolors command. Solarize color pallette shows only greytones in terminal
-test -r $HOME/.dircolors && eval "$(dircolors $HOME/.dircolors)"
+# http://mywiki.wooledge.org/BashFAQ/031 [ is synonym for test
+[[ -r $HOME/.dircolors ]] && eval "$(dircolors $HOME/.dircolors)"
 
 # set vi mode to edit like vim
 # insert mode by default
@@ -345,10 +361,10 @@ set -o vi
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
+  if [[ -r /usr/share/bash-completion/bash_completion ]]; then
+    source /usr/share/bash-completion/bash_completion
+  elif [[ -r /etc/bash_completion ]]; then
+    source /etc/bash_completion
   fi
 fi
 
@@ -360,7 +376,7 @@ bind 'TAB:menu-complete'
 # http://virtualenvwrapper.readthedocs.org/en/latest/install.html
 [[ -d "$HOME/.virtualenvs" ]] && export WORKON_HOME=$HOME/.virtualenvs
 [[ -d "$HOME/code/python" ]] && export PROJECT_HOME=$HOME/code/python/
-[[ -f "/usr/local/bin/virtualenvwrapper.sh" ]] && source /usr/local/bin/virtualenvwrapper.sh
+[[ -r "/usr/local/bin/virtualenvwrapper.sh" ]] && source /usr/local/bin/virtualenvwrapper.sh
 
 # Configure PATH
 #  - These are line by line so that you can kill one without affecting the others.
@@ -399,25 +415,25 @@ if [ "$(uname -s)" == 'Darwin' ]; then
 fi
 
 # http://wp-cli.org/ bash completion
-[[ -f "$HOME/dotfiles/bash/wp-completion.bash" ]] && source $HOME/dotfiles/bash/wp-completion.bash
+[[ -r "$HOME/dotfiles/bash/wp-completion.bash" ]] && source $HOME/dotfiles/bash/wp-completion.bash
 
-[[ -f "$HOME/.bashrc.local" ]] && source $HOME/.bashrc.local
+[[ -r "$HOME/.bashrc.local" ]] && source $HOME/.bashrc.local
 
-if [ -f /var/run/reboot-required ]; then
+if [[ -r /var/run/reboot-required ]]; then
   echo 'Reboot required'
   cat /var/run/reboot-required.pkgs
   uptime
 fi
 
-if [ -d $HOME/code/gowork/ ]; then
+if [[ -d $HOME/code/gowork/ ]]; then
   export GOPATH=$HOME/code/gowork
 fi
 
-if [ -d /usr/local/go/bin/ ]; then
+if [[ -d /usr/local/go/bin/ ]]; then
   export PATH=$PATH:/usr/local/go/bin
 fi
 
-if [ -d $HOME/bin/google-cloud-sdk/ ]; then
+if [[ -d $HOME/bin/google-cloud-sdk/ ]]; then
   # The next line updates PATH for the Google Cloud SDK.
   source $HOME/bin/google-cloud-sdk/path.bash.inc
   # The next line enables shell command completion for gcloud.
@@ -428,7 +444,9 @@ fi
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-hour=$(date +%H)
+# +%k is single digit with space, is converted to number
+# +%H is hour with leading zero, < 10 converted to octal
+hour=$(date +%k)
 if (($hour >= 17)); then
   $HOME/dotfiles/solarize-gnome-terminal.sh light Default
 else

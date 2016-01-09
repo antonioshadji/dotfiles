@@ -69,8 +69,9 @@ TERM xterm-debian
 #FILE 00 # regular file: use no color at all
 RESET 0 # reset to "normal" color
 DIR 01;35 # directory
+# target breaks inputrc colored-stats
 #(Set this to 'target' and the color will be as for the file pointed to.)
-LINK target # 00;36 # symbolic link.
+LINK 00;36 # symbolic link.
 MULTIHARDLINK 00 # regular file with more than one link
 FIFO 40;33 # pipe
 SOCK 40;33 # socket

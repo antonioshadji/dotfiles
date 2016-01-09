@@ -1,5 +1,6 @@
 #bash man Readline Variables
 set editing-mode vi
+# I like this setting but it shows mangled names
 set colored-stats on
 set match-hidden-files off
 
