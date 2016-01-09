@@ -45,9 +45,7 @@ call togglebg#map("<F5>")
 " https://benjamintanweihao.github.io/blog/2014/04/10/switch-solarized-light-slash-dark-depending-on-the-time-of-day/
 " modified by me based on experimentation 1/8/2015
 let hour = strftime("%H")
-echom hour
-"if has('gui_running') && hour > 17
-if hour > 17
+if has('gui_running') && hour > 17
   set background=light
 else
   set background=dark
