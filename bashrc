@@ -66,7 +66,7 @@
 #  Conversely, if the default group name is *different* from the username
 #  AND the user id is greater than 99, we're on the server, and set umask
 #  022 for easy collaborative editing.
-# umask is set like this by default 
+# umask is set like this by default
 # this allows anyone on the machine access to my files
 # TODO: find a definitive answer to best practice
 # in meantime chmod ug+rw,o-rwx
@@ -89,7 +89,7 @@ shopt -s checkwinsize
 shopt -s histappend
 # update after every command in every terminal
 # https://www.digitalocean.com/community/tutorials/how-to-use-bash-history-commands-and-expansions-on-a-linux-vps
-# to reload immediately all term history >> history -c; history -r; 
+# to reload immediately all term history >> history -c; history -r;
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # don't put duplicate lines in the history. See bash(1) for more options
@@ -382,7 +382,7 @@ export PATH=$PATH
 
 # set PATH so it includes heroku if it exists  - remove to .bashrc_local?
 # Heroku: https://toolbelt.heroku.com/standalone
-#[[ -d "/usr/local/heroku/bin" ]] && export PATH=/usr/local/heroku/bin:$PATH 
+#[[ -d "/usr/local/heroku/bin" ]] && export PATH=/usr/local/heroku/bin:$PATH
 
 # set PATH to include latest version of pandoc
 [[ -d "$HOME/.cabal/bin/" ]] && export PATH="$HOME/.cabal/bin/:$PATH"
@@ -430,7 +430,7 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 
 hour=$(date +%H)
 if (($hour >= 17)); then
-  ./dotfiles/solarize-gnome-terminal.sh light Default
+  $HOME/dotfiles/solarize-gnome-terminal.sh light Default
 else
-  ./dotfiles/solarize-gnome-terminal.sh dark Default
+  $HOME/dotfiles/solarize-gnome-terminal.sh dark Default
 fi

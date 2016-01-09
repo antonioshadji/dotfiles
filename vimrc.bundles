@@ -28,7 +28,7 @@ Plugin 'bling/vim-airline'
 Plugin 'myusuf3/numbers.vim'
 " Syntax checking jshint + others
 Plugin 'scrooloose/syntastic'
-" for intensely orgasmic commenting 
+" for intensely orgasmic commenting
 Plugin 'scrooloose/nerdcommenter'
 "A tree explorer plugin for vim.
 Plugin 'scrooloose/nerdtree'
@@ -38,7 +38,7 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'mileszs/ack.vim'
 " precision colorscheme
 Plugin 'altercation/vim-colors-solarized'
-" Work with python virtualenvs 
+" Work with python virtualenvs
 Plugin 'jmcantrell/vim-virtualenv'
 " Highlight colors in css files
 Plugin 'ap/vim-css-color'
