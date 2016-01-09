@@ -21,8 +21,9 @@ if [ "$(uname -s)" == 'Darwin' ]; then
 
   # Terminal Colors Configuration
   # TODO: Automatically import and delete. Manual go to Preferences > Profiles
-  #curl --remote-name https://raw.githubusercontent.com/altercation/solarized/master/iterm2-colors-solarized/Solarized%20Dark.itermcolors
-  #curl --remote-name https://raw.githubusercontent.com/altercation/solarized/master/iterm2-colors-solarized/Solarized%20Light.itermcolors
+  # https://www.iterm2.com/index.html  
+  # curl --remote-name https://raw.githubusercontent.com/altercation/solarized/master/iterm2-colors-solarized/Solarized%20Dark.itermcolors
+  # curl --remote-name https://raw.githubusercontent.com/altercation/solarized/master/iterm2-colors-solarized/Solarized%20Light.itermcolors
 fi
 
 # Bash Configuration

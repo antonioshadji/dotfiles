@@ -1,2 +1,0 @@
-#!/usr/bin/env sh
-cat ~/.ssh/id_rsa.pub | xclip -i -selection clipboard
