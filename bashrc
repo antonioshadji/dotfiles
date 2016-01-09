@@ -1,4 +1,11 @@
-# .bashrc file
+# From /etc/bash.bashrc (14.04.03)
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+# If set, bash checks the window size after each command and,
+# if necessary, updates the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
 # By Balaji S. Srinivasan (balajis@stanford.edu)
 #
 # Concepts:
@@ -79,9 +86,6 @@
 # set title of terminal window to user@hostname:pwd
 PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\007"'
 
-# If set, bash checks the window size after each command and,
-# if necessary, updates the values of LINES and COLUMNS.
-shopt -s checkwinsize
 
 # See:  http://www.ukuug.org/events/linux2003/papers/bash_tips/
 # If  set,  the history list is appended to the file named by
@@ -89,8 +93,6 @@ shopt -s checkwinsize
 # rather than overwriting the file.
 shopt -s histappend
 # update after every command in every terminal
-# https://www.digitalocean.com/community/tutorials/how-to-use-bash-history-commands-and-expansions-on-a-linux-vps
-# to reload immediately all term history >> history -c; history -r;
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # don't put duplicate lines in the history. See bash(1) for more options
