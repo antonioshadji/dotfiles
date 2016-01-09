@@ -4,4 +4,4 @@ http://www.vim.org/git.php
 cd src  
 make distclean  # if Vim was previously compiled  
 make  
-sudo make install  
+sudo make install

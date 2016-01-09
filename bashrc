@@ -278,6 +278,7 @@ alias m='less'
 alias ..='cd ..'
 alias ...='cd ..;cd ..'
 alias md='mkdir'
+alias rd='rmdir'
 alias cl='clear'
 alias du='du -sh'
 alias treeacl='tree -A -C -L 2'
@@ -338,7 +339,18 @@ set -o vi
 
 # Turn on bash command completion
 # http://embraceubuntu.com/2006/01/28/turn-on-bash-smart-completion/
-[[ -f /etc/bash_completion ]] && . /etc/bash_completion
+# [[ -f /etc/bash_completion ]] && . /etc/bash_completion
+# from Ubuntu 16.04 bashrc
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
 
 # https://superuser.com/questions/288714/bash-autocomplete-like-zsh
 bind 'set show-all-if-ambiguous on'
@@ -411,4 +423,8 @@ if [ -d $HOME/bin/google-cloud-sdk/ ]; then
   # The next line enables shell command completion for gcloud.
   source $HOME/bin/google-cloud-sdk/completion.bash.inc
 fi
+
+# From ubuntu 16.04 default bashrc
+# colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
