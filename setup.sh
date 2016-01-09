@@ -2,12 +2,15 @@
 # -*- coding: utf-8 -*-
 
 # Bash Configuration
-sudo apt-get install -y tree
+if [ "$(uname -s)" == 'Linux' ]; then
+  sudo apt-get install -y tree
+fi
 ln -sf $HOME/dotfiles/bash_profile $HOME/.bash_profile
 ln -sf $HOME/dotfiles/bashrc $HOME/.bashrc
 ln -sf $HOME/dotfiles/inputrc $HOME/.inputrc
 
 # Vim Configuration
+# TODO: change this to a user prompt
 if [ -d $HOME/.vim/ ]; then
   NOW=$(date +"%Y-%m%d-%H%M%S")
   cp --recursive $HOME/.vim $HOME/backup-vim.$NOW
@@ -34,16 +37,16 @@ ln -sf $HOME/dotfiles/curlrc $HOME/.curlrc
 # Tmux Configuration
 ln -sf $HOME/dotfiles/tmux.conf $HOME/.tmux.conf
 
+# Terminal Colors Configuration
 # Linux Only
 if [ "$(uname -s)" == 'Linux' ]; then
   # Airline Font Configuration
   # TODO: this needs further research, or use powerline
-  trgt=$HOME/dotfiles/config/fontconfig/font.conf/10-powerline-symbols.conf
-  dest=$HOME/.config/fontconfig/fonts.conf/.
-  mkdir -p $dest
-  ln -sf $trgt $dest
+  #trgt=$HOME/dotfiles/config/fontconfig/font.conf/10-powerline-symbols.conf
+  #dest=$HOME/.config/fontconfig/fonts.conf/.
+  #mkdir -p $dest
+  #ln -sf $trgt $dest
 
-    # Terminal Colors Configuration
   ln -sf $HOME/dotfiles/dircolors $HOME/.dircolors
 fi
 
@@ -54,4 +57,6 @@ if [ "$(uname -s)" == 'Darwin' ]; then
   wget https://raw.githubusercontent.com/altercation/solarized/master/iterm2-colors-solarized/Solarized%20Light.itermcolors
 fi
 
+# Font Configuration for Airline or Powerline
+$HOME/dotfiles/fonts/install.sh
 

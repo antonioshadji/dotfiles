@@ -428,3 +428,9 @@ fi
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
+hour=$(date +%H)
+if (($hour >= 17)); then
+  ./dotfiles/solarize-gnome-terminal.sh light Default
+else
+  ./dotfiles/solarize-gnome-terminal.sh dark Default
+fi

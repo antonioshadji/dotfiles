@@ -38,14 +38,16 @@ au FileType pandoc setlocal nospell
 " https://github.com/sigurdga/gnome-terminal-colors-solarized
 syntax enable       "Enable syntax highlighting and don't overwrite colorscheme
 " http://askubuntu.com/questions/67/how-do-i-enable-full-color-support-in-vim
-set t_Co=256         "Override gnome-terminal 3.6 reporting only 8 colors, set to 16 or 256
+set t_Co=16         "Override gnome-terminal 3.6 reporting only 8 colors, set to 16 or 256
 " call this function to enable ToggleBG command
-call togglebg#map("")
+call togglebg#map("<F5>")
 
 " https://benjamintanweihao.github.io/blog/2014/04/10/switch-solarized-light-slash-dark-depending-on-the-time-of-day/
 " modified by me based on experimentation 1/8/2015
 let hour = strftime("%H")
-if has('gui_running') && hour > 17
+echom hour
+"if has('gui_running') && hour > 17
+if hour > 17
   set background=light
 else
   set background=dark
