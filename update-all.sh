@@ -23,3 +23,5 @@ sudo cpanm Finance::Quote
 # https://stackoverflow.com/questions/3727795/how-do-i-update-all-my-cpan-module-to-their-latest-versions
 # sudo cpan-outdated -p | sudo cpanm
 
+# update node
+npm update -g
