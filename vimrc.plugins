@@ -58,3 +58,12 @@ colorscheme solarized
 let g:ycm_key_list_select_completion = ['<TAB>']
 let g:ycm_key_list_previous_completion = ['<S-TAB>']
 "}
+
+" ack.vim {
+" https://github.com/ggreer/the_silver_searcher
+" https://robots.thoughtbot.com/faster-grepping-in-vim
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+"}
+
