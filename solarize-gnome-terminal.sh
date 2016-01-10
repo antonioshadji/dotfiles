@@ -4,18 +4,21 @@
 # colors. Written for Ubuntu 14.04, untested on anything else.
 #
 # Solarized theme: http://ethanschoonover.com/solarized
-# 
+#
 # Adapted from these sources:
 # https://gist.github.com/1280177
 # http://www.xorcode.com/2011/04/11/solarized-vim-eclipse-ubuntu/
 
+# On my system,
+# Solarized-Dark  is ~/.gconf/apps/gnome-terminal/profiles/Profile1
+# Solarized-Light is ~/.gconf/apps/gnome-terminal/profiles/Profile2
 
-if [ "$(uname -s)" == "Darwin" ]; then
+if [[ "$(uname -s)" == "Darwin" ]]; then
   echo "This script is only for Linux"
   exit
 fi
 
-if [ $# -ne 2 ]; then
+if [[ $# -ne 2 ]]; then
   echo "Usage: solarize [light | dark] [Profile Folder]"
   exit
 else

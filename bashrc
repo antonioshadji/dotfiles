@@ -1,7 +1,37 @@
-# From /etc/bash.bashrc (14.04.03)
+# Bash Reference Manual
+# https://www.gnu.org/software/bash/manual/bash.html
+
+# https://www.gnu.org/software/bash/manual/bash.html#Conditional-Constructs
+# [[…]]
+# [[ expression ]]
+# Return a status of 0 or 1 depending on the evaluation of the conditional
+# expression *expression*. Expressions are composed of the primaries described
+# below in Bash Conditional Expressions.
+
+# Word splitting and filename expansion are not performed on the words between
+# the [[ and ]]; tilde expansion, parameter and variable expansion,
+# arithmetic expansion, command substitution, process substitution, and 
+# quote removal are performed.
+# Conditional operators such as ‘-f’ must be unquoted to be recognized as primaries.
+
+# https://www.gnu.org/software/bash/manual/bash.html#Bash-Builtins
+# test
+# [
+# test expr
+# Evaluate a conditional expression expr and return a status of 0 (true) or 1 (false).
+# Each operator and operand must be a separate argument.
+# Expressions are composed of the primaries described below in Bash Conditional Expressions.
+# https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions
+
+# https://www.gnu.org/software/bash/manual/bash.html#Shell-Arithmetic
+
+
+# From /etc/bash.bashrc (Ubuntu 14.04.03)
 # If not running interactively, don't do anything
+# -z = True if the length of string is zero.
 [ -z "$PS1" ] && return
 
+# https://www.gnu.org/software/bash/manual/bash.html#The-Shopt-Builtin
 # If set, bash checks the window size after each command and,
 # if necessary, updates the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -239,8 +269,8 @@ HISTFILESIZE=-1
 # base1     #93a1a1 14/4 brcyan   245 #8a8a8a 65 -05 -02 147 161 161 180   9  63
 # base3     #fdf6e3 15/7 brwhite  230 #ffffd7 97  00  10 253 246 227  44  10  99
 # gnome-terminal is 16 color
-# color palette top row is 30-37 [0;30m
-# color palette bottom row is bold 30-37 [1;30m
+# color palette top row in gnome configure screen is 30-37 [0;30m
+# color palette bottom row in gnome configure screen is bold 30-37 [1;30m
 
 # Make prompt informative when not in git repo
 # https://www.maketecheasier.com/8-useful-and-interesting-bash-prompts/
@@ -271,6 +301,7 @@ GIT_PROMPT_SHOW_UNTRACKED_FILES=normal # can be no, normal or all; determines co
 GIT_PROMPT_THEME=Solarized_Ubuntu # use theme optimized for solarized color scheme
 
 # https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions
+# -r file True if file exists and is readable.
 if [[ -r $HOME/dotfiles/bash-git-prompt/gitprompt.sh ]]; then
   source $HOME/dotfiles/bash-git-prompt/gitprompt.sh
 fi
@@ -331,14 +362,15 @@ if command -v node >/dev/null; then
   alias node_repl="node -e \"require('repl').start({ignoreUndefined: true})\""
 
   # https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions
+  # -r file True if file exists and is readable.
   if [[ -r $HOME/.nvm/nvm.sh ]]; then
     NVM_DIR=$HOME/.nvm
     source $HOME/.nvm/nvm.sh
-    # nvm use v0.10 &> /dev/null # silence nvm use; needed for rsync (I removed minor version .12)
   fi
   [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
 
   # 2.6) Install rlwrap if not present
+  # https://nodejs.org/api/repl.html
   command -v rlwrap >/dev/null 2>&1 || { echo >&2 "Install rlwrap to use node: sudo (apt-get or brew) install rlwrap";}
 fi
 
@@ -348,7 +380,6 @@ fi
 
 ## Define any user-specific variables you want here.
 # setup LS_COLORS for dircolors command. Solarize color pallette shows only greytones in terminal
-# http://mywiki.wooledge.org/BashFAQ/031 [ is synonym for test
 [[ -r $HOME/.dircolors ]] && eval "$(dircolors $HOME/.dircolors)"
 
 # set vi mode to edit like vim
@@ -450,7 +481,12 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 # +%k is single digit with space, is converted to number
 # +%H is hour with leading zero, < 10 converted to octal
 hour=$(date +%k)
-if (($hour >= 17)); then
+# (( expression ))
+# The arithmetic expression is evaluated according to the rules
+# described below (see Shell Arithmetic). If the value of the
+# expression is non-zero, the return status is 0; otherwise the
+# return status is 1. This is exactly equivalent to let "expression"
+if (( $hour >= 17 )); then
   $HOME/dotfiles/solarize-gnome-terminal.sh light Default
 else
   $HOME/dotfiles/solarize-gnome-terminal.sh dark Default
