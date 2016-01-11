@@ -47,6 +47,9 @@
 ## -- 1) Import .bashrc --
 ## -----------------------
 
+if [ -d ~/dotfiles ]; then
+   git -C ~/dotfiles/ pull
+fi
 # Factor out all repeated profile initialization into .bashrc
 #  - All non-login shell parameters go there
 #  - All declarations repeated for each screen session go there
