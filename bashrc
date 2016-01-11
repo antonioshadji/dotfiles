@@ -424,11 +424,11 @@ export PATH=$PATH
 
 # ruby rvm setup - remove to .bashrc_local?
 # Load RVM into a shell session *as a function*
-#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # set PATH so it includes rvm if it exists  - remove to .bashrc_local?
 # Add RVM to PATH for scripting
-#[[ -d "$HOME/.rvm/bin" ]] && export PATH=$HOME/.rvm/bin:$PATH
+[[ -d "$HOME/.rvm/bin" ]] && export PATH=$HOME/.rvm/bin:$PATH
 
 # set PATH so it includes heroku if it exists  - remove to .bashrc_local?
 # Heroku: https://toolbelt.heroku.com/standalone
