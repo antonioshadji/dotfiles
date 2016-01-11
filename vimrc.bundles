@@ -51,6 +51,8 @@ Plugin 'majutsushi/tagbar'
 " Tern Plugin http://ternjs.net/
 Plugin 'marijnh/tern_for_vim'
 Plugin 'cmather/vim-meteor-snippets'
+" Powerful shell implemented by vim.
+Plugin 'Shougo/vimshell.vim'
 " Interactive command execution in Vim. Required by vimshell
 Plugin 'Shougo/vimproc.vim'
 " Software caps lock
