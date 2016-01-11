@@ -14,7 +14,7 @@
 # Solarized-Light is ~/.gconf/apps/gnome-terminal/profiles/Profile2
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
-  echo "This script is only for Linux"
+  echo "Runing on OSX. Solarized colors will not auto-switch at night"
   exit
 fi
 
