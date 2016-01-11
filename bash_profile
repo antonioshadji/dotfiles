@@ -1,3 +1,4 @@
+# vim: set filetype=sh :
 # .bash_profile file
 # By Balaji S. Srinivasan (balajis@stanford.edu)
 #
@@ -46,13 +47,14 @@
 ## -----------------------
 ## -- 1) Import .bashrc --
 ## -----------------------
-
-if [ -d ~/dotfiles ]; then
-   git -C ~/dotfiles/ pull
+# https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions
+if [[ -d ~/dotfiles ]]; then
+  git -C ~/dotfiles pull --recurse-submodules
+  git -C ~/dotfiles submodule update --recursive --init
 fi
 # Factor out all repeated profile initialization into .bashrc
 #  - All non-login shell parameters go there
 #  - All declarations repeated for each screen session go there
-if [ -f ~/.bashrc ]; then
+if [[ -f ~/.bashrc ]]; then
    source ~/.bashrc
 fi
