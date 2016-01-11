@@ -298,7 +298,7 @@ GIT_PROMPT_SHOW_UNTRACKED_FILES=normal # can be no, normal or all; determines co
 
 # as last entry source the gitprompt script
 # GIT_PROMPT_THEME=Custom # use custom .git-prompt-colors.sh
-GIT_PROMPT_THEME=Solarized_Ubuntu # use theme optimized for solarized color scheme
+GIT_PROMPT_THEME=Solarized_Ubuntu2 # use theme optimized for solarized color scheme
 
 # https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions
 # -r file True if file exists and is readable.
