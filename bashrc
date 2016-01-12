@@ -10,7 +10,7 @@
 
 # Word splitting and filename expansion are not performed on the words between
 # the [[ and ]]; tilde expansion, parameter and variable expansion,
-# arithmetic expansion, command substitution, process substitution, and 
+# arithmetic expansion, command substitution, process substitution, and
 # quote removal are performed.
 # Conditional operators such as ‘-f’ must be unquoted to be recognized as primaries.
 
@@ -416,11 +416,12 @@ bind 'TAB:menu-complete'
 #  - These are line by line so that you can kill one without affecting the others.
 #  - Lowest priority first, highest priority last.
 export PATH=$PATH
+# https://www.gnu.org/software/bash/manual/bash.html#Pattern-Matching
+# https://askubuntu.com/questions/299710/how-to-determine-if-a-string-is-a-substring-of-another-in-bash
 # set PATH so it includes user's private bin if it exists
-[[ -d "$HOME/bin" ]] && export PATH="$HOME/bin:$PATH"
-#export PATH=/usr/bin:$PATH
-#export PATH=/usr/local/bin:$PATH
-#export PATH=/usr/local/sbin:$PATH
+if [[ ! $PATH == *$HOME/bin* ]]; then
+  [[ -d "$HOME/bin" ]] && export PATH="$HOME/bin:$PATH"
+fi
 
 # ruby rvm setup - remove to .bashrc_local?
 # Load RVM into a shell session *as a function*
