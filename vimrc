@@ -227,6 +227,7 @@ autocmd BufWritePre,FileWritePre *.md :call LastModified()
 
 " md is markdown > use pandoc filetype {
 autocmd BufRead,BufNewFile *.md set filetype=pandoc
+autocmd BufRead,BufNewFile *.mkd set filetype=pandoc
 " Enable spellchecking for Markdown
 autocmd FileType pandoc setlocal spell
 " }
