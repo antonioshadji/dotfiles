@@ -332,14 +332,6 @@ alias rd='rmdir'
 alias cl='clear'
 alias du='du -sh'
 alias treeacl='tree -A -C -L 2'
-# http://askubuntu.com/questions/16106/how-can-i-create-an-alias-for-cd-and-ls
-function cd() {
-    new_directory="$*";
-    if [ $# -eq 0 ]; then 
-        new_directory=${HOME};
-    fi;
-    builtin cd "${new_directory}" && ls
-}
 
 # 2.3) Text and editor commands
 alias v='vim'
@@ -375,7 +367,6 @@ if command -v node >/dev/null; then
     NVM_DIR=$HOME/.nvm
     source $HOME/.nvm/nvm.sh
   fi
-  [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
 
   # 2.6) Install rlwrap if not present
   # https://nodejs.org/api/repl.html
@@ -409,6 +400,11 @@ if ! shopt -oq posix; then
     source /etc/bash_completion
   fi
 fi
+
+# enable completion for pandoc
+eval "$(pandoc --bash-completion)"
+# enable completion for node
+[[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
 
 # https://superuser.com/questions/288714/bash-autocomplete-like-zsh
 bind 'set show-all-if-ambiguous on'
@@ -500,3 +496,12 @@ if (( $hour >= 17 )); then
 else
   $HOME/dotfiles/solarize-gnome-terminal.sh dark Default
 fi
+# http://askubuntu.com/questions/16106/how-can-i-create-an-alias-for-cd-and-ls
+# TODO: not working
+#function cd() {
+#    new_directory="$*";
+#    if [ $# -eq 0 ]; then 
+#        new_directory=${HOME};
+#    fi;
+#    builtin cd "${new_directory}" && ls
+#}
