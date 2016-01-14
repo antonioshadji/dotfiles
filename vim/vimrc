@@ -15,7 +15,7 @@
 set nocompatible
 
 " Source bundles config {
-  if filereadable("vimrc.bundles")
+  if filereadable(expand("~/.vim/vimrc.bundles"))
     source vimrc.bundles
   endif
 " }
@@ -249,7 +249,7 @@ endif
 " end Auto Commands: }
 
 " source configuration for plugins last {
-if filereadable("vimrc.plugins")
+if filereadable(expand("~/.vim/vimrc.plugins"))
     source vimrc.plugins
 endif
 "}
