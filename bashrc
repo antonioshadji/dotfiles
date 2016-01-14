@@ -332,6 +332,14 @@ alias rd='rmdir'
 alias cl='clear'
 alias du='du -sh'
 alias treeacl='tree -A -C -L 2'
+# http://askubuntu.com/questions/16106/how-can-i-create-an-alias-for-cd-and-ls
+function cd() {
+    new_directory="$*";
+    if [ $# -eq 0 ]; then 
+        new_directory=${HOME};
+    fi;
+    builtin cd "${new_directory}" && ls
+}
 
 # 2.3) Text and editor commands
 alias v='vim'
