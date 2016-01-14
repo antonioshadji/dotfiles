@@ -3,7 +3,7 @@
 
 # Linux Only
 if [ "$(uname -s)" == 'Linux' ]; then
-  # install useful programs 
+  # install useful programs
   sudo apt-get install -y build-essential cmake python-dev
   sudo apt-get install -y tree
   sudo apt-get install -y git
@@ -30,14 +30,14 @@ if [ "$(uname -s)" == 'Darwin' ]; then
   # brew install diffutils
   # brew install gzip
   # brew install watch
-  # brew install tmux 
+  # brew install tmux
   # brew install wget
   # brew install nmap
   # brew install gpg
   # brew install htop
   # Terminal Colors Configuration
   # TODO: Automatically import and delete. Manual go to Preferences > Profiles
-  # https://www.iterm2.com/index.html  
+  # https://www.iterm2.com/index.html
   # curl --remote-name https://raw.githubusercontent.com/altercation/solarized/master/iterm2-colors-solarized/Solarized%20Dark.itermcolors
   # curl --remote-name https://raw.githubusercontent.com/altercation/solarized/master/iterm2-colors-solarized/Solarized%20Light.itermcolors
 fi
@@ -48,19 +48,21 @@ ln -sf $HOME/dotfiles/bashrc $HOME/.bashrc
 ln -sf $HOME/dotfiles/inputrc $HOME/.inputrc
 
 # Vim Configuration
-# TODO: is this necessary? I think not 
+# TODO: is this necessary? I think not
 #if [ -d $HOME/.vim/ ]; then
 #  NOW=$(date +"%Y-%m%d-%H%M%S")
 #  cp -R $HOME/.vim $HOME/backup-vim.$NOW
 #fi
 # TODO: this line creates link in dotfiles/vim on Mac OSX
 ln -sf $HOME/dotfiles/vim $HOME/.vim
-ln -sf $HOME/dotfiles/vimrc $HOME/.vimrc
-ln -sf $HOME/dotfiles/vimrc.plugins $HOME/.vimrc.plugins
-ln -sf $HOME/dotfiles/vimrc.bundles $HOME/.vimrc.bundles
+
+# vim by default looks in .vim/ for vimrc
+#ln -sf $HOME/dotfiles/vimrc $HOME/.vimrc
+#ln -sf $HOME/dotfiles/vimrc.plugins $HOME/.vimrc.plugins
+#ln -sf $HOME/dotfiles/vimrc.bundles $HOME/.vimrc.bundles
 # TODO: nvim config not neccessary in setup remove /document
 # ln -sf $HOME/dotfiles/vim/ $HOME/.config/nvim
-# ln -sf $HOME/dotfiles/vimrc $HOME/.config/nvim/init.vim
+# ln -sf $HOME/dotfiles/vim/vimrc $HOME/.config/nvim/init.vim
 vim +PluginInstall +qall
 # this does not work on mac TODO: Is this necessary in setup?
 #if [ -d $HOME/.vim/bundle/YouCompleteMe/ ]; then
@@ -94,6 +96,6 @@ git config --global core.autocrlf input
 git config --global status.branch true
 git config --global status.short true
 # http://haacked.com/archive/2014/07/28/github-flow-aliases/
-# TODO: create aliases for 
+# TODO: create aliases for
 # git clone --recursive (always want to recurse submodules)
 # git pull --recurse-submodules (always want latest submodule)
