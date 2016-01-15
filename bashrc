@@ -293,12 +293,12 @@ GIT_PROMPT_SHOW_UNTRACKED_FILES=normal # can be no, normal or all; determines co
 
 # GIT_PROMPT_STATUS_COMMAND=gitstatus_pre-1.7.10.sh # uncomment to support Git older than 1.7.10
 
-# GIT_PROMPT_START=...    # uncomment for custom prompt start sequence
+GIT_PROMPT_START="_LAST_COMMAND_INDICATOR_ \[\e[0;34m\]\h:\e[0;33m\w\[\e[0m\]"
 # GIT_PROMPT_END=...      # uncomment for custom prompt end sequence
 
 # as last entry source the gitprompt script
 # GIT_PROMPT_THEME=Custom # use custom .git-prompt-colors.sh
-GIT_PROMPT_THEME=Solarized_Ubuntu_Host # use theme optimized for solarized color scheme
+GIT_PROMPT_THEME=Solarized_Ubuntu
 
 # https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions
 # -r file True if file exists and is readable.
