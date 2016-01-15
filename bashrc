@@ -347,12 +347,13 @@ export GREP_COLOR='0;32' # green for matches
 # 2.5) sort options
 # Ensures cross-platform sorting behavior of GNU sort.
 # http://www.gnu.org/software/coreutils/faq/coreutils-faq.html#Sort-does-not-sort-in-normal-order_0021
-unset LC_ALL
-export LANG='en_US.UTF-8'
-#Change first day of week to Monday
-export LC_TIME='en_GB.UTF-8'
-#Change to metric system
-export LC_MEASUREMENT='en_GB.UTF-8'
+# Moved to .profile on 1/15/2016
+#unset LC_ALL
+#export LANG='en_US.UTF-8'
+##Change first day of week to Monday
+#export LC_TIME='en_GB.UTF-8'
+##Change to metric system
+#export LC_MEASUREMENT='en_GB.UTF-8'
 
 # http://stackoverflow.com/a/677212
 if command -v node >/dev/null; then
