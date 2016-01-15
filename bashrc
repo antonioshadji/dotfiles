@@ -348,8 +348,8 @@ export GREP_COLOR='0;32' # green for matches
 # Ensures cross-platform sorting behavior of GNU sort.
 # http://www.gnu.org/software/coreutils/faq/coreutils-faq.html#Sort-does-not-sort-in-normal-order_0021
 # Moved to .profile on 1/15/2016
-#unset LC_ALL
-#export LANG='en_US.UTF-8'
+unset LC_ALL
+export LANG='en_US.UTF-8'
 ##Change first day of week to Monday
 #export LC_TIME='en_GB.UTF-8'
 ##Change to metric system
@@ -387,25 +387,6 @@ fi
 # esc to go to command mode
 set -o vi
 
-# Turn on bash command completion
-# http://embraceubuntu.com/2006/01/28/turn-on-bash-smart-completion/
-# [[ -f /etc/bash_completion ]] && . /etc/bash_completion
-# from Ubuntu 16.04 bashrc
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [[ -r /usr/share/bash-completion/bash_completion ]]; then
-    source /usr/share/bash-completion/bash_completion
-  elif [[ -r /etc/bash_completion ]]; then
-    source /etc/bash_completion
-  fi
-fi
-
-# enable completion for pandoc
-eval "$(pandoc --bash-completion)"
-# enable completion for node
-[[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
 
 # https://superuser.com/questions/288714/bash-autocomplete-like-zsh
 bind 'set show-all-if-ambiguous on'
@@ -441,7 +422,7 @@ fi
 #[[ -d "/usr/local/heroku/bin" ]] && export PATH=/usr/local/heroku/bin:$PATH
 
 # set PATH to include latest version of pandoc
-[[ -d "$HOME/.cabal/bin/" ]] && export PATH="$HOME/.cabal/bin/:$PATH"
+[[ -d "$HOME/.cabal/bin" ]] && export PATH="$HOME/.cabal/bin:$PATH"
 
 if [ "$(uname -s)" == 'Darwin' ]; then
   # add all mac osx specific bits inside an if statement like this.
@@ -506,3 +487,23 @@ fi
 #    fi;
 #    builtin cd "${new_directory}" && ls
 #}
+
+# Turn on bash command completion
+# http://embraceubuntu.com/2006/01/28/turn-on-bash-smart-completion/
+# [[ -f /etc/bash_completion ]] && . /etc/bash_completion
+# from Ubuntu 16.04 bashrc
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [[ -r /usr/share/bash-completion/bash_completion ]]; then
+    source /usr/share/bash-completion/bash_completion
+  elif [[ -r /etc/bash_completion ]]; then
+    source /etc/bash_completion
+  fi
+fi
+
+# enable completion for pandoc
+eval "$(pandoc --bash-completion)"
+# enable completion for node
+[[ -r $NVM_DIR/bash_completion ]] && source $NVM_DIR/bash_completion
