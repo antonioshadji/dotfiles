@@ -12,6 +12,8 @@ if [ "$(uname -s)" == 'Linux' ]; then
 
   # Terminal Colors Configuration
   ln -sf $HOME/dotfiles/dircolors $HOME/.dircolors
+  # Redshift configuration
+  ln -sf $HOME/dotfiles/config/redshift.conf $HOME/.config/.
 fi
 
 # Mac OSX Only
