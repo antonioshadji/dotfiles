@@ -1,5 +1,7 @@
 # No need to track linked neovim config
 vim/init.vim
+# viminfo file could be source controled but might break
+vim/viminfo
 
 # Compiled python
 *.pyc
@@ -7,5 +9,6 @@ vim/init.vim
 # Compiled spelling list files
 *.spl
 
-# all real notes will go in README.md
+# all source controlled notes will go in README.md
 notes/*
+

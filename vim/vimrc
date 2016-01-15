@@ -5,6 +5,8 @@
 " }
 
 " Note:
+" online help file: https://vimhelp.appspot.com/
+"
 " To insert list of keymaps into buffer
 " :redir @a
 " :map, imap, nmap, vmap, lmap
@@ -131,6 +133,9 @@ if !isdirectory(expand("~/.vim/swap/"))
 endif
 set directory=~/.vim/swap//
 " undodir set from spf13
+" https://vimhelp.appspot.com/usr_21.txt.html#21.3
+" move viminfo file to .vim directory, other settings default and required
+set viminfo='1000,f1,<500,n~/.vim/viminfo
 "}
 
 "Keyboard Shortcuts {
