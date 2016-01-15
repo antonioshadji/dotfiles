@@ -112,9 +112,10 @@ shopt -s checkwinsize
 # -- 1.2) Set up bash prompt
 # ---------------------------------------------------------
 
-#http://tldp.org/HOWTO/Xterm-Title-3.html
 # set title of terminal window to user@hostname:pwd
-PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\007"'
+# http://tldp.org/HOWTO/Xterm-Title-3.html
+# http://stackoverflow.com/a/31892093/2472798
+PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/\~}\007"'
 
 
 # See:  http://www.ukuug.org/events/linux2003/papers/bash_tips/
@@ -246,28 +247,28 @@ HISTFILESIZE=-1
 # BAKPUR='\e[45m'   # Purple
 # BAKCYN='\e[46m'   # Cyan
 # BAKWHT='\e[47m'   # White
-# TXTRST='\e[0m'    # Text Reset
+Reset='\e[0m'    # Text Reset
 
 # http://ethanschoonover.com/solarized
 # http://ethanschoonover.com/solarized/img/solarized-palette.png
-# SOLARIZED HEX     16/8 TERMCOL  XTERM/HEX   L*A*B      RGB         HSB
-# --------- ------- ---- -------  ----------- ---------- ----------- -----------
-# base02    #073642  0/4 black    235 #262626 20 -12 -12   7  54  66 192  90  26
-# red       #dc322f  1/1 red      160 #d70000 50  65  45 220  50  47   1  79  86
-# green     #859900  2/2 green     64 #5f8700 60 -20  65 133 153   0  68 100  60
-# yellow    #b58900  3/3 yellow   136 #af8700 60  10  65 181 137   0  45 100  71
-# blue      #268bd2  4/4 blue      33 #0087ff 55 -10 -45  38 139 210 205  82  82
-# magenta   #d33682  5/5 magenta  125 #af005f 50  65 -05 211  54 130 331  74  83
-# cyan      #2aa198  6/6 cyan      37 #00afaf 60 -35 -05  42 161 152 175  74  63
-# base2     #eee8d5  7/7 white    254 #e4e4e4 92 -00  10 238 232 213  44  11  93
-# base03    #002b36  8/4 brblack  234 #1c1c1c 15 -12 -12   0  43  54 193 100  21
-# orange    #cb4b16  9/3 brred    166 #d75f00 50  50  55 203  75  22  18  89  80
-# base01    #586e75 10/7 brgreen  240 #585858 45 -07 -07  88 110 117 194  25  46
-# base00    #657b83 11/7 bryellow 241 #626262 50 -07 -07 101 123 131 195  23  51
-# base0     #839496 12/6 brblue   244 #808080 60 -06 -03 131 148 150 186  13  59
-# violet    #6c71c4 13/5 brmagenta 61 #5f5faf 50  15 -45 108 113 196 237  45  77
-# base1     #93a1a1 14/4 brcyan   245 #8a8a8a 65 -05 -02 147 161 161 180   9  63
-# base3     #fdf6e3 15/7 brwhite  230 #ffffd7 97  00  10 253 246 227  44  10  99
+                   # SOLARIZED HEX     16/8 TERMCOL  XTERM/HEX   L*A*B      RGB         HSB
+                   # --------- ------- ---- -------  ----------- ---------- ----------- -----------
+base02='\e[0;30m'  # base02    #073642  0/4 black    235 #262626 20 -12 -12   7  54  66 192  90  26
+red='\e[0;31m'     # red       #dc322f  1/1 red      160 #d70000 50  65  45 220  50  47   1  79  86
+green='\e[0;32m'   # green     #859900  2/2 green     64 #5f8700 60 -20  65 133 153   0  68 100  60
+yellow='\e[0;33m'  # yellow    #b58900  3/3 yellow   136 #af8700 60  10  65 181 137   0  45 100  71
+blue='\e[0;34m'    # blue      #268bd2  4/4 blue      33 #0087ff 55 -10 -45  38 139 210 205  82  82
+magenta='\e[0;35m' # magenta   #d33682  5/5 magenta  125 #af005f 50  65 -05 211  54 130 331  74  83
+cyan='\e[0;36m'    # cyan      #2aa198  6/6 cyan      37 #00afaf 60 -35 -05  42 161 152 175  74  63
+base2='\e[0;37m'   # base2     #eee8d5  7/7 white    254 #e4e4e4 92 -00  10 238 232 213  44  11  93
+base03='\e[1;30m'  # base03    #002b36  8/4 brblack  234 #1c1c1c 15 -12 -12   0  43  54 193 100  21
+orange='\e[1;31m'  # orange    #cb4b16  9/3 brred    166 #d75f00 50  50  55 203  75  22  18  89  80
+base01='\e[1;32m'  # base01    #586e75 10/7 brgreen  240 #585858 45 -07 -07  88 110 117 194  25  46
+base00='\e[1;33m'  # base00    #657b83 11/7 bryellow 241 #626262 50 -07 -07 101 123 131 195  23  51
+base0='\e[1;34m'   # base0     #839496 12/6 brblue   244 #808080 60 -06 -03 131 148 150 186  13  59
+violet='\e[1;35m'  # violet    #6c71c4 13/5 brmagenta 61 #5f5faf 50  15 -45 108 113 196 237  45  77
+base1='\e[1;36m'   # base1     #93a1a1 14/4 brcyan   245 #8a8a8a 65 -05 -02 147 161 161 180   9  63
+base3='\e[1;37m'   # base3     #fdf6e3 15/7 brwhite  230 #ffffd7 97  00  10 253 246 227  44  10  99
 # gnome-terminal is 16 color
 # color palette top row in gnome configure screen is 30-37 [0;30m
 # color palette bottom row in gnome configure screen is bold 30-37 [1;30m
@@ -283,6 +284,11 @@ HISTFILESIZE=-1
 ## -----------------------------------------------------
 # gitprompt configuration
 
+# https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions
+# -r file True if file exists and is readable.
+if [[ -r $HOME/dotfiles/bash-git-prompt/gitprompt.sh ]]; then
+  source $HOME/dotfiles/bash-git-prompt/gitprompt.sh
+fi
 # Set config variables first
 GIT_PROMPT_ONLY_IN_REPO=0
 
@@ -293,18 +299,12 @@ GIT_PROMPT_SHOW_UNTRACKED_FILES=normal # can be no, normal or all; determines co
 
 # GIT_PROMPT_STATUS_COMMAND=gitstatus_pre-1.7.10.sh # uncomment to support Git older than 1.7.10
 
-GIT_PROMPT_START="_LAST_COMMAND_INDICATOR_ \[\e[0;34m\]\h:\e[0;33m\w\[\e[0m\]"
+GIT_PROMPT_START="_LAST_COMMAND_INDICATOR_ ${blue}${HOSTNAME%%.*}:${yellow}\w${Reset}"
 # GIT_PROMPT_END=...      # uncomment for custom prompt end sequence
 
 # as last entry source the gitprompt script
 # GIT_PROMPT_THEME=Custom # use custom .git-prompt-colors.sh
 GIT_PROMPT_THEME=Solarized_Ubuntu
-
-# https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions
-# -r file True if file exists and is readable.
-if [[ -r $HOME/dotfiles/bash-git-prompt/gitprompt.sh ]]; then
-  source $HOME/dotfiles/bash-git-prompt/gitprompt.sh
-fi
 
 
 ## -----------------------
@@ -504,6 +504,6 @@ if ! shopt -oq posix; then
 fi
 
 # enable completion for pandoc
-eval "$(pandoc --bash-completion)"
+command -v pandoc >/dev/null && eval "$(pandoc --bash-completion)"
 # enable completion for node
 [[ -r $NVM_DIR/bash_completion ]] && source $NVM_DIR/bash_completion
