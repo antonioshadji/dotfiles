@@ -427,6 +427,7 @@ if [ "$(uname -s)" == 'Darwin' ]; then
   HISTSIZE=1000000
   HISTFILESIZE=1000000
   export LSCOLORS=FxgxdadacxDaDahbadacec
+  export VIM=$HOME/.vim
 fi
 
 # http://wp-cli.org/ bash completion
