@@ -5,6 +5,7 @@
 " vim-airline {
 let g:airline#extensions#capslock#enabled=1
 let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#buffer_idx_mode=1
 let g:airline_powerline_fonts=1
 set ttimeoutlen=50
 set laststatus=2
