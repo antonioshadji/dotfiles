@@ -183,9 +183,9 @@ map <C-right> <C-w>l
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 " https://github.com/square/maximum-awesome/blob/master/vimrc
-" cnoremap w!! %!sudo tee > /dev/null %
+cnoremap w!! %!sudo tee > /dev/null %
 " http://www.geekyboy.com/archives/629
-cnoremap w!! :w !sudo tee %
+"cnoremap w!! :w !sudo tee %
 
 
 "https://bitbucket.org/sjl/dotfiles/src/cbbbc897e9b3/vim/vimrc
