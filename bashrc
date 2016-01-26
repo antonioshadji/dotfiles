@@ -336,7 +336,6 @@ alias treeacl='tree -A -C -L 2'
 # 2.3) Text and editor commands
 alias v='vim'
 alias vv='gvim --remote-silent'
-#alias eqq='emacs -nw -Q' # No config and no X11
 export EDITOR='vim'
 export VISUAL='vim'
 
@@ -347,13 +346,8 @@ export GREP_COLOR='0;32' # green for matches
 # 2.5) sort options
 # Ensures cross-platform sorting behavior of GNU sort.
 # http://www.gnu.org/software/coreutils/faq/coreutils-faq.html#Sort-does-not-sort-in-normal-order_0021
-# Moved to .profile on 1/15/2016
 unset LC_ALL
 export LANG='en_US.UTF-8'
-##Change first day of week to Monday
-#export LC_TIME='en_GB.UTF-8'
-##Change to metric system
-#export LC_MEASUREMENT='en_GB.UTF-8'
 
 # http://stackoverflow.com/a/677212
 if command -v node >/dev/null; then
@@ -508,3 +502,6 @@ fi
 command -v pandoc >/dev/null && eval "$(pandoc --bash-completion)"
 # enable completion for node
 [[ -r $NVM_DIR/bash_completion ]] && source $NVM_DIR/bash_completion
+
+# http://superuser.com/a/296555/358673
+function cd() { builtin cd "$@" && l; }

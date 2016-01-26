@@ -231,12 +231,15 @@ autocmd BufWritePre,FileWritePre *.md :call LastModified()
 "}
 
 " md is markdown > use pandoc filetype {
-autocmd BufRead,BufNewFile *.md set filetype=pandoc
-autocmd BufRead,BufNewFile *.mkd set filetype=pandoc
+" autocmd BufRead,BufNewFile *.md set filetype=pandoc
+" autocmd BufRead,BufNewFile *.mkd set filetype=pandoc
 " Enable spellchecking for Markdown
 autocmd FileType pandoc setlocal spell
 " }
 
+" Use Liquid filetype for html {
+autocmd BufRead,BufNewFile *.html set filetype=Liquid
+" }
 "http://ku1ik.com/2011/09/08/formatting-xml-in-vim-with-indent-command.html {
 au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -
 "}
