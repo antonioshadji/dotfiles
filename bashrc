@@ -448,6 +448,10 @@ if [[ -d /usr/local/go/bin/ ]]; then
   export PATH=$PATH:/usr/local/go/bin
 fi
 
+if [[ -d $HOME/code/go_appengine/ ]]; then
+  export PATH=$PATH:$HOME/code/go_appengine/
+fi
+
 if [[ -d $HOME/bin/google-cloud-sdk/ ]]; then
   # The next line updates PATH for the Google Cloud SDK.
   source $HOME/bin/google-cloud-sdk/path.bash.inc
