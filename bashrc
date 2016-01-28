@@ -376,11 +376,15 @@ fi
 # setup LS_COLORS for dircolors command. Solarize color pallette shows only greytones in terminal
 [[ -r $HOME/.dircolors ]] && eval "$(dircolors $HOME/.dircolors)"
 
+# From ubuntu 16.04 default bashrc
+# colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+
 # set vi mode to edit like vim
 # insert mode by default
 # esc to go to command mode
 set -o vi
-
 
 
 # virtualenvwrapper configuration
@@ -427,12 +431,6 @@ if [ "$(uname -s)" == 'Darwin' ]; then
 fi
 
 
-if [[ -r /var/run/reboot-required ]]; then
-  echo 'Reboot required'
-  cat /var/run/reboot-required.pkgs
-  uptime
-fi
-
 if [[ -d $HOME/code/gowork/ ]]; then
   export GOPATH=$HOME/code/gowork
 fi
@@ -452,22 +450,23 @@ if [[ -d $HOME/bin/google-cloud-sdk/ ]]; then
   source $HOME/bin/google-cloud-sdk/completion.bash.inc
 fi
 
-# From ubuntu 16.04 default bashrc
-# colored GCC warnings and errors
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# +%k is single digit with space, is converted to number
-# +%H is hour with leading zero, < 10 converted to octal
-hour=$(date +%k)
-# (( expression ))
-# The arithmetic expression is evaluated according to the rules
-# described below (see Shell Arithmetic). If the value of the
-# expression is non-zero, the return status is 0; otherwise the
-# return status is 1. This is exactly equivalent to let "expression"
-if (( $hour >= 17 )); then
-  $HOME/dotfiles/solarize-gnome-terminal.sh light Default
+if [[ "$(uname -s)" == "Linux" ]]; then
+  # +%k is single digit with space, is converted to number
+  # +%H is hour with leading zero, < 10 converted to octal
+  hour=$(date +%k)
+  # (( expression ))
+  # The arithmetic expression is evaluated according to the rules
+  # described below (see Shell Arithmetic). If the value of the
+  # expression is non-zero, the return status is 0; otherwise the
+  # return status is 1. This is exactly equivalent to let "expression"
+  if (( $hour >= 17 )); then
+    $HOME/dotfiles/solarize-gnome-terminal.sh light Default
+  else
+    $HOME/dotfiles/solarize-gnome-terminal.sh dark Default
+  fi
 else
-  $HOME/dotfiles/solarize-gnome-terminal.sh dark Default
+  echo "Runing on OSX. Solarized colors will not auto-switch at night"
 fi
 
 # https://superuser.com/questions/288714/bash-autocomplete-like-zsh
@@ -502,5 +501,11 @@ command -v pandoc >/dev/null && eval "$(pandoc --bash-completion)"
 # show files after cd
 function cd() { builtin cd "$@" && l; }
 
+# display that reboot is required after automatic update
+if [[ -r /var/run/reboot-required ]]; then
+  echo 'Reboot required'
+  cat /var/run/reboot-required.pkgs
+  uptime
+fi
 # does a bashrc.local exist?
 [[ -r "$HOME/.bashrc.local" ]] && source $HOME/.bashrc.local

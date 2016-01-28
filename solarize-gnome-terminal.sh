@@ -13,10 +13,6 @@
 # Solarized-Dark  is ~/.gconf/apps/gnome-terminal/profiles/Profile1
 # Solarized-Light is ~/.gconf/apps/gnome-terminal/profiles/Profile2
 
-if [[ "$(uname -s)" == "Darwin" ]]; then
-  echo "Runing on OSX. Solarized colors will not auto-switch at night"
-  exit
-fi
 
 if [[ $# -ne 2 ]]; then
   echo "Usage: solarize [light | dark] [Profile Folder]"
