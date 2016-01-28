@@ -503,11 +503,12 @@ command -v pandoc >/dev/null && eval "$(pandoc --bash-completion)"
 # show files after cd
 function cd() { builtin cd "$@" && l; }
 
+# does a bashrc.local exist?
+[[ -r $HOME/.bashrc.local ]] && source $HOME/.bashrc.local
+
 # display that reboot is required after automatic update
 if [[ -r /var/run/reboot-required ]]; then
   echo 'Reboot required'
   cat /var/run/reboot-required.pkgs
   uptime
 fi
-# does a bashrc.local exist?
-[[ -r $HOME/.bashrc.local ]] && source $HOME/.bashrc.local
