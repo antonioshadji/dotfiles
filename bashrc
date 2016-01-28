@@ -389,9 +389,9 @@ set -o vi
 
 # virtualenvwrapper configuration
 # http://virtualenvwrapper.readthedocs.org/en/latest/install.html
-[[ -d "$HOME/.virtualenvs" ]] && export WORKON_HOME=$HOME/.virtualenvs
-[[ -d "$HOME/code/python" ]] && export PROJECT_HOME=$HOME/code/python/
-[[ -r "/usr/local/bin/virtualenvwrapper.sh" ]] && source /usr/local/bin/virtualenvwrapper.sh
+[[ -d $HOME/.virtualenvs ]] && export WORKON_HOME=$HOME/.virtualenvs
+[[ -d $HOME/code/python ]] && export PROJECT_HOME=$HOME/code/python/
+[[ -r /usr/local/bin/virtualenvwrapper.sh ]] && source /usr/local/bin/virtualenvwrapper.sh
 
 # Configure PATH
 #  - These are line by line so that you can kill one without affecting the others.
@@ -401,23 +401,23 @@ export PATH=$PATH
 # https://askubuntu.com/questions/299710/how-to-determine-if-a-string-is-a-substring-of-another-in-bash
 # set PATH so it includes user's private bin if it exists
 if [[ ! $PATH == *$HOME/bin* ]]; then
-  [[ -d "$HOME/bin" ]] && export PATH="$HOME/bin:$PATH"
+  [[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
 fi
 
 # ruby rvm setup - remove to .bashrc_local?
 # Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 
 # set PATH so it includes rvm if it exists  - remove to .bashrc_local?
 # Add RVM to PATH for scripting
-[[ -d "$HOME/.rvm/bin" ]] && export PATH=$HOME/.rvm/bin:$PATH
+[[ -d $HOME/.rvm/bin ]] && export PATH=$HOME/.rvm/bin:$PATH
 
 # set PATH so it includes heroku if it exists  - remove to .bashrc_local?
 # Heroku: https://toolbelt.heroku.com/standalone
 #[[ -d "/usr/local/heroku/bin" ]] && export PATH=/usr/local/heroku/bin:$PATH
 
 # set PATH to include latest version of pandoc
-[[ -d "$HOME/.cabal/bin" ]] && export PATH="$HOME/.cabal/bin:$PATH"
+[[ -d $HOME/.cabal/bin ]] && export PATH=$HOME/.cabal/bin:$PATH
 
 if [ "$(uname -s)" == 'Darwin' ]; then
   # add all mac osx specific bits inside an if statement like this.
@@ -460,13 +460,15 @@ if [[ "$(uname -s)" == "Linux" ]]; then
   # described below (see Shell Arithmetic). If the value of the
   # expression is non-zero, the return status is 0; otherwise the
   # return status is 1. This is exactly equivalent to let "expression"
-  if (( $hour >= 17 )); then
-    $HOME/dotfiles/solarize-gnome-terminal.sh light Default
-  else
-    $HOME/dotfiles/solarize-gnome-terminal.sh dark Default
+  if [[ -x $HOME/dotfiles/solarize-gnome-terminal.sh ]]; then
+    if (( $hour >= 17 )); then
+      $HOME/dotfiles/solarize-gnome-terminal.sh light Default
+    else
+      $HOME/dotfiles/solarize-gnome-terminal.sh dark Default
+    fi
   fi
 else
-  echo "Runing on OSX. Solarized colors will not auto-switch at night"
+  echo "Not running linux. Solarized colors will not auto-switch at night"
 fi
 
 # https://superuser.com/questions/288714/bash-autocomplete-like-zsh
@@ -493,7 +495,7 @@ command -v pandoc >/dev/null && eval "$(pandoc --bash-completion)"
 # enable completion for node
 [[ -r $NVM_DIR/bash_completion ]] && source $NVM_DIR/bash_completion
 # http://wp-cli.org/ bash completion
-[[ -r "$HOME/dotfiles/bash/wp-completion.bash" ]] && source $HOME/dotfiles/bash/wp-completion.bash
+[[ -r $HOME/dotfiles/bash/wp-completion.bash ]] && source $HOME/dotfiles/bash/wp-completion.bash
 # AWS CLI completion
 [[ -x /usr/local/bin/aws_completer ]] && complete -C '/usr/local/bin/aws_completer' aws
 
@@ -508,4 +510,4 @@ if [[ -r /var/run/reboot-required ]]; then
   uptime
 fi
 # does a bashrc.local exist?
-[[ -r "$HOME/.bashrc.local" ]] && source $HOME/.bashrc.local
+[[ -r $HOME/.bashrc.local ]] && source $HOME/.bashrc.local
