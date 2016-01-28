@@ -382,9 +382,6 @@ fi
 set -o vi
 
 
-# https://superuser.com/questions/288714/bash-autocomplete-like-zsh
-bind 'set show-all-if-ambiguous on'
-bind 'TAB:menu-complete'
 
 # virtualenvwrapper configuration
 # http://virtualenvwrapper.readthedocs.org/en/latest/install.html
@@ -472,15 +469,10 @@ if (( $hour >= 17 )); then
 else
   $HOME/dotfiles/solarize-gnome-terminal.sh dark Default
 fi
-# http://askubuntu.com/questions/16106/how-can-i-create-an-alias-for-cd-and-ls
-# TODO: not working
-#function cd() {
-#    new_directory="$*";
-#    if [ $# -eq 0 ]; then 
-#        new_directory=${HOME};
-#    fi;
-#    builtin cd "${new_directory}" && ls
-#}
+
+# https://superuser.com/questions/288714/bash-autocomplete-like-zsh
+bind 'set show-all-if-ambiguous on'
+bind 'TAB:menu-complete'
 
 # Turn on bash command completion
 # http://embraceubuntu.com/2006/01/28/turn-on-bash-smart-completion/
@@ -507,6 +499,7 @@ command -v pandoc >/dev/null && eval "$(pandoc --bash-completion)"
 [[ -x /usr/local/bin/aws_completer ]] && complete -C '/usr/local/bin/aws_completer' aws
 
 # http://superuser.com/a/296555/358673
+# show files after cd
 function cd() { builtin cd "$@" && l; }
 
 # does a bashrc.local exist?
