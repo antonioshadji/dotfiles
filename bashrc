@@ -429,10 +429,6 @@ if [ "$(uname -s)" == 'Darwin' ]; then
   export LSCOLORS=FxgxdadacxDaDahbadacec
 fi
 
-# http://wp-cli.org/ bash completion
-[[ -r "$HOME/dotfiles/bash/wp-completion.bash" ]] && source $HOME/dotfiles/bash/wp-completion.bash
-
-[[ -r "$HOME/.bashrc.local" ]] && source $HOME/.bashrc.local
 
 if [[ -r /var/run/reboot-required ]]; then
   echo 'Reboot required'
@@ -505,6 +501,13 @@ fi
 command -v pandoc >/dev/null && eval "$(pandoc --bash-completion)"
 # enable completion for node
 [[ -r $NVM_DIR/bash_completion ]] && source $NVM_DIR/bash_completion
+# http://wp-cli.org/ bash completion
+[[ -r "$HOME/dotfiles/bash/wp-completion.bash" ]] && source $HOME/dotfiles/bash/wp-completion.bash
+# AWS CLI completion
+[[ -x /usr/local/bin/aws_completer ]] && complete -C '/usr/local/bin/aws_completer' aws
 
 # http://superuser.com/a/296555/358673
 function cd() { builtin cd "$@" && l; }
+
+# does a bashrc.local exist?
+[[ -r "$HOME/.bashrc.local" ]] && source $HOME/.bashrc.local
