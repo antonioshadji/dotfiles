@@ -34,6 +34,5 @@ fi
 
 if command -v npm; then
 # update node
-npm update -g
+sudo npm update -g
 fi
-
