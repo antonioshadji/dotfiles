@@ -113,9 +113,12 @@ shopt -s checkwinsize
 # ---------------------------------------------------------
 
 # set title of terminal window to user@hostname:pwd
+# this shows up in prompt when using virtual terminal $TERM=Linux (tty)
 # http://tldp.org/HOWTO/Xterm-Title-3.html
 # http://stackoverflow.com/a/31892093/2472798
-PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/\~}\007"'
+if [[ $TERM == "xterm" ]]; then
+  PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/\~}\007"'
+fi
 
 
 # See:  http://www.ukuug.org/events/linux2003/papers/bash_tips/
