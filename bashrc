@@ -515,3 +515,25 @@ if [[ -r /var/run/reboot-required ]]; then
   cat /var/run/reboot-required.pkgs
   uptime
 fi
+
+# https://acceptsocket.wordpress.com/2014/08/12/set-solarized-dark-as-default-color-scheme-for-linux-virtual-console/
+if [[ $TERM = "linux" ]]; then
+  echo -en "\e]P0073642" # base02    #073642  0
+  echo -en "\e]P8002b36" # red       #dc322f  1
+  echo -en "\e]P1dc322f" # green     #859900  2
+  echo -en "\e]P9cb4b16" # yellow    #b58900  3
+  echo -en "\e]P2859900" # blue      #268bd2  4
+  echo -en "\e]PA586e75" # magenta   #d33682  5
+  echo -en "\e]P3b58900" # cyan      #2aa198  6
+  echo -en "\e]PB657b83" # base2     #eee8d5  7
+  echo -en "\e]P4268bd2" # base03    #002b36  8
+  echo -en "\e]PC839496" # orange    #cb4b16  9
+  echo -en "\e]P5d33682" # base01    #586e75 10
+  echo -en "\e]PD6c71c4" # base00    #657b83 11
+  echo -en "\e]P62aa198" # base0     #839496 12
+  echo -en "\e]PE93a1a1" # violet    #6c71c4 13
+  echo -en "\e]P7eee8d5" # base1     #93a1a1 14
+  echo -en "\e]PFfdf6e3" # base3     #fdf6e3 15
+  clear #for background artifacting
+fi
+
