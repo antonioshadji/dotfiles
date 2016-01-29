@@ -15,4 +15,10 @@ To use powerline fonts in virtual terminal (ctrl-alt-f1)
 ``` bash
 sudo cp fonts/Terminus/PSF/*.gz /usr/share/consolefonts/
 ```
+To set this font as the default, I edited `/etc/default/console-setup`
+ - comment out `FONTFACE`
+ - comment out `FONTSIZE`
+ - set `FONT='ter-powerline-v22n.psf.gz'`
+
+
 
