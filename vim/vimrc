@@ -24,7 +24,6 @@ set nocompatible
 
 " General Settings {
 set encoding=utf-8      " show buffer as utf-8 https://github.com/square/maximum-awesome (**MUST BE EARLY IN FILE**)
-scriptencoding utf-8
 set mouse=a             " Automatically enable mouse usage
 set mousehide           " Hide the mouse cursor while typing
 set viewoptions=folds,options,cursor,unix,slash "see :help viewoptions
@@ -112,15 +111,17 @@ endif
 
 " Backup and undo settings {
 if has('persistent_undo')
-    set undofile
-    set undolevels=1000
-    " no undo files left in CWD
-    if !isdirectory(expand("~/.vim/undo/"))
-      " help mkdir for more information on use
-      call mkdir(expand("~/.vim/undo/"), "p")
-    endif
-    set undodir=~/.vim/undo//
+  " undodir set from spf13 
+  set undofile
+  set undolevels=1000
+  " no undo files left in CWD
+  if !isdirectory(expand("~/.vim/undo/"))
+    " help mkdir for more information on use
+    call mkdir(expand("~/.vim/undo/"), "p")
+  endif
+  set undodir=~/.vim/undo//
 endif
+
 set backup                  "See :help backup
 " no backup files left in CWD
 if !isdirectory(expand("~/.vim/backup/"))
@@ -132,7 +133,7 @@ if !isdirectory(expand("~/.vim/swap/"))
   call mkdir(expand("~/.vim/swap/"), "p")
 endif
 set directory=~/.vim/swap//
-" undodir set from spf13
+
 " https://vimhelp.appspot.com/usr_21.txt.html#21.3
 " move viminfo file to .vim directory, other settings default and required
 set viminfo='1000,f1,<500,n~/.vim/viminfo
@@ -147,14 +148,9 @@ set viminfo='1000,f1,<500,n~/.vim/viminfo
 " http://vim.wikia.com/wiki/Avoid_the_escape_key
 " <C-c> is an alternative to Esc but does not run autocmd by default
 imap <C-c> <Esc>
-" these keys are mapped in YouCompleteMe so are now disabeled until I update
+" leave insert mode when moving between lines
 imap <Up> <Esc><Up>
 imap <Down> <Esc><Down>
-
-" http://learnvimscriptthehardway.stevelosh.com/chapters/06.html
-" default mapleader is \
-let mapleader = "-"
-let localmapleader = "\\"
 
 "http://www.bestofvim.com/tip/leave-ex-mode-good/
 nnoremap Q q
@@ -162,7 +158,8 @@ nnoremap Q q
 " http://nvie.com/posts/how-i-boosted-my-vim/
 " The following trick is a really small one, but a super-efficient one,
 " since it strips off two full keystrokes from almost every Vim command:
-nnoremap ; :
+" I don't like this because it messes with my typing muscle memory
+" nnoremap ; :
 
 "force myself to use hjkl instead of arrow keys <nop> only normal mode
 " jk <down><up> hl<left><right>
@@ -232,8 +229,8 @@ autocmd BufWritePre,FileWritePre *.md :call LastModified()
 "}
 
 " md is markdown > use pandoc filetype {
-" autocmd BufRead,BufNewFile *.md set filetype=pandoc
-" autocmd BufRead,BufNewFile *.mkd set filetype=pandoc
+autocmd BufRead,BufNewFile *.md set filetype=pandoc
+autocmd BufRead,BufNewFile *.mkd set filetype=pandoc
 " Enable spellchecking for Markdown
 autocmd FileType pandoc setlocal spell
 " }
