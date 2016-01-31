@@ -111,7 +111,7 @@ endif
 
 " Backup and undo settings {
 if has('persistent_undo')
-  " undodir set from spf13 
+  " undodir set from spf13
   set undofile
   set undolevels=1000
   " no undo files left in CWD
@@ -215,7 +215,7 @@ augroup END
 " }
 
 " Update Last Modified line when editing pandoc {
-" If buffer modified, update any 'Last modified: ' in the first 20 lines 
+" If buffer modified, update any 'Last modified: ' in the first 20 lines
 " 'Last modified: ' can have up to 10 characters before (they are retained).
 " Restores cursor and window position using save_cursor variable.
 function! LastModified()
