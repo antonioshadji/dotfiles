@@ -158,7 +158,7 @@ nnoremap Q q
 " http://nvie.com/posts/how-i-boosted-my-vim/
 " The following trick is a really small one, but a super-efficient one,
 " since it strips off two full keystrokes from almost every Vim command:
-" I don't like this because it messes with my typing muscle memory
+" AX: I don't like this because it messes with my typing muscle memory
 " nnoremap ; :
 
 "force myself to use hjkl instead of arrow keys <nop> only normal mode
@@ -182,6 +182,9 @@ map <C-right> <C-w>l
 " https://github.com/square/maximum-awesome/blob/master/vimrc
 cnoremap w!! %!sudo tee > /dev/null %
 
+" http://vimcasts.org/episodes/how-to-fold/
+" use space bar in normal mode to toggle folds
+nnoremap <Space> za
 
 "https://bitbucket.org/sjl/dotfiles/src/cbbbc897e9b3/vim/vimrc
 " Toggle 'keep current line in the center of the screen' mode
