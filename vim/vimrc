@@ -136,7 +136,11 @@ set directory=~/.vim/swap//
 
 " https://vimhelp.appspot.com/usr_21.txt.html#21.3
 " move viminfo file to .vim directory, other settings default and required
-set viminfo='1000,f1,<500,n~/.vim/viminfo
+" this conflicts with nvim, disable in neovim
+if !has("nvim")
+  set viminfo='1000,f1,<500,n~/.vim/viminfo
+endif
+
 "}
 
 "Keyboard Shortcuts {
