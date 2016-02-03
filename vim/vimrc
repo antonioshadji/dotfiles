@@ -73,7 +73,7 @@ set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 set scrolloff=5                 " Minimum lines to keep above and below cursor
 set foldenable                  " Auto fold code
 "  To insert special character - in insert mode CTRL-K two character code from :digraphs command
-set listchars=tab:›\ ,trail:∙,extends:≫,precedes:≪,nbsp:†   " Highlight problematic whitespace
+set listchars=tab:›\ ,trail:∙,extends:»,precedes:«,nbsp:†   " Highlight problematic whitespace
 set list
 "} end Vim UI
 
@@ -152,6 +152,12 @@ endif
 " http://vim.wikia.com/wiki/Avoid_the_escape_key
 " <C-c> is an alternative to Esc but does not run autocmd by default
 imap <C-c> <Esc>
+" there are no words with jj except for Hajj  
+imap jj <Esc>
+" shift enter seems to not be mapable it does the same as enter
+" imap <S-CR> <Esc>
+imap <CR> <Esc><CR>
+
 " leave insert mode when moving between lines
 imap <Up> <Esc><Up>
 imap <Down> <Esc><Down>
@@ -190,9 +196,6 @@ cnoremap w!! %!sudo tee > /dev/null %
 " use space bar in normal mode to toggle folds
 nnoremap <Space> za
 
-"https://bitbucket.org/sjl/dotfiles/src/cbbbc897e9b3/vim/vimrc
-" Toggle 'keep current line in the center of the screen' mode
-nnoremap <leader>C :let &scrolloff=999-&scrolloff<cr>
 
 "} end keyboard shortcuts
 
@@ -218,6 +221,21 @@ augroup Shebang
 augroup END
 " }
 
+" md is markdown > use pandoc filetype {
+autocmd BufRead,BufNewFile *.md set filetype=pandoc
+autocmd BufRead,BufNewFile *.mkd set filetype=pandoc
+" Enable spellchecking for Markdown
+autocmd FileType pandoc setlocal spell
+" }
+
+" Use Liquid filetype for html {
+autocmd BufRead,BufNewFile *.html set filetype=Liquid
+" }
+
+"http://ku1ik.com/2011/09/08/formatting-xml-in-vim-with-indent-command.html {
+au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -
+"}
+
 " Update Last Modified line when editing pandoc {
 " If buffer modified, update any 'Last modified: ' in the first 20 lines
 " 'Last modified: ' can have up to 10 characters before (they are retained).
@@ -235,28 +253,16 @@ endfunction
 autocmd BufWritePre,FileWritePre *.md :call LastModified()
 "}
 
-" md is markdown > use pandoc filetype {
-autocmd BufRead,BufNewFile *.md set filetype=pandoc
-autocmd BufRead,BufNewFile *.mkd set filetype=pandoc
-" Enable spellchecking for Markdown
-autocmd FileType pandoc setlocal spell
-" }
-
-" Use Liquid filetype for html {
-autocmd BufRead,BufNewFile *.html set filetype=Liquid
-" }
-"http://ku1ik.com/2011/09/08/formatting-xml-in-vim-with-indent-command.html {
-au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -
-"}
-
 " write file when leaving insert mode if changes have been made {
 " http://www.reddit.com/r/vim/comments/232j45/save_file_on_insert_mode_exit/
-autocmd InsertLeave * :silent! update
+" autocmd InsertLeave * :silent! update
+autocmd InsertLeave * :update
 "}
 
 " save on FocusLost {
 " https://github.com/mscoutermarsh/dotfiles/blob/master/vimrc
-autocmd FocusLost * :silent! wa
+autocmd FocusLost * :wa
+"autocmd FocusLost * :silent! wa
 " }
 endif
 " end Auto Commands: }
