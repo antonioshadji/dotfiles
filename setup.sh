@@ -16,6 +16,7 @@ if [ "$(uname -s)" == 'Linux' ]; then
   ln -sf $HOME/dotfiles/config/redshift.conf $HOME/.config/.
   # Remap caps lock key to ESC
   # https://stackoverflow.com/questions/2176532/how-to-map-caps-lock-key-in-vim
+  # this is temporary, not permanent
   xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 fi
 
