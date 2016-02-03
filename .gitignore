@@ -8,6 +8,7 @@ vim/viminfo
 
 # Compiled spelling list files
 *.spl
+*.sug
 
 # all source controlled notes will go in README.md
 notes/*
