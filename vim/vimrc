@@ -156,6 +156,7 @@ imap <C-c> <Esc>
 imap jj <Esc>
 " shift enter seems to not be mapable it does the same as enter
 " imap <S-CR> <Esc>
+" CTRL_J will replace <CR> in insert mode
 imap <CR> <Esc><CR>
 
 " leave insert mode when moving between lines
