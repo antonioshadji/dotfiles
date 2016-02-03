@@ -153,11 +153,14 @@ endif
 " <C-c> is an alternative to Esc but does not run autocmd by default
 imap <C-c> <Esc>
 " there are no words with jj except for Hajj  
-imap jj <Esc>
-" shift enter seems to not be mapable it does the same as enter
-" imap <S-CR> <Esc>
+" i don't like this because i see the j character before it disappears
+" imap jj <Esc>
+" shift enter works in gvim, not in gnome-terminal
+" enter ^M, s-enter ^M, c-enter <NL>
+" https://stackoverflow.com/questions/598113/can-terminals-detect-shift-enter-or-control-enter
+" imap <S-Enter> <Esc>
 " CTRL_J will replace <CR> in insert mode
-imap <CR> <Esc><CR>
+" imap <CR> <Esc><CR>
 
 " leave insert mode when moving between lines
 imap <Up> <Esc><Up>
