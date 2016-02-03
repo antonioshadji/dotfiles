@@ -23,7 +23,8 @@ Plugin 'tpope/vim-fugitive'
 " gitk for Vim requires fugitive
 Plugin 'gregsexton/gitv'
 " Status line
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 " line numbering
 Plugin 'myusuf3/numbers.vim'
 " Syntax checking jshint + others
