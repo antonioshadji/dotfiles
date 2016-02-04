@@ -1,4 +1,4 @@
-# Bash Reference Manual
+# Bash Reference Manual {
 # https://www.gnu.org/software/bash/manual/bash.html
 
 # https://www.gnu.org/software/bash/manual/bash.html#Conditional-Constructs
@@ -24,7 +24,7 @@
 # https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions
 
 # https://www.gnu.org/software/bash/manual/bash.html#Shell-Arithmetic
-
+# }
 
 # From /etc/bash.bashrc (Ubuntu 14.04.03)
 # If not running interactively, don't do anything
@@ -36,7 +36,7 @@
 # if necessary, updates the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# By Balaji S. Srinivasan (balajis@stanford.edu)
+# Notes By Balaji S. Srinivasan (balajis@stanford.edu) {
 #
 # Concepts:
 #
@@ -74,9 +74,10 @@ shopt -s checkwinsize
 #      ~/.bashrc, if that file exists. This may be inhibited by using the
 #      --norc option. The --rcfile file option will force Bash to read and
 #      execute commands from file instead of ~/.bashrc.
+# }
 
 # -----------------------------------
-# -- 1.1) Set up umask permissions --
+# {-- 1.1) Set up umask permissions --
 # -----------------------------------
 #  The following incantation allows easy group modification of files.
 #  See here: http://en.wikipedia.org/wiki/Umask
@@ -107,9 +108,10 @@ shopt -s checkwinsize
 # this allows anyone on the machine access to my files
 # TODO: find a definitive answer to best practice
 # in meantime chmod ug+rw,o-rwx
+# }
 
 # ---------------------------------------------------------
-# -- 1.2) Set up bash prompt
+# {-- 1.2) Set up bash prompt
 # ---------------------------------------------------------
 
 # set title of terminal window to user@hostname:pwd
@@ -120,7 +122,7 @@ if [[ $TERM == "xterm" ]]; then
   PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/\~}\007"'
 fi
 
-
+# { History setup
 # See:  http://www.ukuug.org/events/linux2003/papers/bash_tips/
 # If  set,  the history list is appended to the file named by
 # the value of the HISTFILE variable when  the  shell  exits,
@@ -168,9 +170,10 @@ HISTSIZE=-1
 #              the default value to  the  value  of  HISTSIZE  after  reading  any
 #              startup files.
 HISTFILESIZE=-1
+#}
 
 ##################################################
-# Prompt escapes				 #
+#{ Prompt escapes				 #
 ##################################################
 
 # Bash allows these prompt strings to be customized by inserting a
@@ -210,7 +213,7 @@ HISTFILESIZE=-1
 #  \[         begin a sequence of non-printing characters, which could be used
 #             to embed a terminal control sequence into the prompt
 #  \]         end a sequence of non-printing characters
-#
+#}
 #  The command number and the history number are usually different:
 #  the history number of a command is its position in the history
 #  list, which may include commands restored from the history file
@@ -223,7 +226,7 @@ HISTFILESIZE=-1
 #  below).
 
 ##################################################
-# Color chart					 #
+#{ Color chart					 #
 ##################################################
 
 # TXTBLK='\e[0;30m' # Black - Regular
@@ -275,6 +278,7 @@ base3='\e[1;37m'   # base3     #fdf6e3 15/7 brwhite  230 #ffffd7 97  00  10 253 
 # gnome-terminal is 16 color
 # color palette top row in gnome configure screen is 30-37 [0;30m
 # color palette bottom row in gnome configure screen is bold 30-37 [1;30m
+#}
 
 # Make prompt informative when not in git repo
 # https://www.maketecheasier.com/8-useful-and-interesting-bash-prompts/
@@ -308,10 +312,10 @@ GIT_PROMPT_START="_LAST_COMMAND_INDICATOR_ ${blue}${HOSTNAME%%.*}:${yellow}\w${R
 # as last entry source the gitprompt script
 # GIT_PROMPT_THEME=Custom # use custom .git-prompt-colors.sh
 GIT_PROMPT_THEME=Solarized_Ubuntu
-
+#}
 
 ## -----------------------
-## -- 2) Set up aliases --
+## { -- 2) Set up aliases --
 ## -----------------------
 # 2.0) My custom aliases
 alias ping="ping -c 1"
@@ -335,8 +339,9 @@ alias rd='rmdir'
 alias cl='clear'
 alias du='du -sh'
 alias treeacl='tree -A -C -L 2'
+#}
 
-# 2.3) Text and editor commands
+# {2.3) Text and editor commands
 alias v='nvim'
 alias vv='gvim --remote-silent'
 export EDITOR='vim'
@@ -345,13 +350,16 @@ export VISUAL='vim'
 # 2.4) grep options
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='0;32' # green for matches
+#}
 
-# 2.5) sort options
+# {2.5) sort options
 # Ensures cross-platform sorting behavior of GNU sort.
 # http://www.gnu.org/software/coreutils/faq/coreutils-faq.html#Sort-does-not-sort-in-normal-order_0021
 unset LC_ALL
 export LANG='en_US.UTF-8'
+#}
 
+#{ Node setup and tools
 # http://stackoverflow.com/a/677212
 if command -v node >/dev/null; then
   # 2.7) node.js and nvm
@@ -370,6 +378,7 @@ if command -v node >/dev/null; then
   # https://nodejs.org/api/repl.html
   command -v rlwrap >/dev/null 2>&1 || { echo >&2 "Install rlwrap to use node: sudo (apt-get or brew) install rlwrap";}
 fi
+#}
 
 ## ------------------------------
 ## -- 3) User-customized code  --
@@ -389,12 +398,18 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 # esc to go to command mode
 set -o vi
 
+# { Python setup and tools
 
 # virtualenvwrapper configuration
 # http://virtualenvwrapper.readthedocs.org/en/latest/install.html
 [[ -d $HOME/.virtualenvs ]] && export WORKON_HOME=$HOME/.virtualenvs
 [[ -d $HOME/code/python ]] && export PROJECT_HOME=$HOME/code/python/
 [[ -r /usr/local/bin/virtualenvwrapper.sh ]] && source /usr/local/bin/virtualenvwrapper.sh
+
+# https://docs.python.org/2/whatsnew/2.7.html#changes-to-the-handling-of-deprecation-warnings
+export PYTHONWARNINGS="default"
+
+# }
 
 # Configure PATH
 #  - These are line by line so that you can kill one without affecting the others.
@@ -407,15 +422,16 @@ if [[ ! $PATH == *$HOME/bin* ]]; then
   [[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
 fi
 
-# ruby rvm setup - remove to .bashrc_local?
+# { ruby rvm setup
 # Load RVM into a shell session *as a function*
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 
-# set PATH so it includes rvm if it exists  - remove to .bashrc_local?
+# set PATH so it includes rvm if it exists
 # Add RVM to PATH for scripting
 [[ -d $HOME/.rvm/bin ]] && export PATH=$HOME/.rvm/bin:$PATH
+#}
 
-# set PATH so it includes heroku if it exists  - remove to .bashrc_local?
+# set PATH so it includes heroku if it exists
 # Heroku: https://toolbelt.heroku.com/standalone
 #[[ -d "/usr/local/heroku/bin" ]] && export PATH=/usr/local/heroku/bin:$PATH
 
@@ -433,7 +449,7 @@ if [ "$(uname -s)" == 'Darwin' ]; then
   export LSCOLORS=FxgxdadacxDaDahbadacec
 fi
 
-
+# { Go setup and tools
 if [[ -d $HOME/code/gowork/ ]]; then
   export GOPATH=$HOME/code/gowork
 fi
@@ -445,6 +461,7 @@ fi
 if [[ -d $HOME/code/go_appengine/ ]]; then
   export PATH=$PATH:$HOME/code/go_appengine/
 fi
+#}
 
 if [[ -d $HOME/bin/google-cloud-sdk/ ]]; then
   # The next line updates PATH for the Google Cloud SDK.
@@ -474,6 +491,7 @@ else
   echo "Not running linux. Solarized colors will not auto-switch at night"
 fi
 
+# { bash completion
 # https://superuser.com/questions/288714/bash-autocomplete-like-zsh
 bind 'set show-all-if-ambiguous on'
 bind 'TAB:menu-complete'
@@ -501,6 +519,7 @@ command -v pandoc >/dev/null && eval "$(pandoc --bash-completion)"
 [[ -r $HOME/dotfiles/bash/wp-completion.bash ]] && source $HOME/dotfiles/bash/wp-completion.bash
 # AWS CLI completion
 [[ -x /usr/local/bin/aws_completer ]] && complete -C '/usr/local/bin/aws_completer' aws
+#}
 
 # http://superuser.com/a/296555/358673
 # show files after cd
@@ -516,24 +535,30 @@ if [[ -r /var/run/reboot-required ]]; then
   uptime
 fi
 
+# { Virtual terminal tty colors
 # https://acceptsocket.wordpress.com/2014/08/12/set-solarized-dark-as-default-color-scheme-for-linux-virtual-console/
 if [[ $TERM = "linux" ]]; then
   echo -en "\e]P0073642" # base02    #073642  0
-  echo -en "\e]P8002b36" # red       #dc322f  1
-  echo -en "\e]P1dc322f" # green     #859900  2
-  echo -en "\e]P9cb4b16" # yellow    #b58900  3
-  echo -en "\e]P2859900" # blue      #268bd2  4
-  echo -en "\e]PA586e75" # magenta   #d33682  5
-  echo -en "\e]P3b58900" # cyan      #2aa198  6
-  echo -en "\e]PB657b83" # base2     #eee8d5  7
-  echo -en "\e]P4268bd2" # base03    #002b36  8
-  echo -en "\e]PC839496" # orange    #cb4b16  9
-  echo -en "\e]P5d33682" # base01    #586e75 10
-  echo -en "\e]PD6c71c4" # base00    #657b83 11
-  echo -en "\e]P62aa198" # base0     #839496 12
-  echo -en "\e]PE93a1a1" # violet    #6c71c4 13
-  echo -en "\e]P7eee8d5" # base1     #93a1a1 14
-  echo -en "\e]PFfdf6e3" # base3     #fdf6e3 15
+  echo -en "\e]P8002b36" # base03    #002b36  8
+  echo -en "\e]P1dc322f" # red       #dc322f  1
+  echo -en "\e]P9cb4b16" # orange    #cb4b16  9
+  echo -en "\e]P2859900" # green     #859900  2
+  echo -en "\e]PA586e75" # base01    #586e75 10A
+  echo -en "\e]P3b58900" # yellow    #b58900  3
+  echo -en "\e]PB657b83" # base00    #657b83 11B
+  echo -en "\e]P4268bd2" # blue      #268bd2  4
+  echo -en "\e]PC839496" # base0     #839496 12C
+  echo -en "\e]P5d33682" # magenta   #d33682  5
+  echo -en "\e]PD6c71c4" # violet    #6c71c4 13D
+  echo -en "\e]P62aa198" # cyan      #2aa198  6
+  echo -en "\e]PE93a1a1" # base1     #93a1a1 14E
+  echo -en "\e]P7eee8d5" # base2     #eee8d5  7
+  echo -en "\e]PFfdf6e3" # base3     #fdf6e3 15F
   clear #for background artifacting
 fi
+#}
+
+# vim modeline {
+# vim: set foldmarker={,} foldlevel=0 foldmethod=marker :
+# }
 
