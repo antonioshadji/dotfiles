@@ -407,7 +407,10 @@ set -o vi
 [[ -r /usr/local/bin/virtualenvwrapper.sh ]] && source /usr/local/bin/virtualenvwrapper.sh
 
 # https://docs.python.org/2/whatsnew/2.7.html#changes-to-the-handling-of-deprecation-warnings
-export PYTHONWARNINGS="default"
+# this throws many errors when running iPython
+# to enable in my own code use: warnings.simplefilter('default')
+# Can this be a way to find correctable errrors for contributing to open source projects?
+# export PYTHONWARNINGS="default"
 
 # }
 
