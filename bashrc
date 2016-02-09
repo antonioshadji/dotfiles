@@ -36,6 +36,10 @@
 # if necessary, updates the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+# set vi mode to edit like vim
+# insert mode by default esc to go to command mode
+set -o vi
+
 # Notes By Balaji S. Srinivasan (balajis@stanford.edu) {
 #
 # Concepts:
@@ -76,7 +80,6 @@ shopt -s checkwinsize
 #      execute commands from file instead of ~/.bashrc.
 # }
 
-# -----------------------------------
 # {-- 1.1) Set up umask permissions --
 # -----------------------------------
 #  The following incantation allows easy group modification of files.
@@ -110,7 +113,6 @@ shopt -s checkwinsize
 # in meantime chmod ug+rw,o-rwx
 # }
 
-# ---------------------------------------------------------
 # {-- 1.2) Set up bash prompt
 # ---------------------------------------------------------
 
@@ -314,16 +316,15 @@ GIT_PROMPT_START="_LAST_COMMAND_INDICATOR_ ${blue}${HOSTNAME%%.*}:${yellow}\w${R
 GIT_PROMPT_THEME=Solarized_Ubuntu
 #}
 
-## -----------------------
 ## { -- 2) Set up aliases --
 ## -----------------------
 # 2.0) My custom aliases
-alias ping="ping -c 1"
+alias ping='ping -c 1'
 
 # 2.1) Safety
-alias rm="rm -i"
-alias mv="mv -i"
-alias cp="cp -i"
+alias rm='rm -i'
+alias mv='mv -i'
+alias cp='cp -i'
 set -o noclobber
 
 # 2.2) Listing, directories, and motion
@@ -359,6 +360,42 @@ unset LC_ALL
 export LANG='en_US.UTF-8'
 #}
 
+# Colors {
+## Define any user-specific variables you want here.
+# setup LS_COLORS for dircolors command. Solarize color pallette shows only greytones in terminal
+[[ -r $HOME/.dircolors ]] && eval "$(dircolors $HOME/.dircolors)"
+
+# From ubuntu 16.04 default bashrc
+# colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+#}
+
+# Configure PATH {
+#  - These are line by line so that you can kill one without affecting the others.
+#  - Lowest priority first, highest priority last.
+export PATH=$PATH
+# https://www.gnu.org/software/bash/manual/bash.html#Pattern-Matching
+# https://askubuntu.com/questions/299710/how-to-determine-if-a-string-is-a-substring-of-another-in-bash
+# set PATH so it includes user's private bin if it exists
+if [[ ! $PATH == *$HOME/bin* ]]; then
+  [[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
+fi
+
+# set PATH so it includes heroku if it exists
+# Heroku: https://toolbelt.heroku.com/standalone
+#[[ -d "/usr/local/heroku/bin" ]] && export PATH=/usr/local/heroku/bin:$PATH
+
+# set PATH to include latest version of pandoc
+[[ -d $HOME/.cabal/bin ]] && export PATH=$HOME/.cabal/bin:$PATH
+
+if [[ -d $HOME/bin/google-cloud-sdk/ ]]; then
+  # The next line updates PATH for the Google Cloud SDK.
+  source $HOME/bin/google-cloud-sdk/path.bash.inc
+  # The next line enables shell command completion for gcloud.
+  source $HOME/bin/google-cloud-sdk/completion.bash.inc
+fi
+#}
+
 #{ Node setup and tools
 # http://stackoverflow.com/a/677212
 if command -v node >/dev/null; then
@@ -379,25 +416,6 @@ if command -v node >/dev/null; then
   command -v rlwrap >/dev/null 2>&1 || { echo >&2 "Install rlwrap to use node: sudo (apt-get or brew) install rlwrap";}
 fi
 #}
-
-## ------------------------------
-## -- 3) User-customized code  --
-## ------------------------------
-
-## Define any user-specific variables you want here.
-# setup LS_COLORS for dircolors command. Solarize color pallette shows only greytones in terminal
-[[ -r $HOME/.dircolors ]] && eval "$(dircolors $HOME/.dircolors)"
-
-# From ubuntu 16.04 default bashrc
-# colored GCC warnings and errors
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-
-# set vi mode to edit like vim
-# insert mode by default
-# esc to go to command mode
-set -o vi
-
 # { Python setup and tools
 
 # virtualenvwrapper configuration
@@ -413,19 +431,7 @@ set -o vi
 # export PYTHONWARNINGS="default"
 
 # }
-
-# Configure PATH
-#  - These are line by line so that you can kill one without affecting the others.
-#  - Lowest priority first, highest priority last.
-export PATH=$PATH
-# https://www.gnu.org/software/bash/manual/bash.html#Pattern-Matching
-# https://askubuntu.com/questions/299710/how-to-determine-if-a-string-is-a-substring-of-another-in-bash
-# set PATH so it includes user's private bin if it exists
-if [[ ! $PATH == *$HOME/bin* ]]; then
-  [[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
-fi
-
-# { ruby rvm setup
+# { Ruby rvm setup
 # Load RVM into a shell session *as a function*
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 
@@ -433,25 +439,6 @@ fi
 # Add RVM to PATH for scripting
 [[ -d $HOME/.rvm/bin ]] && export PATH=$HOME/.rvm/bin:$PATH
 #}
-
-# set PATH so it includes heroku if it exists
-# Heroku: https://toolbelt.heroku.com/standalone
-#[[ -d "/usr/local/heroku/bin" ]] && export PATH=/usr/local/heroku/bin:$PATH
-
-# set PATH to include latest version of pandoc
-[[ -d $HOME/.cabal/bin ]] && export PATH=$HOME/.cabal/bin:$PATH
-
-if [ "$(uname -s)" == 'Darwin' ]; then
-  # add all mac osx specific bits inside an if statement like this.
-  alias ll='ls -AFlhG'
-  alias llt='ls -AFlhrtG'
-  alias la='ls -AFG'
-  alias l='ls -CFG'
-  HISTSIZE=1000000
-  HISTFILESIZE=1000000
-  export LSCOLORS=FxgxdadacxDaDahbadacec
-fi
-
 # { Go setup and tools
 if [[ -d $HOME/code/gowork/ ]]; then
   export GOPATH=$HOME/code/gowork
@@ -466,14 +453,19 @@ if [[ -d $HOME/code/go_appengine/ ]]; then
 fi
 #}
 
-if [[ -d $HOME/bin/google-cloud-sdk/ ]]; then
-  # The next line updates PATH for the Google Cloud SDK.
-  source $HOME/bin/google-cloud-sdk/path.bash.inc
-  # The next line enables shell command completion for gcloud.
-  source $HOME/bin/google-cloud-sdk/completion.bash.inc
+# Darwin only setup {
+if [ "$(uname -s)" == 'Darwin' ]; then
+  # add all mac osx specific bits inside an if statement like this.
+  alias ll='ls -AFlhG'
+  alias llt='ls -AFlhrtG'
+  alias la='ls -AFG'
+  alias l='ls -CFG'
+  HISTSIZE=1000000
+  HISTFILESIZE=1000000
+  export LSCOLORS=FxgxdadacxDaDahbadacec
 fi
-
-
+# }
+# Linux only setup {
 if [[ "$(uname -s)" == "Linux" ]]; then
   # +%k is single digit with space, is converted to number
   # +%H is hour with leading zero, < 10 converted to octal
@@ -493,6 +485,7 @@ if [[ "$(uname -s)" == "Linux" ]]; then
 else
   echo "Not running linux. Solarized colors will not auto-switch at night"
 fi
+# }
 
 # { bash completion
 # https://superuser.com/questions/288714/bash-autocomplete-like-zsh
