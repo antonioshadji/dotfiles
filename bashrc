@@ -450,6 +450,12 @@ if [[ -d $HOME/code/go_appengine/ ]]; then
   export PATH=$PATH:$HOME/code/go_appengine/
 fi
 #}
+# Java setup for Algorithm class {
+# https://class.coursera.org/algs4partI-010
+
+export PATH=$PATH:$HOME/code/java/algs4/bin
+alias java=java-algs4
+alias javac=javac-algs4
 
 # Darwin only setup {
 if [ "$(uname -s)" == 'Darwin' ]; then
