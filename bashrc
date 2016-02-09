@@ -113,7 +113,7 @@ set -o vi
 # in meantime chmod ug+rw,o-rwx
 # }
 
-# {-- 1.2) Set up bash prompt
+# 1.2) Set up bash prompt{
 # ---------------------------------------------------------
 
 # set title of terminal window to user@hostname:pwd
@@ -174,7 +174,6 @@ HISTSIZE=-1
 HISTFILESIZE=-1
 #}
 
-##################################################
 #{ Prompt escapes				 #
 ##################################################
 
@@ -227,7 +226,6 @@ HISTFILESIZE=-1
 #  the description of the shopt command under SHELL BUILTIN COMMANDS
 #  below).
 
-##################################################
 #{ Color chart					 #
 ##################################################
 
@@ -316,8 +314,8 @@ GIT_PROMPT_START="_LAST_COMMAND_INDICATOR_ ${blue}${HOSTNAME%%.*}:${yellow}\w${R
 GIT_PROMPT_THEME=Solarized_Ubuntu
 #}
 
-## { -- 2) Set up aliases --
-## -----------------------
+#  2) Set up aliases {
+# -----------------------
 # 2.0) My custom aliases
 alias ping='ping -c 1'
 
@@ -342,7 +340,7 @@ alias du='du -sh'
 alias treeacl='tree -A -C -L 2'
 #}
 
-# {2.3) Text and editor commands
+# 2.3) Text and editor commands{
 alias v='nvim'
 alias vv='gvim --remote-silent'
 export EDITOR='vim'
@@ -353,7 +351,7 @@ export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='0;32' # green for matches
 #}
 
-# {2.5) sort options
+# 2.5) sort options{
 # Ensures cross-platform sorting behavior of GNU sort.
 # http://www.gnu.org/software/coreutils/faq/coreutils-faq.html#Sort-does-not-sort-in-normal-order_0021
 unset LC_ALL
