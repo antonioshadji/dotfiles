@@ -435,7 +435,8 @@ fi
 
 # set PATH so it includes rvm if it exists
 # Add RVM to PATH for scripting
-[[ -d $HOME/.rvm/bin ]] && export PATH=$HOME/.rvm/bin:$PATH
+# this is being added twice comment out to test
+# [[ -d $HOME/.rvm/bin ]] && export PATH=$HOME/.rvm/bin:$PATH
 #}
 # { Go setup and tools
 if [[ -d $HOME/code/gowork/ ]]; then
@@ -456,6 +457,7 @@ fi
 export PATH=$PATH:$HOME/code/java/algs4/bin
 alias java=java-algs4
 alias javac=javac-algs4
+#  }
 
 # Darwin only setup {
 if [ "$(uname -s)" == 'Darwin' ]; then
