@@ -454,7 +454,7 @@ fi
 # Java setup for Algorithm class {
 # https://class.coursera.org/algs4partI-010
 
-export PATH=$PATH:$HOME/code/java/algs4/bin
+export PATH=$PATH:$HOME/Documents/Dropbox/Projects/Algorithms/algs4/bin
 alias java=java-algs4
 alias javac=javac-algs4
 #  }
