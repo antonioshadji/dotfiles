@@ -2,6 +2,9 @@
 vim/init.vim
 # viminfo file could be source controled but might break
 vim/viminfo
+# eclim files
+vim/plugin
+vim/eclim
 
 # Compiled python
 *.pyc
