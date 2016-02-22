@@ -60,6 +60,7 @@ colorscheme solarized
 let g:ycm_key_list_select_completion = ['<TAB>']
 let g:ycm_key_list_previous_completion = ['<S-TAB>']
 let g:EclimCompletionMethod = 'omnifunc'
+
 "}
 
 " ack.vim {

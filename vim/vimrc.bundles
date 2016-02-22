@@ -20,6 +20,10 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Git integration
 Plugin 'tpope/vim-fugitive'
+" quoting/parenthesizing made simple
+Plugin 'tpope/vim-surround'
+"enable repeating supported plugin maps
+Plugin 'tpope/vim-repeat'
 " gitk for Vim requires fugitive
 Plugin 'gregsexton/gitv'
 " Status line
@@ -31,8 +35,9 @@ Plugin 'myusuf3/numbers.vim'
 Plugin 'scrooloose/syntastic'
 " for intensely orgasmic commenting
 Plugin 'scrooloose/nerdcommenter'
-"A tree explorer plugin for vim.
-Plugin 'scrooloose/nerdtree'
+"A tree explorer plugin for vim.removed to test default functionality - try
+"ctrp next Plugin 'ctrlpvim/ctrlp.vim'
+" Plugin 'scrooloose/nerdtree'
 " highlighting of indented blocks
 Plugin 'nathanaelkane/vim-indent-guides'
 " use ack in vim http://beyondgrep.com/

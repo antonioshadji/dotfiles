@@ -68,6 +68,7 @@ set wildignore+=*.sw?                            " Vim swap files
 set wildignore+=*.DS_Store                       " OSX bullshit
 set wildignore+=*.luac                           " Lua byte code
 set wildignore+=*.pyc                            " Python byte code
+set wildignore+=*.class                          " Java byte code
 
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 set scrolloff=5                 " Minimum lines to keep above and below cursor
@@ -200,12 +201,22 @@ cnoremap w!! %!sudo tee > /dev/null %
 " use space bar in normal mode to toggle folds
 nnoremap <Space> za
 
-
+" compile and run java code for algs4
+" https://docs.oracle.com/javase/8/docs/technotes/tools/windows/classpath.html
+" -ea = enableassertions
+" -cp = classpath
+map <F7> :!clear; javac -cp ../algs4.jar:. %<CR>
+map <F8> :!clear; java -ea -cp ../algs4.jar:. %:r<CR>
 "} end keyboard shortcuts
 
 " Auto Commands: {
 if !exists("g:autocommands_loaded")
   let g:autocommands_loaded = 1
+
+" Close preview window when complete {
+" http://stackoverflow.com/a/26022965/2472798
+autocmd CompleteDone * pclose
+" }
 
 " Git autocmd {
 " Instead of reverting the cursor to the last position in the buffer, we
@@ -229,7 +240,7 @@ augroup END
 autocmd BufRead,BufNewFile *.md set filetype=pandoc
 autocmd BufRead,BufNewFile *.mkd set filetype=pandoc
 " Enable spellchecking for Markdown
-autocmd FileType pandoc setlocal spell
+autocmd FileType pandoc setlocal spell spelllang=en_us
 " }
 
 " Use Liquid filetype for html {
@@ -268,6 +279,13 @@ autocmd InsertLeave * :update
 autocmd FocusLost * :wa
 "autocmd FocusLost * :silent! wa
 " }
+
+" Java Configuration {
+autocmd FileType java setlocal shiftwidth=4 tabstop=4
+let java_highlight_java_lang_ids=1
+let java_highlight_functions="style"
+" }
+
 endif
 " end Auto Commands: }
 
