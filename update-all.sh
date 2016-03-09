@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
+exec 2> >(tee -a update.log >&2)
+
 # Linux Only
 if [ "$(uname -s)" != 'Linux' ]; then
   echo 'this update only for linux machines'
@@ -15,6 +17,7 @@ sudo apt-get autoremove -y
 vim +PluginUpdate +qall
 
 sudo -H pip install --upgrade -r ~/dotfiles/requirements.txt
+sudo -H pip3 install --upgrade -r ~/dotfiles/requirements3.txt
 
 if command -v cabal; then
 # update pandoc

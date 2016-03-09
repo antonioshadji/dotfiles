@@ -1,0 +1,21 @@
+# sudo -H pip install --upgrade -r ~/dotfiles/requirements.txt
+pip
+# Data Science Tools
+ipython
+jupyter
+numpy
+pandas
+# required by ipython notebook
+# tornado
+# pyzmq
+# jsonschema
+# must apt-get install libpng12-dev libfreetype6-dev to install
+matplotlib
+# must be installed before scikit
+# requires apt-get install libblas-dev liblapack-dev gfortran
+scipy
+scikit-learn
+# not available for python3
+# scikits.statsmodels
+statsmodels
+sympy

@@ -16,3 +16,5 @@ vim/eclim
 # all source controlled notes will go in README.md
 notes/*
 
+# log files
+*.log
