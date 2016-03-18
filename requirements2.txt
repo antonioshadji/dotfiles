@@ -9,6 +9,7 @@ awscli
 requests
 
 # Environment Maintenance
+neovim
 virtualenv
 virtualenvwrapper
 pip-tools

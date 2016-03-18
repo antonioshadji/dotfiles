@@ -1,5 +1,6 @@
 # sudo -H pip install --upgrade -r ~/dotfiles/requirements.txt
 pip
+neovim
 # Data Science Tools
 ipython
 jupyter

@@ -341,7 +341,7 @@ alias treeacl='tree -A -C -L 2'
 #}
 
 # 2.3) Text and editor commands{
-alias v='vim'
+alias v='nvim'
 alias vv='gvim --remote-silent'
 export EDITOR='vim'
 export VISUAL='vim'
