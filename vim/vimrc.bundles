@@ -80,6 +80,10 @@ else
   echo "Cannot load YouCompleteMe has('patch598') returned" has('patch598')
 endif
 
+if has("nvim")
+  Plugin 'floobits/floobits-neovim'
+endif
+
 " } end bundle list
 
 " All of your Plugins must be added before the following line
