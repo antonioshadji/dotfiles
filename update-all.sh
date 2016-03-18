@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
+# create log file for errors
 exec 2> >(tee -a update.log >&2)
 
 # Linux Only
@@ -16,15 +17,15 @@ sudo apt-get autoremove -y
 
 vim +PluginUpdate +qall
 
-sudo -H pip install --upgrade -r ~/dotfiles/requirements.txt
+sudo -H pip2 install --upgrade -r ~/dotfiles/requirements2.txt
 sudo -H pip3 install --upgrade -r ~/dotfiles/requirements3.txt
 
 if command -v cabal; then
 # update pandoc
 cabal update
-cabal install cabal-install
+cabal install --force-reinstall cabal cabal-install
 cabal install --force-reinstall pandoc
-cabal list --installed Pandoc
+# cabal list --installed Pandoc
 fi
 
 # if command -v cpanm; then
