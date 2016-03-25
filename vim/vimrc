@@ -76,6 +76,7 @@ set foldenable                  " Auto fold code
 "  To insert special character - in insert mode CTRL-K two character code from :digraphs command
 set listchars=tab:›\ ,trail:∙,extends:»,precedes:«,nbsp:†   " Highlight problematic whitespace
 set list
+set colorcolumn=80              " highlight 80 character width for code files
 "} end Vim UI
 
 " Formatting {
