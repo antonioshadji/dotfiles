@@ -4,7 +4,7 @@
 # Linux Only
 if [ "$(uname -s)" == 'Linux' ]; then
   # install useful programs
-  sudo apt-get install -y build-essential cmake python-dev
+  sudo apt-get install -y build-essential cmake python-dev ruby-dev
   sudo apt-get install -y tree
   sudo apt-get install -y git
   sudo apt-get install -y vim
