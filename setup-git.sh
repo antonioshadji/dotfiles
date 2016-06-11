@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+# -*- coding: utf-8 -*-
+
 # Git Configuration
 sudo apt-get install -y git
 
@@ -18,3 +21,5 @@ git config --global status.short true
 # TODO: create aliases for
 # git clone --recursive (always want to recurse submodules)
 # git pull --recurse-submodules (always want latest submodule)
+
+git clone git@github.com:AntoniosHadji/dotfiles.git
