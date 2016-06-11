@@ -4,6 +4,8 @@
 # create log file for errors
 exec 2> >(tee -a setup.log >&2)
 
+# Git must be installed prior to pulling this repo.
+
 # Linux Only
 if [ "$(uname -s)" == 'Linux' ]; then
   # update linux
@@ -12,7 +14,7 @@ if [ "$(uname -s)" == 'Linux' ]; then
   # install useful programs
   sudo apt-get install -y build-essential cmake python-dev ruby-dev
   sudo apt-get install -y tree
-  sudo apt-get install -y git curl
+  sudo apt-get install -y curl
   sudo apt-get install -y vim vim-gnome
   sudo apt-get install -y libblas-dev liblapack-dev gfortran
   sudo apt-get install -y libpng12-dev libfreetype6-dev
@@ -100,24 +102,6 @@ ln -sf $HOME/dotfiles/tmux.conf $HOME/.tmux.conf
 # Font Configuration for Airline or Powerline
 $HOME/dotfiles/fonts/install.sh
 
-# Git Configuration
-git config --global user.email "Antonios@Hadji.co"
-git config --global user.name "Antonios Hadjigeorgalis"
-git config --global color.ui true
-# simple is new default push method after Git 2.0
-git config --global push.default simple
-git config --global credential.helper 'cache --timeout=3600'
-git config --global grep.linenumber true
-git config --global grep.extendregexp true
-git config --global alias.g 'grep --break --heading --line-number'
-git config --global push.default simple
-git config --global core.autocrlf input
-git config --global status.branch true
-git config --global status.short true
-# http://haacked.com/archive/2014/07/28/github-flow-aliases/
-# TODO: create aliases for
-# git clone --recursive (always want to recurse submodules)
-# git pull --recurse-submodules (always want latest submodule)
 
 # Ruby
 gem install jekyll
