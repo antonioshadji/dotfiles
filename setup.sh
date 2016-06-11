@@ -17,7 +17,7 @@ if [ "$(uname -s)" == 'Linux' ]; then
   # Remap caps lock key to ESC
   # https://stackoverflow.com/questions/2176532/how-to-map-caps-lock-key-in-vim
   # this is temporary, not permanent
-  xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+  # xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 fi
 
 # Mac OSX Only
@@ -107,3 +107,6 @@ git config --global status.short true
 # TODO: create aliases for
 # git clone --recursive (always want to recurse submodules)
 # git pull --recurse-submodules (always want latest submodule)
+
+gem install jekyll
+
