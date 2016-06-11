@@ -6,7 +6,7 @@ if [ "$(uname -s)" == 'Linux' ]; then
   # install useful programs
   sudo apt-get install -y build-essential cmake python-dev ruby-dev
   sudo apt-get install -y tree
-  sudo apt-get install -y git
+  sudo apt-get install -y git curl
   sudo apt-get install -y vim vim-gnome
   sudo apt-get install -y libblas-dev liblapack-dev gfortran
   sudo apt-get install -y libpng12-dev libfreetype6-dev
@@ -109,5 +109,9 @@ git config --global status.short true
 # git clone --recursive (always want to recurse submodules)
 # git pull --recurse-submodules (always want latest submodule)
 
+# Ruby
 gem install jekyll
 
+# Node
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt-get install -y nodejs
