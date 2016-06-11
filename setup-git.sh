@@ -22,4 +22,4 @@ git config --global status.short true
 # git clone --recursive (always want to recurse submodules)
 # git pull --recurse-submodules (always want latest submodule)
 
-git clone git@github.com:AntoniosHadji/dotfiles.git
+git clone --recursive git@github.com:AntoniosHadji/dotfiles.git
