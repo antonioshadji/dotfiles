@@ -17,7 +17,7 @@ sudo apt-get autoremove -y
 
 vim +PluginUpdate +qall
 
-sudo -H pip2 install --upgrade -r ~/dotfiles/requirements2.txt
+# only install extra software in python 3
 sudo -H pip3 install --upgrade -r ~/dotfiles/requirements3.txt
 
 if command -v cabal; then
@@ -27,14 +27,6 @@ cabal install --force-reinstall cabal cabal-install
 cabal install --force-reinstall pandoc
 # cabal list --installed Pandoc
 fi
-
-# if command -v cpanm; then
-# update perl
-# to use cpanm: curl -L http://cpanmin.us | sudo perl - App::cpanminus
-# sudo cpanm App::Ack
-# sudo cpanm Finance::Quote
-# https://stackoverflow.com/questions/3727795/how-do-i-update-all-my-cpan-module-to-their-latest-versions
-# sudo cpan-outdated -p | sudo cpanm
 
 if command -v npm; then
 # update node
