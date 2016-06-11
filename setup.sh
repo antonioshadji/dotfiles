@@ -7,8 +7,9 @@ if [ "$(uname -s)" == 'Linux' ]; then
   sudo apt-get install -y build-essential cmake python-dev ruby-dev
   sudo apt-get install -y tree
   sudo apt-get install -y git
-  sudo apt-get install -y vim
-  sudo apt-get install -y vim-gnome
+  sudo apt-get install -y vim vim-gnome
+  sudo apt-get install -y libblas-dev liblapack-dev gfortran
+  sudo apt-get install -y libpng12-dev libfreetype6-dev
 
   # Terminal Colors Configuration
   ln -sf $HOME/dotfiles/dircolors $HOME/.dircolors
