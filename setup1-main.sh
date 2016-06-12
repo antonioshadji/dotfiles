@@ -12,14 +12,12 @@ if [ "$(uname -s)" == "Linux" ]; then
   sudo apt-get update
   sudo apt-get upgrade -y
   # install useful programs
-  sudo apt-get install -y openjdk-8-jdk
-  sudo apt-get install -y build-essential cmake python3-dev
+  sudo apt-get install -y build-essential cmake python3-dev openjdk-8-jdk
   sudo apt-get install -y libblas-dev liblapack-dev gfortran
   sudo apt-get install -y libpng12-dev libfreetype6-dev
-  sudo apt-get install -y tree curl
+  sudo apt-get install -y tree curl silversearcher-ag
   sudo apt-get install -y vim vim-gnome
-  sudo apt-get install -y redshift-gtk
-  sudo apt-get install -y silversearcher-ag
+  sudo apt-get install -y redshift-gtk vlc
   # for Pandoc
   sudo apt-get install -y texlive
   sudo apt-get install -y stack
