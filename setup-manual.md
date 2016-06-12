@@ -14,3 +14,11 @@ it must be selected as both the color scheme and the palette separately to work 
 TODO:
 Firefox Developer Edition Link to tar.bz2 file
 https://download.mozilla.org/?product=firefox-aurora-latest-ssl&os=linux64&lang=en-US
+
+
+#!/usr/bin/env bash
+# -*- coding: utf-8 -*-
+# Download latest from this web page, then run script
+# https://golang.org/dl/
+sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf ~/Downloads/go*.linux-amd64.tar.gz
