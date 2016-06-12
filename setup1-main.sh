@@ -19,6 +19,7 @@ if [ "$(uname -s)" == 'Linux' ]; then
   sudo apt-get install -y libblas-dev liblapack-dev gfortran
   sudo apt-get install -y libpng12-dev libfreetype6-dev
   sudo apt-get install -y redshift-gtk
+  sudo apt-get install -y silversearcher-ag
 
   # Terminal Colors Configuration
   ln -sf $HOME/dotfiles/dircolors $HOME/.dircolors
@@ -34,35 +35,6 @@ if [ "$(uname -s)" == 'Linux' ]; then
   sudo apt-get autoremove -y
 fi
 
-# Mac OSX Only
-if [ "$(uname -s)" == 'Darwin' ]; then
-  # Vim 7.3 on Mac OSX does not have same default settings files as 7.4
-  ln -sf $HOME/dotfiles/vim/vimrc $HOME/.vimrc
-  # install homebrew http://brew.sh/
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  # https://danielmiessler.com/blog/first-10-things-new-mac/#software
-  # brew install findutils --default-names
-  # brew install gnu-sed --default-names
-  # brew install gnu-tar --default-names
-  # brew install gnu-which --default-names
-  # brew install gnutls --default-names
-  # brew install grep --default-names
-  # brew install coreutils
-  # brew install binutils
-  # brew install diffutils
-  # brew install gzip
-  # brew install watch
-  # brew install tmux
-  # brew install wget
-  # brew install nmap
-  # brew install gpg
-  # brew install htop
-  # Terminal Colors Configuration
-  # TODO: Automatically import and delete. Manual go to Preferences > Profiles
-  # https://www.iterm2.com/index.html
-  # curl --remote-name https://raw.githubusercontent.com/altercation/solarized/master/iterm2-colors-solarized/Solarized%20Dark.itermcolors
-  # curl --remote-name https://raw.githubusercontent.com/altercation/solarized/master/iterm2-colors-solarized/Solarized%20Light.itermcolors
-fi
 
 # Bash Configuration
 ln -sf $HOME/dotfiles/bash_profile $HOME/.profile
@@ -113,9 +85,9 @@ sudo gem install jekyll
 # http://askubuntu.com/questions/182674/how-to-verify-if-a-repository-is-already-added
 # curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 # sudo apt-get install -y nodejs
-git clone git@github.com:creationix/nvm.git $HOME/.nvm
-(cd $HOME/.nvm && git checkout $(git describe --tags))
-[[ -d $HOME/.nvm/versions ]] || $HOME/.nvm/nvm-exec install v6
+# git clone git@github.com:creationix/nvm.git $HOME/.nvm
+# (cd $HOME/.nvm && git checkout $(git describe --tags))
+# [[ -d $HOME/.nvm/versions ]] || $HOME/.nvm/nvm-exec install v6
 
 if command -v npm; then
   # update node
@@ -126,3 +98,34 @@ fi
 curl -sL https://bootstrap.pypa.io/get-pip.py | sudo -HE python3 -
 # only install extra software in python 3
 sudo -H pip3 install --upgrade -r ~/dotfiles/requirements3.txt
+
+# Mac OSX Only
+if [ "$(uname -s)" == 'Darwin' ]; then
+  # Vim 7.3 on Mac OSX does not have same default settings files as 7.4
+  ln -sf $HOME/dotfiles/vim/vimrc $HOME/.vimrc
+  # install homebrew http://brew.sh/
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  # https://danielmiessler.com/blog/first-10-things-new-mac/#software
+  # brew install findutils --default-names
+  # brew install gnu-sed --default-names
+  # brew install gnu-tar --default-names
+  # brew install gnu-which --default-names
+  # brew install gnutls --default-names
+  # brew install grep --default-names
+  # brew install coreutils
+  # brew install binutils
+  # brew install diffutils
+  # brew install gzip
+  # brew install watch
+  # brew install tmux
+  # brew install wget
+  # brew install nmap
+  # brew install gpg
+  # brew install htop
+  # Terminal Colors Configuration
+  # TODO: Automatically import and delete. Manual go to Preferences > Profiles
+  # https://www.iterm2.com/index.html
+  # curl --remote-name https://raw.githubusercontent.com/altercation/solarized/master/iterm2-colors-solarized/Solarized%20Dark.itermcolors
+  # curl --remote-name https://raw.githubusercontent.com/altercation/solarized/master/iterm2-colors-solarized/Solarized%20Light.itermcolors
+fi
+
