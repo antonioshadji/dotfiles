@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # create log file for errors
-exec 2> >(tee -a setup.log >&2)
+exec 2> >(tee -a setup$(date '+%Y%m%d-%H%M%S').log >&2)
 
 # Git must be installed prior to pulling this repo.
 
@@ -12,14 +12,32 @@ if [ "$(uname -s)" == "Linux" ]; then
   sudo apt-get update
   sudo apt-get upgrade -y
   # install useful programs
+  sudo apt-get install -y openjdk-8-jdk
   sudo apt-get install -y build-essential cmake python3-dev
-  sudo apt-get install -y tree
-  sudo apt-get install -y curl
-  sudo apt-get install -y vim vim-gnome
   sudo apt-get install -y libblas-dev liblapack-dev gfortran
   sudo apt-get install -y libpng12-dev libfreetype6-dev
+  sudo apt-get install -y tree curl
+  sudo apt-get install -y vim vim-gnome
   sudo apt-get install -y redshift-gtk
   sudo apt-get install -y silversearcher-ag
+  # for Pandoc
+  sudo apt-get install -y texlive
+  sudo apt-get install -y stack
+
+  if ! command -v google-chrome; then
+    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    sudo dpkg -i google-chrome*.deb
+    sudo apt-get install --assume-yes --fix-broken
+    rm -f google-chrome*.deb
+  fi
+
+  # TODO: this fails wget fails to download correctly ??
+  # if ! command -v $HOME/bin/firefox/firefox; then
+  #   mkdir -p $HOME/bin
+  #   wget -O firefox.tar.bz2 https://download.mozilla.org/?product=firefox-aurora-latest-ssl&os=linux64&lang=en-US
+  #   tar -vxf firefox.tar.bz2 -C $HOME/bin
+  #   rm -f firefox.tar.bz2
+  # fi
 
   # Symbolic Links
   if [[ ! -d $HOME/.vim ]]; then
@@ -61,7 +79,10 @@ fi
 
 
 # Font Configuration for Airline or Powerline
+# https://powerline.readthedocs.io/en/latest/installation/linux.html#fonts-installation
 $HOME/dotfiles/fonts/install.sh
+# Manually select Ubuntu Mono for Powerline after this install
+# TODO: Test the custom symbols method
 
 # Ruby
 if ! command -v ruby; then
@@ -79,8 +100,9 @@ fi
 if [[ ! -d $HOME/.nvm ]]; then
   git clone git@github.com:creationix/nvm.git $HOME/.nvm
 else
-  (cd $HOME/.nvm && git checkout $(git describe --tags --abbrev=0))
+  (cd $HOME/.nvm && git pull origin master && git checkout $(git describe --tags --abbrev=0))
 fi
+# TODO: save file with latest tags so that script can know when there is a change??
 if [[ -r $HOME/.nvm/nvm.sh ]]; then
   NVM_DIR=$HOME/.nvm
   source $HOME/.nvm/nvm.sh
@@ -107,6 +129,19 @@ if ! command -v pip3; then
 else
   sudo -H pip3 install --upgrade -r ~/dotfiles/requirements3.txt
 fi
+
+# TODO: Pandoc install
+# manually installed stack repo
+# sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 575159689BEFB442
+# echo 'deb http://download.fpcomplete.com/ubuntu xenial main'|sudo tee /etc/apt/sources.list.d/fpco.list
+# TODO: save file with latest tags so that script can know when there is a change??
+if [[ ! -d $HOME/code/pandoc ]]; then
+  mkdir -p $HOME/code
+  git clone --recursive https://github.com/jgm/pandoc $HOME/code/pandoc
+else
+  (cd $HOME/code/pandoc && git pull --recurse-submodules origin master && git checkout $(git describe --tags --abbrev=0))
+fi
+# manually ran: stack setup; stack install; moved pandoc from .local/bin to ~/bin
 
 # Mac OSX Only
 if [ "$(uname -s)" == 'Darwin' ]; then

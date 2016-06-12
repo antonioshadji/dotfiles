@@ -16,6 +16,7 @@
 
 if [[ $# -ne 2 ]]; then
   echo "Usage: solarize [light | dark] [Profile Folder]"
+  echo "Only required for pre-16 versions"
   exit
 else
   PROFILE="$2"
