@@ -20,12 +20,6 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Git integration
 Plugin 'tpope/vim-fugitive'
-" quoting/parenthesizing made simple
-Plugin 'tpope/vim-surround'
-"enable repeating supported plugin maps
-Plugin 'tpope/vim-repeat'
-" gitk for Vim requires fugitive
-Plugin 'gregsexton/gitv'
 " Status line
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -33,15 +27,10 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'myusuf3/numbers.vim'
 " Syntax checking jshint + others
 Plugin 'scrooloose/syntastic'
-" for intensely orgasmic commenting
-Plugin 'scrooloose/nerdcommenter'
-"A tree explorer plugin for vim.removed to test default functionality - try
-"ctrp next Plugin 'ctrlpvim/ctrlp.vim'
-" Plugin 'scrooloose/nerdtree'
+"Fuzzy file, buffer, mru, tag, etc finder.
+Plugin 'ctrlpvim/ctrlp.vim'
 " highlighting of indented blocks
 Plugin 'nathanaelkane/vim-indent-guides'
-" use ack in vim http://beyondgrep.com/
-Plugin 'mileszs/ack.vim'
 " precision colorscheme
 Plugin 'altercation/vim-colors-solarized'
 " Work with python virtualenvs
@@ -53,14 +42,18 @@ Plugin 'junegunn/goyo.vim'
 " a calendar app for vim
 Plugin 'itchyny/calendar.vim'
 " Vim plugin that displays tags in a window, ordered by scope
+" This is a must use when working with larger files
+" https://github.com/majutsushi/tagbar
 Plugin 'majutsushi/tagbar'
-" Tern Plugin http://ternjs.net/
-Plugin 'marijnh/tern_for_vim'
-Plugin 'cmather/vim-meteor-snippets'
-" Powerful shell implemented by vim.
-Plugin 'Shougo/vimshell.vim'
 " Interactive command execution in Vim. Required by vimshell
-Plugin 'Shougo/vimproc.vim'
+" Do I need this?
+" Plugin 'Shougo/vimproc.vim'
+" for intensely orgasmic commenting
+Plugin 'scrooloose/nerdcommenter'
+" quoting/parenthesizing made simple
+Plugin 'tpope/vim-surround'
+"enable repeating supported plugin maps
+Plugin 'tpope/vim-repeat'
 " Software caps lock
 Plugin 'tpope/vim-capslock'
 
