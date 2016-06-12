@@ -22,3 +22,11 @@ https://download.mozilla.org/?product=firefox-aurora-latest-ssl&os=linux64&lang=
 # https://golang.org/dl/
 sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzf ~/Downloads/go*.linux-amd64.tar.gz
+
+this following code snippet does not update the submodules to the latest.
+bash prompt is updated regularly
+
+#!/usr/bin/env bash
+# -*- coding: utf-8 -*-
+git pull --recurse-submodules
+git submodule update --recursive --remote
