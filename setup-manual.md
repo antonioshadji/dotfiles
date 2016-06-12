@@ -7,11 +7,10 @@
   - run setup-git.sh
 
 Solarized Color Scheme comes with gnome-terminal in 16.04
+it must be selected as both the color scheme and the palette separately to work as before
 
-nvm install needs work or manual intervention
-fatal: destination path '/home/antonios/.nvm' already exists and is not an empty directory.
-HEAD is now at b648158... On aarch64 use arm64 packages
-No NODE_VERSION provided; no .nvmrc file found
-
+TODO:
 Firefox Developer Edition Link to tar.bz2 file
 https://download.mozilla.org/?product=firefox-aurora-latest-ssl&os=linux64&lang=en-US
+
+Airline fonts are not working

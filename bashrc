@@ -472,25 +472,25 @@ if [ "$(uname -s)" == 'Darwin' ]; then
 fi
 # }
 # Linux only setup {
-if [[ "$(uname -s)" == "Linux" ]]; then
-  # +%k is single digit with space, is converted to number
-  # +%H is hour with leading zero, < 10 converted to octal
-  hour=$(date +%k)
-  # (( expression ))
-  # The arithmetic expression is evaluated according to the rules
-  # described below (see Shell Arithmetic). If the value of the
-  # expression is non-zero, the return status is 0; otherwise the
-  # return status is 1. This is exactly equivalent to let "expression"
-  if [[ -x $HOME/dotfiles/solarize-gnome-terminal.sh ]]; then
-    if (( $hour >= 17 )); then
-      $HOME/dotfiles/solarize-gnome-terminal.sh light Default
-    else
-      $HOME/dotfiles/solarize-gnome-terminal.sh dark Default
-    fi
-  fi
-else
-  echo "Not running linux. Solarized colors will not auto-switch at night"
-fi
+# if [[ "$(uname -s)" == "Linux" ]]; then
+#   # +%k is single digit with space, is converted to number
+#   # +%H is hour with leading zero, < 10 converted to octal
+#   hour=$(date +%k)
+#   # (( expression ))
+#   # The arithmetic expression is evaluated according to the rules
+#   # described below (see Shell Arithmetic). If the value of the
+#   # expression is non-zero, the return status is 0; otherwise the
+#   # return status is 1. This is exactly equivalent to let "expression"
+#   if [[ -x $HOME/dotfiles/solarize-gnome-terminal.sh ]]; then
+#     if (( $hour >= 17 )); then
+#       $HOME/dotfiles/solarize-gnome-terminal.sh light Default
+#     else
+#       $HOME/dotfiles/solarize-gnome-terminal.sh dark Default
+#     fi
+#   fi
+# else
+#   echo "Not running linux. Solarized colors will not auto-switch at night"
+# fi
 # }
 
 # { bash completion

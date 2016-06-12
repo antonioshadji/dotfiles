@@ -22,7 +22,9 @@ if [ "$(uname -s)" == "Linux" ]; then
   sudo apt-get install -y silversearcher-ag
 
   # Symbolic Links
-  ln -sf $HOME/dotfiles/vim $HOME/.vim
+  if [[ ! -d $HOME/.vim ]]; then
+    ln -sf $HOME/dotfiles/vim $HOME/.vim
+  fi
 
   ln -sf $HOME/dotfiles/bash_profile $HOME/.profile
   ln -sf $HOME/dotfiles/bashrc $HOME/.bashrc
@@ -51,7 +53,7 @@ fi
 vim +PluginInstall +qall
 
 if [[ -d $HOME/.vim/bundle/YouCompleteMe/ ]]; then
-  if [[ ! -f $HOME/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_client_support.so ]]; then
+  if [[ ! -x $HOME/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so ]]; then
     # http://stackoverflow.com/questions/786376/how-do-i-run-a-program-with-a-different-working-directory-from-current-from-lin
     (cd $HOME/.vim/bundle/YouCompleteMe/ && python3 install.py)
   fi
@@ -62,8 +64,12 @@ fi
 $HOME/dotfiles/fonts/install.sh
 
 # Ruby
-sudo apt-get install -y ruby ruby-dev
-sudo gem install jekyll
+if ! command -v ruby; then
+  sudo apt-get install -y ruby ruby-dev
+fi
+if ! command -v jekyll; then
+  sudo gem install jekyll
+fi
 
 # Node
 # TODO: can this command be called multiple times? How to verify if needed?
@@ -72,27 +78,35 @@ sudo gem install jekyll
 # sudo apt-get install -y nodejs
 if [[ ! -d $HOME/.nvm ]]; then
   git clone git@github.com:creationix/nvm.git $HOME/.nvm
+else
+  (cd $HOME/.nvm && git checkout $(git describe --tags --abbrev=0))
+fi
+if [[ -r $HOME/.nvm/nvm.sh ]]; then
+  NVM_DIR=$HOME/.nvm
+  source $HOME/.nvm/nvm.sh
 fi
 
-(cd $HOME/.nvm && git checkout $(git describe --tags))
-
-if [[ ! -d $HOME/.nvm/versions ]]; then
-  $HOME/.nvm/nvm-exec install v6
+if ! command -v nvm; then
+  nvm install v6
 else
   nvm use v6
 fi
 
-sudo npm install tern
+if ! command -v tern; then
+  npm install -g tern
+fi
 
 if command -v npm; then
   # update node
-  sudo npm update -g
+  npm update -g
 fi
 
-# Python3
-curl -sL https://bootstrap.pypa.io/get-pip.py | sudo -HE python3 -
-# only install extra software in python 3
-sudo -H pip3 install --upgrade -r ~/dotfiles/requirements3.txt
+# Python3: only install extra software in python 3
+if ! command -v pip3; then
+  curl -sL https://bootstrap.pypa.io/get-pip.py | sudo -HE python3 -
+else
+  sudo -H pip3 install --upgrade -r ~/dotfiles/requirements3.txt
+fi
 
 # Mac OSX Only
 if [ "$(uname -s)" == 'Darwin' ]; then
