@@ -21,9 +21,16 @@ if [ "$(uname -s)" == 'Linux' ]; then
   sudo apt-get install -y redshift-gtk
   sudo apt-get install -y silversearcher-ag
 
-  # Terminal Colors Configuration
+  # Symbolic Links
+  ln -sf $HOME/dotfiles/vim $HOME/.vim
+
+  ln -sf $HOME/dotfiles/bash_profile $HOME/.profile
+  ln -sf $HOME/dotfiles/bashrc $HOME/.bashrc
+  ln -sf $HOME/dotfiles/inputrc $HOME/.inputrc
   ln -sf $HOME/dotfiles/dircolors $HOME/.dircolors
-  # Redshift configuration
+
+  ln -sf $HOME/dotfiles/curlrc $HOME/.curlrc
+  ln -sf $HOME/dotfiles/tmux.conf $HOME/.tmux.conf
   ln -sf $HOME/dotfiles/config/redshift.conf $HOME/.config/.
 
   # Remap caps lock key to ESC
@@ -36,20 +43,7 @@ if [ "$(uname -s)" == 'Linux' ]; then
 fi
 
 
-# Bash Configuration
-ln -sf $HOME/dotfiles/bash_profile $HOME/.profile
-ln -sf $HOME/dotfiles/bashrc $HOME/.bashrc
-ln -sf $HOME/dotfiles/inputrc $HOME/.inputrc
-
 # Vim Configuration
-# TODO: is this necessary? I think not
-#if [ -d $HOME/.vim/ ]; then
-#  NOW=$(date +"%Y-%m%d-%H%M%S")
-#  cp -R $HOME/.vim $HOME/backup-vim.$NOW
-#fi
-# TODO: this line creates link in dotfiles/vim on Mac OSX
-ln -sf $HOME/dotfiles/vim $HOME/.vim
-
 # vim by default looks in .vim/ for vimrc
 #ln -sf $HOME/dotfiles/vimrc $HOME/.vimrc
 #ln -sf $HOME/dotfiles/vimrc.plugins $HOME/.vimrc.plugins
@@ -66,15 +60,9 @@ vim +PluginInstall +qall
 #  fi
 #fi
 
-# Curl Configuration
-ln -sf $HOME/dotfiles/curlrc $HOME/.curlrc
-
-# Tmux Configuration
-ln -sf $HOME/dotfiles/tmux.conf $HOME/.tmux.conf
 
 # Font Configuration for Airline or Powerline
 $HOME/dotfiles/fonts/install.sh
-
 
 # Ruby
 sudo apt-get install -y ruby ruby-dev

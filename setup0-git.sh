@@ -12,7 +12,6 @@ git config --global push.default simple
 git config --global credential.helper 'cache --timeout=3600'
 git config --global grep.linenumber true
 git config --global grep.extendregexp true
-git config --global alias.g 'grep --break --heading --line-number'
 git config --global push.default simple
 git config --global core.autocrlf input
 git config --global status.branch true
@@ -21,5 +20,7 @@ git config --global status.short true
 # TODO: create aliases for
 # git clone --recursive (always want to recurse submodules)
 # git pull --recurse-submodules (always want latest submodule)
+git config --global alias.g 'grep --break --heading --line-number'
+git config --global alias.s 'status'
 
-git clone --recursive git@github.com:AntoniosHadji/dotfiles.git
+git clone --recursive git@github.com:AntoniosHadji/dotfiles.git $HOME/dotfiles
