@@ -12,7 +12,7 @@ if [ "$(uname -s)" == 'Linux' ]; then
   sudo apt-get update
   sudo apt-get upgrade -y
   # install useful programs
-  sudo apt-get install -y build-essential cmake python-dev
+  sudo apt-get install -y build-essential cmake python3-dev
   sudo apt-get install -y tree
   sudo apt-get install -y curl
   sudo apt-get install -y vim vim-gnome
@@ -106,7 +106,7 @@ $HOME/dotfiles/fonts/install.sh
 
 # Ruby
 sudo apt-get install -y ruby ruby-dev
-gem install jekyll
+sudo gem install jekyll
 
 # Node
 # TODO: can this command be called multiple times? How to verify if needed?
@@ -115,7 +115,7 @@ gem install jekyll
 # sudo apt-get install -y nodejs
 git clone git@github.com:creationix/nvm.git $HOME/.nvm
 (cd $HOME/.nvm && git checkout $(git describe --tags))
-[[ -d $HOME/.nvm/versions ]] || $HOME/.nvm/nvm.sh install v6
+[[ -d $HOME/.nvm/versions ]] || $HOME/.nvm/nvm-exec install v6
 
 if command -v npm; then
   # update node
