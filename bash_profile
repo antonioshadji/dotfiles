@@ -44,17 +44,41 @@
 #      --norc option. The --rcfile file option will force Bash to read and
 #      execute commands from file instead of ~/.bashrc.
 
-## -----------------------
-## -- 1) Import .bashrc --
-## -----------------------
+# from clean Ubuntu 16.04 install
+# ~/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+# exists.
+# see /usr/share/doc/bash/examples/startup-files for examples.
+# the files are located in the bash-doc package.
+
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+#umask 022
+
 # https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions
-if [[ -d ~/dotfiles ]]; then
-  git -C ~/dotfiles pull --recurse-submodules
-  git -C ~/dotfiles submodule update --recursive --init
+
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+  ## -----------------------------
+  ## -- 0) update dotfiles
+  ## -----------------------------
+  if [ -d "$HOME/dotfiles" ]; then
+    git -C $HOME/dotfiles pull --recurse-submodules
+    git -C $HOME/dotfiles submodule update --recursive --init
+  fi
+
+  ## -----------------------
+  ## -- 1) Import .bashrc --
+  ## -----------------------
+  # Factor out all repeated profile initialization into .bashrc
+  #  - All non-login shell parameters go there
+  #  - All declarations repeated for each screen session go there
+  if [ -f "$HOME/.bashrc" ]; then
+    source $HOME/.bashrc
+  fi
 fi
-# Factor out all repeated profile initialization into .bashrc
-#  - All non-login shell parameters go there
-#  - All declarations repeated for each screen session go there
-if [[ -f ~/.bashrc ]]; then
-   source ~/.bashrc
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ]; then
+  PATH="$HOME/bin:$PATH"
 fi
