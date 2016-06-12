@@ -23,4 +23,6 @@ git config --global status.short true
 git config --global alias.g 'grep --break --heading --line-number'
 git config --global alias.s 'status'
 
-git clone --recursive git@github.com:AntoniosHadji/dotfiles.git $HOME/dotfiles
+if [[ ! -d $HOME/dotfiles ]]; then
+  git clone --recursive git@github.com:AntoniosHadji/dotfiles.git $HOME/dotfiles
+fi

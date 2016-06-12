@@ -7,7 +7,7 @@ exec 2> >(tee -a setup.log >&2)
 # Git must be installed prior to pulling this repo.
 
 # Linux Only
-if [ "$(uname -s)" == 'Linux' ]; then
+if [ "$(uname -s)" == "Linux" ]; then
   # update linux
   sudo apt-get update
   sudo apt-get upgrade -y
@@ -45,20 +45,17 @@ fi
 
 # Vim Configuration
 # vim by default looks in .vim/ for vimrc
-#ln -sf $HOME/dotfiles/vimrc $HOME/.vimrc
-#ln -sf $HOME/dotfiles/vimrc.plugins $HOME/.vimrc.plugins
-#ln -sf $HOME/dotfiles/vimrc.bundles $HOME/.vimrc.bundles
 # TODO: nvim config not neccessary in setup remove /document
 # ln -sf $HOME/dotfiles/vim/ $HOME/.config/nvim
 # ln -sf $HOME/dotfiles/vim/vimrc $HOME/.config/nvim/init.vim
 vim +PluginInstall +qall
-# this does not work on mac TODO: Is this necessary in setup?
-#if [ -d $HOME/.vim/bundle/YouCompleteMe/ ]; then
-#  if [ ! -f $HOME/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_client_support.so ]; then
-#    # http://stackoverflow.com/questions/786376/how-do-i-run-a-program-with-a-different-working-directory-from-current-from-lin
-#    (cd $HOME/.vim/bundle/YouCompleteMe/ && ./install.py)
-#  fi
-#fi
+
+if [[ -d $HOME/.vim/bundle/YouCompleteMe/ ]]; then
+  if [[ ! -f $HOME/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_client_support.so ]]; then
+    # http://stackoverflow.com/questions/786376/how-do-i-run-a-program-with-a-different-working-directory-from-current-from-lin
+    (cd $HOME/.vim/bundle/YouCompleteMe/ && python3 install.py)
+  fi
+fi
 
 
 # Font Configuration for Airline or Powerline
@@ -73,9 +70,19 @@ sudo gem install jekyll
 # http://askubuntu.com/questions/182674/how-to-verify-if-a-repository-is-already-added
 # curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 # sudo apt-get install -y nodejs
-# git clone git@github.com:creationix/nvm.git $HOME/.nvm
-# (cd $HOME/.nvm && git checkout $(git describe --tags))
-# [[ -d $HOME/.nvm/versions ]] || $HOME/.nvm/nvm-exec install v6
+if [[ ! -d $HOME/.nvm ]]; then
+  git clone git@github.com:creationix/nvm.git $HOME/.nvm
+fi
+
+(cd $HOME/.nvm && git checkout $(git describe --tags))
+
+if [[ ! -d $HOME/.nvm/versions ]]; then
+  $HOME/.nvm/nvm-exec install v6
+else
+  nvm use v6
+fi
+
+sudo npm install tern
 
 if command -v npm; then
   # update node
