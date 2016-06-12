@@ -8,9 +8,9 @@
 
 Solarized Color Scheme comes with gnome-terminal in 16.04
 it must be selected as both the color scheme and the palette separately to work as before
+.dircolors still required when pallette is switched, other wise it can be removed if standard pallette used.
+?? standard palette breaks vim color scheme ??
 
 TODO:
 Firefox Developer Edition Link to tar.bz2 file
 https://download.mozilla.org/?product=firefox-aurora-latest-ssl&os=linux64&lang=en-US
-
-Airline fonts are not working
