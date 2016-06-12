@@ -12,12 +12,13 @@ if [ "$(uname -s)" == 'Linux' ]; then
   sudo apt-get update
   sudo apt-get upgrade -y
   # install useful programs
-  sudo apt-get install -y build-essential cmake python-dev ruby-dev
+  sudo apt-get install -y build-essential cmake python-dev
   sudo apt-get install -y tree
   sudo apt-get install -y curl
   sudo apt-get install -y vim vim-gnome
   sudo apt-get install -y libblas-dev liblapack-dev gfortran
   sudo apt-get install -y libpng12-dev libfreetype6-dev
+  sudo apt-get install -y redshift-gtk
 
   # Terminal Colors Configuration
   ln -sf $HOME/dotfiles/dircolors $HOME/.dircolors
@@ -64,7 +65,7 @@ if [ "$(uname -s)" == 'Darwin' ]; then
 fi
 
 # Bash Configuration
-ln -sf $HOME/dotfiles/bash_profile $HOME/.bash_profile
+ln -sf $HOME/dotfiles/bash_profile $HOME/.profile
 ln -sf $HOME/dotfiles/bashrc $HOME/.bashrc
 ln -sf $HOME/dotfiles/inputrc $HOME/.inputrc
 
@@ -104,21 +105,24 @@ $HOME/dotfiles/fonts/install.sh
 
 
 # Ruby
+sudo apt-get install -y ruby ruby-dev
 gem install jekyll
 
 # Node
 # TODO: can this command be called multiple times? How to verify if needed?
 # http://askubuntu.com/questions/182674/how-to-verify-if-a-repository-is-already-added
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-sudo apt-get install -y nodejs
+# curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+# sudo apt-get install -y nodejs
+git clone git@github.com:creationix/nvm.git $HOME/.nvm
+(cd $HOME/.nvm && git checkout $(git describe --tags))
+[[ -d $HOME/.nvm/versions ]] || $HOME/.nvm/nvm.sh install v6
 
 if command -v npm; then
   # update node
   sudo npm update -g
-elif
-  echo "install npm"
 fi
 
 # Python3
+curl -sL https://bootstrap.pypa.io/get-pip.py | sudo -HE python3 -
 # only install extra software in python 3
 sudo -H pip3 install --upgrade -r ~/dotfiles/requirements3.txt
