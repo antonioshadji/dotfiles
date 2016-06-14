@@ -21,6 +21,8 @@ if [ "$(uname -s)" == "Linux" ]; then
   # for Pandoc
   sudo apt-get install -y texlive
   sudo apt-get install -y stack
+  # for Dropbox -- Dropbox has been installed manually (requires web scrape to automate)
+  sudo apt-get install python-gpgme
 
   if ! command -v google-chrome; then
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
