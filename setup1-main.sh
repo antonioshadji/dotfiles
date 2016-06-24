@@ -23,6 +23,8 @@ if [ "$(uname -s)" == "Linux" ]; then
   sudo apt-get install -y stack
   # for Dropbox -- Dropbox has been installed manually (requires web scrape to automate)
   sudo apt-get install python-gpgme
+  # for Android Studio (32 bit libraries)
+  sudo apt-get install lib32z1 lib32ncurses5 lib32bz2-1.0 lib32stdc++6
 
   if ! command -v google-chrome; then
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -138,10 +140,16 @@ fi
 if [[ ! -d $HOME/code/pandoc ]]; then
   mkdir -p $HOME/code
   git clone --recursive https://github.com/jgm/pandoc $HOME/code/pandoc
+  (cd $HOME/code/pandoc/src && stack setup)
+  (cd $HOME/code/pandoc/src && stack install)
 else
-  (cd $HOME/code/pandoc && git pull --recurse-submodules origin master && git checkout $(git describe --tags --abbrev=0))
+  (cd $HOME/code/pandoc && git pull --recurse-submodules origin master && \
+    git checkout $(git describe --tags --abbrev=0))
+  (cd $HOME/code/pandoc/src && stack install)
 fi
-# manually ran: stack setup; stack install; moved pandoc from .local/bin to ~/bin
+# TODO: manually ran: stack setup; stack install;
+# moved pandoc from .local/bin to ~/bin
+# edited the above lines to run stack setup and stack install but did not test
 
 # Mac OSX Only
 if [ "$(uname -s)" == 'Darwin' ]; then
