@@ -392,6 +392,10 @@ if [[ -d $HOME/bin/google-cloud-sdk/ ]]; then
   # The next line enables shell command completion for gcloud.
   source $HOME/bin/google-cloud-sdk/completion.bash.inc
 fi
+
+if [[ -d /opt/android-studio/bin ]]; then
+  export PATH=/opt/android-studio/bin:$PATH
+fi
 #}
 
 #{ Node setup and tools
