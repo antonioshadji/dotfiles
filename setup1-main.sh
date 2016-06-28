@@ -146,10 +146,8 @@ else
   (cd $HOME/code/pandoc && git pull --recurse-submodules origin master && \
     git checkout $(git describe --tags --abbrev=0))
   (cd $HOME/code/pandoc/src && stack install)
+  mv -f $HOME/.local/bin/pandoc $HOME/bin/pandoc
 fi
-# TODO: manually ran: stack setup; stack install;
-# moved pandoc from .local/bin to ~/bin
-# edited the above lines to run stack setup and stack install but did not test
 
 # Mac OSX Only
 if [ "$(uname -s)" == 'Darwin' ]; then
