@@ -53,6 +53,7 @@ if [ "$(uname -s)" == "Linux" ]; then
 
   ln -sf $HOME/dotfiles/curlrc $HOME/.curlrc
   ln -sf $HOME/dotfiles/tmux.conf $HOME/.tmux.conf
+  ln -sf $HOME/dotfiles/octaverc $HOME/.octaverc
   ln -sf $HOME/dotfiles/config/redshift.conf $HOME/.config/.
 
   # Remap caps lock key to ESC
