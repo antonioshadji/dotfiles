@@ -50,7 +50,7 @@ syn keyword octaveCommand contained  who whos
 
 " List of functions which set internal variables
 syn keyword octaveSetVarFun contained  EDITOR EXEC_PATH F_SETFD F_SETFL I
-syn keyword octaveSetVarFun contained  IMAGE_PATH Inf J NA NaN O_APPEND O_ASYNC 
+syn keyword octaveSetVarFun contained  IMAGE_PATH Inf J NA NaN O_APPEND O_ASYNC
 syn keyword octaveSetVarFun contained  PAGER PAGER_FLAGS PS1 PS2 PS4
 syn keyword octaveSetVarFun contained  __error_text__
 syn keyword octaveSetVarFun contained  allow_noninteger_range_as_index ans argv
@@ -103,7 +103,7 @@ syn keyword octaveSetVarFun contained  texi_macros_file true whos_line_format
 " Excluded i,j from list above because they are often used as loop variables
 " They will be highlighted appropriately by the rule which matches numbers
 syn keyword octaveVariable contained  EDITOR EXEC_PATH F_SETFD F_SETFL I
-syn keyword octaveVariable contained  EDITOR IMAGE_PATH Inf J NA NaN O_APPEND 
+syn keyword octaveVariable contained  EDITOR IMAGE_PATH Inf J NA NaN O_APPEND
 syn keyword octaveVariable contained  O_ASYNC PAGER PAGER_FLAGS PS1 PS2 PS4
 syn keyword octaveVariable contained  __error_text__
 syn keyword octaveVariable contained  allow_noninteger_range_as_index ans argv
