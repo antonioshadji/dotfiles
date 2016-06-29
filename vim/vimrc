@@ -154,7 +154,7 @@ endif
 " http://vim.wikia.com/wiki/Avoid_the_escape_key
 " <C-c> is an alternative to Esc but does not run autocmd by default
 imap <C-c> <Esc>
-" there are no words with jj except for Hajj  
+" there are no words with jj except for Hajj
 " i don't like this because i see the j character before it disappears
 " imap jj <Esc>
 " shift enter works in gvim, not in gnome-terminal
@@ -230,7 +230,7 @@ autocmd Filetype gitcommit setlocal spell textwidth=72
 
 " http://vim.wikia.com/wiki/Shebang_line_automatically_generated {
 augroup Shebang
-  autocmd BufNewFile *.py 0put =\"#!/usr/bin/env python\<nl># -*- coding: utf-8 -*-\<nl>\"|$
+  autocmd BufNewFile *.py 0put =\"#!/usr/bin/env python3\<nl># -*- coding: utf-8 -*-\<nl>\"|$
   autocmd BufNewFile *.rb 0put =\"#!/usr/bin/env ruby\<nl># -*- coding: utf-8 -*-\<nl>\"|$
   autocmd BufNewFile *.sh 0put =\"#!/usr/bin/env bash\<nl># -*- coding: utf-8 -*-\<nl>\"|$
   autocmd BufNewFile *.js 0put =\"#!/usr/bin/env node\<nl># -*- coding: utf-8 -*-\<nl>\"|$
@@ -248,15 +248,24 @@ autocmd FileType pandoc setlocal spell spelllang=en_us
 autocmd BufRead,BufNewFile *.html set filetype=Liquid
 " }
 
+" Octave filetype {
+" http://www.vim.org/scripts/script.php?script_id=3600
+autocmd BufRead,BufNewFile *.m,*.oct set filetype=octave
+autocmd Filetype octave
+      \ if &omnifunc == "" |
+      \ setlocal omnifunc=syntaxcomplete#Complete |
+      \ endif
+" }
+
 "http://ku1ik.com/2011/09/08/formatting-xml-in-vim-with-indent-command.html {
-au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -
+autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -
 "}
 
 " Update Last Modified line when editing pandoc {
 " If buffer modified, update any 'Last modified: ' in the first 20 lines
 " 'Last modified: ' can have up to 10 characters before (they are retained).
 " Restores cursor and window position using save_cursor variable.
-function! LastModified()
+function LastModified()
   if &modified
     let save_cursor = getpos(".")
     let n = min([20, line("$")])
@@ -266,13 +275,12 @@ function! LastModified()
     call setpos('.', save_cursor)
   endif
 endfunction
-autocmd BufWritePre,FileWritePre *.md :call LastModified()
+autocmd BufWritePre *.md :call LastModified()
 "}
 
 " write file when leaving insert mode if changes have been made {
 " http://www.reddit.com/r/vim/comments/232j45/save_file_on_insert_mode_exit/
 " autocmd InsertLeave * :silent! update
-autocmd InsertLeave * :update
 "}
 
 " save on FocusLost {
