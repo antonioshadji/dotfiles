@@ -23,8 +23,8 @@ if [ "$(uname -s)" == "Linux" ]; then
   sudo apt-get install -y stack
   # for Dropbox -- Dropbox has been installed manually (requires web scrape to automate)
   sudo apt-get install python-gpgme
-  # for Android Studio (32 bit libraries)
-  sudo apt-get install lib32z1 lib32ncurses5 lib32bz2-1.0 lib32stdc++6
+  # for Android Studio (32 bit libraries) lib32bz2-1.0 not found on 16.04
+  sudo apt-get install lib32z1 lib32ncurses5 lib32stdc++6
 
   if ! command -v google-chrome; then
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -145,8 +145,8 @@ if [[ ! -d $HOME/code/pandoc ]]; then
 else
   (cd $HOME/code/pandoc && git pull --recurse-submodules origin master && \
     git checkout $(git describe --tags --abbrev=0))
-  (cd $HOME/code/pandoc/src && stack install)
-  mv -f $HOME/.local/bin/pandoc $HOME/bin/pandoc
+  (cd $HOME/code/pandoc/src && stack install --local-bin-path=$HOME/bin/)
+  # mv -f $HOME/.local/bin/pandoc $HOME/bin/pandoc
 fi
 
 # Mac OSX Only
