@@ -300,6 +300,7 @@ endif
 
 " Custom functions : {
 " https://vi.stackexchange.com/questions/454/whats-the-simplest-way-to-strip-trailing-whitespace-from-all-lines-in-a-file
+" https://bitbucket.org/Carpetsmoker/sanitize_files/src
 function TrimWhiteSpace()
   let l:save_cursor = getpos('.')
   %s/\s\+$//e
@@ -308,7 +309,6 @@ endfunction
 
 command TrimWhiteSpace call TrimWhiteSpace()
 " }
-
 
 " source configuration for plugins last {
 if filereadable(expand("~/.vim/vimrc.plugins"))
