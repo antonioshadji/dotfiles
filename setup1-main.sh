@@ -55,6 +55,7 @@ if [ "$(uname -s)" == "Linux" ]; then
   ln -sf $HOME/dotfiles/tmux.conf $HOME/.tmux.conf
   ln -sf $HOME/dotfiles/octaverc $HOME/.octaverc
   ln -sf $HOME/dotfiles/config/redshift.conf $HOME/.config/.
+  sudo ln -sf $HOME/dotfiles/50unattended-upgrades /etc/apt/apt.conf.d/.
 
   # Remap caps lock key to ESC
   # https://stackoverflow.com/questions/2176532/how-to-map-caps-lock-key-in-vim
