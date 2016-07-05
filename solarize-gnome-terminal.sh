@@ -14,7 +14,7 @@
 # Solarized-Light is ~/.gconf/apps/gnome-terminal/profiles/Profile2
 
 if [ $(lsb_release -r | gawk '{ print $2 }') == "14.04" ]; then
-  echo "Running on 14.04"
+  # echo "Running on 14.04"
   if [[ $# -ne 2 ]]; then
     echo "Usage: solarize [light | dark] [Profile Folder]"
     exit
