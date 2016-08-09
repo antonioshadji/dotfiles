@@ -342,10 +342,10 @@ alias treeacl='tree -A -C -L 2'
 #}
 
 # 2.3) Text and editor commands{
-alias v='vim3'
+alias v='vim'
 alias vv='gvim --remote-silent'
-export EDITOR='vim3'
-export VISUAL='vim3'
+export EDITOR='vim'
+export VISUAL='vim'
 
 # 2.4) grep options
 export GREP_OPTIONS='--color=auto'
