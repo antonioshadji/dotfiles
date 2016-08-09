@@ -348,7 +348,8 @@ export EDITOR='vim'
 export VISUAL='vim'
 
 # 2.4) grep options
-export GREP_OPTIONS='--color=auto'
+# GREP_OPTIONS is deprecated
+# export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='0;32' # green for matches
 #}
 
