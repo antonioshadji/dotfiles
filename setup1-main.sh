@@ -112,7 +112,7 @@ if [[ -r $HOME/.nvm/nvm.sh ]]; then
   source $HOME/.nvm/nvm.sh
 fi
 
-if ! command -v nvm; then
+if ! command -v node; then
   nvm install v6
 else
   nvm use v6
@@ -148,7 +148,6 @@ else
   (cd $HOME/code/pandoc && git pull --recurse-submodules origin master && \
     git checkout $(git describe --tags --abbrev=0))
   (cd $HOME/code/pandoc/src && stack install --local-bin-path=$HOME/bin/)
-  # mv -f $HOME/.local/bin/pandoc $HOME/bin/pandoc
 fi
 
 # Mac OSX Only
