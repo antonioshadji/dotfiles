@@ -329,8 +329,7 @@ set -o noclobber
 # 2.2) Listing, directories, and motion
 alias ll='ls -AFlh --color'
 alias llt='ls -AFlhrt --color'
-alias la='ls -AF --color'
-alias l='ls -CF --color'
+alias l='ls -F --color'
 alias m='less'
 alias ..='cd ..'
 alias ...='cd ..;cd ..'
