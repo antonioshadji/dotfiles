@@ -245,7 +245,8 @@ autocmd FileType pandoc setlocal spell spelllang=en_us
 " }
 
 " Use Liquid filetype for html {
-autocmd BufRead,BufNewFile *.html set filetype=Liquid
+" this does not properly highlight html -- only template language
+" autocmd BufRead,BufNewFile *.html set filetype=Liquid
 " }
 
 " Octave filetype {
@@ -269,7 +270,7 @@ function LastModified()
   if &modified
     let save_cursor = getpos(".")
     let n = min([20, line("$")])
-    keepjumps exe '1,' . n . 's#^\(.\{,10}Last modified: \).*#\1' .
+    keepjumps exe '1,' . n . 's#^\(.\{,10}Last_Modified: \).*#\1' .
           \ strftime('%a %b %d, %Y  %I:%M%p  ') . '#e'
     call histdel('search', -1)
     call setpos('.', save_cursor)
