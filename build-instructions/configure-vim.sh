@@ -7,7 +7,10 @@ make distclean
 
 ./configure \
   --with-features=huge \
+  --enable-multibyte \
   --enable-pythoninterp=yes \
-  --enable-luainterp=yes \
+  --enable-luainterp=dynamic \
+  --enable-perlinterp \
+  --enable-cscope \
+  --enable-gui=gtk2 \
   --with-compiledby="Antonios Hadjigeorgalis"
-

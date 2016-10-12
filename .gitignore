@@ -1,3 +1,5 @@
+# vim folders under .vim
+vim/view
 # No need to track linked neovim config
 vim/init.vim
 # viminfo file could be source controled but might break

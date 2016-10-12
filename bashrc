@@ -452,9 +452,6 @@ if [[ -d /usr/local/go/bin/ ]]; then
   export PATH=$PATH:/usr/local/go/bin
 fi
 
-if [[ -d $HOME/code/go_appengine/ ]]; then
-  export PATH=$PATH:$HOME/code/go_appengine/
-fi
 #}
 # Java setup for Algorithm class {
 # https://class.coursera.org/algs4partI-010

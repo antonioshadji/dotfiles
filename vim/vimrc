@@ -146,6 +146,9 @@ endif
 "}
 
 "Keyboard Shortcuts {
+" help abbreviate
+" Abbreviations:
+iab <expr> dts strftime("%Y-%m-%d %T %z")
 " When you have a problem about vim mappings.
 " Check :verbose inoremap at the first.
 " If you know the keys which have problem,
@@ -169,7 +172,8 @@ imap <Up> <Esc><Up>
 imap <Down> <Esc><Down>
 
 "http://www.bestofvim.com/tip/leave-ex-mode-good/
-nnoremap Q q
+" <Nop> is no operation
+map Q <Nop>
 
 " http://nvie.com/posts/how-i-boosted-my-vim/
 " The following trick is a really small one, but a super-efficient one,
@@ -266,11 +270,13 @@ autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -
 " If buffer modified, update any 'Last modified: ' in the first 20 lines
 " 'Last modified: ' can have up to 10 characters before (they are retained).
 " Restores cursor and window position using save_cursor variable.
+" vim magic on by default - all lower case matches any case
+" . concatenates without a space between
 function LastModified()
   if &modified
     let save_cursor = getpos(".")
     let n = min([20, line("$")])
-    keepjumps exe '1,' . n . 's#^\(.\{,10}Last_Modified: \).*#\1' .
+    keepjump execute '1,' . n . 's#^\(.\{,10}last[ _]modified: \).*#\1' .
           \ strftime('%a %b %d, %Y  %I:%M%p  ') . '#e'
     call histdel('search', -1)
     call setpos('.', save_cursor)
