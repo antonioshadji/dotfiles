@@ -1,7 +1,7 @@
 " vim: foldmarker={,} foldlevel=1 foldmethod=marker
-set nocompatible              " be iMproved, required
 filetype off                  " required!
 
+" install Vundle
 if !isdirectory(expand("~/.vim/bundle/Vundle.vim/.git"))
   !git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 endif
@@ -27,8 +27,6 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'myusuf3/numbers.vim'
 " Syntax checking jshint + others
 Plugin 'scrooloose/syntastic'
-"Fuzzy file, buffer, mru, tag, etc finder.
-Plugin 'ctrlpvim/ctrlp.vim'
 " highlighting of indented blocks
 Plugin 'nathanaelkane/vim-indent-guides'
 " precision colorscheme
@@ -45,9 +43,6 @@ Plugin 'itchyny/calendar.vim'
 " This is a must use when working with larger files
 " https://github.com/majutsushi/tagbar
 Plugin 'majutsushi/tagbar'
-" Interactive command execution in Vim. Required by vimshell
-" Do I need this?
-" Plugin 'Shougo/vimproc.vim'
 " for intensely orgasmic commenting
 Plugin 'scrooloose/nerdcommenter'
 " quoting/parenthesizing made simple
@@ -56,6 +51,11 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 " Software caps lock
 Plugin 'tpope/vim-capslock'
+" Do I need these?
+"Fuzzy file, buffer, mru, tag, etc finder.
+" Plugin 'ctrlpvim/ctrlp.vim'
+" Interactive command execution in Vim. Required by vimshell
+" Plugin 'Shougo/vimproc.vim'
 
 " These plugins do not work on MAC OSX with default vim
 if v:version >= 704
@@ -81,9 +81,6 @@ endif
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
 
 " Brief help
 " :PluginList       - lists configured plugins

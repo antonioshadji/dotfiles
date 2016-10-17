@@ -31,7 +31,9 @@ let g:syntastic_python_checkers=['pylint', 'flake8', 'pyflakes', 'python']
 let g:syntastic_python_python_exec = '/usr/bin/python3'
 let g:syntastic_python_pylint_exe = 'python3 -m pylint'
 " html checkers
-let g:syntastic_html_tidy_ignore_errors=['proprietary attribute', 'trimming empty <span>', 'trimming empty <i>']
+let g:syntastic_html_tidy_ignore_errors=['proprietary attribute', 'trimming empty <span>'] ", 'trimming empty <i>'
+" javascript checker
+let g:syntastic_javascript_checkers = ['jshint']
 " recommended settings from syntastic manual
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -51,7 +53,6 @@ au FileType pandoc setlocal nospell
 " https://github.com/huyz/dircolors-solarized
 " http://www.xorcode.com/2011/04/11/solarized-vim-eclipse-ubuntu/
 " https://github.com/sigurdga/gnome-terminal-colors-solarized
-syntax enable       "Enable syntax highlighting and don't overwrite colorscheme
 " http://askubuntu.com/questions/67/how-do-i-enable-full-color-support-in-vim
 set t_Co=16         "Override gnome-terminal 3.6 reporting only 8 colors, set to 16 or 256
 " call this function to enable ToggleBG command
