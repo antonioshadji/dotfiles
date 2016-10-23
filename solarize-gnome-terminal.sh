@@ -13,7 +13,7 @@
 # Solarized-Dark  is ~/.gconf/apps/gnome-terminal/profiles/Profile1
 # Solarized-Light is ~/.gconf/apps/gnome-terminal/profiles/Profile2
 
-# if [ $(lsb_release -r | gawk '{ print $2 }') == "14.04" ]; then
+if [ $(lsb_release -r | gawk '{ print $2 }') <= "14.04" ]; then
   # echo "Running on 14.04"
   if [[ $# -ne 2 ]]; then
     echo "Usage: solarize [light | dark] [Profile Folder]"
@@ -42,7 +42,6 @@
     gconftool --set "/apps/gnome-terminal/profiles/$PROFILE/background_color" --type string "$BG_COLOR"
     gconftool --set "/apps/gnome-terminal/profiles/$PROFILE/foreground_color" --type string "$FG_COLOR"
 
-  fi
-# else
-#   echo "only run this code on Ubuntu 14.04 or earlier"
-# fi
+else
+   echo "only run this code on Ubuntu 14.04 or earlier"
+fi
