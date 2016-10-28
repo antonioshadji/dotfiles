@@ -20,13 +20,19 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Git integration
 Plugin 'tpope/vim-fugitive'
+" quoting/parenthesizing made simple
+Plugin 'tpope/vim-surround'
+"enable repeating supported plugin maps
+Plugin 'tpope/vim-repeat'
+" Software caps lock
+Plugin 'tpope/vim-capslock'
+" Liquid templates
+Plugin 'tpope/vim-liquid'
 " Status line
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 " line numbering
 Plugin 'myusuf3/numbers.vim'
-" Syntax checking jshint + others
-Plugin 'scrooloose/syntastic'
 " highlighting of indented blocks
 Plugin 'nathanaelkane/vim-indent-guides'
 " precision colorscheme
@@ -45,14 +51,6 @@ Plugin 'itchyny/calendar.vim'
 Plugin 'majutsushi/tagbar'
 " for intensely orgasmic commenting
 Plugin 'scrooloose/nerdcommenter'
-" quoting/parenthesizing made simple
-Plugin 'tpope/vim-surround'
-"enable repeating supported plugin maps
-Plugin 'tpope/vim-repeat'
-" Software caps lock
-Plugin 'tpope/vim-capslock'
-" Liquid templates
-Plugin 'tpope/vim-liquid'
 " Run your tests at the speed of thought
 " https://github.com/janko-m/vim-test
 Plugin 'janko-m/vim-test'
@@ -60,12 +58,9 @@ Plugin 'janko-m/vim-test'
 " http://www.vim.org/scripts/script.php?script_id=39
 Plugin 'tmhedberg/matchit'
 
-
 " Do I need these?
 "Fuzzy file, buffer, mru, tag, etc finder.
 " Plugin 'ctrlpvim/ctrlp.vim'
-" Interactive command execution in Vim. Required by vimshell
-" Plugin 'Shougo/vimproc.vim'
 
 " These plugins do not work on MAC OSX with default vim
 if v:version >= 704
@@ -83,8 +78,14 @@ else
   echo "Cannot load YouCompleteMe has('patch598') returned" has('patch598')
 endif
 
+"nvim plugins that replace vim plugins
 if has("nvim")
-  Plugin 'floobits/floobits-neovim'
+  " Async :make and linting framework for Neovim/Vim
+  " replaces syntastic
+  Plugin 'neomake/neomake'
+else
+  " Syntax checking jshint + others
+  Plugin 'scrooloose/syntastic'
 endif
 
 " } end bundle list
