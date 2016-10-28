@@ -318,7 +318,6 @@ GIT_PROMPT_THEME=Solarized_Ubuntu
 # -----------------------
 # 2.0) My custom aliases
 alias ping='ping -c 1'
-alias time='/usr/bin/time'
 
 # 2.1) Safety
 alias rm='rm -i'
@@ -328,7 +327,7 @@ set -o noclobber
 
 # 2.2) Listing, directories, and motion
 alias ll='ls -AFlh --color'
-alias llt='ls -AFlhrt --color'
+alias llt='ls -AFlht --color'
 alias l='ls -F --color'
 alias m='less'
 alias ..='cd ..'
@@ -341,7 +340,7 @@ alias treeacl='tree -A -C -L 2'
 #}
 
 # 2.3) Text and editor commands{
-alias v='vim'
+alias v='nvim'
 alias vv='gvim --remote-silent'
 export EDITOR='vim'
 export VISUAL='vim'

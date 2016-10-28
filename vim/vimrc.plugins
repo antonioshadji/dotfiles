@@ -76,7 +76,8 @@ colorscheme solarized
 let g:ycm_key_list_select_completion = ['<TAB>']
 let g:ycm_key_list_previous_completion = ['<S-TAB>']
 let g:EclimCompletionMethod = 'omnifunc'
-
+" https://github.com/Valloric/YouCompleteMe/issues/700
+let g:ycm_global_ycm_extra_conf = './third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 "}
 
 " The Silver Searcher {

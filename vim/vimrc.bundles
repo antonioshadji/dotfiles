@@ -51,6 +51,16 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 " Software caps lock
 Plugin 'tpope/vim-capslock'
+" Liquid templates
+Plugin 'tpope/vim-liquid'
+" Run your tests at the speed of thought
+" https://github.com/janko-m/vim-test
+Plugin 'janko-m/vim-test'
+" extended % matching for HTML, LaTeX, and many other languages
+" http://www.vim.org/scripts/script.php?script_id=39
+Plugin 'tmhedberg/matchit'
+
+
 " Do I need these?
 "Fuzzy file, buffer, mru, tag, etc finder.
 " Plugin 'ctrlpvim/ctrlp.vim'
