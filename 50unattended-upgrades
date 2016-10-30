@@ -18,10 +18,9 @@ Unattended-Upgrade::Allowed-Origins {
 //	"LP-PPA-ubuntuhandbook1-audacity:xenial";
 //	"LP-PPA-freecad-maintainers-freecad-stable:xenial";
 //	"LP-PPA-remmina-ppa-team-remmina-next:xenial";
-	"LP-PPA-*:xenial";
+	"LP-PPA-.+:xenial";
   // mkvtoolnix
 	"bunkus:bunkus";
-	"mongodb:xenial";
 	"CRAN:xenial";
 };
 
