@@ -154,7 +154,7 @@ fi
 # Mac OSX Only
 if [ "$(uname -s)" == 'Darwin' ]; then
   # Vim 7.3 on Mac OSX does not have same default settings files as 7.4
-  ln -sf $HOME/dotfiles/vim/vimrc $HOME/.vimrc
+  ln -sf $HOME/dotfiles/vim $HOME/.vim
   # install homebrew http://brew.sh/
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   # https://danielmiessler.com/blog/first-10-things-new-mac/#software
