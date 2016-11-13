@@ -45,9 +45,10 @@ if [ "$(uname -s)" == "Linux" ]; then
   if [[ ! -d $HOME/.vim ]]; then
     ln -sf $HOME/dotfiles/vim $HOME/.vim
   fi
-
+  # TODO: these two lines needed on mac osx also
   ln -sf $HOME/dotfiles/bash_profile $HOME/.profile
   ln -sf $HOME/dotfiles/bashrc $HOME/.bashrc
+  # TODO:do I need these on mac osx?
   ln -sf $HOME/dotfiles/inputrc $HOME/.inputrc
   ln -sf $HOME/dotfiles/dircolors $HOME/.dircolors
 
@@ -88,7 +89,7 @@ $HOME/dotfiles/fonts/install.sh
 # Manually select Ubuntu Mono for Powerline after this install
 # TODO: Test the custom symbols method
 
-# Ruby
+# Ruby. DO NOT Run on MAC OSX
 if ! command -v ruby; then
   sudo apt-get install -y ruby ruby-dev
 fi
@@ -135,7 +136,7 @@ else
 fi
 
 # TODO: Pandoc install
-# manually installed stack repo
+# manually installed stack repo. TODO: Test that stack is installed if not do it
 # sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 575159689BEFB442
 # echo 'deb http://download.fpcomplete.com/ubuntu xenial main'|sudo tee /etc/apt/sources.list.d/fpco.list
 # TODO: save file with latest tags so that script can know when there is a change??
