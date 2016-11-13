@@ -2,7 +2,9 @@
 # -*- coding: utf-8 -*-
 
 # Git Configuration
-sudo apt-get install -y git
+if [ "$(uname -s)" == "Linux" ]; then
+   sudo apt-get install -y git
+fi
 
 git config --global user.email "Antonios@Hadji.co"
 git config --global user.name "Antonios Hadjigeorgalis"
