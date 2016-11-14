@@ -4,10 +4,13 @@
 # create log file for errors
 exec 2> >(tee -a setup$(date '+%Y%m%d-%H%M%S').log >&2)
 
+# set variable to determin os
+OS=$(uname -s)
+
 # Git must be installed prior to pulling this repo.
 
 # Linux Only
-if [ "$(uname -s)" == "Linux" ]; then
+if [ $OS == "Linux" ]; then
   # update linux
   sudo apt-get update
   sudo apt-get upgrade -y
@@ -42,12 +45,6 @@ if [ "$(uname -s)" == "Linux" ]; then
   # fi
 
   # Symbolic Links
-  if [[ ! -d $HOME/.vim ]]; then
-    ln -sf $HOME/dotfiles/vim $HOME/.vim
-  fi
-  # TODO: these two lines needed on mac osx also
-  ln -sf $HOME/dotfiles/bash_profile $HOME/.profile
-  ln -sf $HOME/dotfiles/bashrc $HOME/.bashrc
   # TODO:do I need these on mac osx?
   ln -sf $HOME/dotfiles/inputrc $HOME/.inputrc
   ln -sf $HOME/dotfiles/dircolors $HOME/.dircolors
@@ -66,15 +63,13 @@ if [ "$(uname -s)" == "Linux" ]; then
   # remove any unneeded software
   sudo apt-get autoremove -y
 fi
-
-
+# these symlinks are needed on both mac and linux
 # Vim Configuration
 # vim by default looks in .vim/ for vimrc
-# TODO: nvim config not neccessary in setup remove /document
-# ln -sf $HOME/dotfiles/vim/ $HOME/.config/nvim
-# ln -sf $HOME/dotfiles/vim/vimrc $HOME/.config/nvim/init.vim
+if [[ ! -d $HOME/.vim ]]; then
+  ln -sf $HOME/dotfiles/vim $HOME/.vim
+fi
 vim +PluginInstall +qall
-
 if [[ -d $HOME/.vim/bundle/YouCompleteMe/ ]]; then
   if [[ ! -x $HOME/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so ]]; then
     # http://stackoverflow.com/questions/786376/how-do-i-run-a-program-with-a-different-working-directory-from-current-from-lin
@@ -82,19 +77,23 @@ if [[ -d $HOME/.vim/bundle/YouCompleteMe/ ]]; then
   fi
 fi
 
+ln -sf $HOME/dotfiles/bash_profile $HOME/.bash_profile
+ln -sf $HOME/dotfiles/bashrc $HOME/.bashrc
 
 # Font Configuration for Airline or Powerline
 # https://powerline.readthedocs.io/en/latest/installation/linux.html#fonts-installation
-$HOME/dotfiles/fonts/install.sh
+# $HOME/dotfiles/fonts/install.sh
 # Manually select Ubuntu Mono for Powerline after this install
 # TODO: Test the custom symbols method
+# this was deleted when ubuntu mono regular was confirmed to work 11/14/2016
 
-# Ruby. DO NOT Run on MAC OSX
+# Ruby.
 if ! command -v ruby; then
-  sudo apt-get install -y ruby ruby-dev
-fi
-if ! command -v jekyll; then
-  sudo gem install jekyll
+  # TODO: how to make sure this only happens once?
+  # gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+  \curl -sSL https://get.rvm.io | bash -s stable --ruby
+else
+  rvm get stable
 fi
 
 # Node
@@ -132,7 +131,7 @@ fi
 if ! command -v pip3; then
   curl -sL https://bootstrap.pypa.io/get-pip.py | sudo -HE python3 -
 else
-  sudo -H pip3 install --upgrade -r ~/dotfiles/requirements3.txt
+  pip3 install --user --upgrade -r ~/dotfiles/requirements3.txt
 fi
 
 # TODO: Pandoc install
@@ -152,7 +151,8 @@ else
 fi
 
 # Mac OSX Only
-if [ "$(uname -s)" == 'Darwin' ]; then
+#if [ "$(uname -s)" == 'Darwin' ]; then
+if [ $OS == 'Darwin' ]; then
   # Vim 7.3 on Mac OSX does not have same default settings files as 7.4
   ln -sf $HOME/dotfiles/vim $HOME/.vim
   # install homebrew http://brew.sh/
