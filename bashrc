@@ -370,9 +370,11 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 
 # Configure PATH {
 # https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
-export XDG_DATA_HOME=$HOME/.local/share
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_CACHE_HOME=$HOME/.cache
+if [[ "$(uname -s)" == "Linux" ]]; then
+  export XDG_DATA_HOME=$HOME/.local/share
+  export XDG_CONFIG_HOME=$HOME/.config
+  export XDG_CACHE_HOME=$HOME/.cache
+fi
 
 #  - These are line by line so that you can kill one without affecting the others.
 #  - Lowest priority first, highest priority last.
