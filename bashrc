@@ -369,6 +369,11 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 #}
 
 # Configure PATH {
+# https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+
 #  - These are line by line so that you can kill one without affecting the others.
 #  - Lowest priority first, highest priority last.
 export PATH=$PATH
@@ -437,10 +442,6 @@ fi
 # Load RVM into a shell session *as a function*
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 
-# set PATH so it includes rvm if it exists
-# Add RVM to PATH for scripting
-# this is being added twice comment out to test
-# [[ -d $HOME/.rvm/bin ]] && export PATH=$HOME/.rvm/bin:$PATH
 #}
 # { Go setup and tools
 if [[ -d $HOME/code/gowork/ ]]; then
