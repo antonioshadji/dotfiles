@@ -4,8 +4,6 @@
 # set vim mode
 set editing-mode vi
 
-# TODO: report this bug or fix it
-# I like this setting but it shows mangled names if links set to target in dircolors
 set colored-stats on
 set match-hidden-files off
 
