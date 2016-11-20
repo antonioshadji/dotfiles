@@ -17,4 +17,5 @@ Defaults !tty_tickets
 #                 when sudo is run by root with the -V option.  If the
 #                 secure_path option is set, its value will be used for the
 #                 PATH environment variable.  This flag is on by default.
-Defaults !env_reset
+# this did not allow me to use v alias for vim
+# Defaults !env_reset
