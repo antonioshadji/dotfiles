@@ -1,0 +1,7 @@
+# tty_tickets       If set, users must authenticate on a per-tty basis.
+#                   With this flag enabled, sudo will use a separate record
+#                   in the time stamp file for each tty.  If disabled, a
+#                   single record is used for all login sessions.  This
+#                   flag is on by default.
+# ! means not
+Defaults !tty_tickets
