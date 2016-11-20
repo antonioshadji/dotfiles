@@ -11,7 +11,7 @@ OS=$(uname -s)
 
 # Linux Only
 if [ $OS == "Linux" ]; then
-  # update linux
+  # update linux only
   sudo apt-get update
   sudo apt-get upgrade -y
   # install useful programs
@@ -45,15 +45,19 @@ if [ $OS == "Linux" ]; then
   # fi
 
   # Symbolic Links
+  # in home directory
   # TODO:do I need these on mac osx?
   ln -sf $HOME/dotfiles/inputrc $HOME/.inputrc
   ln -sf $HOME/dotfiles/dircolors $HOME/.dircolors
-
   ln -sf $HOME/dotfiles/curlrc $HOME/.curlrc
   ln -sf $HOME/dotfiles/tmux.conf $HOME/.tmux.conf
   ln -sf $HOME/dotfiles/octaverc $HOME/.octaverc
+  # .config directory
   ln -sf $HOME/dotfiles/config/redshift.conf $HOME/.config/.
-  sudo ln -sf $HOME/dotfiles/50unattended-upgrades /etc/apt/apt.conf.d/.
+  # /etc directory
+  sudo ln -sf $HOME/dotfiles/etc/apt/apt.conf.d/50unattended-upgrades \
+    /etc/apt/apt.conf.d/.
+  sudo ln -sf $HOME/dotfiles/etc/sudoers.d/10-local /etc/sudoers.d/.
 
   # Remap caps lock key to ESC
   # https://stackoverflow.com/questions/2176532/how-to-map-caps-lock-key-in-vim
@@ -62,6 +66,7 @@ if [ $OS == "Linux" ]; then
 
   # remove any unneeded software
   sudo apt-get autoremove -y
+  # end linux only setup
 fi
 # these symlinks are needed on both mac and linux
 # Vim Configuration
@@ -88,10 +93,13 @@ ln -sf $HOME/dotfiles/bashrc $HOME/.bashrc
 # this was deleted when ubuntu mono regular was confirmed to work 11/14/2016
 
 # Ruby.
-if ! command -v ruby; then
-  # TODO: how to make sure this only happens once?
-  # gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-  \curl -sSL https://get.rvm.io | bash -s stable --ruby
+# TODO: in dotfiles/notes - verify correct rvm paths
+# https://github.com/rvm/rvm/blob/master/binscripts/rvm-installer
+if ! command -v rvm; then
+  # gpg -k returns 0 if key exists
+  [[ ! $(gpg -k 409B6B1796C275462A1703113804BB82D39DC0E3) ]] && \
+    gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+  curl -sSL https://get.rvm.io | bash -s stable --ruby
 else
   rvm get stable
 fi
@@ -106,6 +114,7 @@ if [[ ! -d $HOME/.nvm ]]; then
 else
   (cd $HOME/.nvm && git pull origin master && git checkout $(git describe --tags --abbrev=0))
 fi
+
 # TODO: save file with latest tags so that script can know when there is a change??
 if [[ -r $HOME/.nvm/nvm.sh ]]; then
   NVM_DIR=$HOME/.nvm
@@ -128,6 +137,7 @@ if command -v npm; then
 fi
 
 # Python3: only install extra software in python 3
+# TODO: verify if -HE is correct when using pip with --user
 if ! command -v pip3; then
   curl -sL https://bootstrap.pypa.io/get-pip.py | sudo -HE python3 -
 else

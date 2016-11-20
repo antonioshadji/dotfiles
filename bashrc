@@ -327,6 +327,7 @@ set -o noclobber
 
 # 2.2) Listing, directories, and motion
 alias ll='ls -AFlh --color'
+# follow by -r to reverse sort order
 alias llt='ls -AFlht --color'
 alias l='ls -F --color'
 alias m='less'
@@ -340,7 +341,7 @@ alias treeacl='tree -A -C -L 2'
 #}
 
 # 2.3) Text and editor commands{
-alias v='nvim'
+alias v='vim'
 alias vv='gvim --remote-silent'
 export EDITOR='vim'
 export VISUAL='vim'
@@ -348,7 +349,8 @@ export VISUAL='vim'
 # 2.4) grep options
 # GREP_OPTIONS is deprecated
 # export GREP_OPTIONS='--color=auto'
-export GREP_COLOR='0;32' # green for matches
+# export GREP_COLOR='0;32' # green for matches
+export GREP_COLOR='30;43' # match color of ag match
 #}
 
 # 2.5) sort options{
@@ -462,18 +464,10 @@ fi
 # alias java=java-algs4
 # alias javac=javac-algs4
 #  }
-
-# Darwin only setup {
-if [ "$(uname -s)" == 'Darwin' ]; then
-  # add all mac osx specific bits inside an if statement like this.
-  alias ll='ls -AFlhG'
-  alias llt='ls -AFlhrtG'
-  alias la='ls -AFG'
-  alias l='ls -CFG'
-  HISTSIZE=1000000
-  HISTFILESIZE=1000000
-  export LSCOLORS=FxgxdadacxDaDahbadacec
-fi
+# Launchpad setup {
+export UBUMAIL="Antonios Hadjigeorgalis <Antonios@Hadji.co>"
+export DEBEMAIL="Antonios@Hadji.co"
+export DEBFULLNAME="Antonios Hadjigeorgalis"
 # }
 # Linux only setup {
 # if [[ "$(uname -s)" == "Linux" ]]; then
@@ -495,6 +489,18 @@ fi
 # else
 #   echo "Not running linux. Solarized colors will not auto-switch at night"
 # fi
+# }
+# Darwin only setup {
+if [ "$(uname -s)" == 'Darwin' ]; then
+  # add all mac osx specific bits inside an if statement like this.
+  alias ll='ls -AFlhG'
+  alias llt='ls -AFlhrtG'
+  alias la='ls -AFG'
+  alias l='ls -CFG'
+  HISTSIZE=1000000
+  HISTFILESIZE=1000000
+  export LSCOLORS=FxgxdadacxDaDahbadacec
+fi
 # }
 
 # { bash completion
