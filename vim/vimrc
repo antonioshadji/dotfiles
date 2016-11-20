@@ -69,7 +69,8 @@ set viewoptions=folds,options,cursor,unix,slash "see :help viewoptions
 set virtualedit=onemore " Allow for cursor beyond last character
 set history=10000       " command history length extra long
 set hidden              " Allow buffer switching without saving
-"set autochdir           " Always change to current file directory
+" for thes reccommended to be turned off for vim default file browsing
+set autochdir           " Always change to current file directory
 set autowriteall        " Write files when many actions, including switching buffers see :help awa
 set autoread            " auto re-load files when changed on disk https://github.com/square/maximum-awesome
 "}
@@ -345,7 +346,7 @@ let java_highlight_functions="style"
 endif
 " end Auto Commands: }
 
-" Custom functions : {
+" Custom commands & functions : {
 "
 " https://vi.stackexchange.com/questions/454/whats-the-simplest-way-to-strip-trailing-whitespace-from-all-lines-in-a-file
 " https://bitbucket.org/Carpetsmoker/sanitize_files/src
