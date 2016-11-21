@@ -12,8 +12,16 @@ set ttimeoutlen=50
 set laststatus=2
 set noshowmode
 " https://github.com/vim-airline/vim-airline/issues/1154
-"let g:airline_symbols = get(g:,'airline_symbols',{})
-"let g:airline_symbols.maxlinenr=''
+let g:airline_symbols = get(g:,'airline_symbols',{})
+" without this following line a 3 bar icon shows after maxlinenr
+let g:airline_symbols.maxlinenr=''
+
+" https://github.com/vim-airline/vim-airline/issues/256
+if has("gui_running")
+  " get unpatched fonts to work in gvim
+  let g:airline_symbols.space = "\ua0"
+endif
+
 "}
 
 " vim-indent-guides {
@@ -109,3 +117,20 @@ let g:calendar_first_day = "monday"
 " Neomake {
 let g:neomake_javascript_enabled_makers = ['eslint']
 " }
+
+" Goyo {
+" https://github.com/junegunn/goyo.vim
+" let g:goyo_linenr = 1
+function! s:goyo_enter()
+  set nonumber
+  set norelativenumber
+endfunction
+
+function! s:goyo_leave()
+  set number
+  set relativenumber
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+"}
