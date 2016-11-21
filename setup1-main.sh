@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
+# Git must be installed prior to running this script
+
 # create log file for errors
 exec 2> >(tee -a setup$(date '+%Y%m%d-%H%M%S').log >&2)
 
 # set variable to determin os
 OS=$(uname -s)
-
-# Git must be installed prior to pulling this repo.
 
 # Linux Only
 if [ $OS == "Linux" ]; then
@@ -28,21 +28,6 @@ if [ $OS == "Linux" ]; then
   sudo apt-get install python-gpgme
   # for Android Studio (32 bit libraries) lib32bz2-1.0 not found on 16.04
   sudo apt-get install lib32z1 lib32ncurses5 lib32stdc++6
-
-  if ! command -v google-chrome; then
-    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    sudo dpkg -i google-chrome*.deb
-    sudo apt-get install --assume-yes --fix-broken
-    rm -f google-chrome*.deb
-  fi
-
-  # TODO: this fails wget fails to download correctly ??
-  # if ! command -v $HOME/bin/firefox/firefox; then
-  #   mkdir -p $HOME/bin
-  #   wget -O firefox.tar.bz2 https://download.mozilla.org/?product=firefox-aurora-latest-ssl&os=linux64&lang=en-US
-  #   tar -vxf firefox.tar.bz2 -C $HOME/bin
-  #   rm -f firefox.tar.bz2
-  # fi
 
   # Symbolic Links
   # in home directory
@@ -68,13 +53,17 @@ if [ $OS == "Linux" ]; then
   sudo apt-get autoremove -y
   # end linux only setup
 fi
+
 # these symlinks are needed on both mac and linux
 # Vim Configuration
 # vim by default looks in .vim/ for vimrc
 if [[ ! -d $HOME/.vim ]]; then
   ln -sf $HOME/dotfiles/vim $HOME/.vim
 fi
-vim +PluginInstall +qall
+if command -v vim; then
+  vim +PluginInstall +qall
+fi
+
 if [[ -d $HOME/.vim/bundle/YouCompleteMe/ ]]; then
   if [[ ! -x $HOME/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so ]]; then
     # http://stackoverflow.com/questions/786376/how-do-i-run-a-program-with-a-different-working-directory-from-current-from-lin
@@ -85,12 +74,6 @@ fi
 ln -sf $HOME/dotfiles/bash_profile $HOME/.bash_profile
 ln -sf $HOME/dotfiles/bashrc $HOME/.bashrc
 
-# Font Configuration for Airline or Powerline
-# https://powerline.readthedocs.io/en/latest/installation/linux.html#fonts-installation
-# $HOME/dotfiles/fonts/install.sh
-# Manually select Ubuntu Mono for Powerline after this install
-# TODO: Test the custom symbols method
-# this was deleted when ubuntu mono regular was confirmed to work 11/14/2016
 
 # Ruby.
 # TODO: in dotfiles/notes - verify correct rvm paths
