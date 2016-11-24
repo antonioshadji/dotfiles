@@ -31,28 +31,6 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_exclude_filetypes = ['help', 'markdown', 'pandoc']
 " }
 
-" syntastic configuration {
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-" # pylint: disable=C0301 can be used inside a file to disable warnings
-" let g:syntastic_python_pylint_args = '--disable=C0301,E501'
-"let g:syntastic_python_checkers=['flake8', 'pyflakes', 'python']
-let g:syntastic_python_checkers=['pylint', 'flake8', 'pyflakes', 'python']
-let g:syntastic_python_python_exec = '/usr/bin/python3'
-let g:syntastic_python_pylint_exe = 'python3 -m pylint'
-" html checkers
-let g:syntastic_html_tidy_ignore_errors=['proprietary attribute', 'trimming empty <span>'] ", 'trimming empty <i>'
-" javascript checker
-let g:syntastic_javascript_checkers = ['eslint']
-" recommended settings from syntastic manual
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-"}
-
 " vim-pandoc {
 let g:pandoc#folding#level = 1
 au FileType pandoc setlocal tabstop=4
@@ -133,4 +111,30 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
+"}
+"
+" syntastic configuration {
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+" # pylint: disable=C0301 can be used inside a file to disable warnings
+" let g:syntastic_python_pylint_args = '--disable=C0301,E501'
+"let g:syntastic_python_checkers=['flake8', 'pyflakes', 'python']
+let g:syntastic_python_checkers=['pylint', 'flake8', 'pyflakes', 'python']
+let g:syntastic_python_python_exec = '/usr/bin/python3'
+let g:syntastic_python_pylint_exe = 'python3 -m pylint'
+" html checkers
+let g:syntastic_html_tidy_ignore_errors=['proprietary attribute', 'trimming empty <span>'] ", 'trimming empty <i>'
+" javascript checker
+" https://www.npmjs.com/package/xo#editor-plugins
+let g:syntastic_javascript_eslint_generic = 1
+let g:syntastic_javascript_eslint_exec = 'xo'
+let g:syntastic_javascript_eslint_args = '--reporter=compact'
+let g:syntastic_javascript_checkers = ['eslint']
+" recommended settings from syntastic manual
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 "}

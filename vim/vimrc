@@ -22,7 +22,7 @@ set nocompatible
   endif
 " }
 
-syntax enable              "Enable syntax highlighting and don't overwrite colorscheme
+syntax enable   "Enable syntax highlighting and don't overwrite colorscheme
 filetype plugin indent on  " required for vundle
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -69,8 +69,8 @@ set viewoptions=folds,options,cursor,unix,slash "see :help viewoptions
 set virtualedit=onemore " Allow for cursor beyond last character
 set history=10000       " command history length extra long
 set hidden              " Allow buffer switching without saving
-" for thes reccommended to be turned off for vim default file browsing
-set autochdir           " Always change to current file directory
+" reccommended to be turned off for no_plugins.vim default file browsing
+" set autochdir           " Always change to current file directory
 set autowriteall        " Write files when many actions, including switching buffers see :help awa
 set autoread            " auto re-load files when changed on disk https://github.com/square/maximum-awesome
 "}

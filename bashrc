@@ -524,13 +524,17 @@ if ! shopt -oq posix; then
 fi
 
 # enable completion for pandoc
-command -v pandoc >/dev/null && eval "$(pandoc --bash-completion)"
+eval "$(pandoc --bash-completion)"
+
 # enable completion for node
 [[ -r $NVM_DIR/bash_completion ]] && source $NVM_DIR/bash_completion
+
 # http://wp-cli.org/ bash completion
-[[ -r $HOME/dotfiles/bash/wp-completion.bash ]] && source $HOME/dotfiles/bash/wp-completion.bash
+[[ -r $HOME/dotfiles/bash_completion/wp-completion.bash ]] && source $HOME/dotfiles/bash_completion/wp-completion.bash
+
 # AWS CLI completion
-[[ -x /usr/local/bin/aws_completer ]] && complete -C '/usr/local/bin/aws_completer' aws
+complete -C '/usr/local/bin/aws_completer' aws
+
 #}
 
 # http://superuser.com/a/296555/358673
