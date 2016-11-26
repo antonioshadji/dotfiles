@@ -57,6 +57,8 @@ Plugin 'janko-m/vim-test'
 " extended % matching for HTML, LaTeX, and many other languages
 " http://www.vim.org/scripts/script.php?script_id=39
 Plugin 'tmhedberg/matchit'
+" Tern plugin
+Plugin 'ternjs/tern_for_vim'
 
 " Do I need these?
 "Fuzzy file, buffer, mru, tag, etc finder.

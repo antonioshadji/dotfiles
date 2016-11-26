@@ -127,9 +127,9 @@ let g:syntastic_python_pylint_exe = 'python3 -m pylint'
 let g:syntastic_html_tidy_ignore_errors=['proprietary attribute', 'trimming empty <span>'] ", 'trimming empty <i>'
 " javascript checker
 " https://www.npmjs.com/package/xo#editor-plugins
-let g:syntastic_javascript_eslint_generic = 1
-let g:syntastic_javascript_eslint_exec = 'xo'
-let g:syntastic_javascript_eslint_args = '--reporter=compact'
+"let g:syntastic_javascript_eslint_generic = 1
+"let g:syntastic_javascript_eslint_exec = 'xo'
+"let g:syntastic_javascript_eslint_args = '--reporter=compact'
 let g:syntastic_javascript_checkers = ['eslint']
 " recommended settings from syntastic manual
 let g:syntastic_always_populate_loc_list = 1

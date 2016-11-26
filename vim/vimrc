@@ -359,8 +359,15 @@ command WhiteSpaceRemove call TrimWhiteSpace()
 
 " http://dustinmartin.net/format-json-in-vim/
 command! FormatJSON %!python3 -m json.tool
+
+function WebServerStop()
+  let id = system('docker ps --filter ancestor=nginx -q')
+  let cmd = system('docker stop ' . id)
+endfunction
+command! StopWebServer call WebServerStop()
+
 " https://hub.docker.com/_/nginx/
-command! StartWebServer !docker run -d -v $(pwd):/usr/share/nginx/html:ro -p 8080:80 nginx
+command! StartWebServer !docker run -d --name $(basename $(pwd)) -v $(pwd):/usr/share/nginx/html:ro -p 8080:80 nginx
 " }
 
 " source configuration for plugins last {
