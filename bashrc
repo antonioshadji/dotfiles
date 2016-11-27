@@ -338,6 +338,11 @@ alias rd='rmdir'
 alias cl='clear'
 alias du='du -sh'
 alias treeacl='tree -A -C -L 2'
+alias sudo='sudo '
+# 2.3 Digital Ocean suggestions
+# https://www.digitalocean.com/community/tutorials/an-introduction-to-useful-bash-aliases-and-functions
+alias ps='ps auxf'
+alias psg='ps aux | grep -v grep | grep -i -e VSZ -e'
 #}
 
 # 2.3) Text and editor commands{
@@ -537,19 +542,44 @@ complete -C '/usr/local/bin/aws_completer' aws
 
 #}
 
+# bash functions {
 # http://superuser.com/a/296555/358673
 # show files after cd
 function cd() { builtin cd "$@" && l; }
 
-# does a bashrc.local exist?
-[[ -r $HOME/.bashrc.local ]] && source $HOME/.bashrc.local
-
-# display that reboot is required after automatic update
-if [[ -r /var/run/reboot-required ]]; then
-  echo 'Reboot required'
-  cat /var/run/reboot-required.pkgs
-  uptime
+# function Extract for common file formats
+# https://github.com/xvoland/Extract/blob/master/extract.sh
+function extract {
+ if [ -z "$1" ]; then
+    # display usage if no parameters given
+    echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
+ else
+    if [ -f "$1" ] ; then
+        local nameInLowerCase=`echo "$1" | awk '{print tolower($0)}'`
+        case "$nameInLowerCase" in
+          *.tar.bz2)   tar xvjf ./"$1"    ;;
+          *.tar.gz)    tar xvzf ./"$1"    ;;
+          *.tar.xz)    tar xvJf ./"$1"    ;;
+          *.lzma)      unlzma ./"$1"      ;;
+          *.bz2)       bunzip2 ./"$1"     ;;
+          *.rar)       unrar x -ad ./"$1" ;;
+          *.gz)        gunzip ./"$1"      ;;
+          *.tar)       tar xvf ./"$1"     ;;
+          *.tbz2)      tar xvjf ./"$1"    ;;
+          *.tgz)       tar xvzf ./"$1"    ;;
+          *.zip)       unzip ./"$1"       ;;
+          *.Z)         uncompress ./"$1"  ;;
+          *.7z)        7z x ./"$1"        ;;
+          *.xz)        unxz ./"$1"        ;;
+          *.exe)       cabextract ./"$1"  ;;
+          *)           echo "extract: '$1' - unknown archive method" ;;
+        esac
+    else
+        echo "'$1' - file does not exist"
+    fi
 fi
+}
+#}
 
 # { Virtual terminal tty colors
 # https://acceptsocket.wordpress.com/2014/08/12/set-solarized-dark-as-default-color-scheme-for-linux-virtual-console/
@@ -573,6 +603,16 @@ if [[ $TERM = "linux" ]]; then
   clear #for background artifacting
 fi
 #}
+
+# does a bashrc.local exist?
+[[ -r $HOME/.bashrc.local ]] && source $HOME/.bashrc.local
+
+# display that reboot is required after automatic update
+if [[ -r /var/run/reboot-required ]]; then
+  echo 'Reboot required'
+  cat /var/run/reboot-required.pkgs
+  uptime
+fi
 
 # vim modeline {
 # vim: set foldmarker={,} foldlevel=0 foldmethod=marker :

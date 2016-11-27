@@ -10,17 +10,29 @@ Unattended-Upgrade::Allowed-Origins {
 	"Insynchq\, Inc.:xenial";
 	"Dropbox.com.:xenial";
 	"Docker:ubuntu-xenial";
-//	"LP-PPA-chris-lea-node.js:xenial";
-//	"LP-PPA-git-core:xenial";
-//	"LP-PPA-neovim-ppa-unstable:xenial";
-//	"LP-PPA-mozillateam-thunderbird-next:xenial";
-//	"LP-PPA-libreoffice:xenial";
-//	"LP-PPA-webupd8team-java:xenial";
-//	"LP-PPA-ubuntuhandbook1-audacity:xenial";
-//	"LP-PPA-freecad-maintainers-freecad-stable:xenial";
-//	"LP-PPA-remmina-ppa-team-remmina-next:xenial";
-	"LP-PPA-.+:xenial";
 	"CRAN:xenial";
+	"LP-PPA-.+:xenial";
+// ag --noheading --nobreak Origin: /var/lib/apt/lists/*Release | sed -n -e 's/^.*Origin: //p' | sort -u
+// bunkus
+// Canonical
+// CRAN
+// Docker
+// Dropbox.com
+// Google, Inc.
+// Heroku, Inc.
+// https://packagecloud.io/slacktechnologies/slack
+// Insynchq, Inc.
+// LP-PPA-audacity-team-daily
+// LP-PPA-git-core
+// LP-PPA-heyarje-makemkv-beta
+// LP-PPA-libreoffice
+// LP-PPA-mozillateam-thunderbird-next
+// LP-PPA-neovim-ppa-unstable
+// LP-PPA-webupd8team-java
+// Oracle Corporation
+// Resilio Sync
+// Seiko Epson Corporation
+// Ubuntu
 };
 
 // List of packages to not update (regexp are supported)
