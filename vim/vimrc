@@ -196,6 +196,7 @@ iab <expr> dts strftime("%Y-%m-%d %T %z")
 " then do it with specified key, for example :verbose inoremap <esc>.
 
 " http://vim.wikia.com/wiki/Avoid_the_escape_key
+" ** alt + any key will exit insert mode and execute key action hl jk etc
 " <C-c> is an alternative to Esc but does not run autocmd by default
 imap <C-c> <Esc>
 " there are no words with jj except for Hajj
@@ -214,7 +215,7 @@ imap <Down> <Esc><Down>
 
 "http://www.bestofvim.com/tip/leave-ex-mode-good/
 " <Nop> is no operation
-map Q <Nop>
+map Q q
 
 " http://nvie.com/posts/how-i-boosted-my-vim/
 " The following trick is a really small one, but a super-efficient one,
@@ -224,20 +225,20 @@ map Q <Nop>
 
 "force myself to use hjkl instead of arrow keys <nop> only normal mode
 " jk <down><up> hl<left><right>
-" map <up> <nop>
-" map <down> <nop>
-" map <left> <nop>
-" map <right> <nop>
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
 
 " Easy window navigation
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-map <C-left> <C-w>h
-map <C-down> <C-w>j
-map <C-up> <C-w>k
-map <C-right> <C-w>l
+"map <C-left> <C-w>h
+"map <C-down> <C-w>j
+"map <C-up> <C-w>k
+"map <C-right> <C-w>l
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 " https://github.com/square/maximum-awesome/blob/master/vimrc
@@ -281,6 +282,10 @@ augroup Shebang
 "  autocmd BufNewFile *.js 0put =\"#!/usr/bin/env node\<nl># -*- coding: utf-8 -*-\<nl>\"|$
 augroup END
 " }
+
+" set foldmethod to syntax for javascript files {
+autocmd BufRead,BufNewFile *.js set foldmethod=syntax
+"}
 
 " md is markdown > use pandoc filetype {
 autocmd BufRead,BufNewFile *.md set filetype=pandoc
@@ -328,13 +333,13 @@ autocmd BufWritePre *.md :call LastModified()
 
 " write file when leaving insert mode if changes have been made {
 " http://www.reddit.com/r/vim/comments/232j45/save_file_on_insert_mode_exit/
-" autocmd InsertLeave * :silent! update
+autocmd InsertLeave * :silent! update
 "}
 
 " save on FocusLost {
 " https://github.com/mscoutermarsh/dotfiles/blob/master/vimrc
-autocmd FocusLost * :wa
-"autocmd FocusLost * :silent! wa
+" autocmd FocusLost * :wa
+autocmd FocusLost * :silent! wa
 " }
 
 " Java Configuration {

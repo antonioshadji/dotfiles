@@ -1,5 +1,5 @@
 "All setup configurations for vim plugins; sourced after .vimrc {
-" vim: set foldmarker={,} foldlevel=0 foldmethod=marker :
+" vim: set foldmarker={,} foldlevel=0 foldmethod=marker foldminlines=2:
 "}
 
 " vim-airline {
@@ -112,7 +112,7 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 "}
-"
+
 " syntastic configuration {
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -136,5 +136,6 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_aggregate_errors = 1
 
 "}

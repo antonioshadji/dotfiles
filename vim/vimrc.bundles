@@ -18,6 +18,8 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Plugin List {
 
+" precision colorscheme
+Plugin 'altercation/vim-colors-solarized'
 " Git integration
 Plugin 'tpope/vim-fugitive'
 " quoting/parenthesizing made simple
@@ -35,10 +37,6 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'myusuf3/numbers.vim'
 " highlighting of indented blocks
 Plugin 'nathanaelkane/vim-indent-guides'
-" precision colorscheme
-Plugin 'altercation/vim-colors-solarized'
-" Work with python virtualenvs
-Plugin 'jmcantrell/vim-virtualenv'
 " Highlight colors in css files
 Plugin 'ap/vim-css-color'
 "Distraction-free writing in Vim
@@ -51,20 +49,28 @@ Plugin 'itchyny/calendar.vim'
 Plugin 'majutsushi/tagbar'
 " for intensely orgasmic commenting
 Plugin 'scrooloose/nerdcommenter'
-" Run your tests at the speed of thought
-" https://github.com/janko-m/vim-test
-Plugin 'janko-m/vim-test'
 " extended % matching for HTML, LaTeX, and many other languages
 " http://www.vim.org/scripts/script.php?script_id=39
 Plugin 'tmhedberg/matchit'
-" Tern plugin
-"Plugin 'ternjs/tern_for_vim'
-" Vastly improved Javascript indentation and syntax support in Vim.
-Plugin 'pangloss/vim-javascript'
+" improved Javascript syntax support in Vim.
+" this makes folding work
+"Plugin 'pangloss/vim-javascript'
+Plugin 'othree/yajs.vim'
+" https://github.com/othree/javascript-libraries-syntax.vim
+" default libraries are jquery, backbone, underscore
+" configure with:
+" let g:used_javascript_libs = 'underscore,backbone'
+Plugin 'othree/javascript-libraries-syntax.vim'
+
 
 " Do I need these?
-"Fuzzy file, buffer, mru, tag, etc finder.
-" Plugin 'ctrlpvim/ctrlp.vim'
+"" Run your tests at the speed of thought
+"" https://github.com/janko-m/vim-test
+"Plugin 'janko-m/vim-test'
+""Fuzzy file, buffer, mru, tag, etc finder.
+"Plugin 'ctrlpvim/ctrlp.vim'
+"" Work with python virtualenvs
+"Plugin 'jmcantrell/vim-virtualenv'
 
 " These plugins do not work on MAC OSX with default vim
 if v:version >= 704
@@ -73,6 +79,9 @@ if v:version >= 704
   Plugin 'vim-pandoc/vim-pandoc-syntax'
  " A code-completion engine for Vim http://valloric.github.io/YouCompleteMe/
   Plugin 'Valloric/YouCompleteMe'
+  " Tern plugin
+  " this is not needed because YouCompleteMe interfaces with Tern
+  "Plugin 'ternjs/tern_for_vim'
 else
   echo "Cannot load vim-pandoc version" v:version "is less than 704"
   echo "Cannot load YouCompleteMe version" v:version "is less than 704"

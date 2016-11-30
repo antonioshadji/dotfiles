@@ -339,6 +339,8 @@ alias cl='clear'
 alias du='du -sh'
 alias treeacl='tree -A -C -L 2'
 alias sudo='sudo '
+command -v pygmentize >/dev/null 2>&1 && alias p='pygmentize -g'
+
 # 2.3 Digital Ocean suggestions
 # https://www.digitalocean.com/community/tutorials/an-introduction-to-useful-bash-aliases-and-functions
 alias ps='ps auxf'
@@ -417,8 +419,8 @@ fi
 if command -v node >/dev/null; then
   # 2.7) node.js and nvm
   # http://nodejs.org/api/repl.html#repl_repl
-  alias node="env NODE_NO_READLINE=1 rlwrap node"
-  alias node_repl="node -e \"require('repl').start({ignoreUndefined: true})\""
+  alias node="env NODE_NO_READLINE=1 rlwrap -a node"
+  alias node_repl="node -e \"require('repl').start({ignoreUndefined: true, useColors: true})\""
 
   # https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions
   # -r file True if file exists and is readable.
