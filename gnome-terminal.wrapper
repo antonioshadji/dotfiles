@@ -1,7 +1,12 @@
 #! /usr/bin/perl -w
+# DateTime not currently installed as of 12/1/2016
+# use DateTime;
+# $dt = DateTime->now;
+# $hour = $dt->hour;
 
 ($sec, $min, $hour) = localtime();
-if ($hour ge 17)
+
+if ($hour >= 17)
 {
   push(@args, '--profile=Solarized-Light');
 }
@@ -84,4 +89,5 @@ if ($login == 1)
 {
     @args = ('--login', @args);
 }
+# print @args;
 exec('gnome-terminal',@args);

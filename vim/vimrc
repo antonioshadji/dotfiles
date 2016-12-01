@@ -225,10 +225,10 @@ map Q q
 
 "force myself to use hjkl instead of arrow keys <nop> only normal mode
 " jk <down><up> hl<left><right>
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
+"map <up> <nop>
+"map <down> <nop>
+"map <left> <nop>
+"map <right> <nop>
 
 " Easy window navigation
 map <C-h> <C-w>h
