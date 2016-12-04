@@ -71,7 +71,7 @@ RESET 0 # reset to "normal" color
 DIR 01;35 # directory
 # target breaks inputrc colored-stats
 #(Set this to 'target' and the color will be as for the file pointed to.)
-LINK target # 00;36 # symbolic link.
+LINK 00;36 # symbolic link.
 MULTIHARDLINK 00 # regular file with more than one link
 FIFO 40;33 # pipe
 SOCK 40;33 # socket
@@ -135,56 +135,56 @@ EXEC 00;32
 .7z 00;31
 .rz 00;31
 # image formats
-.anx 01;37
-.asf 01;37
-.avi 01;37
-.axv 01;37
-.bmp 01;37
-.cgm 01;37
-.dl 01;37
-.emf 01;37
-.flc 01;37
-.fli 01;37
-.flv 01;37
-.gif 01;37
-.gl 01;37
-.jpeg 01;37
-.jpg 01;37
-.m2v 01;37
-.m4v 01;37
-.mkv 01;37
-.mng 01;37
-.mov 01;37
-.mp4 01;37
-.mp4v 01;37
-.mpeg 01;37
-.mpg 01;37
-.nuv 01;37
-.ogm 01;37
-.ogv 01;37
-.ogx 01;37
-.pbm 01;37
-.pcx 01;37
-.pdf 01;37
-.pgm 01;37
-.png 01;37
-.ppm 01;37
-.qt 01;37
-.rm 01;37
-.rmvb 01;37
-.svg 01;37
-.svgz 01;37
-.tga 01;37
-.tif 01;37
-.tiff 01;37
-.vob 01;37
-.webm 01;37
-.wmv 01;37
-.xbm 01;37
-.xcf 01;37
-.xpm 01;37
-.xwd 01;37
-.yuv 01;37
+.anx 00;34
+.asf 00;34
+.avi 00;34
+.axv 00;34
+.bmp 00;34
+.cgm 00;34
+.dl 00;34
+.emf 00;34
+.flc 00;34
+.fli 00;34
+.flv 00;34
+.gif 00;34
+.gl 00;34
+.jpeg 00;34
+.jpg 00;34
+.m2v 00;34
+.m4v 00;34
+.mkv 00;34
+.mng 00;34
+.mov 00;34
+.mp4 00;34
+.mp4v 00;34
+.mpeg 00;34
+.mpg 00;34
+.nuv 00;34
+.ogm 00;34
+.ogv 00;34
+.ogx 00;34
+.pbm 00;34
+.pcx 00;34
+.pdf 00;34
+.pgm 00;34
+.png 00;34
+.ppm 00;34
+.qt 00;34
+.rm 00;34
+.rmvb 00;34
+.svg 00;34
+.svgz 00;34
+.tga 00;34
+.tif 00;34
+.tiff 00;34
+.vob 00;34
+.webm 00;34
+.wmv 00;34
+.xbm 00;34
+.xcf 00;34
+.xpm 00;34
+.xwd 00;34
+.yuv 00;34
 # audio formats
 .aac 00;35
 .au 00;35
