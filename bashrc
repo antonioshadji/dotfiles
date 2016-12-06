@@ -402,12 +402,14 @@ fi
 # set PATH to include latest version of pandoc
 [[ -d $HOME/.cabal/bin ]] && export PATH=$HOME/.cabal/bin:$PATH
 
-if [[ -d $HOME/bin/google-cloud-sdk/ ]]; then
-  # The next line updates PATH for the Google Cloud SDK.
-  source $HOME/bin/google-cloud-sdk/path.bash.inc
-  # The next line enables shell command completion for gcloud.
-  source $HOME/bin/google-cloud-sdk/completion.bash.inc
-fi
+# removed after installing from repo
+# https://cloud.google.com/sdk/docs/#deb
+# if [[ -d $HOME/bin/google-cloud-sdk/ ]]; then
+#   # The next line updates PATH for the Google Cloud SDK.
+#   source $HOME/bin/google-cloud-sdk/path.bash.inc
+#   # The next line enables shell command completion for gcloud.
+#   source $HOME/bin/google-cloud-sdk/completion.bash.inc
+# fi
 
 if [[ -d /opt/android-studio/bin ]]; then
   export PATH=/opt/android-studio/bin:$PATH
