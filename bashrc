@@ -375,6 +375,11 @@ export LANG='en_US.UTF-8'
 # From ubuntu 16.04 default bashrc
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# Gnome Terminal Profiles
+# Solarized Light: 4eac76ef-bf32-4958-aa16-8adfc529ac3b
+# Solarized Dark: 8c65ed44-bbfa-4913-98a4-07f69fed680a
+# Default: b1dcc9dd-5262-4d8d-a863-c897e6d979b9
 #}
 
 # Configure PATH {
@@ -533,7 +538,7 @@ if ! shopt -oq posix; then
 fi
 
 # enable completion for pandoc
-eval "$(pandoc --bash-completion)"
+command -v pandoc && eval "$(pandoc --bash-completion)"
 
 # enable completion for node
 [[ -r $NVM_DIR/bash_completion ]] && source $NVM_DIR/bash_completion
@@ -621,4 +626,3 @@ fi
 # vim modeline {
 # vim: set foldmarker={,} foldlevel=0 foldmethod=marker :
 # }
-
