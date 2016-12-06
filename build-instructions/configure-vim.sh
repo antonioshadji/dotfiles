@@ -7,10 +7,13 @@ make distclean
 
 ./configure \
   --with-features=huge \
-  --enable-multibyte \
   --enable-pythoninterp=yes \
   --enable-luainterp=dynamic \
-  --enable-perlinterp \
+  --enable-perlinterp=dynamic \
+  --enable-rubyinterp=dynamic \
   --enable-cscope \
-  --enable-gui=gtk2 \
+  --enable-gui \
+  --with-vim-name=vim2 \
+  --with-ex-name=ex2 \
+  --with-view-name=view2 \
   --with-compiledby="Antonios Hadjigeorgalis"
