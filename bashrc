@@ -538,7 +538,7 @@ if ! shopt -oq posix; then
 fi
 
 # enable completion for pandoc
-command -v pandoc && eval "$(pandoc --bash-completion)"
+command -v pandoc >/dev/null 2>&1 && eval "$(pandoc --bash-completion)"
 
 # enable completion for node
 [[ -r $NVM_DIR/bash_completion ]] && source $NVM_DIR/bash_completion
