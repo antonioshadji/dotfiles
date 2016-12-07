@@ -626,3 +626,5 @@ fi
 # vim modeline {
 # vim: set foldmarker={,} foldlevel=0 foldmethod=marker :
 # }
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
