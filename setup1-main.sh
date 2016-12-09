@@ -37,6 +37,7 @@ if [ $OS == "Linux" ]; then
   ln -sf $HOME/dotfiles/curlrc $HOME/.curlrc
   ln -sf $HOME/dotfiles/tmux.conf $HOME/.tmux.conf
   ln -sf $HOME/dotfiles/octaverc $HOME/.octaverc
+  ln -sf $HOME/dotfiles/tern-config $HOME/.tern-config
   # .config directory
   ln -sf $HOME/dotfiles/config/redshift.conf $HOME/.config/.
   # /etc directory

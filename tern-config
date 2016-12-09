@@ -1,0 +1,18 @@
+{
+  "libs": [
+    "browser",
+    "chai",
+    "ecmascript",
+    "jquery",
+    "underscore"
+  ],
+  "loadEagerly": [
+  ],
+  "plugins": {
+    "requirejs": {
+      "baseURL": "./",
+      "paths": {}
+    },
+    "node": {}
+  }
+}
