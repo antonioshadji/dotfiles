@@ -62,16 +62,6 @@ endif
 colorscheme solarized
 " }
 
-" YouCompleteMe {
-" this will disable ycm
-" let g:loaded_youcompleteme = 1
-let g:ycm_key_list_select_completion = ['<TAB>']
-let g:ycm_key_list_previous_completion = ['<S-TAB>']
-let g:EclimCompletionMethod = 'omnifunc'
-" https://github.com/Valloric/YouCompleteMe/issues/700
-" let g:ycm_global_ycm_extra_conf = './third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-"}
-
 " The Silver Searcher {
 " https://robots.thoughtbot.com/faster-grepping-in-vim#override-to-use-the-silver-searcher
 " https://github.com/ggreer/the_silver_searcher
@@ -92,10 +82,6 @@ endif
 
 " Calendar {
 let g:calendar_first_day = "monday"
-" }
-
-" Neomake {
-let g:neomake_javascript_enabled_makers = ['eslint']
 " }
 
 " Goyo {
@@ -140,3 +126,36 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_aggregate_errors = 1
 
 "}
+
+" YouCompleteMe {
+" this will disable ycm
+" let g:loaded_youcompleteme = 1
+" https://github.com/Valloric/YouCompleteMe/issues/700
+" let g:ycm_global_ycm_extra_conf = './third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
+let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
+let g:EclimCompletionMethod = 'omnifunc'
+"let g:ycm_python_binary_path = 'python3'
+"let g:ycm_server_python_interpreter = '/usr/bin/python3'
+let g:ycm_server_keep_logfiles = 1
+"}
+
+" Plugin 'othree/javascript-libraries-syntax.vim' {
+" default libraries are underscore,backbone,jquery
+let g:used_javascript_libs = 'underscore,backbone,jquery,express'
+"}
+
+" NeoVim Plugins {
+if has('nvim')
+  " Neomake {
+  let g:neomake_javascript_enabled_makers = ['eslint']
+  " }
+
+  " deoplete {
+  " Use deoplete.
+  let g:deoplete#enable_at_startup = 1
+  " }
+endif
+"}
+

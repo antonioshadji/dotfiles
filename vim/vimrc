@@ -328,7 +328,7 @@ function LastModified()
     let n = min([20, line('$')])
     " requires space after modified:
     keepjump execute '1,' . n . 's#^\(.\{,10}modified: \).*#\1' .
-          \ strftime('%Y-%m-%d %H:%M %z', getftime(@%)) . '#e'
+          \ strftime('%Y-%m-%d %H:%M %z') . '#e'
     call histdel('search', -1)
     call setpos('.', save_cursor)
     echom 'updated last modified date'

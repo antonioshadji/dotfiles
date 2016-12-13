@@ -58,10 +58,11 @@ Plugin 'tmhedberg/matchit'
 Plugin 'othree/yajs.vim'
 " https://github.com/othree/javascript-libraries-syntax.vim
 " default libraries are jquery, backbone, underscore
-" configure with:
-" let g:used_javascript_libs = 'underscore,backbone'
 Plugin 'othree/javascript-libraries-syntax.vim'
-
+" Tern plugin
+Plugin 'ternjs/tern_for_vim'
+" Javascript Parameter Complete  https://github.com/othree/jspc.vim
+Plugin 'othree/jspc.vim'
 
 " Do I need these?
 "" Run your tests at the speed of thought
@@ -71,20 +72,18 @@ Plugin 'othree/javascript-libraries-syntax.vim'
 "Plugin 'ctrlpvim/ctrlp.vim'
 "" Work with python virtualenvs
 "Plugin 'jmcantrell/vim-virtualenv'
+" recommended on nodejs github https://github.com/jelera/vim-javascript-syntax
+" jelera/vim-javascript-syntax
 
 " These plugins do not work on MAC OSX with default vim
 if v:version >= 704
   " Markdown utilities
   Plugin 'vim-pandoc/vim-pandoc'
   Plugin 'vim-pandoc/vim-pandoc-syntax'
- " A code-completion engine for Vim http://valloric.github.io/YouCompleteMe/
+" A code-completion engine for Vim http://valloric.github.io/YouCompleteMe/
   Plugin 'Valloric/YouCompleteMe'
-  " Tern plugin
-  " this is not needed because YouCompleteMe interfaces with Tern
-  "Plugin 'ternjs/tern_for_vim'
 else
-  echo "Cannot load vim-pandoc version" v:version "is less than 704"
-  echo "Cannot load YouCompleteMe version" v:version "is less than 704"
+  echo "vim" v:version "is less than 704"
 endif
 
 "nvim plugins that replace vim plugins
@@ -92,9 +91,15 @@ if has("nvim")
   " Async :make and linting framework for Neovim/Vim
   " replaces syntastic
   Plugin 'neomake/neomake'
+  " Dark powered asynchronous completion framework for neovim 
+  " https://github.com/Shougo/deoplete.nvim
+  Plug 'Shougo/deoplete.nvim'
 else
   " Syntax checking
   Plugin 'scrooloose/syntastic'
+  " Next generation completion framework after neocomplcache 
+  " https://github.com/Shougo/neocomplete.vim
+  "Plugin 'Shougo/neocomplete.vim'
 endif
 
 " } end bundle list
