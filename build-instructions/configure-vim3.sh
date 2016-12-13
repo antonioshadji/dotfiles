@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
-# MostCurrentTag=$(git describe --tags)
-# git checkout $MostCurrentTag
-# make distclean
+MostCurrentTag=$(git describe --tags)
+git checkout $MostCurrentTag
+make distclean
 
 ./configure \
   --with-features=huge \
@@ -14,5 +14,8 @@
   --enable-rubyinterp=dynamic \
   --enable-cscope \
   --enable-gui \
+  --with-vim-name=vim3 \
+  --with-ex-name=ex3 \
+  --with-view-name=view3 \
   --with-compiledby="Antonios Hadjigeorgalis"
 
