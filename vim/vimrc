@@ -61,6 +61,11 @@ let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
 "}
 
+" nvim defaults {
+set autoindent          " always autoindent
+set autoread            " auto re-load files when changed on disk https://github.com/square/maximum-awesome
+" }
+
 " General Settings {
 set encoding=utf-8      " show buffer as utf-8 https://github.com/square/maximum-awesome (**MUST BE EARLY IN FILE**)
 set mouse=a             " Automatically enable mouse usage
@@ -72,7 +77,6 @@ set hidden              " Allow buffer switching without saving
 " reccommended to be turned off for no_plugins.vim default file browsing
 " set autochdir           " Always change to current file directory
 set autowriteall        " Write files when many actions, including switching buffers see :help awa
-set autoread            " auto re-load files when changed on disk https://github.com/square/maximum-awesome
 "}
 
 " Setup clipboard to work with desktop copy / paste {
@@ -121,7 +125,6 @@ set colorcolumn=80              " highlight 80 character width for code files
 
 " Formatting {
 set nowrap              " do not wrap long lines, show indicator instead
-set autoindent          " always autoindent
 set shiftwidth=2        " number of spaces to use for autoindent
 set expandtab           " expands tabs to spaces
 set tabstop=2           " actual tabs occupy 4 spaces
@@ -152,34 +155,34 @@ endif
 "} end GUI settings
 
 " Backup and undo settings {
-if has('persistent_undo')
-  " undodir set from spf13
-  set undofile
-  set undolevels=1000
-  " no undo files left in CWD
-  if !isdirectory(expand("~/.vim/undo/"))
-    " help mkdir for more information on use
-    call mkdir(expand("~/.vim/undo/"), "p")
-  endif
-  set undodir=~/.vim/undo//
-endif
-
-set backup                  "See :help backup
-" no backup files left in CWD
-if !isdirectory(expand("~/.vim/backup/"))
-  call mkdir(expand("~/.vim/backup/"), "p")
-endif
-set backupdir=~/.vim/backup//
-" no swap files left in CWD
-if !isdirectory(expand("~/.vim/swap/"))
-  call mkdir(expand("~/.vim/swap/"), "p")
-endif
-set directory=~/.vim/swap//
-
-" https://vimhelp.appspot.com/usr_21.txt.html#21.3
-" move viminfo file to .vim directory, other settings default and required
-" this conflicts with nvim, disable in neovim
 if !has("nvim")
+  if has('persistent_undo')
+    " undodir set from spf13
+    set undofile
+    set undolevels=1000
+    " no undo files left in CWD
+    if !isdirectory(expand("~/.vim/undo/"))
+      " help mkdir for more information on use
+      call mkdir(expand("~/.vim/undo/"), "p")
+    endif
+    set undodir=~/.vim/undo//
+  endif
+
+  set backup                  "See :help backup
+  " no backup files left in CWD
+  if !isdirectory(expand("~/.vim/backup/"))
+    call mkdir(expand("~/.vim/backup/"), "p")
+  endif
+  set backupdir=~/.vim/backup//
+  " no swap files left in CWD
+  if !isdirectory(expand("~/.vim/swap/"))
+    call mkdir(expand("~/.vim/swap/"), "p")
+  endif
+  set directory=~/.vim/swap//
+
+  " https://vimhelp.appspot.com/usr_21.txt.html#21.3
+  " move viminfo file to .vim directory, other settings default and required
+  " this conflicts with nvim, disable in neovim
   set viminfo='1000,f1,<500,n~/.vim/viminfo
 endif
 

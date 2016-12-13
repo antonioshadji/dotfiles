@@ -80,8 +80,6 @@ if v:version >= 704
   " Markdown utilities
   Plugin 'vim-pandoc/vim-pandoc'
   Plugin 'vim-pandoc/vim-pandoc-syntax'
-" A code-completion engine for Vim http://valloric.github.io/YouCompleteMe/
-  Plugin 'Valloric/YouCompleteMe'
 else
   echo "vim" v:version "is less than 704"
 endif
@@ -93,13 +91,15 @@ if has("nvim")
   Plugin 'neomake/neomake'
   " Dark powered asynchronous completion framework for neovim 
   " https://github.com/Shougo/deoplete.nvim
-  Plug 'Shougo/deoplete.nvim'
+  Plugin 'Shougo/deoplete.nvim'
 else
   " Syntax checking
   Plugin 'scrooloose/syntastic'
   " Next generation completion framework after neocomplcache 
   " https://github.com/Shougo/neocomplete.vim
   "Plugin 'Shougo/neocomplete.vim'
+" A code-completion engine for Vim http://valloric.github.io/YouCompleteMe/
+  Plugin 'Valloric/YouCompleteMe'
 endif
 
 " } end bundle list

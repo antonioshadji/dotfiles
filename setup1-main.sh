@@ -60,6 +60,8 @@ fi
 # vim by default looks in .vim/ for vimrc
 if [[ ! -d $HOME/.vim ]]; then
   ln -sf $HOME/dotfiles/vim $HOME/.vim
+  ln -sf $XDG_CONFIG_HOME/nvim $HOME/.vim
+  (cd $HOME/.vim && ln -sf init.vim vimrc)
 fi
 if command -v vim; then
   vim +PluginInstall +qall
@@ -68,7 +70,7 @@ fi
 if [[ -d $HOME/.vim/bundle/YouCompleteMe/ ]]; then
   if [[ ! -x $HOME/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so ]]; then
     # http://stackoverflow.com/questions/786376/how-do-i-run-a-program-with-a-different-working-directory-from-current-from-lin
-    (cd $HOME/.vim/bundle/YouCompleteMe/ && python3 install.py)
+    (cd $HOME/.vim/bundle/YouCompleteMe/ && python install.py)
   fi
 fi
 
@@ -79,14 +81,14 @@ ln -sf $HOME/dotfiles/bashrc $HOME/.bashrc
 # Ruby.
 # TODO: in dotfiles/notes - verify correct rvm paths
 # https://github.com/rvm/rvm/blob/master/binscripts/rvm-installer
-if ! command -v rvm; then
-  # gpg -k returns 0 if key exists
-  [[ ! $(gpg -k 409B6B1796C275462A1703113804BB82D39DC0E3) ]] && \
-    gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-  curl -sSL https://get.rvm.io | bash -s stable --ruby
-else
-  rvm get stable
-fi
+# if ! command -v rvm; then
+#   # gpg -k returns 0 if key exists
+#   [[ ! $(gpg -k 409B6B1796C275462A1703113804BB82D39DC0E3) ]] && \
+#     gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+#   curl -sSL https://get.rvm.io | bash -s stable --ruby
+# else
+#   rvm get stable
+# fi
 
 # Node
 # TODO: can this command be called multiple times? How to verify if needed?
