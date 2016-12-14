@@ -14,7 +14,7 @@
 " :help map to see more info
 
 " no need for vi backwards compatibility
-set nocompatible
+set nocompatible    " nvim default
 
 " Source bundles config {
   if filereadable(expand("~/.vim/vimrc.bundles"))
@@ -61,18 +61,12 @@ let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
 "}
 
-" nvim defaults {
-set autoindent          " always autoindent
-set autoread            " auto re-load files when changed on disk https://github.com/square/maximum-awesome
-" }
 
 " General Settings {
 set encoding=utf-8      " show buffer as utf-8 https://github.com/square/maximum-awesome (**MUST BE EARLY IN FILE**)
-set mouse=a             " Automatically enable mouse usage
 set mousehide           " Hide the mouse cursor while typing
 set viewoptions=folds,options,cursor,unix,slash "see :help viewoptions
 set virtualedit=onemore " Allow for cursor beyond last character
-set history=10000       " command history length extra long
 set hidden              " Allow buffer switching without saving
 " reccommended to be turned off for no_plugins.vim default file browsing
 " set autochdir           " Always change to current file directory
@@ -97,12 +91,9 @@ set backspace=indent,eol,start  " fix backspace
 set number                      " show line numbers
 set showmatch                   " jump cursor to matching brace when entered
 set showcmd
-set incsearch                   " search as you type
-" set hlsearch                    " highlight search terms :noh to clear
 set ignorecase                  " case-insensitive search
 set smartcase                   " use case sensitive search if any caps present
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
-set wildmenu                    " Show list instead of just completing
 " https://bitbucket.org/sjl/dotfiles/src/cbbbc897e9b3/vim/vimrc
 set wildignore+=.hg,.git,.svn                    " Version control
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
@@ -118,7 +109,7 @@ set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 set scrolloff=5                 " Minimum lines to keep above and below cursor
 set foldenable                  " Auto fold code
 "  To insert special character - in insert mode CTRL-K two character code from :digraphs command
-set listchars=tab:›\ ,trail:∙,extends:»,precedes:«,nbsp:†   " Highlight problematic whitespace
+set listchars=tab:›\ ,trail:∙,nbsp:†,extends:»,precedes:« "nvim defaults to tab:> ,trail:-,nbsp:+
 set list
 set colorcolumn=80              " highlight 80 character width for code files
 "} end Vim UI
@@ -155,6 +146,10 @@ endif
 "} end GUI settings
 
 " Backup and undo settings {
+" - 'backupdir' defaults to .,~/.local/share/nvim/backup (|xdg|)
+" - 'directory' defaults to ~/.local/share/nvim/swap// (|xdg|), auto-created
+" - 'undodir' defaults to ~/.local/share/nvim/undo (|xdg|), auto-created
+" - 'viminfo' includes "!"
 if !has("nvim")
   if has('persistent_undo')
     " undodir set from spf13
@@ -396,12 +391,25 @@ endif
 "}
 
 " Neovim settings to make latest vim work like Neovim {
-" https://neovim.io/doc/user/options.html#'complete'
+" nvim defaults {
+set autoindent          " always autoindent
+set autoread            " auto re-load files when changed on disk https://github.com/square/maximum-awesome
+" - 'complete' doesn't include 'i'
+" - 'display' defaults to 'lastline'
+set history=10000       " command history length extra long
+set hlsearch            " highlight search terms :noh to clear
+set incsearch           " search as you type
+set mouse=a             " Automatically enable mouse usage
+set wildmenu            " Show list instead of just completing
+set ttyfast             " nvim default
+" }
+
+" https://neovim.io/doc/user/options.html
 if v:version >= 704
   set formatoptions+=tcqj     " https://neovim.io/doc/user/options.html#'formatoptions'
   set langnoremap             " https://neovim.io/doc/user/options.html#'langnoremap'
   set laststatus=2            " https://neovim.io/doc/user/options.html#'laststatus'
-  set nrformats=hex           " https://neovim.io/doc/user/options.html#'nrformats'
+  set nrformats=bin,hex       " https://neovim.io/doc/user/options.html#'nrformats'
   " https://neovim.io/doc/user/options.html#'sessionoptions'
   set sessionoptions+=blank,buffers,curdir,folds,help,tabpages,winsize
   set smarttab                " https://neovim.io/doc/user/options.html#'smarttab'
@@ -410,4 +418,10 @@ if v:version >= 704
 else
   echo "Not running with Neovim compatibility settings"
 endif
+
+" python provider
+if has('nvim')
+  let g:python3_host_prog = '/usr/bin/python3'
+endif
+
 "}
