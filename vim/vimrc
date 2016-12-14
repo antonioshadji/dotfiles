@@ -233,10 +233,10 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-"map <C-left> <C-w>h
-"map <C-down> <C-w>j
-"map <C-up> <C-w>k
-"map <C-right> <C-w>l
+map <C-left> <C-w>h
+map <C-down> <C-w>j
+map <C-up> <C-w>k
+map <C-right> <C-w>l
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 " https://github.com/square/maximum-awesome/blob/master/vimrc
@@ -332,17 +332,12 @@ function LastModified()
     echom 'updated last modified date'
   "endif
 endfunction
-" why using augroup is explained here.  no repeat on re-source vimrc
-" http://learnvimscriptthehardway.stevelosh.com/chapters/14.html
-augroup LastModified
-  autocmd!
-  autocmd BufWritePre *.md :call LastModified()
-augroup END
+autocmd BufWritePre *.md,*.markdown :call LastModified()
 "}
 
 " write file when leaving insert mode if changes have been made {
 " http://www.reddit.com/r/vim/comments/232j45/save_file_on_insert_mode_exit/
-" autocmd InsertLeave * :silent! update
+autocmd InsertLeave * :silent! update
 "}
 
 " save on FocusLost {
