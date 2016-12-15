@@ -1,3 +1,5 @@
+# inspired by https://github.com/Anthony25/gnome-terminal-colors-solarized
+# cron script to switch terminal colors in the evening
 export DISPLAY=:0
 
 # http://stackoverflow.com/questions/10374520/gsettings-with-cron
