@@ -400,25 +400,15 @@ if [[ ! $PATH == *$HOME/bin* ]]; then
   [[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
 fi
 
-# set PATH so it includes heroku if it exists
-# Heroku: https://toolbelt.heroku.com/standalone
-#[[ -d "/usr/local/heroku/bin" ]] && export PATH=/usr/local/heroku/bin:$PATH
-
 # set PATH to include latest version of pandoc
 [[ -d $HOME/.cabal/bin ]] && export PATH=$HOME/.cabal/bin:$PATH
-
-# removed after installing from repo
-# https://cloud.google.com/sdk/docs/#deb
-# if [[ -d $HOME/bin/google-cloud-sdk/ ]]; then
-#   # The next line updates PATH for the Google Cloud SDK.
-#   source $HOME/bin/google-cloud-sdk/path.bash.inc
-#   # The next line enables shell command completion for gcloud.
-#   source $HOME/bin/google-cloud-sdk/completion.bash.inc
-# fi
 
 if [[ -d /opt/android-studio/bin ]]; then
   export PATH=/opt/android-studio/bin:$PATH
 fi
+
+[[ -d $HOME/.gem/ruby/2.3.0/bin ]] && export PATH=$HOME/.gem/ruby/2.3.0/bin:$PATH
+
 #}
 
 #{ Node setup and tools
@@ -456,11 +446,6 @@ fi
 # export PYTHONWARNINGS="default"
 
 # }
-# { Ruby rvm setup
-# Load RVM into a shell session *as a function*
-[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
-
-#}
 # { Go setup and tools
 if [[ -d $HOME/code/gowork/ ]]; then
   export GOPATH=$HOME/code/gowork
@@ -556,6 +541,9 @@ complete -C '/usr/local/bin/aws_completer' aws
 # show files after cd
 function cd() { builtin cd "$@" && l; }
 
+# create random password
+function CreateRandomPassword() { openssl rand -base64 16 | sed s/=/@/g; }
+
 # function Extract for common file formats
 # https://github.com/xvoland/Extract/blob/master/extract.sh
 function extract {
@@ -627,4 +615,3 @@ fi
 # vim: set foldmarker={,} foldlevel=0 foldmethod=marker :
 # }
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
