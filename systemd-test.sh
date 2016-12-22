@@ -6,7 +6,7 @@ echo $(date) >> $1
 # Set up environment if necessary
 if [ -z $DISPLAY ]; then
   export DISPLAY=:0
-  echo "DISPLAY was not set." >> $1
+  echo "DISPLAY was not available. created DISPLAY=$DISPLAY" >> $1
 else
   echo "DISPLAY=$DISPLAY" >> $1
 fi
