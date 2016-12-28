@@ -11,8 +11,6 @@ if [ -z $DBUS_SESSION_BUS_ADDRESS ]; then
   export DBUS_SESSION_BUS_ADDRESS=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$PID/environ|cut -d= -f2-)
 fi
 [ -z $DBUS_SESSION_BUS_ADDRESS ] && exit
-#echo $PID >> /home/antonios/terminal-color.log
-#echo $DBUS_SESSION_BUS_ADDRESS >> /home/antonios/terminal-color.log
 
 # http://ethanschoonover.com/solarized
 # light
@@ -54,4 +52,3 @@ else
     set_dark
   fi
 fi
-#echo $(date) >> /home/antonios/terminal-color.log
