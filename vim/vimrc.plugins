@@ -150,12 +150,22 @@ let g:used_javascript_libs = 'underscore,backbone,jquery,express'
 if has('nvim')
   " Neomake {
   let g:neomake_javascript_enabled_makers = ['eslint']
+  let g:neomake_open_list = 2
+  autocmd! BufWritePost * Neomake
   " }
 
   " deoplete {
   " Use deoplete.
   let g:deoplete#enable_at_startup = 1
+  " https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
+  let g:deoplete#omni#functions = {}
+  let g:deoplete#omni#functions.javascript = [
+    \ 'tern#Complete',
+    \ 'jspc#omni'
+  \]
+  let g:tern#command = ['tern']
+  let g:tern#arguments = ['--persistent']
+  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
   " }
 endif
 "}
-

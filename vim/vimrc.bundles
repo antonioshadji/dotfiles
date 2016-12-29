@@ -94,6 +94,8 @@ if has("nvim")
   Plugin 'Shougo/deoplete.nvim'
   " https://github.com/zchee/deoplete-jedi
   Plugin 'zchee/deoplete-jedi'
+  " https://github.com/carlitux/deoplete-ternjs
+  Plugin 'carlitux/deoplete-ternjs'
 else
   " Syntax checking
   Plugin 'scrooloose/syntastic'
