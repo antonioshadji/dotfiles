@@ -129,7 +129,9 @@ let g:syntastic_aggregate_errors = 1
 
 " YouCompleteMe {
 " this will disable ycm
-" let g:loaded_youcompleteme = 1
+if has('nvim')
+ let g:loaded_youcompleteme = 1
+endif
 " https://github.com/Valloric/YouCompleteMe/issues/700
 " let g:ycm_global_ycm_extra_conf = './third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 let g:ycm_key_list_select_completion = ['<TAB>']
@@ -147,13 +149,13 @@ let g:used_javascript_libs = 'underscore,backbone,jquery,express'
 "}
 
 " NeoVim Plugins {
-if has('nvim')
   " Neomake {
   let g:neomake_javascript_enabled_makers = ['eslint']
   let g:neomake_open_list = 2
   autocmd! BufWritePost * Neomake
   " }
 
+if has('nvim')
   " deoplete {
   " Use deoplete.
   let g:deoplete#enable_at_startup = 1
