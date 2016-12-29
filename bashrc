@@ -348,7 +348,7 @@ alias psg='ps aux | grep -v grep | grep -i -e VSZ -e'
 #}
 
 # 2.3) Text and editor commands{
-alias v='vim'
+alias v='nvim'
 alias vv='gvim --remote-silent'
 export EDITOR='vim'
 export VISUAL='vim'
