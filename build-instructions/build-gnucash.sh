@@ -12,8 +12,8 @@ REPO=$(git describe --abbrev=0)
 git checkout $REPO
 
 # add variable to restrict language files to only british english
-# this stops building of all languages
-export LINGUAS=en_GB
+# this stops building of all languages (worked with en_GB)
+export LINGUAS=en_US
 
 ./autogen.sh
 
