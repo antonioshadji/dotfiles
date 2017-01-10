@@ -8,19 +8,13 @@ let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
-set ttimeoutlen=50
-set laststatus=2
-set noshowmode
 " https://github.com/vim-airline/vim-airline/issues/1154
 let g:airline_symbols = get(g:,'airline_symbols',{})
 " without this following line a 3 bar icon shows after maxlinenr
 let g:airline_symbols.maxlinenr=''
-
-" https://github.com/vim-airline/vim-airline/issues/256
-if has("gui_running")
-  " get unpatched fonts to work in gvim
-  let g:airline_symbols.space = "\ua0"
-endif
+set ttimeoutlen=50
+set laststatus=2
+set noshowmode
 
 "}
 
@@ -53,12 +47,21 @@ call togglebg#map("<F5>")
 " this was in the original - removed because this is needed in both terminal
 " and gvim -- has('gui_running') &&
 let hour = strftime("%H")
+let minute = strftime("%M")
 if hour >= 17
   set background=light
 else
   set background=dark
 endif
 
+if has('nvim')
+  if hour < 17
+    func ColorHandler(timer)
+      set background=light
+    endfunction
+    let timer = timer_start((17-hour)*60*60*1000-(minute*60*1000), 'ColorHandler')
+  endif
+endif
 colorscheme solarized
 " }
 
@@ -101,6 +104,27 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 "}
 
+" YouCompleteMe {
+" this will disable ycm
+if has('nvim')
+ let g:loaded_youcompleteme = 1
+endif
+" https://github.com/Valloric/YouCompleteMe/issues/700
+" let g:ycm_global_ycm_extra_conf = './third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_key_list_select_completion = ['<TAB>']
+let g:ycm_key_list_previous_completion = ['<S-TAB>']
+"let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
+let g:EclimCompletionMethod = 'omnifunc'
+"let g:ycm_python_binary_path = 'python3'
+"let g:ycm_server_python_interpreter = '/usr/bin/python3'
+let g:ycm_server_keep_logfiles = 1
+"}
+
+" Plugin 'othree/javascript-libraries-syntax.vim' {
+" default libraries are underscore,backbone,jquery
+let g:used_javascript_libs = 'underscore,backbone,jquery,express'
+"}
+
 " syntastic configuration {
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -127,34 +151,14 @@ let g:syntastic_aggregate_errors = 1
 
 "}
 
-" YouCompleteMe {
-" this will disable ycm
-if has('nvim')
- let g:loaded_youcompleteme = 1
-endif
-" https://github.com/Valloric/YouCompleteMe/issues/700
-" let g:ycm_global_ycm_extra_conf = './third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-let g:ycm_key_list_select_completion = ['<TAB>']
-let g:ycm_key_list_previous_completion = ['<S-TAB>']
-"let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
-let g:EclimCompletionMethod = 'omnifunc'
-"let g:ycm_python_binary_path = 'python3'
-"let g:ycm_server_python_interpreter = '/usr/bin/python3'
-let g:ycm_server_keep_logfiles = 1
-"}
-
-" Plugin 'othree/javascript-libraries-syntax.vim' {
-" default libraries are underscore,backbone,jquery
-let g:used_javascript_libs = 'underscore,backbone,jquery,express'
-"}
+" Neomake (replaces syntastic for both vim and NeoVim) {
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_open_list = 2
+let g:neomake_html_tidy_ignore_errors = ['empty']
+autocmd! BufWritePost * Neomake
+" }
 
 " NeoVim Plugins {
-  " Neomake {
-  let g:neomake_javascript_enabled_makers = ['eslint']
-  let g:neomake_open_list = 2
-  autocmd! BufWritePost * Neomake
-  " }
-
 if has('nvim')
   " deoplete {
   " Use deoplete.
@@ -165,9 +169,22 @@ if has('nvim')
     \ 'tern#Complete',
     \ 'jspc#omni'
   \]
+  set completeopt=longest,menuone,preview
+  let g:deoplete#sources = {}
+  let g:deoplete#sources.javascript = ['file', 'tag', 'ternjs', 'ultisnips' ]
+  let g:tern_request_timeout = 1
+  let g:tern_show_signature_in_pum = '0'  " This do disable full signature type on autocomplete
   let g:tern#command = ['tern']
   let g:tern#arguments = ['--persistent']
+
+  autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+  let g:UltiSnipsExpandTrigger="<C-j>"
   inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+  "https://github.com/zchee/deoplete-clang
+  let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang.so'
+  let g:deoplete#sources#clang#clang_header = '/usr/lib/llvm-3.8/lib/clang'
+
+  "call deoplete#enable_logging('DEBUG', 'deoplete.log')
   " }
 endif
 "}

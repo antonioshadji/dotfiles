@@ -1,7 +1,6 @@
 " vim: foldmarker={,} foldlevel=1 foldmethod=marker
 
 " https://github.com/junegunn/vim-plug/wiki/faq
-
 " install vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -34,7 +33,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 " Highlight colors in css files
 Plug 'ap/vim-css-color'
 "Distraction-free writing in Vim
-Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
+"Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
 " a calendar app for vim
 Plug 'itchyny/calendar.vim'
 " Vim plugin that displays tags in a window, ordered by scope
@@ -57,45 +56,42 @@ Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
 Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
 " Javascript Parameter Complete  https://github.com/othree/jspc.vim
 Plug 'othree/jspc.vim', { 'for': 'javascript' }
-
-" Do I need these?
-"" Run your tests at the speed of thought
-"" https://github.com/janko-m/vim-test
-"Plug 'janko-m/vim-test'
-""Fuzzy file, buffer, mru, tag, etc finder.
-"Plug 'ctrlpvim/ctrlp.vim'
-"" Work with python virtualenvs
-"Plug 'jmcantrell/vim-virtualenv'
-" recommended on nodejs github https://github.com/jelera/vim-javascript-syntax
-" jelera/vim-javascript-syntax
+" https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'jceb/vim-orgmode'
 
 " These plugins do not work on MAC OSX with default vim
   " Markdown utilities
   " TODO: vim-pandoc needs update for python3
-Plug 'vim-pandoc/vim-pandoc', { 'for': 'markdown' }
-Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
+Plug 'vim-pandoc/vim-pandoc', { 'for': 'pandoc' }
+Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'pandoc' }
 
 "nvim plugins that replace vim plugins
 "if has("nvim")
 " Async :make and linting framework for Neovim/Vim
 " replaces syntastic
 Plug 'neomake/neomake'
-" Dark powered asynchronous completion framework for neovim 
+" Dark powered asynchronous completion framework for neovim
 " https://github.com/Shougo/deoplete.nvim
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " https://github.com/zchee/deoplete-jedi
-Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+Plug 'zchee/deoplete-jedi', { 'for': ['python' ,'python3'] }
 " https://github.com/carlitux/deoplete-ternjs
 Plug 'carlitux/deoplete-ternjs', { 'for': 'javascript' }
+" https://github.com/zchee/deoplete-clan://github.com/zchee/deoplete-clang
+Plug 'zchee/deoplete-clang', { 'for': ['cpp', 'c'] }
 "else
   " Syntax checking
   "Plug 'scrooloose/syntastic'
-  " Next generation completion framework after neocomplcache 
-  " https://github.com/Shougo/neocomplete.vim
-  "Plug 'Shougo/neocomplete.vim'
-" A code-completion engine for Vim http://valloric.github.io/YouCompleteMe/
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
+  " A code-completion engine for Vim http://valloric.github.io/YouCompleteMe/
+  Plug 'Valloric/YouCompleteMe'
+  ", { 'do': './install.py --tern-completer' }
 "endif
+
+" https://github.com/mustache/vim-mustache-handlebars
+Plug 'mustache/vim-mustache-handlebars'
+
 
 " } end bundle list
 
