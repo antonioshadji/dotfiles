@@ -249,7 +249,7 @@ nnoremap <CR> :noh<CR><CR>
 " http://www.jovicailic.org/2015/05/saving-read-only-files-in-vim-sudo-trick/
 " http://www.geekyboy.com/archives/629
 " http://vim.wikia.com/wiki/Multiple_commands_at_once
-cmap w!! w !sudo tee % >/dev/null | edit!
+cmap w!! w !sudo tee % >/dev/null
 
 " compile and run java code for algs4
 " https://docs.oracle.com/javase/8/docs/technotes/tools/windows/classpath.html
@@ -370,7 +370,7 @@ function TrimWhiteSpace()
   %s/\s\+$//e
   call setpos('.', l:save_cursor)
 endfunction
-command WhiteSpaceRemove call TrimWhiteSpace()
+command WhiteSpaceRemove :call TrimWhiteSpace()
 
 " http://dustinmartin.net/format-json-in-vim/
 command! FormatJSON %!python3 -m json.tool
