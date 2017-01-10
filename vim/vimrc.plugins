@@ -154,8 +154,8 @@ let g:syntastic_aggregate_errors = 1
 " Neomake (replaces syntastic for both vim and NeoVim) {
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_open_list = 2
-let g:neomake_html_tidy_ignore_errors = ['*empty*']
-"let g:neomake_html_tidy_maker = { 'exe': 'tidy', 'args': ['--drop-empty-elements', 'no'] }
+" let g:neomake_html_tidy_ignore_errors = ['*empty*']
+let g:neomake_html_tidy_maker = { 'args': ['--drop-empty-elements', 'no'] }
 autocmd! BufWritePost * Neomake
 " }
 
