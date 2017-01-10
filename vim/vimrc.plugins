@@ -3,17 +3,18 @@
 "}
 
 " vim-airline {
-let g:airline#extensions#capslock#enabled=1
+let g:airline_theme='solarized'
 let g:airline_powerline_fonts=1
+let g:airline#extensions#capslock#enabled=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
-" https://github.com/vim-airline/vim-airline/issues/1154
+
 let g:airline_symbols = get(g:,'airline_symbols',{})
-" without this following line a 3 bar icon shows after maxlinenr
 let g:airline_symbols.maxlinenr=''
+
 set ttimeoutlen=50
-set laststatus=2
+" set laststatus=2 "2 is default
 set noshowmode
 
 "}
