@@ -11,7 +11,8 @@ make distclean
   --enable-rubyinterp=dynamic \
   --enable-cscope \
   --enable-gui \
-  --with-vim-name=vim2 \
-  --with-ex-name=ex2 \
-  --with-view-name=view2 \
   --with-compiledby="Antonios Hadjigeorgalis"
+#  --with-vim-name=vim2 \
+#  --with-ex-name=ex2 \
+#  --with-view-name=view2 \
+
