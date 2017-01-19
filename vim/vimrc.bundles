@@ -33,7 +33,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 " Highlight colors in css files
 Plug 'ap/vim-css-color'
 "Distraction-free writing in Vim
-"Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
+Plug 'junegunn/goyo.vim', { 'for': 'pandoc' }
 " a calendar app for vim
 Plug 'itchyny/calendar.vim'
 " Vim plugin that displays tags in a window, ordered by scope
@@ -84,14 +84,16 @@ Plug 'zchee/deoplete-clang', { 'for': ['cpp', 'c'] }
 "else
   " Syntax checking
   "Plug 'scrooloose/syntastic'
+if !has('nvim')
   " A code-completion engine for Vim http://valloric.github.io/YouCompleteMe/
   Plug 'Valloric/YouCompleteMe'
   ", { 'do': './install.py --tern-completer' }
-"endif
+endif
 
 " https://github.com/mustache/vim-mustache-handlebars
 Plug 'mustache/vim-mustache-handlebars'
-
+" https://floobits.com/help/plugins/nvim
+Plug 'floobits/floobits-neovim', { 'do': ':UpdateRemotePlugins' }
 
 " } end bundle list
 

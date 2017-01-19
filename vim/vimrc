@@ -208,8 +208,8 @@ imap <C-c> <Esc>
 " imap <CR> <Esc><CR>
 
 " leave insert mode when moving between lines
-imap <Up> <Esc><Up>
-imap <Down> <Esc><Down>
+" imap <Up> <Esc><Up>
+" imap <Down> <Esc><Down>
 
 "http://www.bestofvim.com/tip/leave-ex-mode-good/
 " <Nop> is no operation
@@ -229,14 +229,22 @@ map Q q
 "map <right> <nop>
 
 " Easy window navigation
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-map <C-left> <C-w>h
-map <C-down> <C-w>j
-map <C-up> <C-w>k
-map <C-right> <C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <C-left> <C-w>h
+nnoremap <C-down> <C-w>j
+nnoremap <C-up> <C-w>k
+nnoremap <C-right> <C-w>l
+" for Neovim terminal windows
+if has('nvim')
+tnoremap <Esc> <C-\><C-n>
+tnoremap <C-h> <C-\><C-n><C-w>h
+tnoremap <C-j> <C-\><C-n><C-w>j
+tnoremap <C-k> <C-\><C-n><C-w>k
+tnoremap <C-l> <C-\><C-n><C-w>l
+endif
 
 " http://vimcasts.org/episodes/how-to-fold/
 " use space bar in normal mode to toggle folds
@@ -316,7 +324,6 @@ autocmd Filetype octave
 autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -
 "}
 
-
 " write file when leaving insert mode if changes have been made {
 " http://www.reddit.com/r/vim/comments/232j45/save_file_on_insert_mode_exit/
 autocmd InsertLeave * :silent! update
@@ -333,6 +340,10 @@ autocmd FileType java setlocal shiftwidth=4 tabstop=4
 let java_highlight_java_lang_ids=1
 let java_highlight_functions="style"
 " }
+
+" Neovim auto enter insert mode for terminal buffer {
+autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
+"}
 
 endif
 " end Auto Commands: }
