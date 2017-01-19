@@ -341,8 +341,7 @@ alias md='mkdir'
 alias rd='rmdir'
 alias cl='clear'
 alias du='du -sh'
-alias treeacl='tree -A -C -L 2'
-alias sudo='sudo '
+#alias sudo='sudo '
 command -v pygmentize >/dev/null 2>&1 && alias p='pygmentize -g'
 
 # 2.3 Digital Ocean suggestions
@@ -352,7 +351,7 @@ alias psg='ps aux | grep -v grep | grep -i -e VSZ -e'
 #}
 
 # 2.3) Text and editor commands{
-alias v='nvim'
+alias e='nvim'
 alias vv='gvim --remote-silent'
 export EDITOR='vim'
 export VISUAL='vim'
