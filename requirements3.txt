@@ -1,4 +1,6 @@
 # sudo -H pip install --upgrade -r ~/dotfiles/requirements.txt
+# sudo -H installs to /usr/local/lib/python#.#
+# --user installs to ~/.local/
 pip
 neovim
 # Data Science Tools
@@ -17,8 +19,9 @@ matplotlib
 scipy
 scikit-learn
 # not available for python3
-# scikits.statsmodels
+scikits.statsmodels
 statsmodels
 sympy
 # coding tools
 jedi
+pygments
