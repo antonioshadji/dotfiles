@@ -3,6 +3,9 @@
 # --user installs to ~/.local/
 pip
 neovim
+# coding tools
+jedi
+pygments
 # Data Science Tools
 ipython
 jupyter
@@ -22,6 +25,3 @@ scikit-learn
 scikits.statsmodels
 statsmodels
 sympy
-# coding tools
-jedi
-pygments
