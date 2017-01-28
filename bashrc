@@ -412,6 +412,8 @@ fi
 
 [[ -d $HOME/.gem/ruby/2.3.0/bin ]] && export PATH=$HOME/.gem/ruby/2.3.0/bin:$PATH
 
+# pip install --user installs into ~/.local/bin
+[[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
 #}
 
 #{ Node setup and tools
@@ -505,84 +507,6 @@ if [ "$(uname -s)" == 'Darwin' ]; then
 fi
 # }
 
-# { bash completion
-# https://superuser.com/questions/288714/bash-autocomplete-like-zsh
-bind 'set show-all-if-ambiguous on'
-bind 'TAB:menu-complete'
-
-# Turn on bash command completion
-# http://embraceubuntu.com/2006/01/28/turn-on-bash-smart-completion/
-# [[ -f /etc/bash_completion ]] && . /etc/bash_completion
-# from Ubuntu 16.04 bashrc
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [[ -r /usr/share/bash-completion/bash_completion ]]; then
-    source /usr/share/bash-completion/bash_completion
-  elif [[ -r /etc/bash_completion ]]; then
-    source /etc/bash_completion
-  fi
-fi
-
-# enable completion for pandoc
-command -v pandoc >/dev/null 2>&1 && eval "$(pandoc --bash-completion)"
-
-# enable completion for node
-[[ -r $NVM_DIR/bash_completion ]] && source $NVM_DIR/bash_completion
-
-# http://wp-cli.org/ bash completion
-[[ -r $HOME/dotfiles/bash_completion/wp-completion.bash ]] && source $HOME/dotfiles/bash_completion/wp-completion.bash
-
-# AWS CLI completion
-complete -C '/usr/local/bin/aws_completer' aws
-
-#}
-
-# bash functions {
-# http://superuser.com/a/296555/358673
-# show files after cd
-function cd() { builtin cd "$@" && l; }
-
-# create random password
-function CreateRandomPassword() {
-  openssl rand -base64 7 | sed s/=//g | xclip -i -selection clipboard
-}
-
-# function Extract for common file formats
-# https://github.com/xvoland/Extract/blob/master/extract.sh
-function extract {
- if [ -z "$1" ]; then
-    # display usage if no parameters given
-    echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
- else
-    if [ -f "$1" ] ; then
-        local nameInLowerCase=`echo "$1" | awk '{print tolower($0)}'`
-        case "$nameInLowerCase" in
-          *.tar.bz2)   tar xvjf ./"$1"    ;;
-          *.tar.gz)    tar xvzf ./"$1"    ;;
-          *.tar.xz)    tar xvJf ./"$1"    ;;
-          *.lzma)      unlzma ./"$1"      ;;
-          *.bz2)       bunzip2 ./"$1"     ;;
-          *.rar)       unrar x -ad ./"$1" ;;
-          *.gz)        gunzip ./"$1"      ;;
-          *.tar)       tar xvf ./"$1"     ;;
-          *.tbz2)      tar xvjf ./"$1"    ;;
-          *.tgz)       tar xvzf ./"$1"    ;;
-          *.zip)       unzip ./"$1"       ;;
-          *.Z)         uncompress ./"$1"  ;;
-          *.7z)        7z x ./"$1"        ;;
-          *.xz)        unxz ./"$1"        ;;
-          *.exe)       cabextract ./"$1"  ;;
-          *)           echo "extract: '$1' - unknown archive method" ;;
-        esac
-    else
-        echo "'$1' - file does not exist"
-    fi
-fi
-}
-#}
-
 # { Virtual terminal tty colors
 # https://acceptsocket.wordpress.com/2014/08/12/set-solarized-dark-as-default-color-scheme-for-linux-virtual-console/
 if [[ $TERM = "linux" ]]; then
@@ -616,60 +540,90 @@ if [[ -r /var/run/reboot-required ]]; then
   uptime
 fi
 
-###-begin-npm-completion-###{
-#
-# npm command completion script
-#
-# Installation: npm completion >> ~/.bashrc  (or ~/.zshrc)
-# Or, maybe: npm completion > /usr/local/etc/bash_completion.d/npm
-#
+# { bash completion
+# https://superuser.com/questions/288714/bash-autocomplete-like-zsh
+bind 'set show-all-if-ambiguous on'
+bind 'TAB:menu-complete'
 
-if type complete &>/dev/null; then
-  _npm_completion () {
-    local words cword
-    if type _get_comp_words_by_ref &>/dev/null; then
-      _get_comp_words_by_ref -n = -n @ -w words -i cword
-    else
-      cword="$COMP_CWORD"
-      words=("${COMP_WORDS[@]}")
-    fi
-
-    local si="$IFS"
-    IFS=$'\n' COMPREPLY=($(COMP_CWORD="$cword" \
-                           COMP_LINE="$COMP_LINE" \
-                           COMP_POINT="$COMP_POINT" \
-                           npm completion -- "${words[@]}" \
-                           2>/dev/null)) || return $?
-    IFS="$si"
-  }
-  complete -o default -F _npm_completion npm
-elif type compdef &>/dev/null; then
-  _npm_completion() {
-    local si=$IFS
-    compadd -- $(COMP_CWORD=$((CURRENT-1)) \
-                 COMP_LINE=$BUFFER \
-                 COMP_POINT=0 \
-                 npm completion -- "${words[@]}" \
-                 2>/dev/null)
-    IFS=$si
-  }
-  compdef _npm_completion npm
-elif type compctl &>/dev/null; then
-  _npm_completion () {
-    local cword line point words si
-    read -Ac words
-    read -cn cword
-    let cword-=1
-    read -l line
-    read -ln point
-    si="$IFS"
-    IFS=$'\n' reply=($(COMP_CWORD="$cword" \
-                       COMP_LINE="$line" \
-                       COMP_POINT="$point" \
-                       npm completion -- "${words[@]}" \
-                       2>/dev/null)) || return $?
-    IFS="$si"
-  }
-  compctl -K _npm_completion npm
+# Turn on bash command completion
+# http://embraceubuntu.com/2006/01/28/turn-on-bash-smart-completion/
+# [[ -f /etc/bash_completion ]] && . /etc/bash_completion
+# from Ubuntu 16.04 bashrc
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [[ -r /usr/share/bash-completion/bash_completion ]]; then
+    source /usr/share/bash-completion/bash_completion
+  elif [[ -r /etc/bash_completion ]]; then
+    source /etc/bash_completion
+  fi
 fi
-###-end-npm-completion-###}
+
+# enable completion for pandoc
+command -v pandoc >/dev/null 2>&1 && eval "$(pandoc --bash-completion)"
+
+# enable completion for node
+[[ -r $NVM_DIR/bash_completion ]] && source $NVM_DIR/bash_completion
+
+# http://wp-cli.org/ bash completion
+[[ -r $HOME/dotfiles/bash_completion/wp-completion.bash ]] && source $HOME/dotfiles/bash_completion/wp-completion.bash
+
+# AWS CLI completion
+[[ -r /usr/local/bin/aws_completer ]] && complete -C '/usr/local/bin/aws_completer' aws
+
+# https://docs.npmjs.com/cli/completion
+command -v npm >/dev/null 2>&1 && eval "$(npm completion)"
+
+# https://pip.pypa.io/en/stable/user_guide/#command-completion
+eval "$(pip completion --bash)"
+#}
+
+# bash functions {
+# https://www.gnu.org/software/bash/manual/bash.html#Shell-Functions
+
+# http://superuser.com/a/296555/358673
+# show files after cd
+cd () {
+  builtin cd "$@" && ls
+}
+
+# create random 10 character password and place on clipboard
+CreateRandomPassword () {
+  openssl rand -base64 7 | sed s/=//g | xclip -i -selection clipboard
+}
+
+# function Extract for common file formats
+# https://github.com/xvoland/Extract/blob/master/extract.sh
+Extract () {
+ if [ -z "$1" ]; then
+    # display usage if no parameters given
+    echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
+ else
+    if [ -f "$1" ] ; then
+        local nameInLowerCase=`echo "$1" | awk '{print tolower($0)}'`
+        case "$nameInLowerCase" in
+          *.tar.bz2)   tar xvjf ./"$1"    ;;
+          *.tar.gz)    tar xvzf ./"$1"    ;;
+          *.tar.xz)    tar xvJf ./"$1"    ;;
+          *.lzma)      unlzma ./"$1"      ;;
+          *.bz2)       bunzip2 ./"$1"     ;;
+          *.rar)       unrar x -ad ./"$1" ;;
+          *.gz)        gunzip ./"$1"      ;;
+          *.tar)       tar xvf ./"$1"     ;;
+          *.tbz2)      tar xvjf ./"$1"    ;;
+          *.tgz)       tar xvzf ./"$1"    ;;
+          *.zip)       unzip ./"$1"       ;;
+          *.Z)         uncompress ./"$1"  ;;
+          *.7z)        7z x ./"$1"        ;;
+          *.xz)        unxz ./"$1"        ;;
+          *.exe)       cabextract ./"$1"  ;;
+          *)           echo "extract: '$1' - unknown archive method" ;;
+        esac
+    else
+        echo "'$1' - file does not exist"
+    fi
+ fi
+}
+
+#}
