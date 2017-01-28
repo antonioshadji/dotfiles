@@ -11,17 +11,36 @@ ipython
 jupyter
 numpy
 pandas
-# required by ipython notebook
-# tornado
-# pyzmq
-# jsonschema
 # must apt-get install libpng12-dev libfreetype6-dev to install
 matplotlib
 # must be installed before scikit
 # requires apt-get install libblas-dev liblapack-dev gfortran
 scipy
-scikit-learn
-# not available for python3
-scikits.statsmodels
 statsmodels
 sympy
+scikit-learn
+# not available for python3
+#scikits.statsmodels
+
+# required by ipython notebook
+# tornado
+# pyzmq
+# jsonschema
+
+# installed as dependencies of above
+#appdirs
+#bleach
+#decorator
+#html5lib
+#ipykernel
+#jinja2
+#nbconvert
+#nbformat
+#notebook
+#packaging
+#pandocfilters
+#pytz
+#pyzmq
+#setuptools
+#testpath
+

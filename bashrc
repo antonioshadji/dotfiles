@@ -5,6 +5,19 @@
 # Bash Reference Manual {
 # https://www.gnu.org/software/bash/manual/bash.html
 
+# Notes By Balaji S. Srinivasan (balajis@stanford.edu)
+# Concepts:
+#    1) .bashrc is the *non-login* config for bash, run in scripts and after
+#        first connection.
+#    2) .bash_profile is the *login* config for bash, launched upon first connection.
+#    3) .bash_profile imports .bashrc, but not vice versa.
+# End Notes By Balaji S. Srinivasan (balajis@stanford.edu)
+
+
+# Do 'man bashrc' for the long version or see here:
+# https://www.gnu.org/software/bash/manual/bash.html#Bash-Startup-Files
+# http://en.wikipedia.org/wiki/Bash#Startup_scripts
+
 # https://www.gnu.org/software/bash/manual/bash.html#Conditional-Constructs
 # [[…]]
 # [[ expression ]]
@@ -43,46 +56,6 @@ shopt -s checkwinsize
 # set vi mode to edit like vim
 # insert mode by default esc to go to command mode
 set -o vi
-
-# Notes By Balaji S. Srinivasan (balajis@stanford.edu) {
-#
-# Concepts:
-#
-#    1) .bashrc is the *non-login* config for bash, run in scripts and after
-#        first connection.
-#    2) .bash_profile is the *login* config for bash, launched upon first connection.
-#    3) .bash_profile imports .bashrc, but not vice versa.
-#    4) .bashrc imports .bashrc_custom, which can be used to override
-#        variables specified here.
-#
-# When using GNU screen:
-#
-#    1) .bash_profile is loaded the first time you login, and should be used
-#       only for paths and environmental settings
-
-#    2) .bashrc is loaded in each subsequent screen, and should be used for
-#       aliases and things like writing to .bash_eternal_history (see below)
-#
-# Do 'man bashrc' for the long version or see here:
-# http://en.wikipedia.org/wiki/Bash#Startup_scripts
-# https://www.gnu.org/software/bash/manual/bash.html#Bash-Startup-Files
-# When Bash starts, it executes the commands in a variety of different scripts.
-#
-#   1) When Bash is invoked as an interactive login shell, it first reads
-#      and executes commands from the file /etc/profile, if that file
-#      exists. After reading that file, it looks for ~/.bash_profile,
-#      ~/.bash_login, and ~/.profile, in that order, and reads and executes
-#      commands from the first one that exists and is readable.
-#
-#   2) When a login shell exits, Bash reads and executes commands from the
-#      file ~/.bash_logout, if it exists.
-#
-#   3) When an interactive shell that is not a login shell is started
-#      (e.g. a GNU screen session), Bash reads and executes commands from
-#      ~/.bashrc, if that file exists. This may be inhibited by using the
-#      --norc option. The --rcfile file option will force Bash to read and
-#      execute commands from file instead of ~/.bashrc.
-# }
 
 # {-- 1.1) Set up umask permissions --
 # -----------------------------------
@@ -284,11 +257,6 @@ base3='\e[1;37m'   # base3     #fdf6e3 15/7 brwhite  230 #ffffd7 97  00  10 253 
 # color palette bottom row in gnome configure screen is bold 30-37 [1;30m
 #}
 
-# Make prompt informative when not in git repo
-# https://www.maketecheasier.com/8-useful-and-interesting-bash-prompts/
-# PS1="\[\e[1;34m\][\u@\h:\w]\[\e[0m\]\n"
-# PS1+="\[\e[1;37m\]\A\[\e[1;34m\] $ \[\e[0m\]"
-
 ## -----------------------------------------------------
 ## -- 1.3) https://github.com/magicmonty/bash-git-prompt
 ## --      Customized git prompt
@@ -308,14 +276,43 @@ GIT_PROMPT_ONLY_IN_REPO=0
 # GIT_PROMPT_SHOW_UPSTREAM=1 # uncomment to show upstream tracking branch
 GIT_PROMPT_SHOW_UNTRACKED_FILES=normal # can be no, normal or all; determines counting of untracked files
 
-# GIT_PROMPT_STATUS_COMMAND=gitstatus_pre-1.7.10.sh # uncomment to support Git older than 1.7.10
-
 GIT_PROMPT_START="_LAST_COMMAND_INDICATOR_ ${blue}${HOSTNAME%%.*}:${yellow}\w${Reset}"
 # GIT_PROMPT_END=...      # uncomment for custom prompt end sequence
 
 # as last entry source the gitprompt script
 # GIT_PROMPT_THEME=Custom # use custom .git-prompt-colors.sh
 GIT_PROMPT_THEME=Solarized_Ubuntu
+#}
+
+# Configure PATH {
+# https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+if [[ "$(uname -s)" == "Linux" ]]; then
+  export XDG_DATA_HOME=$HOME/.local/share
+  export XDG_CONFIG_HOME=$HOME/.config
+  export XDG_CACHE_HOME=$HOME/.cache
+fi
+
+#  - These are line by line so that you can kill one without affecting the others.
+#  - Lowest priority first, highest priority last.
+export PATH=$PATH
+# https://www.gnu.org/software/bash/manual/bash.html#Pattern-Matching
+# https://askubuntu.com/questions/299710/how-to-determine-if-a-string-is-a-substring-of-another-in-bash
+# set PATH so it includes user's private bin if it exists
+if [[ ! $PATH == *$HOME/bin* ]]; then
+  [[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
+fi
+
+# set PATH to include latest version of pandoc
+[[ -d $HOME/.cabal/bin ]] && export PATH=$HOME/.cabal/bin:$PATH
+
+if [[ -d /opt/android-studio/bin ]]; then
+  export PATH=/opt/android-studio/bin:$PATH
+fi
+
+[[ -d $HOME/.gem/ruby/2.3.0/bin ]] && export PATH=$HOME/.gem/ruby/2.3.0/bin:$PATH
+
+# pip install --user installs into ~/.local/bin
+[[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
 #}
 
 #  2) Set up aliases {
@@ -342,7 +339,7 @@ alias rd='rmdir'
 alias cl='clear'
 alias du='du -sh'
 #alias sudo='sudo '
-command -v pygmentize >/dev/null 2>&1 && alias p='pygmentize -g'
+command -v pygmentize >/dev/null 2>&1 && alias p='pygmentize'
 
 # 2.3 Digital Ocean suggestions
 # https://www.digitalocean.com/community/tutorials/an-introduction-to-useful-bash-aliases-and-functions
@@ -383,37 +380,6 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 # Solarized Light: 4eac76ef-bf32-4958-aa16-8adfc529ac3b
 # Solarized Dark: 8c65ed44-bbfa-4913-98a4-07f69fed680a
 # Default: b1dcc9dd-5262-4d8d-a863-c897e6d979b9
-#}
-
-# Configure PATH {
-# https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
-if [[ "$(uname -s)" == "Linux" ]]; then
-  export XDG_DATA_HOME=$HOME/.local/share
-  export XDG_CONFIG_HOME=$HOME/.config
-  export XDG_CACHE_HOME=$HOME/.cache
-fi
-
-#  - These are line by line so that you can kill one without affecting the others.
-#  - Lowest priority first, highest priority last.
-export PATH=$PATH
-# https://www.gnu.org/software/bash/manual/bash.html#Pattern-Matching
-# https://askubuntu.com/questions/299710/how-to-determine-if-a-string-is-a-substring-of-another-in-bash
-# set PATH so it includes user's private bin if it exists
-if [[ ! $PATH == *$HOME/bin* ]]; then
-  [[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
-fi
-
-# set PATH to include latest version of pandoc
-[[ -d $HOME/.cabal/bin ]] && export PATH=$HOME/.cabal/bin:$PATH
-
-if [[ -d /opt/android-studio/bin ]]; then
-  export PATH=/opt/android-studio/bin:$PATH
-fi
-
-[[ -d $HOME/.gem/ruby/2.3.0/bin ]] && export PATH=$HOME/.gem/ruby/2.3.0/bin:$PATH
-
-# pip install --user installs into ~/.local/bin
-[[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
 #}
 
 #{ Node setup and tools
@@ -530,16 +496,6 @@ if [[ $TERM = "linux" ]]; then
 fi
 #}
 
-# does a bashrc.local exist?
-[[ -r $HOME/.bashrc.local ]] && source $HOME/.bashrc.local
-
-# display that reboot is required after automatic update
-if [[ -r /var/run/reboot-required ]]; then
-  echo 'Reboot required'
-  cat /var/run/reboot-required.pkgs
-  uptime
-fi
-
 # { bash completion
 # https://superuser.com/questions/288714/bash-autocomplete-like-zsh
 bind 'set show-all-if-ambiguous on'
@@ -627,3 +583,14 @@ Extract () {
 }
 
 #}
+
+# does a bashrc.local exist?
+[[ -r $HOME/.bashrc.local ]] && source $HOME/.bashrc.local
+
+# display that reboot is required after automatic update
+if [[ -r /var/run/reboot-required ]]; then
+  echo 'Reboot required'
+  cat /var/run/reboot-required.pkgs
+  uptime
+fi
+
