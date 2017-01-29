@@ -331,20 +331,23 @@ alias ll='ls -AFlh --color'
 # follow by -r to reverse sort order
 alias llt='ls -AFlht --color'
 alias l='ls -F --color'
-alias m='less'
 alias ..='cd ..'
 alias ...='cd ..;cd ..'
 alias md='mkdir'
 alias rd='rmdir'
 alias cl='clear'
-alias du='du -sh'
-#alias sudo='sudo '
-command -v pygmentize >/dev/null 2>&1 && alias p='pygmentize'
 
 # 2.3 Digital Ocean suggestions
 # https://www.digitalocean.com/community/tutorials/an-introduction-to-useful-bash-aliases-and-functions
 alias ps='ps auxf'
 alias psg='ps aux | grep -v grep | grep -i -e VSZ -e'
+# 2.4 Custom aliases that I created
+alias du='du -sh'
+#alias sudo='sudo '
+# syntax colored cat replacement
+command -v pygmentize >/dev/null 2>&1 && alias p='pygmentize'
+# open files in graphic workspace based on mime-type
+command -v xdg-open >/dev/null 2>&1 && alias o='xdg-open'
 #}
 
 # 2.3) Text and editor commands{
@@ -541,7 +544,7 @@ eval "$(pip completion --bash)"
 # http://superuser.com/a/296555/358673
 # show files after cd
 cd () {
-  builtin cd "$@" && ls
+  builtin cd "$@" && l
 }
 
 # create random 10 character password and place on clipboard
