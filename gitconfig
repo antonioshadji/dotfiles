@@ -1,20 +1,20 @@
 [user]
-	email = Antonios@Hadji.co
-	name = Antonios Hadjigeorgalis
+  email = Antonios@Hadji.co
+  name = Antonios Hadjigeorgalis
 [push]
-	default = simple
+  default = simple
 [color]
-	ui = true
+  ui = true
 [credential]
-	helper = cache --timeout=3600
+  helper = cache --timeout=3600
 [grep]
-	linenumber = true
-	extendregexp = true
+  linenumber = true
+  extendregexp = true
 [core]
-	autocrlf = input
+  autocrlf = input
 [status]
-	branch = true
-	short = true
+  branch = true
+#  short = true
 [alias]
-	g = grep --break --heading --line-number
+  g = grep --break --heading --line-number
   s = status
