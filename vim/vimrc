@@ -61,7 +61,6 @@ let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
 "}
 
-
 " General Settings {
 set encoding=utf-8      " show buffer as utf-8 https://github.com/square/maximum-awesome (**MUST BE EARLY IN FILE**)
 set mousehide           " Hide the mouse cursor while typing
@@ -106,7 +105,7 @@ set wildignore+=*.pyc                            " Python byte code
 set wildignore+=*.class                          " Java byte code
 
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
-set scrolloff=5                 " Minimum lines to keep above and below cursor
+set scrolloff=2                 " Minimum lines to keep above and below cursor
 set foldenable                  " Auto fold code
 "  To insert special character - in insert mode CTRL-K two character code from :digraphs command
 set listchars=tab:›\ ,trail:∙,nbsp:†,extends:»,precedes:« "nvim defaults to tab:> ,trail:-,nbsp:+
@@ -208,8 +207,8 @@ imap <C-c> <Esc>
 " imap <CR> <Esc><CR>
 
 " leave insert mode when moving between lines
-" imap <Up> <Esc><Up>
-" imap <Down> <Esc><Down>
+imap <Up> <Esc><Up>
+imap <Down> <Esc><Down>
 
 "http://www.bestofvim.com/tip/leave-ex-mode-good/
 " <Nop> is no operation

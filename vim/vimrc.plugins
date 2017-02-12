@@ -49,6 +49,7 @@ call togglebg#map("<F5>")
 " and gvim -- has('gui_running') &&
 let hour = strftime("%H")
 let minute = strftime("%M")
+let second = strftime("%S")
 if hour >= 17
   set background=light
 else
@@ -60,7 +61,7 @@ if has('nvim')
     func ColorHandler(timer)
       set background=light
     endfunction
-    let timer = timer_start((17-hour)*60*60*1000-(minute*60*1000), 'ColorHandler')
+    let timer = timer_start((17-hour)*60*60*1000-(minute*60*1000)-(second*1000), 'ColorHandler')
   endif
 endif
 colorscheme solarized

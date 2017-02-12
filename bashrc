@@ -332,7 +332,6 @@ alias ll='ls -AFlh --color'
 alias llt='ls -AFlht --color'
 alias l='ls -F --color'
 alias ..='cd ..'
-alias ...='cd ..;cd ..'
 alias md='mkdir'
 alias rd='rmdir'
 alias cl='clear'
@@ -387,10 +386,10 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 
 #{ Node setup and tools
 # http://stackoverflow.com/a/677212
-if command -v node >/dev/null; then
+#if command -v node >/dev/null; then
   # 2.7) node.js and nvm
-  # http://nodejs.org/api/repl.html#repl_repl
-  alias node="env NODE_NO_READLINE=1 rlwrap -a node"
+  # https://nodejs.org/api/repl.html
+  alias noder="env NODE_NO_READLINE=1 rlwrap node"
   alias node_repl="node -e \"require('repl').start({ignoreUndefined: true, useColors: true})\""
 
   # https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions
@@ -403,7 +402,7 @@ if command -v node >/dev/null; then
   # 2.6) Install rlwrap if not present
   # https://nodejs.org/api/repl.html
   command -v rlwrap >/dev/null 2>&1 || { echo >&2 "Install rlwrap to use node: sudo (apt-get or brew) install rlwrap";}
-fi
+#fi
 #}
 # { Python setup and tools
 
