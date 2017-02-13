@@ -24,6 +24,8 @@
 # Return a status of 0 or 1 depending on the evaluation of the conditional
 # expression *expression*. Expressions are composed of the primaries described
 # below in Bash Conditional Expressions.
+# the &&, ||, <, and > operators work within a [[ ]] test, despite giving an
+# error within a [ ] construct.
 
 # Word splitting and filename expansion are not performed on the words between
 # the [[ and ]]; tilde expansion, parameter and variable expansion,
@@ -96,8 +98,8 @@ set -o vi
 # set title of terminal window to user@hostname:pwd
 # this shows up in prompt when using virtual terminal $TERM=Linux (tty)
 # http://tldp.org/HOWTO/Xterm-Title-3.html
-# http://stackoverflow.com/a/31892093/2472798
-if [[ $TERM == "xterm" ]]; then
+# http://stackoverflow.com/a/25535717/2472798
+if [[ $TERM == xterm* ]]; then
   PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/\~}\007"'
 fi
 
@@ -113,7 +115,7 @@ export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
 
-#HISTCONTROL
+HISTCONTROL=erasedups:ignorespace
 #             A colon-separated list of values controlling how commands are saved
 #             on  the  history list.  If the list of values includes ignorespace,
 #             lines which begin with a space character are not saved in the  his‐
@@ -128,17 +130,16 @@ export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 #             subsequent  lines  of a multi-line compound command are not tested,
 #             and are added to the history regardless of the  value  of  HISTCON‐
 #             TROL.
-HISTCONTROL=erasedups:ignorespace
 
 # Only for bash>=4.3 otherwise use HIST= format
-#HISTSIZE
+HISTSIZE=-1
 #              The number of commands to remember in the command history (see HIS‐
 #              TORY below).  If the value is 0, commands are not saved in the his‐
 #              tory  list.   Numeric values less than zero result in every command
 #              being saved on the history list (there is  no  limit).   The  shell
 #              sets the default value to 500 after reading any startup files.
-HISTSIZE=-1
-#HISTFILESIZE
+
+HISTFILESIZE=-1
 #              The  maximum  number  of lines contained in the history file.  When
 #              this variable is assigned a value, the history file  is  truncated,
 #              if  necessary,  to  contain  no  more  than that number of lines by
@@ -148,7 +149,17 @@ HISTSIZE=-1
 #              numeric  values  less than zero inhibit truncation.  The shell sets
 #              the default value to  the  value  of  HISTSIZE  after  reading  any
 #              startup files.
-HISTFILESIZE=-1
+#
+#  The command number and the history number are usually different:
+#  the history number of a command is its position in the history
+#  list, which may include commands restored from the history file
+#  (see HISTORY below), while the command number is the position in
+#  the sequence of commands executed during the current shell session.
+#  After the string is decoded, it is expanded via parameter
+#  expansion, command substitution, arithmetic expansion, and quote
+#  removal, subject to the value of the promptvars shell option (see
+#  the description of the shopt command under SHELL BUILTIN COMMANDS
+#  below).
 #}
 
 #{ Prompt escapes				 #
@@ -192,16 +203,6 @@ HISTFILESIZE=-1
 #             to embed a terminal control sequence into the prompt
 #  \]         end a sequence of non-printing characters
 #}
-#  The command number and the history number are usually different:
-#  the history number of a command is its position in the history
-#  list, which may include commands restored from the history file
-#  (see HISTORY below), while the command number is the position in
-#  the sequence of commands executed during the current shell session.
-#  After the string is decoded, it is expanded via parameter
-#  expansion, command substitution, arithmetic expansion, and quote
-#  removal, subject to the value of the promptvars shell option (see
-#  the description of the shopt command under SHELL BUILTIN COMMANDS
-#  below).
 
 #{ Color chart					 #
 ##################################################
@@ -342,11 +343,11 @@ alias ps='ps auxf'
 alias psg='ps aux | grep -v grep | grep -i -e VSZ -e'
 # 2.4 Custom aliases that I created
 alias du='du -sh'
-#alias sudo='sudo '
 # syntax colored cat replacement
-command -v pygmentize >/dev/null 2>&1 && alias p='pygmentize'
+# Do 'help type' to see documentation in bash shell (bash Builtin)
+type pygmentize >/dev/null && alias p='pygmentize'
 # open files in graphic workspace based on mime-type
-command -v xdg-open >/dev/null 2>&1 && alias o='xdg-open'
+type xdg-open >/dev/null && alias o='xdg-open'
 #}
 
 # 2.3) Text and editor commands{
@@ -385,32 +386,29 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 #}
 
 #{ Node setup and tools
-# http://stackoverflow.com/a/677212
-#if command -v node >/dev/null; then
-  # 2.7) node.js and nvm
-  # https://nodejs.org/api/repl.html
-  alias noder="env NODE_NO_READLINE=1 rlwrap node"
-  alias node_repl="node -e \"require('repl').start({ignoreUndefined: true, useColors: true})\""
+# https://nodejs.org/api/repl.html
+# 2.6) Install rlwrap if not present
+# type rlwrap >/dev/null 2>&1 || { echo >&2 "Install rlwrap to use node: sudo (apt-get or brew) install rlwrap";}
+# 2.7) node.js and nvm
+# alias noder="env NODE_NO_READLINE=1 rlwrap node"
+# alias node_repl="node -e \"require('repl').start({ignoreUndefined: true, useColors: true})\""
 
-  # https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions
-  # -r file True if file exists and is readable.
-  if [[ -r $HOME/.nvm/nvm.sh ]]; then
-    NVM_DIR=$HOME/.nvm
-    source $HOME/.nvm/nvm.sh
-  fi
+# https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions
+# [ -r file ] returns True if file exists and is readable.
+if [ -r $HOME/.nvm/nvm.sh ]; then
+  NVM_DIR=$HOME/.nvm
+  source $HOME/.nvm/nvm.sh
+fi
 
-  # 2.6) Install rlwrap if not present
-  # https://nodejs.org/api/repl.html
-  command -v rlwrap >/dev/null 2>&1 || { echo >&2 "Install rlwrap to use node: sudo (apt-get or brew) install rlwrap";}
 #fi
 #}
 # { Python setup and tools
 
 # virtualenvwrapper configuration
 # http://virtualenvwrapper.readthedocs.org/en/latest/install.html
-[[ -d $HOME/.virtualenvs ]] && export WORKON_HOME=$HOME/.virtualenvs
-[[ -d $HOME/code/python ]] && export PROJECT_HOME=$HOME/code/python/
-[[ -r /usr/local/bin/virtualenvwrapper.sh ]] && source /usr/local/bin/virtualenvwrapper.sh
+[ -d $HOME/.virtualenvs ] && export WORKON_HOME=$HOME/.virtualenvs
+[ -d $HOME/code/python ] && export PROJECT_HOME=$HOME/code/python/
+[ -r /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
 
 # https://docs.python.org/2/whatsnew/2.7.html#changes-to-the-handling-of-deprecation-warnings
 # this throws many errors when running iPython
@@ -420,11 +418,11 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 
 # }
 # { Go setup and tools
-if [[ -d $HOME/code/gowork/ ]]; then
+if [ -d $HOME/code/gowork/ ]; then
   export GOPATH=$HOME/code/gowork
 fi
 
-if [[ -d /usr/local/go/bin/ ]]; then
+if [ -d /usr/local/go/bin/ ]; then
   export PATH=$PATH:/usr/local/go/bin
 fi
 
@@ -477,7 +475,7 @@ fi
 
 # { Virtual terminal tty colors
 # https://acceptsocket.wordpress.com/2014/08/12/set-solarized-dark-as-default-color-scheme-for-linux-virtual-console/
-if [[ $TERM = "linux" ]]; then
+if [ $TERM = "linux" ]; then
   echo -en "\e]P0073642" # base02    #073642  0
   echo -en "\e]P8002b36" # base03    #002b36  8
   echo -en "\e]P1dc322f" # red       #dc322f  1
@@ -500,12 +498,23 @@ fi
 
 # { bash completion
 # https://superuser.com/questions/288714/bash-autocomplete-like-zsh
+# https://www.gnu.org/software/bash/manual/html_node/Readline-Init-File-Syntax.html
+# do 'bind -v' to see all variable names and values
+
+# This alters the default behavior of the completion functions. If set to ‘on’,
+# words which have more than one possible completion cause the matches to be
+# listed immediately instead of ringing the bell. The default value is ‘off’.
 bind 'set show-all-if-ambiguous on'
+# If set to ‘on’, Readline displays possible completions using different colors
+# to indicate their file type. The color definitions are taken from the value
+# of the LS_COLORS environment variable. The default is ‘off’.
+bind 'set colored-stats on'
+# If set to ‘on’, completed names which are symbolic links to directories have
+# a slash appended (subject to the value of mark-directories). The default is ‘off’.
+bind 'set mark-symlinked-directories on'
 bind 'TAB:menu-complete'
 
 # Turn on bash command completion
-# http://embraceubuntu.com/2006/01/28/turn-on-bash-smart-completion/
-# [[ -f /etc/bash_completion ]] && . /etc/bash_completion
 # from Ubuntu 16.04 bashrc
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -518,23 +527,26 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# enable completion for pandoc
-command -v pandoc >/dev/null 2>&1 && eval "$(pandoc --bash-completion)"
-
 # enable completion for node
-[[ -r $NVM_DIR/bash_completion ]] && source $NVM_DIR/bash_completion
+[ -r $NVM_DIR/bash_completion ] && source $NVM_DIR/bash_completion
 
 # http://wp-cli.org/ bash completion
-[[ -r $HOME/dotfiles/bash_completion/wp-completion.bash ]] && source $HOME/dotfiles/bash_completion/wp-completion.bash
+[ -r $HOME/dotfiles/bash_completion/wp-completion.bash ] && source $HOME/dotfiles/bash_completion/wp-completion.bash
 
 # AWS CLI completion
-[[ -r /usr/local/bin/aws_completer ]] && complete -C '/usr/local/bin/aws_completer' aws
+# http://docs.aws.amazon.com/cli/latest/userguide/cli-command-completion.html
+type aws_completer >/dev/null && complete -C $(type -p aws_completer) aws
 
 # https://docs.npmjs.com/cli/completion
-command -v npm >/dev/null 2>&1 && eval "$(npm completion)"
+# this was not working (2017-02-13) $(npm completion) > /etc/bash_completion.d/
+# type npm >/dev/null && eval $(npm completion)
 
 # https://pip.pypa.io/en/stable/user_guide/#command-completion
-eval "$(pip completion --bash)"
+# this was not working for pip3 (code is for pip) mv > /etc/bash_completion.d/
+# type pip3 >/dev/null && eval $(pip3 completion --bash)
+# enable completion for pandoc
+# this was not working without "" surrounding $()
+type pandoc >/dev/null && eval "$(pandoc --bash-completion)"
 #}
 
 # bash functions {
@@ -587,10 +599,10 @@ Extract () {
 #}
 
 # does a bashrc.local exist?
-[[ -r $HOME/.bashrc.local ]] && source $HOME/.bashrc.local
+[ -r $HOME/.bashrc.local ] && source $HOME/.bashrc.local
 
 # display that reboot is required after automatic update
-if [[ -r /var/run/reboot-required ]]; then
+if [ -r /var/run/reboot-required ]; then
   echo 'Reboot required'
   cat /var/run/reboot-required.pkgs
   uptime
