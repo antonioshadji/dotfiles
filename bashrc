@@ -469,7 +469,11 @@ if [ "$(uname -s)" == 'Darwin' ]; then
   alias l='ls -CFG'
   HISTSIZE=1000000
   HISTFILESIZE=1000000
-  export LSCOLORS=FxgxdadacxDaDahbadacec
+  # http://stackoverflow.com/questions/1550288/os-x-terminal-colors
+  export CLICOLOR=1
+  # export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
+  # export LSCOLORS=GxFxCxDxBxegedabagaced
+  # export LSCOLORS=FxgxdadacxDaDahbadacec
 fi
 # }
 
