@@ -76,9 +76,9 @@ set autowriteall        " Write files when many actions, including switching buf
 " https://stackoverflow.com/questions/2842078/how-do-i-detect-os-x-in-my-vimrc-file-so-certain-configurations-will-only-appl
 " works with modern mac osx El Capitan and Ubuntu 12.04 or later
 if system("uname -s") == "Linux\n"       " has ('x') && has ('gui')  On Linux use + register for copy-paste
-  set clipboard=unnamedplus
+  set clipboard+=unnamedplus
 elseif system("uname -s") == "Darwin\n"  "has ('gui') On Mac & Win use * register for copy-paste
-  set clipboard=unnamed
+  set clipboard+=unnamed
 endif
 " this should work for nvim on linux based on this
 " https://neovim.io/doc/user/nvim_clipboard.html#nvim-clipboard

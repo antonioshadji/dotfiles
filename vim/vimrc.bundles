@@ -94,7 +94,8 @@ endif
 Plug 'mustache/vim-mustache-handlebars'
 " https://floobits.com/help/plugins/nvim
 Plug 'floobits/floobits-neovim', { 'do': ':UpdateRemotePlugins' }
-
+" configure editing for team projects
+Plug 'editorconfig/editorconfig-vim'
 " } end bundle list
 
 " All of your Plugs must be added before the following line
