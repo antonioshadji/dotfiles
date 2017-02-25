@@ -322,9 +322,9 @@ fi
 alias ping='ping -c 1'
 
 # 2.1) Safety
-alias rm='rm -i'
-alias mv='mv -i'
-alias cp='cp -i'
+#alias rm='rm -i'
+#alias mv='mv -i'
+#alias cp='cp -i'
 set -o noclobber
 
 # 2.2) Listing, directories, and motion
@@ -339,10 +339,10 @@ alias cl='clear'
 
 # 2.3 Digital Ocean suggestions
 # https://www.digitalocean.com/community/tutorials/an-introduction-to-useful-bash-aliases-and-functions
-alias ps='ps auxf'
+alias psa='ps auxf'
 alias psg='ps aux | grep -v grep | grep -i -e VSZ -e'
 # 2.4 Custom aliases that I created
-alias du='du -sh'
+alias dus='du -sh'
 # syntax colored cat replacement
 # Do 'help type' to see documentation in bash shell (bash Builtin)
 type pygmentize >/dev/null && alias p='pygmentize'
@@ -607,4 +607,3 @@ if [ -r /var/run/reboot-required ]; then
   cat /var/run/reboot-required.pkgs
   uptime
 fi
-
