@@ -314,6 +314,10 @@ fi
 
 # pip install --user installs into ~/.local/bin
 [[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
+
+# go_appengine
+[[ -d /opt/go_appengine ]] && export PATH=$PATH:/opt/go_appengine
+
 #}
 
 #  2) Set up aliases {

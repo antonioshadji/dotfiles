@@ -10,5 +10,5 @@ sudo rm -rf /usr/local/go
 #   <span class="size">(86MB)</span>
 # </div>
 # </a>
-wget https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz
+# wget https://storage.googleapis.com/golang/go1.6.3linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf go*.linux-amd64.tar.gz
