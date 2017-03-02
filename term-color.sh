@@ -2,16 +2,20 @@
 # inspired by https://github.com/Anthony25/gnome-terminal-colors-solarized
 # cron script to switch terminal colors in the evening
 
-# Set up environment if necessary
-export DISPLAY=:0
+# if gnome-session is not running exit, not logged in
+PID=$(pgrep gnome-session)
+[ -z $PID ] && exit
+
 # -z True if the length of string is zero.
 if [ -z $DBUS_SESSION_BUS_ADDRESS ]; then
   # http://stackoverflow.com/questions/10374520/gsettings-with-cron
-  PID=$(pgrep gnome-session)
   export DBUS_SESSION_BUS_ADDRESS=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$PID/environ|cut -d= -f2-)
 fi
+# -z true if variable is unset
 [ -z $DBUS_SESSION_BUS_ADDRESS ] && exit
 
+# Set up environment if necessary
+export DISPLAY=:0
 # http://ethanschoonover.com/solarized
 # light
 base3='#fdfdf6f6e3e3'  # background
