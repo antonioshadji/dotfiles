@@ -475,9 +475,7 @@ if [ "$(uname -s)" == 'Darwin' ]; then
   HISTFILESIZE=1000000
   # http://stackoverflow.com/questions/1550288/os-x-terminal-colors
   export CLICOLOR=1
-  # export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
-  # export LSCOLORS=GxFxCxDxBxegedabagaced
-  # export LSCOLORS=FxgxdadacxDaDahbadacec
+  export LSCOLORS=FxgxdadacxDaDahbadacec
 fi
 # }
 
@@ -547,14 +545,15 @@ type aws_completer >/dev/null && complete -C $(type -p aws_completer) aws
 
 # https://docs.npmjs.com/cli/completion
 # this was not working (2017-02-13) $(npm completion) > /etc/bash_completion.d/
-# type npm >/dev/null && eval $(npm completion)
+type npm >/dev/null && eval "$(npm completion)"
 
 # https://pip.pypa.io/en/stable/user_guide/#command-completion
 # this was not working for pip3 (code is for pip) mv > /etc/bash_completion.d/
 # type pip3 >/dev/null && eval $(pip3 completion --bash)
 # enable completion for pandoc
 # this was not working without "" surrounding $()
-type pandoc >/dev/null && eval "$(pandoc --bash-completion)"
+# ! for NOT, $(type -p xxx) returns path to executable or fails
+[[ $(type -p pandoc) ]] && eval "$(pandoc --bash-completion)"
 #}
 
 # bash functions {
