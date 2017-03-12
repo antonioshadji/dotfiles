@@ -1,3 +1,4 @@
 {
-  "extends": "fullstack"
+  "parser": "babel-eslint",
+  "extends": "google"
 }

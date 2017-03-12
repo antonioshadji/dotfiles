@@ -568,7 +568,8 @@ cd () {
 
 # create random 10 character password and place on clipboard
 CreateRandomPassword () {
-  openssl rand -base64 7 | sed s/=//g | xclip -i -selection clipboard
+  apg -MSNCL -a 1 -n 1 -m 12 -E \`\(\)\\\}\{\]\[\+\<\>  | xclip -i -selection clipboard
+  #openssl rand -base64 7 | sed s/=//g | xclip -i -selection clipboard
 }
 
 # function Extract for common file formats
