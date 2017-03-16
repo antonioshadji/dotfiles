@@ -1,10 +1,10 @@
 " modeline {
-" vim: set foldmarker={,} foldlevel=0 foldmethod=marker :
-" initial setup taken from SPF13
-" https://github.com/spf13/spf13-vim
-" }
+  " vim: set foldmarker={,} foldlevel=0 foldmethod=marker :
+  " }
+
 
 " Note:
+" initial setup taken from SPF13 https://github.com/spf13/spf13-vim
 " online help file: https://vimhelp.appspot.com/
 
 " To insert list of keymaps into buffer
@@ -14,18 +14,20 @@
 " :help map to see more info
 
 " no need for vi backwards compatibility
-set nocompatible    " nvim default
-
+set nocompatible    " nvim default, must be set for vim
+" python provider {
+if has('nvim')
+  let g:python3_host_prog = '/usr/bin/python3'
+endif
+"}
 " Source bundles config {
-  if filereadable(expand("~/.vim/vimrc.bundles"))
-    source ~/.vim/vimrc.bundles
-  endif
+if filereadable(expand("~/.vim/vimrc.bundles"))
+  source ~/.vim/vimrc.bundles
+endif
 " }
 
 syntax enable   "Enable syntax highlighting and don't overwrite colorscheme
 filetype plugin indent on  " required for vundle
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
 
 " no_plugins.vim settings to maximize Vim's built in functionality {
 " from https://github.com/mcantor/no_plugins/blob/master/no_plugins.vim
@@ -394,7 +396,7 @@ endfunction
 command WhiteSpaceRemove :call TrimWhiteSpace()
 
 " http://dustinmartin.net/format-json-in-vim/
-command! FormatJSON %!python3 -m json.tool
+command! FormatJSON %!python -m json.tool
 
 function WebServerStop()
   let id = system('docker ps --filter ancestor=nginx -q')
@@ -406,44 +408,40 @@ command! StopWebServer call WebServerStop()
 command! StartWebServer !docker run -d --name $(basename $(pwd)) -v $(pwd):/usr/share/nginx/html:ro -p 8080:80 nginx
 " }
 
+" Neovim settings to make latest vim work like Neovim {
+if !has('nvim')
+  " nvim defaults {
+  set autoindent          " always autoindent
+  set autoread            " auto re-load files when changed on disk https://github.com/square/maximum-awesome
+  " - 'complete' doesn't include 'i'
+  " - 'display' defaults to 'lastline'
+  set history=10000       " command history length extra long
+  set hlsearch            " highlight search terms :noh to clear
+  set incsearch           " search as you type
+  set mouse=a             " Automatically enable mouse usage
+  set wildmenu            " Show list instead of just completing
+  set ttyfast             " nvim default
+  " }
+
+  " https://neovim.io/doc/user/options.html
+  if v:version >= 704
+    set formatoptions+=tcqj     " https://neovim.io/doc/user/options.html#'formatoptions'
+    set langnoremap             " https://neovim.io/doc/user/options.html#'langnoremap'
+    set laststatus=2            " https://neovim.io/doc/user/options.html#'laststatus'
+    set nrformats=bin,hex       " https://neovim.io/doc/user/options.html#'nrformats'
+    " https://neovim.io/doc/user/options.html#'sessionoptions'
+    set sessionoptions+=blank,buffers,curdir,folds,help,tabpages,winsize
+    set smarttab                " https://neovim.io/doc/user/options.html#'smarttab'
+    " 50 vs 10 for https://neovim.io/doc/user/options.html#'tabpagemax'
+    set tags+=./tags;,tags      " https://neovim.io/doc/user/options.html#'tags'
+  else
+    echo "Not running with Neovim compatibility settings"
+  endif
+endif
+"}
+
 " source configuration for plugins last {
 if filereadable(expand("~/.vim/vimrc.plugins"))
     source ~/.vim/vimrc.plugins
 endif
-"}
-
-" Neovim settings to make latest vim work like Neovim {
-" nvim defaults {
-set autoindent          " always autoindent
-set autoread            " auto re-load files when changed on disk https://github.com/square/maximum-awesome
-" - 'complete' doesn't include 'i'
-" - 'display' defaults to 'lastline'
-set history=10000       " command history length extra long
-set hlsearch            " highlight search terms :noh to clear
-set incsearch           " search as you type
-set mouse=a             " Automatically enable mouse usage
-set wildmenu            " Show list instead of just completing
-set ttyfast             " nvim default
-" }
-
-" https://neovim.io/doc/user/options.html
-if v:version >= 704
-  set formatoptions+=tcqj     " https://neovim.io/doc/user/options.html#'formatoptions'
-  set langnoremap             " https://neovim.io/doc/user/options.html#'langnoremap'
-  set laststatus=2            " https://neovim.io/doc/user/options.html#'laststatus'
-  set nrformats=bin,hex       " https://neovim.io/doc/user/options.html#'nrformats'
-  " https://neovim.io/doc/user/options.html#'sessionoptions'
-  set sessionoptions+=blank,buffers,curdir,folds,help,tabpages,winsize
-  set smarttab                " https://neovim.io/doc/user/options.html#'smarttab'
-  " 50 vs 10 for https://neovim.io/doc/user/options.html#'tabpagemax'
-  set tags+=./tags;,tags      " https://neovim.io/doc/user/options.html#'tags'
-else
-  echo "Not running with Neovim compatibility settings"
-endif
-
-" python provider
-if has('nvim')
-  let g:python3_host_prog = '/usr/bin/python3'
-endif
-
 "}

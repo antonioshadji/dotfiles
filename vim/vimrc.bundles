@@ -23,7 +23,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-capslock'
 " Liquid templates
 Plug 'tpope/vim-liquid', { 'for': 'liquid' }
-" Status line
+" vim-airline Status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " line numbering
@@ -67,27 +67,25 @@ Plug 'jceb/vim-orgmode'
 Plug 'vim-pandoc/vim-pandoc', { 'for': 'pandoc' }
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'pandoc' }
 
-"nvim plugins that replace vim plugins
-"if has("nvim")
+" Syntax checking
+"Plug 'scrooloose/syntastic'
 " Async :make and linting framework for Neovim/Vim
 " replaces syntastic
 Plug 'neomake/neomake'
-" Dark powered asynchronous completion framework for neovim
-" https://github.com/Shougo/deoplete.nvim
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" https://github.com/zchee/deoplete-jedi
-Plug 'zchee/deoplete-jedi', { 'for': ['python' ,'python3'] }
-" https://github.com/carlitux/deoplete-ternjs
-Plug 'carlitux/deoplete-ternjs', { 'for': 'javascript' }
-" https://github.com/zchee/deoplete-clan://github.com/zchee/deoplete-clang
-Plug 'zchee/deoplete-clang', { 'for': ['cpp', 'c'] }
-"else
-  " Syntax checking
-  "Plug 'scrooloose/syntastic'
-if !has('nvim')
+"nvim plugins that replace vim plugins
+if has("nvim")
+  " Dark powered asynchronous completion framework for neovim
+  " https://github.com/Shougo/deoplete.nvim
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  " https://github.com/zchee/deoplete-jedi
+  Plug 'zchee/deoplete-jedi', { 'for': ['python' ,'python3'] }
+  " https://github.com/carlitux/deoplete-ternjs
+  Plug 'carlitux/deoplete-ternjs', { 'for': 'javascript' }
+  " https://github.com/zchee/deoplete-clan://github.com/zchee/deoplete-clang
+  Plug 'zchee/deoplete-clang', { 'for': ['cpp', 'c'] }
+else
   " A code-completion engine for Vim http://valloric.github.io/YouCompleteMe/
-  Plug 'Valloric/YouCompleteMe'
-  ", { 'do': './install.py --tern-completer' }
+  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 endif
 
 " https://github.com/mustache/vim-mustache-handlebars

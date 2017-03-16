@@ -13,8 +13,8 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_symbols = get(g:,'airline_symbols',{})
 let g:airline_symbols.maxlinenr=''
 
-set ttimeoutlen=50
 " set laststatus=2 "2 is default
+set ttimeoutlen=50
 set noshowmode
 
 "}
