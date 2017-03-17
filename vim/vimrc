@@ -14,15 +14,14 @@
 " :scriptnames
 
 " set python provider {
-" this is first because the first access of python set the version
-if !has('nvim')
-  " https://vimhelp.appspot.com/options.txt.html#%27pyxversion%27
-  " https://vimhelp.appspot.com/if_pyth.txt.html#has-pythonx
-  if has('pythonx')
-    " calling this here forces the python version.
-    " if python3 available, py3 else py2
-    "echom 'pyx* commands are available. (Python ' . &pyx . ')'
-  endif
+" this is first because the first access of python sets the version
+" https://vimhelp.appspot.com/options.txt.html#%27pyxversion%27
+" https://vimhelp.appspot.com/if_pyth.txt.html#has-pythonx
+" new in vim8 (not in neovim)
+if has('pythonx') && has('python3')
+  " calling this here forces the python version.
+  " if python3 available, py3 else py2
+  set pyxversion=3
 endif
 "}
 
