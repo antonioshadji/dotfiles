@@ -502,3 +502,5 @@ if filereadable(expand("~/.vim/vimrc.bundles"))
   source ~/.vim/vimrc.bundles
 endif
 " }
+
+colorscheme solarized

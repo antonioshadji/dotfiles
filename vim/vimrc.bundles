@@ -19,7 +19,7 @@ Plug 'altercation/vim-colors-solarized'
 " http://askubuntu.com/questions/67/how-do-i-enable-full-color-support-in-vim
 " set t_Co=16         "Override gnome-terminal 3.6 reporting only 8 colors, set to 16 or 256
 " call this function to enable ToggleBG command
-call togglebg#map("<F5>")
+" call togglebg#map("<F5>")
 
 let hour = strftime("%H")
 let minute = strftime("%M")
@@ -38,7 +38,8 @@ if has('nvim')
     let timer = timer_start((17-hour)*60*60*1000-(minute*60*1000)-(second*1000), 'ColorHandler')
   endif
 endif
-colorscheme solarized
+" causes error here - moved to end of .vimrc
+" colorscheme solarized
 " }
 " vim-airline {
 " vim-airline Status line
@@ -173,16 +174,15 @@ Plug 'scrooloose/nerdcommenter'
 " extended % matching for HTML, LaTeX, and many other languages
 " http://www.vim.org/scripts/script.php?script_id=39
 "Plug 'tmhedberg/matchit'
-packadd! matchit
+if !has('nvim')
+  packadd! matchit
+endif
 
 " configure editing for team projects
 Plug 'editorconfig/editorconfig-vim'
 
-
 " emacs orgmode files
 Plug 'jceb/vim-orgmode'
-
-
 " Liquid templates
 Plug 'tpope/vim-liquid', { 'for': 'liquid' }
 " https://github.com/mustache/vim-mustache-handlebars
