@@ -11,15 +11,148 @@ call plug#begin('~/.vim/bundle')
 
 " Plug List {
 
-" precision colorscheme
+" vim-colors-solarized {
 Plug 'altercation/vim-colors-solarized'
+" https://github.com/huyz/dircolors-solarized
+" http://www.xorcode.com/2011/04/11/solarized-vim-eclipse-ubuntu/
+" https://github.com/sigurdga/gnome-terminal-colors-solarized
+" http://askubuntu.com/questions/67/how-do-i-enable-full-color-support-in-vim
+" set t_Co=16         "Override gnome-terminal 3.6 reporting only 8 colors, set to 16 or 256
+" call this function to enable ToggleBG command
+call togglebg#map("<F5>")
+
+let hour = strftime("%H")
+let minute = strftime("%M")
+let second = strftime("%S")
+if hour >= 17
+  set background=light
+else
+  set background=dark
+endif
+
+if has('nvim')
+  if hour < 17
+    func ColorHandler(timer)
+      set background=light
+    endfunction
+    let timer = timer_start((17-hour)*60*60*1000-(minute*60*1000)-(second*1000), 'ColorHandler')
+  endif
+endif
+colorscheme solarized
+" }
+" vim-airline {
 " vim-airline Status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" line numbering
-Plug 'myusuf3/numbers.vim'
+let g:airline_theme='solarized'
+let g:airline_powerline_fonts=1
+let g:airline#extensions#capslock#enabled=1
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+
+let g:airline_symbols = get(g:,'airline_symbols',{})
+let g:airline_symbols.maxlinenr=''
+
+" set laststatus=2 "2 is default in Vim & Neovim
+set noshowmode
+
+"}
+" vim-indent-guides {
 " highlighting of indented blocks
 Plug 'nathanaelkane/vim-indent-guides'
+let g:indent_guides_guide_size = 1
+let g:indent_guides_space_guides = 1
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_exclude_filetypes = ['help', 'markdown', 'pandoc']
+" }
+" Calendar {
+" a calendar app for vim
+Plug 'itchyny/calendar.vim'
+let g:calendar_first_day = "monday"
+" }
+" vim-pandoc {
+" These plugins do not work on MAC OSX with default vim
+" TODO: vim-pandoc needs update for python3
+Plug 'vim-pandoc/vim-pandoc', { 'for': 'pandoc' }
+Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'pandoc' }
+let g:pandoc#folding#level = 1
+au FileType pandoc setlocal tabstop=4
+au FileType pandoc setlocal shiftwidth=4
+au FileType pandoc setlocal softtabstop=4
+au FileType pandoc setlocal nospell
+"}
+" Goyo - Distraction-free writing in Vim {
+" https://github.com/junegunn/goyo.vim
+Plug 'junegunn/goyo.vim', { 'for': 'pandoc' }
+" let g:goyo_linenr = 1
+function! s:goyo_enter()
+  set nonumber
+  set norelativenumber
+endfunction
+
+function! s:goyo_leave()
+  set number
+  set relativenumber
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+"}
+" Plugin 'othree/javascript-libraries-syntax.vim' {
+" https://github.com/othree/javascript-libraries-syntax.vim
+" default libraries are underscore,backbone,jquery
+Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
+let g:used_javascript_libs = 'underscore,backbone,jquery,express'
+"}
+
+" Tern plugin
+Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
+" improved Javascript syntax support in Vim.(  this makes folding work)
+Plug 'othree/yajs.vim', { 'for': 'javascript' }
+" Javascript Parameter Complete  https://github.com/othree/jspc.vim
+Plug 'othree/jspc.vim', { 'for': 'javascript' }
+" https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
+" Neomake - Async :make and linting framework for Neovim/Vim {
+" (replaces syntastic for both vim and NeoVim)
+Plug 'neomake/neomake'
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_open_list = 2
+" let g:neomake_html_tidy_ignore_errors = ['*empty*']
+"let g:neomake_html_tidy_maker = { 'args': ['--drop-empty-elements', 'no'] }
+" }
+" syntastic configuration {
+"Plug 'scrooloose/syntastic'
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"" # pylint: disable=C0301 can be used inside a file to disable warnings
+"" let g:syntastic_python_pylint_args = '--disable=C0301,E501'
+"let g:syntastic_python_checkers=['pylint', 'flake8', 'pyflakes', 'python']
+"let g:syntastic_python_python_exec = '/usr/bin/python3'
+"let g:syntastic_python_pylint_exe = 'python3 -m pylint'
+"" html checkers
+"let g:syntastic_html_tidy_ignore_errors=['proprietary attribute', 'trimming empty <span>'] ", 'trimming empty <i>'
+"" javascript checker
+"" https://www.npmjs.com/package/xo#editor-plugins
+""let g:syntastic_javascript_eslint_generic = 1
+""let g:syntastic_javascript_eslint_exec = 'xo'
+""let g:syntastic_javascript_eslint_args = '--reporter=compact'
+"let g:syntastic_javascript_checkers = ['eslint']
+"" recommended settings from syntastic manual
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_aggregate_errors = 1
+
+"}
+
+" line numbering
+Plug 'myusuf3/numbers.vim'
 " Software caps lock
 Plug 'tpope/vim-capslock'
 
@@ -31,8 +164,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 " Highlight colors in css files
 Plug 'ap/vim-css-color'
-" a calendar app for vim
-Plug 'itchyny/calendar.vim'
 " Vim plugin that displays tags in a window, ordered by scope
 " This is a must use when working with larger files
 " https://github.com/majutsushi/tagbar
@@ -41,38 +172,16 @@ Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdcommenter'
 " extended % matching for HTML, LaTeX, and many other languages
 " http://www.vim.org/scripts/script.php?script_id=39
-Plug 'tmhedberg/matchit'
-
-" Tern plugin
-Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
-" improved Javascript syntax support in Vim.(  this makes folding work)
-Plug 'othree/yajs.vim', { 'for': 'javascript' }
-" https://github.com/othree/javascript-libraries-syntax.vim
-" default libraries are jquery, backbone, underscore
-Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
-" Javascript Parameter Complete  https://github.com/othree/jspc.vim
-Plug 'othree/jspc.vim', { 'for': 'javascript' }
-" https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+"Plug 'tmhedberg/matchit'
+packadd! matchit
 
 " configure editing for team projects
 Plug 'editorconfig/editorconfig-vim'
 
-" These plugins do not work on MAC OSX with default vim
-  " Markdown utilities
-  " TODO: vim-pandoc needs update for python3
-Plug 'vim-pandoc/vim-pandoc', { 'for': 'pandoc' }
-Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'pandoc' }
-"Distraction-free writing in Vim
-Plug 'junegunn/goyo.vim', { 'for': 'pandoc' }
+
 " emacs orgmode files
 Plug 'jceb/vim-orgmode'
 
-" Syntax checking
-" Async :make and linting framework for Neovim/Vim (replaces syntastic)
-"Plug 'scrooloose/syntastic'
-Plug 'neomake/neomake'
 
 " Liquid templates
 Plug 'tpope/vim-liquid', { 'for': 'liquid' }
@@ -82,21 +191,58 @@ Plug 'mustache/vim-mustache-handlebars'
 "nvim plugins
 if has("nvim")
   " ONLY neovim
-  " Dark powered asynchronous completion framework for neovim
+  " deoplete Dark powered asynchronous completion framework for neovim {
   " https://github.com/Shougo/deoplete.nvim
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  " Use deoplete.
+  let g:deoplete#enable_at_startup = 1
+  " https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
+  let g:deoplete#omni#functions = {}
+  let g:deoplete#omni#functions.javascript = [
+    \ 'tern#Complete',
+    \ 'jspc#omni'
+  \]
+  set completeopt=longest,menuone,preview
+  let g:deoplete#sources = {}
+  let g:deoplete#sources.javascript = ['file', 'tag', 'ternjs', 'ultisnips' ]
+  let g:tern_request_timeout = 1
+  let g:tern_show_signature_in_pum = '0'  " This do disable full signature type on autocomplete
+  let g:tern#command = ['tern']
+  let g:tern#arguments = ['--persistent']
+
+  autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+  let g:UltiSnipsExpandTrigger="<C-j>"
+  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+  "https://github.com/zchee/deoplete-clang
+  let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang.so'
+  let g:deoplete#sources#clang#clang_header = '/usr/lib/llvm-3.8/lib/clang'
+
+  "call deoplete#enable_logging('DEBUG', 'deoplete.log')
+  " }
   " https://github.com/zchee/deoplete-jedi
   Plug 'zchee/deoplete-jedi', { 'for': ['python' ,'python3'] }
   " https://github.com/carlitux/deoplete-ternjs
   Plug 'carlitux/deoplete-ternjs', { 'for': 'javascript' }
-  " https://github.com/zchee/deoplete-clan://github.com/zchee/deoplete-clang
+  " https://github.com/zchee/deoplete-clang
   Plug 'zchee/deoplete-clang', { 'for': ['cpp', 'c'] }
   " https://floobits.com/help/plugins/nvim
   Plug 'floobits/floobits-neovim', { 'do': ':UpdateRemotePlugins' }
 else
   " ONLY vim
-  " A code-completion engine for Vim http://valloric.github.io/YouCompleteMe/
+  " YouCompleteMe A code-completion engine for Vim {
+  " http://valloric.github.io/YouCompleteMe/
   Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
+  " this will disable ycm let g:loaded_youcompleteme = 1
+  " https://github.com/Valloric/YouCompleteMe/issues/700
+  " let g:ycm_global_ycm_extra_conf = './third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+  let g:ycm_key_list_select_completion = ['<TAB>']
+  let g:ycm_key_list_previous_completion = ['<S-TAB>']
+  "let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
+  let g:EclimCompletionMethod = 'omnifunc'
+  "let g:ycm_python_binary_path = 'python3'
+  "let g:ycm_server_python_interpreter = '/usr/bin/python3'
+  let g:ycm_server_keep_logfiles = 1
+  "}
 endif
 " } end bundle list
 

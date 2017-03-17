@@ -13,7 +13,29 @@
 " To see list of scripts loaded in the order in which they were loaded
 " :scriptnames
 
-" from defaults.vim (full line comments are related additional settings)
+" set python provider {
+" this is first because the first access of python set the version
+if !has('nvim')
+  " https://vimhelp.appspot.com/options.txt.html#%27pyxversion%27
+  " https://vimhelp.appspot.com/if_pyth.txt.html#has-pythonx
+  if has('pythonx')
+    " calling this here forces the python version.
+    " if python3 available, py3 else py2
+    "echom 'pyx* commands are available. (Python ' . &pyx . ')'
+  endif
+endif
+"}
+
+"Enable syntax highlighting and don't overwrite colorscheme
+syntax enable
+" Enable file type detection.
+" Use the default filetype settings, so that mail gets 'tw' set to 72,
+" 'cindent' is on in C files, etc.
+" Also load indent files, to automatically do language-dependent indenting.
+filetype plugin indent on
+
+" from defaults.vim {
+" (full line comments are related additional settings)
 set nocompatible                " nvim default, must be set for vim
 set backspace=indent,eol,start  " fix backspace
 set showcmd                     " display incomplete commands
@@ -43,34 +65,7 @@ set incsearch                   " search as you type
 set nrformats=bin,hex
 
 set mouse=a                     " Automatically enable mouse usage
-
-
-" set python provider {
-if has('nvim')
-  let g:python3_host_prog = '/usr/bin/python3'
-else
-  " https://vimhelp.appspot.com/options.txt.html#%27pyxversion%27
-  " https://vimhelp.appspot.com/if_pyth.txt.html#has-pythonx
-  if has('pythonx')
-    " calling this here forces the python version.
-    " if python3 available, py3 else py2
-    "echom 'pyx* commands are available. (Python ' . &pyx . ')'
-  endif
-endif
 "}
-" Source bundles config {
-if filereadable(expand("~/.vim/vimrc.bundles"))
-  source ~/.vim/vimrc.bundles
-endif
-" }
-
-"Enable syntax highlighting and don't overwrite colorscheme
-syntax enable
-" Enable file type detection.
-" Use the default filetype settings, so that mail gets 'tw' set to 72,
-" 'cindent' is on in C files, etc.
-" Also load indent files, to automatically do language-dependent indenting.
-filetype plugin indent on
 
 " no_plugins.vim settings to maximize Vim's built in functionality {
 " from https://github.com/mcantor/no_plugins/blob/master/no_plugins.vim
@@ -95,7 +90,7 @@ command! MakeTags !ctags -R .
 " Tweaks for browsing
 let g:netrw_banner=0        " disable annoying banner
 let g:netrw_browse_split=2  " open in vertical split (4 = prior window)
-let g:netrw_altv=1          " open splits to the right
+"let g:netrw_altv=1          " open splits to the right
 let g:netrw_liststyle=3     " tree view
 let g:netrw_list_hide=netrw_gitignore#Hide()
 let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
@@ -433,7 +428,33 @@ function LastModified()
 endfunction
 autocmd BufWritePre *.md,*.markdown,*.mkd :call LastModified()
 "}
-"
+" The Silver Searcher {
+" https://robots.thoughtbot.com/faster-grepping-in-vim#override-to-use-the-silver-searcher
+" https://github.com/ggreer/the_silver_searcher
+if executable('ag')
+  " Use ag over grep - reccomend by thoughtbot
+  " set grepprg=ag\ --nogroup\ --nocolor
+  " reccommend in ag man page
+  set grepprg=ag\ --vimgrep\ $*
+  set grepformat=%f:%l:%c:%m
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+"}
+" Start/Stop nginx webserver in current pwd {
+" https://hub.docker.com/_/nginx/
+command! StartWebServer !docker run -d --name $(basename $(pwd)) -v $(pwd):/usr/share/nginx/html:ro -p 8080:80 nginx
+function WebServerStop()
+  let id = system('docker ps --filter ancestor=nginx -q')
+  let cmd = system('docker stop ' . id)
+endfunction
+command! StopWebServer call WebServerStop()
+"}
+
 " https://vi.stackexchange.com/questions/454/whats-the-simplest-way-to-strip-trailing-whitespace-from-all-lines-in-a-file
 " https://bitbucket.org/Carpetsmoker/sanitize_files/src
 function TrimWhiteSpace()
@@ -446,14 +467,6 @@ command WhiteSpaceRemove :call TrimWhiteSpace()
 " http://dustinmartin.net/format-json-in-vim/
 command! FormatJSON %!python -m json.tool
 
-function WebServerStop()
-  let id = system('docker ps --filter ancestor=nginx -q')
-  let cmd = system('docker stop ' . id)
-endfunction
-command! StopWebServer call WebServerStop()
-
-" https://hub.docker.com/_/nginx/
-command! StartWebServer !docker run -d --name $(basename $(pwd)) -v $(pwd):/usr/share/nginx/html:ro -p 8080:80 nginx
 " }
 
 " Neovim settings to make latest vim work like Neovim {
@@ -484,8 +497,8 @@ if !has('nvim')
 endif
 "}
 
-" source configuration for plugins last {
-if filereadable(expand("~/.vim/vimrc.plugins"))
-    source ~/.vim/vimrc.plugins
+" Source bundles config {
+if filereadable(expand("~/.vim/vimrc.bundles"))
+  source ~/.vim/vimrc.bundles
 endif
-"}
+" }
