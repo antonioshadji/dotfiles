@@ -13,16 +13,6 @@ call plug#begin('~/.vim/bundle')
 
 " precision colorscheme
 Plug 'altercation/vim-colors-solarized'
-" Git integration
-Plug 'tpope/vim-fugitive'
-" quoting/parenthesizing made simple
-Plug 'tpope/vim-surround'
-"enable repeating supported plugin maps
-Plug 'tpope/vim-repeat'
-" Software caps lock
-Plug 'tpope/vim-capslock'
-" Liquid templates
-Plug 'tpope/vim-liquid', { 'for': 'liquid' }
 " vim-airline Status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -30,10 +20,17 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'myusuf3/numbers.vim'
 " highlighting of indented blocks
 Plug 'nathanaelkane/vim-indent-guides'
+" Software caps lock
+Plug 'tpope/vim-capslock'
+
+" Git integration
+Plug 'tpope/vim-fugitive'
+" quoting/parenthesizing made simple
+Plug 'tpope/vim-surround'
+"enable repeating supported plugin maps
+Plug 'tpope/vim-repeat'
 " Highlight colors in css files
 Plug 'ap/vim-css-color'
-"Distraction-free writing in Vim
-Plug 'junegunn/goyo.vim', { 'for': 'pandoc' }
 " a calendar app for vim
 Plug 'itchyny/calendar.vim'
 " Vim plugin that displays tags in a window, ordered by scope
@@ -45,35 +42,46 @@ Plug 'scrooloose/nerdcommenter'
 " extended % matching for HTML, LaTeX, and many other languages
 " http://www.vim.org/scripts/script.php?script_id=39
 Plug 'tmhedberg/matchit'
-" improved Javascript syntax support in Vim.
-" this makes folding work
-"Plug 'pangloss/vim-javascript'
+
+" Tern plugin
+Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
+" improved Javascript syntax support in Vim.(  this makes folding work)
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
 " https://github.com/othree/javascript-libraries-syntax.vim
 " default libraries are jquery, backbone, underscore
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
-" Tern plugin
-Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
 " Javascript Parameter Complete  https://github.com/othree/jspc.vim
 Plug 'othree/jspc.vim', { 'for': 'javascript' }
 " https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'jceb/vim-orgmode'
+
+" configure editing for team projects
+Plug 'editorconfig/editorconfig-vim'
 
 " These plugins do not work on MAC OSX with default vim
   " Markdown utilities
   " TODO: vim-pandoc needs update for python3
 Plug 'vim-pandoc/vim-pandoc', { 'for': 'pandoc' }
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'pandoc' }
+"Distraction-free writing in Vim
+Plug 'junegunn/goyo.vim', { 'for': 'pandoc' }
+" emacs orgmode files
+Plug 'jceb/vim-orgmode'
 
 " Syntax checking
+" Async :make and linting framework for Neovim/Vim (replaces syntastic)
 "Plug 'scrooloose/syntastic'
-" Async :make and linting framework for Neovim/Vim
-" replaces syntastic
 Plug 'neomake/neomake'
-"nvim plugins that replace vim plugins
+
+" Liquid templates
+Plug 'tpope/vim-liquid', { 'for': 'liquid' }
+" https://github.com/mustache/vim-mustache-handlebars
+Plug 'mustache/vim-mustache-handlebars'
+
+"nvim plugins
 if has("nvim")
+  " ONLY neovim
   " Dark powered asynchronous completion framework for neovim
   " https://github.com/Shougo/deoplete.nvim
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -83,17 +91,13 @@ if has("nvim")
   Plug 'carlitux/deoplete-ternjs', { 'for': 'javascript' }
   " https://github.com/zchee/deoplete-clan://github.com/zchee/deoplete-clang
   Plug 'zchee/deoplete-clang', { 'for': ['cpp', 'c'] }
+  " https://floobits.com/help/plugins/nvim
+  Plug 'floobits/floobits-neovim', { 'do': ':UpdateRemotePlugins' }
 else
+  " ONLY vim
   " A code-completion engine for Vim http://valloric.github.io/YouCompleteMe/
   Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 endif
-
-" https://github.com/mustache/vim-mustache-handlebars
-Plug 'mustache/vim-mustache-handlebars'
-" https://floobits.com/help/plugins/nvim
-Plug 'floobits/floobits-neovim', { 'do': ':UpdateRemotePlugins' }
-" configure editing for team projects
-Plug 'editorconfig/editorconfig-vim'
 " } end bundle list
 
 " All of your Plugs must be added before the following line

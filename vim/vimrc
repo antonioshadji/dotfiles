@@ -1,10 +1,7 @@
 " modeline {
   " vim: set foldmarker={,} foldlevel=0 foldmethod=marker :
   " }
-
-
 " Note:
-" initial setup taken from SPF13 https://github.com/spf13/spf13-vim
 " online help file: https://vimhelp.appspot.com/
 
 " To insert list of keymaps into buffer
@@ -13,11 +10,52 @@
 " "ap
 " :help map to see more info
 
-" no need for vi backwards compatibility
-set nocompatible    " nvim default, must be set for vim
-" python provider {
+" To see list of scripts loaded in the order in which they were loaded
+" :scriptnames
+
+" from defaults.vim (full line comments are related additional settings)
+set nocompatible                " nvim default, must be set for vim
+set backspace=indent,eol,start  " fix backspace
+set showcmd                     " display incomplete commands
+set wildmenu                    " Show list instead of just completing
+" Command <Tab> completion, list matches, then longest common part, then all.
+set wildmode=list:longest,full
+" https://bitbucket.org/sjl/dotfiles/src/cbbbc897e9b3/vim/vimrc
+set wildignore+=.hg,.git,.svn                    " Version control
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
+set wildignore+=*.spl                            " compiled spelling word lists
+set wildignore+=*.sw?                            " Vim swap files
+set wildignore+=*.DS_Store                       " OSX bullshit
+set wildignore+=*.luac                           " Lua byte code
+set wildignore+=*.pyc                            " Python byte code
+set wildignore+=*.class                          " Java byte code
+
+set ttimeout                    " time out for key codes
+set ttimeoutlen=100             " wait up to 100ms after Esc for special key
+
+set scrolloff=2 "default.vim=5  " Minimum lines to keep above and below cursor
+set incsearch                   " search as you type
+" Ctrl-A increments character under cursor
+" Ctrl-X decrements
+" defaults.vim suggests removing octal nvim default is bin,hex
+" https://neovim.io/doc/user/options.html#'nrformats'
+set nrformats=bin,hex
+
+set mouse=a                     " Automatically enable mouse usage
+
+
+" set python provider {
 if has('nvim')
   let g:python3_host_prog = '/usr/bin/python3'
+else
+  " https://vimhelp.appspot.com/options.txt.html#%27pyxversion%27
+  " https://vimhelp.appspot.com/if_pyth.txt.html#has-pythonx
+  if has('pythonx')
+    " calling this here forces the python version.
+    " if python3 available, py3 else py2
+    "echom 'pyx* commands are available. (Python ' . &pyx . ')'
+  endif
 endif
 "}
 " Source bundles config {
@@ -26,8 +64,13 @@ if filereadable(expand("~/.vim/vimrc.bundles"))
 endif
 " }
 
-syntax enable   "Enable syntax highlighting and don't overwrite colorscheme
-filetype plugin indent on  " required for vundle
+"Enable syntax highlighting and don't overwrite colorscheme
+syntax enable
+" Enable file type detection.
+" Use the default filetype settings, so that mail gets 'tw' set to 72,
+" 'cindent' is on in C files, etc.
+" Also load indent files, to automatically do language-dependent indenting.
+filetype plugin indent on
 
 " no_plugins.vim settings to maximize Vim's built in functionality {
 " from https://github.com/mcantor/no_plugins/blob/master/no_plugins.vim
@@ -89,26 +132,12 @@ set clipboard+=unnamedplus
 
 " Vim UI {
 set cursorline                  " Highlight current line
-set backspace=indent,eol,start  " fix backspace
 set number                      " show line numbers
 set showmatch                   " jump cursor to matching brace when entered
-set showcmd
 set ignorecase                  " case-insensitive search
 set smartcase                   " use case sensitive search if any caps present
-set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
-" https://bitbucket.org/sjl/dotfiles/src/cbbbc897e9b3/vim/vimrc
-set wildignore+=.hg,.git,.svn                    " Version control
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
-set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
-set wildignore+=*.spl                            " compiled spelling word lists
-set wildignore+=*.sw?                            " Vim swap files
-set wildignore+=*.DS_Store                       " OSX bullshit
-set wildignore+=*.luac                           " Lua byte code
-set wildignore+=*.pyc                            " Python byte code
-set wildignore+=*.class                          " Java byte code
 
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
-set scrolloff=2                 " Minimum lines to keep above and below cursor
 set foldenable                  " Auto fold code
 "  To insert special character - in insert mode CTRL-K two character code from :digraphs command
 set listchars=tab:›\ ,trail:∙,nbsp:†,extends:»,precedes:« "nvim defaults to tab:> ,trail:-,nbsp:+
@@ -277,6 +306,13 @@ cmap w!! w !sudo tee % >/dev/null
 " -cp = classpath
 map <F7> :!clear; javac -cp ../algs4.jar:. %<CR>
 map <F8> :!clear; java -ea -cp ../algs4.jar:. %:r<CR>
+
+"from defaults.vim
+" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
+" so that you can undo CTRL-U after inserting a line break.
+" Revert with ":iunmap <C-U>".
+inoremap <C-U> <C-G>u<C-U>
+
 "} end keyboard shortcuts
 
 " Auto Commands: {
@@ -318,11 +354,6 @@ autocmd BufRead,BufNewFile *.markdown set filetype=pandoc
 autocmd FileType pandoc setlocal spell spelllang=en_us
 " }
 
-" Use Liquid filetype for html {
-" this does not properly highlight html -- only template language
-" autocmd BufRead,BufNewFile *.html set filetype=Liquid
-" }
-
 " Octave filetype {
 " http://www.vim.org/scripts/script.php?script_id=3600
 autocmd BufRead,BufNewFile *.m,*.oct set filetype=octave
@@ -354,9 +385,26 @@ let java_highlight_functions="style"
 " }
 
 " Neovim auto enter insert mode for terminal buffer {
-autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
+if has('nvim')
+  autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
+endif
 "}
 
+
+" run Neomake on each file write {
+autocmd! BufWritePost * Neomake
+" }
+
+" jump to last known cursor position {
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid or when inside an event handler
+" (happens when dropping a file on gvim).
+
+autocmd BufReadPost *
+    \ if line("'\"") >= 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+"}
 endif
 " end Auto Commands: }
 
@@ -370,8 +418,8 @@ endif
 " getftime returns modified time of file name
 " @% returns active buffer file name
 function LastModified()
-  " below line commented out since using getftime()
-  "if &modified
+  " comment out &modified if using getftime()
+  if &modified
     let save_cursor = getpos('.')
     " minimum of 20 lines or file length
     let n = min([20, line('$')])
@@ -381,7 +429,7 @@ function LastModified()
     call histdel('search', -1)
     call setpos('.', save_cursor)
     echom 'updated last modified date'
-  "endif
+  endif
 endfunction
 autocmd BufWritePre *.md,*.markdown,*.mkd :call LastModified()
 "}
@@ -417,9 +465,6 @@ if !has('nvim')
   " - 'display' defaults to 'lastline'
   set history=10000       " command history length extra long
   set hlsearch            " highlight search terms :noh to clear
-  set incsearch           " search as you type
-  set mouse=a             " Automatically enable mouse usage
-  set wildmenu            " Show list instead of just completing
   set ttyfast             " nvim default
   " }
 
@@ -428,7 +473,6 @@ if !has('nvim')
     set formatoptions+=tcqj     " https://neovim.io/doc/user/options.html#'formatoptions'
     set langnoremap             " https://neovim.io/doc/user/options.html#'langnoremap'
     set laststatus=2            " https://neovim.io/doc/user/options.html#'laststatus'
-    set nrformats=bin,hex       " https://neovim.io/doc/user/options.html#'nrformats'
     " https://neovim.io/doc/user/options.html#'sessionoptions'
     set sessionoptions+=blank,buffers,curdir,folds,help,tabpages,winsize
     set smarttab                " https://neovim.io/doc/user/options.html#'smarttab'
