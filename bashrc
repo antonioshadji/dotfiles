@@ -24,9 +24,11 @@
 # Return a status of 0 or 1 depending on the evaluation of the conditional
 # expression *expression*. Expressions are composed of the primaries described
 # below in Bash Conditional Expressions.
+# ******************************************************************************
 # the &&, ||, <, and > operators work within a [[ ]] test, despite giving an
 # error within a [ ] construct.
-
+# ******************************************************************************
+# filename expansion === globbing ; disable with -f
 # Word splitting and filename expansion are not performed on the words between
 # the [[ and ]]; tilde expansion, parameter and variable expansion,
 # arithmetic expansion, command substitution, process substitution, and
@@ -99,6 +101,7 @@ set -o vi
 # this shows up in prompt when using virtual terminal $TERM=Linux (tty)
 # http://tldp.org/HOWTO/Xterm-Title-3.html
 # http://stackoverflow.com/a/25535717/2472798
+# pattern matching **requires** [[ ]]
 if [[ $TERM == xterm* ]]; then
   PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/\~}\007"'
 fi
@@ -266,7 +269,7 @@ base3='\e[1;37m'   # base3     #fdf6e3 15/7 brwhite  230 #ffffd7 97  00  10 253 
 
 # https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions
 # -r file True if file exists and is readable.
-if [[ -r $HOME/dotfiles/bash-git-prompt/gitprompt.sh ]]; then
+if [ -r $HOME/dotfiles/bash-git-prompt/gitprompt.sh ]; then
   source $HOME/dotfiles/bash-git-prompt/gitprompt.sh
 fi
 # Set config variables first
@@ -287,7 +290,7 @@ GIT_PROMPT_THEME=Solarized_Ubuntu
 
 # Configure PATH {
 # https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
-if [[ "$(uname -s)" == "Linux" ]]; then
+if [ $(uname -s) == Linux ]; then
   export XDG_DATA_HOME=$HOME/.local/share
   export XDG_CONFIG_HOME=$HOME/.config
   export XDG_CACHE_HOME=$HOME/.cache
@@ -299,24 +302,25 @@ export PATH=$PATH
 # https://www.gnu.org/software/bash/manual/bash.html#Pattern-Matching
 # https://askubuntu.com/questions/299710/how-to-determine-if-a-string-is-a-substring-of-another-in-bash
 # set PATH so it includes user's private bin if it exists
-if [[ ! $PATH == *$HOME/bin* ]]; then
-  [[ -d $HOME/bin ]] && export PATH=$HOME/bin:$PATH
+# only [[]] allows multiple tests and pattern matching
+if [[ ! $PATH == *$HOME/bin* && -d $HOME/bin ]]; then
+  export PATH=$HOME/bin:$PATH
 fi
 
 # set PATH to include latest version of pandoc
-[[ -d $HOME/.cabal/bin ]] && export PATH=$HOME/.cabal/bin:$PATH
+[ -d $HOME/.cabal/bin ] && export PATH=$HOME/.cabal/bin:$PATH
 
-if [[ -d /opt/android-studio/bin ]]; then
+if [ -d /opt/android-studio/bin ]; then
   export PATH=/opt/android-studio/bin:$PATH
 fi
 
-[[ -d $HOME/.gem/ruby/2.3.0/bin ]] && export PATH=$HOME/.gem/ruby/2.3.0/bin:$PATH
+[ -d $HOME/.gem/ruby/2.3.0/bin ] && export PATH=$HOME/.gem/ruby/2.3.0/bin:$PATH
 
 # pip install --user installs into ~/.local/bin
-[[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
+[ -d $HOME/.local/bin ] && export PATH=$HOME/.local/bin:$PATH
 
 # go_appengine
-[[ -d /opt/go_appengine ]] && export PATH=$PATH:/opt/go_appengine
+[ -d /opt/go_appengine ] && export PATH=$PATH:/opt/go_appengine
 
 #}
 
@@ -348,10 +352,9 @@ alias psg='ps aux | grep -v grep | grep -i -e VSZ -e'
 # 2.4 Custom aliases that I created
 alias dus='du -sh'
 # syntax colored cat replacement
-# Do 'help type' to see documentation in bash shell (bash Builtin)
-type pygmentize >/dev/null && alias p='pygmentize'
+[ $(command -v pygmentize) ] && alias p='pygmentize'
 # open files in graphic workspace based on mime-type
-type xdg-open >/dev/null && alias o='xdg-open'
+[ $(command -v xdg-open) ] && alias o='xdg-open'
 #}
 
 # 2.3) Text and editor commands{
@@ -377,7 +380,7 @@ export LANG='en_US.UTF-8'
 # Colors {
 ## Define any user-specific variables you want here.
 # setup LS_COLORS for dircolors command. Solarize color pallette shows only greytones in terminal
-[[ -r $HOME/.dircolors ]] && eval "$(dircolors $HOME/.dircolors)"
+[ -r $HOME/.dircolors ] && eval "$(dircolors $HOME/.dircolors)"
 
 # From ubuntu 16.04 default bashrc
 # colored GCC warnings and errors
@@ -390,14 +393,6 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 #}
 
 #{ Node setup and tools
-# https://nodejs.org/api/repl.html
-# 2.6) Install rlwrap if not present
-# type rlwrap >/dev/null 2>&1 || { echo >&2 "Install rlwrap to use node: sudo (apt-get or brew) install rlwrap";}
-# 2.7) node.js and nvm
-# alias noder="env NODE_NO_READLINE=1 rlwrap node"
-# alias node_repl="node -e \"require('repl').start({ignoreUndefined: true, useColors: true})\""
-
-# https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions
 # [ -r file ] returns True if file exists and is readable.
 if [ -r $HOME/.nvm/nvm.sh ]; then
   NVM_DIR=$HOME/.nvm
@@ -443,27 +438,7 @@ export UBUMAIL="Antonios Hadjigeorgalis <Antonios@Hadji.co>"
 export DEBEMAIL="Antonios@Hadji.co"
 export DEBFULLNAME="Antonios Hadjigeorgalis"
 # }
-# Linux only setup {
-# if [[ "$(uname -s)" == "Linux" ]]; then
-#   # +%k is single digit with space, is converted to number
-#   # +%H is hour with leading zero, < 10 converted to octal
-#   hour=$(date +%k)
-#   # (( expression ))
-#   # The arithmetic expression is evaluated according to the rules
-#   # described below (see Shell Arithmetic). If the value of the
-#   # expression is non-zero, the return status is 0; otherwise the
-#   # return status is 1. This is exactly equivalent to let "expression"
-#   if [[ -x $HOME/dotfiles/solarize-gnome-terminal.sh ]]; then
-#     if (( $hour >= 17 )); then
-#       $HOME/dotfiles/solarize-gnome-terminal.sh light Default
-#     else
-#       $HOME/dotfiles/solarize-gnome-terminal.sh dark Default
-#     fi
-#   fi
-# else
-#   echo "Not running linux. Solarized colors will not auto-switch at night"
-# fi
-# }
+
 # Darwin only setup {
 if [ "$(uname -s)" == 'Darwin' ]; then
   # add all mac osx specific bits inside an if statement like this.
@@ -541,19 +516,19 @@ fi
 
 # AWS CLI completion
 # http://docs.aws.amazon.com/cli/latest/userguide/cli-command-completion.html
-type aws_completer >/dev/null && complete -C $(type -p aws_completer) aws
+[ $(command -v aws_completer) ] && complete -C aws_completer aws
 
 # https://docs.npmjs.com/cli/completion
 # this was not working (2017-02-13) $(npm completion) > /etc/bash_completion.d/
-type npm >/dev/null && eval "$(npm completion)"
+[ $(command -v npm) ] && eval "$(npm completion)"
 
 # https://pip.pypa.io/en/stable/user_guide/#command-completion
-# this was not working for pip3 (code is for pip) mv > /etc/bash_completion.d/
-# type pip3 >/dev/null && eval $(pip3 completion --bash)
+# specifically for pip command, does not offer completion for pip2 or pip3
+[ $(command -v pip) ] && eval "`pip completion --bash`"
+
 # enable completion for pandoc
 # this was not working without "" surrounding $()
-# ! for NOT, $(type -p xxx) returns path to executable or fails
-[[ $(type -p pandoc) ]] && eval "$(pandoc --bash-completion)"
+[ $(command -v pandoc) ] && eval "$(pandoc --bash-completion)"
 #}
 
 # bash functions {
