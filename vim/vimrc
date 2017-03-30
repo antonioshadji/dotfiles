@@ -413,7 +413,7 @@ endif
 " @% returns active buffer file name
 function LastModified()
   " comment out &modified if using getftime()
-  if &modified
+"  if &modified
     let save_cursor = getpos('.')
     " minimum of 20 lines or file length
     let n = min([20, line('$')])
@@ -423,7 +423,7 @@ function LastModified()
     call histdel('search', -1)
     call setpos('.', save_cursor)
     echom 'updated last modified date'
-  endif
+"  endif
 endfunction
 autocmd BufWritePre *.md,*.markdown,*.mkd :call LastModified()
 "}

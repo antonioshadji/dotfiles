@@ -2,6 +2,9 @@
 # vim: set foldmarker={,} foldlevel=0 foldmethod=marker :
 # }
 
+# does a bashrc.local exist?
+[ -r $HOME/.bashrc.local ] && source $HOME/.bashrc.local
+
 # Bash Reference Manual {
 # https://www.gnu.org/software/bash/manual/bash.html
 
@@ -542,7 +545,8 @@ cd () {
 
 # create random 10 character password and place on clipboard
 CreateRandomPassword () {
-  apg -MSNCL -a 1 -n 1 -m 12 -E \`\(\)\\\}\{\]\[\+\<\>  | xclip -i -selection clipboard
+  charString='`()}{][+<>=^,#|:\'
+  apg -MSNCL -a 1 -n 1 -m 12 -E $charString  | xclip -i -selection clipboard
   #openssl rand -base64 7 | sed s/=//g | xclip -i -selection clipboard
 }
 
@@ -580,9 +584,6 @@ Extract () {
 }
 
 #}
-
-# does a bashrc.local exist?
-[ -r $HOME/.bashrc.local ] && source $HOME/.bashrc.local
 
 # display that reboot is required after automatic update
 if [ -r /var/run/reboot-required ]; then
