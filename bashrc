@@ -60,6 +60,10 @@
 # if necessary, updates the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
+
 # set vi mode to edit like vim
 # insert mode by default esc to go to command mode
 set -o vi
