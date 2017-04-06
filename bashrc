@@ -317,10 +317,10 @@ fi
 # set PATH to include latest version of pandoc
 [ -d $HOME/.cabal/bin ] && export PATH=$HOME/.cabal/bin:$PATH
 
-if [ -d /opt/android-studio/bin ]; then
-  export PATH=/opt/android-studio/bin:$PATH
-fi
+# android studio manually installed in this location
+[ -d /opt/android-studio/bin ] && export PATH=/opt/android-studio/bin:$PATH
 
+# gem install --user-install uses this location
 [ -d $HOME/.gem/ruby/2.3.0/bin ] && export PATH=$HOME/.gem/ruby/2.3.0/bin:$PATH
 
 # pip install --user installs into ~/.local/bin
