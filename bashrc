@@ -405,6 +405,10 @@ if [ -r $HOME/.nvm/nvm.sh ]; then
   NVM_DIR=$HOME/.nvm
   source $HOME/.nvm/nvm.sh
 fi
+
+# 2.6) Install rlwrap if not present
+# https://nodejs.org/api/repl.html
+command -v rlwrap >/dev/null 2>&1 || { echo >&2 "Install rlwrap to use node: sudo (apt-get or brew) install rlwrap";}
 #}
 # { Python setup and tools
 
