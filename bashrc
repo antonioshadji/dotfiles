@@ -405,8 +405,6 @@ if [ -r $HOME/.nvm/nvm.sh ]; then
   NVM_DIR=$HOME/.nvm
   source $HOME/.nvm/nvm.sh
 fi
-
-#fi
 #}
 # { Python setup and tools
 
