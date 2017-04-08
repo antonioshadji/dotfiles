@@ -229,20 +229,24 @@ if has("nvim")
   Plug 'floobits/floobits-neovim', { 'do': ':UpdateRemotePlugins' }
 else
   " ONLY vim
-  " YouCompleteMe A code-completion engine for Vim {
-  " http://valloric.github.io/YouCompleteMe/
-  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
-  " this will disable ycm let g:loaded_youcompleteme = 1
-  " https://github.com/Valloric/YouCompleteMe/issues/700
-  " let g:ycm_global_ycm_extra_conf = './third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-  let g:ycm_key_list_select_completion = ['<TAB>']
-  let g:ycm_key_list_previous_completion = ['<S-TAB>']
-  "let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
-  let g:EclimCompletionMethod = 'omnifunc'
-  "let g:ycm_python_binary_path = 'python3'
-  "let g:ycm_server_python_interpreter = '/usr/bin/python3'
-  let g:ycm_server_keep_logfiles = 1
-  "}
+  Plug 'Shougo/neocomplete.vim'
+  Plug 'Shougo/neosnippet.vim'
+  "g:neocomplete#enable_at_startup = 1
+  "g:neocomplete#enable_auto_close_preview = 1
+"   " YouCompleteMe A code-completion engine for Vim {
+"   " http://valloric.github.io/YouCompleteMe/
+"   Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
+"   " this will disable ycm let g:loaded_youcompleteme = 1
+"   " https://github.com/Valloric/YouCompleteMe/issues/700
+"   " let g:ycm_global_ycm_extra_conf = './third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+"   let g:ycm_key_list_select_completion = ['<TAB>']
+"   let g:ycm_key_list_previous_completion = ['<S-TAB>']
+"   "let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
+"   let g:EclimCompletionMethod = 'omnifunc'
+"   "let g:ycm_python_binary_path = 'python3'
+"   "let g:ycm_server_python_interpreter = '/usr/bin/python3'
+"   let g:ycm_server_keep_logfiles = 1
+"   "}
 endif
 " } end bundle list
 

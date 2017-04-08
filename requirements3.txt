@@ -3,6 +3,7 @@
 # --user installs to ~/.local/
 pip
 neovim
+awscli
 # coding tools
 jedi
 pygments

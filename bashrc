@@ -326,9 +326,11 @@ fi
 # pip install --user installs into ~/.local/bin
 [ -d $HOME/.local/bin ] && export PATH=$HOME/.local/bin:$PATH
 
-# go_appengine
-[ -d /opt/go_appengine ] && export PATH=$PATH:/opt/go_appengine
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/opt/google-cloud-sdk/path.bash.inc' ]; then source '/opt/google-cloud-sdk/path.bash.inc'; fi
 
+# The next line enables shell command completion for gcloud.
+if [ -f '/opt/google-cloud-sdk/completion.bash.inc' ]; then source '/opt/google-cloud-sdk/completion.bash.inc'; fi
 #}
 
 #  2) Set up aliases {
@@ -595,3 +597,4 @@ if [ -r /var/run/reboot-required ]; then
   cat /var/run/reboot-required.pkgs
   uptime
 fi
+
