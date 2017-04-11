@@ -503,3 +503,19 @@ endif
 " }
 
 colorscheme solarized
+
+let hour = strftime("%H")
+let minute = strftime("%M")
+let second = strftime("%S")
+if hour >= 17
+  set background=light
+else
+  set background=dark
+endif
+
+if hour < 17
+  func ColorHandler(timer)
+    set background=light
+  endfunction
+  let timer = timer_start((17-hour)*60*60*1000-(minute*60*1000)-(second*1000), 'ColorHandler')
+endif

@@ -21,23 +21,6 @@ Plug 'altercation/vim-colors-solarized'
 " call this function to enable ToggleBG command
 " call togglebg#map("<F5>")
 
-let hour = strftime("%H")
-let minute = strftime("%M")
-let second = strftime("%S")
-if hour >= 17
-  set background=light
-else
-  set background=dark
-endif
-
-if has('nvim')
-  if hour < 17
-    func ColorHandler(timer)
-      set background=light
-    endfunction
-    let timer = timer_start((17-hour)*60*60*1000-(minute*60*1000)-(second*1000), 'ColorHandler')
-  endif
-endif
 " causes error here - moved to end of .vimrc
 " colorscheme solarized
 " }
@@ -85,20 +68,20 @@ au FileType pandoc setlocal nospell
 "}
 " Goyo - Distraction-free writing in Vim {
 " https://github.com/junegunn/goyo.vim
-Plug 'junegunn/goyo.vim', { 'for': 'pandoc' }
-" let g:goyo_linenr = 1
-function! s:goyo_enter()
-  set nonumber
-  set norelativenumber
-endfunction
-
-function! s:goyo_leave()
-  set number
-  set relativenumber
-endfunction
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
+"Plug 'junegunn/goyo.vim', { 'for': 'pandoc' }
+"" let g:goyo_linenr = 1
+"function! s:goyo_enter()
+"  set nonumber
+"  set norelativenumber
+"endfunction
+"
+"function! s:goyo_leave()
+"  set number
+"  set relativenumber
+"endfunction
+"
+"autocmd! User GoyoEnter nested call <SID>goyo_enter()
+"autocmd! User GoyoLeave nested call <SID>goyo_leave()
 "}
 " Plugin 'othree/javascript-libraries-syntax.vim' {
 " https://github.com/othree/javascript-libraries-syntax.vim
@@ -231,8 +214,9 @@ else
   " ONLY vim
   Plug 'Shougo/neocomplete.vim'
   Plug 'Shougo/neosnippet.vim'
-  "g:neocomplete#enable_at_startup = 1
-  "g:neocomplete#enable_auto_close_preview = 1
+  Plug 'Shougo/neosnippet-snippets'
+  let g:neocomplete#enable_at_startup = 1
+  let g:neocomplete#enable_auto_close_preview = 1
 "   " YouCompleteMe A code-completion engine for Vim {
 "   " http://valloric.github.io/YouCompleteMe/
 "   Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
