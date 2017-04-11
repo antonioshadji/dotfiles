@@ -339,9 +339,9 @@ if [ -f '/opt/google-cloud-sdk/completion.bash.inc' ]; then source '/opt/google-
 alias ping='ping -c 1'
 
 # 2.1) Safety
-#alias rm='rm -i'
-#alias mv='mv -i'
-#alias cp='cp -i'
+alias rm='rm -i'
+alias mv='mv -i'
+alias cp='cp -i'
 set -o noclobber
 
 # 2.2) Listing, directories, and motion
@@ -367,7 +367,7 @@ alias dus='du -sh'
 #}
 
 # 2.3) Text and editor commands{
-alias e='nvim'
+alias e='vim'
 alias vv='gvim --remote-silent'
 export EDITOR='vim'
 export VISUAL='vim'
