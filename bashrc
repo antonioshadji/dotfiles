@@ -296,13 +296,6 @@ GIT_PROMPT_THEME=Solarized_Ubuntu
 #}
 
 # Configure PATH {
-# https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
-if [ $(uname -s) == Linux ]; then
-  export XDG_DATA_HOME=$HOME/.local/share
-  export XDG_CONFIG_HOME=$HOME/.config
-  export XDG_CACHE_HOME=$HOME/.cache
-fi
-
 #  - These are line by line so that you can kill one without affecting the others.
 #  - Lowest priority first, highest priority last.
 export PATH=$PATH
@@ -318,7 +311,7 @@ fi
 [ -d $HOME/.cabal/bin ] && export PATH=$HOME/.cabal/bin:$PATH
 
 # android studio manually installed in this location
-[ -d /opt/android-studio/bin ] && export PATH=/opt/android-studio/bin:$PATH
+[ -d $HOME/code/Android/android-studio/bin ] && export PATH=$HOME/code/Android/android-studio/bin:$PATH
 
 # gem install --user-install uses this location
 [ -d $HOME/.gem/ruby/2.3.0/bin ] && export PATH=$HOME/.gem/ruby/2.3.0/bin:$PATH
@@ -327,10 +320,18 @@ fi
 [ -d $HOME/.local/bin ] && export PATH=$HOME/.local/bin:$PATH
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/opt/google-cloud-sdk/path.bash.inc' ]; then source '/opt/google-cloud-sdk/path.bash.inc'; fi
+[ -f '/opt/google-cloud-sdk/path.bash.inc' ] && source '/opt/google-cloud-sdk/path.bash.inc'
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/opt/google-cloud-sdk/completion.bash.inc' ]; then source '/opt/google-cloud-sdk/completion.bash.inc'; fi
+[ -f '/opt/google-cloud-sdk/completion.bash.inc' ] && source '/opt/google-cloud-sdk/completion.bash.inc'
+
+# Rust
+[ -d $HOME/.cargo/bin ] && export PATH="$HOME/.cargo/bin:$PATH"
+
+# go
+[ -d /usr/local/go/bin/ ] && export PATH=$PATH:/usr/local/go/bin
+[ -d $HOME/code/gowork/ ] && export GOPATH=$HOME/code/gowork
+
 #}
 
 #  2) Set up aliases {
@@ -424,16 +425,7 @@ fi
 # export PYTHONWARNINGS="default"
 
 # }
-# { Go setup and tools
-if [ -d $HOME/code/gowork/ ]; then
-  export GOPATH=$HOME/code/gowork
-fi
 
-if [ -d /usr/local/go/bin/ ]; then
-  export PATH=$PATH:/usr/local/go/bin
-fi
-
-#}
 # Java setup for Algorithm class {
 # https://class.coursera.org/algs4partI-010
 
@@ -441,6 +433,15 @@ fi
 # alias java=java-algs4
 # alias javac=javac-algs4
 #  }
+
+# https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html {
+if [ $(uname -s) == Linux ]; then
+  export XDG_DATA_HOME=$HOME/.local/share
+  export XDG_CONFIG_HOME=$HOME/.config
+  export XDG_CACHE_HOME=$HOME/.cache
+fi
+#}
+
 # Launchpad setup {
 export UBUMAIL="Antonios Hadjigeorgalis <Antonios@Hadji.co>"
 export DEBEMAIL="Antonios@Hadji.co"

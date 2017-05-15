@@ -212,42 +212,59 @@ if has("nvim")
   Plug 'floobits/floobits-neovim', { 'do': ':UpdateRemotePlugins' }
 else
   " ONLY vim
-  Plug 'Shougo/neocomplete.vim'
-  Plug 'Shougo/neosnippet.vim'
-  Plug 'Shougo/neosnippet-snippets'
-  let g:neocomplete#enable_at_startup = 1
-  let g:neocomplete#enable_auto_close_preview = 1
-  " Recommended key-mappings.
-  " <CR>: close popup and save indent.
-  inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-  function! s:my_cr_function()
-    return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-    " For no inserting <CR> key.
-    "return pumvisible() ? "\<C-y>" : "\<CR>"
-  endfunction
-  " <TAB>: completion.
-  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-  " <C-h>, <BS>: close popup and delete backword char.
-  inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-  inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-  " Close popup by <Space>.
-  inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-
+"  Plug 'maralla/completor.vim' "{
+"  let g:completor_python_binary = '/usr/bin/python3'
+"  let g:completor_node_binary =  '/home/antonios/.nvm/versions/node/v6.10.0/bin/node'
+"  let g:completor_clang_binary = '/usr/bin/clang'
+"  inoremap <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+"  inoremap <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+"  inoremap <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+" these lines below do not help
+"  let g:completor_auto_trigger = 0
+"  inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>"
+"  }
+  " "Neocomplete {
+"  Plug 'Shougo/neocomplete.vim'
+"  Plug 'Shougo/neosnippet.vim'
+"  Plug 'Shougo/neosnippet-snippets'
+"  " Use neocomplete.
+"  let g:neocomplete#enable_at_startup = 1
+"  " Use smartcase.
+"  let g:neocomplete#enable_smart_case = 1
+"
+"  " Recommended key-mappings.
+"  " <TAB>: completion.
+"  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"  " <C-h>, <BS>: close popup and delete backword char.
+"  inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+"  inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+"  " Close popup by <Space>.
+"  inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+"  " Enable omni completion.
+"  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+"  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+"  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+"  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+"}
 "   " YouCompleteMe A code-completion engine for Vim {
 "   " http://valloric.github.io/YouCompleteMe/
-"   Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
+   Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 "   " this will disable ycm let g:loaded_youcompleteme = 1
 "   " https://github.com/Valloric/YouCompleteMe/issues/700
-"   " let g:ycm_global_ycm_extra_conf = './third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-"   let g:ycm_key_list_select_completion = ['<TAB>']
-"   let g:ycm_key_list_previous_completion = ['<S-TAB>']
-"   "let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
-"   let g:EclimCompletionMethod = 'omnifunc'
-"   "let g:ycm_python_binary_path = 'python3'
-"   "let g:ycm_server_python_interpreter = '/usr/bin/python3'
-"   let g:ycm_server_keep_logfiles = 1
+   let g:ycm_global_ycm_extra_conf = './third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+   let g:ycm_key_list_select_completion = ['<TAB>', '<ENTER>']
+   let g:ycm_key_list_previous_completion = ['<S-TAB>']
+   let g:EclimCompletionMethod = 'omnifunc'
+   let g:ycm_python_binary_path = 'python'
+   let g:ycm_server_python_interpreter = '/usr/bin/python'
+   let g:ycm_server_keep_logfiles = 1
 "   "}
 endif
+" https://github.com/fatih/vim-go
+Plug 'fatih/vim-go'
+" https://github.com/rust-lang/rust.vim
+Plug 'rust-lang/rust.vim'
 " } end bundle list
 
 " All of your Plugs must be added before the following line
