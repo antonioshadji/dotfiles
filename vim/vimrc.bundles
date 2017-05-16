@@ -13,6 +13,9 @@ call plug#begin('~/.vim/bundle')
 
 " https://github.com/altercation/vim-colors-solarized
 Plug 'altercation/vim-colors-solarized'
+" https://github.com/sheerun/vim-polyglot
+" loads syntax on demand - replaces all other syntax plugins
+Plug 'sheerun/vim-polyglot'
 " vim-airline {
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -37,27 +40,29 @@ let g:indent_guides_exclude_filetypes = ['help', 'markdown', 'pandoc']
 " vim-pandoc {
 " These plugins do not work on MAC OSX with default vim
 " TODO: vim-pandoc needs update for python3
-Plug 'vim-pandoc/vim-pandoc', { 'for': 'pandoc' }
-Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'pandoc' }
-let g:pandoc#folding#level = 1
-au FileType pandoc setlocal tabstop=4
-au FileType pandoc setlocal shiftwidth=4
-au FileType pandoc setlocal softtabstop=4
-au FileType pandoc setlocal nospell
+" replaced by polyglot
+" Plug 'vim-pandoc/vim-pandoc', { 'for': 'pandoc' }
+" Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'pandoc' }
+" let g:pandoc#folding#level = 1
+" au FileType pandoc setlocal tabstop=4
+" au FileType pandoc setlocal shiftwidth=4
+" au FileType pandoc setlocal softtabstop=4
+" au FileType pandoc setlocal nospell
 "}
 " Tern plugin
 Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
 " https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
 " https://goo.gl/To1TG3
 " javascript-libraries-syntax {
+" replaced by polyglot
 " https://github.com/othree/javascript-libraries-syntax.vim
-Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
-" default libraries are underscore,backbone,jquery
-let g:used_javascript_libs = 'underscore,backbone,jquery,express'
-" improved Javascript syntax support in Vim.(  this makes folding work)
-Plug 'othree/yajs.vim', { 'for': 'javascript' }
-" Javascript Parameter Complete  https://github.com/othree/jspc.vim
-Plug 'othree/jspc.vim', { 'for': 'javascript' }
+" Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
+" " default libraries are underscore,backbone,jquery
+" let g:used_javascript_libs = 'underscore,backbone,jquery,express'
+" " improved Javascript syntax support in Vim.(  this makes folding work)
+" Plug 'othree/yajs.vim', { 'for': 'javascript' }
+" " Javascript Parameter Complete  https://github.com/othree/jspc.vim
+" Plug 'othree/jspc.vim', { 'for': 'javascript' }
 "}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -88,10 +93,11 @@ Plug 'ap/vim-css-color'
 Plug 'tpope/vim-liquid', { 'for': 'liquid' }
 " https://github.com/mustache/vim-mustache-handlebars
 Plug 'mustache/vim-mustache-handlebars'
-" https://github.com/fatih/vim-go
-Plug 'fatih/vim-go'
-" https://github.com/rust-lang/rust.vim
-Plug 'rust-lang/rust.vim'
+" replaced by polyglot
+" " https://github.com/fatih/vim-go
+" Plug 'fatih/vim-go'
+" " https://github.com/rust-lang/rust.vim
+" Plug 'rust-lang/rust.vim'
 " https://github.com/ivanov/vim-ipython
 Plug 'ivanov/vim-ipython'
 " extended % matching for HTML, LaTeX, and many other languages
