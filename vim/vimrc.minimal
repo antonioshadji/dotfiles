@@ -1,0 +1,17 @@
+" Use vim defaults instead of vi
+set nocompatible
+
+" Make backspace work as expected
+set backspace=indent,eol,start
+
+" Switch syntax highlighting on
+syntax on
+
+" Enable file type detection and do language-dependent indenting.
+filetype plugin indent on
+
+" Show list instead of just completing
+set wildmenu
+
+" Show mode on status line
+set laststatus=2
