@@ -325,6 +325,7 @@ fi
 # The next line enables shell command completion for gcloud.
 [ -f '/opt/google-cloud-sdk/completion.bash.inc' ] && source '/opt/google-cloud-sdk/completion.bash.inc'
 
+
 # Rust
 [ -d $HOME/.cargo/bin ] && export PATH="$HOME/.cargo/bin:$PATH"
 
@@ -368,7 +369,7 @@ alias dus='du -sh'
 #}
 
 # 2.3) Text and editor commands{
-alias e='vim'
+alias e='nvim'
 alias vv='gvim --remote-silent'
 export EDITOR='vim'
 export VISUAL='vim'
@@ -551,8 +552,7 @@ cd () {
 
 # create random 10 character password and place on clipboard
 CreateRandomPassword () {
-  charString='`()}{][+<>=^,#|:\'
-  apg -MSNCL -a 1 -n 1 -m 12 -E $charString  | xclip -i -selection clipboard
+  apg -MSNCL -a 1 -n 1 -m 12 -E \?\\\|\'\"\`\+\-\_\[\]\{\}\,\.\;\: | xclip -i -selection clipboard
   #openssl rand -base64 7 | sed s/=//g | xclip -i -selection clipboard
 }
 
