@@ -145,21 +145,21 @@ if has("nvim")
   " https://github.com/zchee/deoplete-clang
   Plug 'zchee/deoplete-clang', { 'for': ['cpp', 'c'] }
   " https://floobits.com/help/plugins/nvim
-  Plug 'floobits/floobits-neovim', { 'do': ':UpdateRemotePlugins' }
+  " Plug 'floobits/floobits-neovim', { 'do': ':UpdateRemotePlugins' }
 else
   " ONLY vim
 "   YouCompleteMe A code-completion engine for Vim {
 "   http://valloric.github.io/YouCompleteMe/
-  "Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --tern-completer' }
+Plug 'Valloric/YouCompleteMe'
 "   " this will disable ycm let g:loaded_youcompleteme = 1
 "   " https://github.com/Valloric/YouCompleteMe/issues/700
-  "let g:ycm_global_ycm_extra_conf = './third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-  "let g:ycm_key_list_select_completion = ['<TAB>', '<ENTER>']
-  "let g:ycm_key_list_previous_completion = ['<S-TAB>']
-  "let g:EclimCompletionMethod = 'omnifunc'
-  "let g:ycm_python_binary_path = 'python'
-  "let g:ycm_server_python_interpreter = '/usr/bin/python'
-  "let g:ycm_server_keep_logfiles = 1
+  let g:ycm_global_ycm_extra_conf = './third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+  let g:ycm_key_list_select_completion = ['<TAB>', '<ENTER>']
+  let g:ycm_key_list_previous_completion = ['<S-TAB>']
+  let g:EclimCompletionMethod = 'omnifunc'
+  let g:ycm_python_binary_path = 'python3'
+  let g:ycm_server_python_interpreter = '/usr/bin/python3'
+  let g:ycm_server_keep_logfiles = 1
 "   "}
 "  Neocomplete {
 "  Plug 'Shougo/neocomplete.vim'
@@ -244,18 +244,6 @@ else
 "}
 endif
 " Disabled configurations {
-  Plug 'maralla/completor.vim' "{
-  let g:completor_python_binary = '/usr/bin/python3'
-  let g:completor_node_binary =  '/home/antonios/.nvm/versions/node/v6.10.0/bin/node'
-  let g:completor_clang_binary = '/usr/bin/clang'
-  " Use Tab to select completion
-  inoremap <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-  inoremap <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-  inoremap <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
-" Use Tab to trigger completion (disable auto trigger) these lines below do not help
-  let g:completor_auto_trigger = 0
-  inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>"
-"  }
 " Goyo - Distraction-free writing in Vim {
 " https://github.com/junegunn/goyo.vim
 "Plug 'junegunn/goyo.vim', { 'for': 'pandoc' }

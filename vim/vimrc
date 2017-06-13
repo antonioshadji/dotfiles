@@ -346,7 +346,7 @@ autocmd BufRead,BufNewFile *.md set filetype=pandoc
 autocmd BufRead,BufNewFile *.mkd set filetype=pandoc
 autocmd BufRead,BufNewFile *.markdown set filetype=pandoc
 " Enable spellchecking for Markdown
-autocmd FileType pandoc setlocal spell spelllang=en_us
+autocmd FileType pandoc setlocal spell spelllang=en_us wrap linebreak
 " }
 
 " Octave filetype {

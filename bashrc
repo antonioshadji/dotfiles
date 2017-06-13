@@ -369,7 +369,7 @@ alias dus='du -sh'
 #}
 
 # 2.3) Text and editor commands{
-alias e='nvim'
+alias e='vim'
 alias vv='gvim --remote-silent'
 export EDITOR='vim'
 export VISUAL='vim'
