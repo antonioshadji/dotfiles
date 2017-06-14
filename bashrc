@@ -552,7 +552,7 @@ cd () {
 
 # create random 10 character password and place on clipboard
 CreateRandomPassword () {
-  apg -MSNCL -a 1 -n 1 -m 12 -E \?\\\|\'\"\`\+\-\_\[\]\{\}\,\.\;\: | xclip -i -selection clipboard
+  apg -MSNCL -a 1 -n 1 -m 12 -E \/\?\\\|\'\"\`\+\-\_\[\]\{\}\,\.\;\: | xclip -i -selection clipboard
   #openssl rand -base64 7 | sed s/=//g | xclip -i -selection clipboard
 }
 
