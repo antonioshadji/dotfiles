@@ -1,0 +1,7 @@
+[workstation]
+hadji.local   ansible_connection=local
+laptop.local
+
+[webserver]
+li286-179.members.linode.com
+
