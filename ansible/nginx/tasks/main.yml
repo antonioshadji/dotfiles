@@ -1,0 +1,14 @@
+---
+  - name: nginx install
+    apt:
+      name: nginx=1.10
+      state: present
+      update_cache: yes
+      cache_valid_time: 3600
+  - name: nginx configuration install
+    template: src=default.conf dest=/etc/nginx/conf.d/default.conf
+    notify: restart nginx
+  - file:
+    path: /var/www/html/fuelthebodywell.com/public_html
+    state: directory
+    mode: 0755
