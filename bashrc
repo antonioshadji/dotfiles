@@ -2,9 +2,6 @@
 # vim: set foldmarker={,} foldlevel=0 foldmethod=marker :
 # }
 
-# does a bashrc.local exist?
-[ -r $HOME/.bashrc.local ] && source $HOME/.bashrc.local
-
 # Bash Reference Manual {
 # https://www.gnu.org/software/bash/manual/bash.html
 
@@ -369,7 +366,7 @@ alias dus='du -sh'
 #}
 
 # 2.3) Text and editor commands{
-alias e='vim'
+alias e='nvim'
 alias vv='gvim --remote-silent'
 export EDITOR='vim'
 export VISUAL='vim'
@@ -591,10 +588,14 @@ Extract () {
 
 #}
 
+# does a bashrc.local exist?
+[ -r $HOME/.bashrc.local ] && source $HOME/.bashrc.local
+
 # display that reboot is required after automatic update
 if [ -r /var/run/reboot-required ]; then
   echo 'Reboot required'
   cat /var/run/reboot-required.pkgs
   uptime
 fi
+
 
