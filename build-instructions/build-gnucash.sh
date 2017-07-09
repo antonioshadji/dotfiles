@@ -31,4 +31,7 @@ fi
   --enable-doxygen --enable-html-docs --enable-debug
 
 make
+# checkinstall creates deb package
+# https://help.ubuntu.com/community/CheckInstall
+# http://checkinstall.izto.org/docs/README
 sudo checkinstall --pkgname=gnucash --pkgversion=1:$REPO --default
