@@ -40,14 +40,9 @@ let g:indent_guides_exclude_filetypes = ['help', 'markdown', 'pandoc']
 " vim-pandoc {
 " These plugins do not work on MAC OSX with default vim
 " TODO: vim-pandoc needs update for python3
-" replaced by polyglot
-" Plug 'vim-pandoc/vim-pandoc', { 'for': 'pandoc' }
-" Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'pandoc' }
-" let g:pandoc#folding#level = 1
-" au FileType pandoc setlocal tabstop=4
-" au FileType pandoc setlocal shiftwidth=4
-" au FileType pandoc setlocal softtabstop=4
-" au FileType pandoc setlocal nospell
+Plug 'vim-pandoc/vim-pandoc', { 'for': 'pandoc' }
+Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'pandoc' }
+let g:pandoc#folding#level = 1
 "}
 " Tern plugin
 Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
@@ -103,6 +98,7 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'ivanov/vim-ipython'
 " extended % matching for HTML, LaTeX, and many other languages
 " http://www.vim.org/scripts/script.php?script_id=39
+
 if !has('nvim')
   packadd! matchit
 endif
