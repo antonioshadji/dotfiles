@@ -18,11 +18,12 @@
 " https://vimhelp.appspot.com/options.txt.html#%27pyxversion%27
 " https://vimhelp.appspot.com/if_pyth.txt.html#has-pythonx
 " new in vim8 (not in neovim)
-if has('pythonx') && has('python3')
-  " calling this here forces the python version.
-  " if python3 available, py3 else py2
-  set pyxversion=3
-endif
+" TODO: Does this break YouCompleteMe?
+" if has('pythonx') && has('python3')
+"   " calling this here forces the python version.
+"   " if python3 available, py3 else py2
+"   set pyxversion=3
+" endif
 "}
 
 "Enable syntax highlighting and don't overwrite colorscheme
@@ -495,7 +496,7 @@ if !has('nvim')
     " 50 vs 10 for https://neovim.io/doc/user/options.html#'tabpagemax'
     set tags+=./tags;,tags      " https://neovim.io/doc/user/options.html#'tags'
   else
-    echo "Not running with Neovim compatibility settings"
+    echom "Not running with Neovim compatibility settings"
   endif
 endif
 "}
@@ -506,7 +507,10 @@ if filereadable(expand("~/.vim/vimrc.bundles"))
 endif
 " }
 
-colorscheme solarized
+" colors are funky via ssh
+if $SSH_CLIENT == ""
+  colorscheme solarized
+endif
 
 let hour = strftime("%H")
 if hour >= 17

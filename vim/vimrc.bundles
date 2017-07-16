@@ -96,9 +96,9 @@ Plug 'mustache/vim-mustache-handlebars'
 " Plug 'rust-lang/rust.vim'
 " https://github.com/ivanov/vim-ipython
 Plug 'ivanov/vim-ipython'
+
 " extended % matching for HTML, LaTeX, and many other languages
 " http://www.vim.org/scripts/script.php?script_id=39
-
 if !has('nvim')
   packadd! matchit
 endif
@@ -153,8 +153,8 @@ Plug 'Valloric/YouCompleteMe'
   let g:ycm_key_list_select_completion = ['<TAB>', '<ENTER>']
   let g:ycm_key_list_previous_completion = ['<S-TAB>']
   let g:EclimCompletionMethod = 'omnifunc'
-  let g:ycm_python_binary_path = 'python3'
-  let g:ycm_server_python_interpreter = '/usr/bin/python3'
+  "let g:ycm_python_binary_path = 'python3'
+  "let g:ycm_server_python_interpreter = '/usr/bin/python3'
   let g:ycm_server_keep_logfiles = 1
 "   "}
 "  Neocomplete {
