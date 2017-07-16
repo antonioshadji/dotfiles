@@ -104,7 +104,7 @@ let g:netrw_winsize=-1
 
 " General Settings {
 set encoding=utf-8      " show buffer as utf-8 https://github.com/square/maximum-awesome (**MUST BE EARLY IN FILE**)
-set mousehide           " Hide the mouse cursor while typing
+"set mousehide           " Hide the mouse cursor while typing
 set viewoptions=folds,options,cursor,unix,slash "see :help viewoptions
 set virtualedit=onemore " Allow for cursor beyond last character
 set hidden              " Allow buffer switching without saving
