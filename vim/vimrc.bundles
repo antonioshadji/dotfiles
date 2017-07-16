@@ -13,9 +13,11 @@ call plug#begin('~/.vim/bundle')
 
 " https://github.com/altercation/vim-colors-solarized
 Plug 'altercation/vim-colors-solarized'
-" https://github.com/sheerun/vim-polyglot
 " loads syntax on demand - replaces all other syntax plugins
-Plug 'sheerun/vim-polyglot'
+Plug 'https://github.com/sheerun/vim-polyglot'
+" replaced by polyglot
+" Plug 'https://github.com/fatih/vim-go'
+" Plug 'https://github.com/rust-lang/rust.vim'
 " vim-airline {
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -46,6 +48,7 @@ let g:pandoc#folding#level = 1
 "}
 " Tern plugin
 Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
+
 " https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
 " https://goo.gl/To1TG3
 " javascript-libraries-syntax {
@@ -89,19 +92,19 @@ Plug 'ap/vim-css-color'
 Plug 'tpope/vim-liquid', { 'for': 'liquid' }
 " https://github.com/mustache/vim-mustache-handlebars
 Plug 'mustache/vim-mustache-handlebars'
-" replaced by polyglot
-" " https://github.com/fatih/vim-go
-" Plug 'fatih/vim-go'
-" " https://github.com/rust-lang/rust.vim
-" Plug 'rust-lang/rust.vim'
-" https://github.com/ivanov/vim-ipython
-Plug 'ivanov/vim-ipython'
+Plug 'https://github.com/ivanov/vim-ipython'
 
-" extended % matching for HTML, LaTeX, and many other languages
-" http://www.vim.org/scripts/script.php?script_id=39
-if !has('nvim')
-  packadd! matchit
-endif
+" OrgMode Support {
+Plug 'jceb/vim-orgmode', { 'for': 'org' }
+" OrgMode suggested plugins
+Plug 'vim-scripts/utl.vim', { 'for': 'org' }
+" https://github.com/tpope/vim-repeat already installed
+Plug 'https://github.com/majutsushi/tagbar'
+Plug 'https://github.com/tpope/vim-speeddating'
+Plug 'https://github.com/chrisbra/NrrwRgn', { 'for': 'org' }
+Plug 'https://github.com/mattn/calendar-vim'
+Plug 'https://github.com/inkarkat/vim-SyntaxRange', { 'for': 'org' }
+" }
 
 "nvim plugins
 if has("nvim")

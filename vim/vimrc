@@ -13,12 +13,12 @@
 " To see list of scripts loaded in the order in which they were loaded
 " :scriptnames
 
+" TODO: Does this break YouCompleteMe? (Disabled)
 " set python provider {
 " this is first because the first access of python sets the version
 " https://vimhelp.appspot.com/options.txt.html#%27pyxversion%27
 " https://vimhelp.appspot.com/if_pyth.txt.html#has-pythonx
 " new in vim8 (not in neovim)
-" TODO: Does this break YouCompleteMe?
 " if has('pythonx') && has('python3')
 "   " calling this here forces the python version.
 "   " if python3 available, py3 else py2
