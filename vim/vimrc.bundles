@@ -70,9 +70,14 @@ Plug 'honza/vim-snippets'
 Plug 'neomake/neomake'
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_python_enabled_makers = ['pep8', 'pylint']
-let g:neomake_open_list = 2
-" let g:neomake_html_tidy_ignore_errors = ['*empty*']
-"let g:neomake_html_tidy_maker = { 'args': ['--drop-empty-elements', 'no'] }
+" let g:neomake_open_list = 2
+
+" *neomake-makers-properties*
+" *g:neomake_<name>_<property>*
+" *g:neomake_<ft>_<name>_<property>*
+" Configure properties for a maker where <property> is one of `exe`, `args`,
+" `errorformat`, `buffer_output`, `remove_invalid_entries` or `append_file`.
+let g:neomake_python_pep8_args = '--ignore=E501'
 " }
 
 " line numbering
@@ -104,6 +109,11 @@ Plug 'https://github.com/tpope/vim-speeddating'
 Plug 'https://github.com/chrisbra/NrrwRgn', { 'for': 'org' }
 Plug 'https://github.com/mattn/calendar-vim'
 Plug 'https://github.com/inkarkat/vim-SyntaxRange', { 'for': 'org' }
+" }
+
+" python-mode {
+Plug 'https://github.com/python-mode/python-mode', { 'for': ['python' ,'python3'] }
+" let g:pymode_python = 'python3'
 " }
 
 "nvim plugins
