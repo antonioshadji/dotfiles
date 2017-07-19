@@ -271,11 +271,6 @@ base3='\e[1;37m'   # base3     #fdf6e3 15/7 brwhite  230 #ffffd7 97  00  10 253 
 ## -----------------------------------------------------
 # gitprompt configuration
 
-# https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions
-# -r file True if file exists and is readable.
-if [ -r $HOME/dotfiles/bash-git-prompt/gitprompt.sh ]; then
-  source $HOME/dotfiles/bash-git-prompt/gitprompt.sh
-fi
 # Set config variables first
 GIT_PROMPT_ONLY_IN_REPO=0
 
@@ -287,9 +282,12 @@ GIT_PROMPT_SHOW_UNTRACKED_FILES=normal # can be no, normal or all; determines co
 GIT_PROMPT_START="_LAST_COMMAND_INDICATOR_ ${blue}${HOSTNAME%%.*}:${yellow}\w${Reset}"
 # GIT_PROMPT_END=...      # uncomment for custom prompt end sequence
 
-# as last entry source the gitprompt script
-# GIT_PROMPT_THEME=Custom # use custom .git-prompt-colors.sh
 GIT_PROMPT_THEME=Solarized_Ubuntu
+# https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions
+# -r file True if file exists and is readable.
+if [ -r $HOME/dotfiles/bash-git-prompt/gitprompt.sh ]; then
+  source $HOME/dotfiles/bash-git-prompt/gitprompt.sh
+fi
 #}
 
 # Configure PATH {
@@ -544,7 +542,11 @@ fi
 # http://superuser.com/a/296555/358673
 # show files after cd
 cd () {
-  builtin cd "$@" && l
+  builtin cd "$@"
+  if [ -f bin/activate ]; then
+    source bin/activate
+  fi
+  ls -F --color
 }
 
 # create random 10 character password and place on clipboard
