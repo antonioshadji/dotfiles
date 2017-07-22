@@ -52,8 +52,8 @@ set wildignore+=*.luac                           " Lua byte code
 set wildignore+=*.pyc                            " Python byte code
 set wildignore+=*.class                          " Java byte code
 
-set ttimeout                    " time out for key codes
-set ttimeoutlen=100             " wait up to 100ms after Esc for special key
+" set ttimeout                    " time out for key codes
+" set ttimeoutlen=200             " wait up to 100ms after Esc for special key
 
 set scrolloff=2 "default.vim=5  " Minimum lines to keep above and below cursor
 set incsearch                   " search as you type
@@ -241,12 +241,6 @@ imap <Down> <Esc><Down>
 " <Nop> is no operation
 map Q q
 
-" http://nvie.com/posts/how-i-boosted-my-vim/
-" The following trick is a really small one, but a super-efficient one,
-" since it strips off two full keystrokes from almost every Vim command:
-" AX: I don't like this because it messes with my typing muscle memory
-" nnoremap ; :
-
 "force myself to use hjkl instead of arrow keys <nop> only normal mode
 " jk <down><up> hl<left><right>
 map <up> <nop>
@@ -288,7 +282,7 @@ nnoremap <Space> za
 "
 " This unsets the 'last search pattern' register by hitting return
 " http://stackoverflow.com/a/662914/2472798
-nnoremap <CR> :noh<CR><CR>
+nnoremap <silent> <CR> :noh<CR>
 
 " http://www.jovicailic.org/2015/05/saving-read-only-files-in-vim-sudo-trick/
 " http://www.geekyboy.com/archives/629
@@ -308,6 +302,7 @@ map <F8> :!clear; java -ea -cp ../algs4.jar:. %:r<CR>
 " Revert with ":iunmap <C-U>".
 inoremap <C-U> <C-G>u<C-U>
 
+nnoremap <Leader>g :YcmCompleter GoTo<CR>
 "} end keyboard shortcuts
 
 " Auto Commands: {

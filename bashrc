@@ -540,13 +540,22 @@ fi
 # https://www.gnu.org/software/bash/manual/bash.html#Shell-Functions
 
 # http://superuser.com/a/296555/358673
+# basename $OLDPWD to save directory
+# if [[ $(pwd) =~ bitmex ]]; then echo "worked"; fi
 # show files after cd
 cd () {
   builtin cd "$@"
+  ls -F --color
   if [ -f bin/activate ]; then
     source bin/activate
   fi
-  ls -F --color
+  # =~ does a regex check for right term in left term
+  # $VIRTUAL_ENV contains full path of virtual env
+  if [ $VIRTUAL_ENV ]; then
+    if [[ ! $(pwd) =~ $(basename $VIRTUAL_ENV) ]]; then
+      deactivate
+    fi
+  fi
 }
 
 # create random 10 character password and place on clipboard
