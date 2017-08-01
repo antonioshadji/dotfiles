@@ -123,20 +123,19 @@ export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 # ... or force ignoredups and ignorespace
 
 HISTCONTROL=erasedups:ignorespace
-#             A colon-separated list of values controlling how commands are saved
-#             on  the  history list.  If the list of values includes ignorespace,
-#             lines which begin with a space character are not saved in the  his‐
-#             tory  list.  A value of ignoredups causes lines matching the previ‐
-#             ous history entry to not be saved.  A value of ignoreboth is short‐
-#             hand  for  ignorespace and ignoredups.  A value of erasedups causes
-#             all previous lines matching the current line to be removed from the
-#             history list before that line is saved.  Any value not in the above
-#             list is ignored.  If HISTCONTROL is unset, or does  not  include  a
-#             valid  value,  all  lines read by the shell parser are saved on the
-#             history list, subject to the value of HISTIGNORE.  The  second  and
-#             subsequent  lines  of a multi-line compound command are not tested,
-#             and are added to the history regardless of the  value  of  HISTCON‐
-#             TROL.
+# https://www.gnu.org/software/bash/manual/html_node/Bash-Variables.html#index-HISTCMD
+# A colon-separated list of values controlling how commands are saved on the
+# history list. If the list of values includes ‘ignorespace’, lines which begin
+# with a space character are not saved in the history list. A value of
+# ‘ignoredups’ causes lines which match the previous history entry to not be
+# saved. A value of ‘ignoreboth’ is shorthand for ‘ignorespace’ and
+# ‘ignoredups’. A value of ‘erasedups’ causes all previous lines matching the
+# current line to be removed from the history list before that line is saved.
+# Any value not in the above list is ignored. If HISTCONTROL is unset, or
+# does not include a valid value, all lines read by the shell parser are
+# saved on the history list, subject to the value of HISTIGNORE. The second
+# and subsequent lines of a multi-line compound command are not tested, and
+# are added to the history regardless of the value of
 
 # Only for bash>=4.3 otherwise use HIST= format
 HISTSIZE=-1
@@ -315,10 +314,10 @@ fi
 [ -d $HOME/.local/bin ] && export PATH=$HOME/.local/bin:$PATH
 
 # The next line updates PATH for the Google Cloud SDK.
-[ -f '/opt/google-cloud-sdk/path.bash.inc' ] && source '/opt/google-cloud-sdk/path.bash.inc'
+# [ -f '/opt/google-cloud-sdk/path.bash.inc' ] && source '/opt/google-cloud-sdk/path.bash.inc'
 
 # The next line enables shell command completion for gcloud.
-[ -f '/opt/google-cloud-sdk/completion.bash.inc' ] && source '/opt/google-cloud-sdk/completion.bash.inc'
+# [ -f '/opt/google-cloud-sdk/completion.bash.inc' ] && source '/opt/google-cloud-sdk/completion.bash.inc'
 
 
 # Rust
