@@ -14,6 +14,7 @@
   autocrlf = input
 [status]
   branch = true
+	submodulesummary = true
 #  short = true
 [alias]
   g = grep --break --heading --line-number

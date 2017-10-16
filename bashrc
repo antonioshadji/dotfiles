@@ -313,13 +313,6 @@ fi
 # pip install --user installs into ~/.local/bin
 [ -d $HOME/.local/bin ] && export PATH=$HOME/.local/bin:$PATH
 
-# The next line updates PATH for the Google Cloud SDK.
-# [ -f '/opt/google-cloud-sdk/path.bash.inc' ] && source '/opt/google-cloud-sdk/path.bash.inc'
-
-# The next line enables shell command completion for gcloud.
-# [ -f '/opt/google-cloud-sdk/completion.bash.inc' ] && source '/opt/google-cloud-sdk/completion.bash.inc'
-
-
 # Rust
 [ -d $HOME/.cargo/bin ] && export PATH="$HOME/.cargo/bin:$PATH"
 
@@ -327,6 +320,8 @@ fi
 [ -d /usr/local/go/bin/ ] && export PATH=$PATH:/usr/local/go/bin
 [ -d $HOME/code/gowork/ ] && export GOPATH=$HOME/code/gowork
 
+# amdgpu
+[ -d /opt/amdgpu-pro/bin ] && export PATH=$PATH:/opt/amdgpu-pro/bin
 #}
 
 #  2) Set up aliases {
@@ -411,7 +406,8 @@ fi
 # http://virtualenvwrapper.readthedocs.org/en/latest/install.html
 [ -d $HOME/.virtualenvs ] && export WORKON_HOME=$HOME/.virtualenvs
 [ -d $HOME/code/python ] && export PROJECT_HOME=$HOME/code/python/
-[ -r /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
+# virtualenvwrapper installed via apt
+# [ -r /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
 
 # https://docs.python.org/2/whatsnew/2.7.html#changes-to-the-handling-of-deprecation-warnings
 # this throws many errors when running iPython
@@ -609,3 +605,4 @@ if [ -r /var/run/reboot-required ]; then
 fi
 
 
+export AMDAPPSDKROOT="/home/antonios/hardware/gpu/amd-app-sdk/AMDAPPSDK-3.0"

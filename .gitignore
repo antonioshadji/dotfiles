@@ -22,3 +22,6 @@ notes/*
 
 # log files
 *.log
+# temporary files
+*.tmp
+

@@ -49,10 +49,10 @@ let g:pandoc#folding#level = 1
 " Tern plugin
 Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
 
+" replaced by polyglot
+" javascript-libraries-syntax {
 " https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
 " https://goo.gl/To1TG3
-" javascript-libraries-syntax {
-" replaced by polyglot
 " https://github.com/othree/javascript-libraries-syntax.vim
 " Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
 " " default libraries are underscore,backbone,jquery
@@ -120,6 +120,10 @@ let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_fold_docstring = 0
 " }
 
+" Ledger support {
+Plug 'https://github.com/ledger/vim-ledger'
+" }
+
 "nvim plugins
 if has("nvim")
   " ONLY neovim
@@ -174,7 +178,7 @@ Plug 'Valloric/YouCompleteMe'
   "let g:ycm_server_python_interpreter = '/usr/bin/python3'
   let g:ycm_server_keep_logfiles = 1
 "   "}
-"  Neocomplete {
+"  Neocomplete **disabled** {
 "  Plug 'Shougo/neocomplete.vim'
 "  Plug 'Shougo/neosnippet.vim'
 "  Plug 'Shougo/neosnippet-snippets'

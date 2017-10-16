@@ -2,6 +2,10 @@
 # -*- coding: utf-8 -*-
 
 make distclean
+LATEST_TAG=$(git describe --tags)
+echo $LATEST_TAG
+sleep 3s
+git checkout $LATEST_TAG
 
 ./configure \
   --with-features=huge \
@@ -27,4 +31,5 @@ if [ $? -eq 0 ]; then
   sudo make install
 fi
 
-
+git checkout master
+vim --version

@@ -325,11 +325,8 @@ autocmd Filetype gitcommit setlocal spell textwidth=72
 
 " http://vim.wikia.com/wiki/Shebang_line_automatically_generated {
 augroup Shebang
-  autocmd BufNewFile *.py 0put =\"#!/usr/bin/env python3\<nl># -*- coding: utf-8 -*-\<nl>\"|$
-  autocmd BufNewFile *.rb 0put =\"#!/usr/bin/env ruby\<nl># -*- coding: utf-8 -*-\<nl>\"|$
   autocmd BufNewFile *.sh 0put =\"#!/usr/bin/env bash\<nl># -*- coding: utf-8 -*-\<nl>\"|$
   autocmd BufNewFile *.c 0put =\"#include <stdio.h>\<nl>\<nl>int main()\<nl>{\<nl>}\<nl>\"|$
-"  autocmd BufNewFile *.js 0put =\"#!/usr/bin/env node\<nl># -*- coding: utf-8 -*-\<nl>\"|$
 augroup END
 " }
 
