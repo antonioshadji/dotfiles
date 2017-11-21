@@ -321,7 +321,10 @@ fi
 [ -d $HOME/code/gowork/ ] && export GOPATH=$HOME/code/gowork
 
 # amdgpu
-[ -d /opt/amdgpu-pro/bin ] && export PATH=$PATH:/opt/amdgpu-pro/bin
+# [ -d /opt/amdgpu-pro/bin ] && export PATH=$PATH:/opt/amdgpu-pro/bin
+
+# ==> Source [/opt/google-cloud-sdk/path.bash.inc] in your profile to add the Google Cloud SDK command line tools to your $PATH.
+[ -r /opt/google-cloud-sdk/path.bash.inc ] && source /opt/google-cloud-sdk/path.bash.inc
 #}
 
 #  2) Set up aliases {
@@ -348,7 +351,7 @@ alias cl='clear'
 # 2.3 Digital Ocean suggestions
 # https://www.digitalocean.com/community/tutorials/an-introduction-to-useful-bash-aliases-and-functions
 alias psa='ps auxf'
-alias psg='ps aux | grep -v grep | grep -i -e VSZ -e'
+alias psg='ps auxf | grep -v grep | grep -i -e VSZ -e'
 # 2.4 Custom aliases that I created
 alias dus='du -sh'
 # syntax colored cat replacement
@@ -456,25 +459,25 @@ fi
 
 # { Virtual terminal tty colors
 # https://acceptsocket.wordpress.com/2014/08/12/set-solarized-dark-as-default-color-scheme-for-linux-virtual-console/
-if [ $TERM = "linux" ]; then
-  echo -en "\e]P0073642" # base02    #073642  0
-  echo -en "\e]P8002b36" # base03    #002b36  8
-  echo -en "\e]P1dc322f" # red       #dc322f  1
-  echo -en "\e]P9cb4b16" # orange    #cb4b16  9
-  echo -en "\e]P2859900" # green     #859900  2
-  echo -en "\e]PA586e75" # base01    #586e75 10A
-  echo -en "\e]P3b58900" # yellow    #b58900  3
-  echo -en "\e]PB657b83" # base00    #657b83 11B
-  echo -en "\e]P4268bd2" # blue      #268bd2  4
-  echo -en "\e]PC839496" # base0     #839496 12C
-  echo -en "\e]P5d33682" # magenta   #d33682  5
-  echo -en "\e]PD6c71c4" # violet    #6c71c4 13D
-  echo -en "\e]P62aa198" # cyan      #2aa198  6
-  echo -en "\e]PE93a1a1" # base1     #93a1a1 14E
-  echo -en "\e]P7eee8d5" # base2     #eee8d5  7
-  echo -en "\e]PFfdf6e3" # base3     #fdf6e3 15F
-  clear #for background artifacting
-fi
+# if [ $TERM = "linux" ]; then
+#   echo -en "\e]P0073642" # base02    #073642  0
+#   echo -en "\e]P8002b36" # base03    #002b36  8
+#   echo -en "\e]P1dc322f" # red       #dc322f  1
+#   echo -en "\e]P9cb4b16" # orange    #cb4b16  9
+#   echo -en "\e]P2859900" # green     #859900  2
+#   echo -en "\e]PA586e75" # base01    #586e75 10A
+#   echo -en "\e]P3b58900" # yellow    #b58900  3
+#   echo -en "\e]PB657b83" # base00    #657b83 11B
+#   echo -en "\e]P4268bd2" # blue      #268bd2  4
+#   echo -en "\e]PC839496" # base0     #839496 12C
+#   echo -en "\e]P5d33682" # magenta   #d33682  5
+#   echo -en "\e]PD6c71c4" # violet    #6c71c4 13D
+#   echo -en "\e]P62aa198" # cyan      #2aa198  6
+#   echo -en "\e]PE93a1a1" # base1     #93a1a1 14E
+#   echo -en "\e]P7eee8d5" # base2     #eee8d5  7
+#   echo -en "\e]PFfdf6e3" # base3     #fdf6e3 15F
+#   clear #for background artifacting
+# fi
 #}
 
 # { bash completion
@@ -529,6 +532,9 @@ fi
 # enable completion for pandoc
 # this was not working without "" surrounding $()
 [ $(command -v pandoc) ] && eval "$(pandoc --bash-completion)"
+
+# ==> Source [/opt/google-cloud-sdk/completion.bash.inc] in your profile to enable shell command completion for gcloud.
+[ -r /opt/google-cloud-sdk/completion.bash.inc ] && source /opt/google-cloud-sdk/completion.bash.inc
 #}
 
 # bash functions {
@@ -559,6 +565,16 @@ CreateRandomPassword () {
   #openssl rand -base64 7 | sed s/=//g | xclip -i -selection clipboard
 }
 
+ShrinkPDF() {
+ if [ -z "$1" ]; then
+  # display usage if no parameters given
+  echo "Usage: ShrinkPDF <path/file_name>.<pdf>"
+ else
+  if [ -f "$1" ] ; then
+    gs -o "sm$1" -sDEVICE=pdfwrite -dPDFFitPage -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen "$1"
+  fi
+fi
+}
 # function Extract for common file formats
 # https://github.com/xvoland/Extract/blob/master/extract.sh
 Extract () {
@@ -603,6 +619,3 @@ if [ -r /var/run/reboot-required ]; then
   cat /var/run/reboot-required.pkgs
   uptime
 fi
-
-
-export AMDAPPSDKROOT="/home/antonios/hardware/gpu/amd-app-sdk/AMDAPPSDK-3.0"
