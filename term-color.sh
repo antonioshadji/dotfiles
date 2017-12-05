@@ -3,7 +3,7 @@
 # cron script to switch terminal colors in the evening
 
 # if gnome-session is not running exit, not logged in
-PID=$(pgrep gnome-session)
+PID=$(pgrep --newest gnome-session)
 [ -z $PID ] && exit
 
 # -z True if the length of string is zero.

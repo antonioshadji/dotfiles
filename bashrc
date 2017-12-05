@@ -339,10 +339,10 @@ alias cp='cp -i'
 set -o noclobber
 
 # 2.2) Listing, directories, and motion
-alias ll='ls -AFlh --color'
+alias ll='ls -AFlh --color --ignore=lost+found'
 # follow by -r to reverse sort order
-alias llt='ls -AFlht --color'
-alias l='ls -F --color'
+alias llt='ls -AFlht --color --ignore=lost+found'
+alias l='ls -F --color --ignore=lost+found'
 alias ..='cd ..'
 alias md='mkdir'
 alias rd='rmdir'
@@ -358,6 +358,14 @@ alias dus='du -sh'
 [ $(command -v pygmentize) ] && alias p='pygmentize'
 # open files in graphic workspace based on mime-type
 [ $(command -v xdg-open) ] && alias o='xdg-open'
+
+# 2.4 Sytemctl
+alias scsp='systemctl status parity.service'
+alias scsg='systemctl status geth.service'
+alias scse='systemctl status ethminer.service'
+alias scsc='systemctl status claymore.service'
+alias scsb='systemctl status bitcoin.service'
+
 #}
 
 # 2.3) Text and editor commands{
