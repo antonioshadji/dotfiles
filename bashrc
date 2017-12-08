@@ -554,7 +554,7 @@ fi
 # show files after cd
 cd () {
   builtin cd "$@"
-  ls -F --color
+  ls -F --color --ignore=lost+found
   if [ -f bin/activate ]; then
     source bin/activate
   fi
