@@ -325,6 +325,9 @@ fi
 
 # ==> Source [/opt/google-cloud-sdk/path.bash.inc] in your profile to add the Google Cloud SDK command line tools to your $PATH.
 [ -r /opt/google-cloud-sdk/path.bash.inc ] && source /opt/google-cloud-sdk/path.bash.inc
+
+# litecoin in opt
+[ -d /opt/litecoin ] && export PATH=$PATH:/opt/litecoin/bin
 #}
 
 #  2) Set up aliases {
@@ -365,6 +368,7 @@ alias scsg='systemctl status geth.service'
 alias scse='systemctl status ethminer.service'
 alias scsc='systemctl status claymore.service'
 alias scsb='systemctl status bitcoin.service'
+alias scsl='systemctl status litecoin.service'
 
 # 2.5 frequently used
 

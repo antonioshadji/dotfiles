@@ -8,8 +8,8 @@ set -o pipefail
 # get latest tag from git repo
 git checkout master
 git pull
-#REPO=$(git describe --abbrev=0)
-REPO=2.6.18
+REPO=$(git describe --abbrev=0)
+# REPO=2.6.18
 git checkout $REPO
 
 # add variable to restrict language files to only british english
