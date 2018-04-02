@@ -318,7 +318,8 @@ fi
 
 # go
 [ -d /usr/local/go/bin/ ] && export PATH=$PATH:/usr/local/go/bin
-[ -d $HOME/code/gowork/ ] && export GOPATH=$HOME/code/gowork
+[ -d $HOME/go ] && export GOPATH=$HOME/go
+[ -d $HOME/go/bin ] && export PATH="$HOME/go/bin:$PATH"
 
 # amdgpu
 # [ -d /opt/amdgpu-pro/bin ] && export PATH=$PATH:/opt/amdgpu-pro/bin
@@ -328,6 +329,8 @@ fi
 
 # litecoin in opt
 [ -d /opt/litecoin ] && export PATH=$PATH:/opt/litecoin/bin
+# rocm tools
+[ -d /opt/rocm ] && export PATH=$PATH:/opt/rocm/bin
 #}
 
 #  2) Set up aliases {
@@ -369,6 +372,7 @@ alias scse='systemctl status ethminer.service'
 alias scsc='systemctl status claymore.service'
 alias scsb='systemctl status bitcoin.service'
 alias scsl='systemctl status litecoin.service'
+alias jc='journalctl -f -u claymore.service'
 
 # 2.5 frequently used
 

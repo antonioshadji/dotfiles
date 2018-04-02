@@ -504,19 +504,19 @@ if $SSH_CLIENT == ""
   colorscheme solarized
 endif
 
-let hour = strftime("%H")
-if hour >= 17
-  set background=light
-else
-  set background=dark
-endif
-
-if hour < 17
-  let minute = strftime("%M")
-  let second = strftime("%S")
-  func ColorHandler(timer)
-    set background=light
-  endfunction
-  let t = timer_start(((17-hour)*60*60-minute*60-second)*1000, 'ColorHandler')
-endif
+" let hour = strftime("%H")
+" if hour >= 17
+"   set background=light
+" else
+"   set background=dark
+" endif
+"
+" if hour < 17
+"   let minute = strftime("%M")
+"   let second = strftime("%S")
+"   func ColorHandler(timer)
+"     set background=light
+"   endfunction
+"   let t = timer_start(((17-hour)*60*60-minute*60-second)*1000, 'ColorHandler')
+" endif
 " }

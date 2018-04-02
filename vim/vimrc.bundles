@@ -100,6 +100,7 @@ Plug 'tpope/vim-liquid', { 'for': 'liquid' }
 " https://github.com/mustache/vim-mustache-handlebars
 Plug 'mustache/vim-mustache-handlebars'
 
+" vim-go installed in .vim/pack/plugins/start using new vim8 package manager
 " OrgMode Support {
 Plug 'jceb/vim-orgmode', { 'for': 'org' }
 " OrgMode suggested plugins
@@ -130,136 +131,45 @@ if has("nvim")
   " deoplete Dark powered asynchronous completion framework for neovim {
   " https://github.com/Shougo/deoplete.nvim
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  " Use deoplete.
-  let g:deoplete#enable_at_startup = 1
-  " https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
-  let g:deoplete#omni#functions = {}
-  let g:deoplete#omni#functions.javascript = [
-    \ 'tern#Complete',
-    \ 'jspc#omni'
-  \]
-  set completeopt=longest,menuone,preview
-  let g:deoplete#sources = {}
-  let g:deoplete#sources.javascript = ['file', 'tag', 'ternjs', 'ultisnips' ]
-  let g:tern_request_timeout = 1
-  let g:tern_show_signature_in_pum = '0'  " This do disable full signature type on autocomplete
-  let g:tern#command = ['tern']
-  let g:tern#arguments = ['--persistent']
-
-  autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-  let g:UltiSnipsExpandTrigger="<C-j>"
-  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-  "https://github.com/zchee/deoplete-clang
-  let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang.so'
-  let g:deoplete#sources#clang#clang_header = '/usr/lib/llvm-3.8/lib/clang'
-
-  "call deoplete#enable_logging('DEBUG', 'deoplete.log')
-  " }
-  " https://github.com/zchee/deoplete-jedi
-  Plug 'zchee/deoplete-jedi', { 'for': ['python' ,'python3'] }
-  " https://github.com/carlitux/deoplete-ternjs
-  Plug 'carlitux/deoplete-ternjs', { 'for': 'javascript' }
-  " https://github.com/zchee/deoplete-clang
-  Plug 'zchee/deoplete-clang', { 'for': ['cpp', 'c'] }
-  " https://floobits.com/help/plugins/nvim
-  " Plug 'floobits/floobits-neovim', { 'do': ':UpdateRemotePlugins' }
 else
-  " ONLY vim
-"   YouCompleteMe A code-completion engine for Vim {
-"   http://valloric.github.io/YouCompleteMe/
-Plug 'Valloric/YouCompleteMe'
-"   " this will disable ycm let g:loaded_youcompleteme = 1
-"   " https://github.com/Valloric/YouCompleteMe/issues/700
-  let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
-  let g:ycm_key_list_select_completion = ['<TAB>', '<ENTER>']
-  let g:ycm_key_list_previous_completion = ['<S-TAB>']
-  let g:EclimCompletionMethod = 'omnifunc'
-  "let g:ycm_python_binary_path = 'python3'
-  "let g:ycm_server_python_interpreter = '/usr/bin/python3'
-  let g:ycm_server_keep_logfiles = 1
-"   "}
-"  Neocomplete **disabled** {
-"  Plug 'Shougo/neocomplete.vim'
-"  Plug 'Shougo/neosnippet.vim'
-"  Plug 'Shougo/neosnippet-snippets'
-"" https://github.com/Shougo/neocomplete.vim
-"" Disable AutoComplPop.
-"let g:acp_enableAtStartup = 0
-"" Use neocomplete.
-"let g:neocomplete#enable_at_startup = 1
-"" Use smartcase.
-"let g:neocomplete#enable_smart_case = 1
-"" Set minimum syntax keyword length.
-"let g:neocomplete#sources#syntax#min_keyword_length = 3
-"
-"" Define dictionary.
-"let g:neocomplete#sources#dictionary#dictionaries = {
-"    \ 'default' : '',
-"    \ 'vimshell' : $HOME.'/.vimshell_hist',
-"    \ 'scheme' : $HOME.'/.gosh_completions'
-"        \ }
-"
-"" Define keyword.
-"if !exists('g:neocomplete#keyword_patterns')
-"    let g:neocomplete#keyword_patterns = {}
-"endif
-"let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-"
-"" Plugin key-mappings.
-"inoremap <expr><C-g>     neocomplete#undo_completion()
-"inoremap <expr><C-l>     neocomplete#complete_common_string()
-"
-"" Recommended key-mappings.
-"" <CR>: close popup and save indent.
-"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-"function! s:my_cr_function()
-"  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-"  " For no inserting <CR> key.
-"  "return pumvisible() ? "\<C-y>" : "\<CR>"
-"endfunction
-"" <TAB>: completion.
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"" <C-h>, <BS>: close popup and delete backword char.
-"inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-"inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-"" Close popup by <Space>.
-""inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-"
-"" AutoComplPop like behavior.
-""let g:neocomplete#enable_auto_select = 1
-"
-"" Shell like behavior(not recommended).
-""set completeopt+=longest
-""let g:neocomplete#enable_auto_select = 1
-""let g:neocomplete#disable_auto_complete = 1
-""inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-"
-"" Enable omni completion.
-"autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-"autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-"autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-"
-"autocmd FileType python setlocal omnifunc=jedi#completions
-"  let g:jedi#completions_enabled = 0
-"  let g:jedi#auto_vim_configuration = 0
-"  let g:jedi#smart_auto_mappings = 0
-"  let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
-"  " alternative pattern: '\h\w*\|[^. \t]\.\w*'
-"
-"" Enable heavy omni completion.
-"if !exists('g:neocomplete#sources#omni#input_patterns')
-"  let g:neocomplete#sources#omni#input_patterns = {}
-"endif
-""let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-""let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-"
-"" For perlomni.vim setting.
-"" https://github.com/c9s/perlomni.vim
-"" let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-"}
+  " ONLY vim8
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
 endif
+" https://github.com/zchee/deoplete-jedi
+Plug 'zchee/deoplete-jedi', { 'for': ['python' ,'python3'] }
+" https://github.com/carlitux/deoplete-ternjs
+Plug 'carlitux/deoplete-ternjs', { 'for': 'javascript' }
+" https://github.com/zchee/deoplete-clang
+Plug 'zchee/deoplete-clang', { 'for': ['cpp', 'c'] }
+
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
+" https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
+let g:deoplete#omni#functions = {}
+let g:deoplete#omni#functions.javascript = [
+  \ 'tern#Complete',
+  \ 'jspc#omni'
+\]
+set completeopt=longest,menuone,preview
+let g:deoplete#sources = {}
+let g:deoplete#sources.javascript = ['file', 'tag', 'ternjs', 'ultisnips' ]
+let g:tern_request_timeout = 1
+let g:tern_show_signature_in_pum = '0'  " This do disable full signature type on autocomplete
+let g:tern#command = ['tern']
+let g:tern#arguments = ['--persistent']
+
+autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+let g:UltiSnipsExpandTrigger="<C-j>"
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"https://github.com/zchee/deoplete-clang
+let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang.so'
+let g:deoplete#sources#clang#clang_header = '/usr/lib/llvm-3.8/lib/clang'
+
+"call deoplete#enable_logging('DEBUG', 'deoplete.log')
+" }
+
 " Disabled configurations {
 " Goyo - Distraction-free writing in Vim {
 " https://github.com/junegunn/goyo.vim
