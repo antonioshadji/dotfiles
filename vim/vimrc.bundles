@@ -29,6 +29,8 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 set noshowmode
+set laststatus=2
+set encoding=utf-8
 
 "}
 " vim-indent-guides {

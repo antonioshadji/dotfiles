@@ -502,6 +502,7 @@ endif
 " colors are funky via ssh
 if $SSH_CLIENT == ""
   colorscheme solarized
+  set background=dark
 endif
 
 " let hour = strftime("%H")
