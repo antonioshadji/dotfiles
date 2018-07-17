@@ -72,8 +72,8 @@ Plug 'honza/vim-snippets'
 Plug 'neomake/neomake'
 " these are already loaded by default
 " let g:neomake_python_enabled_makers = ['pylint', 'pycodestyle', 'pydocstyle']
-" let g:neomake_javascript_enabled_makers = ['eslint']
-
+let g:neomake_javascript_enabled_makers = ['standard']
+let g:neomake_javascript_jsx_enabled_makers = ['standard']
 " let g:neomake_open_list = 2
 
 " *neomake-makers-properties*
