@@ -287,7 +287,7 @@ nnoremap <silent> <CR> :noh<CR>
 " http://www.jovicailic.org/2015/05/saving-read-only-files-in-vim-sudo-trick/
 " http://www.geekyboy.com/archives/629
 " http://vim.wikia.com/wiki/Multiple_commands_at_once
-cmap w!! w !sudo tee > /dev/null %
+cmap w!! w !sudo tee %
 
 " compile and run java code for algs4
 " https://docs.oracle.com/javase/8/docs/technotes/tools/windows/classpath.html
