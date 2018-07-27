@@ -9,8 +9,7 @@ git checkout $LATEST_TAG
 
 ./configure \
   --enable-luainterp=dynamic \
-  --enable-pythoninterp=dynamic \
-  --enable-python3interp=dynamic \
+  --enable-python3interp=yes \
   --enable-cscope \
   --enable-terminal \
   --enable-autoservername \
