@@ -15,6 +15,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'altercation/vim-colors-solarized'
 " loads syntax on demand - replaces all other syntax plugins
 Plug 'https://github.com/sheerun/vim-polyglot'
+" vim-go installed in .vim/pack/plugins/start using new vim8 package manager
 " replaced by polyglot
 " Plug 'https://github.com/fatih/vim-go'
 " Plug 'https://github.com/rust-lang/rust.vim'
@@ -90,7 +91,7 @@ Plug 'myusuf3/numbers.vim'
 Plug 'tpope/vim-capslock'
 
 " Git integration
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive'
 " quoting/parenthesizing made simple
 Plug 'tpope/vim-surround'
 "enable repeating supported plugin maps
@@ -102,7 +103,6 @@ Plug 'tpope/vim-liquid', { 'for': 'liquid' }
 " https://github.com/mustache/vim-mustache-handlebars
 Plug 'mustache/vim-mustache-handlebars'
 
-" vim-go installed in .vim/pack/plugins/start using new vim8 package manager
 " OrgMode Support {
 Plug 'jceb/vim-orgmode', { 'for': 'org' }
 " OrgMode suggested plugins
@@ -124,13 +124,12 @@ let g:SimpylFold_fold_docstring = 0
 " }
 
 " Ledger support {
-Plug 'https://github.com/ledger/vim-ledger'
+" Plug 'https://github.com/ledger/vim-ledger'
 " }
 
-"nvim plugins
+" deoplete Dark powered asynchronous completion framework for neovim {
 if has("nvim")
   " ONLY neovim
-  " deoplete Dark powered asynchronous completion framework for neovim {
   " https://github.com/Shougo/deoplete.nvim
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -166,11 +165,13 @@ autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 let g:UltiSnipsExpandTrigger="<C-j>"
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 "https://github.com/zchee/deoplete-clang
-let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang.so'
-let g:deoplete#sources#clang#clang_header = '/usr/lib/llvm-3.8/lib/clang'
+let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-4.0/lib/libclang.so'
+let g:deoplete#sources#clang#clang_header = '/usr/lib/llvm-4.0/lib/clang'
 
-"call deoplete#enable_logging('DEBUG', 'deoplete.log')
 " }
+
+" All of your Plugs must be added before the following line
+call plug#end()            " required
 
 " Disabled configurations {
 " Goyo - Distraction-free writing in Vim {
@@ -219,6 +220,4 @@ let g:deoplete#sources#clang#clang_header = '/usr/lib/llvm-3.8/lib/clang'
 "} end disabled
 " } end bundle list
 
-" All of your Plugs must be added before the following line
-call plug#end()            " required
 
