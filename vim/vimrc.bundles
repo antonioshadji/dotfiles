@@ -13,12 +13,15 @@ call plug#begin('~/.vim/bundle')
 
 " https://github.com/altercation/vim-colors-solarized
 Plug 'altercation/vim-colors-solarized'
-" loads syntax on demand - replaces all other syntax plugins
+" vim-polyglot loads syntax on demand - replaces all other syntax plugins {
 Plug 'https://github.com/sheerun/vim-polyglot'
+" use full go plugin instead of polyglot
+let g:polyglot_disabled = ['go']
 " vim-go installed in .vim/pack/plugins/start using new vim8 package manager
-" replaced by polyglot
-" Plug 'https://github.com/fatih/vim-go'
-" Plug 'https://github.com/rust-lang/rust.vim'
+" 2018-08-02 21:30:27 -0400 set to version v1.18
+" must also run (within vim) :GoUpdateBinaries
+" }
+
 " vim-airline {
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -34,6 +37,7 @@ set laststatus=2
 set encoding=utf-8
 
 "}
+
 " vim-indent-guides {
 " highlighting of indented blocks
 Plug 'nathanaelkane/vim-indent-guides'
@@ -42,6 +46,7 @@ let g:indent_guides_space_guides = 1
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_exclude_filetypes = ['help', 'markdown', 'pandoc']
 " }
+
 " vim-pandoc {
 " These plugins do not work on MAC OSX with default vim
 " TODO: vim-pandoc needs update for python3
@@ -49,8 +54,7 @@ Plug 'vim-pandoc/vim-pandoc', { 'for': 'pandoc' }
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'pandoc' }
 let g:pandoc#folding#level = 1
 "}
-" Tern plugin
-Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
+
 
 " replaced by polyglot
 " javascript-libraries-syntax {
@@ -71,10 +75,10 @@ Plug 'honza/vim-snippets'
 " Neomake - Async :make and linting framework for Neovim/Vim {
 " (replaces syntastic for both vim and NeoVim)
 Plug 'neomake/neomake'
-" these are already loaded by default
-" let g:neomake_python_enabled_makers = ['pylint', 'pycodestyle', 'pydocstyle']
 let g:neomake_javascript_enabled_makers = ['standard']
 let g:neomake_javascript_jsx_enabled_makers = ['standard']
+" these are already loaded by default
+" let g:neomake_python_enabled_makers = ['pylint', 'pycodestyle', 'pydocstyle']
 " let g:neomake_open_list = 2
 
 " *neomake-makers-properties*
@@ -93,9 +97,9 @@ Plug 'tpope/vim-capslock'
 " Git integration
 " Plug 'tpope/vim-fugitive'
 " quoting/parenthesizing made simple
-Plug 'tpope/vim-surround'
-"enable repeating supported plugin maps
-Plug 'tpope/vim-repeat'
+" Plug 'tpope/vim-surround'
+" enable repeating supported plugin maps
+" Plug 'tpope/vim-repeat'
 " Highlight colors in css files
 Plug 'ap/vim-css-color'
 " Liquid templates
@@ -127,6 +131,12 @@ let g:SimpylFold_fold_docstring = 0
 " Plug 'https://github.com/ledger/vim-ledger'
 " }
 
+" Tern plugin
+Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
+" Use tern_for_vim.
+let g:tern#command = ["tern"]
+let g:tern#arguments = ["--persistent"]
+
 " deoplete Dark powered asynchronous completion framework for neovim {
 if has("nvim")
   " ONLY neovim
@@ -138,22 +148,30 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
-" https://github.com/zchee/deoplete-jedi
-Plug 'zchee/deoplete-jedi', { 'for': ['python' ,'python3'] }
-" https://github.com/carlitux/deoplete-ternjs
-Plug 'carlitux/deoplete-ternjs', { 'for': 'javascript' }
-" https://github.com/zchee/deoplete-clang
-Plug 'zchee/deoplete-clang', { 'for': ['cpp', 'c'] }
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
+
+set completeopt=longest,menuone,preview
+" https://github.com/zchee/deoplete-go#sample-initvim
+set completeopt+=noselect
+" https://github.com/zchee/deoplete-jedi
+Plug 'zchee/deoplete-jedi', { 'for': ['python' ,'python3'] }
+" https://github.com/carlitux/deoplete-ternjs
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern', 'for': 'javascript' }
+" https://github.com/zchee/deoplete-clang
+Plug 'zchee/deoplete-clang', { 'for': ['cpp', 'c'] }
+" https://github.com/zchee/deoplete-go
+Plug 'zchee/deoplete-go', { 'for': 'go' }
+" https://github.com/sebastianmarkow/deoplete-rust
+Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rs' }
+
+let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode' "'/home/antonios/go/bin/gocode'
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+
 " https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
 let g:deoplete#omni#functions = {}
-let g:deoplete#omni#functions.javascript = [
-  \ 'tern#Complete',
-  \ 'jspc#omni'
-\]
-set completeopt=longest,menuone,preview
+let g:deoplete#omni#functions.javascript = [ 'tern#Complete' ]
 let g:deoplete#sources = {}
 let g:deoplete#sources.javascript = ['file', 'tag', 'ternjs', 'ultisnips' ]
 let g:tern_request_timeout = 1
@@ -164,10 +182,15 @@ let g:tern#arguments = ['--persistent']
 autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 let g:UltiSnipsExpandTrigger="<C-j>"
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
 "https://github.com/zchee/deoplete-clang
 let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-4.0/lib/libclang.so'
 let g:deoplete#sources#clang#clang_header = '/usr/lib/llvm-4.0/lib/clang'
 
+" https://github.com/sebastianmarkow/deoplete-rust
+let g:deoplete#sources#rust#racer_binary='/home/antonios/.cargo/bin/racer'
+" $(rustup --print sysroot)/lib/rustlib/src/rust/src
+let g:deoplete#sources#rust#rust_source_path='/home/antonios/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
 " }
 
 " All of your Plugs must be added before the following line
