@@ -8,6 +8,7 @@ pep8
 setuptools
 neovim
 awscli
+linode-cli
 
 # gnucash
 piecash
