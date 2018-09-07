@@ -25,3 +25,6 @@ notes/*
 # temporary files
 *.tmp
 
+# backup files
+*.ucf-dist
+*.ucf-old

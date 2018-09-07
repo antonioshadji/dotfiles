@@ -75,11 +75,15 @@ Plug 'honza/vim-snippets'
 " Neomake - Async :make and linting framework for Neovim/Vim {
 " (replaces syntastic for both vim and NeoVim)
 Plug 'neomake/neomake'
+" https://github.com/neomake/neomake/wiki/Makers
 let g:neomake_javascript_enabled_makers = ['standard']
 let g:neomake_javascript_jsx_enabled_makers = ['standard']
-" these are already loaded by default
-" let g:neomake_python_enabled_makers = ['pylint', 'pycodestyle', 'pydocstyle']
-" let g:neomake_open_list = 2
+let g:neomake_python_enabled_makers = ['flake8']
+let g:neomake_open_list = 2
+
+" html linters: tidy, htmlhint
+" https://github.com/htacg/tidy-html5
+" https://github.com/yaniswang/HTMLHint
 
 " *neomake-makers-properties*
 " *g:neomake_<name>_<property>*

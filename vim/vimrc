@@ -364,9 +364,9 @@ autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -
 "}
 
 " save on FocusLost {
-" https://github.com/mscoutermarsh/dotfiles/blob/master/vimrc
-" autocmd FocusLost * :wa
-autocmd FocusLost * :silent! wa
+" http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
+autocmd FocusLost * :wa
+" autocmd FocusLost * silent! wa
 " }
 
 " Java Configuration {
