@@ -322,7 +322,7 @@ fi
 [ -d $HOME/go/bin ] && export PATH="$HOME/go/bin:$PATH"
 
 # amdgpu
-# [ -d /opt/amdgpu-pro/bin ] && export PATH=$PATH:/opt/amdgpu-pro/bin
+[ -d /opt/amdgpu-pro/bin ] && export PATH=$PATH:/opt/amdgpu-pro/bin
 
 # ==> Source [/opt/google-cloud-sdk/path.bash.inc] in your profile to add the Google Cloud SDK command line tools to your $PATH.
 [ -r /opt/google-cloud-sdk/path.bash.inc ] && source /opt/google-cloud-sdk/path.bash.inc
@@ -420,6 +420,10 @@ if [ -r $HOME/.nvm/nvm.sh ]; then
   source $HOME/.nvm/nvm.sh
 fi
 
+# enable completion for nvm
+[ -r $NVM_DIR/bash_completion ] && source $NVM_DIR/bash_completion
+
+export NODE_PATH=$NODE_PATH:/home/antonios/.nvm/versions/node/$(nvm current)/lib/node_modules
 #}
 
 # { Python setup and tools
@@ -529,8 +533,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# enable completion for node
-[ -r $NVM_DIR/bash_completion ] && source $NVM_DIR/bash_completion
 
 # http://wp-cli.org/ bash completion
 [ -r $HOME/dotfiles/bash_completion/wp-completion.bash ] && source $HOME/dotfiles/bash_completion/wp-completion.bash
@@ -570,11 +572,11 @@ cd () {
   fi
   # =~ does a regex check for right term in left term
   # $VIRTUAL_ENV contains full path of virtual env
-  if [ $VIRTUAL_ENV ]; then
-    if [[ ! $(pwd) =~ $(basename $VIRTUAL_ENV) ]]; then
-      deactivate
-    fi
-  fi
+  # if [ $VIRTUAL_ENV ]; then
+  #   if [[ ! $(pwd) =~ $(basename $VIRTUAL_ENV) ]]; then
+  #     deactivate
+  #   fi
+  # fi
 }
 
 # create random 10 character password and place on clipboard
