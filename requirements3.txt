@@ -47,9 +47,15 @@ octave-kernel
 numpy
 pandas
 pygments-style-solarized
+matplotlib
+scipy
 
 # database
 pymongo
+docker-compose
+# postgresSQL driver most popular (installed in venv instead of globally)
+# psycopg2
+# MySQL enhanced client
 # mycli
 
 # CLRX Documentation will not be built, because no markdown_py utility
