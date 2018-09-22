@@ -401,7 +401,7 @@ export LANG='en_US.UTF-8'
 # Colors {
 ## Define any user-specific variables you want here.
 # setup LS_COLORS for dircolors command. Solarize color pallette shows only greytones in terminal
-[ -r $HOME/.dircolors ] && eval "$(dircolors $HOME/.dircolors)"
+[ -r $HOME/.dircolors ] && eval "$(dircolors -b $HOME/.dircolors)"
 
 # From ubuntu 16.04 default bashrc
 # colored GCC warnings and errors
@@ -419,9 +419,6 @@ if [ -r $HOME/.nvm/nvm.sh ]; then
   NVM_DIR=$HOME/.nvm
   source $HOME/.nvm/nvm.sh
 fi
-
-# enable completion for nvm
-[ -r $NVM_DIR/bash_completion ] && source $NVM_DIR/bash_completion
 
 export NODE_PATH=$NODE_PATH:/home/antonios/.nvm/versions/node/$(nvm current)/lib/node_modules
 #}
@@ -533,6 +530,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# enable completion for nvm
+[ -r $NVM_DIR/bash_completion ] && source $NVM_DIR/bash_completion
 
 # http://wp-cli.org/ bash completion
 [ -r $HOME/dotfiles/bash_completion/wp-completion.bash ] && source $HOME/dotfiles/bash_completion/wp-completion.bash
