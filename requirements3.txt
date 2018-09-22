@@ -46,6 +46,8 @@ jupyter
 octave-kernel
 numpy
 pandas
+# for pandas excel support
+xlrd
 pygments-style-solarized
 matplotlib
 scipy
