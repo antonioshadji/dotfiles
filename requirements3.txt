@@ -1,10 +1,17 @@
+# do not use sudo -H
 # sudo -H pip install --upgrade -r ~/dotfiles/requirements.txt
 # sudo -H installs to /usr/local/lib/python#.#
 # 2018-07-18 16:48:35 -0400
 # --user installs to ~/.local/
 # pip install --user --upgrade -r ~/dotfiles/requirements3.txt
-# curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+# curl https://bootstrap.pypa.io/get-pip.py -O
 pip
+# https://pipenv.readthedocs.io/en/latest/
+pipenv
+
+# use 0mq (zmq) for all networking code
+zmq
+
 awscli
 # Collecting botocore==1.10.81 (from awscli->-r dotfiles/requirements3.txt (line 8))
 # Collecting docutils>=0.10 (from awscli->-r dotfiles/requirements3.txt (line 8))
@@ -49,8 +56,14 @@ pandas
 # for pandas excel support
 xlrd
 pygments-style-solarized
+## must apt-get install libpng12-dev libfreetype6-dev to install matplotlib
 matplotlib
+## requires apt-get install libblas-dev liblapack-dev gfortran
 scipy
+statsmodels
+scikit-learn
+# sympy
+
 
 # database
 pymongo
@@ -63,15 +76,6 @@ docker-compose
 # CLRX Documentation will not be built, because no markdown_py utility
 markdown
 
-## must apt-get install libpng12-dev libfreetype6-dev to install
-# there are other plotting libraries investigate before adding
-# matplotlib
-## requires apt-get install libblas-dev liblapack-dev gfortran
-# these are not currently being used, install when I start using
-# scipy
-# statsmodels
-# sympy
-# scikit-learn
 
 # installed by default with 3.6
 # pygments
