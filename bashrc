@@ -318,8 +318,8 @@ fi
 
 # go
 [ -d /usr/local/go/bin/ ] && export PATH=$PATH:/usr/local/go/bin
-[ -d $HOME/go ] && export GOPATH=$HOME/go
-[ -d $HOME/go/bin ] && export PATH="$HOME/go/bin:$PATH"
+[ -d /mnt/storage/go ] && export GOPATH=/mnt/storage/go
+[ -d /mnt/storage/go/bin ] && export PATH="/mnt/storage/go/bin:$PATH"
 
 # amdgpu
 [ -d /opt/amdgpu-pro/bin ] && export PATH=$PATH:/opt/amdgpu-pro/bin
@@ -359,9 +359,9 @@ alias cl='clear'
 alias psa='ps auxf'
 alias psg='ps auxf | grep -v grep | grep -i -e VSZ -e'
 # 2.4 Custom aliases that I created
-alias dus='du -sh'
+alias tree='tree -I node_modules'
 # syntax colored cat replacement
-[ $(command -v pygmentize) ] && alias p='pygmentize'
+[ $(command -v pygmentize) ] && alias p='pygmentize -g'
 # open files in graphic workspace based on mime-type
 [ $(command -v xdg-open) ] && alias o='xdg-open'
 
@@ -420,23 +420,13 @@ if [ -r $HOME/.nvm/nvm.sh ]; then
   source $HOME/.nvm/nvm.sh
 fi
 
-export NODE_PATH=$NODE_PATH:/home/antonios/.nvm/versions/node/$(nvm current)/lib/node_modules
+export NODE_PATH=$(npm root -g):$NODE_PATH
 #}
 
 # { Python setup and tools
-# virtualenvwrapper configuration
-# http://virtualenvwrapper.readthedocs.org/en/latest/install.html
-[ -d $HOME/.virtualenvs ] && export WORKON_HOME=$HOME/.virtualenvs
-[ -d $HOME/code/python ] && export PROJECT_HOME=$HOME/code/python/
-# virtualenvwrapper installed via apt
-# [ -r /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
-
-# https://docs.python.org/2/whatsnew/2.7.html#changes-to-the-handling-of-deprecation-warnings
-# this throws many errors when running iPython
-# to enable in my own code use: warnings.simplefilter('default')
-# Can this be a way to find correctable errrors for contributing to open source projects?
-# export PYTHONWARNINGS="default"
-
+# https://howtopython.org/en/latest/the-interpreter/#bytecode-trick
+# Python won't write *.pyc files to disk
+export PYTHONDONTWRITEBYTECODE=1
 # }
 
 # Java setup for Algorithm class {
@@ -559,23 +549,15 @@ fi
 # bash functions {
 # https://www.gnu.org/software/bash/manual/bash.html#Shell-Functions
 
-# http://superuser.com/a/296555/358673
-# basename $OLDPWD to save directory
-# if [[ $(pwd) =~ bitmex ]]; then echo "worked"; fi
 # show files after cd
 cd () {
   builtin cd "$@"
   ls -F --color --ignore=lost+found
-  if [ -f bin/activate ]; then
-    source bin/activate
-  fi
-  # =~ does a regex check for right term in left term
-  # $VIRTUAL_ENV contains full path of virtual env
-  # if [ $VIRTUAL_ENV ]; then
-  #   if [[ ! $(pwd) =~ $(basename $VIRTUAL_ENV) ]]; then
-  #     deactivate
-  #   fi
-  # fi
+}
+
+# enhanced which command to show if exectable is symbolic link
+which () {
+  stat $(/usr/bin/which $1) | head -n 1 | cut -c 9-
 }
 
 # create random 10 character password and place on clipboard

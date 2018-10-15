@@ -32,6 +32,8 @@ let g:airline#extensions#capslock#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+" https://github.com/vim-airline/vim-airline#smarter-tab-line
 set noshowmode
 set laststatus=2
 set encoding=utf-8
@@ -66,8 +68,6 @@ let g:pandoc#folding#level = 1
 " let g:used_javascript_libs = 'underscore,backbone,jquery,express'
 " " improved Javascript syntax support in Vim.(  this makes folding work)
 " Plug 'othree/yajs.vim', { 'for': 'javascript' }
-" " Javascript Parameter Complete  https://github.com/othree/jspc.vim
-" Plug 'othree/jspc.vim', { 'for': 'javascript' }
 "}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -80,6 +80,7 @@ let g:neomake_javascript_enabled_makers = ['standard']
 let g:neomake_javascript_jsx_enabled_makers = ['standard']
 let g:neomake_python_enabled_makers = ['flake8']
 let g:neomake_open_list = 2
+let g:neomake_list_height = 2
 
 " html linters: tidy, htmlhint
 " https://github.com/htacg/tidy-html5
@@ -101,11 +102,15 @@ Plug 'tpope/vim-capslock'
 " Git integration
 " Plug 'tpope/vim-fugitive'
 " quoting/parenthesizing made simple
-" Plug 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 " enable repeating supported plugin maps
-" Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-repeat'
 " Highlight colors in css files
 Plug 'ap/vim-css-color'
+" Update the bult-in CSS complete function to latest CSS standard.
+" https://github.com/othree/csscomplete.vim
+Plug 'othree/csscomplete.vim'
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
 " Liquid templates
 Plug 'tpope/vim-liquid', { 'for': 'liquid' }
 " https://github.com/mustache/vim-mustache-handlebars
@@ -135,11 +140,6 @@ let g:SimpylFold_fold_docstring = 0
 " Plug 'https://github.com/ledger/vim-ledger'
 " }
 
-" Tern plugin
-Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
-" Use tern_for_vim.
-let g:tern#command = ["tern"]
-let g:tern#arguments = ["--persistent"]
 
 " deoplete Dark powered asynchronous completion framework for neovim {
 if has("nvim")
@@ -152,7 +152,6 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
-
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
 
@@ -161,12 +160,21 @@ set completeopt=longest,menuone,preview
 set completeopt+=noselect
 " https://github.com/zchee/deoplete-jedi
 Plug 'zchee/deoplete-jedi', { 'for': ['python' ,'python3'] }
+
+" Tern plugin
+Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
+" Use tern_for_vim.
+let g:tern#command = ["tern"]
+let g:tern#arguments = ["--persistent"]
+" " Javascript Parameter Complete  https://github.com/othree/jspc.vim
+Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 " https://github.com/carlitux/deoplete-ternjs
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern', 'for': 'javascript' }
+Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
+
 " https://github.com/zchee/deoplete-clang
 Plug 'zchee/deoplete-clang', { 'for': ['cpp', 'c'] }
 " https://github.com/zchee/deoplete-go
-Plug 'zchee/deoplete-go', { 'for': 'go' }
+Plug 'zchee/deoplete-go', { 'do': 'make', 'for': 'go' }
 " https://github.com/sebastianmarkow/deoplete-rust
 Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rs' }
 
@@ -174,14 +182,33 @@ let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode' "'/home/antonios
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 
 " https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
+Plug 'ervandew/supertab'
 let g:deoplete#omni#functions = {}
-let g:deoplete#omni#functions.javascript = [ 'tern#Complete' ]
+let g:deoplete#omni#functions.javascript = [ 'tern#Complete' , 'jspc#omni']
 let g:deoplete#sources = {}
 let g:deoplete#sources.javascript = ['file', 'tag', 'ternjs', 'ultisnips' ]
+let g:deoplete#sources['javascript.jsx'] = ['file', 'tag', 'ternjs', 'ultisnips' ]
 let g:tern_request_timeout = 1
-let g:tern_show_signature_in_pum = '0'  " This do disable full signature type on autocomplete
-let g:tern#command = ['tern']
-let g:tern#arguments = ['--persistent']
+" let g:tern_show_signature_in_pum = '0'  " This do disable full signature type on autocomplete
+"Add extra filetypes
+let g:deoplete#sources#ternjs#filetypes = [
+                \ 'jsx',
+                \ 'javascript.jsx',
+                \ 'vue',
+                \ ]
+" Whether to include the types of the completions in the result data.
+" Default: 0
+let g:deoplete#sources#ternjs#types = 1
+" Whether to include documentation strings (if found) in the result data.
+" Default: 0
+let g:deoplete#sources#ternjs#docs = 1
+" Whether to use a case-insensitive compare between the current word and potential completions.
+" Default: 0
+let g:deoplete#sources#ternjs#case_insensitive = 1
+" Whether to include JavaScript keywords when completing something that is not a property.
+" Default: 0
+let g:deoplete#sources#ternjs#include_keywords = 1
+
 
 autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 let g:UltiSnipsExpandTrigger="<C-j>"
