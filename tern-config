@@ -4,15 +4,17 @@
     "chai",
     "ecmascript",
     "jquery",
+    "react",
     "underscore"
   ],
-  "loadEagerly": [
-  ],
   "plugins": {
-    "requirejs": {
-      "baseURL": "./",
-      "paths": {}
-    },
-    "node": {}
+    "complete_strings": {},
+    "doc_comment": {},
+    "es_modules": {},
+    "modules": {},
+    "node": {},
+    "node_resolve": {},
+    "requirejs": {},
+    "webpack": {}
   }
 }
