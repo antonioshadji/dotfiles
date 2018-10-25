@@ -1,0 +1,17 @@
+---
+- name: verify git repo is available
+  apt_repository:
+    repo: ppa:git-core/ppa
+    update_cache: no
+
+- name: install system software
+  apt:
+    name: "{{ packages }}"
+    state: latest
+    update_cache: yes
+    cache_valid_time: 28800
+    autoremove: yes
+  vars:
+    packages:
+    - git-core
+

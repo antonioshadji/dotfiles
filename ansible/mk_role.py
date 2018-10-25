@@ -24,6 +24,11 @@ roles/
         lookup_plugins/   # or other types of plugins, like lookup in this case
 '''
 from pathlib import Path
+import sys
+
+if len(sys.argv) == 1:
+    print('must supply name for new role')
+    sys.exit(1)
 
 dir_list = [
     'tasks',
@@ -39,4 +44,5 @@ dir_list = [
         ]
 
 for d in dir_list:
-    Path('roles/newrole/' + d).mkdir(parents=True, exist_ok=True)
+    p = 'roles/{}/{}'.format(sys.argv[1], d)
+    Path(p).mkdir(parents=True, exist_ok=True)

@@ -1,11 +1,21 @@
+# vim: set ft=dosini :
 [workstation]
 hadji.local   ansible_connection=local
 
 [laptop]
-laptop.local
-
-[laptop:vars]
-ansible_python_interpreter=/usr/bin/python3
+laptop.local  ansible_python_interpreter=/usr/bin/python3
 
 [webserver]
 alpha.sivantagemarketing.com
+
+[all:children]
+workstation
+laptop
+webserver
+
+[all:vars]
+ansible_become=true
+
+[desktop:children]
+workstation
+laptop
