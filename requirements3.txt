@@ -49,13 +49,13 @@ pytest
 
 # Data Science Tools
 ipython
+pygments-style-solarized  # used in ipython_config.py
 jupyter
 octave-kernel
 numpy
 pandas
 # for pandas excel support
 xlrd
-pygments-style-solarized
 ## must apt-get install libpng12-dev libfreetype6-dev to install matplotlib
 matplotlib
 ## requires apt-get install libblas-dev liblapack-dev gfortran
@@ -68,14 +68,14 @@ scikit-learn
 # database
 pymongo
 docker-compose
+# enhanced clients with autocomplete
+mycli
+pgcli
 # postgresSQL driver most popular (installed in venv instead of globally)
 # psycopg2
-# MySQL enhanced client
-# mycli
 
 # CLRX Documentation will not be built, because no markdown_py utility
 markdown
-
 
 # installed by default with 3.6
 # pygments
