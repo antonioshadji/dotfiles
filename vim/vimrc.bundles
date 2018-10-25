@@ -1,5 +1,10 @@
 " vim: foldmarker={,} foldlevel=1 foldmethod=marker
 
+" jedi-vim installed in .vim/pack/plugins/start/
+" vim-go installed in .vim/pack/plugins/start using new vim8 package manager
+" 2018-08-02 21:30:27 -0400 set to version v1.18
+" must also run (within vim) :GoUpdateBinaries
+
 " https://github.com/junegunn/vim-plug/wiki/faq
 " install vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -13,14 +18,18 @@ call plug#begin('~/.vim/bundle')
 
 " https://github.com/altercation/vim-colors-solarized
 Plug 'altercation/vim-colors-solarized'
-" vim-polyglot loads syntax on demand - replaces all other syntax plugins {
-Plug 'https://github.com/sheerun/vim-polyglot'
-" use full go plugin instead of polyglot
-let g:polyglot_disabled = ['go']
-" vim-go installed in .vim/pack/plugins/start using new vim8 package manager
-" 2018-08-02 21:30:27 -0400 set to version v1.18
-" must also run (within vim) :GoUpdateBinaries
-" }
+" line numbering
+Plug 'myusuf3/numbers.vim'
+" Software caps lock
+Plug 'tpope/vim-capslock'
+" quoting/parenthesizing made simple
+Plug 'tpope/vim-surround'
+" enable repeating supported plugin maps
+Plug 'tpope/vim-repeat'
+" Highlight colors in css files
+Plug 'ap/vim-css-color'
+" Git integration
+Plug 'tpope/vim-fugitive'
 
 " vim-airline {
 Plug 'vim-airline/vim-airline'
@@ -51,26 +60,11 @@ let g:indent_guides_exclude_filetypes = ['help', 'markdown', 'pandoc']
 
 " vim-pandoc {
 " These plugins do not work on MAC OSX with default vim
-" TODO: vim-pandoc needs update for python3
-Plug 'vim-pandoc/vim-pandoc', { 'for': 'pandoc' }
-Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'pandoc' }
+Plug 'vim-pandoc/vim-pandoc', { 'for': ['pandoc', 'markdown'] }
+Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': ['pandoc', 'markdown'] }
 let g:pandoc#folding#level = 1
 "}
 
-
-" replaced by polyglot
-" javascript-libraries-syntax {
-" https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
-" https://goo.gl/To1TG3
-" https://github.com/othree/javascript-libraries-syntax.vim
-" Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
-" " default libraries are underscore,backbone,jquery
-" let g:used_javascript_libs = 'underscore,backbone,jquery,express'
-" " improved Javascript syntax support in Vim.(  this makes folding work)
-" Plug 'othree/yajs.vim', { 'for': 'javascript' }
-"}
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 
 " Neomake - Async :make and linting framework for Neovim/Vim {
 " (replaces syntastic for both vim and NeoVim)
@@ -94,51 +88,22 @@ let g:neomake_list_height = 2
 " let g:neomake_python_pep8_args = '--ignore=E501'
 " }
 
-" line numbering
-Plug 'myusuf3/numbers.vim'
-" Software caps lock
-Plug 'tpope/vim-capslock'
 
-" Git integration
-" Plug 'tpope/vim-fugitive'
-" quoting/parenthesizing made simple
-Plug 'tpope/vim-surround'
-" enable repeating supported plugin maps
-Plug 'tpope/vim-repeat'
-" Highlight colors in css files
-Plug 'ap/vim-css-color'
 " Update the bult-in CSS complete function to latest CSS standard.
 " https://github.com/othree/csscomplete.vim
 Plug 'othree/csscomplete.vim'
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
+autocmd FileType css setlocal omnifunc+=csscomplete#CompleteCSS noci
+
 " Liquid templates
 Plug 'tpope/vim-liquid', { 'for': 'liquid' }
 " https://github.com/mustache/vim-mustache-handlebars
-Plug 'mustache/vim-mustache-handlebars'
+Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.mustache' }
 
-" OrgMode Support {
-Plug 'jceb/vim-orgmode', { 'for': 'org' }
-" OrgMode suggested plugins
-Plug 'vim-scripts/utl.vim', { 'for': 'org' }
-" https://github.com/tpope/vim-repeat already installed
-Plug 'https://github.com/majutsushi/tagbar'
-Plug 'https://github.com/tpope/vim-speeddating'
-Plug 'https://github.com/chrisbra/NrrwRgn', { 'for': 'org' }
-Plug 'https://github.com/mattn/calendar-vim'
-Plug 'https://github.com/inkarkat/vim-SyntaxRange', { 'for': 'org' }
-" }
 
-" Python specific {
-" Plug 'https://github.com/python-mode/python-mode', { 'for': ['python' ,'python3'] }
-" let g:pymode_python = 'python3'
-Plug 'https://github.com/tmhedberg/SimpylFold', { 'for': 'python'}
+Plug 'https://github.com/tmhedberg/SimpylFold', { 'for': 'python' }
 let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_fold_docstring = 0
-" }
 
-" Ledger support {
-" Plug 'https://github.com/ledger/vim-ledger'
-" }
 
 
 " deoplete Dark powered asynchronous completion framework for neovim {
@@ -159,7 +124,8 @@ set completeopt=longest,menuone,preview
 " https://github.com/zchee/deoplete-go#sample-initvim
 set completeopt+=noselect
 " https://github.com/zchee/deoplete-jedi
-Plug 'zchee/deoplete-jedi', { 'for': ['python' ,'python3'] }
+Plug 'zchee/deoplete-jedi', { 'for': 'python'}
+let g:jedi#completions_enabled = 0
 
 " Tern plugin
 Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
@@ -169,32 +135,38 @@ let g:tern#arguments = ["--persistent"]
 " " Javascript Parameter Complete  https://github.com/othree/jspc.vim
 Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 " https://github.com/carlitux/deoplete-ternjs
-Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern', 'for': ['javascript', 'javascript.jsx'] }
 
 " https://github.com/zchee/deoplete-clang
 Plug 'zchee/deoplete-clang', { 'for': ['cpp', 'c'] }
 " https://github.com/zchee/deoplete-go
 Plug 'zchee/deoplete-go', { 'do': 'make', 'for': 'go' }
 " https://github.com/sebastianmarkow/deoplete-rust
-Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rs' }
+Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
 
 let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode' "'/home/antonios/go/bin/gocode'
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 
 " https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
 Plug 'ervandew/supertab'
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabContextDefaultCompletionType = "<c-n>" " default value <c-p>
+" https://github.com/ervandew/supertab#frequently-asked-questions
+autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+
+" let g:UltiSnipsExpandTrigger="<C-j>"
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
 let g:deoplete#omni#functions = {}
 let g:deoplete#omni#functions.javascript = [ 'tern#Complete' , 'jspc#omni']
 let g:deoplete#sources = {}
 let g:deoplete#sources.javascript = ['file', 'tag', 'ternjs', 'ultisnips' ]
 let g:deoplete#sources['javascript.jsx'] = ['file', 'tag', 'ternjs', 'ultisnips' ]
 let g:tern_request_timeout = 1
-" let g:tern_show_signature_in_pum = '0'  " This do disable full signature type on autocomplete
 "Add extra filetypes
 let g:deoplete#sources#ternjs#filetypes = [
                 \ 'jsx',
                 \ 'javascript.jsx',
-                \ 'vue',
                 \ ]
 " Whether to include the types of the completions in the result data.
 " Default: 0
@@ -210,13 +182,9 @@ let g:deoplete#sources#ternjs#case_insensitive = 1
 let g:deoplete#sources#ternjs#include_keywords = 1
 
 
-autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-let g:UltiSnipsExpandTrigger="<C-j>"
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
 "https://github.com/zchee/deoplete-clang
-let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-4.0/lib/libclang.so'
-let g:deoplete#sources#clang#clang_header = '/usr/lib/llvm-4.0/lib/clang'
+let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-6.0/lib/libclang.so'
+let g:deoplete#sources#clang#clang_header = '/usr/lib/llvm-6.0/lib/clang'
 
 " https://github.com/sebastianmarkow/deoplete-rust
 let g:deoplete#sources#rust#racer_binary='/home/antonios/.cargo/bin/racer'
@@ -227,7 +195,25 @@ let g:deoplete#sources#rust#rust_source_path='/home/antonios/.rustup/toolchains/
 " All of your Plugs must be added before the following line
 call plug#end()            " required
 
+" when reading and writing no delay (add ', 100' for 100 ms delay )
+call neomake#configure#automake('rw')
+
 " Disabled configurations {
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
+" javascript-libraries-syntax {
+" https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
+" https://goo.gl/To1TG3
+" https://github.com/othree/javascript-libraries-syntax.vim
+" Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
+" " default libraries are underscore,backbone,jquery
+" let g:used_javascript_libs = 'underscore,backbone,jquery,express'
+" " improved Javascript syntax support in Vim.(  this makes folding work)
+" Plug 'othree/yajs.vim', { 'for': 'javascript' }
+"}
+" Ledger support {
+" Plug 'https://github.com/ledger/vim-ledger'
+" }
 " Goyo - Distraction-free writing in Vim {
 " https://github.com/junegunn/goyo.vim
 "Plug 'junegunn/goyo.vim', { 'for': 'pandoc' }
@@ -271,6 +257,23 @@ call plug#end()            " required
 "let g:syntastic_aggregate_errors = 1
 
 "}
+" vim-polyglot loads syntax on demand - replaces all other syntax plugins {
+" Plug 'https://github.com/sheerun/vim-polyglot'
+" use full go plugin instead of polyglot
+" let g:polyglot_disabled = ['go', 'python', 'python3']
+" }
+" OrgMode Support {
+" Plug 'jceb/vim-orgmode', { 'for': 'org' }
+" " OrgMode suggested plugins
+" Plug 'vim-scripts/utl.vim', { 'for': 'org' }
+" " https://github.com/tpope/vim-repeat already installed
+" Plug 'https://github.com/majutsushi/tagbar'
+" Plug 'https://github.com/tpope/vim-speeddating'
+" Plug 'https://github.com/chrisbra/NrrwRgn', { 'for': 'org' }
+" Plug 'https://github.com/mattn/calendar-vim'
+" Plug 'https://github.com/inkarkat/vim-SyntaxRange', { 'for': 'org' }
+" }
+"
 "} end disabled
 " } end bundle list
 

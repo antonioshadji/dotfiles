@@ -383,7 +383,9 @@ endif
 "}
 
 " run Neomake on each file write {
-autocmd! BufWritePost * Neomake
+" https://github.com/neomake/neomake#setup
+" moved to ./vimrc.bundles
+"  autocmd! BufWritePost * Neomake
 " }
 
 " jump to last known cursor position {
