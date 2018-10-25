@@ -1,4 +1,11 @@
 ---
+- name: Update and upgrade apt packages
+  become: true
+  apt:
+    upgrade: yes
+    update_cache: yes
+    cache_valid_time: 86400 #One day
+
 - name: verify git repo is available
   apt_repository:
     repo: ppa:git-core/ppa
@@ -9,7 +16,7 @@
     name: "{{ packages }}"
     state: latest
     update_cache: yes
-    cache_valid_time: 28800
+    cache_valid_time: 86400 #One day
     autoremove: yes
   vars:
     packages:
