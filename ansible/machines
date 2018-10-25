@@ -1,0 +1,11 @@
+[workstation]
+hadji.local   ansible_connection=local
+
+[laptop]
+laptop.local
+
+[laptop:vars]
+ansible_python_interpreter=/usr/bin/python3
+
+[webserver]
+alpha.sivantagemarketing.com
