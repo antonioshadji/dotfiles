@@ -18,6 +18,7 @@
     update_cache: yes
     cache_valid_time: 86400 #One day
     autoremove: yes
+    force_apt_get: yes
   vars:
     packages:
     - git-core
