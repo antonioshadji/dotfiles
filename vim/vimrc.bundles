@@ -128,14 +128,17 @@ Plug 'zchee/deoplete-jedi', { 'for': 'python'}
 let g:jedi#completions_enabled = 0
 
 " Tern plugin
-Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'ternjs/tern_for_vim'
+", { 'for': ['javascript', 'javascript.jsx'] }
 " Use tern_for_vim.
 let g:tern#command = ["tern"]
 let g:tern#arguments = ["--persistent"]
 " " Javascript Parameter Complete  https://github.com/othree/jspc.vim
-Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'othree/jspc.vim'
+" , { 'for': ['javascript', 'javascript.jsx'] }
 " https://github.com/carlitux/deoplete-ternjs
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern', 'for': ['javascript', 'javascript.jsx'] }
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern'}
+" , 'for': ['javascript', 'javascript.jsx'] }
 
 " https://github.com/zchee/deoplete-clang
 Plug 'zchee/deoplete-clang', { 'for': ['cpp', 'c'] }
@@ -147,12 +150,13 @@ Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
 let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode' "'/home/antonios/go/bin/gocode'
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 
+" let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 " https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
 Plug 'ervandew/supertab'
-let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-n>" " default value <c-p>
 " https://github.com/ervandew/supertab#frequently-asked-questions
-autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+" autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
 " let g:UltiSnipsExpandTrigger="<C-j>"
 " inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
