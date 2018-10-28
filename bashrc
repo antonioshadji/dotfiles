@@ -611,6 +611,8 @@ Extract () {
 
 #}
 
+# does a bashrc.antlr exist?
+[ -r $HOME/.bashrc.antlr ] && source $HOME/.bashrc.antlr
 # does a bashrc.local exist?
 [ -r $HOME/.bashrc.local ] && source $HOME/.bashrc.local
 
