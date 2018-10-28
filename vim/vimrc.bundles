@@ -15,8 +15,11 @@ endif
 call plug#begin('~/.vim/bundle')
 
 " Plug List {
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 " https://github.com/altercation/vim-colors-solarized
+" solarized.vim can be placed in colors directory
+" function toggleBG must also be saved if wanted
 Plug 'altercation/vim-colors-solarized'
 " line numbering
 Plug 'myusuf3/numbers.vim'
@@ -30,6 +33,10 @@ Plug 'tpope/vim-repeat'
 Plug 'ap/vim-css-color'
 " Git integration
 Plug 'tpope/vim-fugitive'
+" Track the engine.
+Plug 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+Plug 'honza/vim-snippets'
 
 " vim-airline {
 Plug 'vim-airline/vim-airline'
@@ -158,8 +165,11 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>" " default value <c-p>
 " https://github.com/ervandew/supertab#frequently-asked-questions
 " autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
-" let g:UltiSnipsExpandTrigger="<C-j>"
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsExpandTrigger="<C-j>"
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 let g:deoplete#omni#functions = {}
 let g:deoplete#omni#functions.javascript = [ 'tern#Complete' , 'jspc#omni']
@@ -203,8 +213,6 @@ call plug#end()            " required
 call neomake#configure#automake('rw')
 
 " Disabled configurations {
-" Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
 " javascript-libraries-syntax {
 " https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
 " https://goo.gl/To1TG3
