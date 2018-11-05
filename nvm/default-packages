@@ -5,11 +5,10 @@ eslint
 firebase-tools
 googleapis
 grunt
-gulp
+gulp-cli
 mocha
 npm
 standard
 tern
-webpack
 webpack-cli
 neovim
