@@ -75,13 +75,15 @@ let g:pandoc#folding#level = 1
 
 " Neomake - Async :make and linting framework for Neovim/Vim {
 " (replaces syntastic for both vim and NeoVim)
-Plug 'neomake/neomake'
-" https://github.com/neomake/neomake/wiki/Makers
-let g:neomake_javascript_enabled_makers = ['standard']
-let g:neomake_javascript_jsx_enabled_makers = ['standard']
-let g:neomake_python_enabled_makers = ['flake8']
-let g:neomake_open_list = 2
-let g:neomake_list_height = 2
+" Plug 'neomake/neomake'
+" " https://github.com/neomake/neomake/wiki/Makers
+" let g:neomake_javascript_enabled_makers = ['standard']
+" let g:neomake_javascript_jsx_enabled_makers = ['standard']
+" let g:neomake_python_enabled_makers = ['flake8']
+" let g:neomake_python_flake8_args = ['--format=default', '--max-complexity', '10']
+" let g:neomake_html_tidy_args = ['-e', '-q', '--new-inline-tags', 'data', '--show-warnings', 'no']
+" let g:neomake_open_list = 2
+" let g:neomake_list_height = 4
 
 " html linters: tidy, htmlhint
 " https://github.com/htacg/tidy-html5
@@ -92,14 +94,15 @@ let g:neomake_list_height = 2
 " *g:neomake_<ft>_<name>_<property>*
 " Configure properties for a maker where <property> is one of `exe`, `args`,
 " `errorformat`, `buffer_output`, `remove_invalid_entries` or `append_file`.
-" let g:neomake_python_pep8_args = '--ignore=E501'
+" https://github.com/neomake/neomake/blob/master/doc/neomake.txt
 " }
 
 
 " Update the bult-in CSS complete function to latest CSS standard.
 " https://github.com/othree/csscomplete.vim
 Plug 'othree/csscomplete.vim'
-autocmd FileType css setlocal omnifunc+=csscomplete#CompleteCSS noci
+" help autocmd-patterns
+autocmd FileType *.css,*.scss,*.html setlocal omnifunc+=csscomplete#CompleteCSS noci
 
 " Liquid templates
 Plug 'tpope/vim-liquid', { 'for': 'liquid' }
@@ -165,8 +168,8 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>" " default value <c-p>
 " https://github.com/ervandew/supertab#frequently-asked-questions
 " autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
-let g:UltiSnipsExpandTrigger="<tab>"
-"let g:UltiSnipsExpandTrigger="<C-j>"
+"let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<C-j>"
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
@@ -181,6 +184,7 @@ let g:tern_request_timeout = 1
 let g:deoplete#sources#ternjs#filetypes = [
                 \ 'jsx',
                 \ 'javascript.jsx',
+                \ 'html',
                 \ ]
 " Whether to include the types of the completions in the result data.
 " Default: 0
@@ -210,7 +214,7 @@ let g:deoplete#sources#rust#rust_source_path='/home/antonios/.rustup/toolchains/
 call plug#end()            " required
 
 " when reading and writing no delay (add ', 100' for 100 ms delay )
-call neomake#configure#automake('rw')
+" call neomake#configure#automake('rw')
 
 " Disabled configurations {
 " javascript-libraries-syntax {
@@ -290,3 +294,13 @@ call neomake#configure#automake('rw')
 " } end bundle list
 
 
+" Ale configuration {
+" Enable completion where available.
+" This setting must be set before ALE is loaded.
+" let g:ale_completion_enabled = 1
+" See :help ale-completion for more information.
+"
+" https://github.com/w0rp/ale#2ii-fixing
+" show errors or warnings in my statusline Set this. Airline will handle the rest.
+let g:airline#extensions#ale#enabled = 1
+" }
