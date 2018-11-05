@@ -6,10 +6,10 @@ git pull
 make distclean
 LATEST_TAG=$(git describe --tags)
 echo $LATEST_TAG
-sleep 1s
+sleep 3s
 git checkout $LATEST_TAG
 
-sleep 1s
+sleep 3s
 ./configure \
   --enable-luainterp=dynamic \
   --enable-python3interp=yes \
@@ -20,13 +20,13 @@ sleep 1s
   --enable-gui=gtk3 \
   --enable-gnome-check \
   --with-compiledby="Antonios Hadjigeorgalis"
-# mzscheme installed with racket-lang ?? seems to have functions missing
+# mzscheme installed with racket-lang racket is correct as per help mzscheme
+# fails to compile.
 #  --enable-mzschemeinterp \
-#   --with-features=huge \ default
-read -p "Hit enter to continue."
 
 if [ $? -eq 0 ]; then
-  echo "successfully configured"
+  echo "./configure success."
+  read -p "Hit enter to continue building vim."
   sleep 1s
   make
 fi
