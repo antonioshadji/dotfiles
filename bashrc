@@ -122,7 +122,7 @@ export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
 
-HISTCONTROL=erasedups:ignorespace
+HISTCONTROL=ignoreboth
 # https://www.gnu.org/software/bash/manual/html_node/Bash-Variables.html#index-HISTCMD
 # A colon-separated list of values controlling how commands are saved on the
 # history list. If the list of values includes ‘ignorespace’, lines which begin
@@ -269,22 +269,22 @@ base3='\e[1;37m'   # base3     #fdf6e3 15/7 brwhite  230 #ffffd7 97  00  10 253 
 ## --      Customized git prompt
 ## -----------------------------------------------------
 # gitprompt configuration
-
-# Set config variables first
-GIT_PROMPT_ONLY_IN_REPO=0
-
-# GIT_PROMPT_FETCH_REMOTE_STATUS=0   # uncomment to avoid fetching remote status
-
-# GIT_PROMPT_SHOW_UPSTREAM=1 # uncomment to show upstream tracking branch
-GIT_PROMPT_SHOW_UNTRACKED_FILES=normal # can be no, normal or all; determines counting of untracked files
-
-GIT_PROMPT_START="_LAST_COMMAND_INDICATOR_ ${blue}${HOSTNAME%%.*}:${yellow}\w${Reset}"
-# GIT_PROMPT_END=...      # uncomment for custom prompt end sequence
-
-GIT_PROMPT_THEME=Solarized_Ubuntu
-# https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions
-# -r file True if file exists and is readable.
 if [ -r $HOME/dotfiles/bash-git-prompt/gitprompt.sh ]; then
+  # Set config variables first
+  GIT_PROMPT_ONLY_IN_REPO=0
+
+  # GIT_PROMPT_FETCH_REMOTE_STATUS=0   # uncomment to avoid fetching remote status
+  GIT_PROMPT_IGNORE_SUBMODULES=1 # uncomment to avoid searching for changed files in submodules
+
+  GIT_PROMPT_SHOW_UPSTREAM=1 # uncomment to show upstream tracking branch
+  GIT_PROMPT_SHOW_UNTRACKED_FILES=normal # can be no, normal or all; determines counting of untracked files
+
+  GIT_PROMPT_START="_LAST_COMMAND_INDICATOR_ ${blue}${HOSTNAME%%.*}:${yellow}\w${Reset}"
+  # GIT_PROMPT_END=...      # uncomment for custom prompt end sequence
+
+  GIT_PROMPT_THEME=Solarized_Ubuntu
+  # https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions
+  # -r file True if file exists and is readable.
   source $HOME/dotfiles/bash-git-prompt/gitprompt.sh
 fi
 #}
@@ -437,7 +437,8 @@ export PYTHONDONTWRITEBYTECODE=1
 # alias javac=javac-algs4
 #  }
 
-# https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html {
+# freedesktop.org Environment Variables {
+# https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html#variables
 if [ $(uname -s) == Linux ]; then
   export XDG_DATA_HOME=$HOME/.local/share
   export XDG_CONFIG_HOME=$HOME/.config
