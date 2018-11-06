@@ -160,11 +160,28 @@ Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
 let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode' "'/home/antonios/go/bin/gocode'
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 
-" let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 " https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
+
 Plug 'ervandew/supertab'
-let g:SuperTabContextDefaultCompletionType = "<c-n>" " default value <c-p>
+let g:SuperTabDefaultCompletionType = "context"
+" let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
+"<c-n>" " default value <c-p>
+
+
+let g:SuperTabLongestEnhanced = 1 "(default value: 0)
+" When enabled and 'longest' is in your |completeopt| setting, supertab will
+" provide an enhanced longest match support where typing one or more letters and
+" hitting tab again while in a completion mode will complete the longest common
+" match using the new text in the buffer.
+
+let g:SuperTabLongestHighlight = 1 "(default value: 0)
+" Sets whether or not to pre-highlight the first match when completeopt has the
+" popup menu enabled and the 'longest' option as well. When enabled, <tab> will
+" kick off completion and pre-select the first entry in the popup menu, allowing
+" you to simply hit <enter> to use it.
+
+
 " https://github.com/ervandew/supertab#frequently-asked-questions
 " autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
@@ -295,12 +312,15 @@ call plug#end()            " required
 
 
 " Ale configuration {
+" installed in ~/.vim/pack/plugins/start/
 " Enable completion where available.
 " This setting must be set before ALE is loaded.
 " let g:ale_completion_enabled = 1
 " See :help ale-completion for more information.
 "
 " https://github.com/w0rp/ale#2ii-fixing
-" show errors or warnings in my statusline Set this. Airline will handle the rest.
-let g:airline#extensions#ale#enabled = 1
+" check help ale-options for defaut settings and options available
+
+  " Use the global executables
+  let g:ale_use_global_executables = 1
 " }
