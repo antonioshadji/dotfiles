@@ -276,7 +276,7 @@ if [ -r $HOME/dotfiles/bash-git-prompt/gitprompt.sh ]; then
   # GIT_PROMPT_FETCH_REMOTE_STATUS=0   # uncomment to avoid fetching remote status
   GIT_PROMPT_IGNORE_SUBMODULES=1 # uncomment to avoid searching for changed files in submodules
 
-  GIT_PROMPT_SHOW_UPSTREAM=1 # uncomment to show upstream tracking branch
+  # GIT_PROMPT_SHOW_UPSTREAM=1 # uncomment to show upstream tracking branch
   GIT_PROMPT_SHOW_UNTRACKED_FILES=normal # can be no, normal or all; determines counting of untracked files
 
   GIT_PROMPT_START="_LAST_COMMAND_INDICATOR_ ${blue}${HOSTNAME%%.*}:${yellow}\w${Reset}"
