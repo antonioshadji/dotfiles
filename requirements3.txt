@@ -13,57 +13,41 @@ pipenv
 zmq
 
 awscli
-# Collecting botocore==1.10.81 (from awscli->-r dotfiles/requirements3.txt (line 8))
-# Collecting docutils>=0.10 (from awscli->-r dotfiles/requirements3.txt (line 8))
-# Collecting rsa<=3.5.0,>=3.1.2 (from awscli->-r dotfiles/requirements3.txt (line 8))
-# Collecting s3transfer<0.2.0,>=0.1.12 (from awscli->-r dotfiles/requirements3.txt (line 8))
 linode-cli
-# Collecting colorclass (from linode-cli->-r dotfiles/requirements3.txt (line 9))
-# Collecting terminaltables (from linode-cli->-r dotfiles/requirements3.txt (line 9))
-# Requirement already satisfied: requests in /usr/lib/python3/dist-packages (from linode-cli->-r dotfiles/requirements3.txt (line 9)) (2.18.4)
-# Collecting enum34 (from linode-cli->-r dotfiles/requirements3.txt (line 9))
 
 # gnucash
 piecash
-# Collecting SQLAlchemy-Utils>=0.31 (from piecash->-r dotfiles/requirements3.txt (line 12))
-# Collecting SQLAlchemy>=1.0 (from piecash->-r dotfiles/requirements3.txt (line 12))
-# Requirement already satisfied: click in /usr/lib/python3/dist-packages (from piecash->-r dotfiles/requirements3.txt (line 12)) (6.7)
-# Requirement already satisfied: pytz in /usr/lib/python3/dist-packages (from piecash->-r dotfiles/requirements3.txt (line 12)) (2018.3)
-# Collecting tzlocal (from piecash->-r dotfiles/requirements3.txt (line 12))
 
 # google apis
 google-api-python-client
-# Requirement already satisfied: six<2dev,>=1.6.1 in /usr/lib/python3/dist-packages (from google-api-python-client->-r dotfiles/requirements3.txt (line 15)) (1.11.0)
-# Collecting uritemplate<4dev,>=3.0.0 (from google-api-python-client->-r dotfiles/requirements3.txt (line 15))
-# Requirement already satisfied: httplib2<1dev,>=0.9.2 in /usr/lib/python3/dist-packages (from google-api-python-client->-r dotfiles/requirements3.txt (line 15)) (0.9.2)
-# Collecting google-auth-httplib2>=0.0.3 (from google-api-python-client->-r dotfiles/requirements3.txt (line 15))
-# Collecting google-auth>=1.4.1 (from google-api-python-client->-r dotfiles/requirements3.txt (line 15))
 oauth2client
-# Collecting pyasn1-modules>=0.0.5 (from oauth2client->-r dotfiles/requirements3.txt (line 16))
-# Collecting pyasn1>=0.1.7 (from oauth2client->-r dotfiles/requirements3.txt (line 16))
 
 # coding tools
 neovim
 jedi
 pytest
+powerline-status
 
-# Data Science Tools
-ipython
-pygments-style-solarized  # used in ipython_config.py
-jupyter
-octave-kernel
+# Data Science Tools SciPy stack
+## must apt-get install libpng12-dev libfreetype6-dev to install matplotlib
 numpy
+scipy
+matplotlib
+ipython
+jupyter
 pandas
+sympy
+nose
 # for pandas excel support
 xlrd
-## must apt-get install libpng12-dev libfreetype6-dev to install matplotlib
-matplotlib
+# used in ipython_config.py
+pygments-style-solarized
+# machine learning
+# octave kernel for jupyter notebook and machine learning course
+octave-kernel
 ## requires apt-get install libblas-dev liblapack-dev gfortran
-scipy
 statsmodels
 scikit-learn
-# sympy
-
 
 # database
 pymongo
