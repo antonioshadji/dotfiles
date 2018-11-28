@@ -61,13 +61,16 @@ pgcli
 # CLRX Documentation will not be built, because no markdown_py utility
 markdown
 
-# installed by default with 3.6
+## installed by default with 3.6
 # pygments
 # setuptools
-# http libraries
+## http libraries
 # requests
+## certifi is used by requests and should be updated frequently
+## http://docs.python-requests.org/en/master/user/advanced/#ca-certificates
+certifi
 # httpie
-# used in calibre update script
+## used in calibre update script
 # lxml
 
 # 2018-07-20 13:28:14 -0400 Ubuntu 16.04
