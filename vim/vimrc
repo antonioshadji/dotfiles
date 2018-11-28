@@ -139,6 +139,11 @@ set foldenable                  " Auto fold code
 set listchars=tab:›\ ,trail:∙,nbsp:†,extends:»,precedes:« "nvim defaults to tab:> ,trail:-,nbsp:+
 set list
 set colorcolumn=80              " highlight 80 character width for code files
+
+" status bar
+set noshowmode
+set laststatus=2
+set encoding=utf-8
 "} end Vim UI
 
 " Formatting {
@@ -157,7 +162,7 @@ set printoptions=formfeed:y  "insert Ctrl-V Ctrl-L (^L) to create print pagebrea
 " GUI Settings (here instead of .gvimrc) {
 if has('gui_running')
   " Set my preferred font with comma separated list(spaces must be escaped)
-  set guifont=Ubuntu\ Mono\ derivative\ Powerline 14
+  set guifont=Ubuntu\ Mono\ Regular\ 14
   set guioptions-=T               "Remove tool bar
   set guioptions+=c               "Use console dialogs
   set lines=48                    "Larger window than 24 row terminal

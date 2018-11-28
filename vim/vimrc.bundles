@@ -40,24 +40,6 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 " searching with ctrl + p
 Plug 'kien/ctrlp.vim'
-" status line in python
-" https://github.com/powerline/powerline
-Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-" vim-airline {
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
-" let g:airline_theme = 'solarized'
-" let g:airline_powerline_fonts = 1
-" let g:airline_skip_empty_sections = 1
-" let g:airline#extensions#capslock#enabled = 1
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#show_buffers = 1
-" let g:airline#extensions#tabline#buffer_nr_show = 1
-" let g:airline#extensions#tabline#formatter = 'unique_tail'
-" https://github.com/vim-airline/vim-airline#smarter-tab-line
-set noshowmode
-set laststatus=2
-set encoding=utf-8
 
 "}
 
@@ -315,6 +297,10 @@ call plug#end()            " required
 "} end disabled
 " } end bundle list
 
+" powerline vim bindings {
+" TODO: How to make this less hardcoded?
+set rtp+=/home/antonios/.local/lib/python3.6/site-packages/powerline/bindings/vim
+" }
 
 " Ale configuration {
 " installed in ~/.vim/pack/plugins/start/
