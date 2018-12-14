@@ -7,12 +7,14 @@
     cache_valid_time: 86400 #One day
     force_apt_get: yes
 
-- name: verify git repo is available
+- name: Verify git ppa is an apt repository
+  become: true
   apt_repository:
     repo: ppa:git-core/ppa
     update_cache: no
 
-- name: install system software
+- name: Install system software
+  become: true
   apt:
     name: "{{ packages }}"
     state: latest
@@ -25,3 +27,9 @@
     - git-core
     - curl
 
+- name: Clone dotfiles git repo
+  git:
+    repo: git@github.com:AntoniosHadji/dotfiles.git
+    dest: /home/antonios/.dotfiles
+    accept_hostkey: yes
+    recursive: yes
