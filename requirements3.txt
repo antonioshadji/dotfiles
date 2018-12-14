@@ -51,6 +51,7 @@ scikit-learn
 
 # database
 pymongo
+dnspython # required for short uri in mongodb driver
 docker-compose
 # enhanced clients with autocomplete
 mycli
