@@ -301,6 +301,14 @@ call plug#end()            " required
 " TODO: How to make this less hardcoded?
 set rtp+=/home/antonios/.local/lib/python3.6/site-packages/powerline/bindings/vim
 " }
+" airline {
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline_powerline_fonts = 1
+" let g:airline_theme='solarized'
+" let g:airline_solarized_bg='dark'
+" }
 
 " Ale configuration {
 " installed in ~/.vim/pack/plugins/start/

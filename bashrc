@@ -1,8 +1,8 @@
-# vim modeline {
-# vim: set foldmarker={,} foldlevel=0 foldmethod=marker :
-# }
+# vim modeline {{
+# vim: set foldmarker={{,}} foldlevel=0 foldmethod=marker :
+# }}
 
-# Bash Reference Manual {
+# Bash Reference Manual {{
 # https://www.gnu.org/software/bash/manual/bash.html
 
 # Notes By Balaji S. Srinivasan (balajis@stanford.edu)
@@ -45,7 +45,16 @@
 # https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions
 
 # https://www.gnu.org/software/bash/manual/bash.html#Shell-Arithmetic
-# }
+# }}
+
+DEBUG=0
+# profile start time start {{
+if [[ $DEBUG == 1 ]]; then
+  PS4='+ $(date "+%s.%N")\011 '
+  exec 3>&2 2>/tmp/bashstart.$$.log
+  set -x
+fi
+# }}
 
 # From /etc/bash.bashrc (Ubuntu 14.04.03)
 # If not running interactively, don't do anything
@@ -97,6 +106,50 @@ set -o vi
 # TODO: find a definitive answer to best practice
 # in meantime chmod ug+rw,o-rwx
 # }
+
+# Configure PATH {
+#  - These are line by line so that you can kill one without affecting the others.
+#  - Lowest priority first, highest priority last.
+export PATH=$PATH
+# https://www.gnu.org/software/bash/manual/bash.html#Pattern-Matching
+# https://askubuntu.com/questions/299710/how-to-determine-if-a-string-is-a-substring-of-another-in-bash
+# set PATH so it includes user's private bin if it exists
+# only [[]] allows multiple tests and pattern matching
+if [[ ! $PATH == *$HOME/bin* && -d $HOME/bin ]]; then
+  export PATH=$HOME/bin:$PATH
+fi
+
+# set PATH to include latest version of pandoc
+[ -d $HOME/.cabal/bin ] && export PATH=$HOME/.cabal/bin:$PATH
+
+# android studio manually installed in this location
+[ -d $HOME/code/Android/android-studio/bin ] && export PATH=$HOME/code/Android/android-studio/bin:$PATH
+
+# gem install --user-install uses this location
+[ -d $HOME/.gem/ruby/2.3.0/bin ] && export PATH=$HOME/.gem/ruby/2.3.0/bin:$PATH
+
+# pip install --user installs into ~/.local/bin
+[ -d $HOME/.local/bin ] && export PATH=$HOME/.local/bin:$PATH
+
+# Rust
+[ -d $HOME/.cargo/bin ] && export PATH="$HOME/.cargo/bin:$PATH"
+
+# go
+[ -d /usr/local/go/bin/ ] && export PATH=$PATH:/usr/local/go/bin
+[ -d /mnt/storage/go ] && export GOPATH=/mnt/storage/go
+[ -d /mnt/storage/go/bin ] && export PATH="/mnt/storage/go/bin:$PATH"
+
+# amdgpu
+[ -d /opt/amdgpu-pro/bin ] && export PATH=$PATH:/opt/amdgpu-pro/bin
+
+# ==> Source [/opt/google-cloud-sdk/path.bash.inc] in your profile to add the Google Cloud SDK command line tools to your $PATH.
+[ -r /opt/google-cloud-sdk/path.bash.inc ] && source /opt/google-cloud-sdk/path.bash.inc
+
+# litecoin in opt
+[ -d /opt/litecoin ] && export PATH=$PATH:/opt/litecoin/bin
+# rocm tools
+[ -d /opt/rocm ] && export PATH=$PATH:/opt/rocm/bin
+#}
 
 # 1.2) Set up bash prompt{
 # ---------------------------------------------------------
@@ -287,50 +340,8 @@ if [ -r $HOME/dotfiles/bash-git-prompt/gitprompt.sh ]; then
   # -r file True if file exists and is readable.
   source $HOME/dotfiles/bash-git-prompt/gitprompt.sh
 fi
-#}
-
-# Configure PATH {
-#  - These are line by line so that you can kill one without affecting the others.
-#  - Lowest priority first, highest priority last.
-export PATH=$PATH
-# https://www.gnu.org/software/bash/manual/bash.html#Pattern-Matching
-# https://askubuntu.com/questions/299710/how-to-determine-if-a-string-is-a-substring-of-another-in-bash
-# set PATH so it includes user's private bin if it exists
-# only [[]] allows multiple tests and pattern matching
-if [[ ! $PATH == *$HOME/bin* && -d $HOME/bin ]]; then
-  export PATH=$HOME/bin:$PATH
-fi
-
-# set PATH to include latest version of pandoc
-[ -d $HOME/.cabal/bin ] && export PATH=$HOME/.cabal/bin:$PATH
-
-# android studio manually installed in this location
-[ -d $HOME/code/Android/android-studio/bin ] && export PATH=$HOME/code/Android/android-studio/bin:$PATH
-
-# gem install --user-install uses this location
-[ -d $HOME/.gem/ruby/2.3.0/bin ] && export PATH=$HOME/.gem/ruby/2.3.0/bin:$PATH
-
-# pip install --user installs into ~/.local/bin
-[ -d $HOME/.local/bin ] && export PATH=$HOME/.local/bin:$PATH
-
-# Rust
-[ -d $HOME/.cargo/bin ] && export PATH="$HOME/.cargo/bin:$PATH"
-
-# go
-[ -d /usr/local/go/bin/ ] && export PATH=$PATH:/usr/local/go/bin
-[ -d /mnt/storage/go ] && export GOPATH=/mnt/storage/go
-[ -d /mnt/storage/go/bin ] && export PATH="/mnt/storage/go/bin:$PATH"
-
-# amdgpu
-[ -d /opt/amdgpu-pro/bin ] && export PATH=$PATH:/opt/amdgpu-pro/bin
-
-# ==> Source [/opt/google-cloud-sdk/path.bash.inc] in your profile to add the Google Cloud SDK command line tools to your $PATH.
-[ -r /opt/google-cloud-sdk/path.bash.inc ] && source /opt/google-cloud-sdk/path.bash.inc
-
-# litecoin in opt
-[ -d /opt/litecoin ] && export PATH=$PATH:/opt/litecoin/bin
-# rocm tools
-[ -d /opt/rocm ] && export PATH=$PATH:/opt/rocm/bin
+# powerline bash prompt
+# . $HOME/.local/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh
 #}
 
 #  2) Set up aliases {
@@ -401,7 +412,9 @@ export LANG='en_US.UTF-8'
 # Colors {
 ## Define any user-specific variables you want here.
 # setup LS_COLORS for dircolors command. Solarize color pallette shows only greytones in terminal
-[ -r $HOME/.dircolors ] && eval "$(dircolors -b $HOME/.dircolors)"
+# dircolors -b $HOME/.dircolors
+LS_COLORS='rs=0:di=01;35:ln=00;36:mh=00:pi=40;33:so=40;33:do=40;33:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.lzma=00;31:*.tlz=00;31:*.txz=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.dz=00;31:*.gz=00;31:*.lz=00;31:*.xz=00;31:*.bz2=00;31:*.bz=00;31:*.tbz=00;31:*.tbz2=00;31:*.tz=00;31:*.deb=00;31:*.rpm=00;31:*.jar=00;31:*.war=00;31:*.ear=00;31:*.sar=00;31:*.rar=00;31:*.ace=00;31:*.zoo=00;31:*.cpio=00;31:*.7z=00;31:*.rz=00;31:*.anx=00;34:*.asf=00;34:*.avi=00;34:*.axv=00;34:*.bmp=00;34:*.cgm=00;34:*.dl=00;34:*.emf=00;34:*.flc=00;34:*.fli=00;34:*.flv=00;34:*.gif=00;34:*.gl=00;34:*.jpeg=00;34:*.jpg=00;34:*.m2v=00;34:*.m4v=00;34:*.mkv=00;34:*.mng=00;34:*.mov=00;34:*.mp4=00;34:*.mp4v=00;34:*.mpeg=00;34:*.mpg=00;34:*.nuv=00;34:*.ogm=00;34:*.ogv=00;34:*.ogx=00;34:*.pbm=00;34:*.pcx=00;34:*.pdf=00;34:*.pgm=00;34:*.png=00;34:*.ppm=00;34:*.qt=00;34:*.rm=00;34:*.rmvb=00;34:*.svg=00;34:*.svgz=00;34:*.tga=00;34:*.tif=00;34:*.tiff=00;34:*.vob=00;34:*.webm=00;34:*.wmv=00;34:*.xbm=00;34:*.xcf=00;34:*.xpm=00;34:*.xwd=00;34:*.yuv=00;34:*.aac=00;35:*.au=00;35:*.flac=00;35:*.mid=00;35:*.midi=00;35:*.mka=00;35:*.mp3=00;35:*.mpc=00;35:*.ogg=00;35:*.opus=00;35:*.ra=00;35:*.wav=00;35:*.m4a=00;35:*.axa=00;35:*.oga=00;35:*.spx=00;35:*.xspf=00;35:';
+export LS_COLORS
 
 # From ubuntu 16.04 default bashrc
 # colored GCC warnings and errors
@@ -418,7 +431,9 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 if [ -r $HOME/.nvm/nvm.sh ]; then
   NVM_DIR=$HOME/.nvm
   source $HOME/.nvm/nvm.sh
-  export NODE_PATH=$(npm root -g):$NODE_PATH
+  np=$(nvm which current)
+  np="${np//bin/lib}"
+  export NODE_PATH=$np"_modules":$NODE_PATH
 fi
 
 #}
@@ -533,15 +548,18 @@ fi
 
 # https://docs.npmjs.com/cli/completion
 # this was not working (2017-02-13) $(npm completion) > /etc/bash_completion.d/
-[ $(command -v npm) ] && eval "$(npm completion)"
+# setup in sudo crontab to write to /etc/bash_completion.d/
+# [ $(command -v npm) ] && eval "$(npm completion)"
 
 # https://pip.pypa.io/en/stable/user_guide/#command-completion
 # specifically for pip command, does not offer completion for pip2 or pip3
-[ $(command -v pip) ] && eval "`pip completion --bash`"
+# setup in sudo crontab to write to /etc/bash_completion.d/
+# [ $(command -v pip) ] && eval "$(pip completion --bash)"
 
 # enable completion for pandoc
 # this was not working without "" surrounding $()
-[ $(command -v pandoc) ] && eval "$(pandoc --bash-completion)"
+# setup in sudo crontab to write to /etc/bash_completion.d/
+# [ $(command -v pandoc) ] && eval "$(pandoc --bash-completion)"
 
 # ==> Source [/opt/google-cloud-sdk/completion.bash.inc] in your profile to enable shell command completion for gcloud.
 [ -r /opt/google-cloud-sdk/completion.bash.inc ] && source /opt/google-cloud-sdk/completion.bash.inc
@@ -623,3 +641,11 @@ if [ -r /var/run/reboot-required ]; then
   cat /var/run/reboot-required.pkgs
   uptime
 fi
+
+
+# profile stop time start {{
+if [[ $DEBUG == 1 ]]; then
+  set +x
+  exec 2>&3 3>&-
+fi
+# }}

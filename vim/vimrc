@@ -162,7 +162,7 @@ set printoptions=formfeed:y  "insert Ctrl-V Ctrl-L (^L) to create print pagebrea
 " GUI Settings (here instead of .gvimrc) {
 if has('gui_running')
   " Set my preferred font with comma separated list(spaces must be escaped)
-  set guifont=Ubuntu\ Mono\ Regular\ 14
+  set guifont=Ubuntu\ Mono\ derivative\ Powerline\ Regular\ 14
   set guioptions-=T               "Remove tool bar
   set guioptions+=c               "Use console dialogs
   set lines=48                    "Larger window than 24 row terminal
