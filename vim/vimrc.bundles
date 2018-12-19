@@ -309,6 +309,11 @@ set rtp+=/home/antonios/.local/lib/python3.6/site-packages/powerline/bindings/vi
 " let g:airline_theme='solarized'
 " let g:airline_solarized_bg='dark'
 " }
+" tmux conf {
+Plug 'christoomey/vim-tmux-navigator'
+
+"}
+
 
 " Ale configuration {
 " installed in ~/.vim/pack/plugins/start/

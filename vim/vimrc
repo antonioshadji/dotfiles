@@ -411,6 +411,9 @@ autocmd BufEnter * let &titlestring = hostname() . "[vim(" . expand("%:t") . ")]
 au BufNewFile *.html 0r ~/.vim/.skeleton.html
 " }
 endif
+
+" automatically resize windows on vim resize
+autocmd VimResized * :wincmd =
 " end Auto Commands: }
 
 " Custom commands & functions : {
