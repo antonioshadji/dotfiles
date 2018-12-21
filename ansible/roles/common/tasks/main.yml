@@ -26,6 +26,7 @@
     packages:
     - git-core
     - curl
+    - tmux
 
 - name: Clone dotfiles git repo
   git:
@@ -33,3 +34,11 @@
     dest: /home/antonios/.dotfiles
     accept_hostkey: yes
     recursive: yes
+- name: Create symlinks
+  file:
+    src: '/home/antonios/.dotfiles/{{ item }}'
+    dest: '/home/antonios/.{{ item }}'
+    state: link
+    with_items:
+      - 'vim'
+      - 'tmux.conf'
