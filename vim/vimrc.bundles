@@ -40,6 +40,8 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 " searching with ctrl + p
 Plug 'kien/ctrlp.vim'
+" tmux conf
+Plug 'christoomey/vim-tmux-navigator'
 
 "}
 
@@ -58,31 +60,6 @@ Plug 'vim-pandoc/vim-pandoc', { 'for': ['pandoc', 'markdown'] }
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': ['pandoc', 'markdown'] }
 let g:pandoc#folding#level = 1
 "}
-
-
-" Neomake - Async :make and linting framework for Neovim/Vim {
-" (replaces syntastic for both vim and NeoVim)
-" Plug 'neomake/neomake'
-" " https://github.com/neomake/neomake/wiki/Makers
-" let g:neomake_javascript_enabled_makers = ['standard']
-" let g:neomake_javascript_jsx_enabled_makers = ['standard']
-" let g:neomake_python_enabled_makers = ['flake8']
-" let g:neomake_python_flake8_args = ['--format=default', '--max-complexity', '10']
-" let g:neomake_html_tidy_args = ['-e', '-q', '--new-inline-tags', 'data', '--show-warnings', 'no']
-" let g:neomake_open_list = 2
-" let g:neomake_list_height = 4
-
-" html linters: tidy, htmlhint
-" https://github.com/htacg/tidy-html5
-" https://github.com/yaniswang/HTMLHint
-
-" *neomake-makers-properties*
-" *g:neomake_<name>_<property>*
-" *g:neomake_<ft>_<name>_<property>*
-" Configure properties for a maker where <property> is one of `exe`, `args`,
-" `errorformat`, `buffer_output`, `remove_invalid_entries` or `append_file`.
-" https://github.com/neomake/neomake/blob/master/doc/neomake.txt
-" }
 
 
 " Update the bult-in CSS complete function to latest CSS standard.
@@ -220,103 +197,31 @@ call plug#end()            " required
 " when reading and writing no delay (add ', 100' for 100 ms delay )
 " call neomake#configure#automake('rw')
 
-" Disabled configurations {
-" javascript-libraries-syntax {
-" https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
-" https://goo.gl/To1TG3
-" https://github.com/othree/javascript-libraries-syntax.vim
-" Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
-" " default libraries are underscore,backbone,jquery
-" let g:used_javascript_libs = 'underscore,backbone,jquery,express'
-" " improved Javascript syntax support in Vim.(  this makes folding work)
-" Plug 'othree/yajs.vim', { 'for': 'javascript' }
-"}
-" Ledger support {
-" Plug 'https://github.com/ledger/vim-ledger'
-" }
-" Goyo - Distraction-free writing in Vim {
-" https://github.com/junegunn/goyo.vim
-"Plug 'junegunn/goyo.vim', { 'for': 'pandoc' }
-"" let g:goyo_linenr = 1
-"function! s:goyo_enter()
-"  set nonumber
-"  set norelativenumber
-"endfunction
-"
-"function! s:goyo_leave()
-"  set number
-"  set relativenumber
-"endfunction
-"
-"autocmd! User GoyoEnter nested call <SID>goyo_enter()
-"autocmd! User GoyoLeave nested call <SID>goyo_leave()
-"}
-" syntastic configuration {
-"Plug 'scrooloose/syntastic'
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"" # pylint: disable=C0301 can be used inside a file to disable warnings
-"" let g:syntastic_python_pylint_args = '--disable=C0301,E501'
-"let g:syntastic_python_checkers=['pylint', 'flake8', 'pyflakes', 'python']
-"let g:syntastic_python_python_exec = '/usr/bin/python3'
-"let g:syntastic_python_pylint_exe = 'python3 -m pylint'
-"" html checkers
-"let g:syntastic_html_tidy_ignore_errors=['proprietary attribute', 'trimming empty <span>'] ", 'trimming empty <i>'
-"" javascript checker
-"" https://www.npmjs.com/package/xo#editor-plugins
-""let g:syntastic_javascript_eslint_generic = 1
-""let g:syntastic_javascript_eslint_exec = 'xo'
-""let g:syntastic_javascript_eslint_args = '--reporter=compact'
-"let g:syntastic_javascript_checkers = ['eslint']
-"" recommended settings from syntastic manual
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-"let g:syntastic_aggregate_errors = 1
-
-"}
-" vim-polyglot loads syntax on demand - replaces all other syntax plugins {
-" Plug 'https://github.com/sheerun/vim-polyglot'
-" use full go plugin instead of polyglot
-" let g:polyglot_disabled = ['go', 'python', 'python3']
-" }
-" OrgMode Support {
-" Plug 'jceb/vim-orgmode', { 'for': 'org' }
-" " OrgMode suggested plugins
-" Plug 'vim-scripts/utl.vim', { 'for': 'org' }
-" " https://github.com/tpope/vim-repeat already installed
-" Plug 'https://github.com/majutsushi/tagbar'
-" Plug 'https://github.com/tpope/vim-speeddating'
-" Plug 'https://github.com/chrisbra/NrrwRgn', { 'for': 'org' }
-" Plug 'https://github.com/mattn/calendar-vim'
-" Plug 'https://github.com/inkarkat/vim-SyntaxRange', { 'for': 'org' }
-" }
-"
-"} end disabled
 " } end bundle list
 
-" powerline vim bindings {
+" status line tools {
 " TODO: How to make this less hardcoded?
-set rtp+=/home/antonios/.local/lib/python3.6/site-packages/powerline/bindings/vim
+if isdirectory(expand("~/.local/lib/python3.6/site-packages/powerline"))
+  " echom "powerline"
+  " powerline vim bindings {
+  set rtp+=/home/antonios/.local/lib/python3.6/site-packages/powerline/bindings/vim
+  " }
+else
+  " echom "airline"
+  " airline {
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline_powerline_fonts = 1
+  let g:airline_theme='solarized'
+  let g:airline_solarized_bg='dark'
+  " }
+endif
 " }
-" airline {
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline_powerline_fonts = 1
-" let g:airline_theme='solarized'
-" let g:airline_solarized_bg='dark'
-" }
-" tmux conf {
-Plug 'christoomey/vim-tmux-navigator'
-
-"}
 
 
-" Ale configuration {
 " installed in ~/.vim/pack/plugins/start/
+" Ale configuration {
 " Enable completion where available.
 " This setting must be set before ALE is loaded.
 " let g:ale_completion_enabled = 1
