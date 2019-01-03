@@ -47,8 +47,8 @@
 # https://www.gnu.org/software/bash/manual/bash.html#Shell-Arithmetic
 # }}
 
-DEBUG=0
 # profile start time start {{
+DEBUG=0
 if [[ $DEBUG == 1 ]]; then
   PS4='+ $(date "+%s.%N")\011 '
   exec 3>&2 2>/tmp/bashstart.$$.log
