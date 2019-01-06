@@ -1,3 +1,157 @@
+" modeline {
+  " vim: set foldmarker={,} foldlevel=0 foldmethod=marker :
+  " }
 syntax enable   "Enable syntax highlighting and don't overwrite colorscheme
 filetype plugin indent on "filetype detection, plugins, indent turned on
+set nocompatible                " nvim default, must be set for vim
+set backspace=indent,eol,start  " fix backspace
+set showcmd                     " display incomplete commands
+set mouse=a                     " Automatically enable mouse usage
+set ttymouse=xterm
+set incsearch                   " search as you type
 
+set wildmenu                    " Show list instead of just completing
+" Command <Tab> completion, list matches, then longest common part, then all.
+set wildmode=list:longest,full
+" https://bitbucket.org/sjl/dotfiles/src/cbbbc897e9b3/vim/vimrc
+set wildignore+=.hg,.git,.svn                    " Version control
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
+set wildignore+=*.spl                            " compiled spelling word lists
+set wildignore+=*.sw?                            " Vim swap files
+set wildignore+=*.DS_Store                       " OSX bullshit
+set wildignore+=*.luac                           " Lua byte code
+set wildignore+=*.pyc                            " Python byte code
+set wildignore+=*.class                          " Java byte code
+
+
+" no_plugins.vim settings to maximize Vim's built in functionality {
+" from https://github.com/mcantor/no_plugins/blob/master/no_plugins.vim
+"
+" Search down into subfolders
+" Provides tab-completion for all file-related tasks
+set path+=**
+" NOW WE CAN:
+" - Hit tab to :find by partial match
+" - Use * to make it fuzzy
+
+" TAG JUMPING:
+" Create the `tags` file (may need to install ctags first)
+command! MakeTags !ctags -R .
+
+" NOW WE CAN:
+" - Use ^] to jump to tag under cursor
+" - Use g^] for ambiguous tags
+" - Use ^t to jump back up the tag stack
+" FILE BROWSING:
+
+" Tweaks for browsing
+let g:netrw_banner=0        " disable annoying banner
+let g:netrw_browse_split=4  " open in vertical split (4 = prior window)
+"let g:netrw_altv=1          " open splits to the right
+let g:netrw_liststyle=3     " tree view
+let g:netrw_list_hide=netrw_gitignore#Hide()
+"let g:netrw_list_hide=',\(^\|\s\s\)\zs\.\S\+'
+"let g:netrw_winsize=-1
+" NOW WE CAN:
+" - :edit a folder to open a file browser
+" - <CR>/v/t to open in an h-split/v-split/tab
+" - check |netrw-browse-maps| for more mappings
+
+"}
+
+" Vim UI {
+set cursorline                  " Highlight current line
+set number                      " show line numbers
+set showmatch                   " jump cursor to matching brace when entered
+set ignorecase                  " case-insensitive search
+set smartcase                   " use case sensitive search if any caps present
+
+set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
+set foldenable                  " Auto fold code
+"  To insert special character - in insert mode CTRL-K two character code from :digraphs command
+set listchars=tab:›\ ,trail:∙,nbsp:†,extends:»,precedes:« "nvim defaults to tab:> ,trail:-,nbsp:+
+set list
+set colorcolumn=80              " highlight 80 character width for code files
+
+" status bar
+set noshowmode
+set laststatus=2
+"} end Vim UI
+
+
+" Formatting {
+set nowrap              " do not wrap long lines, show indicator instead
+set shiftwidth=2        " number of spaces to use for autoindent
+set expandtab           " expands tabs to spaces
+set tabstop=2           " actual tabs occupy 4 spaces
+set softtabstop=2       " insert mode tab and backspace
+set splitright          " puts new vsplit windows to the right
+set splitbelow          " puts new hsplit windows below current
+set pastetoggle=<F12>   " sane indentation on pastes
+set printoptions=formfeed:y  "insert Ctrl-V Ctrl-L (^L) to create print pagebreak
+
+" }
+
+
+" Backup and undo settings {
+" - 'backupdir' defaults to .,~/.local/share/nvim/backup (|xdg|)
+" - 'directory' defaults to ~/.local/share/nvim/swap// (|xdg|), auto-created
+" - 'undodir' defaults to ~/.local/share/nvim/undo (|xdg|), auto-created
+" - 'viminfo' includes "!"
+if !has("nvim")
+  if has('persistent_undo')
+    " undodir set from spf13
+    set undofile
+    set undolevels=1000
+    " no undo files left in CWD
+    if !isdirectory(expand("~/.vim/undo/"))
+      " help mkdir for more information on use
+      call mkdir(expand("~/.vim/undo/"), "p")
+    endif
+    set undodir=~/.vim/undo//
+  endif
+
+  set backup                  "See :help backup
+  " no backup files left in CWD
+  if !isdirectory(expand("~/.vim/backup/"))
+    call mkdir(expand("~/.vim/backup/"), "p")
+  endif
+  set backupdir=~/.vim/backup//
+  " no swap files left in CWD
+  if !isdirectory(expand("~/.vim/swap/"))
+    call mkdir(expand("~/.vim/swap/"), "p")
+  endif
+  set directory=~/.vim/swap//
+
+  " https://vimhelp.appspot.com/usr_21.txt.html#21.3
+  " move viminfo file to .vim directory, other settings default and required
+  " this conflicts with nvim, disable in neovim
+  set viminfo='1000,f1,<500,n~/.vim/viminfo
+
+  " Neovim settings to make latest vim work like Neovim {
+  " nvim defaults {
+  set autoindent          " always autoindent
+  set autoread            " auto re-load files when changed on disk https://github.com/square/maximum-awesome
+  " - 'complete' doesn't include 'i'
+  " - 'display' defaults to 'lastline'
+  set history=10000       " command history length extra long
+  set hlsearch            " highlight search terms :noh to clear
+  set ttyfast             " nvim default
+  " }
+
+  " https://neovim.io/doc/user/options.html
+  if v:version >= 704
+    set formatoptions+=tcqj     " https://neovim.io/doc/user/options.html#'formatoptions'
+    set langnoremap             " https://neovim.io/doc/user/options.html#'langnoremap'
+    set laststatus=2            " https://neovim.io/doc/user/options.html#'laststatus'
+    " https://neovim.io/doc/user/options.html#'sessionoptions'
+    set sessionoptions+=blank,buffers,curdir,folds,help,tabpages,winsize
+    set smarttab                " https://neovim.io/doc/user/options.html#'smarttab'
+    " 50 vs 10 for https://neovim.io/doc/user/options.html#'tabpagemax'
+    set tags+=./tags;,tags      " https://neovim.io/doc/user/options.html#'tags'
+  else
+    echom "Not running with Neovim compatibility settings"
+  endif
+endif
+"}
