@@ -56,126 +56,28 @@ if [[ $DEBUG == 1 ]]; then
 fi
 # }}
 
-# From /etc/bash.bashrc (Ubuntu 14.04.03)
 # If not running interactively, don't do anything
+# From /etc/bash.bashrc (Ubuntu 14.04.03)
 # -z = True if the length of string is zero.
-[ -z "$PS1" ] && return
+# [ -z "$PS1" ] && return
+# from 18.10
+case $- in
+    *i*) ;;
+      *) return;;
+esac
 
-# https://www.gnu.org/software/bash/manual/bash.html#The-Shopt-Builtin
-# If set, bash checks the window size after each command and,
-# if necessary, updates the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
-#shopt -s globstar
-
-# set vi mode to edit like vim
-# insert mode by default esc to go to command mode
-set -o vi
-
-# {-- 1.1) Set up umask permissions --
-# -----------------------------------
-#  The following incantation allows easy group modification of files.
-#  See here: http://en.wikipedia.org/wiki/Umask
-#
-#     umask 002 allows only you to write (but the group to read) any new
-#     files that you create.
-#
-#     umask 022 allows both you and the group to write to any new files
-#     which you make.
-#
-#  In general we want umask 022 on the server and umask 002 on local
-#  machines.
-#
-#  The command 'id' gives the info we need to distinguish these cases.
-#
-#     $ id -gn  #gives group name
-#     $ id -un  #gives user name
-#     $ id -u   #gives user ID
-#
-#  So: if the group name is the same as the username OR the user id is not
-#  greater than 99 (i.e. not root or a privileged user), then we are on a
-#  local machine (check for yourself), so we set umask 002.
-#
-#  Conversely, if the default group name is *different* from the username
-#  AND the user id is greater than 99, we're on the server, and set umask
-#  022 for easy collaborative editing.
-# umask is set like this by default
-# this allows anyone on the machine access to my files
-# TODO: find a definitive answer to best practice
-# in meantime chmod ug+rw,o-rwx
-# }
-
-# Configure PATH {
-#  - These are line by line so that you can kill one without affecting the others.
-#  - Lowest priority first, highest priority last.
-export PATH=$PATH
-# https://www.gnu.org/software/bash/manual/bash.html#Pattern-Matching
-# https://askubuntu.com/questions/299710/how-to-determine-if-a-string-is-a-substring-of-another-in-bash
-# set PATH so it includes user's private bin if it exists
-# only [[]] allows multiple tests and pattern matching
-if [[ ! $PATH == *$HOME/bin* && -d $HOME/bin ]]; then
-  export PATH=$HOME/bin:$PATH
-fi
-
-# set PATH to include latest version of pandoc
-[ -d $HOME/.cabal/bin ] && export PATH=$HOME/.cabal/bin:$PATH
-
-# android studio manually installed in this location
-[ -d $HOME/code/Android/android-studio/bin ] && export PATH=$HOME/code/Android/android-studio/bin:$PATH
-
-# gem install --user-install uses this location
-[ -d $HOME/.gem/ruby/2.3.0/bin ] && export PATH=$HOME/.gem/ruby/2.3.0/bin:$PATH
-
-# pip install --user installs into ~/.local/bin
-[ -d $HOME/.local/bin ] && export PATH=$HOME/.local/bin:$PATH
-
-# Rust
-[ -d $HOME/.cargo/bin ] && export PATH="$HOME/.cargo/bin:$PATH"
-
-# go
-[ -d /usr/local/go/bin/ ] && export PATH=$PATH:/usr/local/go/bin
-[ -d /mnt/storage/go ] && export GOPATH=/mnt/storage/go
-[ -d /mnt/storage/go/bin ] && export PATH="/mnt/storage/go/bin:$PATH"
-
-# amdgpu
-[ -d /opt/amdgpu-pro/bin ] && export PATH=$PATH:/opt/amdgpu-pro/bin
-
-# ==> Source [/opt/google-cloud-sdk/path.bash.inc] in your profile to add the Google Cloud SDK command line tools to your $PATH.
-[ -r /opt/google-cloud-sdk/path.bash.inc ] && source /opt/google-cloud-sdk/path.bash.inc
-
-# litecoin in opt
-[ -d /opt/litecoin ] && export PATH=$PATH:/opt/litecoin/bin
-# rocm tools
-[ -d /opt/rocm ] && export PATH=$PATH:/opt/rocm/bin
-#}
-
-# 1.2) Set up bash prompt{
-# ---------------------------------------------------------
-
-# set title of terminal window to user@hostname:pwd
-# this shows up in prompt when using virtual terminal $TERM=Linux (tty)
-# http://tldp.org/HOWTO/Xterm-Title-3.html
-# http://stackoverflow.com/a/25535717/2472798
-# pattern matching **requires** [[ ]]
-if [[ $TERM == xterm* ]]; then
-  PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/\~}\007"'
-fi
-
-# { History setup
+# {{ History setup
 # See:  http://www.ukuug.org/events/linux2003/papers/bash_tips/
-# If  set,  the history list is appended to the file named by
-# the value of the HISTFILE variable when  the  shell  exits,
-# rather than overwriting the file.
+
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
 shopt -s histappend
 # update after every command in every terminal
-export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+export PROMPT_COMMAND="history -a;"
 
-# don't put duplicate lines in the history. See bash(1) for more options
-# ... or force ignoredups and ignorespace
-
-HISTCONTROL=ignoreboth
 # https://www.gnu.org/software/bash/manual/html_node/Bash-Variables.html#index-HISTCMD
 # A colon-separated list of values controlling how commands are saved on the
 # history list. If the list of values includes ‘ignorespace’, lines which begin
@@ -219,9 +121,40 @@ HISTFILESIZE=-1
 #  removal, subject to the value of the promptvars shell option (see
 #  the description of the shopt command under SHELL BUILTIN COMMANDS
 #  below).
-#}
+#}}
 
-#{ Prompt escapes				 #
+# https://www.gnu.org/software/bash/manual/bash.html#The-Shopt-Builtin
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+shopt -s globstar
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# from 18.10
+# set variable identifying the chroot you work in (used in the prompt below)
+# I'm not using chroot
+# if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+#     debian_chroot=$(cat /etc/debian_chroot)
+# fi
+
+# set title of terminal window to user@hostname:pwd
+# this shows up in prompt when using virtual terminal $TERM=Linux (tty)
+# http://tldp.org/HOWTO/Xterm-Title-3.html
+# http://stackoverflow.com/a/25535717/2472798
+# pattern matching **requires** [[ ]]
+if [[ $TERM == xterm* ]]; then
+  PROMPT_COMMAND+='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/\~}\007"'
+fi
+
+# 1.2) Set up bash prompt{{
+# ---------------------------------------------------------
+
+#{{ Bash Prompt escapes
 ##################################################
 
 # Bash allows these prompt strings to be customized by inserting a
@@ -261,35 +194,9 @@ HISTFILESIZE=-1
 #  \[         begin a sequence of non-printing characters, which could be used
 #             to embed a terminal control sequence into the prompt
 #  \]         end a sequence of non-printing characters
-#}
+#}}
 
-#{ Color chart					 #
-##################################################
-
-# TXTBLK='\e[0;30m' # Black - Regular
-# TXTRED='\e[0;31m' # Red
-# TXTGRN='\e[0;32m' # Green
-# TXTYLW='\e[0;33m' # Yellow
-# TXTBLU='\e[0;34m' # Blue
-# TXTPUR='\e[0;35m' # Purple
-# TXTCYN='\e[0;36m' # Cyan
-# TXTWHT='\e[0;37m' # White
-# BLDBLK='\e[1;30m' # Black - Bold
-# BLDRED='\e[1;31m' # Red
-# BLDGRN='\e[1;32m' # Green
-# BLDYLW='\e[1;33m' # Yellow
-# BLDBLU='\e[1;34m' # Blue
-# BLDPUR='\e[1;35m' # Purple
-# BLDCYN='\e[1;36m' # Cyan
-# BLDWHT='\e[1;37m' # White
-# BAKBLK='\e[40m'   # Black - Background
-# BAKRED='\e[41m'   # Red
-# BADGRN='\e[42m'   # Green
-# BAKYLW='\e[43m'   # Yellow
-# BAKBLU='\e[44m'   # Blue
-# BAKPUR='\e[45m'   # Purple
-# BAKCYN='\e[46m'   # Cyan
-# BAKWHT='\e[47m'   # White
+#{{ Color chart
 Reset='\e[0m'    # Text Reset
 
 # http://ethanschoonover.com/solarized
@@ -312,10 +219,9 @@ base0='\e[1;34m'   # base0     #839496 12/6 brblue   244 #808080 60 -06 -03 131 
 violet='\e[1;35m'  # violet    #6c71c4 13/5 brmagenta 61 #5f5faf 50  15 -45 108 113 196 237  45  77
 base1='\e[1;36m'   # base1     #93a1a1 14/4 brcyan   245 #8a8a8a 65 -05 -02 147 161 161 180   9  63
 base3='\e[1;37m'   # base3     #fdf6e3 15/7 brwhite  230 #ffffd7 97  00  10 253 246 227  44  10  99
-# gnome-terminal is 16 color
 # color palette top row in gnome configure screen is 30-37 [0;30m
 # color palette bottom row in gnome configure screen is bold 30-37 [1;30m
-#}
+#}}
 
 ## -----------------------------------------------------
 ## -- 1.3) https://github.com/magicmonty/bash-git-prompt
@@ -328,23 +234,94 @@ if [ -r $HOME/.dotfiles/bash-git-prompt/gitprompt.sh ]; then
 
   # GIT_PROMPT_FETCH_REMOTE_STATUS=0   # uncomment to avoid fetching remote status
   GIT_PROMPT_IGNORE_SUBMODULES=1 # uncomment to avoid searching for changed files in submodules
-
+  # GIT_PROMPT_WITH_VIRTUAL_ENV=0 # uncomment to avoid setting virtual environment infos for node/python/conda environments
   # GIT_PROMPT_SHOW_UPSTREAM=1 # uncomment to show upstream tracking branch
   GIT_PROMPT_SHOW_UNTRACKED_FILES=normal # can be no, normal or all; determines counting of untracked files
-
+  # GIT_PROMPT_SHOW_CHANGED_FILES_COUNT=0 # uncomment to avoid printing the number of changed files
+  # GIT_PROMPT_STATUS_COMMAND=gitstatus_pre-1.7.10.sh # uncomment to support Git older than 1.7.10
   GIT_PROMPT_START="_LAST_COMMAND_INDICATOR_ ${blue}${HOSTNAME%%.*}:${yellow}\w${Reset}"
   # GIT_PROMPT_END=...      # uncomment for custom prompt end sequence
 
+  # as last entry source the gitprompt script
+  # GIT_PROMPT_THEME=Custom # use custom theme specified in file GIT_PROMPT_THEME_FILE (default ~/.git-prompt-colors.sh)
+  # GIT_PROMPT_THEME_FILE=~/.git-prompt-colors.sh
   GIT_PROMPT_THEME=Solarized_Ubuntu
-  # https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions
-  # -r file True if file exists and is readable.
+
   source $HOME/.dotfiles/bash-git-prompt/gitprompt.sh
 fi
+
 # powerline bash prompt
 # . $HOME/.local/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh
-#}
+#}}
 
-#  2) Set up aliases {
+# Colors {{
+## Define any user-specific variables you want here.
+# setup LS_COLORS for dircolors command. Solarize color pallette shows only greytones in terminal
+# dircolors -b $HOME/.dircolors
+LS_COLORS='rs=0:di=01;35:ln=00;36:mh=00:pi=40;33:so=40;33:do=40;33:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.lzma=00;31:*.tlz=00;31:*.txz=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.dz=00;31:*.gz=00;31:*.lz=00;31:*.xz=00;31:*.bz2=00;31:*.bz=00;31:*.tbz=00;31:*.tbz2=00;31:*.tz=00;31:*.deb=00;31:*.rpm=00;31:*.jar=00;31:*.war=00;31:*.ear=00;31:*.sar=00;31:*.rar=00;31:*.ace=00;31:*.zoo=00;31:*.cpio=00;31:*.7z=00;31:*.rz=00;31:*.anx=00;34:*.asf=00;34:*.avi=00;34:*.axv=00;34:*.bmp=00;34:*.cgm=00;34:*.dl=00;34:*.emf=00;34:*.flc=00;34:*.fli=00;34:*.flv=00;34:*.gif=00;34:*.gl=00;34:*.jpeg=00;34:*.jpg=00;34:*.m2v=00;34:*.m4v=00;34:*.mkv=00;34:*.mng=00;34:*.mov=00;34:*.mp4=00;34:*.mp4v=00;34:*.mpeg=00;34:*.mpg=00;34:*.nuv=00;34:*.ogm=00;34:*.ogv=00;34:*.ogx=00;34:*.pbm=00;34:*.pcx=00;34:*.pdf=00;34:*.pgm=00;34:*.png=00;34:*.ppm=00;34:*.qt=00;34:*.rm=00;34:*.rmvb=00;34:*.svg=00;34:*.svgz=00;34:*.tga=00;34:*.tif=00;34:*.tiff=00;34:*.vob=00;34:*.webm=00;34:*.wmv=00;34:*.xbm=00;34:*.xcf=00;34:*.xpm=00;34:*.xwd=00;34:*.yuv=00;34:*.aac=00;35:*.au=00;35:*.flac=00;35:*.mid=00;35:*.midi=00;35:*.mka=00;35:*.mp3=00;35:*.mpc=00;35:*.ogg=00;35:*.opus=00;35:*.ra=00;35:*.wav=00;35:*.m4a=00;35:*.axa=00;35:*.oga=00;35:*.spx=00;35:*.xspf=00;35:';
+export LS_COLORS
+
+# From ubuntu 16.04 default bashrc
+# colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# Gnome Terminal Profiles
+# Solarized Light: 4eac76ef-bf32-4958-aa16-8adfc529ac3b
+# Solarized Dark: 8c65ed44-bbfa-4913-98a4-07f69fed680a
+# Default: b1dcc9dd-5262-4d8d-a863-c897e6d979b9
+#}}
+
+
+# set vi mode to edit like vim
+# insert mode by default esc to go to command mode
+set -o vi
+
+# Configure PATH {{
+#  - These are line by line so that you can kill one without affecting the others.
+#  - Lowest priority first, highest priority last.
+export PATH=$PATH
+# https://www.gnu.org/software/bash/manual/bash.html#Pattern-Matching
+# https://askubuntu.com/questions/299710/how-to-determine-if-a-string-is-a-substring-of-another-in-bash
+# set PATH so it includes user's private bin if it exists
+# only [[]] allows multiple tests and pattern matching
+if [[ ! $PATH == *$HOME/bin* && -d $HOME/bin ]]; then
+  export PATH=$HOME/bin:$PATH
+fi
+
+# set PATH to include latest version of pandoc
+[ -d $HOME/.cabal/bin ] && export PATH=$HOME/.cabal/bin:$PATH
+
+# android studio manually installed in this location
+[ -d $HOME/code/Android/android-studio/bin ] && export PATH=$HOME/code/Android/android-studio/bin:$PATH
+
+# gem install --user-install uses this location
+[ -d $HOME/.gem/ruby/2.3.0/bin ] && export PATH=$HOME/.gem/ruby/2.3.0/bin:$PATH
+
+# pip install --user installs into ~/.local/bin
+[ -d $HOME/.local/bin ] && export PATH=$HOME/.local/bin:$PATH
+
+# Rust
+[ -d $HOME/.cargo/bin ] && export PATH="$HOME/.cargo/bin:$PATH"
+
+# go
+[ -d /usr/local/go/bin/ ] && export PATH=$PATH:/usr/local/go/bin
+[ -d /mnt/storage/go ] && export GOPATH=/mnt/storage/go
+[ -d /mnt/storage/go/bin ] && export PATH="/mnt/storage/go/bin:$PATH"
+
+# amdgpu
+[ -d /opt/amdgpu-pro/bin ] && export PATH=$PATH:/opt/amdgpu-pro/bin
+
+# ==> Source [/opt/google-cloud-sdk/path.bash.inc] in your profile to add the Google Cloud SDK command line tools to your $PATH.
+[ -r /opt/google-cloud-sdk/path.bash.inc ] && source /opt/google-cloud-sdk/path.bash.inc
+
+# litecoin in opt
+[ -d /opt/litecoin ] && export PATH=$PATH:/opt/litecoin/bin
+# rocm tools
+[ -d /opt/rocm ] && export PATH=$PATH:/opt/rocm/bin
+#}}
+
+
+#  2.0) Set up aliases {{
 # -----------------------
 # 2.0) My custom aliases
 alias ping='ping -c 1'
@@ -377,56 +354,49 @@ alias tree='tree -I node_modules'
 [ $(command -v xdg-open) ] && alias o='xdg-open'
 
 # 2.4 Sytemctl
-alias scsp='systemctl status parity.service'
-alias scsg='systemctl status geth.service'
-alias scse='systemctl status ethminer.service'
-alias scsc='systemctl status claymore.service'
-alias scsb='systemctl status bitcoin.service'
-alias scsl='systemctl status litecoin.service'
+# alias scsp='systemctl status parity.service'
+# alias scsg='systemctl status geth.service'
+# alias scse='systemctl status ethminer.service'
+# alias scsc='systemctl status claymore.service'
+# alias scsb='systemctl status bitcoin.service'
+# alias scsl='systemctl status litecoin.service'
 alias jc='journalctl -f -u claymore.service'
 
 # 2.5 frequently used
 
-#}
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-# 2.3) Text and editor commands{
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+#}}
+
+# 2.3) Text and editor commands{{
 alias e='vim'
 alias vv='gvim --remote-silent'
 export EDITOR='vim'
 export VISUAL='vim'
+#}}
 
-# 2.4) grep options
+# {{ 2.4) grep options
 # GREP_OPTIONS is deprecated
 # export GREP_OPTIONS='--color=auto'
 # export GREP_COLOR='0;32' # green for matches
 export GREP_COLOR='30;43' # match color of ag match
-#}
+#}}
 
-# 2.5) sort options{
+# 2.5) sort options{{
 # Ensures cross-platform sorting behavior of GNU sort.
 # http://www.gnu.org/software/coreutils/faq/coreutils-faq.html#Sort-does-not-sort-in-normal-order_0021
 unset LC_ALL
 export LANG='en_US.UTF-8'
-#}
+#}}
 
-# Colors {
-## Define any user-specific variables you want here.
-# setup LS_COLORS for dircolors command. Solarize color pallette shows only greytones in terminal
-# dircolors -b $HOME/.dircolors
-LS_COLORS='rs=0:di=01;35:ln=00;36:mh=00:pi=40;33:so=40;33:do=40;33:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.lzma=00;31:*.tlz=00;31:*.txz=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.dz=00;31:*.gz=00;31:*.lz=00;31:*.xz=00;31:*.bz2=00;31:*.bz=00;31:*.tbz=00;31:*.tbz2=00;31:*.tz=00;31:*.deb=00;31:*.rpm=00;31:*.jar=00;31:*.war=00;31:*.ear=00;31:*.sar=00;31:*.rar=00;31:*.ace=00;31:*.zoo=00;31:*.cpio=00;31:*.7z=00;31:*.rz=00;31:*.anx=00;34:*.asf=00;34:*.avi=00;34:*.axv=00;34:*.bmp=00;34:*.cgm=00;34:*.dl=00;34:*.emf=00;34:*.flc=00;34:*.fli=00;34:*.flv=00;34:*.gif=00;34:*.gl=00;34:*.jpeg=00;34:*.jpg=00;34:*.m2v=00;34:*.m4v=00;34:*.mkv=00;34:*.mng=00;34:*.mov=00;34:*.mp4=00;34:*.mp4v=00;34:*.mpeg=00;34:*.mpg=00;34:*.nuv=00;34:*.ogm=00;34:*.ogv=00;34:*.ogx=00;34:*.pbm=00;34:*.pcx=00;34:*.pdf=00;34:*.pgm=00;34:*.png=00;34:*.ppm=00;34:*.qt=00;34:*.rm=00;34:*.rmvb=00;34:*.svg=00;34:*.svgz=00;34:*.tga=00;34:*.tif=00;34:*.tiff=00;34:*.vob=00;34:*.webm=00;34:*.wmv=00;34:*.xbm=00;34:*.xcf=00;34:*.xpm=00;34:*.xwd=00;34:*.yuv=00;34:*.aac=00;35:*.au=00;35:*.flac=00;35:*.mid=00;35:*.midi=00;35:*.mka=00;35:*.mp3=00;35:*.mpc=00;35:*.ogg=00;35:*.opus=00;35:*.ra=00;35:*.wav=00;35:*.m4a=00;35:*.axa=00;35:*.oga=00;35:*.spx=00;35:*.xspf=00;35:';
-export LS_COLORS
 
-# From ubuntu 16.04 default bashrc
-# colored GCC warnings and errors
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# Gnome Terminal Profiles
-# Solarized Light: 4eac76ef-bf32-4958-aa16-8adfc529ac3b
-# Solarized Dark: 8c65ed44-bbfa-4913-98a4-07f69fed680a
-# Default: b1dcc9dd-5262-4d8d-a863-c897e6d979b9
-#}
-
-#{ Node setup and tools
+#{{ Node setup and tools
 # [ -r file ] returns True if file exists and is readable.
 if [ -r $HOME/.nvm/nvm.sh ]; then
   NVM_DIR=$HOME/.nvm
@@ -435,46 +405,45 @@ if [ -r $HOME/.nvm/nvm.sh ]; then
   np="${np//bin/lib}"
   export NODE_PATH=$np"_modules":$NODE_PATH
 fi
+#}}
 
-#}
-
-# { Python setup and tools
+# {{ Python setup and tools
 # https://howtopython.org/en/latest/the-interpreter/#bytecode-trick
 # Python won't write *.pyc files to disk
 export PYTHONDONTWRITEBYTECODE=1
-# }
+# }}
 
-# Java setup for Algorithm class {
+# Java setup for Algorithm class {{
 # https://class.coursera.org/algs4partI-010
 
 # export PATH=$PATH:$HOME/Documents/Dropbox/Projects/Algorithms/algs4/bin
 # alias java=java-algs4
 # alias javac=javac-algs4
-#  }
+# }}
 
-# freedesktop.org Environment Variables {
+# freedesktop.org Environment Variables {{
 # https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html#variables
 if [ $(uname -s) == Linux ]; then
   export XDG_DATA_HOME=$HOME/.local/share
   export XDG_CONFIG_HOME=$HOME/.config
   export XDG_CACHE_HOME=$HOME/.cache
 fi
-#}
+#}}
 
-# Launchpad setup {
+# Launchpad setup {{
 export UBUMAIL="Antonios Hadjigeorgalis <Antonios@Hadji.co>"
 export DEBEMAIL="Antonios@Hadji.co"
 export DEBFULLNAME="Antonios Hadjigeorgalis"
-# }
+# }}
 
-# git configuration {
+# git configuration {{
 export GIT_AUTHOR_EMAIL="$USER@$HOSTNAME"
 export GIT_AUTHOR_NAME="Antonios Hadjigeorgalis"
 export GIT_COMMITTER_EMAIL="$USER@$HOSTNAME"
 export GIT_COMMITTER_NAME="Antonios Hadjigeorgalis"
-# }
+# }}
 
-# Darwin only setup {
+# Darwin only setup {{
 if [ "$(uname -s)" == 'Darwin' ]; then
   # add all mac osx specific bits inside an if statement like this.
   alias ll='ls -AFlhG'
@@ -487,9 +456,9 @@ if [ "$(uname -s)" == 'Darwin' ]; then
   export CLICOLOR=1
   export LSCOLORS=FxgxdadacxDaDahbadacec
 fi
-# }
+#}}
 
-# { Virtual terminal tty colors
+# {{ Virtual terminal tty colors
 # https://acceptsocket.wordpress.com/2014/08/12/set-solarized-dark-as-default-color-scheme-for-linux-virtual-console/
 # if [ $TERM = "linux" ]; then
 #   echo -en "\e]P0073642" # base02    #073642  0
@@ -510,9 +479,9 @@ fi
 #   echo -en "\e]PFfdf6e3" # base3     #fdf6e3 15F
 #   clear #for background artifacting
 # fi
-#}
+#}}
 
-# { bash completion
+# {{ bash completion
 # https://superuser.com/questions/288714/bash-autocomplete-like-zsh
 # https://www.gnu.org/software/bash/manual/html_node/Readline-Init-File-Syntax.html
 # do 'bind -v' to see all variable names and values
@@ -553,6 +522,10 @@ fi
 # http://docs.aws.amazon.com/cli/latest/userguide/cli-command-completion.html
 [ $(command -v aws_completer) ] && complete -C aws_completer aws
 
+# ==> Source [/opt/google-cloud-sdk/completion.bash.inc] in your profile to enable shell command completion for gcloud.
+[ -r /opt/google-cloud-sdk/completion.bash.inc ] && source /opt/google-cloud-sdk/completion.bash.inc
+
+# moved to /etc/bash_completion.d/ via cron job {{
 # https://docs.npmjs.com/cli/completion
 # this was not working (2017-02-13) $(npm completion) > /etc/bash_completion.d/
 # setup in sudo crontab to write to /etc/bash_completion.d/
@@ -567,12 +540,10 @@ fi
 # this was not working without "" surrounding $()
 # setup in sudo crontab to write to /etc/bash_completion.d/
 # [ $(command -v pandoc) ] && eval "$(pandoc --bash-completion)"
+# }}
+#}}
 
-# ==> Source [/opt/google-cloud-sdk/completion.bash.inc] in your profile to enable shell command completion for gcloud.
-[ -r /opt/google-cloud-sdk/completion.bash.inc ] && source /opt/google-cloud-sdk/completion.bash.inc
-#}
-
-# bash functions {
+# bash functions {{
 # https://www.gnu.org/software/bash/manual/bash.html#Shell-Functions
 
 # show files after cd
@@ -584,6 +555,7 @@ cd () {
 # enhanced which command to show if exectable is symbolic link
 which () {
   stat $(/usr/bin/which $1) | head -n 1 | cut -c 9-
+  builtin which "$@"
 }
 
 # create random 10 character password and place on clipboard
@@ -635,10 +607,8 @@ Extract () {
  fi
 }
 
-#}
+#}}
 
-# does a bashrc.antlr exist?
-[ -r $HOME/.bashrc.antlr ] && source $HOME/.bashrc.antlr
 # does a bashrc.local exist?
 [ -r $HOME/.bashrc.local ] && source $HOME/.bashrc.local
 
@@ -648,7 +618,6 @@ if [ -r /var/run/reboot-required ]; then
   cat /var/run/reboot-required.pkgs
   uptime
 fi
-
 
 # profile stop time start {{
 if [[ $DEBUG == 1 ]]; then
