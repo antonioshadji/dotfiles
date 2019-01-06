@@ -1,6 +1,10 @@
 Dotfiles
 ========
-This is my dot files collection for cloning my Ubuntu Linux configuration  
+
+**WORK IN PROGRESS**  
+transfer all configuration to ansible scripts.  
+
+This is my dot files collection for cloning my Linux configuration files  
 
 The starting point for these files was http://github.com/startup-class/dotfiles.  
 
