@@ -467,6 +467,11 @@ export DEBEMAIL="Antonios@Hadji.co"
 export DEBFULLNAME="Antonios Hadjigeorgalis"
 # }
 
+# git configuration {
+export GIT_AUTHOR_EMAIL="$USER@$HOSTNAME"
+export GIT_AUTHOR_NAME="Antonios Hadjigeorgalis"
+# }
+
 # Darwin only setup {
 if [ "$(uname -s)" == 'Darwin' ]; then
   # add all mac osx specific bits inside an if statement like this.
