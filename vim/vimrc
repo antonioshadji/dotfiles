@@ -38,6 +38,19 @@ filetype plugin indent on
 set nocompatible                " nvim default, must be set for vim
 set backspace=indent,eol,start  " fix backspace
 set showcmd                     " display incomplete commands
+set mouse=a                     " Automatically enable mouse usage
+set ttymouse=xterm
+set incsearch                   " search as you type
+
+" Ctrl-A increments character under cursor
+" Ctrl-X decrements
+" defaults.vim suggests removing octal nvim default is bin,hex
+" https://neovim.io/doc/user/options.html#'nrformats'
+set nrformats=bin,hex
+
+set scrolloff=2 "default.vim=5  " Minimum lines to keep above and below cursor
+" set ttimeout                    " time out for key codes
+" set ttimeoutlen=200             " wait up to 100ms after Esc for special key
 set wildmenu                    " Show list instead of just completing
 " Command <Tab> completion, list matches, then longest common part, then all.
 set wildmode=list:longest,full
@@ -51,20 +64,6 @@ set wildignore+=*.DS_Store                       " OSX bullshit
 set wildignore+=*.luac                           " Lua byte code
 set wildignore+=*.pyc                            " Python byte code
 set wildignore+=*.class                          " Java byte code
-
-" set ttimeout                    " time out for key codes
-" set ttimeoutlen=200             " wait up to 100ms after Esc for special key
-
-set scrolloff=2 "default.vim=5  " Minimum lines to keep above and below cursor
-set incsearch                   " search as you type
-" Ctrl-A increments character under cursor
-" Ctrl-X decrements
-" defaults.vim suggests removing octal nvim default is bin,hex
-" https://neovim.io/doc/user/options.html#'nrformats'
-set nrformats=bin,hex
-
-set mouse=a                     " Automatically enable mouse usage
-set ttymouse=xterm
 "}
 
 " no_plugins.vim settings to maximize Vim's built in functionality {
@@ -104,13 +103,13 @@ let g:netrw_list_hide=netrw_gitignore#Hide()
 
 " General Settings {
 set encoding=utf-8      " show buffer as utf-8 https://github.com/square/maximum-awesome (**MUST BE EARLY IN FILE**)
-"set mousehide           " Hide the mouse cursor while typing
-set viewoptions=folds,options,cursor,unix,slash "see :help viewoptions
-set virtualedit=onemore " Allow for cursor beyond last character
 set hidden              " Allow buffer switching without saving
+set mousehide           " Hide the mouse cursor while typing
+set autowriteall        " Write files when many actions, including switching buffers see :help awa
+
+set virtualedit=onemore " Allow for cursor beyond last character
 " reccommended to be turned off for no_plugins.vim default file browsing
 " set autochdir           " Always change to current file directory
-set autowriteall        " Write files when many actions, including switching buffers see :help awa
 "}
 
 " Setup clipboard to work with desktop copy / paste {
@@ -143,7 +142,6 @@ set colorcolumn=80              " highlight 80 character width for code files
 " status bar
 set noshowmode
 set laststatus=2
-set encoding=utf-8
 "} end Vim UI
 
 " Formatting {
