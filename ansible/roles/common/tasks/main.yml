@@ -37,9 +37,17 @@
 
 - name: Create symlinks
   file:
-    src: '/home/antonios/.dotfiles/{{ item }}'
-    dest: '/home/antonios/.{{ item }}'
+    src: "$HOME/.dotfiles/{{ item }}"
+    dest: "$HOME/.{{ item }}"
     state: link
   with_items:
-    - 'vim'
+    - 'bashrc'
+    - 'curlrc'
+    - 'dircolors'
+    - 'eslintrc.json'
+    - 'gitconfig'
+    - 'inputrc'
+    - 'pam_environment'
+    - 'tern-project'
     - 'tmux.conf'
+    - 'vim'
