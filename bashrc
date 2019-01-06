@@ -2,6 +2,10 @@
 # vim: set foldmarker={{,}} foldlevel=0 foldmethod=marker :
 # }}
 
+# create log file for errors
+# shows output on console and redirects to console
+# exec 2> >(tee -a setup$(date '+%Y%m%d-%H%M%S').log >&2)
+
 # Bash Reference Manual {{
 # https://www.gnu.org/software/bash/manual/bash.html
 
@@ -371,6 +375,10 @@ alias jc='journalctl -f -u claymore.service'
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
+# http://haacked.com/archive/2014/07/28/github-flow-aliases/
+# TODO: create aliases for
+# git clone --recursive (always want to recurse submodules)
+# git pull --recurse-submodules (always want latest submodule)
 
 #}}
 
