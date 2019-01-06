@@ -27,6 +27,8 @@
     - git-core
     - curl
     - tmux
+    - tree
+    - silversearcher-ag
 
 - name: Clone dotfiles git repo
   git:
@@ -51,3 +53,15 @@
     - 'tern-project'
     - 'tmux.conf'
     - 'vim'
+
+# install vim plugins with vim-plug
+# if command -v vim; then
+#   vim +PluginInstall +qall
+# fi
+# Python3: only install extra software in python 3
+# TODO: verify if -HE is correct when using pip with --user
+# if ! command -v pip3; then
+#   curl -sL https://bootstrap.pypa.io/get-pip.py | sudo -HE python3 -
+# else
+#   pip3 install --user --upgrade -r ~/dotfiles/requirements3.txt
+# fi
