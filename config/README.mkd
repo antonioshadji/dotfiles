@@ -1,2 +1,0 @@
-if \$XDG_CONFIG_HOME is not set, .config is used  
-https://unix.stackexchange.com/questions/24347/why-do-some-applications-use-config-appname-for-their-config-data-while-other
