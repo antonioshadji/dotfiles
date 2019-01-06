@@ -562,8 +562,13 @@ cd () {
 
 # enhanced which command to show if exectable is symbolic link
 which () {
-  stat $(/usr/bin/which $1) | head -n 1 | cut -c 9-
-  builtin which "$@"
+  result=$(/usr/bin/which $1)
+  # $? exit status of last command.  should be zero if succesfull
+  if [[ $? == 0 ]]; then
+    stat $(/usr/bin/which $1) | head -n 1 | cut -c 9-
+  else
+    echo "$1 not found. exit code: $?"
+  fi
 }
 
 # create random 10 character password and place on clipboard
