@@ -322,7 +322,7 @@ base3='\e[1;37m'   # base3     #fdf6e3 15/7 brwhite  230 #ffffd7 97  00  10 253 
 ## --      Customized git prompt
 ## -----------------------------------------------------
 # gitprompt configuration
-if [ -r $HOME/dotfiles/bash-git-prompt/gitprompt.sh ]; then
+if [ -r $HOME/.dotfiles/bash-git-prompt/gitprompt.sh ]; then
   # Set config variables first
   GIT_PROMPT_ONLY_IN_REPO=0
 
@@ -338,7 +338,7 @@ if [ -r $HOME/dotfiles/bash-git-prompt/gitprompt.sh ]; then
   GIT_PROMPT_THEME=Solarized_Ubuntu
   # https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions
   # -r file True if file exists and is readable.
-  source $HOME/dotfiles/bash-git-prompt/gitprompt.sh
+  source $HOME/.dotfiles/bash-git-prompt/gitprompt.sh
 fi
 # powerline bash prompt
 # . $HOME/.local/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh
@@ -547,7 +547,7 @@ fi
 [ -r $NVM_DIR/bash_completion ] && source $NVM_DIR/bash_completion
 
 # http://wp-cli.org/ bash completion
-[ -r $HOME/dotfiles/bash_completion/wp-completion.bash ] && source $HOME/dotfiles/bash_completion/wp-completion.bash
+[ -r $HOME/.dotfiles/bash_completion/wp-completion.bash ] && source $HOME/.dotfiles/bash_completion/wp-completion.bash
 
 # AWS CLI completion
 # http://docs.aws.amazon.com/cli/latest/userguide/cli-command-completion.html
