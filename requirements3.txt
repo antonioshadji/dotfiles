@@ -9,39 +9,38 @@ pip
 # https://pipenv.readthedocs.io/en/latest/
 pipenv
 
-# use 0mq (zmq) for all networking code
-zmq
-
-awscli
-linode-cli
-
-# gnucash
-piecash
-
-# google apis
-google-api-python-client
-oauth2client
-
+# common files for all installs
 # coding tools
 neovim
 jedi
 pytest
 powerline-status
+ipython
+# used in ipython_config.py
+pygments-style-solarized
+
+# workstation: hadji only
+awscli
+linode-cli
+google-api-python-client
+oauth2client
+
+# workstation: hadji + laptop
+# gnucash
+piecash
+
 
 # Data Science Tools SciPy stack
 ## must apt-get install libpng12-dev libfreetype6-dev to install matplotlib
 numpy
 scipy
 matplotlib
-ipython
 jupyter
 pandas
 sympy
 nose
 # for pandas excel support
 xlrd
-# used in ipython_config.py
-pygments-style-solarized
 # machine learning
 # octave kernel for jupyter notebook and machine learning course
 octave-kernel
@@ -60,7 +59,7 @@ pgcli
 # psycopg2
 
 # CLRX Documentation will not be built, because no markdown_py utility
-markdown
+# markdown
 
 ## installed by default with 3.6
 # pygments
