@@ -11,7 +11,13 @@
   become: true
   apt_repository:
     repo: ppa:git-core/ppa
-    update_cache: no
+    update_cache: yes
+
+- name: Add/Verify vim ppa for latest vim8
+  become: true
+  apt_repository:
+    repo: ppa:jonathonf/vim
+    update_cache: yes
 
 - name: Install system software
   become: true
@@ -29,6 +35,7 @@
     - tmux
     - tree
     - silversearcher-ag
+    - vim
 
 - name: Clone dotfiles git repo
   git:
