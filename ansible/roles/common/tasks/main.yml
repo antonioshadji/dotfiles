@@ -33,7 +33,7 @@
 - name: Clone dotfiles git repo
   git:
     repo: git@github.com:AntoniosHadji/dotfiles.git
-    dest: /home/antonios/.dotfiles
+    dest: "$HOME/.dotfiles"
     accept_hostkey: yes
     recursive: yes
 
