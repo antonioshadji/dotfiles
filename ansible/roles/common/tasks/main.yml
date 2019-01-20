@@ -36,6 +36,7 @@
     - tree
     - silversearcher-ag
     - vim
+    - openssh-server
 
 - name: Clone dotfiles git repo
   git:
