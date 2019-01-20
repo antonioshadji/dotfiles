@@ -1,0 +1,6 @@
+- name: Pip install standard python libs
+  pip:
+    # split this up into different roles
+    requirements: "$HOME/.dotfiles/requirements3.txt"
+    extra_args: --user
+

@@ -5,30 +5,31 @@
 # --user installs to ~/.local/
 # pip install --user --upgrade -r ~/dotfiles/requirements3.txt
 # curl https://bootstrap.pypa.io/get-pip.py -O
+# python3 requires python3-distutils installed
 pip
 # https://pipenv.readthedocs.io/en/latest/
-pipenv
+# pipenv
 
 # common files for all installs
 # coding tools
-neovim
+pynvim
+powerline-status
 jedi
 pytest
-powerline-status
 ipython
 # used in ipython_config.py
 pygments-style-solarized
 
 # workstation: hadji only
 awscli
-linode-cli
-google-api-python-client
-oauth2client
+# linode-cli
+# google-api-python-client
+# oauth2client
 
+# separate ansible role
 # workstation: hadji + laptop
 # gnucash
-piecash
-
+# piecash
 
 # Data Science Tools SciPy stack
 ## must apt-get install libpng12-dev libfreetype6-dev to install matplotlib

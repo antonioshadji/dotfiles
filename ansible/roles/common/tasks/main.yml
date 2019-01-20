@@ -43,12 +43,14 @@
     dest: "$HOME/.dotfiles"
     accept_hostkey: yes
     recursive: yes
+    track_submodules: yes
 
 - name: Create symlinks
   file:
     src: "$HOME/.dotfiles/{{ item }}"
-    dest: "$HOME/.{{ item }}"
+    path: "$HOME/.{{ item }}"
     state: link
+    force: yes
   with_items:
     - 'bashrc'
     - 'curlrc'
