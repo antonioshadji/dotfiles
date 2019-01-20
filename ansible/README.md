@@ -23,3 +23,7 @@ Create groups to streamline application of roles to multiple machines.
 If not, ansible executes entire process on each machine separately.
 
 
+# install lastpass on linux
+https://download.cloud.lastpass.com/linux/lplinux.tar.bz2
+tar xjvf lplinux.tar.bz2
+ cd lplinux && ./install_lastpass.sh

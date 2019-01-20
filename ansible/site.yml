@@ -6,7 +6,4 @@
 - hosts: desktop
   roles:
     - browsers
-
-- hosts: secondary
-  roles:
-    - vim_from_pkg
+    - python_tools

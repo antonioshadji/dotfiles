@@ -1,8 +1,0 @@
----
-- name: install vim from package manager
-  apt:
-    name: vim
-    state: latest
-    update_cache: yes
-    cache_valid_time: 86400 # seconds
-    force_apt_get: yes
