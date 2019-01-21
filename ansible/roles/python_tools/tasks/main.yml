@@ -1,6 +1,6 @@
 ---
 - name: Get installed pip version
-  command: ["pip", "--version"]
+  command: "$HOME/.local/bin/pip3 --version"
   register: pip_version_output
   ignore_errors: yes
   changed_when: false
