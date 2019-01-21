@@ -5,6 +5,7 @@
     upgrade: yes
     update_cache: yes
     cache_valid_time: 86400 #One day
+    autoremove: yes
     force_apt_get: yes
 
 - name: Verify git ppa is an apt repository
@@ -26,7 +27,6 @@
     state: latest
     update_cache: yes
     cache_valid_time: 86400 #One day
-    autoremove: yes
     force_apt_get: yes
   vars:
     packages:
@@ -39,6 +39,7 @@
     - openssh-server
     - pandoc
     - shellcheck
+    - fonts-powerline
 
 - name: Clone dotfiles git repo
   git:
@@ -46,7 +47,7 @@
     dest: "$HOME/.dotfiles"
     accept_hostkey: yes
     recursive: yes
-    # track_submodules: yes
+    # track_submodules: yes # this causes submodules of submodules to update
 
 - name: Create symlinks
   file:
@@ -65,15 +66,3 @@
     - 'tern-project'
     - 'tmux.conf'
     - 'vim'
-
-# install vim plugins with vim-plug
-# if command -v vim; then
-#   vim +PluginInstall +qall
-# fi
-# Python3: only install extra software in python 3
-# TODO: verify if -HE is correct when using pip with --user
-# if ! command -v pip3; then
-#   curl -sL https://bootstrap.pypa.io/get-pip.py | sudo -HE python3 -
-# else
-#   pip3 install --user --upgrade -r ~/dotfiles/requirements3.txt
-# fi
