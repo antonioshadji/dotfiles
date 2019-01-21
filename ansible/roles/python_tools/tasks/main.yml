@@ -32,9 +32,6 @@
     chdir: /tmp
     creates: "$HOME/.local/bin/pip"
 
-- debug:
-    msg: "remote_tmp: {{ remote_tmp }}"
-
 - name: Pip install standard python libs
   pip:
     # split this up into different roles
