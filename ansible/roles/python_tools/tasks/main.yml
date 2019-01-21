@@ -7,6 +7,7 @@
 
 - debug:
     msg: "pip_version_output: {{ pip_version_output }}"
+    verbosity: 1
 
 - name: Install python3-distutils for use by get-pip script
   become: true
