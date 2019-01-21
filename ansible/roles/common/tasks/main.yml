@@ -46,7 +46,7 @@
     dest: "$HOME/.dotfiles"
     accept_hostkey: yes
     recursive: yes
-    track_submodules: yes
+    # track_submodules: yes
 
 - name: Create symlinks
   file:
