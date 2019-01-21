@@ -37,6 +37,8 @@
     - silversearcher-ag
     - vim
     - openssh-server
+    - pandoc
+    - shellcheck
 
 - name: Clone dotfiles git repo
   git:
