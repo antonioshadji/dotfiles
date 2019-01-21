@@ -8,7 +8,7 @@ Conversion of configuration to ansible
 - Keep DRY
 
 **TODO:**
-[ ] install configuration files for vim
+[x] install configuration files for vim
 
 **DONE:**
 [x] install vim for machines using package manager vim
@@ -23,7 +23,8 @@ Create groups to streamline application of roles to multiple machines.
 If not, ansible executes entire process on each machine separately.
 
 
-# install lastpass on linux
-https://download.cloud.lastpass.com/linux/lplinux.tar.bz2
-tar xjvf lplinux.tar.bz2
- cd lplinux && ./install_lastpass.sh
+## TODO:
+- install lastpass on linux
+  https://download.cloud.lastpass.com/linux/lplinux.tar.bz2
+  tar xjvf lplinux.tar.bz2
+  cd lplinux && ./install_lastpass.sh
