@@ -11,12 +11,13 @@
   autocrlf = input
 [status]
   branch = true
-	submodulesummary = true
+  submodulesummary = true
 #  short = true
 [alias]
   g = grep --break --heading --line-number
   s = status
-
 # suggested by numpy https://docs.scipy.org/doc/numpy/dev/gitwash/configure_git.html#configure-git
 [merge]
   log = true
+[diff]
+  submodule = log
