@@ -7,3 +7,4 @@
   roles:
     - browsers
     - python_tools
+    - docker

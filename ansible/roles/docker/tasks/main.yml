@@ -1,0 +1,31 @@
+---
+- name: check release
+  command: lsb_release -cs
+  register: release_version
+  changed_when: false
+
+- debug:
+    msg: "lsb_release -cs => {{ release_version.stdout }} "
+    verbosity: 1  # requires -v to show debug info
+
+- name: add docker repo key
+  become: true
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    id: 0EBFCD88
+
+- name: add docker repo
+  become: true
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ release_version.stdout }} stable"
+    state: present
+    update_cache: yes
+
+- name: install docker
+  become: true
+  apt:
+    name: docker-ce
+    state: latest
+    force_apt_get: yes
+
+
