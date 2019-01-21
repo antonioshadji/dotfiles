@@ -29,6 +29,7 @@
     force_apt_get: yes
 
 - name: add primary user to docker group
+  become: true
   user:
     name: antonios
     groups: docker
