@@ -6,7 +6,7 @@
   changed_when: false
 
 - debug:
-  msg: "pip_version_output: {{ pip_version_output }}"
+    msg: "pip_version_output: {{ pip_version_output }}"
 
 - name: Install python3-distutils for use by get-pip script
   become: true
@@ -33,7 +33,7 @@
     creates: "$HOME/.local/bin/pip"
 
 - debug:
-  msg: "remote_tmp: {{ remote_tmp }}"
+    msg: "remote_tmp: {{ remote_tmp }}"
 
 - name: Pip install standard python libs
   pip:
