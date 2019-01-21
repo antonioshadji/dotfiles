@@ -5,6 +5,10 @@
 
 - hosts: desktop
   roles:
-    - browsers
+    - desktop
     - python_tools
     - docker
+
+- hosts: webserver
+    - docker
+

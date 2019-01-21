@@ -10,10 +10,13 @@
     deb: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     state: present
 
-# the repo is added when installed from deb file
-# - name: verify google chrome repo is available
-#   become: true
-#   apt_repository:
-#     repo: 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main'
-#     state: present
-#     update_cache: no
+- name: Install desktop software
+  become: true
+  apt:
+    name: "{{ packages }}"
+    state: latest
+    force_apt_get: yes
+  vars:
+    packages:
+     - chrome-gnome-shell
+     - gnome-tweaks
