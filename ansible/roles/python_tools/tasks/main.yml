@@ -1,3 +1,40 @@
+---
+- name: Get installed pip version
+  command: pip --version
+  register: pip_version_output
+  ignore_errors: yes
+  changed_when: false
+
+- debug:
+  msg: "pip_version_output: {{ pip_version_output }}"
+
+- name: Install python3-distutils for use by get-pip script
+  become: true
+  apt:
+    name: python3-distutils
+    state: latest
+    update_cache: yes
+    cache_valid_time: 86400 #One day
+    autoremove: yes
+    force_apt_get: yes
+  when: pip_version_output is failed
+
+- name: Download get-pip.py
+  get_url:
+    url: https://bootstrap.pypa.io/get-pip.py
+    dest: /tmp/get-pip.py
+  when: pip_version_output is failed
+
+- name: Install pip
+  command: "python3 get-pip.py --user"
+  when:  pip_version_output is failed
+  args:
+    chdir: /tmp
+    creates: "$HOME/.local/bin/pip"
+
+- debug:
+  msg: "remote_tmp: {{ remote_tmp }}"
+
 - name: Pip install standard python libs
   pip:
     # split this up into different roles
