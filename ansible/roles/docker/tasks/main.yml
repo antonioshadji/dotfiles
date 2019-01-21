@@ -28,4 +28,8 @@
     state: latest
     force_apt_get: yes
 
-
+- name: add primary user to docker group
+  user:
+    name: antonios
+    groups: docker
+    append: yes
