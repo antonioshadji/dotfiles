@@ -1,0 +1,8 @@
+# database
+pymongo
+dnspython # required for short uri in mongodb driver
+# enhanced clients with autocomplete
+mycli
+pgcli
+# postgresSQL driver most popular (installed in venv instead of globally)
+# psycopg2

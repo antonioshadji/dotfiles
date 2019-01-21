@@ -1,0 +1,17 @@
+# Data Science Tools SciPy stack
+## must apt-get install libpng12-dev libfreetype6-dev to install matplotlib
+numpy
+scipy
+matplotlib
+jupyter
+pandas
+sympy
+nose
+# for pandas excel support
+xlrd
+# machine learning
+# octave kernel for jupyter notebook and machine learning course
+octave-kernel
+## requires apt-get install libblas-dev liblapack-dev gfortran
+statsmodels
+scikit-learn
