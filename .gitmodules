@@ -17,3 +17,30 @@
 [submodule "vim/pack/plugins/start/numbers.vim"]
 	path = vim/pack/plugins/start/numbers.vim
 	url = git@github.com:myusuf3/numbers.vim.git
+[submodule "vim/pack/plugins/opt/vim-css-color"]
+	path = vim/pack/plugins/opt/vim-css-color
+	url = git@github.com:ap/vim-css-color.git
+[submodule "vim/pack/plugins/start/vim-indent-guides"]
+	path = vim/pack/plugins/start/vim-indent-guides
+	url = git@github.com:nathanaelkane/vim-indent-guides.git
+[submodule "vim/pack/plugins/start/vim-tmux-navigator"]
+	path = vim/pack/plugins/start/vim-tmux-navigator
+	url = git@github.com:christoomey/vim-tmux-navigator.git
+[submodule "vim/pack/plugins/start/supertab"]
+	path = vim/pack/plugins/start/supertab
+	url = git@github.com:ervandew/supertab.git
+[submodule "vim/pack/plugins/start/deoplete.nvim"]
+	path = vim/pack/plugins/start/deoplete.nvim
+	url = git@github.com:Shougo/deoplete.nvim.git
+[submodule "vim/pack/plugins/start/vim-hug-neovim-rpc"]
+	path = vim/pack/plugins/start/vim-hug-neovim-rpc
+	url = git@github.com:roxma/vim-hug-neovim-rpc.git
+[submodule "vim/pack/plugins/start/nvim-yarp"]
+	path = vim/pack/plugins/start/nvim-yarp
+	url = git@github.com:roxma/nvim-yarp.git
+[submodule "vim/pack/plugins/start/vim-pandoc"]
+	path = vim/pack/plugins/start/vim-pandoc
+	url = git@github.com:vim-pandoc/vim-pandoc.git
+[submodule "vim/pack/plugins/start/vim-pandoc-syntax"]
+	path = vim/pack/plugins/start/vim-pandoc-syntax
+	url = git@github.com:vim-pandoc/vim-pandoc-syntax.git

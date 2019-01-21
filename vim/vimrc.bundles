@@ -1,106 +1,53 @@
 " vim: foldmarker={,} foldlevel=1 foldmethod=marker
 
-" jedi-vim installed in .vim/pack/plugins/start/
-" vim-go installed in .vim/pack/plugins/start using new vim8 package manager
-" 2018-08-02 21:30:27 -0400 set to version v1.18
-" must also run (within vim) :GoUpdateBinaries
-
-" https://github.com/junegunn/vim-plug/wiki/faq
-" install vim-plug
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-endif
-
-call plug#begin('~/.vim/bundle')
-
-" Plug List {
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
-
-" https://github.com/altercation/vim-colors-solarized
-" solarized.vim can be placed in colors directory
-" function toggleBG must also be saved if wanted
-Plug 'altercation/vim-colors-solarized'
-" line numbering
-Plug 'myusuf3/numbers.vim'
-" Software caps lock
-Plug 'tpope/vim-capslock'
-" quoting/parenthesizing made simple
-Plug 'tpope/vim-surround'
-" enable repeating supported plugin maps
-Plug 'tpope/vim-repeat'
-" Highlight colors in css files
-Plug 'ap/vim-css-color'
-" Git integration
-Plug 'tpope/vim-fugitive'
-" Track the engine.
-Plug 'SirVer/ultisnips'
-" Snippets are separated from the engine. Add this if you want them:
-Plug 'honza/vim-snippets'
-" searching with ctrl + p
-Plug 'kien/ctrlp.vim'
-" tmux conf
-Plug 'christoomey/vim-tmux-navigator'
-
+" TODO: do I really need these plugins? {
+"" Software caps lock
+"Plug 'tpope/vim-capslock'
+"" quoting/parenthesizing made simple
+"Plug 'tpope/vim-surround'
+"" enable repeating supported plugin maps
+"Plug 'tpope/vim-repeat'
+"" Highlight colors in css files
+"" Plug 'ap/vim-css-color'
+"" Git integration
+"Plug 'tpope/vim-fugitive'
+"" Track the engine.
+"Plug 'SirVer/ultisnips'
+"" Snippets are separated from the engine. Add this if you want them:
+"Plug 'honza/vim-snippets'
+"" searching with ctrl + p
+"Plug 'kien/ctrlp.vim'
+"
+" What can nerdtree do that vim file manager can not?
+" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 "}
 
-" vim-indent-guides {
-" highlighting of indented blocks
-Plug 'nathanaelkane/vim-indent-guides'
-let g:indent_guides_guide_size = 1
-let g:indent_guides_space_guides = 1
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_exclude_filetypes = ['help', 'markdown', 'pandoc']
-" }
-
-" vim-pandoc {
-" These plugins do not work on MAC OSX with default vim
-Plug 'vim-pandoc/vim-pandoc', { 'for': ['pandoc', 'markdown'] }
-Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': ['pandoc', 'markdown'] }
-let g:pandoc#folding#level = 1
-"}
-
-
+" CSS {
 " Update the bult-in CSS complete function to latest CSS standard.
 " https://github.com/othree/csscomplete.vim
 Plug 'othree/csscomplete.vim'
 " help autocmd-patterns
 autocmd FileType *.css,*.scss,*.html setlocal omnifunc+=csscomplete#CompleteCSS noci
+" }
 
+" HTML template languages {
 " Liquid templates
 Plug 'tpope/vim-liquid', { 'for': 'liquid' }
 " https://github.com/mustache/vim-mustache-handlebars
 Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.mustache' }
+"}
 
-
+" Python {
 Plug 'https://github.com/tmhedberg/SimpylFold', { 'for': 'python' }
 let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_fold_docstring = 0
-
-
-
-" deoplete Dark powered asynchronous completion framework for neovim {
-if has("nvim")
-  " ONLY neovim
-  " https://github.com/Shougo/deoplete.nvim
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  " ONLY vim8
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
-
-set completeopt=longest,menuone,preview
-" https://github.com/zchee/deoplete-go#sample-initvim
-set completeopt+=noselect
 " https://github.com/zchee/deoplete-jedi
 Plug 'zchee/deoplete-jedi', { 'for': 'python'}
 let g:jedi#completions_enabled = 0
+"}
 
+" JavaScript {
 " Tern plugin
 Plug 'ternjs/tern_for_vim'
 ", { 'for': ['javascript', 'javascript.jsx'] }
@@ -112,49 +59,6 @@ Plug 'othree/jspc.vim'
 " , { 'for': ['javascript', 'javascript.jsx'] }
 " https://github.com/carlitux/deoplete-ternjs
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern'}
-" , 'for': ['javascript', 'javascript.jsx'] }
-
-" https://github.com/zchee/deoplete-clang
-Plug 'zchee/deoplete-clang', { 'for': ['cpp', 'c'] }
-" https://github.com/zchee/deoplete-go
-Plug 'zchee/deoplete-go', { 'do': 'make', 'for': 'go' }
-" https://github.com/sebastianmarkow/deoplete-rust
-Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
-
-let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode' "'/home/antonios/go/bin/gocode'
-let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
-
-" https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
-
-Plug 'ervandew/supertab'
-let g:SuperTabDefaultCompletionType = "context"
-" let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
-"<c-n>" " default value <c-p>
-
-
-let g:SuperTabLongestEnhanced = 1 "(default value: 0)
-" When enabled and 'longest' is in your |completeopt| setting, supertab will
-" provide an enhanced longest match support where typing one or more letters and
-" hitting tab again while in a completion mode will complete the longest common
-" match using the new text in the buffer.
-
-let g:SuperTabLongestHighlight = 1 "(default value: 0)
-" Sets whether or not to pre-highlight the first match when completeopt has the
-" popup menu enabled and the 'longest' option as well. When enabled, <tab> will
-" kick off completion and pre-select the first entry in the popup menu, allowing
-" you to simply hit <enter> to use it.
-
-
-" https://github.com/ervandew/supertab#frequently-asked-questions
-" autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-
-"let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsExpandTrigger="<C-j>"
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
 let g:deoplete#omni#functions = {}
 let g:deoplete#omni#functions.javascript = [ 'tern#Complete' , 'jspc#omni']
 let g:deoplete#sources = {}
@@ -180,57 +84,81 @@ let g:deoplete#sources#ternjs#case_insensitive = 1
 " Default: 0
 let g:deoplete#sources#ternjs#include_keywords = 1
 
+" https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
+"let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<C-j>"
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
+" }
+
+" C lang {
+" https://github.com/zchee/deoplete-clang
+Plug 'zchee/deoplete-clang', { 'for': ['cpp', 'c'] }
 "https://github.com/zchee/deoplete-clang
 let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-6.0/lib/libclang.so'
 let g:deoplete#sources#clang#clang_header = '/usr/lib/llvm-6.0/lib/clang'
-
+"
+" }
+"
+" Go lang {
+" https://github.com/zchee/deoplete-go
+Plug 'zchee/deoplete-go', { 'do': 'make', 'for': 'go' }
+let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode' "'/home/antonios/go/bin/gocode'
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+"
+" }
+"
+" Rust {
+" https://github.com/sebastianmarkow/deoplete-rust
+Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
 " https://github.com/sebastianmarkow/deoplete-rust
 let g:deoplete#sources#rust#racer_binary='/home/antonios/.cargo/bin/racer'
 " $(rustup --print sysroot)/lib/rustlib/src/rust/src
 let g:deoplete#sources#rust#rust_source_path='/home/antonios/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
+"
+" }
+"
+"
+" https://github.com/junegunn/vim-plug/wiki/faq
+" install vim-plug
+" if empty(glob('~/.vim/autoload/plug.vim'))
+"   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+"     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" endif
+" 
+" call plug#begin('~/.vim/bundle')
+
+" Plug List {
+
+" deoplete Dark powered asynchronous completion framework for neovim {
+" if has("nvim")
+"   " ONLY neovim
+"   " https://github.com/Shougo/deoplete.nvim
+"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" else
+"   " ONLY vim8
+"   Plug 'Shougo/deoplete.nvim'
+"   Plug 'roxma/nvim-yarp'
+"   Plug 'roxma/vim-hug-neovim-rpc'
+" endif
+" Use deoplete.
 " }
 
+
+
+
+
+
+
+
+
 " All of your Plugs must be added before the following line
-call plug#end()            " required
+" call plug#end()            " required
 
 " when reading and writing no delay (add ', 100' for 100 ms delay )
 " call neomake#configure#automake('rw')
 
 " } end bundle list
 
-" status line tools {
-" TODO: How to make this less hardcoded?
-if isdirectory(expand("~/.local/lib/python3.6/site-packages/powerline"))
-  " echom "powerline"
-  " powerline vim bindings {
-  set rtp+=/home/antonios/.local/lib/python3.6/site-packages/powerline/bindings/vim
-  " }
-else
-  " echom "airline"
-  " airline {
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline_powerline_fonts = 1
-  let g:airline_theme='solarized'
-  let g:airline_solarized_bg='dark'
-  " }
-endif
-" }
-
-
-" installed in ~/.vim/pack/plugins/start/
-" Ale configuration {
-" Enable completion where available.
-" This setting must be set before ALE is loaded.
-" let g:ale_completion_enabled = 1
-" See :help ale-completion for more information.
-"
-" https://github.com/w0rp/ale#2ii-fixing
-" check help ale-options for defaut settings and options available
-
-" Use the global executables
-let g:ale_use_global_executables = 1
-" let g:ale_linters = {'go': ['gometalinter']}
-" }

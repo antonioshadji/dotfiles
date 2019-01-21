@@ -508,10 +508,87 @@ if !has('nvim')
 endif
 "}
 
-" Source bundles config {
-if filereadable(expand("~/.vim/vimrc.bundles"))
-  source ~/.vim/vimrc.bundles
+" Plugins {
+" if filereadable(expand('~/.vim/vimrc.bundles'))
+"   source ~/.vim/vimrc.bundles
+" endif
+
+" git@github.com:w0rp/ale.git {
+" Enable completion where available. TODO: Can this replace deoplete?
+" This setting must be set before ALE is loaded.
+" let g:ale_completion_enabled = 1
+" See :help ale-completion for more information.
+"
+" https://github.com/w0rp/ale#2ii-fixing
+" check help ale-options for defaut settings and options available
+
+" Use the global executables
+let g:ale_use_global_executables = 1
+" let g:ale_linters = {'go': ['gometalinter']}
+" }
+
+" https://github.com/powerline/powerline {
+if isdirectory(expand('~/.local/lib/python3.6/site-packages/powerline'))
+  " echom 'powerline'
+  " powerline vim bindings {
+  set rtp+=$HOME/.local/lib/python3.6/site-packages/powerline/bindings/vim
+  " }
 endif
+" }
+
+" git@github.com:Shougo/deoplete.nvim.git {
+" requires:
+"   git@github.com:roxma/vim-hug-neovim-rpc.git
+"   git@github.com:roxma/nvim-yarp.git
+let g:deoplete#enable_at_startup = 1
+set completeopt=longest,menuone,preview
+" https://github.com/zchee/deoplete-go#sample-initvim
+set completeopt+=noselect
+
+"}
+
+" git@github.com:ervandew/supertab.git {
+let g:SuperTabDefaultCompletionType = "context"
+" let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
+"<c-n>" " default value <c-p>
+
+let g:SuperTabLongestEnhanced = 1 "(default value: 0)
+" When enabled and 'longest' is in your |completeopt| setting, supertab will
+" provide an enhanced longest match support where typing one or more letters and
+" hitting tab again while in a completion mode will complete the longest common
+" match using the new text in the buffer.
+
+let g:SuperTabLongestHighlight = 1 "(default value: 0)
+" Sets whether or not to pre-highlight the first match when completeopt has the
+" popup menu enabled and the 'longest' option as well. When enabled, <tab> will
+" kick off completion and pre-select the first entry in the popup menu, allowing
+" you to simply hit <enter> to use it.
+
+" https://github.com/ervandew/supertab#frequently-asked-questions
+" autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+"}
+
+" git@github.com:nathanaelkane/vim-indent-guides.git {
+" highlighting of indented blocks
+let g:indent_guides_guide_size = 1
+let g:indent_guides_space_guides = 1
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_exclude_filetypes = ['help', 'markdown', 'pandoc']
+" }
+
+" git@github.com:vim-pandoc/vim-pandoc.git {
+"   requires: git@github.com:vim-pandoc/vim-pandoc-syntax.git
+let g:pandoc#folding#level = 1
+
+" }
+
+" Go language {
+" vim-go installed in .vim/pack/plugins/opt
+"   must also run (within vim) :GoUpdateBinaries
+
+" }
+
 " }
 
 " colors {
