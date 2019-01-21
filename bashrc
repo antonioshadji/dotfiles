@@ -353,18 +353,10 @@ alias psg='ps auxf | grep -v grep | grep -i -e VSZ -e'
 # 2.4 Custom aliases that I created
 alias tree='tree -I node_modules'
 # syntax colored cat replacement
-[ $(command -v pygmentize) ] && alias p='pygmentize -g'
+[[ $(command -v pygmentize) ]] && alias p='pygmentize -g'
 # open files in graphic workspace based on mime-type
-[ $(command -v xdg-open) ] && alias o='xdg-open'
+[[ $(command -v xdg-open) ]] && alias o='xdg-open'
 
-# 2.4 Sytemctl
-# alias scsp='systemctl status parity.service'
-# alias scsg='systemctl status geth.service'
-# alias scse='systemctl status ethminer.service'
-# alias scsc='systemctl status claymore.service'
-# alias scsb='systemctl status bitcoin.service'
-# alias scsl='systemctl status litecoin.service'
-alias jc='journalctl -f -u claymore.service'
 
 # 2.5 frequently used
 
@@ -372,6 +364,8 @@ alias jc='journalctl -f -u claymore.service'
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
+# https://github.com/koalaman/shellcheck/wiki/SC1090
+# shellcheck source=/dev/null
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
