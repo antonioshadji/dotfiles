@@ -1,21 +1,4 @@
 umask 0022
 GIT_PROMPT_THEME=Solarized_Ubuntu_WSL
 
-# This theme for gitprompt.sh is optimized for the "Solarized Dark" and "Solarized Light" color schemes
-# tweaked for Ubuntu terminal fonts
-
-override_git_prompt_colors() {
-  GIT_PROMPT_THEME_NAME="Solarized Ubuntu WSL"
-  GIT_PROMPT_STAGED="${Yellow}¤ "
-  GIT_PROMPT_STASHED="${BoldMagenta}∫ "
-  GIT_PROMPT_CLEAN="${Green}√ "
-  GIT_PROMPT_COMMAND_OK="${Green}√ "
-  GIT_PROMPT_CONFLICTS=" ${Red}X ${ResetColor}"
-  GIT_PROMPT_CHANGED=" ${Blue}+ ${ResetColor}"
-  GIT_PROMPT_COMMAND_FAIL="${Red}Χ(_LAST_COMMAND_STATE_) "
-  GIT_PROMPT_END_USER=" \n${BoldBlue}${Time12a}${ResetColor} $ "
-  GIT_PROMPT_END_ROOT=" \n${BoldBlue}${Time12a}${ResetColor} # "
-}
-
-reload_git_prompt_colors "Solarized Ubuntu WSL"
 # [[ -z "$TMUX" ]] && { tmux attach || exec tmux new-session; }
