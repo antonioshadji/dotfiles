@@ -4,6 +4,7 @@
     - common
     - docker
 
+# primary home workstation and laptop only
 - hosts: desktop
   roles:
     - desktop

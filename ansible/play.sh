@@ -11,33 +11,37 @@
 # Cyan         0;36     Light Cyan    1;36
 # Light Gray   0;37     White         1;37
 
-# Yellow='\033[0;33m'
-Reset='\033[0m'
-# https://gist.github.com/HipsterJazzbo/6d9b933aaa4058cafe78
-BASE03="\033[38;5;234m"
-BASE02="\033[38;5;235m"
-BASE01="\033[38;5;240m"
-BASE00="\033[38;5;241m"
-BASE0="\033[38;5;244m"
-BASE1="\033[38;5;245m"
-BASE2="\033[38;5;254m"
-BASE3="\033[38;5;230m"
-YELLOW="\033[38;5;136m"
-ORANGE="\033[38;5;166m"
-RED="\033[38;5;160m"
-MAGENTA="\033[38;5;125m"
-VIOLET="\033[38;5;61m"
-BLUE="\033[38;5;34m"
-CYAN="\033[38;5;37m"
-GREEN="\033[38;5;64m"
 
-if git diff-index --quiet HEAD; then
-  ansible-playbook site.yml --ask-become-pass "$@"
-else
-  msg+="${YELLOW}"
-  msg+="git repo is dirty, ansible will fail to run on this localhost"
+# shellcheck disable=SC2034
+__log_console() {
+  local Reset='\033[0m'
+  # https://gist.github.com/HipsterJazzbo/6d9b933aaa4058cafe78
+  local BASE03="\033[38;5;234m"
+  local BASE02="\033[38;5;235m"
+  local BASE01="\033[38;5;240m"
+  local BASE00="\033[38;5;241m"
+  local BASE0="\033[38;5;244m"
+  local BASE1="\033[38;5;245m"
+  local BASE2="\033[38;5;254m"
+  local BASE3="\033[38;5;230m"
+  local YELLOW="\033[38;5;136m"
+  local ORANGE="\033[38;5;166m"
+  local RED="\033[38;5;160m"
+  local MAGENTA="\033[38;5;125m"
+  local VIOLET="\033[38;5;61m"
+  local BLUE="\033[38;5;34m"
+  local CYAN="\033[38;5;37m"
+  local GREEN="\033[38;5;64m"
+  local msg+="${YELLOW}"
+  msg+="$1"
   msg+="${Reset}\n"
   printf "%b" "$msg"
+}
+
+if git diff-index --quiet HEAD; then
+  ansible-playbook home-network.yml --ask-become-pass "$@"
+else
+  __log_console "git repo is dirty, ansible will fail to run on this localhost"
   git status --verbose
 fi
 
