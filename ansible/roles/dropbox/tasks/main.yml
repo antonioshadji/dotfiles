@@ -15,10 +15,6 @@
 - name: Install Dropbox
   become: true
   apt:
-    name: "{{ packages }}"
+    name: dropbox
     state: latest
     force_apt_get: yes
-  vars:
-    packages:
-    - dropbox
-    - nautilus-dropbox
