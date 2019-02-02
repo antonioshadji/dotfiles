@@ -1,0 +1,24 @@
+---
+- name: Add apt key for Dropbox
+  become: true
+  apt_key:
+    keyserver: pgp.mit.edu
+    id: 1C61A2656FB57B7E4DE0F4C1FC918B335044912E
+
+- name: Add dropbox repo
+  become: true
+  apt_repository:
+    repo: "deb [arch=amd64] https://linux.dropbox.com/ubuntu {{ ansible_distribution_release }} main"
+    state: present
+    update_cache: yes
+
+- name: Install Dropbox
+  become: true
+  apt:
+    name: "{{ packages }}"
+    state: latest
+    force_apt_get: yes
+  vars:
+    packages:
+    - dropbox
+    - nautilus-dropbox

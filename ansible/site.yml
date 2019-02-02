@@ -8,3 +8,4 @@
   roles:
     - desktop
     - python_tools
+    - dropbox

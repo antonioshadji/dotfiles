@@ -1,3 +1,4 @@
+---
 - name: Add Apt signing key for google software
   become: true
   apt_key:
