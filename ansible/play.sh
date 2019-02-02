@@ -31,7 +31,7 @@ BLUE="\033[38;5;34m"
 CYAN="\033[38;5;37m"
 GREEN="\033[38;5;64m"
 
-if [[ $(git diff-index --quiet HEAD) ]]; then
+if git diff-index --quiet HEAD; then
   ansible-playbook site.yml --ask-become-pass "$@"
 else
   msg+="${YELLOW}"
