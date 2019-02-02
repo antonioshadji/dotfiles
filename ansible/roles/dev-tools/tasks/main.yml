@@ -1,0 +1,13 @@
+---
+- name: Ubuntu Packaging Guide software install
+  become: true
+  apt:
+    name: "{{ packages }}"
+    state: latest
+    force_apt_get: yes
+  vars:
+    packages:
+      - gnupg
+      - pbuilder
+      - ubuntu-dev-tools
+      - apt-file

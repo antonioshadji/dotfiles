@@ -1,0 +1,6 @@
+---
+# primary workstation only
+- hosts: workstation
+  roles:
+    - primary
+    - dev-tools
