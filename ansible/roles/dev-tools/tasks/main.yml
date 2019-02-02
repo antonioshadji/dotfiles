@@ -41,4 +41,5 @@
       - libdbd-sqlite3
       - libofx-dev
       - python3-dev
+      - libsecret-1-dev
 
