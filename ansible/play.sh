@@ -45,7 +45,7 @@ else
   git status --verbose
 fi
 
-# ansible-playbook site.yml -i hosts.yml --ask-become-pass --limit hadji.local
+# ansible-playbook playbook.yml -i inventory.yml --ask-become-pass --limit hadji.local
 # -i inventory set in ansible.cfg
 # --check dry-run
 # --syntax-check to check syntax, do not execute
