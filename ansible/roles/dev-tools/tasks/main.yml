@@ -11,3 +11,34 @@
       - pbuilder
       - ubuntu-dev-tools
       - apt-file
+
+- name: Build dependencies for Gnucash
+  become: true
+  apt:
+    name: "{{ packages }}"
+    state: latest
+    force_apt_get: yes
+  vars:
+    packages:
+      - cmake
+      - libglib2.0-dev
+      - libgtk-3-dev
+      - guile-2.2-dev
+      - libxml2-dev
+      - xsltproc
+      - libxslt1-dev
+      - libicu-dev
+      - libboost1.65-all-dev
+      - libwebkit2gtk-4.0-dev
+      - swig
+      - googletest
+      - libaqbanking-dev
+      - libgwenhywfar60-dev
+      - libktoblzcheck1-dev
+      - libdbi-dev
+      - libdbd-mysql
+      - libdbd-pgsql
+      - libdbd-sqlite3
+      - libofx-dev
+      - python3-dev
+
