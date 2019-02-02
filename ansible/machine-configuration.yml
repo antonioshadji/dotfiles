@@ -10,3 +10,8 @@
     - desktop
     - python_tools
     - dropbox
+
+# primary workstation only
+- hosts: workstation
+  roles:
+    - primary
