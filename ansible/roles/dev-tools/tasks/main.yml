@@ -25,13 +25,13 @@
       - libgtk-3-dev
       - guile-2.2-dev
       - libxml2-dev
+      - libxml2-utils
       - xsltproc
       - libxslt1-dev
       - libicu-dev
       - libboost1.65-all-dev
       - libwebkit2gtk-4.0-dev
       - swig
-      - googletest
       - libaqbanking-dev
       - libgwenhywfar60-dev
       - libktoblzcheck1-dev
