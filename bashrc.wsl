@@ -1,4 +1,4 @@
-umask 0022
-GIT_PROMPT_THEME=Solarized_Ubuntu_WSL
+umask 002
 
+# start tmux inside every terminal
 # [[ -z "$TMUX" ]] && { tmux attach || exec tmux new-session; }
