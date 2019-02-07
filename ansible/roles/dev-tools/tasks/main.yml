@@ -42,4 +42,6 @@
       - libofx-dev
       - python3-dev
       - libsecret-1-dev
+      - libfinance-quote-perl
+
 

@@ -8,3 +8,8 @@
   vars:
     packages:
       - calibre
+
+- name: install teamviewer from URL
+  become: true
+  apt:
+    deb: https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
