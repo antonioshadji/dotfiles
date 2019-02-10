@@ -1,5 +1,6 @@
 ---
 - name: Ubuntu Packaging Guide software install
+  # http://packaging.ubuntu.com/singlehtml/index.html#document-ubuntu-packaging-guide/getting-set-up
   become: true
   apt:
     name: "{{ packages }}"
@@ -44,4 +45,9 @@
       - libsecret-1-dev
       - libfinance-quote-perl
 
-
+- name: Java Software development
+  become: true
+  apt:
+    name: openjdk-11-jdk
+    state: latest
+    force_apt_get: yes
