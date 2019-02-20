@@ -51,3 +51,10 @@
     name: openjdk-11-jdk
     state: latest
     force_apt_get: yes
+
+- name: Python tools
+  become: true
+  apt:
+    name: python3-venv
+    state: latest
+    force_apt_get: yes
