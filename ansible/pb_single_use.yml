@@ -1,10 +1,42 @@
 ---
-- hosts: workstation
+- hosts: laptop
   roles:
   tasks:
-  - name: Java Software development
+  - name: Build dependencies for Gnucash
     become: true
     apt:
-      name: openjdk-11-jdk
+      name: "{{ packages }}"
       state: latest
       force_apt_get: yes
+    vars:
+      packages:
+        - cmake
+        - libglib2.0-dev
+        - libgtk-3-dev
+        - guile-2.2-dev
+        - libxml2-dev
+        - libxml2-utils
+        - xsltproc
+        - libxslt1-dev
+        - libicu-dev
+        - libboost1.65-all-dev
+        - libwebkit2gtk-4.0-dev
+        - swig
+        - libaqbanking-dev
+        - libgwenhywfar60-dev
+        - libktoblzcheck1-dev
+        - libdbi-dev
+        - libdbd-mysql
+        - libdbd-pgsql
+        - libdbd-sqlite3
+        - libofx-dev
+        - python3-dev
+        - libsecret-1-dev
+        - libfinance-quote-perl
+  - name: Python tools
+    become: true
+    apt:
+      name: python3-venv
+      state: latest
+      force_apt_get: yes
+
