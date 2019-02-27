@@ -33,6 +33,7 @@
     - curl
     - tmux
     - tree
+    - rename
     - silversearcher-ag
     - vim
     - openssh-server
