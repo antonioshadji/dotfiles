@@ -1,18 +1,18 @@
 ---
 - hosts: all
-  roles:
-    - common
-    - docker
+  tasks:
+    - import_tasks: ./tasks_common.yml
+    - import_tasks: ./tasks_docker.yml
 
 # primary home workstation and laptop only
 - hosts: desktop
-  roles:
-    - desktop
-    - python_tools
-    - dropbox
+  tasks:
+    - import_tasks: ./tasks_desktop.yml
+    - import_tasks: ./tasks_python.yml
+    - import_tasks: ./tasks_dropbox.yml
 
 # primary home workstation only
 - hosts: workstation
-  roles:
-    - primary
-    - dev-tools
+  tasks:
+    - import_tasks: ./tasks_primary.yml
+    - import_tasks: ./tasks_dev_tools.yml
