@@ -7,9 +7,7 @@ vim/viminfo
 # eclim files
 vim/plugin
 vim/eclim
-# vim-plug
-vim/autoload
-
+vim/.VimballRecord
 # Compiled python
 *.pyc
 
