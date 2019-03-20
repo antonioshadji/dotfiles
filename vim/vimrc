@@ -499,7 +499,6 @@ if !has('nvim')
   " https://neovim.io/doc/user/options.html
   if v:version >= 704
     set formatoptions+=tcqj     " https://neovim.io/doc/user/options.html#'formatoptions'
-    set langnoremap             " https://neovim.io/doc/user/options.html#'langnoremap'
     set laststatus=2            " https://neovim.io/doc/user/options.html#'laststatus'
     " https://neovim.io/doc/user/options.html#'sessionoptions'
     set sessionoptions+=blank,buffers,curdir,folds,help,tabpages,winsize
@@ -542,7 +541,6 @@ augroup CloseLoclistWindowGroup
 augroup END
 " }
 
-
 " Plugins {
 " if filereadable(expand('~/.vim/vimrc.bundles'))
 "   source ~/.vim/vimrc.bundles
@@ -567,6 +565,12 @@ if isdirectory(expand('~/.local/lib/python3.6/site-packages/powerline'))
   " echom 'powerline'
   " powerline vim bindings {
   set rtp+=$HOME/.local/lib/python3.6/site-packages/powerline/bindings/vim
+  " }
+endif
+if isdirectory(expand('~/.local/lib/python3.5/site-packages/powerline'))
+  " echom 'powerline'
+  " powerline vim bindings {
+  set rtp+=$HOME/.local/lib/python3.5/site-packages/powerline/bindings/vim
   " }
 endif
 " }
@@ -618,8 +622,10 @@ let g:pandoc#folding#level = 1
 "   git@github.com:roxma/vim-hug-neovim-rpc.git
 "   git@github.com:roxma/nvim-yarp.git
 set completeopt=longest,menuone,preview
-" https://github.com/zchee/deoplete-go#sample-initvim
-set completeopt+=noselect
+if v:version > 800
+  " https://github.com/zchee/deoplete-go#sample-initvim
+  set completeopt+=noselect
+endif
 let g:deoplete#enable_at_startup = 1
 " call deoplete#enable()
 "}
