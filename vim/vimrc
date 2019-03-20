@@ -46,7 +46,6 @@ set incsearch                   " search as you type
 " Ctrl-X decrements
 " defaults.vim suggests removing octal nvim default is bin,hex
 " https://neovim.io/doc/user/options.html#'nrformats'
-set nrformats=bin,hex
 
 set scrolloff=2 "default.vim=5  " Minimum lines to keep above and below cursor
 " set ttimeout                    " time out for key codes

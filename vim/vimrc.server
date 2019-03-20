@@ -1,85 +1,16 @@
-" All system-wide defaults are set in $VIMRUNTIME/debian.vim and sourced by
-" the call to :runtime you can find below.  If you wish to change any of those
-" settings, you should do it in this file (/etc/vim/vimrc), since debian.vim
-" will be overwritten everytime an upgrade of the vim packages is performed.
-" It is recommended to make changes after sourcing debian.vim since it alters
-" the value of the 'compatible' option.
+" modeline {
+  " vim: set foldmarker={,} foldlevel=0 foldmethod=marker :
+  " }
+syntax enable   "Enable syntax highlighting and don't overwrite colorscheme
+filetype plugin indent on "filetype detection, plugins, indent turned on
+set nocompatible                " nvim default, must be set for vim
+set encoding=utf-8
+set fileencoding=utf-8
+set backspace=indent,eol,start  " fix backspace
+set showcmd                     " display incomplete commands
+set ttymouse=xterm
+set incsearch                   " search as you type
 
-" This line should not be removed as it ensures that various options are
-" properly set to work with the Vim-related packages available in Debian.
-" runtime! debian.vim
-" START debiam.vim {{{
-
-" Debian system-wide default configuration Vim
-
-set runtimepath=~/.vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim74,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.vim/after
-
-" Normally we use vim-extensions. If you want true vi-compatibility
-" remove change the following statements
-set nocompatible        " Use Vim defaults instead of 100% vi compatibility
-set backspace=indent,eol,start  " more powerful backspacing
-
-" Now we set some defaults for the editor
-set history=50          " keep 50 lines of command line history
-set ruler               " show the cursor position all the time
-
-" modelines have historically been a source of security/resource
-" vulnerabilities -- disable by default, even when 'nocompatible' is set
-" active by default but I use modelines
-" set nomodeline
-
-" Suffixes that get lower priority when doing tab completion for filenames.
-" These are files we are not likely to want to edit or read.
-set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
-" END debian.vim }}}
-
-" BEGIN /etc/vim/vimrc {{{
-" Uncomment the next line to make Vim more Vi-compatible
-" NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
-" options, so any other options should be set AFTER setting 'compatible'.
-"set compatible
-
-" Vim5 and later versions support syntax highlighting. Uncommenting the next
-" line enables syntax highlighting by default.
-if has("syntax")
-  syntax on
-endif
-
-" If using a dark background within the editing area and syntax highlighting
-" turn on this option as well
-"set background=dark
-
-" Uncomment the following to have Vim jump to the last position when
-" reopening a file
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
-
-" Uncomment the following to have Vim load indentation rules and plugins
-" according to the detected filetype.
-if has("autocmd")
-  filetype plugin indent on
-endif
-
-" The following are commented out as they cause vim to behave a lot
-" differently from regular Vi. They are highly recommended though.
-set showcmd             " Show (partial) command in status line.
-set showmatch           " Show matching brackets.
-set ignorecase          " Do case insensitive matching
-set smartcase           " Do smart case matching
-set incsearch           " Incremental search
-set autowrite           " Automatically save before commands like :next and :make
-set hidden              " Hide buffers when they are abandoned
-set mouse=a             " Enable mouse usage (all modes)
-
-" Source a global configuration file if available
-if filereadable("/etc/vim/vimrc.local")
-  source /etc/vim/vimrc.local
-endif
-" END /etc/vim/vimrc }}}
-
-" START Customization {{{
-" HELP http://vimhelp.appspot.com/options.txt.html#%27wildignore%27
 set wildmenu                    " Show list instead of just completing
 " Command <Tab> completion, list matches, then longest common part, then all.
 set wildmode=list:longest,full
@@ -94,60 +25,113 @@ set wildignore+=*.luac                           " Lua byte code
 set wildignore+=*.pyc                            " Python byte code
 set wildignore+=*.class                          " Java byte code
 
-set ttimeout                    " time out for key codes
-set ttimeoutlen=100             " wait up to 100ms after Esc for special key
 
-set virtualedit=onemore         " Allow for cursor beyond last character
-set autowriteall                " Write files before many actions :help awa
+" no_plugins.vim settings to maximize Vim's built in functionality {
+" from https://github.com/mcantor/no_plugins/blob/master/no_plugins.vim
+"
+" Search down into subfolders
+" Provides tab-completion for all file-related tasks
+set path+=**
+" NOW WE CAN:
+" - Hit tab to :find by partial match
+" - Use * to make it fuzzy
 
-" Setup clipboard to work with desktop copy / paste {
-" default registers: * is primary + is clipboard
-" if system('uname -s') == 'Linux\n' " && !has('nvim')       has ('x') && has ('gui')  On Linux use + register for copy-paste
-" unamed = * (primary X11) unnamedplus = + (clipboard X11)
-" Why would I want these to be different? separate yank from delete, change
-" help clipboard-unnamed clipboard-unnamedplus clipboard x11-selection
-set clipboard=unnamed
-set clipboard+=unnamedplus
+" TAG JUMPING:
+" Create the `tags` file (may need to install ctags first)
+command! MakeTags !ctags -R .
 
+" NOW WE CAN:
+" - Use ^] to jump to tag under cursor
+" - Use g^] for ambiguous tags
+" - Use ^t to jump back up the tag stack
+" FILE BROWSING:
+
+" Tweaks for browsing
+let g:netrw_banner=0        " disable annoying banner
+let g:netrw_browse_split=4  " open in vertical split (4 = prior window)
+"let g:netrw_altv=1          " open splits to the right
+let g:netrw_liststyle=3     " tree view
+" let g:netrw_list_hide=netrw_gitignore#Hide() " requires version > 7.4
+"let g:netrw_list_hide=',\(^\|\s\s\)\zs\.\S\+'
+"let g:netrw_winsize=-1
+" NOW WE CAN:
+" - :edit a folder to open a file browser
+" - <CR>/v/t to open in an h-split/v-split/tab
+" - check |netrw-browse-maps| for more mappings
+
+"}
+
+" Vim UI {
+if $TERM == 'screen'
+  set t_Co=256
+endif
 set cursorline                  " Highlight current line
 set number                      " show line numbers
+set showmatch                   " jump cursor to matching brace when entered
+set ignorecase                  " case-insensitive search
+set smartcase                   " use case sensitive search if any caps present
 
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
-set foldenable                  " Auto fold code
 "  To insert special character - in insert mode CTRL-K two character code from :digraphs command
 set listchars=tab:›\ ,trail:∙,nbsp:†,extends:»,precedes:« "nvim defaults to tab:> ,trail:-,nbsp:+
 set list
 set colorcolumn=80              " highlight 80 character width for code files
 
-set expandtab                   " expand tabs to spaces
+" status bar
+set laststatus=2
+"} end Vim UI
 
 
-if has('persistent_undo')
-        " undodir set from spf13
-        set undofile
-        set undolevels=1000
-        " no undo files left in CWD
-        if !isdirectory(expand("~/.vim/undo/"))
-                " help mkdir for more information on use
-                call mkdir(expand("~/.vim/undo/"), "p")
-        endif
-        set undodir=~/.vim/undo//
-endif
+" Formatting {
+set nowrap              " do not wrap long lines, show indicator instead
+set shiftwidth=4        " number of spaces to use for autoindent
+set expandtab           " expands tabs to spaces
+set tabstop=4           " actual tabs occupy 4 spaces
+set softtabstop=4       " insert mode tab and backspace
+set splitright          " puts new vsplit windows to the right
+set splitbelow          " puts new hsplit windows below current
+set pastetoggle=<F12>   " sane indentation on pastes
+set printoptions=formfeed:y  "insert Ctrl-V Ctrl-L (^L) to create print pagebreak
 
-set backup                  "See :help backup
-" no backup files left in CWD
-if !isdirectory(expand("~/.vim/backup/"))
-        call mkdir(expand("~/.vim/backup/"), "p")
-endif
-set backupdir=~/.vim/backup//
-" no swap files left in CWD
-if !isdirectory(expand("~/.vim/swap/"))
-        call mkdir(expand("~/.vim/swap/"), "p")
-endif
-set directory=~/.vim/swap//
+" }
 
-" Neovim settings to make latest vim work like Neovim {
-if !has('nvim')
+
+" Backup and undo settings {
+" - 'backupdir' defaults to .,~/.local/share/nvim/backup (|xdg|)
+" - 'directory' defaults to ~/.local/share/nvim/swap// (|xdg|), auto-created
+" - 'undodir' defaults to ~/.local/share/nvim/undo (|xdg|), auto-created
+" - 'viminfo' includes "!"
+if !has("nvim")
+  if has('persistent_undo')
+    " undodir set from spf13
+    set undofile
+    set undolevels=1000
+    " no undo files left in CWD
+    if !isdirectory(expand("~/.vim/undo/"))
+      " help mkdir for more information on use
+      call mkdir(expand("~/.vim/undo/"), "p")
+    endif
+    set undodir=~/.vim/undo//
+  endif
+
+  set backup                  "See :help backup
+  " no backup files left in CWD
+  if !isdirectory(expand("~/.vim/backup/"))
+    call mkdir(expand("~/.vim/backup/"), "p")
+  endif
+  set backupdir=~/.vim/backup//
+  " no swap files left in CWD
+  if !isdirectory(expand("~/.vim/swap/"))
+    call mkdir(expand("~/.vim/swap/"), "p")
+  endif
+  set directory=~/.vim/swap//
+
+  " https://vimhelp.appspot.com/usr_21.txt.html#21.3
+  " move viminfo file to .vim directory, other settings default and required
+  " this conflicts with nvim, disable in neovim
+  set viminfo='1000,f1,<500,n~/.vim/viminfo
+
+  " Neovim settings to make latest vim work like Neovim {
   " nvim defaults {
   set autoindent          " always autoindent
   set autoread            " auto re-load files when changed on disk https://github.com/square/maximum-awesome
@@ -161,7 +145,7 @@ if !has('nvim')
   " https://neovim.io/doc/user/options.html
   if v:version >= 704
     set formatoptions+=tcqj     " https://neovim.io/doc/user/options.html#'formatoptions'
-    set langnoremap             " https://neovim.io/doc/user/options.html#'langnoremap'
+    " set langnoremap             " https://neovim.io/doc/user/options.html#'langnoremap'
     set laststatus=2            " https://neovim.io/doc/user/options.html#'laststatus'
     " https://neovim.io/doc/user/options.html#'sessionoptions'
     set sessionoptions+=blank,buffers,curdir,folds,help,tabpages,winsize
@@ -172,6 +156,9 @@ if !has('nvim')
     echom "Not running with Neovim compatibility settings"
   endif
 endif
+"}
+
+
 
 colorscheme solarized
-" END Customization }}}
+set background=dark
