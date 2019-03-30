@@ -480,7 +480,7 @@ endfunction
 command WhiteSpaceRemove :call TrimWhiteSpace()
 
 " http://dustinmartin.net/format-json-in-vim/
-command! FormatJSON %!python -m json.tool
+command! FormatJSON %!python3 -m json.tool
 
 " }
 
@@ -557,7 +557,7 @@ augroup END
 
 " Use the global executables
 let g:ale_use_global_executables = 1
-" let g:ale_linters = {'go': ['gometalinter']}
+let g:ale_linters = {'python': ['flake8']}
 " }
 
 " https://github.com/powerline/powerline {

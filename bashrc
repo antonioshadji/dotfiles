@@ -357,7 +357,6 @@ alias tree='tree -I node_modules'
 # open files in graphic workspace based on mime-type
 [[ $(command -v xdg-open) ]] && alias o='xdg-open'
 
-
 # 2.5 frequently used
 
 # You may want to put all your additions into a separate file like
@@ -415,7 +414,8 @@ fi
 export PYTHONDONTWRITEBYTECODE=1
 # }}
 
-# Java setup for Algorithm class {{
+# Java setup {{
+[[ -d /usr/lib/jvm/java-8-openjdk-amd64/ ]] && export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 # https://class.coursera.org/algs4partI-010
 
 # export PATH=$PATH:$HOME/Documents/Dropbox/Projects/Algorithms/algs4/bin
