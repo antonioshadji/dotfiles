@@ -439,10 +439,15 @@ export DEBFULLNAME="Antonios Hadjigeorgalis"
 # }}
 
 # git configuration {{
-export GIT_AUTHOR_EMAIL="$USER@$HOSTNAME"
 export GIT_AUTHOR_NAME="Antonios Hadjigeorgalis"
-export GIT_COMMITTER_EMAIL="$USER@$HOSTNAME"
 export GIT_COMMITTER_NAME="Antonios Hadjigeorgalis"
+if [[ ${HOSTNAME} =~ comcast.net$ ]]; then
+  export GIT_AUTHOR_EMAIL="Antonios_Hadjigeorgalis@comcast.com"
+  export GIT_COMMITTER_EMAIL="Antonios_Hadjigeorgalis@comcast.com"
+else
+  export GIT_AUTHOR_EMAIL="Antonios@Hadji.co"
+  export GIT_COMMITTER_EMAIL="Antonios@Hadji.co"
+fi
 # }}
 
 # Darwin only setup {{
