@@ -578,7 +578,7 @@ endif
 " git@github.com:ervandew/supertab.git {
 let g:SuperTabDefaultCompletionType = "context"
 " let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
+" let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
 "<c-n>" " default value <c-p>
 
 let g:SuperTabLongestEnhanced = 1 "(default value: 0)
