@@ -7,7 +7,7 @@
 	url = https://github.com/fatih/vim-go
 	branch = master
 [submodule "vim/pack/plugins/start/jedi-vim"]
-	path = vim/pack/plugins/opt/jedi-vim
+	path = vim/pack/plugins/start/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim
 	branch = master
 [submodule "vim/pack/plugins/start/ale"]
@@ -29,15 +29,6 @@
 [submodule "vim/pack/plugins/start/supertab"]
 	path = vim/pack/plugins/start/supertab
 	url = git@github.com:ervandew/supertab.git
-[submodule "vim/pack/plugins/start/deoplete.nvim"]
-	path = vim/pack/plugins/start/deoplete.nvim
-	url = git@github.com:Shougo/deoplete.nvim.git
-[submodule "vim/pack/plugins/start/vim-hug-neovim-rpc"]
-	path = vim/pack/plugins/start/vim-hug-neovim-rpc
-	url = git@github.com:roxma/vim-hug-neovim-rpc.git
-[submodule "vim/pack/plugins/start/nvim-yarp"]
-	path = vim/pack/plugins/start/nvim-yarp
-	url = git@github.com:roxma/nvim-yarp.git
 [submodule "vim/pack/plugins/start/vim-pandoc"]
 	path = vim/pack/plugins/start/vim-pandoc
 	url = git@github.com:vim-pandoc/vim-pandoc.git
