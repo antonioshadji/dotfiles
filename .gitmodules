@@ -17,21 +17,28 @@
 [submodule "vim/pack/plugins/start/numbers.vim"]
 	path = vim/pack/plugins/start/numbers.vim
 	url = git@github.com:myusuf3/numbers.vim.git
+	branch = master
 [submodule "vim/pack/plugins/opt/vim-css-color"]
 	path = vim/pack/plugins/opt/vim-css-color
 	url = git@github.com:ap/vim-css-color.git
+	branch = master
 [submodule "vim/pack/plugins/start/vim-indent-guides"]
 	path = vim/pack/plugins/start/vim-indent-guides
 	url = git@github.com:nathanaelkane/vim-indent-guides.git
+	branch = master
 [submodule "vim/pack/plugins/start/vim-tmux-navigator"]
 	path = vim/pack/plugins/start/vim-tmux-navigator
 	url = git@github.com:christoomey/vim-tmux-navigator.git
+	branch = master
 [submodule "vim/pack/plugins/start/supertab"]
 	path = vim/pack/plugins/start/supertab
 	url = git@github.com:ervandew/supertab.git
+	branch = master
 [submodule "vim/pack/plugins/start/vim-pandoc"]
 	path = vim/pack/plugins/start/vim-pandoc
 	url = git@github.com:vim-pandoc/vim-pandoc.git
+	branch = master
 [submodule "vim/pack/plugins/start/vim-pandoc-syntax"]
 	path = vim/pack/plugins/start/vim-pandoc-syntax
 	url = git@github.com:vim-pandoc/vim-pandoc-syntax.git
+	branch = master
