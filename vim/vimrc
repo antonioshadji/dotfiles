@@ -562,16 +562,11 @@ let g:ale_linters = {'python': ['flake8']}
 
 " https://github.com/powerline/powerline {
 if isdirectory(expand('~/.local/lib/python3.6/site-packages/powerline'))
-  " echom 'powerline'
-  " powerline vim bindings {
   set rtp+=$HOME/.local/lib/python3.6/site-packages/powerline/bindings/vim
-  " }
-endif
-if isdirectory(expand('~/.local/lib/python3.5/site-packages/powerline'))
-  " echom 'powerline'
-  " powerline vim bindings {
+elseif isdirectory(expand('~/.local/lib/python3.5/site-packages/powerline'))
   set rtp+=$HOME/.local/lib/python3.5/site-packages/powerline/bindings/vim
-  " }
+elseif isdirectory('/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/powerline')
+  set rtp+=/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/powerline/bindings/vim
 endif
 " }
 
@@ -637,6 +632,7 @@ let g:deoplete#enable_at_startup = 1
 " if $SSH_CLIENT == ""
   colorscheme solarized
   set background=dark
+  "set background=light
 " endif
 " colors }
 

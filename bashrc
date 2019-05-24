@@ -134,7 +134,9 @@ shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
-shopt -s globstar
+if [[ $BASH_VERSINFO == 4 ]]; then
+  shopt -s globstar
+fi
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -512,25 +514,36 @@ bind 'TAB:menu-complete'
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-  if [[ -r /usr/share/bash-completion/bash_completion ]]; then
+  # homebrew installation
+  if [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]]; then
+    source "/usr/local/etc/profile.d/bash_completion.sh"
+  elif [[ -r /usr/share/bash-completion/bash_completion ]]; then
     source /usr/share/bash-completion/bash_completion
   elif [[ -r /etc/bash_completion ]]; then
     source /etc/bash_completion
   fi
 fi
 
+# git completion
+# https://github.com/git/git/blob/master/contrib/completion/git-completion.bash
+[[ -r $HOME/.dotfiles/git-completion.bash ]] && source $HOME/.dotfiles/git-completion.bash
+
 # enable completion for nvm
-[ -r $NVM_DIR/bash_completion ] && source $NVM_DIR/bash_completion
+[[ -r $NVM_DIR/bash_completion ]] && source $NVM_DIR/bash_completion
 
 # http://wp-cli.org/ bash completion
-[ -r $HOME/.dotfiles/bash_completion/wp-completion.bash ] && source $HOME/.dotfiles/bash_completion/wp-completion.bash
+[[ -r $HOME/.dotfiles/bash_completion/wp-completion.bash ]] && source $HOME/.dotfiles/bash_completion/wp-completion.bash
 
 # AWS CLI completion
 # http://docs.aws.amazon.com/cli/latest/userguide/cli-command-completion.html
-[ $(command -v aws_completer) ] && complete -C aws_completer aws
+[[ $(command -v aws_completer) ]] && complete -C aws_completer aws
 
 # ==> Source [/opt/google-cloud-sdk/completion.bash.inc] in your profile to enable shell command completion for gcloud.
-[ -r /opt/google-cloud-sdk/completion.bash.inc ] && source /opt/google-cloud-sdk/completion.bash.inc
+[[ -r /opt/google-cloud-sdk/completion.bash.inc ]] && source /opt/google-cloud-sdk/completion.bash.inc
+
+# https://pip.pypa.io/en/stable/user_guide/#command-completion
+# specifically for pip command, does not offer completion for pip2 or pip3
+[[ $(command -v pip) ]] && eval "$(pip completion --bash)"
 
 # moved to /etc/bash_completion.d/ via cron job {{
 # https://docs.npmjs.com/cli/completion
@@ -538,10 +551,6 @@ fi
 # setup in sudo crontab to write to /etc/bash_completion.d/
 # [ $(command -v npm) ] && eval "$(npm completion)"
 
-# https://pip.pypa.io/en/stable/user_guide/#command-completion
-# specifically for pip command, does not offer completion for pip2 or pip3
-# setup in sudo crontab to write to /etc/bash_completion.d/
-# [ $(command -v pip) ] && eval "$(pip completion --bash)"
 
 # enable completion for pandoc
 # this was not working without "" surrounding $()
@@ -554,10 +563,10 @@ fi
 # https://www.gnu.org/software/bash/manual/bash.html#Shell-Functions
 
 # show files after cd
-cd () {
-  builtin cd "$@"
-  ls -F --color --ignore=lost+found
-}
+# cd () {
+#   builtin cd "$@"
+#   ls -F --color --ignore=lost+found
+# }
 
 # enhanced which command to show if exectable is symbolic link
 which () {
