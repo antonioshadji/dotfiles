@@ -630,9 +630,25 @@ let g:deoplete#enable_at_startup = 1
 " colors {
 " colors are funky via ssh
 " if $SSH_CLIENT == ""
-  colorscheme solarized
+" echo -en '\e]11;?\a'
+" v:termrbgrsp
+" dark: ^[]11;rgb:00/2b/36^G
+" light: ^[]11;rgb:fd/f6/e3^G
+colorscheme solarized
+if len(matchstr(v:termrbgresp, '00/2b/36'))
+  echom 'true'
+endif
+
+"echom len(matchstr(v:termrbgresp, '00/2b/36'))
+"echom len(matchstr(v:termrbgresp, 'fd/f6/e3'))
+"echom 'background' . v:termrbgresp . ' color'
+
+" TODO: not working
+if matchstr(v:termrbgresp, '00/2b/36')
   set background=dark
-  "set background=light
+else
+  set background=light
+endif
 " endif
 " colors }
 
