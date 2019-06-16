@@ -134,3 +134,12 @@ Writing inode tables: done
 Creating journal (32768 blocks): done
 Writing superblocks and filesystem accounting information: done_
 
+
+## Importing a filesystem exported from another machine
+
+lvmdiskscan
+pvscan
+vgimport vg2
+vgchange -a y vg2
+mount disk as shown above
+sudo blkid shows uuid of disk
