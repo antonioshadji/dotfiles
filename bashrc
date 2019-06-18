@@ -401,6 +401,10 @@ export LANG='en_US.UTF-8'
 
 #{{ Node setup and tools
 # [ -r file ] returns True if file exists and is readable.
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 if [ -r $HOME/.nvm/nvm.sh ]; then
   NVM_DIR=$HOME/.nvm
   source $HOME/.nvm/nvm.sh
