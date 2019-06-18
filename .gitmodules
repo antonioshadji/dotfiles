@@ -42,3 +42,9 @@
 	path = vim/pack/plugins/start/vim-pandoc-syntax
 	url = git@github.com:vim-pandoc/vim-pandoc-syntax.git
 	branch = master
+[submodule "vim/pack/plugins/start/SimpylFold"]
+	path = vim/pack/plugins/start/SimpylFold
+	url = git@github.com:tmhedberg/SimpylFold.git
+[submodule "vim/pack/plugins/start/vim-pencil"]
+	path = vim/pack/plugins/start/vim-pencil
+	url = git@github.com:reedes/vim-pencil.git

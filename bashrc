@@ -295,19 +295,19 @@ if [[ ! $PATH == *$HOME/bin* && -d $HOME/bin ]]; then
 fi
 
 # set PATH to include latest version of pandoc
-[ -d $HOME/.cabal/bin ] && export PATH=$HOME/.cabal/bin:$PATH
+[[ -d $HOME/.cabal/bin ]] && export PATH=$HOME/.cabal/bin:$PATH
 
 # android studio manually installed in this location
-[ -d $HOME/code/Android/android-studio/bin ] && export PATH=$HOME/code/Android/android-studio/bin:$PATH
+[[ -d $HOME/code/Android/android-studio/bin ]] && export PATH=$HOME/code/Android/android-studio/bin:$PATH
 
 # gem install --user-install uses this location
-[ -d $HOME/.gem/ruby/2.3.0/bin ] && export PATH=$HOME/.gem/ruby/2.3.0/bin:$PATH
+[[ -d $HOME/.gem/ruby/2.3.0/bin ]] && export PATH=$HOME/.gem/ruby/2.3.0/bin:$PATH
 
 # pip install --user installs into ~/.local/bin
-[ -d $HOME/.local/bin ] && export PATH=$HOME/.local/bin:$PATH
+[[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
 
 # Rust
-[ -d $HOME/.cargo/bin ] && export PATH="$HOME/.cargo/bin:$PATH"
+[[ -d $HOME/.cargo/bin ]] && export PATH="$HOME/.cargo/bin:$PATH"
 
 # go
 [ -d /usr/local/go/bin/ ] && export PATH=$PATH:/usr/local/go/bin
