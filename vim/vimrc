@@ -633,6 +633,7 @@ let g:deoplete#enable_at_startup = 1
 " echo -en '\e]11;?\a'
 " v:termrbgrsp
 " dark: ^[]11;rgb:00/2b/36^G
+" dark: ^[]11;rgb:0000/2b2b/3636^G
 " light: ^[]11;rgb:fd/f6/e3^G
 colorscheme solarized
 set background=dark
@@ -643,7 +644,8 @@ endif
 
 "echom len(matchstr(v:termrbgresp, '00/2b/36'))
 "echom len(matchstr(v:termrbgresp, 'fd/f6/e3'))
-echom 'background' . v:termrbgresp . ' color'
+" TODO: this variable is empty
+"echom 'background' . v:termrbgresp . ' color'
 
 " TODO: not working
 " if matchstr(v:termrbgresp, '00/2b/36')
