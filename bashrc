@@ -341,7 +341,7 @@ set -o noclobber
 # 2.2) Listing, directories, and motion
 alias ll='ls -AFlh --color --ignore=lost+found --ignore=.Trash-1000'
 # follow by -r to reverse sort order
-alias llt='ls -AFlht --color --ignore=lost+found --ignore=.Trash-1000'
+alias lt='ls -AFlhtr --color --ignore=lost+found --ignore=.Trash-1000'
 alias l='ls -F --color --ignore=lost+found --ignore=.Trash-1000'
 alias ..='cd ..'
 alias md='mkdir'

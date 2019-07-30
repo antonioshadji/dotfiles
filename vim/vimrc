@@ -159,7 +159,10 @@ set printoptions=formfeed:y  "insert Ctrl-V Ctrl-L (^L) to create print pagebrea
 " GUI Settings (here instead of .gvimrc) {
 if has('gui_running')
   " Set my preferred font with comma separated list(spaces must be escaped)
-  set guifont=Ubuntu\ Mono\ derivative\ Powerline\ Regular\ 12
+  " mac osx guifont
+  set gfn=UbuntuMonoDerivativePowerline-Regular:h18
+  " linux
+  " set guifont=Ubuntu\ Mono\ derivative\ Powerline\ Regular\ 12
   set guioptions-=T               "Remove tool bar
   set guioptions+=c               "Use console dialogs
   set lines=48                    "Larger window than 24 row terminal
@@ -341,6 +344,7 @@ autocmd BufRead,BufNewFile *.js set foldmethod=syntax foldlevel=99
 autocmd BufRead,BufNewFile *.md set filetype=pandoc
 autocmd BufRead,BufNewFile *.mkd set filetype=pandoc
 autocmd BufRead,BufNewFile *.markdown set filetype=pandoc
+autocmd BufRead,BufNewFile *.rst set filetype=pandoc
 " Enable spellchecking for Markdown
 autocmd FileType pandoc setlocal spell spelllang=en_us wrap linebreak
 autocmd FileType pandoc setlocal tabstop=4
@@ -511,36 +515,6 @@ if !has('nvim')
 endif
 "}
 
-" colors {
-" if colors are funky via ssh
-" if $SSH_CLIENT == ""
-colorscheme solarized
-set background=dark
-
-" let hour = strftime("%H")
-" if hour >= 17
-"   set background=light
-" else
-"   set background=dark
-" endif
-"
-" if hour < 17
-"   let minute = strftime("%M")
-"   let second = strftime("%S")
-"   func ColorHandler(timer)
-"     set background=light
-"   endfunction
-"   let t = timer_start(((17-hour)*60*60-minute*60-second)*1000, 'ColorHandler')
-" endif
-" }
-
-" close loclist window automatically when the buffer is closed {
-augroup CloseLoclistWindowGroup
-  autocmd!
-  autocmd QuitPre * if empty(&buftype) | lclose | endif
-augroup END
-" }
-
 " Plugins {
 " if filereadable(expand('~/.vim/vimrc.bundles'))
 "   source ~/.vim/vimrc.bundles
@@ -637,6 +611,7 @@ let g:deoplete#enable_at_startup = 1
 " light: ^[]11;rgb:fd/f6/e3^G
 colorscheme solarized
 set background=dark
+"set background=light
 
 if len(matchstr(v:termrbgresp, '00/2b/36'))
   echom 'true'
@@ -652,7 +627,6 @@ endif
 "   set background=dark
 " else
 "   set background=light
-" endif
 " endif
 " colors }
 
