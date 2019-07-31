@@ -5,7 +5,7 @@ https://docs.ansible.com/ansible/2.7/user_guide/playbooks_best_practices.html#co
 roles/
     common/               # this hierarchy represents a "role"
         tasks/            #
-            main.yml      #  <-- tasks file can include smaller files if warranted
+            main.yml      #  <-- tasks file can include other files
         handlers/         #
             main.yml      #  <-- handlers file
         templates/        #  <-- files for use with the template resource
@@ -29,6 +29,8 @@ import sys
 if len(sys.argv) == 1:
     print('must supply name for new role')
     sys.exit(1)
+else:
+    role_name = sys.argv[1]
 
 dir_list = [
     'tasks',
@@ -38,11 +40,25 @@ dir_list = [
     'vars',
     'defaults',
     'meta',
+    ]
+
+extra = [
     'library',
     'module_utils',
     'lookup_plugins'
-        ]
+    ]
+
+files_list = [
+    'tasks',
+    'handlers',
+    'vars',
+    'defaults',
+    'meta',
+    ]
 
 for d in dir_list:
-    p = 'roles/{}/{}'.format(sys.argv[1], d)
+    p = 'roles/{}/{}'.format(role_name, d)
     Path(p).mkdir(parents=True, exist_ok=True)
+    if d in files_list:
+        with open(f'{p}/main.yml', 'w') as f:
+            f.write('---')
