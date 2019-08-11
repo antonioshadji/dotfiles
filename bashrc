@@ -134,7 +134,7 @@ shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
-if [[ $BASH_VERSINFO == 4 ]]; then
+if [[ ${BASH_VERSINFO[0]} == 4 ]]; then
   shopt -s globstar
 fi
 
@@ -209,22 +209,22 @@ Reset='\e[0m'    # Text Reset
 # http://ethanschoonover.com/solarized/img/solarized-palette.png
                    # SOLARIZED HEX     16/8 TERMCOL  XTERM/HEX   L*A*B      RGB         HSB
                    # --------- ------- ---- -------  ----------- ---------- ----------- -----------
-base02='\e[0;30m'  # base02    #073642  0/4 black    235 #262626 20 -12 -12   7  54  66 192  90  26
-red='\e[0;31m'     # red       #dc322f  1/1 red      160 #d70000 50  65  45 220  50  47   1  79  86
-green='\e[0;32m'   # green     #859900  2/2 green     64 #5f8700 60 -20  65 133 153   0  68 100  60
+# base02='\e[0;30m'  # base02    #073642  0/4 black    235 #262626 20 -12 -12   7  54  66 192  90  26
+# red='\e[0;31m'     # red       #dc322f  1/1 red      160 #d70000 50  65  45 220  50  47   1  79  86
+# green='\e[0;32m'   # green     #859900  2/2 green     64 #5f8700 60 -20  65 133 153   0  68 100  60
 yellow='\e[0;33m'  # yellow    #b58900  3/3 yellow   136 #af8700 60  10  65 181 137   0  45 100  71
 blue='\e[0;34m'    # blue      #268bd2  4/4 blue      33 #0087ff 55 -10 -45  38 139 210 205  82  82
-magenta='\e[0;35m' # magenta   #d33682  5/5 magenta  125 #af005f 50  65 -05 211  54 130 331  74  83
-cyan='\e[0;36m'    # cyan      #2aa198  6/6 cyan      37 #00afaf 60 -35 -05  42 161 152 175  74  63
-base2='\e[0;37m'   # base2     #eee8d5  7/7 white    254 #e4e4e4 92 -00  10 238 232 213  44  11  93
-base03='\e[1;30m'  # base03    #002b36  8/4 brblack  234 #1c1c1c 15 -12 -12   0  43  54 193 100  21
-orange='\e[1;31m'  # orange    #cb4b16  9/3 brred    166 #d75f00 50  50  55 203  75  22  18  89  80
-base01='\e[1;32m'  # base01    #586e75 10/7 brgreen  240 #585858 45 -07 -07  88 110 117 194  25  46
-base00='\e[1;33m'  # base00    #657b83 11/7 bryellow 241 #626262 50 -07 -07 101 123 131 195  23  51
-base0='\e[1;34m'   # base0     #839496 12/6 brblue   244 #808080 60 -06 -03 131 148 150 186  13  59
-violet='\e[1;35m'  # violet    #6c71c4 13/5 brmagenta 61 #5f5faf 50  15 -45 108 113 196 237  45  77
-base1='\e[1;36m'   # base1     #93a1a1 14/4 brcyan   245 #8a8a8a 65 -05 -02 147 161 161 180   9  63
-base3='\e[1;37m'   # base3     #fdf6e3 15/7 brwhite  230 #ffffd7 97  00  10 253 246 227  44  10  99
+# magenta='\e[0;35m' # magenta   #d33682  5/5 magenta  125 #af005f 50  65 -05 211  54 130 331  74  83
+# cyan='\e[0;36m'    # cyan      #2aa198  6/6 cyan      37 #00afaf 60 -35 -05  42 161 152 175  74  63
+# base2='\e[0;37m'   # base2     #eee8d5  7/7 white    254 #e4e4e4 92 -00  10 238 232 213  44  11  93
+# base03='\e[1;30m'  # base03    #002b36  8/4 brblack  234 #1c1c1c 15 -12 -12   0  43  54 193 100  21
+# orange='\e[1;31m'  # orange    #cb4b16  9/3 brred    166 #d75f00 50  50  55 203  75  22  18  89  80
+# base01='\e[1;32m'  # base01    #586e75 10/7 brgreen  240 #585858 45 -07 -07  88 110 117 194  25  46
+# base00='\e[1;33m'  # base00    #657b83 11/7 bryellow 241 #626262 50 -07 -07 101 123 131 195  23  51
+# base0='\e[1;34m'   # base0     #839496 12/6 brblue   244 #808080 60 -06 -03 131 148 150 186  13  59
+# violet='\e[1;35m'  # violet    #6c71c4 13/5 brmagenta 61 #5f5faf 50  15 -45 108 113 196 237  45  77
+# base1='\e[1;36m'   # base1     #93a1a1 14/4 brcyan   245 #8a8a8a 65 -05 -02 147 161 161 180   9  63
+# base3='\e[1;37m'   # base3     #fdf6e3 15/7 brwhite  230 #ffffd7 97  00  10 253 246 227  44  10  99
 # color palette top row in gnome configure screen is 30-37 [0;30m
 # color palette bottom row in gnome configure screen is bold 30-37 [1;30m
 #}}
@@ -234,26 +234,26 @@ base3='\e[1;37m'   # base3     #fdf6e3 15/7 brwhite  230 #ffffd7 97  00  10 253 
 ## --      Customized git prompt
 ## -----------------------------------------------------
 # gitprompt configuration
-if [ -r $HOME/.dotfiles/bash-git-prompt/gitprompt.sh ]; then
+if [[ -r $HOME/.dotfiles/bash-git-prompt/gitprompt.sh ]]; then
   # Set config variables first
-  GIT_PROMPT_ONLY_IN_REPO=0
+  export GIT_PROMPT_ONLY_IN_REPO=0
 
   # GIT_PROMPT_FETCH_REMOTE_STATUS=0   # uncomment to avoid fetching remote status
-  GIT_PROMPT_IGNORE_SUBMODULES=1 # uncomment to avoid searching for changed files in submodules
+  export GIT_PROMPT_IGNORE_SUBMODULES=1 # uncomment to avoid searching for changed files in submodules
   # GIT_PROMPT_WITH_VIRTUAL_ENV=0 # uncomment to avoid setting virtual environment infos for node/python/conda environments
   # GIT_PROMPT_SHOW_UPSTREAM=1 # uncomment to show upstream tracking branch
-  GIT_PROMPT_SHOW_UNTRACKED_FILES=normal # can be no, normal or all; determines counting of untracked files
+  export GIT_PROMPT_SHOW_UNTRACKED_FILES=normal # can be no, normal or all; determines counting of untracked files
   # GIT_PROMPT_SHOW_CHANGED_FILES_COUNT=0 # uncomment to avoid printing the number of changed files
   # GIT_PROMPT_STATUS_COMMAND=gitstatus_pre-1.7.10.sh # uncomment to support Git older than 1.7.10
-  GIT_PROMPT_START="_LAST_COMMAND_INDICATOR_ ${blue}${HOSTNAME%%.*}:${yellow}\w${Reset}"
+  export GIT_PROMPT_START="_LAST_COMMAND_INDICATOR_ ${blue}${HOSTNAME%%.*}:${yellow}\w${Reset}"
   # GIT_PROMPT_END=...      # uncomment for custom prompt end sequence
 
   # as last entry source the gitprompt script
   # GIT_PROMPT_THEME=Custom # use custom theme specified in file GIT_PROMPT_THEME_FILE (default ~/.git-prompt-colors.sh)
   # GIT_PROMPT_THEME_FILE=~/.git-prompt-colors.sh
-  GIT_PROMPT_THEME=Solarized_Ubuntu
-
-  source $HOME/.dotfiles/bash-git-prompt/gitprompt.sh
+  export GIT_PROMPT_THEME=Solarized_Ubuntu
+  # shellcheck source=./bash-git-prompt/gitprompt.sh
+  source "$HOME/.dotfiles/bash-git-prompt/gitprompt.sh"
 fi
 
 # powerline bash prompt
@@ -310,20 +310,23 @@ fi
 [[ -d $HOME/.cargo/bin ]] && export PATH="$HOME/.cargo/bin:$PATH"
 
 # go
-[ -d /usr/local/go/bin/ ] && export PATH=$PATH:/usr/local/go/bin
-[ -d /mnt/storage/go ] && export GOPATH=/mnt/storage/go
-[ -d /mnt/storage/go/bin ] && export PATH="/mnt/storage/go/bin:$PATH"
+[[ -d /usr/local/go/bin/ ]] && export PATH=$PATH:/usr/local/go/bin
+[[ -d /mnt/storage/go ]] && export GOPATH=/mnt/storage/go
+[[ -d /mnt/storage/go/bin ]] && export PATH="/mnt/storage/go/bin:$PATH"
 
 # amdgpu
 [ -d /opt/amdgpu-pro/bin ] && export PATH=$PATH:/opt/amdgpu-pro/bin
 
 # ==> Source [/opt/google-cloud-sdk/path.bash.inc] in your profile to add the Google Cloud SDK command line tools to your $PATH.
-[ -r /opt/google-cloud-sdk/path.bash.inc ] && source /opt/google-cloud-sdk/path.bash.inc
+if [[ -r /opt/google-cloud-sdk/path.bash.inc ]]; then
+  # shellcheck disable=SC1091
+  source /opt/google-cloud-sdk/path.bash.inc
+fi
 
 # litecoin in opt
-[ -d /opt/litecoin ] && export PATH=$PATH:/opt/litecoin/bin
+[[ -d /opt/litecoin ]] && export PATH=$PATH:/opt/litecoin/bin
 # rocm tools
-[ -d /opt/rocm ] && export PATH=$PATH:/opt/rocm/bin
+[[ -d /opt/rocm ]] && export PATH=$PATH:/opt/rocm/bin
 #}}
 
 
@@ -402,12 +405,15 @@ export LANG='en_US.UTF-8'
 #{{ Node setup and tools
 # [ -r file ] returns True if file exists and is readable.
 export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# shellcheck disable=SC1090
+[[ -s "$NVM_DIR/nvm.sh" ]] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# shellcheck disable=SC1090
+[[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-if [ -r $HOME/.nvm/nvm.sh ]; then
+if [[ -r $HOME/.nvm/nvm.sh ]]; then
   NVM_DIR=$HOME/.nvm
-  source $HOME/.nvm/nvm.sh
+  # shellcheck disable=SC1090
+  source "$HOME/.nvm/nvm.sh"
   np=$(nvm which current)
   np="${np//bin/lib}"
   export NODE_PATH=$np"_modules":$NODE_PATH
@@ -431,7 +437,7 @@ export PYTHONDONTWRITEBYTECODE=1
 
 # freedesktop.org Environment Variables {{
 # https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html#variables
-if [ $(uname -s) == Linux ]; then
+if [[ $(uname -s) == Linux ]]; then
   export XDG_DATA_HOME=$HOME/.local/share
   export XDG_CONFIG_HOME=$HOME/.config
   export XDG_CACHE_HOME=$HOME/.cache
@@ -457,10 +463,10 @@ fi
 # }}
 
 # Darwin only setup {{
-if [ "$(uname -s)" == 'Darwin' ]; then
+if [[ $(uname -s) == 'Darwin' ]]; then
   # add all mac osx specific bits inside an if statement like this.
   alias ll='ls -AFlhG'
-  alias llt='ls -AFlhrtG'
+  alias lt='ls -AFlhrtG'
   alias la='ls -AFG'
   alias l='ls -CFG'
   HISTSIZE=1000000
@@ -522,6 +528,7 @@ if ! shopt -oq posix; then
   if [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]]; then
     source "/usr/local/etc/profile.d/bash_completion.sh"
   elif [[ -r /usr/share/bash-completion/bash_completion ]]; then
+    # shellcheck disable=SC1091
     source /usr/share/bash-completion/bash_completion
   elif [[ -r /etc/bash_completion ]]; then
     source /etc/bash_completion
@@ -530,25 +537,43 @@ fi
 
 # git completion
 # https://github.com/git/git/blob/master/contrib/completion/git-completion.bash
-[[ -r $HOME/.dotfiles/git-completion.bash ]] && source $HOME/.dotfiles/git-completion.bash
+# shellcheck disable=SC1090
+if [[ -r $HOME/.dotfiles/git-completion.bash ]]; then
+  source "$HOME/.dotfiles/git-completion.bash"
+fi
 
 # enable completion for nvm
-[[ -r $NVM_DIR/bash_completion ]] && source $NVM_DIR/bash_completion
+# shellcheck disable=SC1090
+[[ -r $NVM_DIR/bash_completion ]] && source "$NVM_DIR/bash_completion"
 
 # http://wp-cli.org/ bash completion
-[[ -r $HOME/.dotfiles/bash_completion/wp-completion.bash ]] && source $HOME/.dotfiles/bash_completion/wp-completion.bash
+# shellcheck disable=SC1090
+if [[ -r $HOME/.dotfiles/bash_completion/wp-completion.bash ]]; then
+  source "$HOME/.dotfiles/bash_completion/wp-completion.bash"
+fi
 
 # AWS CLI completion
 # http://docs.aws.amazon.com/cli/latest/userguide/cli-command-completion.html
 [[ $(command -v aws_completer) ]] && complete -C aws_completer aws
 
 # ==> Source [/opt/google-cloud-sdk/completion.bash.inc] in your profile to enable shell command completion for gcloud.
+# shellcheck disable=SC1091
 [[ -r /opt/google-cloud-sdk/completion.bash.inc ]] && source /opt/google-cloud-sdk/completion.bash.inc
 
 # https://pip.pypa.io/en/stable/user_guide/#command-completion
 # specifically for pip command, does not offer completion for pip2 or pip3
 [[ $(command -v pip) ]] && eval "$(pip completion --bash)"
 
+DOCKER_ROOT=/Applications/Docker.app/Contents/Resources/etc
+if [[ -d "$DOCKER_ROOT" ]];
+then
+  # shellcheck disable=SC1090
+  . "$DOCKER_ROOT/docker.bash-completion"
+  # shellcheck disable=SC1090
+  . "$DOCKER_ROOT/docker-compose.bash-completion"
+  # shellcheck disable=SC1090
+  . "$DOCKER_ROOT/docker-machine.bash-completion"
+fi
 # moved to /etc/bash_completion.d/ via cron job {{
 # https://docs.npmjs.com/cli/completion
 # this was not working (2017-02-13) $(npm completion) > /etc/bash_completion.d/
@@ -572,22 +597,23 @@ fi
 #   ls -F --color --ignore=lost+found
 # }
 
-# enhanced which command to show if exectable is symbolic link
-which () {
-  result=$(/usr/bin/which $1)
-  # $? exit status of last command.  should be zero if succesfull
-  if [[ $? == 0 ]]; then
-    stat $(/usr/bin/which $1) | head -n 1 | cut -c 9-
-  else
-    echo "$1 not found. exit code: $?"
-  fi
-}
+# use command -v to find path
+# # enhanced which command to show if exectable is symbolic link
+# which () {
+#   result="$(command -v $1)"
+#   # $? exit status of last command.  should be zero if succesfull
+#   if [[ $? == 0 ]]; then
+#     stat $(/usr/bin/which $1) | head -n 1 | cut -c 9-
+#   else
+#     echo "$1 not found. exit code: $?"
+#   fi
+# }
 
 # create random 10 character password and place on clipboard
-CreateRandomPassword () {
-  apg -MSNCL -a 1 -n 1 -m 12 -E \/\?\\\|\'\"\`\+\-\_\[\]\{\}\,\.\;\: | xclip -i -selection clipboard
-  #openssl rand -base64 7 | sed s/=//g | xclip -i -selection clipboard
-}
+# CreateRandomPassword () {
+#   apg -MSNCL -a 1 -n 1 -m 12 -E \/\?\\\|\'\"\`\+\-\_\[\]\{\}\,\.\;\: | xclip -i -selection clipboard
+#   #openssl rand -base64 7 | sed s/=//g | xclip -i -selection clipboard
+# }
 
 ShrinkPDF() {
  if [ -z "$1" ]; then
@@ -607,7 +633,8 @@ Extract () {
     echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
  else
     if [ -f "$1" ] ; then
-        local nameInLowerCase=`echo "$1" | awk '{print tolower($0)}'`
+      local nameInLowerCase
+      nameInLowerCase=$(echo "$1" | awk '{print tolower($0)}')
         case "$nameInLowerCase" in
           *.tar.bz2)   tar xvjf ./"$1"    ;;
           *.tar.gz)    tar xvzf ./"$1"    ;;
@@ -635,7 +662,8 @@ Extract () {
 #}}
 
 # does a bashrc.local exist?
-[ -r $HOME/.bashrc.local ] && source $HOME/.bashrc.local
+# shellcheck disable=SC1090
+[[ -r $HOME/.bashrc.local ]] && source "$HOME/.bashrc.local"
 
 # display that reboot is required after automatic update
 if [ -r /var/run/reboot-required ]; then
