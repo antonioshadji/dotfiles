@@ -601,7 +601,8 @@ let g:deoplete#enable_at_startup = 1
 
 " Black python autoformat {
 autocmd BufWritePre *.py execute ':Black'
-}
+" }
+
 " Plugins }
 
 " colors {
