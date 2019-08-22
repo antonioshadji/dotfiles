@@ -6,6 +6,7 @@ vim/init.vim
 vim/viminfo
 # eclim files
 vim/plugin
+vim/black
 vim/eclim
 vim/.VimballRecord
 # Compiled python

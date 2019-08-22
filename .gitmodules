@@ -45,6 +45,12 @@
 [submodule "vim/pack/plugins/start/SimpylFold"]
 	path = vim/pack/plugins/start/SimpylFold
 	url = git@github.com:tmhedberg/SimpylFold.git
+	branch = master
 [submodule "vim/pack/plugins/start/black"]
 	path = vim/pack/plugins/start/black
 	url = https://github.com/psf/black.git
+	branch = master
+[submodule "vim/pack/plugins/start/rust.vim"]
+	path = vim/pack/plugins/start/rust.vim
+	url = git@github.com:rust-lang/rust.vim.git
+	branch = master
