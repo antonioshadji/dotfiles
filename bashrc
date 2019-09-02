@@ -453,7 +453,7 @@ export DEBFULLNAME="Antonios Hadjigeorgalis"
 # git configuration {{
 export GIT_AUTHOR_NAME="Antonios Hadjigeorgalis"
 export GIT_COMMITTER_NAME="Antonios Hadjigeorgalis"
-if [[ ${HOSTNAME} =~ [comcast.net$|HQSML] ]]; then
+if [[ ${HOSTNAME} =~ comcast.net$|HQSML ]]; then
   export GIT_AUTHOR_EMAIL="Antonios_Hadjigeorgalis@comcast.com"
   export GIT_COMMITTER_EMAIL="Antonios_Hadjigeorgalis@comcast.com"
 else

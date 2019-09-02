@@ -39,7 +39,11 @@ set nocompatible                " nvim default, must be set for vim
 set backspace=indent,eol,start  " fix backspace
 set showcmd                     " display incomplete commands
 set mouse=a                     " Automatically enable mouse usage
-set ttymouse=xterm
+
+if !has('nvim')
+  set ttymouse=xterm2
+endif
+
 set incsearch                   " search as you type
 
 " Ctrl-A increments character under cursor
@@ -159,10 +163,14 @@ set printoptions=formfeed:y  "insert Ctrl-V Ctrl-L (^L) to create print pagebrea
 " GUI Settings (here instead of .gvimrc) {
 if has('gui_running')
   " Set my preferred font with comma separated list(spaces must be escaped)
-  " mac osx guifont
-  set gfn=UbuntuMonoDerivativePowerline-Regular:h18
-  " linux
-  " set guifont=Ubuntu\ Mono\ derivative\ Powerline\ Regular\ 12
+  if trim(system('uname')) == 'Linux'
+    " linux
+    set guifont=Ubuntu\ Mono\ derivative\ Powerline\ Regular\ 14
+  else
+    " mac osx guifont
+     set gfn=UbuntuMonoDerivativePowerline-Regular:h18
+  endif
+
   set guioptions-=T               "Remove tool bar
   set guioptions+=c               "Use console dialogs
   set lines=48                    "Larger window than 24 row terminal
@@ -535,12 +543,23 @@ let g:ale_linters = {'python': ['flake8']}
 " }
 
 " https://github.com/powerline/powerline {
-if isdirectory(expand('~/.local/lib/python3.6/site-packages/powerline'))
-  set rtp+=$HOME/.local/lib/python3.6/site-packages/powerline/bindings/vim
-elseif isdirectory(expand('~/.local/lib/python3.5/site-packages/powerline'))
-  set rtp+=$HOME/.local/lib/python3.5/site-packages/powerline/bindings/vim
-elseif isdirectory('/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/powerline')
-  set rtp+=/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/powerline/bindings/vim
+if !has('nvim')
+  if isdirectory(expand('~/.local/lib/python3.6/site-packages/powerline'))
+    set rtp+=$HOME/.local/lib/python3.6/site-packages/powerline/bindings/vim
+  elseif isdirectory(expand('~/.local/lib/python3.5/site-packages/powerline'))
+    set rtp+=$HOME/.local/lib/python3.5/site-packages/powerline/bindings/vim
+  elseif isdirectory('/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/powerline')
+    set rtp+=/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/powerline/bindings/vim
+  endif
+else
+  set rtp+=$HOME/.vim/pack/plugins/opt/vim-airline
+  set rtp+=$HOME/.vim/pack/plugins/opt/vim-airline-themes
+" https://github.com/vim-airline/vim-airline {
+let g:airline_theme='solarized'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+" }
+"
 endif
 " }
 
@@ -601,7 +620,29 @@ let g:deoplete#enable_at_startup = 1
 
 " Black python autoformat {
 autocmd BufWritePre *.py execute ':Black'
-}
+" }
+
+" https://github.com/racer-rust/vim-racer {
+let g:racer_experimental_completer = 1
+let g:racer_insert_paren = 1
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
+" }
+
+" https://github.com/rust-lang/rust.vim {
+" cargo fmt
+" cargo +nightly fmt
+let g:rustfmt_autosave = 1
+
+" Mac OSX
+" let g:rust_clip_command = 'pbcopy'
+" Linux
+" let g:rust_clip_command = 'xclip -selection clipboard'
+" }
+
+
 " Plugins }
 
 " colors {
@@ -616,9 +657,9 @@ colorscheme solarized
 set background=dark
 "set background=light
 
-if len(matchstr(v:termrbgresp, '00/2b/36'))
-  echom 'true'
-endif
+"if len(matchstr(v:termrbgresp, '00/2b/36'))
+"  echom 'true'
+"endif
 
 "echom len(matchstr(v:termrbgresp, '00/2b/36'))
 "echom len(matchstr(v:termrbgresp, 'fd/f6/e3'))
@@ -633,3 +674,22 @@ endif
 " endif
 " colors }
 
+" MzScheme Support for Racket {
+" Auto-instantiation of vimext module (can be placed in your |vimrc|): >
+" function! MzRequire()
+"   :redir => l:mzversion
+"   :mz (version)
+"   :redir END
+"   if strpart(l:mzversion, 1, 1) < "4"
+"       " MzScheme versions < 4.x:
+"       :mz (require (prefix vim- vimext))
+"   else
+"       " newer versions:
+"       :mz (require (prefix-in vim- 'vimext))
+"   endif
+" endfunction
+" 
+" if has("mzscheme")
+"   silent call MzRequire()
+" endif
+" }
