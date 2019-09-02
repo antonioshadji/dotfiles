@@ -45,10 +45,10 @@
 	url = https://github.com/racer-rust/vim-racer.git
 [submodule "vim/pack/plugins/opt/vim-airline-themes"]
 	path = vim/pack/plugins/opt/vim-airline-themes
-	url = https://github.com/vim-airline/vim-airline-themes.git
+	url = https://github.com/vim-airline/vim-airline-themes
 [submodule "vim/pack/plugins/opt/vim-airline"]
 	path = vim/pack/plugins/opt/vim-airline
-	url = https://github.com/vim-airline/vim-airline.git
+	url = https://github.com/vim-airline/vim-airline
 [submodule "vim/pack/plugins/start/vim-racket"]
 	path = vim/pack/plugins/start/vim-racket
 	url = https://github.com/wlangstroth/vim-racket.git
