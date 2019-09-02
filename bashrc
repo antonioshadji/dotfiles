@@ -303,16 +303,16 @@ fi
 # gem install --user-install uses this location
 [[ -d $HOME/.gem/ruby/2.3.0/bin ]] && export PATH=$HOME/.gem/ruby/2.3.0/bin:$PATH
 
-# pip install --user installs into ~/.local/bin
+# pip install --user installs into ~/.local/bin on linux
 [[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
 
 # Rust
 [[ -d $HOME/.cargo/bin ]] && export PATH="$HOME/.cargo/bin:$PATH"
 
 # go
-[[ -d /usr/local/go/bin/ ]] && export PATH=$PATH:/usr/local/go/bin
-[[ -d /mnt/storage/go ]] && export GOPATH=/mnt/storage/go
-[[ -d /mnt/storage/go/bin ]] && export PATH="/mnt/storage/go/bin:$PATH"
+# [[ -d /usr/local/go/bin/ ]] && export PATH=$PATH:/usr/local/go/bin
+# [[ -d /mnt/storage/go ]] && export GOPATH=/mnt/storage/go
+# [[ -d /mnt/storage/go/bin ]] && export PATH="/mnt/storage/go/bin:$PATH"
 
 # amdgpu
 [ -d /opt/amdgpu-pro/bin ] && export PATH=$PATH:/opt/amdgpu-pro/bin
