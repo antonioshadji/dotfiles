@@ -168,7 +168,7 @@ if has('gui_running')
     set guifont=Ubuntu\ Mono\ derivative\ Powerline\ Regular\ 14
   else
     " mac osx guifont
-     set gfn=UbuntuMonoDerivativePowerline-Regular:h18
+    set gfn=UbuntuMonoDerivativePowerline-Regular:h18
   endif
 
   set guioptions-=T               "Remove tool bar
