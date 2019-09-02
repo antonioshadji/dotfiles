@@ -310,7 +310,7 @@ fi
 [[ -d $HOME/.cargo/bin ]] && export PATH="$HOME/.cargo/bin:$PATH"
 
 # go
-# [[ -d /usr/local/go/bin/ ]] && export PATH=$PATH:/usr/local/go/bin
+[[ -d /usr/local/go/bin/ ]] && export PATH=$PATH:/usr/local/go/bin
 # [[ -d /mnt/storage/go ]] && export GOPATH=/mnt/storage/go
 # [[ -d /mnt/storage/go/bin ]] && export PATH="/mnt/storage/go/bin:$PATH"
 
