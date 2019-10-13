@@ -526,6 +526,8 @@ bind 'TAB:menu-complete'
 if ! shopt -oq posix; then
   # homebrew installation
   if [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]]; then
+    # https://github.com/koalaman/shellcheck/wiki/SC1091
+    # shellcheck disable=SC1091
     source "/usr/local/etc/profile.d/bash_completion.sh"
   elif [[ -r /usr/share/bash-completion/bash_completion ]]; then
     # shellcheck disable=SC1091
