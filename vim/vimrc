@@ -225,7 +225,7 @@ endif
 "Keyboard Shortcuts {
 " help abbreviate
 " Abbreviations:
-iab <expr> dts strftime("%Y-%m-%d %T %z")
+iab <expr> dts strftime("%F %T")
 
 " When you have a problem about vim mappings.
 " Check :verbose inoremap at the first.
