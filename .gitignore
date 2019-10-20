@@ -27,3 +27,6 @@ notes/*
 # backup files
 *.ucf-dist
 *.ucf-old
+
+# help tags
+tags*

@@ -524,9 +524,9 @@ endif
 "}
 
 " Plugins {
-" if filereadable(expand('~/.vim/vimrc.bundles'))
-"   source ~/.vim/vimrc.bundles
-" endif
+" must run these commands when new plugins installed or no help available
+" helptags ~/.vim/pack/plugins/start
+" helptags ~/.vim/pack/plugins/opt
 
 " git@github.com:w0rp/ale.git {
 " Enable completion where available. TODO: Can this replace deoplete?
@@ -566,7 +566,7 @@ endif
 " git@github.com:ervandew/supertab.git {
 let g:SuperTabDefaultCompletionType = "context"
 " let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-" let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
+let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
 "<c-n>" " default value <c-p>
 
 let g:SuperTabLongestEnhanced = 1 "(default value: 0)
@@ -641,7 +641,6 @@ let g:rustfmt_autosave = 1
 " Linux
 " let g:rust_clip_command = 'xclip -selection clipboard'
 " }
-
 
 " Plugins }
 
