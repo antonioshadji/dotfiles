@@ -609,12 +609,12 @@ let g:pandoc#folding#level = 1
 " requires:
 "   git@github.com:roxma/vim-hug-neovim-rpc.git
 "   git@github.com:roxma/nvim-yarp.git
-set completeopt=longest,menuone,preview
-if v:version > 800
-  " https://github.com/zchee/deoplete-go#sample-initvim
-  set completeopt+=noselect
-endif
-let g:deoplete#enable_at_startup = 1
+" set completeopt=longest,menuone,preview
+" if v:version > 800
+"   " https://github.com/zchee/deoplete-go#sample-initvim
+"   set completeopt+=noselect
+" endif
+" let g:deoplete#enable_at_startup = 1
 " call deoplete#enable()
 "}
 

@@ -50,5 +50,5 @@
 	path = vim/pack/plugins/opt/vim-airline
 	url = https://github.com/vim-airline/vim-airline
 [submodule "vim/pack/plugins/start/vim-racket"]
-	path = vim/pack/plugins/start/vim-racket
+	path = vim/pack/plugins/opt/vim-racket
 	url = https://github.com/wlangstroth/vim-racket.git
