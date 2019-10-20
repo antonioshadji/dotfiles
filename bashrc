@@ -453,13 +453,8 @@ export DEBFULLNAME="Antonios Hadjigeorgalis"
 # git configuration {{
 export GIT_AUTHOR_NAME="Antonios Hadjigeorgalis"
 export GIT_COMMITTER_NAME="Antonios Hadjigeorgalis"
-if [[ ${HOSTNAME} =~ comcast.net$|HQSML ]]; then
-  export GIT_AUTHOR_EMAIL="Antonios_Hadjigeorgalis@comcast.com"
-  export GIT_COMMITTER_EMAIL="Antonios_Hadjigeorgalis@comcast.com"
-else
-  export GIT_AUTHOR_EMAIL="Antonios@Hadji.co"
-  export GIT_COMMITTER_EMAIL="Antonios@Hadji.co"
-fi
+export GIT_AUTHOR_EMAIL="Antonios@Hadji.co"
+export GIT_COMMITTER_EMAIL="Antonios@Hadji.co"
 # }}
 
 # Darwin only setup {{
@@ -673,6 +668,17 @@ if [ -r /var/run/reboot-required ]; then
   cat /var/run/reboot-required.pkgs
   uptime
 fi
+
+# Comcast Settings {{
+if [[ ${HOSTNAME} =~ comcast.net$|HQSML ]]; then
+  export GIT_AUTHOR_EMAIL="Antonios_Hadjigeorgalis@comcast.com"
+  export GIT_COMMITTER_EMAIL="Antonios_Hadjigeorgalis@comcast.com"
+  export ANSIBLE_VAULT_PASSWORD_FILE=~/.ansible/vault_password
+  export NODE_PATH=${HOME}/.npm/lib/node_modules:${NODE_PATH}
+  export PATH=${HOME}/.npm/bin:$PATH
+fi
+
+# }}
 
 # profile stop time start {{
 if [[ $DEBUG == 1 ]]; then
