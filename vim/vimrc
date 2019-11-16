@@ -525,6 +525,7 @@ endif
 
 " Plugins {
 " must run these commands when new plugins installed or no help available
+helptags ~/.vim/pack/plugins
 " helptags ~/.vim/pack/plugins/start
 " helptags ~/.vim/pack/plugins/opt
 
