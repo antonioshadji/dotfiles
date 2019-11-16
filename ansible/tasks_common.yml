@@ -34,12 +34,13 @@
     - tmux
     - tree
     - rename
-    - silversearcher-ag
     - vim
     - openssh-server
     - pandoc
     - shellcheck
     - fonts-powerline
+    - net-tools
+    - silversearcher-ag
 
 - name: Clone dotfiles git repo
   git:
@@ -66,3 +67,6 @@
     - 'tern-project'
     - 'tmux.conf'
     - 'vim'
+
+# install rust
+# install ripgrep

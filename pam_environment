@@ -1,10 +1,12 @@
-LC_NUMERIC=en_US.UTF-8
+# vim: set ft=conf:
+# https://unix.stackexchange.com/questions/88201/whats-the-best-distro-shell-agnostic-way-to-set-environment-variables/88266#88266
+# unset
+LC_ALL
+# set
+LANG=en_US.UTF-8
 LC_TIME=en_GB.UTF-8
-LC_MONETARY=en_US.UTF-8
-LC_PAPER=en_US.UTF-8
-LC_NAME=en_US.UTF-8
-LC_ADDRESS=en_US.UTF-8
-LC_TELEPHONE=en_US.UTF-8
 LC_MEASUREMENT=en_GB.UTF-8
-LC_IDENTIFICATION=en_US.UTF-8
-PAPERSIZE=letter
+LC_COLLATE=C
+# is this neccessary?
+# https://linux.die.net/man/5/papersize
+# PAPERSIZE=letter

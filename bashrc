@@ -398,10 +398,12 @@ export GREP_COLOR='30;43' # match color of ag match
 #}}
 
 # 2.5) sort options{{
+# https://unix.stackexchange.com/questions/88201/whats-the-best-distro-shell-agnostic-way-to-set-environment-variables/88266#88266
+# set in .pam_environment
 # Ensures cross-platform sorting behavior of GNU sort.
 # http://www.gnu.org/software/coreutils/faq/coreutils-faq.html#Sort-does-not-sort-in-normal-order_0021
-unset LC_ALL
-export LANG='en_US.UTF-8'
+# unset LC_ALL
+# export LANG='en_US.UTF-8'
 #}}
 
 
