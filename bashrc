@@ -301,7 +301,10 @@ fi
 [[ -d $HOME/code/Android/android-studio/bin ]] && export PATH=$HOME/code/Android/android-studio/bin:$PATH
 
 # gem install --user-install uses this location
-[[ -d $HOME/.gem/ruby/2.3.0/bin ]] && export PATH=$HOME/.gem/ruby/2.3.0/bin:$PATH
+# Mac WARNING:  You don't have /Users/ahadji842/.gem/ruby/2.6.0/bin in your PATH,
+gemloc=( $HOME/.gem/ruby/*/bin )
+[[ -d ${gemloc[0]} ]] && export PATH=${gemloc[0]}:$PATH
+unset gemloc
 
 # pip install --user installs into ~/.local/bin on linux
 [[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
