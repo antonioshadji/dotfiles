@@ -386,7 +386,7 @@ autocmd FocusLost * :wa
 " }
 
 " python configuration {
-autocmd FileType python packadd jedi-vim
+" autocmd FileType python packadd jedi-vim
 " }
 
 " Java Configuration {
@@ -536,7 +536,8 @@ let g:ale_completion_enabled = 1
 " Use ALE's function for omnicompletion.
 set omnifunc=ale#completion#OmniFunc
 " See :help ale-completion for more information.
-"
+" let g:jedi#completions_enabled = 0
+
 " https://github.com/w0rp/ale#2ii-fixing
 " check help ale-options for defaut settings and options available
 
