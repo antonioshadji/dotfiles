@@ -6,7 +6,7 @@ matplotlib
 jupyter
 pandas
 sympy
-nose
+
 # for pandas excel support
 xlrd
 # machine learning
