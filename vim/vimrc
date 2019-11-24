@@ -525,7 +525,7 @@ endif
 
 " Plugins {
 " must run these commands when new plugins installed or no help available
-helptags ~/.vim/pack/plugins
+" helptags ~/.vim/pack/plugins
 " helptags ~/.vim/pack/plugins/start
 " helptags ~/.vim/pack/plugins/opt
 
@@ -533,6 +533,8 @@ helptags ~/.vim/pack/plugins
 " Enable completion where available. TODO: Can this replace deoplete?
 " This setting must be set before ALE is loaded.
 let g:ale_completion_enabled = 1
+" Use ALE's function for omnicompletion.
+set omnifunc=ale#completion#OmniFunc
 " See :help ale-completion for more information.
 "
 " https://github.com/w0rp/ale#2ii-fixing
