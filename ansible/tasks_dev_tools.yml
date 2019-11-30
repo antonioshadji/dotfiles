@@ -58,3 +58,11 @@
     name: python3-venv
     state: latest
     force_apt_get: yes
+
+- name: Python3.8 build dependencies
+  become: true
+  apt:
+    name: Python3.8
+    state: build-dep
+    force_apt_get: yes
+

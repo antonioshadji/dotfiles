@@ -1,5 +1,5 @@
 ---
-- hosts: laptop
+- hosts: desktop
   roles:
   tasks:
   - name: Build dependencies for Gnucash
