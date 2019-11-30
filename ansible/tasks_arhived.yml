@@ -1,0 +1,14 @@
+---
+- name: Verify git ppa is an apt repository
+  become: true
+  apt_repository:
+    repo: ppa:git-core/ppa
+    state: present
+    update_cache: yes
+
+- name: Add/Verify vim ppa for latest vim8
+  become: true
+  apt_repository:
+    repo: ppa:jonathonf/vim
+    state: present
+    update_cache: yes
