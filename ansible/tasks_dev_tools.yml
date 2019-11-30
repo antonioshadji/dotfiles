@@ -59,10 +59,10 @@
     state: latest
     force_apt_get: yes
 
-- name: Python3.8 build dependencies
+- name: Python3.7 build dependencies
   become: true
   apt:
-    name: Python3.8
+    name: Python3.7
     state: build-dep
     force_apt_get: yes
 
