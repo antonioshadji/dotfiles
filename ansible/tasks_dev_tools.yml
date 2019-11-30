@@ -62,7 +62,38 @@
 - name: Python3.7 build dependencies
   become: true
   apt:
-    pkg: Python3.7
-    state: build-dep
+    name: "{{ packages }}"
+    state: latest
     force_apt_get: yes
-
+  vars:
+    packages:
+      -blt-dev
+      -cpp-8
+      -g++-8
+      -gcc-8
+      -libasan5
+      -libbluetooth-dev
+      -libbz2-dev
+      -libdb-dev
+      -libdb5.3-dev
+      -libgcc-8-dev
+      -libgdbm-dev
+      -liblzma-dev
+      -libmpdec-dev
+      -libncursesw5-dev
+      -libstdc++-8-dev
+      -libubsan1
+      -libxss-dev
+      -locales-all
+      -sharutils
+      -systemtap-sdt-dev
+      -tcl
+      -tcl-dev
+      -tcl8.6
+      -tcl8.6-dev
+      -tk
+      -tk-dev
+      -tk8.6
+      -tk8.6-dev
+      -x11proto-scrnsaver-dev
+      -xvfb
