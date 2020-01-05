@@ -16,11 +16,7 @@
 - name: Build dependencies for Gnucash
   become: true
   apt:
-    name: "{{ packages }}"
-    state: latest
-    force_apt_get: yes
-  vars:
-    packages:
+    name:
       - cmake
       - libglib2.0-dev
       - libgtk-3-dev
@@ -44,6 +40,8 @@
       - python3-dev
       - libsecret-1-dev
       - libfinance-quote-perl
+    state: latest
+    force_apt_get: yes
 
 - name: Java Software development
   become: true
@@ -59,14 +57,10 @@
     state: latest
     force_apt_get: yes
 
-- name: Python3.7 build dependencies
+- name: Python build dependencies
   become: true
   apt:
-    name: "{{ packages }}"
-    state: latest
-    force_apt_get: yes
-  vars:
-    packages:
+    name:
       - blt-dev
       - cpp-8
       - g++-8
@@ -97,3 +91,10 @@
       - tk8.6-dev
       - x11proto-scrnsaver-dev
       - xvfb
+    state: latest
+    force_apt_get: yes
+
+- name: C language tools
+  become: true
+  apt:
+    name: exuberant-ctags
