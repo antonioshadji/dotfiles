@@ -39,7 +39,7 @@ __log_console() {
 }
 
 if git diff-index --quiet HEAD; then
-  ansible-playbook machine-configuration.yml --ask-become-pass "$@"
+  ansible-playbook pb_all.yml --ask-become-pass "$@"
 else
   __log_console "git repo is dirty, ansible will fail to run on this localhost"
   git status --verbose
