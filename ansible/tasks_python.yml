@@ -28,14 +28,14 @@
 
 - name: Install pip
   command: "python3 get-pip.py --user"
-  when:  pip_version_output is failed
   args:
     chdir: /tmp
     creates: "$HOME/.local/bin/pip"
+  when: pip_version_output is failed and ansible_distribution == "Ubuntu"
 
 - name: Pip install standard python libs
   pip:
     executable: "$HOME/.local/bin/pip3"
     requirements: "$HOME/.dotfiles/requirements3.txt"
-    extra_args: --user
-
+    extra_args: --user --upgrade
+  when: ansible_distribution == "Ubuntu"

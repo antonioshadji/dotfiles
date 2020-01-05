@@ -11,9 +11,11 @@ powerline-status
 jedi
 pytest
 ipython
+black
 # used in ipython_config.py
 pygments-style-solarized
 
 # cli tools
 awscli
 docker-compose
+ansible-lint
