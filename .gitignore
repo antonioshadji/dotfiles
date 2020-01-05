@@ -8,6 +8,7 @@ vim/viminfo
 vim/plugin
 vim/black
 vim/eclim
+vim/undo/
 vim/.VimballRecord
 # Compiled python
 *.pyc

@@ -51,7 +51,6 @@ set incsearch                   " search as you type
 " defaults.vim suggests removing octal nvim default is bin,hex
 " https://neovim.io/doc/user/options.html#'nrformats'
 
-set scrolloff=2 "default.vim=5  " Minimum lines to keep above and below cursor
 " set ttimeout                    " time out for key codes
 " set ttimeoutlen=200             " wait up to 100ms after Esc for special key
 set wildmenu                    " Show list instead of just completing
@@ -149,10 +148,10 @@ set laststatus=2
 
 " Formatting {
 set nowrap              " do not wrap long lines, show indicator instead
-set shiftwidth=2        " number of spaces to use for autoindent
+set shiftwidth=4        " number of spaces to use for autoindent
 set expandtab           " expands tabs to spaces
-set tabstop=2           " actual tabs occupy 4 spaces
-set softtabstop=2       " insert mode tab and backspace
+set tabstop=4           " actual tabs occupy 4 spaces
+set softtabstop=4       " insert mode tab and backspace
 set splitright          " puts new vsplit windows to the right
 set splitbelow          " puts new hsplit windows below current
 set pastetoggle=<F12>   " sane indentation on pastes
@@ -646,6 +645,12 @@ let g:rustfmt_autosave = 1
 " let g:rust_clip_command = 'xclip -selection clipboard'
 " }
 
+" https://github.com/junegunn/fzf#as-vim-plugin {
+if isdirectory(expand('~/.fzf'))
+    set rtp+=$HOME/.fzf
+endif
+" }
+
 " Plugins }
 
 " colors {
@@ -696,3 +701,7 @@ set background=dark
 "   silent call MzRequire()
 " endif
 " }
+"
+if filereadable('Session.vim')
+  :silent source Session.vim
+endif

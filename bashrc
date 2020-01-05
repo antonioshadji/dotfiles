@@ -691,3 +691,5 @@ if [[ $DEBUG == 1 ]]; then
   exec 2>&3 3>&-
 fi
 # }}
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
