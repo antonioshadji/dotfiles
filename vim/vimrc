@@ -656,6 +656,9 @@ endif
 " light: ^[]11;rgb:fd/f6/e3^G
 colorscheme solarized
 set background=dark
+" https://github.com/lifepillar/vim-solarized8/blob/master/colors/solarized8.vim
+" set terminal so it shows same colors as background
+hi Terminal ctermfg=fg ctermbg=NONE cterm=NONE
 "set background=light
 
 "if len(matchstr(v:termrbgresp, '00/2b/36'))
