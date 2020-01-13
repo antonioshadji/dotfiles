@@ -429,6 +429,7 @@ fi
 # https://howtopython.org/en/latest/the-interpreter/#bytecode-trick
 # Python won't write *.pyc files to disk
 export PYTHONDONTWRITEBYTECODE=1
+export PYTEST_ADDOPTS="-v"
 # }}
 
 # Java setup {{
