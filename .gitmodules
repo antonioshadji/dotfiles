@@ -55,3 +55,6 @@
 [submodule "vim/pack/plugins/start/vim/pack/plugins/start/jedi-vim"]
 	path = vim/pack/plugins/start/vim/pack/plugins/start/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim.git
+[submodule "vim/pack/plugins/start/vim-capslock"]
+	path = vim/pack/plugins/start/vim-capslock
+	url = https://github.com/tpope/vim-capslock.git
