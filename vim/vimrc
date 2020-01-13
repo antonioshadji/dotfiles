@@ -386,7 +386,7 @@ autocmd FocusLost * :wa
 " }
 
 " python configuration {
-" autocmd FileType python packadd jedi-vim
+autocmd FileType python set foldlevel=99
 " }
 
 " Java Configuration {
@@ -646,6 +646,11 @@ let g:rustfmt_autosave = 1
 " let g:rust_clip_command = 'xclip -selection clipboard'
 " }
 
+" https://github.com/junegunn/fzf {
+if isdirectory(expand('~/.fzf'))
+  set rtp+=~/.fzf
+endif
+" }
 " Plugins }
 
 " colors {
@@ -658,7 +663,7 @@ let g:rustfmt_autosave = 1
 " light: ^[]11;rgb:fd/f6/e3^G
 colorscheme solarized
 set background=dark
-"set background=light
+" set background=light
 
 "if len(matchstr(v:termrbgresp, '00/2b/36'))
 "  echom 'true'

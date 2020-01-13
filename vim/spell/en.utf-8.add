@@ -67,3 +67,11 @@ ECS
 fargate
 ram
 ram
+repo
+Jira
+msg
+authorizer
+oauth2
+apigateway
+pytest
+PYTHONPATH

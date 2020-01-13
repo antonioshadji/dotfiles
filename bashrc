@@ -312,10 +312,10 @@ unset gemloc
 # Rust
 [[ -d $HOME/.cargo/bin ]] && export PATH="$HOME/.cargo/bin:$PATH"
 
-# go
-[[ -d /usr/local/go/bin/ ]] && export PATH=$PATH:/usr/local/go/bin
-# [[ -d /mnt/storage/go ]] && export GOPATH=/mnt/storage/go
-# [[ -d /mnt/storage/go/bin ]] && export PATH="/mnt/storage/go/bin:$PATH"
+# Go
+if [[ ! "$PATH" == */usr/local/go/bin* ]]; then
+  export PATH="${PATH:+${PATH}:}/usr/local/go/bin"
+fi
 
 # amdgpu
 [ -d /opt/amdgpu-pro/bin ] && export PATH=$PATH:/opt/amdgpu-pro/bin
@@ -691,3 +691,5 @@ if [[ $DEBUG == 1 ]]; then
   exec 2>&3 3>&-
 fi
 # }}
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
