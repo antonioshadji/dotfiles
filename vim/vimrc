@@ -319,111 +319,110 @@ nnoremap <Leader>g :YcmCompleter GoTo<CR>
 
 " Auto Commands: {
 if !exists("g:autocommands_loaded")
-    let g:autocommands_loaded = 1
+  let g:autocommands_loaded = 1
 
-    " Close preview window when complete {
-    " http://stackoverflow.com/a/26022965/2472798
-    autocmd CompleteDone * pclose
-    " }
+" Close preview window when complete {
+" http://stackoverflow.com/a/26022965/2472798
+autocmd CompleteDone * pclose
+" }
 
-    " Git autocmd {
-    " Instead of reverting the cursor to the last position in the buffer, we
-    " set it to the first line when editing a git commit message
-    autocmd FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
-    " https://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message
-    autocmd Filetype gitcommit setlocal spell textwidth=72
+" Git autocmd {
+" Instead of reverting the cursor to the last position in the buffer, we
+" set it to the first line when editing a git commit message
+autocmd FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+" https://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message
+autocmd Filetype gitcommit setlocal spell textwidth=72
 
-    "}
+"}
 
-    " http://vim.wikia.com/wiki/Shebang_line_automatically_generated {
-    augroup Shebang
-        autocmd BufNewFile *.sh 0put =\"#!/usr/bin/env bash\<nl># -*- coding: utf-8 -*-\<nl>\"|$
-        autocmd BufNewFile *.py 0put =\"#!/usr/bin/env python3\<nl># -*- coding: utf-8 -*-\<nl>\"|$
-        autocmd BufNewFile *.c 0put =\"#include <stdio.h>\<nl>\<nl>int main()\<nl>{\<nl>}\<nl>\"|$
-    augroup END
-    " }
+" http://vim.wikia.com/wiki/Shebang_line_automatically_generated {
+augroup Shebang
+  autocmd BufNewFile *.sh 0put =\"#!/usr/bin/env bash\<nl># -*- coding: utf-8 -*-\<nl>\"|$
+  autocmd BufNewFile *.py 0put =\"#!/usr/bin/env python3\<nl># -*- coding: utf-8 -*-\<nl>\"|$
+  autocmd BufNewFile *.c 0put =\"#include <stdio.h>\<nl>\<nl>int main()\<nl>{\<nl>}\<nl>\"|$
+augroup END
+" }
 
-    " set foldmethod to syntax for javascript files {
-    autocmd BufRead,BufNewFile *.js set foldmethod=syntax foldlevel=99
-    "}
+" set foldmethod to syntax for javascript files {
+autocmd BufRead,BufNewFile *.js set foldmethod=syntax foldlevel=99
+"}
 
-    " md is markdown > use pandoc filetype {
-    autocmd BufRead,BufNewFile *.md set filetype=pandoc
-    autocmd BufRead,BufNewFile *.mkd set filetype=pandoc
-    autocmd BufRead,BufNewFile *.markdown set filetype=pandoc
-    autocmd BufRead,BufNewFile *.rst set filetype=pandoc
-    " Enable spellchecking for Markdown
-    autocmd FileType pandoc setlocal spell spelllang=en_us wrap linebreak
-    autocmd FileType pandoc setlocal tabstop=4
-    autocmd FileType pandoc setlocal shiftwidth=4
-    autocmd FileType pandoc setlocal softtabstop=4
-    " }
+" md is markdown > use pandoc filetype {
+autocmd BufRead,BufNewFile *.md set filetype=pandoc
+autocmd BufRead,BufNewFile *.mkd set filetype=pandoc
+autocmd BufRead,BufNewFile *.markdown set filetype=pandoc
+autocmd BufRead,BufNewFile *.rst set filetype=pandoc
+" Enable spellchecking for Markdown
+autocmd FileType pandoc setlocal spell spelllang=en_us wrap linebreak
+autocmd FileType pandoc setlocal tabstop=4
+autocmd FileType pandoc setlocal shiftwidth=4
+autocmd FileType pandoc setlocal softtabstop=4
+" }
 
-    " Octave filetype {
-    " http://www.vim.org/scripts/script.php?script_id=3600
-    autocmd BufRead,BufNewFile *.m,*.oct set filetype=octave
-    autocmd Filetype octave
-                \ if &omnifunc == "" |
-                \ setlocal omnifunc=syntaxcomplete#Complete |
-                \ endif
-    " }
+" Octave filetype {
+" http://www.vim.org/scripts/script.php?script_id=3600
+autocmd BufRead,BufNewFile *.m,*.oct set filetype=octave
+autocmd Filetype octave
+      \ if &omnifunc == "" |
+      \ setlocal omnifunc=syntaxcomplete#Complete |
+      \ endif
+" }
 
-    "http://ku1ik.com/2011/09/08/formatting-xml-in-vim-with-indent-command.html {
-    autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -
-    "}
+"http://ku1ik.com/2011/09/08/formatting-xml-in-vim-with-indent-command.html {
+autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -
+"}
 
-    " write file when leaving insert mode if changes have been made {
-    " http://www.reddit.com/r/vim/comments/232j45/save_file_on_insert_mode_exit/
-    " autocmd InsertLeave * :silent! update
-    "}
+" write file when leaving insert mode if changes have been made {
+" http://www.reddit.com/r/vim/comments/232j45/save_file_on_insert_mode_exit/
+" autocmd InsertLeave * :silent! update
+"}
 
-    " save on FocusLost {
-    " http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
-    " no longer working on ubuntu 18.04
-    autocmd FocusLost * :wa
-    " autocmd FocusLost * silent! wa
-    " }
+" save on FocusLost {
+" http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
+" no longer working on ubuntu 18.04
+autocmd FocusLost * :wa
+" autocmd FocusLost * silent! wa
+" }
 
-    " python configuration {
-    " autocmd FileType python packadd jedi-vim
-    autocmd BufRead,BufNewFile *.py set foldlevel=99
-    " }
+" python configuration {
+autocmd FileType python set foldlevel=99
+" }
 
-    " Java Configuration {
-    autocmd FileType java setlocal shiftwidth=4 tabstop=4
-    let java_highlight_java_lang_ids=1
-    let java_highlight_functions="style"
-    " }
+" Java Configuration {
+autocmd FileType java setlocal shiftwidth=4 tabstop=4
+let java_highlight_java_lang_ids=1
+let java_highlight_functions="style"
+" }
 
-    " Neovim auto enter insert mode for terminal buffer {
-    if has('nvim')
-        autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
-    endif
-    "}
+" Neovim auto enter insert mode for terminal buffer {
+if has('nvim')
+  autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
+endif
+"}
 
-    " run Neomake on each file write {
-    " https://github.com/neomake/neomake#setup
-    " moved to ./vimrc.bundles
-    "  autocmd! BufWritePost * Neomake
-    " }
+" run Neomake on each file write {
+" https://github.com/neomake/neomake#setup
+" moved to ./vimrc.bundles
+"  autocmd! BufWritePost * Neomake
+" }
 
-    " jump to last known cursor position {
-    " When editing a file, always jump to the last known cursor position.
-    " Don't do it when the position is invalid or when inside an event handler
-    " (happens when dropping a file on gvim).
-    autocmd BufReadPost *
-                \ if line("'\"") >= 1 && line("'\"") <= line("$") |
-                \   exe "normal! g`\"" |
-                \ endif
-    "}
+" jump to last known cursor position {
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid or when inside an event handler
+" (happens when dropping a file on gvim).
+autocmd BufReadPost *
+    \ if line("'\"") >= 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+"}
 
-    " set title bar to file location {
-    autocmd BufEnter * let &titlestring = hostname() . "[vim(" . expand("%:t") . ")]"
-    " }
+" set title bar to file location {
+autocmd BufEnter * let &titlestring = hostname() . "[vim(" . expand("%:t") . ")]"
+" }
 
-    " html template to start with {
-    au BufNewFile *.html 0r ~/.vim/.skeleton.html
-    " }
+" html template to start with {
+au BufNewFile *.html 0r ~/.vim/.skeleton.html
+" }
 endif
 
 " automatically resize windows on vim resize
@@ -638,12 +637,12 @@ let g:rustfmt_autosave = 1
 " let g:rust_clip_command = 'xclip -selection clipboard'
 " }
 
-" https://github.com/junegunn/fzf#as-vim-plugin {
+" https://github.com/junegunn/fzf {
 if isdirectory(expand('~/.fzf'))
-    set rtp+=$HOME/.fzf
+  set rtp+=~/.fzf
 endif
 " }
-
+"
 " Plugins }
 
 " colors {
@@ -656,10 +655,10 @@ endif
 " light: ^[]11;rgb:fd/f6/e3^G
 colorscheme solarized
 set background=dark
+" set background=light
 " https://github.com/lifepillar/vim-solarized8/blob/master/colors/solarized8.vim
 " set terminal so it shows same colors as background
 hi Terminal ctermfg=fg ctermbg=NONE cterm=NONE
-"set background=light
 
 "if len(matchstr(v:termrbgresp, '00/2b/36'))
 "  echom 'true'
