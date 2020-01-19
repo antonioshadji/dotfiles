@@ -3,7 +3,7 @@
 
 git checkout master
 git pull
-make distclean
+make clean distclean
 LATEST_TAG=$(git describe --tags)
 echo "$LATEST_TAG"
 sleep 3s
@@ -15,6 +15,7 @@ sleep 3s
   --enable-python3interp=yes \
   --enable-luainterp=yes \
   --with-lua-prefix=/usr/local \
+  --with-luajit \
   --enable-mzschemeinterp \
   --with-plthome=/usr/local \
   --enable-cscope \
@@ -32,6 +33,7 @@ if [[ $rc -eq 0 ]]; then
   make
 fi
 rc="$?"
+echo $rc
 
 # if [ $rc -eq 0 ]; then
 #   echo "successfully made"
