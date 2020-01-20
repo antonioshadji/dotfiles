@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
-make clean distclean
+make clean
+make distclean
 git checkout master
 git pull
 LATEST_TAG=$(git describe --tags)
 echo "$LATEST_TAG"
 sleep 3s
 git checkout "$LATEST_TAG"
-
 sleep 3s
 
 ./configure \
@@ -30,6 +30,7 @@ sleep 3s
   --disable-arabic     \
   --disable-netbeans
 rc="$?"
+  # --with-python3-command=/usr/local/bin/python3.8 \
 
 if [[ $rc -eq 0 ]]; then
   echo "./configure success."
@@ -38,17 +39,17 @@ if [[ $rc -eq 0 ]]; then
   make
 fi
 rc="$?"
-echo $rc
 
-# if [ $rc -eq 0 ]; then
-#   echo "successfully made"
-#   sleep 1s
-#   sudo make install
-# fi
-#
-# git checkout master
-# sleep 1s
-# vim --version
+if [ $rc -eq 0 ]; then
+  echo "successfully made"
+  read -r -p "Hit enter to continue installing vim."
+  sleep 1s
+  sudo make install
+fi
+
+git checkout master
+sleep 1s
+vim --version
 
 
 # `configure' configures this package to adapt to many kinds of systems.

@@ -1,0 +1,3 @@
+syntax enable
+filetype plugin indent on
+set nocompatible
