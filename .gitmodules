@@ -4,9 +4,6 @@
 [submodule "vim/pack/plugins/start/vim-go"]
 	path = vim/pack/plugins/start/vim-go
 	url = https://github.com/fatih/vim-go
-[submodule "vim/pack/plugins/start/jedi-vim"]
-	path = vim/pack/plugins/start/jedi-vim
-	url = https://github.com/davidhalter/jedi-vim
 [submodule "vim/pack/plugins/start/ale"]
 	path = vim/pack/plugins/start/ale
 	url = git@github.com:w0rp/ale.git
