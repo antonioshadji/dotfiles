@@ -538,26 +538,23 @@ let g:ale_linters = {'python': ['flake8']}
 " }
 
 " Status line {
-" if has('nvim')
-    packadd! vim-airline
-    packadd! vim-airline-themes
-"    " https://github.com/vim-airline/vim-airline {
-    let g:airline_theme='solarized'
-    let g:airline#extensions#tabline#enabled = 1
-    let g:airline_powerline_fonts = 1
-"    " }
+" https://github.com/powerline/powerline
+" if isdirectory(expand('~/.local/lib/python3.8/site-packages/powerline')) && !has('nvim')
+"     set rtp+=$HOME/.local/lib/python3.8/site-packages/powerline/bindings/vim
+" elseif isdirectory(expand('~/.local/lib/python3.6/site-packages/powerline')) && !has('nvim')
+"     set rtp+=$HOME/.local/lib/python3.6/site-packages/powerline/bindings/vim
+" elseif isdirectory(expand('~/.local/lib/python3.5/site-packages/powerline')) && !has('nvim')
+"     set rtp+=$HOME/.local/lib/python3.5/site-packages/powerline/bindings/vim
+" elseif isdirectory('/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/powerline') && !has('nvim')
+"     set rtp+=/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/powerline/bindings/vim
 " else
-"     " https://github.com/powerline/powerline
-"     if isdirectory(expand('~/.local/lib/python3.8/site-packages/powerline'))
-"         set rtp+=$HOME/.local/lib/python3.8/site-packages/powerline/bindings/vim
-"         echom 'powerline added to rtp'
-"     elseif isdirectory(expand('~/.local/lib/python3.6/site-packages/powerline'))
-"         set rtp+=$HOME/.local/lib/python3.6/site-packages/powerline/bindings/vim
-"     elseif isdirectory(expand('~/.local/lib/python3.5/site-packages/powerline'))
-"         set rtp+=$HOME/.local/lib/python3.5/site-packages/powerline/bindings/vim
-"     elseif isdirectory('/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/powerline')
-"         set rtp+=/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/powerline/bindings/vim
-"     endif
+  packadd! vim-airline
+  packadd! vim-airline-themes
+   " https://github.com/vim-airline/vim-airline {
+  let g:airline_theme='solarized'
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline_powerline_fonts = 1
+   " }
 " endif
 " }
 
