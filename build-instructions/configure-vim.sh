@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
+make clean distclean
 git checkout master
 git pull
-make clean distclean
 LATEST_TAG=$(git describe --tags)
 echo "$LATEST_TAG"
 sleep 3s
@@ -12,18 +12,23 @@ git checkout "$LATEST_TAG"
 sleep 3s
 
 ./configure \
-  --enable-python3interp=yes \
+  --enable-autoservername \
+  --enable-cscope \
+  --enable-fail-if-missing \
+  --enable-gnome-check \
+  --enable-gui=gtk3 \
   --enable-luainterp=yes \
+  --enable-multibyte \
+  --enable-mzschemeinterp \
+  --enable-python3interp=yes \
+  --enable-terminal \
+  --with-compiledby="Antonios Hadjigeorgalis" \
   --with-lua-prefix=/usr/local \
   --with-luajit \
-  --enable-mzschemeinterp \
   --with-plthome=/usr/local \
-  --enable-cscope \
-  --enable-terminal \
-  --enable-autoservername \
-  --enable-gui=gtk3 \
-  --enable-gnome-check \
-  --with-compiledby="Antonios Hadjigeorgalis"
+  --disable-rightleft  \
+  --disable-arabic     \
+  --disable-netbeans
 rc="$?"
 
 if [[ $rc -eq 0 ]]; then
