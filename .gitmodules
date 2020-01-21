@@ -64,3 +64,6 @@
 [submodule "vim/pack/plugins/opt/jedi-vim"]
 	path = vim/pack/plugins/opt/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim.git
+[submodule "vim/pack/plugins/start/black"]
+	path = vim/pack/plugins/start/black
+	url = https://github.com/psf/black.git
