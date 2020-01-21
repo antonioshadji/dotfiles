@@ -1,29 +1,36 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
+make clean
+make distclean
 git checkout master
 git pull
-make distclean
 LATEST_TAG=$(git describe --tags)
 echo "$LATEST_TAG"
 sleep 3s
 git checkout "$LATEST_TAG"
-
 sleep 3s
 
 ./configure \
-  --enable-python3interp=yes \
-  --enable-luainterp=yes \
-  --with-lua-prefix=/usr/local \
-  --enable-mzschemeinterp \
-  --with-plthome=/usr/local \
-  --enable-cscope \
-  --enable-terminal \
   --enable-autoservername \
-  --enable-gui=gtk3 \
+  --enable-cscope \
+  --enable-fail-if-missing \
   --enable-gnome-check \
-  --with-compiledby="Antonios Hadjigeorgalis"
+  --enable-gui=gtk3 \
+  --enable-luainterp=yes \
+  --enable-multibyte \
+  --enable-mzschemeinterp \
+  --enable-python3interp=yes \
+  --enable-terminal \
+  --with-compiledby="Antonios Hadjigeorgalis" \
+  --with-lua-prefix=/usr/local \
+  --with-luajit \
+  --with-plthome=/usr/local \
+  --disable-rightleft  \
+  --disable-arabic     \
+  --disable-netbeans
 rc="$?"
+  # --with-python3-command=/usr/local/bin/python3.8 \
 
 if [[ $rc -eq 0 ]]; then
   echo "./configure success."
@@ -33,15 +40,16 @@ if [[ $rc -eq 0 ]]; then
 fi
 rc="$?"
 
-# if [ $rc -eq 0 ]; then
-#   echo "successfully made"
-#   sleep 1s
-#   sudo make install
-# fi
-#
-# git checkout master
-# sleep 1s
-# vim --version
+if [ $rc -eq 0 ]; then
+  echo "successfully made"
+  read -r -p "Hit enter to continue installing vim."
+  sleep 1s
+  sudo make install
+fi
+
+git checkout master
+sleep 1s
+vim --version
 
 
 # `configure' configures this package to adapt to many kinds of systems.

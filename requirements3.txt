@@ -18,5 +18,6 @@ pygments-style-solarized
 
 # cli tools
 awscli
+boto3
 docker-compose
 ansible-lint

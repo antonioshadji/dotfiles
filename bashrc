@@ -252,7 +252,7 @@ if [[ -r $HOME/.dotfiles/bash-git-prompt/gitprompt.sh ]]; then
   # GIT_PROMPT_THEME=Custom # use custom theme specified in file GIT_PROMPT_THEME_FILE (default ~/.git-prompt-colors.sh)
   # GIT_PROMPT_THEME_FILE=~/.git-prompt-colors.sh
   export GIT_PROMPT_THEME=Solarized_Ubuntu
-  # shellcheck source=./bash-git-prompt/gitprompt.sh
+  # shellcheck source=./.dotfiles/bash-git-prompt/gitprompt.sh
   source "$HOME/.dotfiles/bash-git-prompt/gitprompt.sh"
 fi
 
@@ -693,4 +693,5 @@ if [[ $DEBUG == 1 ]]; then
 fi
 # }}
 
+# shellcheck source=./.fzf.bash
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
