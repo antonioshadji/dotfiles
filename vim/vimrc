@@ -13,18 +13,6 @@
 " To see list of scripts loaded in the order in which they were loaded
 " :scriptnames
 
-" set python provider {
-" this is first because the first access of python sets the version
-" https://vimhelp.appspot.com/options.txt.html#%27pyxversion%27
-" https://vimhelp.appspot.com/if_pyth.txt.html#has-pythonx
-" new in vim8 (not in neovim)
-" if has('pythonx') && has('python3')
-"   " calling this here forces the python version.
-"   " if python3 available, py3 else py2
-"   set pyxversion=3
-" endif
-"}
-
 "Enable syntax highlighting and don't overwrite colorscheme
 syntax enable
 " Enable file type detection.
@@ -523,9 +511,9 @@ endif
 " git@github.com:w0rp/ale.git {
 " Enable completion where available. TODO: Can this replace deoplete?
 " This setting must be set before ALE is loaded.
-let g:ale_completion_enabled = 1
+" let g:ale_completion_enabled = 1 " interferes with jedi
 " Use ALE's function for omnicompletion.
-set omnifunc=ale#completion#OmniFunc
+" set omnifunc=ale#completion#OmniFunc
 " See :help ale-completion for more information.
 " let g:jedi#completions_enabled = 0
 
@@ -581,12 +569,8 @@ let g:SuperTabLongestHighlight = 1 "(default value: 0)
 "}
 
 " Jedi {
-" let g:jedi#auto_initialization = 0
-" let g:jedi#auto_vim_configuration = 0
-" let g:jedi#force_py_version = '3.8'
 let g:jedi#smart_auto_mappings = 1
 let g:jedi#show_call_signatures_delay = 200
-let g:jedi#completions_enabled = 0  " ale is enabled for completion
 " }
 
 " git@github.com:nathanaelkane/vim-indent-guides.git {
@@ -621,10 +605,6 @@ let g:pandoc#folding#level = 1
 " let g:deoplete#enable_at_startup = 1
 " call deoplete#enable()
 "}
-
-" Black python autoformat {
-" autocmd BufWritePre *.py execute ':Black'
-" }
 
 " https://github.com/racer-rust/vim-racer {
 let g:racer_experimental_completer = 1
