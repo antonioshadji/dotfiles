@@ -23,13 +23,14 @@ sleep 3s
   --enable-python3interp=yes \
   --enable-terminal \
   --with-compiledby="Antonios Hadjigeorgalis" \
-  --with-lua-prefix=/usr/local \
+  --with-lua-prefix="/usr/local" \
   --with-luajit \
-  --with-plthome=/usr/local \
+  --with-plthome="/usr/local" \
   --disable-rightleft  \
   --disable-arabic     \
   --disable-netbeans
 rc="$?"
+  # to set specific python version
   # --with-python3-command=/usr/local/bin/python3.8 \
 
 if [[ $rc -eq 0 ]]; then
