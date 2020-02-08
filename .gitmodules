@@ -64,3 +64,6 @@
 [submodule "vim/pack/plugins/start/jedi-vim"]
 	path = vim/pack/plugins/start/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim
+[submodule "vim/pack/plugins/start/vim-visual-increment"]
+	path = vim/pack/plugins/start/vim-visual-increment
+	url = https://github.com/triglav/vim-visual-increment.git
