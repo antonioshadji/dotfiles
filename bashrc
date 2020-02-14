@@ -475,6 +475,17 @@ if [[ $(uname -s) == 'Darwin' ]]; then
   # http://stackoverflow.com/questions/1550288/os-x-terminal-colors
   export CLICOLOR=1
   export LSCOLORS=FxgxdadacxDaDahbadacec
+
+  DOCKER_ROOT=/Applications/Docker.app/Contents/Resources/etc
+  if [[ -d "$DOCKER_ROOT" ]];
+  then
+    # shellcheck disable=SC1090
+    . "$DOCKER_ROOT/docker.bash-completion"
+    # shellcheck disable=SC1090
+    . "$DOCKER_ROOT/docker-compose.bash-completion"
+    # shellcheck disable=SC1090
+    # . "$DOCKER_ROOT/docker-machine.bash-completion"
+  fi
 fi
 #}}
 
@@ -567,16 +578,6 @@ fi
 # specifically for pip command, does not offer completion for pip2 or pip3
 [[ $(command -v pip) ]] && eval "$(pip completion --bash)"
 
-DOCKER_ROOT=/Applications/Docker.app/Contents/Resources/etc
-if [[ -d "$DOCKER_ROOT" ]];
-then
-  # shellcheck disable=SC1090
-  . "$DOCKER_ROOT/docker.bash-completion"
-  # shellcheck disable=SC1090
-  . "$DOCKER_ROOT/docker-compose.bash-completion"
-  # shellcheck disable=SC1090
-  . "$DOCKER_ROOT/docker-machine.bash-completion"
-fi
 # moved to /etc/bash_completion.d/ via cron job {{
 # https://docs.npmjs.com/cli/completion
 # this was not working (2017-02-13) $(npm completion) > /etc/bash_completion.d/
