@@ -1,6 +1,7 @@
 # Data Science Tools SciPy stack
 ## must apt-get install libpng12-dev libfreetype6-dev to install matplotlib
 numpy
+numpy-financial
 scipy
 matplotlib
 jupyter

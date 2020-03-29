@@ -312,9 +312,9 @@ unset gemloc
 # Rust
 [[ -d $HOME/.cargo/bin ]] && export PATH="$HOME/.cargo/bin:$PATH"
 
-# Go
+# Golang
 if [[ ! "$PATH" == */usr/local/go/bin* ]]; then
-  export PATH="${PATH:+${PATH}:}/usr/local/go/bin"
+  export PATH="${PATH:+${PATH}:}/usr/local/go/bin:${HOME}/go/bin"
 fi
 
 # amdgpu
@@ -327,7 +327,7 @@ if [[ -r /opt/google-cloud-sdk/path.bash.inc ]]; then
 fi
 
 # litecoin in opt
-[[ -d /opt/litecoin ]] && export PATH=$PATH:/opt/litecoin/bin
+# [[ -d /opt/litecoin ]] && export PATH=$PATH:/opt/litecoin/bin
 # rocm tools
 [[ -d /opt/rocm ]] && export PATH=$PATH:/opt/rocm/bin
 #}}
@@ -423,6 +423,8 @@ if [[ -r $HOME/.nvm/nvm.sh ]]; then
   np="${np//bin/lib}"
   export NODE_PATH=$np"_modules":$NODE_PATH
 fi
+
+[[ -d /opt/node/bin ]] && export PATH=$PATH:/opt/node/bin
 #}}
 
 # {{ Python setup and tools
