@@ -364,7 +364,8 @@ alias tree='tree -I node_modules -L 2 -sh'
 [[ $(command -v pygmentize) ]] && alias p='pygmentize -g'
 # open files in graphic workspace based on mime-type
 [[ $(command -v xdg-open) ]] && alias o='xdg-open'
-
+# 2.4 Added for Comcast work
+alias apb='ansible-playbook'
 # 2.5 frequently used
 
 # You may want to put all your additions into a separate file like
@@ -685,6 +686,7 @@ if [[ ${HOSTNAME} =~ comcast.net$|HQSML ]]; then
   export ANSIBLE_VAULT_PASSWORD_FILE=~/.ansible/vault_password
   export NODE_PATH=${HOME}/.npm/lib/node_modules:${NODE_PATH}
   export PATH=${HOME}/.npm/bin:$PATH
+  export VAULT_ADDR=https://vault.apa.comcast.net
 fi
 
 # }}
