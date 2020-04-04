@@ -5,7 +5,7 @@
   apt:
     name: "{{ packages }}"
     state: latest
-    force_apt_get: yes
+    force_apt_get: true
   vars:
     packages:
       - gnupg
@@ -41,21 +41,21 @@
       - libsecret-1-dev
       - libfinance-quote-perl
     state: latest
-    force_apt_get: yes
+    force_apt_get: true
 
 - name: Java Software development
   become: true
   apt:
-    name: openjdk-11-jdk
+    name: openjdk-8-jdk
     state: latest
-    force_apt_get: yes
+    force_apt_get: true
 
 - name: Python tools
   become: true
   apt:
     name: python3-venv
     state: latest
-    force_apt_get: yes
+    force_apt_get: true
 
 - name: Python build dependencies
   become: true
@@ -92,9 +92,15 @@
       - x11proto-scrnsaver-dev
       - xvfb
     state: latest
-    force_apt_get: yes
+    force_apt_get: true
 
 - name: C language tools
   become: true
   apt:
-    name: exuberant-ctags
+    name:
+      - exuberant-ctags
+      - google-perftools
+      - libgoogle-perftools-dev
+      - valgrind
+      - kcachegrind
+      - tau
