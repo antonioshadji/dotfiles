@@ -8,6 +8,7 @@
 - name: install google chrome
   become: true
   apt:
+    # yamllint disable-line rule:line-length
     deb: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     state: present
 
@@ -15,15 +16,15 @@
   become: true
   apt:
     name:
-     - chrome-gnome-shell
-     - gnome-tweaks
-     - dot2tex
-     - texlive
-     - texlive-latex-extra
-     - texlive-latex-extra-doc
-     - texlive-pictures
-     - texlive-pictures-doc
-     - texlive-science
-     - texlive-science-doc
+      - chrome-gnome-shell
+      - gnome-tweaks
+      - dot2tex
+      - texlive
+      - texlive-latex-extra
+      - texlive-latex-extra-doc
+      - texlive-pictures
+      - texlive-pictures-doc
+      - texlive-science
+      - texlive-science-doc
     state: latest
-    force_apt_get: yes
+    force_apt_get: true

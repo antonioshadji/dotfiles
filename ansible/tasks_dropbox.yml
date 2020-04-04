@@ -8,13 +8,14 @@
 - name: Add dropbox repo
   become: true
   apt_repository:
+    # yamllint disable-line rule:line-length
     repo: "deb [arch=amd64] https://linux.dropbox.com/ubuntu {{ ansible_distribution_release }} main"
     state: present
-    update_cache: yes
+    update_cache: true
 
 - name: Install Dropbox
   become: true
   apt:
     name: dropbox
     state: latest
-    force_apt_get: yes
+    force_apt_get: true

@@ -2,46 +2,46 @@
 - name: Update and upgrade apt packages
   become: true
   apt:
-    upgrade: yes
-    update_cache: yes
-    autoremove: yes
-    force_apt_get: yes
+    upgrade: true
+    update_cache: true
+    autoremove: true
+    force_apt_get: true
 
 - name: Install system software
   become: true
   apt:
     name: "{{ packages }}"
     state: latest
-    force_apt_get: yes
+    force_apt_get: true
   vars:
     packages:
-    - git
-    - curl
-    - tmux
-    - tree
-    - rename
-    - vim
-    - openssh-server
-    - pandoc
-    - shellcheck
-    - fonts-powerline
-    - net-tools
-    - silversearcher-ag
+      - git
+      - curl
+      - tmux
+      - tree
+      - rename
+      - vim
+      - openssh-server
+      - pandoc
+      - shellcheck
+      - fonts-powerline
+      - net-tools
+      - silversearcher-ag
 
 - name: Clone dotfiles git repo
   git:
     repo: git@github.com:AntoniosHadji/dotfiles.git
     dest: "$HOME/.dotfiles"
-    accept_hostkey: yes
-    recursive: yes
-    # track_submodules: yes # this causes submodules of submodules to update
+    accept_hostkey: true
+    recursive: true
+    # track_submodules: true # this causes submodules of submodules to update
 
 - name: Create symlinks
   file:
     src: "$HOME/.dotfiles/{{ item }}"
     path: "$HOME/.{{ item }}"
     state: link
-    force: yes
+    force: true
   with_items:
     - 'bashrc'
     - 'curlrc'

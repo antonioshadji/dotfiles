@@ -4,7 +4,7 @@
   apt:
     name: "{{ packages }}"
     state: latest
-    force_apt_get: yes
+    force_apt_get: true
   vars:
     packages:
       - calibre

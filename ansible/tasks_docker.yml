@@ -17,20 +17,21 @@
 - name: add docker repo
   become: true
   apt_repository:
+    # yamllint disable-line rule:line-length
     repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ release_version.stdout }} stable"
     state: present
-    update_cache: yes
+    update_cache: true
 
 - name: install docker
   become: true
   apt:
     name: docker-ce
     state: latest
-    force_apt_get: yes
+    force_apt_get: true
 
 - name: add primary user to docker group
   become: true
   user:
     name: antonios
     groups: docker
-    append: yes
+    append: true

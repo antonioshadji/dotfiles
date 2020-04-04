@@ -2,7 +2,7 @@
 - name: Get installed pip version
   command: "$HOME/.local/bin/pip3 --version"
   register: pip_version_output
-  ignore_errors: yes
+  ignore_errors: true
   changed_when: false
 
 - debug:
@@ -14,10 +14,10 @@
   apt:
     name: python3-distutils
     state: latest
-    update_cache: yes
-    cache_valid_time: 86400 #One day
-    autoremove: yes
-    force_apt_get: yes
+    update_cache: true
+    cache_valid_time: 86400
+    autoremove: true
+    force_apt_get: true
   when: pip_version_output is failed
 
 - name: Download get-pip.py
