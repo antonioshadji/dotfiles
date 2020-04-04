@@ -13,6 +13,7 @@ pytest
 ipython
 black
 flake8
+yamllint
 # used in ipython_config.py
 pygments-style-solarized
 
