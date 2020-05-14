@@ -314,8 +314,11 @@ unset gemloc
 
 # Golang
 if [[ ! "$PATH" == */usr/local/go/bin* ]]; then
-  export PATH="${PATH:+${PATH}:}/usr/local/go/bin:${HOME}/go/bin"
+  # TODO: what is this expansion doing?
+  # export PATH="${PATH:+${PATH}:}/usr/local/go/bin:${HOME}/go/bin"
+  export PATH="${PATH}:/usr/local/go/bin"
 fi
+[[ -d $HOME/go/bin ]] && export PATH="$HOME/go/bin:$PATH"
 
 # amdgpu
 [ -d /opt/amdgpu-pro/bin ] && export PATH=$PATH:/opt/amdgpu-pro/bin
@@ -368,6 +371,7 @@ alias tree='tree -I node_modules -L 2 -sh'
 alias apb='ansible-playbook'
 # 2.5 frequently used
 
+[[ $(command -v git-flow) ]] && alias gf='git-flow'
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
