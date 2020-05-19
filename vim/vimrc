@@ -153,6 +153,7 @@ if has('gui_running')
     if trim(system('uname')) == 'Linux'
         " linux
         set guifont=Ubuntu\ Mono\ derivative\ Powerline\ Regular\ 14
+        set printfont=Ubuntu\ Mono\ derivative\ Powerline\ Regular\ 14
     else
         " mac osx guifont
         set gfn=UbuntuMonoDerivativePowerline-Regular:h18
@@ -644,7 +645,11 @@ if isdirectory(expand('~/.fzf'))
   set rtp+=~/.fzf
 endif
 " }
-"
+
+" https://github.com/nathanaelkane/vim-indent-guides {
+let g:indent_guides_tab_guides = 0
+"}
+
 " Plugins }
 
 " colors {

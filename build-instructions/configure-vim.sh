@@ -11,6 +11,10 @@ sleep 3s
 git checkout "$LATEST_TAG"
 sleep 3s
 
+# export LIBS=/mnt/projects/csdiy/programming-1/py/cpython/Include/
+  # to set specific python version
+  # --with-python3-command=/usr/local/bin/python3.8 \
+
 ./configure \
   --enable-autoservername \
   --enable-cscope \
@@ -30,8 +34,6 @@ sleep 3s
   --disable-arabic     \
   --disable-netbeans
 rc="$?"
-  # to set specific python version
-  # --with-python3-command=/usr/local/bin/python3.8 \
 
 if [[ $rc -eq 0 ]]; then
   echo "./configure success."

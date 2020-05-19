@@ -361,12 +361,15 @@ alias cl='clear'
 # https://www.digitalocean.com/community/tutorials/an-introduction-to-useful-bash-aliases-and-functions
 alias psa='ps auxf'
 alias psg='ps auxf | grep -v grep | grep -i -e VSZ -e'
+
 # 2.4 Custom aliases that I created
 alias tree='tree -I node_modules -L 2 -sh'
 # syntax colored cat replacement
 [[ $(command -v pygmentize) ]] && alias p='pygmentize -g'
 # open files in graphic workspace based on mime-type
 [[ $(command -v xdg-open) ]] && alias o='xdg-open'
+alias mp='multipass'
+
 # 2.4 Added for Comcast work
 alias apb='ansible-playbook'
 # 2.5 frequently used
@@ -436,7 +439,7 @@ fi
 # https://howtopython.org/en/latest/the-interpreter/#bytecode-trick
 # Python won't write *.pyc files to disk
 export PYTHONDONTWRITEBYTECODE=1
-export PYTEST_ADDOPTS="-v"
+export PYTEST_ADDOPTS="-vx --capture=tee-sys"
 # }}
 
 # Java setup {{
@@ -482,17 +485,16 @@ if [[ $(uname -s) == 'Darwin' ]]; then
   # http://stackoverflow.com/questions/1550288/os-x-terminal-colors
   export CLICOLOR=1
   export LSCOLORS=FxgxdadacxDaDahbadacec
-
-  DOCKER_ROOT=/Applications/Docker.app/Contents/Resources/etc
-  if [[ -d "$DOCKER_ROOT" ]];
-  then
+  DOCKER_ROOT='/Applications/Docker.app/Contents/Resources/etc'
+  if [[ -d $DOCKER_ROOT ]]; then
     # shellcheck disable=SC1090
     . "$DOCKER_ROOT/docker.bash-completion"
     # shellcheck disable=SC1090
     . "$DOCKER_ROOT/docker-compose.bash-completion"
     # shellcheck disable=SC1090
-    # . "$DOCKER_ROOT/docker-machine.bash-completion"
+    . "$DOCKER_ROOT/docker-machine.bash-completion"
   fi
+
 fi
 #}}
 
