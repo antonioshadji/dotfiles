@@ -136,10 +136,10 @@ set laststatus=2
 
 " Formatting {
 set nowrap              " do not wrap long lines, show indicator instead
-set shiftwidth=2        " number of spaces to use for autoindent
+set shiftwidth=4        " number of spaces to use for autoindent
 set expandtab           " expands tabs to spaces
-set tabstop=2           " actual tabs occupy # spaces
-set softtabstop=2       " insert mode tab and backspace
+set tabstop=4           " actual tabs occupy # spaces
+set softtabstop=4       " insert mode tab and backspace
 set splitright          " puts new vsplit windows to the right
 set splitbelow          " puts new hsplit windows below current
 set pastetoggle=<F12>   " sane indentation on pastes
@@ -591,6 +591,7 @@ let g:jedi#use_splits_not_buffers = "right"
 " highlighting of indented blocks
 let g:indent_guides_guide_size = 1
 let g:indent_guides_space_guides = 1
+let g:indent_guides_tab_guides = 0
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_exclude_filetypes = ['help', 'markdown', 'pandoc']
 " }
