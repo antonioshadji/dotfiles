@@ -492,7 +492,8 @@ if [[ $(uname -s) == 'Darwin' ]]; then
     # shellcheck disable=SC1090
     . "$DOCKER_ROOT/docker-compose.bash-completion"
     # shellcheck disable=SC1090
-    . "$DOCKER_ROOT/docker-machine.bash-completion"
+    # TODO: why is this not on mac?
+    # . "$DOCKER_ROOT/docker-machine.bash-completion"
   fi
 
 fi
