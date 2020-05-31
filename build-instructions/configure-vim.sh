@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
+set -e
+
 make clean
 make distclean
+make testclean
 git checkout master
 git pull
 LATEST_TAG=$(git describe --tags)
@@ -11,35 +14,37 @@ sleep 3s
 git checkout "$LATEST_TAG"
 sleep 3s
 
-# export LIBS=/mnt/projects/csdiy/programming-1/py/cpython/Include/
-  # to set specific python version
-  # --with-python3-command=/usr/local/bin/python3.8 \
-
 ./configure \
+  --with-compiledby="Antonios Hadjigeorgalis" \
   --enable-autoservername \
   --enable-cscope \
   --enable-fail-if-missing \
-  --enable-gnome-check \
   --enable-gui=gtk3 \
-  --enable-luainterp=yes \
-  --enable-multibyte \
-  --enable-mzschemeinterp \
-  --enable-python3interp=yes \
+  --enable-gnome-check \
   --enable-terminal \
-  --with-compiledby="Antonios Hadjigeorgalis" \
+  --enable-multibyte \
+  --enable-python3interp=dynamic \
+  --enable-mzschemeinterp \
+  --with-plthome="/usr/local" \
+  --enable-luainterp=dynamic \
   --with-lua-prefix="/usr/local" \
   --with-luajit \
-  --with-plthome="/usr/local" \
   --disable-rightleft  \
   --disable-arabic     \
-  --disable-netbeans
+  --disable-netbeans \
+  --disable-nls
+
+# with manually installed racket in unix mode from racket.org
+# requires shared objects in plthome/lib
+#  --with-plthome="/usr/local" \
+
 rc="$?"
 
 if [[ $rc -eq 0 ]]; then
   echo "./configure success."
   read -r -p "Hit enter to continue building vim."
   sleep 1s
-  make
+  make -j
 fi
 rc="$?"
 
