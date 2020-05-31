@@ -302,7 +302,7 @@ fi
 
 # gem install --user-install uses this location
 # Mac WARNING:  You don't have /Users/ahadji842/.gem/ruby/2.6.0/bin in your PATH,
-gemloc=( $HOME/.gem/ruby/*/bin )
+gemloc=( "$HOME/.gem/ruby/*/bin" )
 [[ -d ${gemloc[0]} ]] && export PATH=${gemloc[0]}:$PATH
 unset gemloc
 
@@ -318,7 +318,7 @@ if [[ ! "$PATH" == */usr/local/go/bin* ]]; then
   # export PATH="${PATH:+${PATH}:}/usr/local/go/bin:${HOME}/go/bin"
   export PATH="${PATH}:/usr/local/go/bin"
 fi
-[[ -d $HOME/go/bin ]] && export PATH="$HOME/go/bin:$PATH"
+[[ -d $HOME/go/bin ]] && export PATH="$PATH:$HOME/go/bin"
 
 # amdgpu
 [ -d /opt/amdgpu-pro/bin ] && export PATH=$PATH:/opt/amdgpu-pro/bin
@@ -491,7 +491,6 @@ if [[ $(uname -s) == 'Darwin' ]]; then
     . "$DOCKER_ROOT/docker.bash-completion"
     # shellcheck disable=SC1090
     . "$DOCKER_ROOT/docker-compose.bash-completion"
-    # shellcheck disable=SC1090
     # TODO: why is this not on mac?
     # . "$DOCKER_ROOT/docker-machine.bash-completion"
   fi
