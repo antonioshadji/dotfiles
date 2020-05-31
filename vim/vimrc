@@ -531,7 +531,7 @@ let g:ale_fixers = {
     \}
 let g:ale_fix_on_save = 1
 
-let g:ale_c_clangd_executable = 'clangd-8'
+" let g:ale_c_clangd_executable = 'clangd'
 " let g:ale_c_clangformat_executable = 'clang-format'
 " let g:ale_c_clangtidy_executable = 'clang-tidy'
 " Set this. Airline will handle the rest.
@@ -603,9 +603,10 @@ let g:pandoc#folding#level = 1
 " }
 
 " Go language {
-" vim-go installed in .vim/pack/plugins/opt
+" vim-go installed in .vim/pack/plugins/start
 "   must also run (within vim) :GoUpdateBinaries
-
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 " }
 
 " git@github.com:Shougo/deoplete.nvim.git {
