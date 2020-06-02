@@ -693,6 +693,7 @@ if [[ ${HOSTNAME} =~ comcast.net$|HQSML ]]; then
   export NODE_PATH=${HOME}/.npm/lib/node_modules:${NODE_PATH}
   export PATH=${HOME}/.npm/bin:$PATH
   export VAULT_ADDR=https://vault.apa.comcast.net
+  export AWS_REGION=us-east-1
 fi
 
 # }}
