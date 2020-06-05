@@ -76,3 +76,6 @@
 [submodule "vim/pack/plugins/start/vim-orgmode"]
 	path = vim/pack/plugins/start/vim-orgmode
 	url = git@github.com:jceb/vim-orgmode.git
+[submodule "vim/pack/plugins/opt/YouCompleteMe"]
+	path = vim/pack/plugins/opt/YouCompleteMe
+	url = git@github.com:ycm-core/YouCompleteMe.git
