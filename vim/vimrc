@@ -26,11 +26,11 @@ filetype plugin indent on
 set nocompatible                " nvim default, must be set for vim
 set backspace=indent,eol,start  " fix backspace
 set showcmd                     " display incomplete commands
-set mouse=a                     " Automatically enable mouse usage
-
-if !has('nvim')
-    set ttymouse=xterm2
-endif
+" disable all mouse usage, use keyboard only!!
+" set mouse=a                     " Automatically enable mouse usage
+" if !has('nvim')
+"     set ttymouse=xterm2
+" endif
 
 set incsearch                   " search as you type
 
@@ -70,6 +70,10 @@ set path+=**
 " Create the `tags` file (may need to install ctags first)
 command! MakeTags !ctags -R .
 
+" help ft-c-omni
+" ctags -R -f ~/.vim/systags /usr/include /usr/local/include
+set tags+=~/.vim/systags
+
 " NOW WE CAN:
 " - Use ^] to jump to tag under cursor
 " - Use g^] for ambiguous tags
@@ -99,7 +103,7 @@ set autowriteall        " Write files when many actions, including switching buf
 
 set virtualedit=onemore " Allow for cursor beyond last character
 " reccommended to be turned off for no_plugins.vim default file browsing
-" set autochdir           " Always change to current file directory
+set autochdir           " Always change to current file directory
 "}
 
 " Setup clipboard to work with desktop copy / paste {
@@ -213,7 +217,7 @@ endif
 "Keyboard Shortcuts {
 " help abbreviate
 " Abbreviations:
-iab <expr> dts strftime("%F %T")
+iabbrev <expr> dts strftime("%F %T")
 
 " When you have a problem about vim mappings.
 " Check :verbose inoremap at the first.
@@ -309,6 +313,11 @@ nnoremap <Leader>g :YcmCompleter GoTo<CR>
 " Auto Commands: {
 if !exists("g:autocommands_loaded")
   let g:autocommands_loaded = 1
+
+" Use youcompleteme for c language completion {
+" autocmd Filetype c :packadd YouCompleteMe
+" }
+
 
 " Close preview window when complete {
 " http://stackoverflow.com/a/26022965/2472798
@@ -446,7 +455,7 @@ autocmd BufWritePre *.md,*.markdown,*.mkd :call LastModified()
 " Searching with RipGrep {
 " https://robots.thoughtbot.com/faster-grepping-in-vim#override-to-use-the-silver-searcher
 " https://github.com/ggreer/the_silver_searcher
-if executable('ag')
+if executable('rg')
     " use rg instead of silver searcher
     set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
     set grepformat="%f:%l:%c:%m"
@@ -506,7 +515,6 @@ endif
 " Plugins {
 " must run this command when new plugins installed or no help available
 helptags ALL
-
 " git@github.com:w0rp/ale.git {
 " Enable completion where available. TODO: Can this replace deoplete?
 " This setting must be set before ALE is loaded.
@@ -686,9 +694,11 @@ hi Terminal ctermfg=fg ctermbg=NONE cterm=NONE
 " MzScheme Support for Racket {
 " Auto-instantiation of vimext module (can be placed in your |vimrc|): >
 function! MzRequire()
-  mz (require (prefix-in vim- 'vimext))
+  :mz (require (prefix-in vim- 'vimext))
 endfunction
-" this causes seg fault, although in can be called after startup
+" causes seg fault, although in can be called after startup
+" see error with lldb vim, compile with debug symbols for more info
+" mzquantum default value 100ms, time between polls for mzscheme threads
 " if has("mzscheme")
 "   call MzRequire()
 " endif
