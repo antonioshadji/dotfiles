@@ -10,6 +10,8 @@ vim/black
 vim/eclim
 vim/undo/
 vim/.VimballRecord
+# ctags file for system libraries
+vim/systags
 # Compiled python
 *.pyc
 
