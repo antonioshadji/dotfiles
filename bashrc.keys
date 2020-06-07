@@ -1,0 +1,168 @@
+# bind -P
+abort is not bound to any keys
+accept-line can be found on "\C-j", "\C-m".
+alias-expand-line is not bound to any keys
+arrow-key-prefix is not bound to any keys
+backward-byte is not bound to any keys
+backward-char can be found on "\eOD", "\e[D".
+backward-delete-char can be found on "\C-h", "\C-?".
+backward-kill-line is not bound to any keys
+backward-kill-word is not bound to any keys
+backward-word can be found on "\e[1;3D", "\e[1;5D".
+beginning-of-history is not bound to any keys
+beginning-of-line can be found on "\eOH", "\e[H".
+bracketed-paste-begin can be found on "\e[200~".
+call-last-kbd-macro is not bound to any keys
+capitalize-word is not bound to any keys
+character-search is not bound to any keys
+character-search-backward is not bound to any keys
+clear-screen is not bound to any keys
+complete is not bound to any keys
+complete-command is not bound to any keys
+complete-filename is not bound to any keys
+complete-hostname is not bound to any keys
+complete-into-braces is not bound to any keys
+complete-username is not bound to any keys
+complete-variable is not bound to any keys
+copy-backward-word is not bound to any keys
+copy-forward-word is not bound to any keys
+copy-region-as-kill is not bound to any keys
+dabbrev-expand is not bound to any keys
+delete-char can be found on "\e[3~".
+delete-char-or-list is not bound to any keys
+delete-horizontal-space is not bound to any keys
+digit-argument is not bound to any keys
+display-shell-version is not bound to any keys
+do-lowercase-version is not bound to any keys
+downcase-word is not bound to any keys
+dump-functions is not bound to any keys
+dump-macros is not bound to any keys
+dump-variables is not bound to any keys
+dynamic-complete-history is not bound to any keys
+edit-and-execute-command is not bound to any keys
+emacs-editing-mode can be found on "\C-z".
+end-kbd-macro is not bound to any keys
+end-of-history is not bound to any keys
+end-of-line can be found on "\eOF", "\e[F".
+exchange-point-and-mark is not bound to any keys
+forward-backward-delete-char is not bound to any keys
+forward-byte is not bound to any keys
+forward-char can be found on "\eOC", "\e[C".
+forward-search-history can be found on "\C-s".
+forward-word can be found on "\e[1;3C", "\e[1;5C".
+glob-complete-word is not bound to any keys
+glob-expand-word is not bound to any keys
+glob-list-expansions is not bound to any keys
+history-and-alias-expand-line is not bound to any keys
+history-expand-line is not bound to any keys
+history-search-backward can be found on "\e[A".
+history-search-forward can be found on "\e[B".
+history-substring-search-backward is not bound to any keys
+history-substring-search-forward is not bound to any keys
+insert-comment is not bound to any keys
+insert-completions is not bound to any keys
+insert-last-argument is not bound to any keys
+kill-line is not bound to any keys
+kill-region is not bound to any keys
+kill-whole-line is not bound to any keys
+kill-word can be found on "\e[3;5~".
+magic-space is not bound to any keys
+menu-complete can be found on "\C-i", "\C-n", "C-f".
+menu-complete-backward can be found on "\C-p".
+next-history can be found on "\eOB".
+next-screen-line is not bound to any keys
+non-incremental-forward-search-history is not bound to any keys
+non-incremental-forward-search-history-again is not bound to any keys
+non-incremental-reverse-search-history is not bound to any keys
+non-incremental-reverse-search-history-again is not bound to any keys
+old-menu-complete is not bound to any keys
+operate-and-get-next is not bound to any keys
+overwrite-mode can be found on "\e[2~".
+possible-command-completions is not bound to any keys
+possible-completions is not bound to any keys
+possible-filename-completions is not bound to any keys
+possible-hostname-completions is not bound to any keys
+possible-username-completions is not bound to any keys
+possible-variable-completions is not bound to any keys
+previous-history can be found on "\eOA".
+previous-screen-line is not bound to any keys
+print-last-kbd-macro is not bound to any keys
+quoted-insert can be found on "\C-v".
+re-read-init-file is not bound to any keys
+redraw-current-line can be found on "\e[0n".
+reverse-search-history is not bound to any keys
+revert-line is not bound to any keys
+self-insert can be found on "\C-a", "\C-b", "\C-c", "\C-e", "\C-f", ...
+set-mark is not bound to any keys
+shell-backward-kill-word is not bound to any keys
+shell-backward-word is not bound to any keys
+shell-expand-line is not bound to any keys
+shell-forward-word is not bound to any keys
+shell-kill-word is not bound to any keys
+skip-csi-sequence is not bound to any keys
+start-kbd-macro is not bound to any keys
+tab-insert is not bound to any keys
+tilde-expand is not bound to any keys
+transpose-chars is not bound to any keys
+transpose-words is not bound to any keys
+tty-status is not bound to any keys
+undo is not bound to any keys
+universal-argument is not bound to any keys
+unix-filename-rubout is not bound to any keys
+unix-line-discard can be found on "\C-u".
+unix-word-rubout is not bound to any keys
+upcase-word is not bound to any keys
+vi-append-eol is not bound to any keys
+vi-append-mode is not bound to any keys
+vi-arg-digit is not bound to any keys
+vi-bWord is not bound to any keys
+vi-back-to-indent is not bound to any keys
+vi-backward-bigword is not bound to any keys
+vi-backward-word is not bound to any keys
+vi-bword is not bound to any keys
+vi-change-case is not bound to any keys
+vi-change-char is not bound to any keys
+vi-change-to is not bound to any keys
+vi-char-search is not bound to any keys
+vi-column is not bound to any keys
+vi-complete is not bound to any keys
+vi-delete is not bound to any keys
+vi-delete-to is not bound to any keys
+vi-eWord is not bound to any keys
+vi-editing-mode is not bound to any keys
+vi-end-bigword is not bound to any keys
+vi-end-word is not bound to any keys
+vi-eof-maybe can be found on "\C-d".
+vi-eword is not bound to any keys
+vi-fWord is not bound to any keys
+vi-fetch-history is not bound to any keys
+vi-first-print is not bound to any keys
+vi-forward-bigword is not bound to any keys
+vi-forward-word is not bound to any keys
+vi-fword is not bound to any keys
+vi-goto-mark is not bound to any keys
+vi-insert-beg is not bound to any keys
+vi-insertion-mode is not bound to any keys
+vi-match is not bound to any keys
+vi-movement-mode can be found on "\e".
+vi-next-word is not bound to any keys
+vi-overstrike is not bound to any keys
+vi-overstrike-delete is not bound to any keys
+vi-prev-word is not bound to any keys
+vi-put is not bound to any keys
+vi-redo is not bound to any keys
+vi-replace is not bound to any keys
+vi-rubout is not bound to any keys
+vi-search is not bound to any keys
+vi-search-again is not bound to any keys
+vi-set-mark is not bound to any keys
+vi-subst is not bound to any keys
+vi-tilde-expand is not bound to any keys
+vi-unix-word-rubout can be found on "\C-w".
+vi-yank-arg is not bound to any keys
+vi-yank-pop is not bound to any keys
+vi-yank-to is not bound to any keys
+yank can be found on "\C-y".
+yank-last-arg is not bound to any keys
+yank-nth-arg is not bound to any keys
+yank-pop is not bound to any keys

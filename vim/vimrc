@@ -297,6 +297,10 @@ nnoremap <silent> <CR> :noh<CR>
 " http://www.geekyboy.com/archives/629
 " http://vim.wikia.com/wiki/Multiple_commands_at_once
 cmap w!! w !sudo tee %
+" vertical terminal
+cmap vt vert terminal
+" terminal in new tab
+cmap tt tab terminal
 
 " compile and run java code for algs4
 " https://docs.oracle.com/javase/8/docs/technotes/tools/windows/classpath.html
@@ -311,7 +315,7 @@ map <F8> :!clear; java -ea -cp ../algs4.jar:. %:r<CR>
 " Revert with ":iunmap <C-U>".
 inoremap <C-U> <C-G>u<C-U>
 
-nnoremap <Leader>g :YcmCompleter GoTo<CR>
+" nnoremap <Leader>g :YcmCompleter GoTo<CR>
 "} end keyboard shortcuts
 
 " Auto Commands: {
