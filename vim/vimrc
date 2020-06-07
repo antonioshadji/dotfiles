@@ -254,6 +254,10 @@ map <left> <nop>
 map <right> <nop>
 
 " Easy window navigation
+tmap <C-h> <C-w>h
+tmap <C-j> <C-w>j
+tmap <C-k> <C-w>k
+tmap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -312,115 +316,115 @@ nnoremap <Leader>g :YcmCompleter GoTo<CR>
 
 " Auto Commands: {
 if !exists("g:autocommands_loaded")
-  let g:autocommands_loaded = 1
+    let g:autocommands_loaded = 1
 
-" Use youcompleteme for c language completion {
-" autocmd Filetype c :packadd YouCompleteMe
-" }
+    " Use youcompleteme for c language completion {
+    " autocmd Filetype c :packadd YouCompleteMe
+    " }
 
 
-" Close preview window when complete {
-" http://stackoverflow.com/a/26022965/2472798
-autocmd CompleteDone * pclose
-" }
+    " Close preview window when complete {
+    " http://stackoverflow.com/a/26022965/2472798
+    autocmd CompleteDone * pclose
+    " }
 
-" Git autocmd {
-" Instead of reverting the cursor to the last position in the buffer, we
-" set it to the first line when editing a git commit message
-autocmd FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
-" https://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message
-autocmd Filetype gitcommit setlocal spell textwidth=72
+    " Git autocmd {
+    " Instead of reverting the cursor to the last position in the buffer, we
+    " set it to the first line when editing a git commit message
+    autocmd FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+    " https://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message
+    autocmd Filetype gitcommit setlocal spell textwidth=72
 
-"}
+    "}
 
-" http://vim.wikia.com/wiki/Shebang_line_automatically_generated {
-augroup Shebang
-  autocmd BufNewFile *.sh 0put =\"#!/usr/bin/env bash\<nl># -*- coding: utf-8 -*-\<nl>\"|$
-  autocmd BufNewFile *.py 0put =\"#!/usr/bin/env python3\<nl># -*- coding: utf-8 -*-\<nl>\"|$
-  autocmd BufNewFile *.c 0put =\"#include <stdio.h>\<nl>\<nl>int main()\<nl>{\<nl>}\<nl>\"|$
-augroup END
-" }
+    " http://vim.wikia.com/wiki/Shebang_line_automatically_generated {
+    augroup Shebang
+        autocmd BufNewFile *.sh 0put =\"#!/usr/bin/env bash\<nl># -*- coding: utf-8 -*-\<nl>\"|$
+        autocmd BufNewFile *.py 0put =\"#!/usr/bin/env python3\<nl># -*- coding: utf-8 -*-\<nl>\"|$
+        autocmd BufNewFile *.c 0put =\"#include <stdio.h>\<nl>\<nl>int main()\<nl>{\<nl>}\<nl>\"|$
+    augroup END
+    " }
 
-" set foldmethod to syntax for javascript files {
-autocmd BufRead,BufNewFile *.js set foldmethod=syntax foldlevel=99
-"}
+    " set foldmethod to syntax for javascript files {
+    autocmd BufRead,BufNewFile *.js set foldmethod=syntax foldlevel=99
+    "}
 
-" md is markdown > use pandoc filetype {
-autocmd BufRead,BufNewFile *.md set filetype=pandoc
-autocmd BufRead,BufNewFile *.mkd set filetype=pandoc
-autocmd BufRead,BufNewFile *.markdown set filetype=pandoc
-autocmd BufRead,BufNewFile *.rst set filetype=pandoc
-" Enable spellchecking for Markdown
-autocmd FileType pandoc setlocal spell spelllang=en_us wrap linebreak
-autocmd FileType pandoc setlocal tabstop=4
-autocmd FileType pandoc setlocal shiftwidth=4
-autocmd FileType pandoc setlocal softtabstop=4
-" }
+    " md is markdown > use pandoc filetype {
+    autocmd BufRead,BufNewFile *.md set filetype=pandoc
+    autocmd BufRead,BufNewFile *.mkd set filetype=pandoc
+    autocmd BufRead,BufNewFile *.markdown set filetype=pandoc
+    autocmd BufRead,BufNewFile *.rst set filetype=pandoc
+    " Enable spellchecking for Markdown
+    autocmd FileType pandoc setlocal spell spelllang=en_us wrap linebreak
+    autocmd FileType pandoc setlocal tabstop=4
+    autocmd FileType pandoc setlocal shiftwidth=4
+    autocmd FileType pandoc setlocal softtabstop=4
+    " }
 
-" Octave filetype {
-" http://www.vim.org/scripts/script.php?script_id=3600
-autocmd BufRead,BufNewFile *.m,*.oct set filetype=octave
-autocmd Filetype octave
-      \ if &omnifunc == "" |
-      \ setlocal omnifunc=syntaxcomplete#Complete |
-      \ endif
-" }
+    " Octave filetype {
+    " http://www.vim.org/scripts/script.php?script_id=3600
+    autocmd BufRead,BufNewFile *.m,*.oct set filetype=octave
+    autocmd Filetype octave
+                \ if &omnifunc == "" |
+                \ setlocal omnifunc=syntaxcomplete#Complete |
+                \ endif
+    " }
 
-"http://ku1ik.com/2011/09/08/formatting-xml-in-vim-with-indent-command.html {
-autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -
-"}
+    "http://ku1ik.com/2011/09/08/formatting-xml-in-vim-with-indent-command.html {
+    autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -
+    "}
 
-" write file when leaving insert mode if changes have been made {
-" http://www.reddit.com/r/vim/comments/232j45/save_file_on_insert_mode_exit/
-" autocmd InsertLeave * :silent! update
-"}
+    " write file when leaving insert mode if changes have been made {
+    " http://www.reddit.com/r/vim/comments/232j45/save_file_on_insert_mode_exit/
+    " autocmd InsertLeave * :silent! update
+    "}
 
-" save on FocusLost {
-" http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
-" no longer working on ubuntu 18.04
-autocmd FocusLost * :wa
-" autocmd FocusLost * silent! wa
-" }
+    " save on FocusLost {
+    " http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
+    " no longer working on ubuntu 18.04
+    autocmd FocusLost * :wa
+    " autocmd FocusLost * silent! wa
+    " }
 
-" python configuration {
-autocmd FileType python set foldlevel=99
-" }
+    " python configuration {
+    autocmd FileType python set foldlevel=99
+    " }
 
-" Java Configuration {
-autocmd FileType java setlocal shiftwidth=4 tabstop=4
-let java_highlight_java_lang_ids=1
-let java_highlight_functions="style"
-" }
+    " Java Configuration {
+    autocmd FileType java setlocal shiftwidth=4 tabstop=4
+    let java_highlight_java_lang_ids=1
+    let java_highlight_functions="style"
+    " }
 
-" Neovim auto enter insert mode for terminal buffer {
-if has('nvim')
-  autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
-endif
-"}
+    " Neovim auto enter insert mode for terminal buffer {
+    if has('nvim')
+        autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
+    endif
+    "}
 
-" run Neomake on each file write {
-" https://github.com/neomake/neomake#setup
-" moved to ./vimrc.bundles
-"  autocmd! BufWritePost * Neomake
-" }
+    " run Neomake on each file write {
+    " https://github.com/neomake/neomake#setup
+    " moved to ./vimrc.bundles
+    "  autocmd! BufWritePost * Neomake
+    " }
 
-" jump to last known cursor position {
-" When editing a file, always jump to the last known cursor position.
-" Don't do it when the position is invalid or when inside an event handler
-" (happens when dropping a file on gvim).
-autocmd BufReadPost *
-    \ if line("'\"") >= 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
-"}
+    " jump to last known cursor position {
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid or when inside an event handler
+    " (happens when dropping a file on gvim).
+    autocmd BufReadPost *
+                \ if line("'\"") >= 1 && line("'\"") <= line("$") |
+                \   exe "normal! g`\"" |
+                \ endif
+    "}
 
-" set title bar to file location {
-autocmd BufEnter * let &titlestring = hostname() . "[vim(" . expand("%:t") . ")]"
-" }
+    " set title bar to file location {
+    autocmd BufEnter * let &titlestring = hostname() . "[vim(" . expand("%:t") . ")]"
+    " }
 
-" html template to start with {
-au BufNewFile *.html 0r ~/.vim/.skeleton.html
-" }
+    " html template to start with {
+    au BufNewFile *.html 0r ~/.vim/.skeleton.html
+    " }
 endif
 
 " automatically resize windows on vim resize
@@ -531,15 +535,13 @@ helptags ALL
 let g:ale_use_global_executables = 1
 let g:ale_linters = {'python': ['flake8']}
 let g:ale_fixers = {
-    \ 'python': ['black'],
-    \ 'c': ['clang-format'],
-    \ 'javascript': ['standard']
-    \}
+            \ 'python': ['black'],
+            \ 'c': ['clang-format'],
+            \ 'javascript': ['standard']
+            \}
 let g:ale_fix_on_save = 1
 
-" let g:ale_c_clangd_executable = 'clangd'
-" let g:ale_c_clangformat_executable = 'clang-format'
-" let g:ale_c_clangtidy_executable = 'clang-tidy'
+let g:ale_c_clangformat_options = "-style='{BasedOnStyle: Google, IndentWidth: 4}'"
 " Set this. Airline will handle the rest.
 let g:airline#extensions#ale#enabled = 1
 " }
@@ -548,19 +550,30 @@ let g:airline#extensions#ale#enabled = 1
 " https://github.com/powerline/powerline
 " Check python version if available
 python3 import vim; from sys import version_info as v; vim.command("let pyV='%d.%d'" % (v[0], v[1]))
-let p = expand('~/.local/lib/python' . pyV . '/site-packages/powerline/bindings/vim')
+let p = expand('~/.local/lib/python' .. pyV .. '/site-packages/powerline/bindings/vim')
 if isdirectory(p) && !has('nvim')
     set rtp+=~/.local/lib/python3.8/site-packages/powerline/bindings/vim
-elseif isdirectory('/Library/Frameworks/Python.framework/Versions/' . pyV . '/lib/python' . pyV . '/site-packages/powerline') && !has('nvim')
+elseif isdirectory('/Library/Frameworks/Python.framework/Versions/' .. pyV .. '/lib/python' .. pyV .. '/site-packages/powerline') && !has('nvim')
     set rtp+=/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/powerline/bindings/vim
 else
-   " https://github.com/vim-airline/vim-airline {
-  packadd! vim-airline
-  packadd! vim-airline-themes
-  let g:airline_theme='solarized'
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline_powerline_fonts = 1
-   " }
+    " https://github.com/vim-airline/vim-airline {
+    packadd! vim-airline
+    packadd! vim-airline-themes
+    " let g:airline_theme='solarized'
+    " Fancy arrow symbols, requires a patched font
+    let g:airline_powerline_fonts = 1
+    " Show PASTE if in paste mode
+    let g:airline_detect_paste=1
+    " Don't take up extra space with +/-/~ of 0
+    let g:airline#extensions#hunks#non_zero_only = 1
+    " Limit wordcount to where it makes sense
+    let g:airline#extensions#wordcount#filetypes = '\vhelp|markdown|pandoc|rst|org'
+    " Slightly modify the theme colors
+    let g:airline_solarized_normal_green = 1
+    " Fancy stuff in tabline as well
+    let g:airline#extensions#tabline#enabled = 1
+
+    " }
 endif
 " }
 
@@ -649,7 +662,7 @@ let g:rustfmt_autosave = 1
 
 " https://github.com/junegunn/fzf {
 if isdirectory(expand('~/.fzf'))
-  set rtp+=~/.fzf
+    set rtp+=~/.fzf
 endif
 " }
 
@@ -694,7 +707,7 @@ hi Terminal ctermfg=fg ctermbg=NONE cterm=NONE
 " MzScheme Support for Racket {
 " Auto-instantiation of vimext module (can be placed in your |vimrc|): >
 function! MzRequire()
-  :mz (require (prefix-in vim- 'vimext))
+    :mz (require (prefix-in vim- 'vimext))
 endfunction
 " causes seg fault, although in can be called after startup
 " see error with lldb vim, compile with debug symbols for more info
