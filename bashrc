@@ -130,6 +130,7 @@ HISTFILESIZE=-1
 # https://www.gnu.org/software/bash/manual/bash.html#The-Shopt-Builtin
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
+
 shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
@@ -706,4 +707,11 @@ fi
 # }}
 
 # shellcheck source=./.fzf.bash
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
+
+# core dump max size Hard = ulimited, Soft set here 4MB (512k blocks) 
+# TODO: is this really needed?
+ulimit -S -c 8192
+
+# use vim as manpager
+export MANPAGER="/bin/sh -c \"col -b | vim --noplugin -c 'set ft=man ts=8 laststatus=1 cc=\"\" nomod nolist nonu nornu noma' -\""
