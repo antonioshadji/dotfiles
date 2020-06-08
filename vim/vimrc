@@ -323,7 +323,7 @@ if !exists("g:autocommands_loaded")
     let g:autocommands_loaded = 1
 
     " Use youcompleteme for c language completion {
-    " autocmd Filetype c :packadd YouCompleteMe
+    " autocmd Filetype c packadd! YouCompleteMe
     " }
 
 
@@ -563,7 +563,7 @@ else
     " https://github.com/vim-airline/vim-airline {
     packadd! vim-airline
     packadd! vim-airline-themes
-    " let g:airline_theme='solarized'
+    let g:airline_theme='powerlineish'
     " Fancy arrow symbols, requires a patched font
     let g:airline_powerline_fonts = 1
     " Show PASTE if in paste mode
