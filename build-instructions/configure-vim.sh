@@ -8,34 +8,39 @@ make distclean
 make testclean
 git checkout master
 git pull
-LATEST_TAG=$(git describe --tags)
+LATEST_TAG=$(git describe --tags --abbrev=0)
 echo "$LATEST_TAG"
 sleep 3s
 git checkout "$LATEST_TAG"
 sleep 3s
 
 ./configure \
-  --with-compiledby="Antonios Hadjigeorgalis" \
-  --enable-autoservername \
-  --enable-cscope \
-  --enable-fail-if-missing \
-  --enable-gui=gtk3 \
-  --enable-gnome-check \
-  --enable-terminal \
-  --enable-multibyte \
-  --enable-python3interp=dynamic \
-  --enable-mzschemeinterp \
-  --with-plthome="/usr/local" \
-  --enable-luainterp=dynamic \
-  --with-lua-prefix="/usr/local" \
-  --with-luajit \
-  --disable-rightleft  \
   --disable-arabic     \
   --disable-netbeans \
-  --disable-nls
-
+  --disable-nls \
+  --disable-rightleft  \
+  --enable-athena-check=no \
+  --enable-autoservername \
+  --enable-carbon-check=no \
+  --enable-cscope \
+  --enable-fail-if-missing \
+  --enable-fontset \
+  --enable-gnome-check \
+  --enable-gtk2-check=no \
+  --enable-gtk3-check=yes \
+  --enable-gui=gtk3 \
+  --enable-luainterp=dynamic \
+  --enable-multibyte \
+  --enable-python3interp=dynamic \
+  --enable-terminal \
+  --with-compiledby="Antonios Hadjigeorgalis" \
+  --with-lua-prefix="/usr/local" \
+  --with-luajit
+# vim9 is changing the focus from embedded languages to communicating with external programs
+# https://github.com/brammool/vim9/blob/master/README.md
 # with manually installed racket in unix mode from racket.org
 # requires shared objects in plthome/lib
+#  --enable-mzschemeinterp \
 #  --with-plthome="/usr/local" \
 
 rc="$?"
@@ -61,14 +66,14 @@ vim --version
 
 
 # `configure' configures this package to adapt to many kinds of systems.
-# 
+#
 # Usage: auto/configure [OPTION]... [VAR=VALUE]...
-# 
+#
 # To assign environment variables (e.g., CC, CFLAGS...), specify them as
 # VAR=VALUE.  See below for descriptions of some of the useful variables.
-# 
+#
 # Defaults for the options are specified in brackets.
-# 
+#
 # Configuration:
 #   -h, --help              display this help and exit
 #       --help=short        display options specific to this package
@@ -79,20 +84,20 @@ vim --version
 #   -C, --config-cache      alias for `--cache-file=config.cache'
 #   -n, --no-create         do not create output files
 #       --srcdir=DIR        find the sources in DIR [configure dir or `..']
-# 
+#
 # Installation directories:
 #   --prefix=PREFIX         install architecture-independent files in PREFIX
 #                           [/usr/local]
 #   --exec-prefix=EPREFIX   install architecture-dependent files in EPREFIX
 #                           [PREFIX]
-# 
+#
 # By default, `make install' will install all the files in
 # `/usr/local/bin', `/usr/local/lib' etc.  You can specify
 # an installation prefix other than `/usr/local' using `--prefix',
 # for instance `--prefix=$HOME'.
-# 
+#
 # For better control, use the options below.
-# 
+#
 # Fine tuning of the installation directories:
 #   --bindir=DIR            user executables [EPREFIX/bin]
 #   --sbindir=DIR           system admin executables [EPREFIX/sbin]
@@ -114,11 +119,11 @@ vim --version
 #   --dvidir=DIR            dvi documentation [DOCDIR]
 #   --pdfdir=DIR            pdf documentation [DOCDIR]
 #   --psdir=DIR             ps documentation [DOCDIR]
-# 
+#
 # X features:
 #   --x-includes=DIR    X include files are in DIR
 #   --x-libraries=DIR   X library files are in DIR
-# 
+#
 # Optional Features:
 #   --disable-option-checking  ignore unrecognized --enable/--with options
 #   --disable-FEATURE       do not include FEATURE (same as --enable-FEATURE=no)
@@ -166,7 +171,7 @@ vim --version
 #   --disable-gpm           Don't use gpm (Linux mouse daemon).
 #   --disable-sysmouse      Don't use sysmouse (mouse in *BSD console).
 #   --disable-nls           Don't support NLS (gettext()).
-# 
+#
 # Optional Packages:
 #   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
 #   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
@@ -196,7 +201,7 @@ vim --version
 #   --with-gnome            Specify prefix for GNOME files
 #   --with-motif-lib=STRING Library for Motif
 #   --with-tlib=library     terminal library to be used
-# 
+#
 # Some influential environment variables:
 #   CC          C compiler command
 #   CFLAGS      C compiler flags
@@ -207,8 +212,8 @@ vim --version
 #               you have headers in a nonstandard directory <include dir>
 #   CPP         C preprocessor
 #   XMKMF       Path to xmkmf, Makefile generator for X Window System
-# 
+#
 # Use these variables to override the choices made by `configure' or to help
 # it to find libraries and programs with nonstandard names/locations.
-# 
+#
 # Report bugs to the package provider.

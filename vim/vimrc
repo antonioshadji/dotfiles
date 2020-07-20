@@ -1,6 +1,8 @@
 " modeline {
 " vim: set foldmarker={,} foldlevel=0 foldmethod=marker :
 " }
+set encoding=utf-8      " show buffer as utf-8 https://github.com/square/maximum-awesome (**MUST BE EARLY IN FILE**)
+scriptencoding utf-8
 " Note:
 " online help file: https://vimhelp.appspot.com/
 
@@ -23,7 +25,8 @@ filetype plugin indent on
 
 " from defaults.vim {
 " (full line comments are related additional settings)
-set nocompatible                " nvim default, must be set for vim
+" compatible' 'cp'	boolean	(default on, off when a |vimrc| file is found
+" set nocompatible                " nvim default, must be set for vim
 set backspace=indent,eol,start  " fix backspace
 set showcmd                     " display incomplete commands
 " disable all mouse usage, use keyboard only!!
@@ -96,7 +99,6 @@ let g:netrw_list_hide=netrw_gitignore#Hide()
 "}
 
 " General Settings {
-set encoding=utf-8      " show buffer as utf-8 https://github.com/square/maximum-awesome (**MUST BE EARLY IN FILE**)
 set hidden              " Allow buffer switching without saving
 set mousehide           " Hide the mouse cursor while typing
 set autowriteall        " Write files when many actions, including switching buffers see :help awa
@@ -140,10 +142,10 @@ set laststatus=2
 
 " Formatting {
 set nowrap              " do not wrap long lines, show indicator instead
-set shiftwidth=4        " number of spaces to use for autoindent
+set shiftwidth=2        " number of spaces to use for autoindent
 set expandtab           " expands tabs to spaces
-set tabstop=4           " actual tabs occupy # spaces
-set softtabstop=4       " insert mode tab and backspace
+set tabstop=2           " actual tabs occupy # spaces
+set softtabstop=2       " insert mode tab and backspace
 set splitright          " puts new vsplit windows to the right
 set splitbelow          " puts new hsplit windows below current
 set pastetoggle=<F12>   " sane indentation on pastes
@@ -153,26 +155,26 @@ set printoptions=formfeed:y  "insert Ctrl-V Ctrl-L (^L) to create print pagebrea
 
 " GUI Settings (here instead of .gvimrc) {
 if has('gui_running')
-    " Set my preferred font with comma separated list(spaces must be escaped)
-    if trim(system('uname')) == 'Linux'
-        " linux
-        set guifont=Ubuntu\ Mono\ derivative\ Powerline\ Regular\ 14
-        set printfont=Ubuntu\ Mono\ derivative\ Powerline\ Regular\ 14
-    else
-        " mac osx guifont
-        set gfn=UbuntuMonoDerivativePowerline-Regular:h18
-    endif
+  " Set my preferred font with comma separated list(spaces must be escaped)
+  if trim(system('uname')) ==# 'Linux'
+    " linux
+    set guifont=Ubuntu\ Mono\ derivative\ Powerline\ Regular\ 14
+    set printfont=Ubuntu\ Mono\ derivative\ Powerline\ Regular\ 14
+  else
+    " mac osx guifont
+    set guifont=UbuntuMonoDerivativePowerline-Regular:h18
+  endif
 
-    set guioptions-=T               "Remove tool bar
-    set guioptions+=c               "Use console dialogs
-    set lines=48                    "Larger window than 24 row terminal
-    set columns=85                  "Wider to accomodate gutter plugins
-    "http://stackoverflow.com/questions/18752175/gvim-makes-altletter-key-produce-an-accented-character-instead-of-exiting-ins
-    "set guioptions -=m
-    "inoremap <M-l> <Esc>l
-    "inoremap <M-j> <Esc>j
-    "inoremap <M-k> <Esc>k
-    "inoremap <M-h> <Esc>h
+  set guioptions-=T               "Remove tool bar
+  set guioptions+=c               "Use console dialogs
+  set lines=48                    "Larger window than 24 row terminal
+  set columns=85                  "Wider to accomodate gutter plugins
+  "http://stackoverflow.com/questions/18752175/gvim-makes-altletter-key-produce-an-accented-character-instead-of-exiting-ins
+  "set guioptions -=m
+  "inoremap <M-l> <Esc>l
+  "inoremap <M-j> <Esc>j
+  "inoremap <M-k> <Esc>k
+  "inoremap <M-h> <Esc>h
 endif
 "} end GUI settings
 
@@ -181,35 +183,35 @@ endif
 " - 'directory' defaults to ~/.local/share/nvim/swap// (|xdg|), auto-created
 " - 'undodir' defaults to ~/.local/share/nvim/undo (|xdg|), auto-created
 " - 'viminfo' includes "!"
-if !has("nvim")
-    if has('persistent_undo')
-        " undodir set from spf13
-        set undofile
-        set undolevels=1000
-        " no undo files left in CWD
-        if !isdirectory(expand("~/.vim/undo/"))
-            " help mkdir for more information on use
-            call mkdir(expand("~/.vim/undo/"), "p")
-        endif
-        set undodir=~/.vim/undo//
+if !has('nvim')
+  if has('persistent_undo')
+    " undodir set from spf13
+    set undofile
+    set undolevels=1000
+    " no undo files left in CWD
+    if !isdirectory(expand('~/.vim/undo/'))
+      " help mkdir for more information on use
+      call mkdir(expand('~/.vim/undo/'), 'p')
     endif
+    set undodir=~/.vim/undo//
+  endif
 
-    set backup                  "See :help backup
-    " no backup files left in CWD
-    if !isdirectory(expand("~/.vim/backup/"))
-        call mkdir(expand("~/.vim/backup/"), "p")
-    endif
-    set backupdir=~/.vim/backup//
-    " no swap files left in CWD
-    if !isdirectory(expand("~/.vim/swap/"))
-        call mkdir(expand("~/.vim/swap/"), "p")
-    endif
-    set directory=~/.vim/swap//
+  set backup                  "See :help backup
+  " no backup files left in CWD
+  if !isdirectory(expand('~/.vim/backup/'))
+    call mkdir(expand('~/.vim/backup/'), 'p')
+  endif
+  set backupdir=~/.vim/backup//
+  " no swap files left in CWD
+  if !isdirectory(expand('~/.vim/swap/'))
+    call mkdir(expand('~/.vim/swap/'), 'p')
+  endif
+  set directory=~/.vim/swap//
 
-    " https://vimhelp.appspot.com/usr_21.txt.html#21.3
-    " move viminfo file to .vim directory, other settings default and required
-    " this conflicts with nvim, disable in neovim
-    set viminfo='1000,f1,<500,n~/.vim/viminfo
+  " https://vimhelp.appspot.com/usr_21.txt.html#21.3
+  " move viminfo file to .vim directory, other settings default and required
+  " this conflicts with nvim, disable in neovim
+  set viminfo='1000,f1,<500,n~/.vim/viminfo
 endif
 
 "}
@@ -217,7 +219,7 @@ endif
 "Keyboard Shortcuts {
 " help abbreviate
 " Abbreviations:
-iabbrev <expr> dts strftime("%F %T")
+iabbrev <expr> dts strftime('%F %T')
 
 " When you have a problem about vim mappings.
 " Check :verbose inoremap at the first.
@@ -268,22 +270,22 @@ nnoremap <C-up> <C-w>k
 nnoremap <C-right> <C-w>l
 " for Neovim terminal windows
 if has('nvim')
-    tnoremap <Esc> <C-\><C-n>
-    tnoremap <C-h> <C-\><C-n><C-w>h
-    tnoremap <C-j> <C-\><C-n><C-w>j
-    tnoremap <C-k> <C-\><C-n><C-w>k
-    tnoremap <C-l> <C-\><C-n><C-w>l
+  tnoremap <Esc> <C-\><C-n>
+  tnoremap <C-h> <C-\><C-n><C-w>h
+  tnoremap <C-j> <C-\><C-n><C-w>j
+  tnoremap <C-k> <C-\><C-n><C-w>k
+  tnoremap <C-l> <C-\><C-n><C-w>l
 
-    "   function! ClipboardYank()
-    "     call system('xclip -i -selection clipboard', @@)
-    "   endfunction
-    "   function! ClipboardPaste()
-    "     let @@ = system('xclip -o -selection clipboard')
-    "   endfunction
-    "
-    "   vnoremap <silent> y y:call ClipboardYank()<cr>
-    "   vnoremap <silent> d d:call ClipboardYank()<cr>
-    "   nnoremap <silent> p :call ClipboardPaste()<cr>p
+  "   function! ClipboardYank()
+  "     call system('xclip -i -selection clipboard', @@)
+  "   endfunction
+  "   function! ClipboardPaste()
+  "     let @@ = system('xclip -o -selection clipboard')
+  "   endfunction
+  "
+  "   vnoremap <silent> y y:call ClipboardYank()<cr>
+  "   vnoremap <silent> d d:call ClipboardYank()<cr>
+  "   nnoremap <silent> p :call ClipboardPaste()<cr>p
 endif
 " http://vimcasts.org/episodes/how-to-fold/
 " use space bar in normal mode to toggle folds
@@ -319,41 +321,72 @@ inoremap <C-U> <C-G>u<C-U>
 "} end keyboard shortcuts
 
 " Auto Commands: {
-if !exists("g:autocommands_loaded")
-    let g:autocommands_loaded = 1
+if !exists('g:autocommands_loaded')
+  let g:autocommands_loaded = 1
 
-    " Use youcompleteme for c language completion {
-    " autocmd Filetype c packadd! YouCompleteMe
-    " }
-
-
+  augroup VIM
+    au!
     " Close preview window when complete {
     " http://stackoverflow.com/a/26022965/2472798
     autocmd CompleteDone * pclose
     " }
+    " write file when leaving insert mode if changes have been made {
+    " http://www.reddit.com/r/vim/comments/232j45/save_file_on_insert_mode_exit/
+    " autocmd InsertLeave * :silent! update
+    "}
+    " save on FocusLost {
+    " http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
+    " no longer working on ubuntu 18.04
+    autocmd FocusLost * :wa
+    " autocmd FocusLost * silent! wa
+    " }
 
-    " Git autocmd {
-    " Instead of reverting the cursor to the last position in the buffer, we
-    " set it to the first line when editing a git commit message
+    " automatically resize windows on vim resize
+    autocmd VimResized * :wincmd =
+    " jump to last known cursor position {
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid or when inside an event handler
+    " (happens when dropping a file on gvim).
+    autocmd BufReadPost *
+          \ if line("'\"") >= 1 && line("'\"") <= line("$") |
+          \   exe "normal! g`\"" |
+          \ endif
+    "}
+
+    " set title bar to file location {
+    autocmd BufEnter * let &titlestring = hostname() . "[vim(" . expand("%:t") . ")]"
+    " }
+  augroup END
+  " Git autocmd {
+  " Instead of reverting the cursor to the last position in the buffer, we
+  " set it to the first line when editing a git commit message
+  augroup GIT
+    au!
     autocmd FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
     " https://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message
     autocmd Filetype gitcommit setlocal spell textwidth=72
+  augroup END
+  "}
 
-    "}
+  " http://vim.wikia.com/wiki/Shebang_line_automatically_generated {
+  augroup Shebang
+    au!
+    autocmd BufNewFile *.sh 0put =\"#!/usr/bin/env bash\<nl># -*- coding: utf-8 -*-\<nl>\"|$
+    autocmd BufNewFile *.py 0put =\"#!/usr/bin/env python3\<nl># -*- coding: utf-8 -*-\<nl>\"|$
+    autocmd BufNewFile *.c 0put =\"#include <stdio.h>\<nl>\<nl>int main()\<nl>{\<nl>}\<nl>\"|$
+  augroup END
+  " }
 
-    " http://vim.wikia.com/wiki/Shebang_line_automatically_generated {
-    augroup Shebang
-        autocmd BufNewFile *.sh 0put =\"#!/usr/bin/env bash\<nl># -*- coding: utf-8 -*-\<nl>\"|$
-        autocmd BufNewFile *.py 0put =\"#!/usr/bin/env python3\<nl># -*- coding: utf-8 -*-\<nl>\"|$
-        autocmd BufNewFile *.c 0put =\"#include <stdio.h>\<nl>\<nl>int main()\<nl>{\<nl>}\<nl>\"|$
-    augroup END
-    " }
+  " set foldmethod to syntax for javascript files {
+  augroup JS
+    au!
+    autocmd  BufRead,BufNewFile *.js set foldmethod=syntax foldlevel=99
+  augroup END
+  "}
 
-    " set foldmethod to syntax for javascript files {
-    autocmd BufRead,BufNewFile *.js set foldmethod=syntax foldlevel=99
-    "}
-
-    " md is markdown > use pandoc filetype {
+  " md is markdown > use pandoc filetype {
+  augroup PANDOC
+    au!
     autocmd BufRead,BufNewFile *.md set filetype=pandoc
     autocmd BufRead,BufNewFile *.mkd set filetype=pandoc
     autocmd BufRead,BufNewFile *.markdown set filetype=pandoc
@@ -363,76 +396,59 @@ if !exists("g:autocommands_loaded")
     autocmd FileType pandoc setlocal tabstop=4
     autocmd FileType pandoc setlocal shiftwidth=4
     autocmd FileType pandoc setlocal softtabstop=4
-    " }
+    " call local function to update line begining with last modified
+    autocmd BufWritePre *.md,*.markdown,*.mkd :call LastModified()
+  augroup END
+  " }
 
-    " Octave filetype {
-    " http://www.vim.org/scripts/script.php?script_id=3600
+  " Octave filetype {
+  " http://www.vim.org/scripts/script.php?script_id=3600
+  augroup OCTAVE
+    au!
     autocmd BufRead,BufNewFile *.m,*.oct set filetype=octave
     autocmd Filetype octave
-                \ if &omnifunc == "" |
-                \ setlocal omnifunc=syntaxcomplete#Complete |
-                \ endif
-    " }
+          \ if &omnifunc == "" |
+          \ setlocal omnifunc=syntaxcomplete#Complete |
+          \ endif
+  augroup END
+  " }
 
-    "http://ku1ik.com/2011/09/08/formatting-xml-in-vim-with-indent-command.html {
+  "http://ku1ik.com/2011/09/08/formatting-xml-in-vim-with-indent-command.html {
+  augroup XML
     autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -
-    "}
+  augroup END
+  "}
 
-    " write file when leaving insert mode if changes have been made {
-    " http://www.reddit.com/r/vim/comments/232j45/save_file_on_insert_mode_exit/
-    " autocmd InsertLeave * :silent! update
-    "}
 
-    " save on FocusLost {
-    " http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
-    " no longer working on ubuntu 18.04
-    autocmd FocusLost * :wa
-    " autocmd FocusLost * silent! wa
-    " }
-
-    " python configuration {
+  " python configuration {
+  augroup PYTHON
+    au!
     autocmd FileType python set foldlevel=99
-    " }
+  augroup END
+  " }
 
-    " Java Configuration {
-    autocmd FileType java setlocal shiftwidth=4 tabstop=4
-    let java_highlight_java_lang_ids=1
-    let java_highlight_functions="style"
-    " }
+  " Java Configuration {
+  let java_highlight_java_lang_ids=1
+  let java_highlight_functions='style'
+  " }
 
-    " Neovim auto enter insert mode for terminal buffer {
-    if has('nvim')
-        autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
-    endif
-    "}
+  " Neovim auto enter insert mode for terminal buffer {
+  if has('nvim')
+    augroup NVIM
+      autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
+    augroup END
+  endif
+  "}
 
-    " run Neomake on each file write {
-    " https://github.com/neomake/neomake#setup
-    " moved to ./vimrc.bundles
-    "  autocmd! BufWritePost * Neomake
-    " }
 
-    " jump to last known cursor position {
-    " When editing a file, always jump to the last known cursor position.
-    " Don't do it when the position is invalid or when inside an event handler
-    " (happens when dropping a file on gvim).
-    autocmd BufReadPost *
-                \ if line("'\"") >= 1 && line("'\"") <= line("$") |
-                \   exe "normal! g`\"" |
-                \ endif
-    "}
-
-    " set title bar to file location {
-    autocmd BufEnter * let &titlestring = hostname() . "[vim(" . expand("%:t") . ")]"
-    " }
-
-    " html template to start with {
+  " html template to start with {
+  augroup HTML
+    au!
     au BufNewFile *.html 0r ~/.vim/.skeleton.html
-    " }
+  augroup END
+  " }
 endif
 
-" automatically resize windows on vim resize
-autocmd VimResized * :wincmd =
 " end Auto Commands: }
 
 " Custom commands & functions : {
@@ -444,49 +460,49 @@ autocmd VimResized * :wincmd =
 " . concatenates without a space between
 " getftime returns modified time of file name
 " @% returns active buffer file name
-function LastModified()
-    " comment out &modified if using getftime()
-    "  if &modified
-    let save_cursor = getpos('.')
-    " minimum of 20 lines or file length
-    let n = min([20, line('$')])
-    " requires space after modified:
-    keepjump execute '1,' . n . 's#^\(.\{,10}modified: \).*#\1' .
-                \ strftime('%c') . '#e'
-    call histdel('search', -1)
-    call setpos('.', save_cursor)
-    echom 'updated last modified date'
-    "  endif
+function! LastModified()
+  " comment out &modified if using getftime()
+  "  if &modified
+  let save_cursor = getpos('.')
+  " minimum of 20 lines or file length
+  let n = min([20, line('$')])
+  " requires space after modified:
+  keepjump execute '1,' . n . 's#^\(.\{,10}modified: \).*#\1' .
+        \ strftime('%c') . '#e'
+  call histdel('search', -1)
+  call setpos('.', save_cursor)
+  echom 'updated last modified date'
+  "  endif
 endfunction
-autocmd BufWritePre *.md,*.markdown,*.mkd :call LastModified()
 "}
 " Searching with RipGrep {
 " https://robots.thoughtbot.com/faster-grepping-in-vim#override-to-use-the-silver-searcher
 " https://github.com/ggreer/the_silver_searcher
 if executable('rg')
-    " use rg instead of silver searcher
-    set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
-    set grepformat="%f:%l:%c:%m"
+  " use rg instead of silver searcher
+  set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+  set grepformat="%f:%l:%c:%m"
 endif
 "}
 " Start/Stop nginx webserver in current pwd {
 " https://hub.docker.com/_/nginx/
 command! StartWebServer !docker run -d --name $(basename $(pwd)) -v $(pwd):/usr/share/nginx/html:ro -p 8080:80 nginx
 function WebServerStop()
-    let id = system('docker ps --filter ancestor=nginx -q')
-    let cmd = system('docker stop ' . id)
+  let id = system('docker ps --filter ancestor=nginx -q')
+  let cmd = system('docker stop ' . id)
 endfunction
 command! StopWebServer call WebServerStop()
 "}
 
 " https://vi.stackexchange.com/questions/454/whats-the-simplest-way-to-strip-trailing-whitespace-from-all-lines-in-a-file
 " https://bitbucket.org/Carpetsmoker/sanitize_files/src
-function TrimWhiteSpace()
-    let l:save_cursor = getpos('.')
-    %s/\s\+$//e
-    call setpos('.', l:save_cursor)
-endfunction
-command WhiteSpaceRemove :call TrimWhiteSpace()
+" function TrimWhiteSpace()
+"     let l:save_cursor = getpos('.')
+"     %s/\s\+$//e
+"     call setpos('.', l:save_cursor)
+" endfunction
+" command! WhiteSpaceRemove :call TrimWhiteSpace()
+" 2020-06-17 15:44:16 replaced with ale '*': ['remove_trailing_lines', 'trim_whitespace']
 
 " http://dustinmartin.net/format-json-in-vim/
 command! FormatJSON %!python3 -m json.tool
@@ -495,28 +511,28 @@ command! FormatJSON %!python3 -m json.tool
 
 " Neovim settings to make latest vim work like Neovim {
 if !has('nvim')
-    " nvim defaults {
-    set autoindent          " always autoindent
-    set autoread            " auto re-load files when changed on disk https://github.com/square/maximum-awesome
-    " - 'complete' doesn't include 'i'
-    " - 'display' defaults to 'lastline'
-    set history=10000       " command history length extra long
-    set hlsearch            " highlight search terms :noh to clear
-    set ttyfast             " nvim default
-    " }
+  " nvim defaults {
+  set autoindent          " always autoindent
+  set autoread            " auto re-load files when changed on disk https://github.com/square/maximum-awesome
+  " - 'complete' doesn't include 'i'
+  " - 'display' defaults to 'lastline'
+  set history=10000       " command history length extra long
+  set hlsearch            " highlight search terms :noh to clear
+  set ttyfast             " nvim default
+  " }
 
-    " https://neovim.io/doc/user/options.html
-    if v:version >= 704
-        set formatoptions+=tcqj     " https://neovim.io/doc/user/options.html#'formatoptions'
-        set laststatus=2            " https://neovim.io/doc/user/options.html#'laststatus'
-        " https://neovim.io/doc/user/options.html#'sessionoptions'
-        set sessionoptions+=blank,buffers,curdir,folds,help,tabpages,winsize
-        set smarttab                " https://neovim.io/doc/user/options.html#'smarttab'
-        " 50 vs 10 for https://neovim.io/doc/user/options.html#'tabpagemax'
-        set tags+=./tags;,tags      " https://neovim.io/doc/user/options.html#'tags'
-    else
-        echom "Not running with Neovim compatibility settings"
-    endif
+  " https://neovim.io/doc/user/options.html
+  if v:version >= 704
+    set formatoptions+=tcqj     " https://neovim.io/doc/user/options.html#'formatoptions'
+    set laststatus=2            " https://neovim.io/doc/user/options.html#'laststatus'
+    " https://neovim.io/doc/user/options.html#'sessionoptions'
+    set sessionoptions+=blank,buffers,curdir,folds,help,tabpages,winsize
+    set smarttab                " https://neovim.io/doc/user/options.html#'smarttab'
+    " 50 vs 10 for https://neovim.io/doc/user/options.html#'tabpagemax'
+    set tags+=./tags;,tags      " https://neovim.io/doc/user/options.html#'tags'
+  else
+    echom 'Not running with Neovim compatibility settings'
+  endif
 endif
 "}
 
@@ -538,14 +554,22 @@ helptags ALL
 " Use the global executables
 let g:ale_use_global_executables = 1
 let g:ale_linters = {'python': ['flake8']}
+" , 'c': ['clangd']
 let g:ale_fixers = {
-            \ 'python': ['black'],
-            \ 'c': ['clang-format'],
-            \ 'javascript': ['standard']
-            \}
+      \ 'python': ['black'],
+      \ 'c': ['clang-format'],
+      \ 'javascript': ['standard'],
+      \ '*': ['remove_trailing_lines', 'trim_whitespace']
+      \}
 let g:ale_fix_on_save = 1
 
-let g:ale_c_clangformat_options = "-style='{BasedOnStyle: Google, IndentWidth: 4}'"
+let g:ale_echo_msg_format = '%linter%: %s'
+" https://clang.llvm.org/docs/UsersManual.html#command-line-options
+" let g:all_c_clang_options =
+" let g:ale_c_clangd_options = '-Wall -std=c11'
+
+" change format options.  I want to train myself to prefer Google style code
+" let g:ale_c_clangformat_options = "-style='{BasedOnStyle: Google, IndentWidth: 4}'"
 " Set this. Airline will handle the rest.
 let g:airline#extensions#ale#enabled = 1
 " }
@@ -554,37 +578,37 @@ let g:airline#extensions#ale#enabled = 1
 " https://github.com/powerline/powerline
 " Check python version if available
 python3 import vim; from sys import version_info as v; vim.command("let pyV='%d.%d'" % (v[0], v[1]))
-let p = expand('~/.local/lib/python' .. pyV .. '/site-packages/powerline/bindings/vim')
+let p = expand('~/.local/lib/python' . pyV . '/site-packages/powerline/bindings/vim')
 if isdirectory(p) && !has('nvim')
-    set rtp+=~/.local/lib/python3.8/site-packages/powerline/bindings/vim
-elseif isdirectory('/Library/Frameworks/Python.framework/Versions/' .. pyV .. '/lib/python' .. pyV .. '/site-packages/powerline') && !has('nvim')
-    set rtp+=/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/powerline/bindings/vim
+  set runtimepath+=~/.local/lib/python3.8/site-packages/powerline/bindings/vim
+elseif isdirectory('/Library/Frameworks/Python.framework/Versions/' . pyV . '/lib/python' . pyV . '/site-packages/powerline') && !has('nvim')
+  set runtimepath+=/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/powerline/bindings/vim
 else
-    " https://github.com/vim-airline/vim-airline {
-    packadd! vim-airline
-    packadd! vim-airline-themes
-    let g:airline_theme='powerlineish'
-    " Fancy arrow symbols, requires a patched font
-    let g:airline_powerline_fonts = 1
-    " Show PASTE if in paste mode
-    let g:airline_detect_paste=1
-    " Don't take up extra space with +/-/~ of 0
-    let g:airline#extensions#hunks#non_zero_only = 1
-    " Limit wordcount to where it makes sense
-    let g:airline#extensions#wordcount#filetypes = '\vhelp|markdown|pandoc|rst|org'
-    " Slightly modify the theme colors
-    let g:airline_solarized_normal_green = 1
-    " Fancy stuff in tabline as well
-    let g:airline#extensions#tabline#enabled = 1
+  " https://github.com/vim-airline/vim-airline {
+  packadd! vim-airline
+  packadd! vim-airline-themes
+  let g:airline_theme='powerlineish'
+  " Fancy arrow symbols, requires a patched font
+  let g:airline_powerline_fonts = 1
+  " Show PASTE if in paste mode
+  let g:airline_detect_paste=1
+  " Don't take up extra space with +/-/~ of 0
+  let g:airline#extensions#hunks#non_zero_only = 1
+  " Limit wordcount to where it makes sense
+  let g:airline#extensions#wordcount#filetypes = '\vhelp|markdown|pandoc|rst|org'
+  " Slightly modify the theme colors
+  let g:airline_solarized_normal_green = 1
+  " Fancy stuff in tabline as well
+  let g:airline#extensions#tabline#enabled = 1
 
-    " }
+  " }
 endif
 " }
 
 " git@github.com:ervandew/supertab.git {
-let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabDefaultCompletionType = 'context'
 " let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
+let g:SuperTabContextDefaultCompletionType = '<c-x><c-o>'
 "<c-n>" " default value <c-p>
 
 let g:SuperTabLongestEnhanced = 1 "(default value: 0)
@@ -606,7 +630,7 @@ let g:SuperTabLongestHighlight = 1 "(default value: 0)
 " Jedi {
 let g:jedi#smart_auto_mappings = 1
 let g:jedi#show_call_signatures_delay = 200
-let g:jedi#use_splits_not_buffers = "right"
+let g:jedi#use_splits_not_buffers = 'right'
 " }
 
 " git@github.com:nathanaelkane/vim-indent-guides.git {
@@ -615,7 +639,7 @@ let g:indent_guides_guide_size = 1
 let g:indent_guides_space_guides = 1
 let g:indent_guides_tab_guides = 0
 let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_exclude_filetypes = ['help', 'markdown', 'pandoc']
+let g:indent_guides_exclude_filetypes = ['help', 'markdown', 'pandoc', 'man']
 " }
 
 " git@github.com:vim-pandoc/vim-pandoc.git {
@@ -647,10 +671,12 @@ let g:go_info_mode='gopls'
 " https://github.com/racer-rust/vim-racer {
 let g:racer_experimental_completer = 1
 let g:racer_insert_paren = 1
-au FileType rust nmap gd <Plug>(rust-def)
-au FileType rust nmap gs <Plug>(rust-def-split)
-au FileType rust nmap gx <Plug>(rust-def-vertical)
-au FileType rust nmap <leader>gd <Plug>(rust-doc)
+augroup RUST
+  au FileType rust nmap gd <Plug>(rust-def)
+  au FileType rust nmap gs <Plug>(rust-def-split)
+  au FileType rust nmap gx <Plug>(rust-def-vertical)
+  au FileType rust nmap <leader>gd <Plug>(rust-doc)
+augroup END
 " }
 
 " https://github.com/rust-lang/rust.vim {
@@ -666,7 +692,7 @@ let g:rustfmt_autosave = 1
 
 " https://github.com/junegunn/fzf {
 if isdirectory(expand('~/.fzf'))
-    set rtp+=~/.fzf
+  set runtimepath+=~/.fzf
 endif
 " }
 
@@ -674,6 +700,10 @@ endif
 let g:indent_guides_tab_guides = 0
 "}
 
+" Man {
+source $VIMRUNTIME/ftplugin/man.vim
+" }
+"
 " Plugins }
 
 " colors {
@@ -711,7 +741,7 @@ hi Terminal ctermfg=fg ctermbg=NONE cterm=NONE
 " MzScheme Support for Racket {
 " Auto-instantiation of vimext module (can be placed in your |vimrc|): >
 function! MzRequire()
-    :mz (require (prefix-in vim- 'vimext))
+  mz (require (prefix-in vim- 'vimext))
 endfunction
 " causes seg fault, although in can be called after startup
 " see error with lldb vim, compile with debug symbols for more info
@@ -722,7 +752,7 @@ endfunction
 " }
 "
 if filereadable('Session.vim')
-    :silent source Session.vim
+  :silent source Session.vim
 endif
 
 " Digraphs

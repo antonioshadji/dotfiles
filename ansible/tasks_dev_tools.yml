@@ -26,7 +26,7 @@
       - xsltproc
       - libxslt1-dev
       - libicu-dev
-      - libboost1.65-all-dev
+      - libboost1.71-all-dev
       - libwebkit2gtk-4.0-dev
       - swig
       - libaqbanking-dev

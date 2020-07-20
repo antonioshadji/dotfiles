@@ -1,0 +1,10 @@
+# vim: set ft=sh:
+repository_root=~/.local/lib/python3.8/site-packages
+powerline-daemon -q
+export POWERLINE_BASH_CONTINUATION=1
+export POWERLINE_BASH_SELECT=1
+
+# shellcheck disable=SC1090
+. ${repository_root}/powerline/bindings/bash/powerline.sh
+
+
