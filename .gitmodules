@@ -1,36 +1,36 @@
 [submodule "bash-git-prompt"]
 	path = bash-git-prompt
-	url = git@github.com:magicmonty/bash-git-prompt.git
+	url = https://github.com/magicmonty/bash-git-prompt.git
 [submodule "vim/pack/plugins/start/vim-go"]
 	path = vim/pack/plugins/start/vim-go
 	url = https://github.com/fatih/vim-go
 [submodule "vim/pack/plugins/start/ale"]
 	path = vim/pack/plugins/start/ale
-	url = git@github.com:w0rp/ale.git
+	url = https://github.com/w0rp/ale.git
 [submodule "vim/pack/plugins/start/numbers.vim"]
 	path = vim/pack/plugins/start/numbers.vim
-	url = git@github.com:myusuf3/numbers.vim.git
+	url = https://github.com/myusuf3/numbers.vim.git
 [submodule "vim/pack/plugins/start/vim-indent-guides"]
 	path = vim/pack/plugins/start/vim-indent-guides
-	url = git@github.com:nathanaelkane/vim-indent-guides.git
+	url = https://github.com/nathanaelkane/vim-indent-guides.git
 [submodule "vim/pack/plugins/start/vim-tmux-navigator"]
 	path = vim/pack/plugins/start/vim-tmux-navigator
-	url = git@github.com:christoomey/vim-tmux-navigator.git
+	url = https://github.com/christoomey/vim-tmux-navigator.git
 [submodule "vim/pack/plugins/start/supertab"]
 	path = vim/pack/plugins/start/supertab
-	url = git@github.com:ervandew/supertab.git
+	url = https://github.com/ervandew/supertab.git
 [submodule "vim/pack/plugins/start/vim-pandoc"]
 	path = vim/pack/plugins/start/vim-pandoc
-	url = git@github.com:vim-pandoc/vim-pandoc.git
+	url = https://github.com/vim-pandoc/vim-pandoc.git
 [submodule "vim/pack/plugins/start/vim-pandoc-syntax"]
 	path = vim/pack/plugins/start/vim-pandoc-syntax
-	url = git@github.com:vim-pandoc/vim-pandoc-syntax.git
+	url = https://github.com/vim-pandoc/vim-pandoc-syntax.git
 [submodule "vim/pack/plugins/start/SimpylFold"]
 	path = vim/pack/plugins/start/SimpylFold
-	url = git@github.com:tmhedberg/SimpylFold.git
+	url = https://github.com/tmhedberg/SimpylFold.git
 [submodule "vim/pack/plugins/start/rust.vim"]
 	path = vim/pack/plugins/opt/rust.vim
-	url = git@github.com:rust-lang/rust.vim.git
+	url = https://github.com/rust-lang/rust.vim.git
 [submodule "vim/pack/plugins/start/vim-racer"]
 	path = vim/pack/plugins/opt/vim-racer
 	url = https://github.com/racer-rust/vim-racer.git
@@ -45,7 +45,7 @@
 	url = https://github.com/wlangstroth/vim-racket.git
 [submodule "vim/pack/plugins/start/vim-css-color"]
 	path = vim/pack/plugins/opt/vim-css-color
-	url = git@github.com:ap/vim-css-color.git
+	url = https://github.com/ap/vim-css-color.git
 [submodule "vim/pack/plugins/start/fzf.vim"]
 	path = vim/pack/plugins/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
@@ -75,7 +75,7 @@
 	url = https://github.com/tmux-plugins/tmux-resurrect
 [submodule "vim/pack/plugins/start/vim-orgmode"]
 	path = vim/pack/plugins/opt/vim-orgmode
-	url = git@github.com:jceb/vim-orgmode.git
+	url = https://github.com/jceb/vim-orgmode.git
 [submodule "vim/pack/plugins/opt/YouCompleteMe"]
 	path = vim/pack/plugins/opt/YouCompleteMe
-	url = git@github.com:ycm-core/YouCompleteMe.git
+	url = https://github.com/ycm-core/YouCompleteMe.git
