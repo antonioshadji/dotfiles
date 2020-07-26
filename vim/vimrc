@@ -37,24 +37,22 @@ set incsearch                   " search as you type
 
 " Ctrl-A increments character under cursor
 " Ctrl-X decrements
-" defaults.vim suggests removing octal nvim default is bin,hex
-" https://neovim.io/doc/user/options.html#'nrformats'
 
-" set ttimeout                    " time out for key codes
-" set ttimeoutlen=200             " wait up to 100ms after Esc for special key
 set wildmenu                    " Show list instead of just completing
 " Command <Tab> completion, list matches, then longest common part, then all.
 set wildmode=list:longest,full
 " https://bitbucket.org/sjl/dotfiles/src/cbbbc897e9b3/vim/vimrc
-set wildignore+=.hg,.git,.svn                    " Version control
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
-set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
-set wildignore+=*.spl                            " compiled spelling word lists
-set wildignore+=*.sw?                            " Vim swap files
-set wildignore+=*.DS_Store                       " OSX bullshit
-set wildignore+=*.luac                           " Lua byte code
-set wildignore+=*.pyc                            " Python byte code
-set wildignore+=*.class                          " Java byte code
+set wildignore+=netrw_gitignore#Hide()
+" set wildignore+=.hg,.git,.svn                    " Version control
+" set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+" set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
+" set wildignore+=*.spl                            " compiled spelling word lists
+" set wildignore+=*.sw?                            " Vim swap files
+" set wildignore+=*.DS_Store                       " OSX bullshit
+" set wildignore+=*.luac                           " Lua byte code
+" set wildignore+=*.pyc                            " Python byte code
+" set wildignore+=*.class                          " Java byte code
+" set display+=lastline                          "tpope sensible ?? handled
 "}
 
 " no_plugins.vim settings to maximize Vim's built in functionality {
@@ -143,6 +141,7 @@ set colorcolumn=80              " highlight 80 character width for code files
 " status bar
 set noshowmode
 set laststatus=2
+set ruler
 "} end Vim UI
 
 " Formatting {
@@ -520,12 +519,20 @@ if !has('nvim')
   " nvim defaults {
   set autoindent          " always autoindent
   set autoread            " auto re-load files when changed on disk https://github.com/square/maximum-awesome
-  " - 'complete' doesn't include 'i'
+  set complete-=i         " doesn't include 'i'
   " - 'display' defaults to 'lastline'
   set history=10000       " command history length extra long
   set hlsearch            " highlight search terms :noh to clear
   set ttyfast             " nvim default
+  " defaults.vim suggests removing octal nvim default is bin,hex
+  " https://neovim.io/doc/user/options.html#'nrformats'
+  set nrformats-=octal    " remove octal as a number format
   " }
+
+  if &ttimeoutlen == -1
+    set ttimeout
+    set ttimeoutlen=100
+  endif
 
   " https://neovim.io/doc/user/options.html
   if v:version >= 704
@@ -593,7 +600,7 @@ else
   " https://github.com/vim-airline/vim-airline {
   packadd! vim-airline
   packadd! vim-airline-themes
-  let g:airline_theme='powerlineish'
+  let g:airline_theme='solarized_flood'
   " Fancy arrow symbols, requires a patched font
   let g:airline_powerline_fonts = 1
   " Show PASTE if in paste mode
@@ -746,9 +753,9 @@ hi Terminal ctermfg=fg ctermbg=NONE cterm=NONE
 
 " MzScheme Support for Racket {
 " Auto-instantiation of vimext module (can be placed in your |vimrc|): >
-function! MzRequire()
-  mz (require (prefix-in vim- 'vimext))
-endfunction
+" function! MzRequire()
+"   mz (require (prefix-in vim- 'vimext))
+" endfunction
 " causes seg fault, although in can be called after startup
 " see error with lldb vim, compile with debug symbols for more info
 " mzquantum default value 100ms, time between polls for mzscheme threads
