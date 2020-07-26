@@ -1,5 +1,15 @@
-# vim modeline {{
+#!/usr/bin/env bash
+# https://github.com/koalaman/shellcheck/wiki/SC1090
+# shellcheck disable=SC1090,SC1091
 # vim: set foldmarker={{,}} foldlevel=0 foldmethod=marker :
+
+# profile start time start {{
+DEBUG=0
+if [[ $DEBUG == 1 ]]; then
+  PS4='+ $(date "+%s.%N")\011 '
+  exec 3>&2 2>/tmp/bashstart.$$.log
+  set -x
+fi
 # }}
 
 # create log file for errors
@@ -51,24 +61,9 @@
 # https://www.gnu.org/software/bash/manual/bash.html#Shell-Arithmetic
 # }}
 
-# profile start time start {{
-DEBUG=0
-if [[ $DEBUG == 1 ]]; then
-  PS4='+ $(date "+%s.%N")\011 '
-  exec 3>&2 2>/tmp/bashstart.$$.log
-  set -x
-fi
-# }}
-
 # If not running interactively, don't do anything
-# From /etc/bash.bashrc (Ubuntu 14.04.03)
 # -z = True if the length of string is zero.
-# [ -z "$PS1" ] && return
-# from 18.10
-case $- in
-    *i*) ;;
-      *) return;;
-esac
+[ -z "$PS1" ] && return
 
 # {{ History setup
 # See:  http://www.ukuug.org/events/linux2003/papers/bash_tips/
@@ -135,19 +130,12 @@ shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
-if [[ ${BASH_VERSINFO[0]} == 4 ]]; then
+if [[ ${BASH_VERSINFO[0]} -ge 4 ]]; then
   shopt -s globstar
 fi
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# from 18.10
-# set variable identifying the chroot you work in (used in the prompt below)
-# I'm not using chroot
-# if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-#     debian_chroot=$(cat /etc/debian_chroot)
-# fi
 
 # set title of terminal window to user@hostname:pwd
 # this shows up in prompt when using virtual terminal $TERM=Linux (tty)
@@ -253,7 +241,6 @@ if [[ -r $HOME/.dotfiles/bash-git-prompt/gitprompt.sh ]]; then
   # GIT_PROMPT_THEME=Custom # use custom theme specified in file GIT_PROMPT_THEME_FILE (default ~/.git-prompt-colors.sh)
   # GIT_PROMPT_THEME_FILE=~/.git-prompt-colors.sh
   export GIT_PROMPT_THEME=Solarized_Ubuntu
-  # shellcheck source=./.dotfiles/bash-git-prompt/gitprompt.sh
   source "$HOME/.dotfiles/bash-git-prompt/gitprompt.sh"
 fi
 
@@ -326,7 +313,6 @@ fi
 
 # ==> Source [/opt/google-cloud-sdk/path.bash.inc] in your profile to add the Google Cloud SDK command line tools to your $PATH.
 if [[ -r /opt/google-cloud-sdk/path.bash.inc ]]; then
-  # shellcheck disable=SC1091
   source /opt/google-cloud-sdk/path.bash.inc
 fi
 
@@ -380,8 +366,6 @@ alias apb='ansible-playbook'
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-# https://github.com/koalaman/shellcheck/wiki/SC1090
-# shellcheck source=/dev/null
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
@@ -419,14 +403,11 @@ export GREP_COLOR='30;43' # match color of ag match
 #{{ Node setup and tools
 # [ -r file ] returns True if file exists and is readable.
 export NVM_DIR="$HOME/.config/nvm"
-# shellcheck disable=SC1090
 [[ -s "$NVM_DIR/nvm.sh" ]] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# shellcheck disable=SC1090
 [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 if [[ -r $HOME/.nvm/nvm.sh ]]; then
   NVM_DIR=$HOME/.nvm
-  # shellcheck disable=SC1090
   source "$HOME/.nvm/nvm.sh"
   np=$(nvm which current)
   np="${np//bin/lib}"
@@ -488,9 +469,7 @@ if [[ $(uname -s) == 'Darwin' ]]; then
   export LSCOLORS=FxgxdadacxDaDahbadacec
   DOCKER_ROOT='/Applications/Docker.app/Contents/Resources/etc'
   if [[ -d $DOCKER_ROOT ]]; then
-    # shellcheck disable=SC1090
     . "$DOCKER_ROOT/docker.bash-completion"
-    # shellcheck disable=SC1090
     . "$DOCKER_ROOT/docker-compose.bash-completion"
     # TODO: why is this not on mac?
     # . "$DOCKER_ROOT/docker-machine.bash-completion"
@@ -548,11 +527,8 @@ bind 'TAB:menu-complete'
 if ! shopt -oq posix; then
   # homebrew installation
   if [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]]; then
-    # https://github.com/koalaman/shellcheck/wiki/SC1091
-    # shellcheck disable=SC1091
     source "/usr/local/etc/profile.d/bash_completion.sh"
   elif [[ -r /usr/share/bash-completion/bash_completion ]]; then
-    # shellcheck disable=SC1091
     source /usr/share/bash-completion/bash_completion
   elif [[ -r /etc/bash_completion ]]; then
     source /etc/bash_completion
@@ -561,17 +537,14 @@ fi
 
 # git completion
 # https://github.com/git/git/blob/master/contrib/completion/git-completion.bash
-# shellcheck disable=SC1090
 if [[ -r $HOME/.dotfiles/git-completion.bash ]]; then
   source "$HOME/.dotfiles/git-completion.bash"
 fi
 
 # enable completion for nvm
-# shellcheck disable=SC1090
 [[ -r $NVM_DIR/bash_completion ]] && source "$NVM_DIR/bash_completion"
 
 # http://wp-cli.org/ bash completion
-# shellcheck disable=SC1090
 if [[ -r $HOME/.dotfiles/bash_completion/wp-completion.bash ]]; then
   source "$HOME/.dotfiles/bash_completion/wp-completion.bash"
 fi
@@ -580,8 +553,6 @@ fi
 # http://docs.aws.amazon.com/cli/latest/userguide/cli-command-completion.html
 [[ $(command -v aws_completer) ]] && complete -C aws_completer aws
 
-# ==> Source [/opt/google-cloud-sdk/completion.bash.inc] in your profile to enable shell command completion for gcloud.
-# shellcheck disable=SC1091
 [[ -r /opt/google-cloud-sdk/completion.bash.inc ]] && source /opt/google-cloud-sdk/completion.bash.inc
 
 # https://pip.pypa.io/en/stable/user_guide/#command-completion
@@ -676,7 +647,6 @@ Extract () {
 #}}
 
 # does a bashrc.local exist?
-# shellcheck disable=SC1090
 [[ -r $HOME/.bashrc.local ]] && source "$HOME/.bashrc.local"
 
 # display that reboot is required after automatic update
@@ -706,12 +676,11 @@ if [[ $DEBUG == 1 ]]; then
 fi
 # }}
 
-# shellcheck source=./.fzf.bash
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
 
-# core dump max size Hard = ulimited, Soft set here 4MB (512k blocks) 
+# core dump max size Hard = ulimited, Soft set here 4MB (512k blocks)
 # TODO: is this really needed?
 ulimit -S -c 8192
 
-# use vim as manpager
+# use vim as manpager TODO: breaks when searching via rg
 export MANPAGER="/bin/sh -c \"col -b | vim --noplugin -c 'set ft=man ts=8 laststatus=1 cc=\"\" nomod nolist nonu nornu noma' -\""
