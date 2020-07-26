@@ -31,14 +31,15 @@
 - name: Clone dotfiles git repo
   git:
     repo: git@github.com:AntoniosHadji/dotfiles.git
-    dest: "$HOME/.dotfiles"
+    dest: "$HOME/.config/dotfiles"
     accept_hostkey: true
     recursive: true
-    # track_submodules: true # this causes submodules of submodules to update
+  tags:
+    - update
 
 - name: Create symlinks
   file:
-    src: "$HOME/.dotfiles/{{ item }}"
+    src: "$HOME/.config/dotfiles/{{ item }}"
     path: "$HOME/.{{ item }}"
     state: link
     force: true
@@ -53,6 +54,8 @@
     - 'tern-project'
     - 'tmux.conf'
     - 'vim'
+  tags:
+    - update
 
 # install rust
 # install ripgrep
