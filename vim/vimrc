@@ -1,6 +1,4 @@
-" modeline {
 " vim: set foldmarker={,} foldlevel=0 foldmethod=marker :
-" }
 set encoding=utf-8      " show buffer as utf-8 https://github.com/square/maximum-awesome (**MUST BE EARLY IN FILE**)
 scriptencoding utf-8
 " Note:
@@ -14,12 +12,12 @@ scriptencoding utf-8
 
 " To see list of scripts loaded in the order in which they were loaded
 " :scriptnames
+" To see settings which are not the default values
+" :set
 
 "Enable syntax highlighting and don't overwrite colorscheme
 syntax enable
-" Enable file type detection.
-" Use the default filetype settings, so that mail gets 'tw' set to 72,
-" 'cindent' is on in C files, etc.
+" Enable file type detection.  Use the default filetype settings
 " Also load indent files, to automatically do language-dependent indenting.
 filetype plugin indent on
 
@@ -86,11 +84,18 @@ set tags+=~/.vim/systags
 " Tweaks for browsing
 let g:netrw_banner=0        " disable annoying banner
 let g:netrw_browse_split=4  " open in vertical split (4 = prior window)
-"let g:netrw_altv=1          " open splits to the right
 let g:netrw_liststyle=3     " tree view
 let g:netrw_list_hide=netrw_gitignore#Hide()
 "let g:netrw_list_hide=',\(^\|\s\s\)\zs\.\S\+'
 "let g:netrw_winsize=-1
+
+if trim(system('uname')) ==# 'Linux'
+  let g:netrw_browsex_viewer= 'xdg-open'
+else
+  " Mac OSX
+  let g:netrw_browsex_viewer= 'open'
+endif
+
 " NOW WE CAN:
 " - :edit a folder to open a file browser
 " - <CR>/v/t to open in an h-split/v-split/tab
