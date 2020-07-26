@@ -67,6 +67,7 @@
 [submodule "vim/pack/plugins/start/vim-visual-increment"]
 	path = vim/pack/plugins/start/vim-visual-increment
 	url = https://github.com/triglav/vim-visual-increment.git
+  ignore = dirty
 [submodule "tmux/tmux-continuum"]
 	path = tmux/tmux-continuum
 	url = https://github.com/tmux-plugins/tmux-continuum
