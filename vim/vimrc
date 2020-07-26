@@ -305,9 +305,10 @@ nnoremap <silent> <CR> :noh<CR>
 " http://vim.wikia.com/wiki/Multiple_commands_at_once
 cmap w!! w !sudo tee %
 " vertical terminal
-cmap vt vert terminal
+" cmap vt vert terminal
 " terminal in new tab
-cmap tt tab terminal
+" issues when using search replace
+" cmap tt tab terminal
 
 " compile and run java code for algs4
 " https://docs.oracle.com/javase/8/docs/technotes/tools/windows/classpath.html
@@ -574,7 +575,7 @@ let g:ale_echo_msg_format = '%linter%: %s'
 " let g:ale_c_clangd_options = '-Wall -std=c11'
 
 " change format options.  I want to train myself to prefer Google style code
-" let g:ale_c_clangformat_options = "-style='{BasedOnStyle: Google, IndentWidth: 4}'"
+let g:ale_c_clangformat_options = "-style='{BasedOnStyle: Google}'"
 " Set this. Airline will handle the rest.
 let g:airline#extensions#ale#enabled = 1
 " }
