@@ -14,14 +14,18 @@
   submodulesummary = true
 #  short = true
 [alias]
+  co = checkout
+  br = branch
   g = grep --break --heading --line-number
-  s = status
-	l = for-each-ref --sort='-authordate:iso8601' --format=' %(authordate:relative)%09%(refname:short)' refs/heads
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  s = status -uno
+  l = for-each-ref --sort='-authordate:iso8601' --format=' %(authordate:relative)%09%(refname:short)' refs/heads
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 # suggested by numpy https://docs.scipy.org/doc/numpy/dev/gitwash/configure_git.html#configure-git
 [merge]
   log = true
 [diff]
   submodule = log
 [fetch]
-	prune = true
+  prune = true
+[log]
+  decorate = full
