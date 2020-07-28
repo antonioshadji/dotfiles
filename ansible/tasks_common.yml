@@ -44,7 +44,6 @@
   with_items:
     - 'bashrc'
     - 'curlrc'
-    - 'dircolors'
     - 'eslintrc.json'
     - 'gitconfig'
     - 'inputrc'
@@ -52,6 +51,8 @@
     - 'tern-project'
     - 'tmux.conf'
     - 'vim'
+    #    - 'dircolors'
+    #    not needed no current ubuntu setup
 
 # install rust
 # install ripgrep
