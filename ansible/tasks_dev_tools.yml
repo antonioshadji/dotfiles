@@ -50,13 +50,6 @@
     state: latest
     force_apt_get: true
 
-- name: Python tools
-  become: true
-  apt:
-    name: python3-venv
-    state: latest
-    force_apt_get: true
-
 - name: Python build dependencies
   become: true
   apt:
@@ -104,3 +97,13 @@
       - valgrind
       - kcachegrind
       - tau
+
+- name: i3 build dependencies
+  become: true
+  apt:
+    name:
+      - libev-dev
+      - libyajl-dev
+      - libyajl-doc
+  tags:
+    - i3

@@ -2,6 +2,7 @@
 - hosts: all
   tasks:
     - import_tasks: ./tasks_common.yml
+      tags: common
     - import_tasks: ./tasks_docker.yml
 
 # primary home workstation and laptop only

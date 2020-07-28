@@ -2,7 +2,7 @@
 - name: Update and upgrade apt packages
   become: true
   apt:
-    upgrade: true
+    upgrade: "dist"
     update_cache: true
     autoremove: true
     force_apt_get: true
@@ -26,7 +26,7 @@
       - shellcheck
       - fonts-powerline
       - net-tools
-      - silversearcher-ag
+      - jq
 
 - name: Clone dotfiles git repo
   git:
@@ -34,8 +34,6 @@
     dest: "$HOME/.config/dotfiles"
     accept_hostkey: true
     recursive: true
-  tags:
-    - update
 
 - name: Create symlinks
   file:
@@ -54,8 +52,9 @@
     - 'tern-project'
     - 'tmux.conf'
     - 'vim'
-  tags:
-    - update
 
 # install rust
 # install ripgrep
+# install fd
+# install alacritty
+# build vim
