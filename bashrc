@@ -359,7 +359,8 @@ alias mp='multipass'
 
 # 2.4 Added for Comcast work
 alias apb='ansible-playbook'
-# 2.5 frequently used
+# 2.5 Docker
+alias di='docker images'
 
 [[ $(command -v git-flow) ]] && alias gf='git-flow'
 # You may want to put all your additions into a separate file like
@@ -462,6 +463,7 @@ if [[ $(uname -s) == 'Darwin' ]]; then
   alias lt='ls -AFlhrtG'
   alias la='ls -AFG'
   alias l='ls -CFG'
+  alias o='open'
   HISTSIZE=1000000
   HISTFILESIZE=1000000
   # http://stackoverflow.com/questions/1550288/os-x-terminal-colors
