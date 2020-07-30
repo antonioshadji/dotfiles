@@ -104,6 +104,19 @@
     name:
       - libev-dev
       - libyajl-dev
-      - libyajl-doc
+  tags:
+    - i3
+
+- name: i3status build dependencies
+  become: true
+  apt:
+    name:
+      - libconfuse-dev
+      - libyajl-dev
+      - libasound2-dev
+      - libiw-dev
+      - asciidoc
+      - libpulse-dev
+      - libnl-genl-3-dev
   tags:
     - i3
