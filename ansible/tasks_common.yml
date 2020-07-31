@@ -34,6 +34,7 @@
     dest: "$HOME/.config/dotfiles"
     accept_hostkey: true
     recursive: true
+  tags: dotfiles
 
 - name: Create symlinks
   file:
@@ -42,17 +43,18 @@
     state: link
     force: true
   with_items:
-    - 'bashrc'
-    - 'curlrc'
-    - 'eslintrc.json'
-    - 'gitconfig'
-    - 'inputrc'
-    - 'pam_environment'
-    - 'tern-project'
-    - 'tmux.conf'
-    - 'vim'
-    #    - 'dircolors'
-    #    not needed no current ubuntu setup
+    - "bashrc"
+    - "curlrc"
+    - "eslintrc.json"
+    - "gitconfig"
+    - "inputrc"
+    - "pam_environment"
+    - "tern-project"
+    - "tmux.conf"
+    - "vim"
+    # - 'dircolors'
+  tags: dotfiles
+  #    not needed no current ubuntu setup
 
 # install rust
 # install ripgrep

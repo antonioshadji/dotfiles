@@ -6,6 +6,7 @@ all:
         localhost:
           ansible_connection: local
           ansible_python_interpreter: /usr/bin/python3
-    server:
-      hosts:
-        nxtest-wc-01p.sys.comcast.net:
+          # server:
+          #   hosts:
+          #     nxtest-wc-01p.sys.comcast.net:
+          #     nxtest-as-01p.sys.comcast.net:
