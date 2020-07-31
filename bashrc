@@ -223,7 +223,7 @@ blue='\e[0;34m'    # blue      #268bd2  4/4 blue      33 #0087ff 55 -10 -45  38 
 ## --      Customized git prompt
 ## -----------------------------------------------------
 # gitprompt configuration
-if [[ -r $HOME/.dotfiles/bash-git-prompt/gitprompt.sh ]]; then
+if [[ -r $HOME/.config/dotfiles/bash-git-prompt/gitprompt.sh ]]; then
   # Set config variables first
   export GIT_PROMPT_ONLY_IN_REPO=0
 
@@ -241,7 +241,7 @@ if [[ -r $HOME/.dotfiles/bash-git-prompt/gitprompt.sh ]]; then
   # GIT_PROMPT_THEME=Custom # use custom theme specified in file GIT_PROMPT_THEME_FILE (default ~/.git-prompt-colors.sh)
   # GIT_PROMPT_THEME_FILE=~/.git-prompt-colors.sh
   export GIT_PROMPT_THEME=Solarized_Ubuntu
-  source "$HOME/.dotfiles/bash-git-prompt/gitprompt.sh"
+  source "$HOME/.config/dotfiles/bash-git-prompt/gitprompt.sh"
 fi
 
 # powerline bash prompt
@@ -539,16 +539,16 @@ fi
 
 # git completion
 # https://github.com/git/git/blob/master/contrib/completion/git-completion.bash
-if [[ -r $HOME/.dotfiles/git-completion.bash ]]; then
-  source "$HOME/.dotfiles/git-completion.bash"
+if [[ -r $HOME/.config/dotfiles/git-completion.bash ]]; then
+  source "$HOME/.config/dotfiles/git-completion.bash"
 fi
 
 # enable completion for nvm
 [[ -r $NVM_DIR/bash_completion ]] && source "$NVM_DIR/bash_completion"
 
 # http://wp-cli.org/ bash completion
-if [[ -r $HOME/.dotfiles/bash_completion/wp-completion.bash ]]; then
-  source "$HOME/.dotfiles/bash_completion/wp-completion.bash"
+if [[ -r $HOME/.config/dotfiles/bash_completion/wp-completion.bash ]]; then
+  source "$HOME/.config/dotfiles/bash_completion/wp-completion.bash"
 fi
 
 # AWS CLI completion
