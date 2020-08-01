@@ -5,6 +5,8 @@
       tags: common
     - import_tasks: ./tasks_docker.yml
       tags: docker
+    - import_tasks: ./tasks_dotfiles.yml
+      tags: dotfiles
 
 # primary home workstation and laptop only
 - hosts: desktop
