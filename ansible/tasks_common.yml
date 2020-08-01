@@ -64,6 +64,7 @@
   loop:
     - "maim"
     # import tool is related to inkscape? might be better
+  tags: i3
 # install rust
 # install ripgrep
 # install fd
