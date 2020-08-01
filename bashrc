@@ -579,10 +579,11 @@ fi
 # https://www.gnu.org/software/bash/manual/bash.html#Shell-Functions
 
 # show files after cd
-# cd () {
-#   builtin cd "$@"
-#   ls -F --color --ignore=lost+found
-# }
+cd () {
+  builtin cd "$@" || return
+  echo -e "\e]0;$(pwd)\a"
+  # ls -F --color --ignore=lost+found
+}
 
 # use command -v to find path
 # # enhanced which command to show if exectable is symbolic link

@@ -10,23 +10,22 @@
 - name: Install system software
   become: true
   apt:
-    name: "{{ packages }}"
+    name: "{{ item }}"
     state: latest
     force_apt_get: true
-  vars:
-    packages:
-      - git
-      - curl
-      - tmux
-      - tree
-      - rename
-      - vim
-      - openssh-server
-      - pandoc
-      - shellcheck
-      - fonts-powerline
-      - net-tools
-      - jq
+  loop:
+    - git
+    - curl
+    - tmux
+    - tree
+    - rename
+    - vim
+    - openssh-server
+    - pandoc
+    - shellcheck
+    - fonts-powerline
+    - net-tools
+    - jq
 
 - name: Clone dotfiles git repo
   git:
@@ -42,7 +41,7 @@
     path: "$HOME/.{{ item }}"
     state: link
     force: true
-  with_items:
+  loop:
     - "bashrc"
     - "curlrc"
     - "eslintrc.json"
@@ -53,9 +52,18 @@
     - "tmux.conf"
     - "vim"
     # - 'dircolors'
+    #    not needed no current ubuntu setup
   tags: dotfiles
-  #    not needed no current ubuntu setup
 
+- name: Tools for use with tiling wm
+  become: true
+  apt:
+    name: "{{ item }}"
+    state: latest
+    force_apt_get: true
+  loop:
+    - "maim"
+    # import tool is related to inkscape? might be better
 # install rust
 # install ripgrep
 # install fd
