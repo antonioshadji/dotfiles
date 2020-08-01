@@ -578,7 +578,7 @@ let g:ale_fixers = {
       \}
 let g:ale_fix_on_save = 1
 
-let g:ale_echo_msg_format = '%linter%: %s'
+let g:ale_echo_msg_format = '%linter%[%code%]: %s'
 " https://clang.llvm.org/docs/UsersManual.html#command-line-options
 " let g:all_c_clang_options =
 " let g:ale_c_clangd_options = '-Wall -std=c11'
