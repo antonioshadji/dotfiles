@@ -36,6 +36,6 @@
 - name: Pip install standard python libs
   pip:
     executable: "$HOME/.local/bin/pip3"
-    requirements: "$HOME/.dotfiles/requirements3.txt"
+    requirements: "$HOME/.config/dotfiles/requirements3.txt"
     extra_args: --user --upgrade
   when: ansible_distribution == "Ubuntu"
