@@ -38,6 +38,7 @@
     force_apt_get: true
   loop:
     - "maim"
+    - "feh"
     # import tool is related to inkscape? might be better
   tags: i3
 # install rust
