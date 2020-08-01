@@ -4,16 +4,22 @@
     - import_tasks: ./tasks_common.yml
       tags: common
     - import_tasks: ./tasks_docker.yml
+      tags: docker
 
 # primary home workstation and laptop only
 - hosts: desktop
   tasks:
     - import_tasks: ./tasks_desktop.yml
+      tags: desktop
     - import_tasks: ./tasks_python.yml
+      tags: python
     - import_tasks: ./tasks_dropbox.yml
+      tags: dropbox
 
 # primary home workstation only
 - hosts: workstation
   tasks:
     - import_tasks: ./tasks_primary.yml
+      tags: primary
     - import_tasks: ./tasks_dev_tools.yml
+      tags: dev
