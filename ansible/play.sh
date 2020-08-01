@@ -32,6 +32,7 @@ __log_console() {
   local BLUE="\033[38;5;34m"
   local CYAN="\033[38;5;37m"
   local GREEN="\033[38;5;64m"
+
   local msg+="${YELLOW}"
   msg+="$1"
   msg+="${Reset}\n"
@@ -39,10 +40,10 @@ __log_console() {
 }
 
 if git diff-index --quiet HEAD; then
-  ansible-playbook pb_all.yml --ask-become-pass "$@"
+  ansible-playbook ./playbook.yml --ask-become-pass "$@"
 else
   __log_console "git repo is dirty, ansible will fail to run on this localhost"
-  git status --verbose
+  git status --short
 fi
 
 # ansible-playbook playbook.yml -i inventory.yml --ask-become-pass --limit hadji.local
