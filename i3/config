@@ -125,8 +125,8 @@ bindsym $mod+minus scratchpad show
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1: Chrome"
-set $ws2 "2"
+set $ws1 "1:Chrome"
+set $ws2 "2:Terminal"
 set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
@@ -244,8 +244,11 @@ for_window [class="zoom"] floating enable
 
 # https://www.reddit.com/r/i3wm/comments/42i5r8/default_startup_workspace/
 # assign [class="Google-chrome"] 1
-# assign [class="Alacritty"] 2
+assign [instance="first-Alacritty"] $ws2
 exec google-chrome
-exec alacritty
+exec alacritty --class first-Alacritty
 
+# ↓ puts ALL instances on workspace
 # exec --no-startup-id i3-msg '[title="Alacritty"] move container to workspace 2: Terminal'
+# ↓ this line does not work to launch on specific workspace
+# exec --no-startup-id i3-msg 'workspace 2; exec alacritty; workspace 1'
