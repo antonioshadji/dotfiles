@@ -102,6 +102,8 @@ endif
 "}
 
 " General Settings {
+set exrc                " Allow local vimrc files inside projects (for c/cpp)
+set secure              " do not allow autocmds in project specific vimrc
 set hidden              " Allow buffer switching without saving
 set mousehide           " Hide the mouse cursor while typing
 set autowriteall        " Write files when many actions, including switching buffers see :help awa
@@ -566,22 +568,25 @@ helptags ALL
 
 " Use the global executables
 let g:ale_use_global_executables = 1
-let g:ale_linters = {'python': ['flake8'], 'javascript': ['eslint']}
-" , 'c': ['clangd']
+let g:ale_linters = {
+  \ 'python': ['flake8'],
+  \ 'javascript': ['eslint'],
+  \ 'c': ['clang']
+  \}
 let g:ale_fixers = {
-      \ 'python': ['black'],
-      \ 'c': ['clang-format'],
-      \ 'javascript': ['prettier_eslint'],
-      \ 'yaml': ['prettier'],
-      \ 'json': ['prettier'],
-      \ '*': ['trim_whitespace','remove_trailing_lines']
-      \}
+  \ 'python': ['black'],
+  \ 'c': ['clang-format'],
+  \ 'javascript': ['prettier_eslint'],
+  \ 'yaml': ['prettier'],
+  \ 'json': ['prettier'],
+  \ '*': ['trim_whitespace','remove_trailing_lines']
+  \}
 let g:ale_fix_on_save = 1
 
 let g:ale_echo_msg_format = '%linter%[%code%]: %s'
 " https://clang.llvm.org/docs/UsersManual.html#command-line-options
-" let g:all_c_clang_options =
-" let g:ale_c_clangd_options = '-Wall -std=c11'
+let g:all_c_clang_options = '-Wall -std=c11'
+let g:ale_c_clangd_options = '-Wall -std=c11'
 
 " change format options.  I want to train myself to prefer Google style code
 let g:ale_c_clangformat_options = "-style='{BasedOnStyle: Google}'"
