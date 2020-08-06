@@ -403,6 +403,7 @@ if !exists('g:autocommands_loaded')
     autocmd FileType pandoc setlocal tabstop=4
     autocmd FileType pandoc setlocal shiftwidth=4
     autocmd FileType pandoc setlocal softtabstop=4
+    autocmd FileType pandoc let b:ale_fix_on_save = 0
     " call local function to update line begining with last modified
     autocmd BufWritePre *.md,*.markdown,*.mkd :call LastModified()
   augroup END
