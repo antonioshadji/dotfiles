@@ -45,8 +45,9 @@ set $right l
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
+# start a terminal TODO: choose between default i3 and default iterm2 key
 bindsym $mod+Return exec alacritty
+bindsym $mod+t exec alacritty
 
 # kill focused window
 # bindsym $mod+Shift+q kill
@@ -100,9 +101,12 @@ bindsym $mod+z split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+# bindsym $mod+s layout stacking
+# bindsym $mod+w layout tabbed
+bindsym $mod+b layout tabbed
+# bindsym $mod+e layout toggle split
+# ↓ toggle existing split setup
+bindsym $mod+s layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -247,8 +251,19 @@ for_window [class="zoom"] floating enable
 assign [instance="first-Alacritty"] $ws2
 exec google-chrome
 exec alacritty --class first-Alacritty
-
+# ↓ this does nothing
+# exec --no-startup-id alacritty $ws3
 # ↓ puts ALL instances on workspace
 # exec --no-startup-id i3-msg '[title="Alacritty"] move container to workspace 2: Terminal'
 # ↓ this line does not work to launch on specific workspace
 # exec --no-startup-id i3-msg 'workspace 2; exec alacritty; workspace 1'
+
+
+# https://www.reddit.com/r/i3wm/comments/apvta8/have_popup_windows_floated/
+for_window [window_role="pop-up"]       floating enable
+for_window [window_role="bubble"]       floating enable
+for_window [window_role="task_dialog"]  floating enable
+for_window [window_role="Preferences"]  floating enable
+for_window [window_type="dialog"]       floating enable
+for_window [window_type="menu"]         floating enable
+for_window [title="^About.*"]           floating enable
