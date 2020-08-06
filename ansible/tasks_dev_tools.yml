@@ -120,3 +120,12 @@
       - libnl-genl-3-dev
   tags:
     - i3
+
+
+- name: i3-lock build dependencies
+  become: true
+  apt:
+    name:
+      - libpam-dev
+  tags:
+    - i3
