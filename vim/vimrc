@@ -575,7 +575,7 @@ let g:ale_linters = {
   \ 'c': ['clang']
   \}
 let g:ale_fixers = {
-  \ 'python': ['black'],
+  \ 'python': ['black', 'isort'],
   \ 'c': ['clang-format'],
   \ 'javascript': ['prettier_eslint'],
   \ 'yaml': ['prettier'],
@@ -583,6 +583,7 @@ let g:ale_fixers = {
   \ '*': ['trim_whitespace','remove_trailing_lines']
   \}
 let g:ale_fix_on_save = 1
+let g:ale_python_isort_options = '--use-parentheses'
 
 let g:ale_echo_msg_format = '%linter%[%code%]: %s'
 " https://clang.llvm.org/docs/UsersManual.html#command-line-options
