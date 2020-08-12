@@ -83,11 +83,13 @@ set tags+=~/.vim/systags
 let g:netrw_banner=0        " disable annoying banner
 let g:netrw_browse_split=4  " open in vertical split (4 = prior window)
 let g:netrw_liststyle=3     " tree view
-let g:netrw_list_hide=netrw_gitignore#Hide()
+if v:version > 800
+  let g:netrw_list_hide=netrw_gitignore#Hide()
+endif
 "let g:netrw_list_hide=',\(^\|\s\s\)\zs\.\S\+'
 "let g:netrw_winsize=-1
 
-if trim(system('uname')) ==# 'Linux'
+if system('uname -s') ==# 'Linux'
   let g:netrw_browsex_viewer= 'xdg-open'
 else
   " Mac OSX
@@ -262,10 +264,12 @@ map <left> <nop>
 map <right> <nop>
 
 " Easy window navigation
-tmap <C-h> <C-w>h
-tmap <C-j> <C-w>j
-tmap <C-k> <C-w>k
-tmap <C-l> <C-w>l
+if v:version >= 800
+  tmap <C-h> <C-w>h
+  tmap <C-j> <C-w>j
+  tmap <C-k> <C-w>k
+  tmap <C-l> <C-w>l
+endif
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -553,7 +557,9 @@ endif
 
 " Plugins {
 " must run this command when new plugins installed or no help available
-helptags ALL
+if v:version > 800
+  helptags ALL
+endif
 " git@github.com:w0rp/ale.git {
 " Enable completion where available. TODO: Can this replace deoplete?
 " This setting must be set before ALE is loaded.
@@ -603,29 +609,37 @@ nmap <leader>gu :diffget //2<CR>
 " Status line {
 " https://github.com/powerline/powerline
 " Check python version if available
-python3 import vim; from sys import version_info as v; vim.command("let pyV='%d.%d'" % (v[0], v[1]))
-let p = expand('~/.local/lib/python' . pyV . '/site-packages/powerline/bindings/vim')
+if has("python3")
+  python3 import vim; from sys import version_info as v; vim.command("let pyV='%d.%d'" % (v[0], v[1]))
+  let p = expand('~/.local/lib/python' . pyV . '/site-packages/powerline/bindings/vim')
+else
+  python import vim; from sys import version_info as v; vim.command("let pyV='%d.%d'" % (v[0], v[1]))
+  let p = expand('~/.local/lib/python' . pyV . '/site-packages/powerline/bindings/vim')
+endif
+
 if isdirectory(p) && !has('nvim')
   set runtimepath+=~/.local/lib/python3.8/site-packages/powerline/bindings/vim
 elseif isdirectory('/Library/Frameworks/Python.framework/Versions/' . pyV . '/lib/python' . pyV . '/site-packages/powerline') && !has('nvim')
   set runtimepath+=/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/powerline/bindings/vim
 else
-  " https://github.com/vim-airline/vim-airline {
-  packadd! vim-airline
-  packadd! vim-airline-themes
-  let g:airline_theme='solarized_flood'
-  " Fancy arrow symbols, requires a patched font
-  let g:airline_powerline_fonts = 1
-  " Show PASTE if in paste mode
-  let g:airline_detect_paste=1
-  " Don't take up extra space with +/-/~ of 0
-  let g:airline#extensions#hunks#non_zero_only = 1
-  " Limit wordcount to where it makes sense
-  let g:airline#extensions#wordcount#filetypes = '\vhelp|markdown|pandoc|rst|org'
-  " Slightly modify the theme colors
-  let g:airline_solarized_normal_green = 1
-  " Fancy stuff in tabline as well
-  let g:airline#extensions#tabline#enabled = 1
+  if v:version > 800
+    " https://github.com/vim-airline/vim-airline {
+    packadd! vim-airline
+    packadd! vim-airline-themes
+    let g:airline_theme='solarized_flood'
+    " Fancy arrow symbols, requires a patched font
+    let g:airline_powerline_fonts = 1
+    " Show PASTE if in paste mode
+    let g:airline_detect_paste=1
+    " Don't take up extra space with +/-/~ of 0
+    let g:airline#extensions#hunks#non_zero_only = 1
+    " Limit wordcount to where it makes sense
+    let g:airline#extensions#wordcount#filetypes = '\vhelp|markdown|pandoc|rst|org'
+    " Slightly modify the theme colors
+    let g:airline_solarized_normal_green = 1
+    " Fancy stuff in tabline as well
+    let g:airline#extensions#tabline#enabled = 1
+  endif
 
   " }
 endif
