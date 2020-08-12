@@ -29,3 +29,5 @@
   prune = true
 [log]
   decorate = full
+[pull]
+  rebase = true
