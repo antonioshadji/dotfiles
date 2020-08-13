@@ -668,8 +668,9 @@ if [[ ${HOSTNAME} =~ comcast.net$|HQSML ]]; then
   export PATH=${HOME}/.npm/bin:$PATH
   export VAULT_ADDR=https://vault.apa.comcast.net
   export AWS_REGION=us-east-1
-
-  source <(fly completion --shell bash)
+  if command -v fly; then
+    source <(fly completion --shell bash)
+  fi
 fi
 
 # }}
