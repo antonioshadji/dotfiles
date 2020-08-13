@@ -121,11 +121,18 @@
   tags:
     - i3
 
-
 - name: i3-lock build dependencies
   become: true
   apt:
     name:
       - libpam-dev
+  tags:
+    - i3
+
+- name: i3 notifications via dunst
+  become: true
+  apt:
+    name:
+      - libnotify-dev
   tags:
     - i3
