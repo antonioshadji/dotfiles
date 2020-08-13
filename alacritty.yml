@@ -259,6 +259,7 @@ colors: *dark
 #vi_mode_cursor:
 #  text: CellBackground
 #  cursor: CellForeground
+#  cursor: "#005f87"  # vim powerline insert status color
 
 # Selection colors
 #
@@ -651,9 +652,13 @@ key_bindings:
   #- { key: L,         mods: Control,             action: ClearLogNotice }
   #- { key: L,         mods: Control, mode: ~Vi,  chars: "\x0c"          }
   - { key: PageUp, mods: Shift, mode: ~Alt, action: ScrollPageUp }
+  - { key: PageUp, action: ScrollPageUp }
   - { key: PageDown, mods: Shift, mode: ~Alt, action: ScrollPageDown }
+  - { key: PageDown, action: ScrollPageDown }
   - { key: Home, mods: Shift, mode: ~Alt, action: ScrollToTop }
+  - { key: Home, action: ScrollToTop }
   - { key: End, mods: Shift, mode: ~Alt, action: ScrollToBottom }
+  - { key: End, action: ScrollToBottom }
   # Vi Mode
   - { key: Space, mods: Shift|Control, mode: Vi, action: ScrollToBottom }
   - { key: Space, mods: Shift|Control, action: ToggleViMode }
