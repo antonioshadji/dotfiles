@@ -655,10 +655,10 @@ key_bindings:
   - { key: PageUp, action: ScrollPageUp }
   - { key: PageDown, mods: Shift, mode: ~Alt, action: ScrollPageDown }
   - { key: PageDown, action: ScrollPageDown }
-  - { key: Home, mods: Shift, mode: ~Alt, action: ScrollToTop }
-  - { key: Home, action: ScrollToTop }
-  - { key: End, mods: Shift, mode: ~Alt, action: ScrollToBottom }
-  - { key: End, action: ScrollToBottom }
+  #- { key: Home, mods: Shift, mode: ~Alt, action: ScrollToTop }
+  #- { key: Home, action: ScrollToTop }
+  #- { key: End, mods: Shift, mode: ~Alt, action: ScrollToBottom }
+  #- { key: End, action: ScrollToBottom }
   # Vi Mode
   - { key: Space, mods: Shift|Control, mode: Vi, action: ScrollToBottom }
   - { key: Space, mods: Shift|Control, action: ToggleViMode }
