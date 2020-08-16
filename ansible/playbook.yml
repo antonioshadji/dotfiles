@@ -3,25 +3,31 @@
   tasks:
     - import_tasks: ./tasks_common.yml
       tags: common
+      when: ansible_distribution_file_variety == "Debian"
     - import_tasks: ./tasks_docker.yml
       tags: docker
     - import_tasks: ./tasks_dotfiles.yml
       tags: dotfiles
 
+
 # primary home workstation and laptop only
 - hosts: desktop
   tasks:
     - import_tasks: ./tasks_desktop.yml
+      when: ansible_distribution_file_variety == "Debian"
       tags: desktop
     - import_tasks: ./tasks_python.yml
       tags: python
     - import_tasks: ./tasks_dropbox.yml
       tags: dropbox
+      when: ansible_distribution_file_variety == "Debian"
 
 # primary home workstation only
 - hosts: workstation
   tasks:
     - import_tasks: ./tasks_primary.yml
       tags: primary
+      when: ansible_distribution_file_variety == "Debian"
     - import_tasks: ./tasks_dev_tools.yml
       tags: dev
+      when: ansible_distribution_file_variety == "Debian"
