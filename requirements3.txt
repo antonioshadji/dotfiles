@@ -6,13 +6,14 @@ pip
 
 # common files for all installs
 # coding tools
-pynvim
-powerline-status
-jedi
-pytest
-ipython
 black
 flake8
+ipython
+isort
+jedi
+powerline-status
+pynvim
+pytest
 yamllint
 # used in ipython_config.py
 pygments-style-solarized
