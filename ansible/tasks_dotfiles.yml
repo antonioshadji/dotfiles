@@ -1,4 +1,12 @@
 ---
+- name: Create Directory Structures if they do not exist
+  file:
+    path: "$HOME/{{ item }}"
+    state: directory
+  loop:
+    # creates whole structure inside path above
+    - ".config/powerline/themes/vim"
+
 - name: Clone dotfiles git repo
   git:
     repo: git@github.com:AntoniosHadji/dotfiles.git
@@ -24,3 +32,17 @@
     - "vim"
     # - 'dircolors'
     #    not needed no current ubuntu setup
+
+- name: Create Powerline Config Symlink
+  file:
+    src: "$HOME/.config/dotfiles/powerline/config.json"
+    path: "$HOME/.config/powerline/config.json"
+    state: link
+    force: true
+
+- name: Create Powerline Theme Symlink
+  file:
+    src: "$HOME/.config/dotfiles/powerline/themes/vim/default.json"
+    path: "$HOME/.config/powerline/themes/vim/default.json"
+    state: link
+    force: true
