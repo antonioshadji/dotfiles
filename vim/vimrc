@@ -384,6 +384,7 @@ if !exists('g:autocommands_loaded')
   augroup JS
     au!
     autocmd  BufRead,BufNewFile *.js set foldmethod=syntax foldlevel=99
+    autocmd  BufRead,BufNewFile *.json set foldmethod=syntax foldlevel=99
   augroup END
   "}
 
