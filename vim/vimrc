@@ -144,6 +144,8 @@ set colorcolumn=80              " highlight 80 character width for code files
 set noshowmode
 set laststatus=2
 set ruler
+" default:internal,filler,closeoff
+set diffopt+=vertical,iwhite
 "} end Vim UI
 
 " Formatting {
