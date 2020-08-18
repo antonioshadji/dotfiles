@@ -140,9 +140,9 @@ set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+set $ws8 "8:Gnucash"
+set $ws9 "9:Zoom"
+set $ws10 "10:Slack"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -232,6 +232,7 @@ bar {
 
 # https://gist.github.com/dianjuar/ee774561a8bc02b077989bc17424a19f
 # Screenshots
+# TODO: Can I use an environment variable here? set prefix for next series of shots
 set $screenshot_file "/home/$USER/Pictures/screenshot-$(date +%FT%H-%M-%S).png"
 set $screenshot_sound "/usr/share/sounds/freedesktop/stereo/camera-shutter.oga"
 bindsym Print exec --no-startup-id import -window root $screenshot_file; exec cvlc --play-and-exit $screenshot_sound
@@ -258,7 +259,7 @@ exec --no-startup-id dunst
 # assign [class="Google-chrome"] 1
 assign [instance="first-Alacritty"] $ws2
 exec google-chrome
-exec alacritty --class first-Alacritty
+exec alacritty --class first-Alacritty --title "$PWD"
 # ↓ this does nothing
 # exec --no-startup-id alacritty $ws3
 # ↓ puts ALL instances on workspace
@@ -278,5 +279,11 @@ for_window [title="^About.*"]           floating enable
 # https://feeding.cloud.geek.nz/posts/creating-a-modern-tiling-desktop-environment-using-i3/
 # make zoom floating always
 for_window [class="zoom"] floating enable
+# make zoom load in workspace 9
+assign [class="zoom"] $ws9
 # gnucash every popup is showing up as tiled
 for_window [class="Gnucash"] floating enable
+assign [class="Gnucash"] $ws8
+
+# always launch slack in workspace 10
+assign [class="Slack"] $ws10
