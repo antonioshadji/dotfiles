@@ -46,7 +46,7 @@ set $right l
 floating_modifier $mod
 
 # start a terminal TODO: choose between default i3 and default iterm2 key
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec alacritty --title "$PWD"
 bindsym $mod+t exec alacritty
 bindsym Mod4+t exec alacritty
 
