@@ -689,4 +689,4 @@ fi
 ulimit -S -c 8192
 
 # use vim as manpager TODO: breaks when searching via rg
-export MANPAGER="/bin/sh -c \"col -b | vim --noplugin -c 'set ft=man ts=8 laststatus=1 cc=\"\" nomod nolist nonu nornu noma' -\""
+# export MANPAGER="/bin/sh -c \"col -b | vim --noplugin -c 'set ft=man ts=8 laststatus=1 cc=\"\" nomod nolist nonu nornu noma' -\""
