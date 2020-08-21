@@ -671,6 +671,10 @@ if [[ ${HOSTNAME} =~ comcast.net$|HQSML ]]; then
   if command -v fly &> /dev/null; then
     source <(fly completion --shell bash)
   fi
+  # installed in /usr/local/etc/bash_completion.d/
+  # if command -v copilot &> /dev/null; then
+  #   source <(copilot completion bash)
+  # fi
 fi
 
 # }}
