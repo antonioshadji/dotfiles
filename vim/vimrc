@@ -574,7 +574,7 @@ let g:ale_linters = {
   \ 'c': ['clang']
   \}
 let g:ale_fixers = {
-  \ 'python': ['black', 'isort'],
+  \ 'python': ['isort', 'black'],
   \ 'c': ['clang-format'],
   \ 'javascript': ['prettier_eslint'],
   \ 'yaml': ['prettier'],
