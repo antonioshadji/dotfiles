@@ -1,0 +1,2 @@
+- [] add fd install/update to ansible setup
+- [] add centos packages for centos machines at work
