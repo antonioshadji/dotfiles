@@ -280,10 +280,10 @@ for_window [title="^About.*"]           floating enable
 # make zoom floating always
 for_window [class="zoom"] floating enable
 # make zoom load in workspace 9
-assign [class="zoom"] $ws9
+assign [class="zoom"] $ws5
 # gnucash every popup is showing up as tiled
 for_window [class="Gnucash"] floating enable
-assign [class="Gnucash"] $ws8
+assign [class="Gnucash"] $ws4
 
 # always launch slack in workspace 10
 assign [class="Slack"] $ws10
