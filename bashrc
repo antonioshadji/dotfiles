@@ -687,6 +687,10 @@ fi
 # }}
 
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
+# Setting fd as the default source for fzf
+if command -v fd &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='fd --type f'
+fi
 
 # core dump max size Hard = ulimited, Soft set here 4MB (512k blocks)
 # TODO: is this really needed?
