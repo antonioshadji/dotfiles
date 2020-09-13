@@ -350,7 +350,7 @@ alias psa='ps auxf'
 alias psg='ps auxf | grep -v grep | grep -i -e VSZ -e'
 
 # 2.4 Custom aliases that I created
-alias tree='tree -I node_modules -L 2 -sh'
+alias tree='tree -I node_modules -sh'
 # syntax colored cat replacement
 [[ $(command -v pygmentize) ]] && alias p='pygmentize -g'
 # open files in graphic workspace based on mime-type
