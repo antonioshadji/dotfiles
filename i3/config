@@ -47,8 +47,6 @@ floating_modifier $mod
 
 # start a terminal TODO: choose between default i3 and default iterm2 key
 bindsym $mod+Return exec alacritty --title "$PWD"
-bindsym $mod+t exec alacritty
-bindsym Mod4+t exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -249,11 +247,13 @@ bindsym Shift+F10 exec --no-startup-id maim --select $screenshot_file
 bindsym XF86HomePage exec google-chrome
 
 # set background with feh
-exec --no-startup-id feh --no-fehbg --bg-scale '/home/antonios/Pictures/background.png'
+exec --no-startup-id feh --no-fehbg --bg-max '/home/antonios/Pictures/background-discipline_1920x1080.png'
 # start unclutter https://github.com/Airblader/unclutter-xfixes
 exec --no-startup-id unclutter --timeout 5 --fork
 # notification daemon
 exec --no-startup-id dunst
+# set webcam zoom level
+exec --no-startup-id uvcdynctrl --set='Zoom, Absolute' 130
 
 # https://www.reddit.com/r/i3wm/comments/42i5r8/default_startup_workspace/
 # assign [class="Google-chrome"] 1
@@ -278,8 +278,9 @@ for_window [window_type="menu"]         floating enable
 for_window [title="^About.*"]           floating enable
 # https://feeding.cloud.geek.nz/posts/creating-a-modern-tiling-desktop-environment-using-i3/
 # make zoom floating always
-for_window [class="zoom"] floating enable
-# make zoom load in workspace 9
+# for_window [class="zoom"] floating enable
+# mod+shift+space to toggle floating mode
+# make zoom load in workspace 5
 assign [class="zoom"] $ws5
 # gnucash every popup is showing up as tiled
 for_window [class="Gnucash"] floating enable
