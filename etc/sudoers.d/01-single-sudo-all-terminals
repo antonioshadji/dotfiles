@@ -1,0 +1,2 @@
+# single sudo for all terminal windows
+Defaults        !tty_tickets
