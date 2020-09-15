@@ -91,7 +91,7 @@ bindsym $mod+Shift+Right move right
 # or other combo to open different window
 bindsym $mod+v split h
 # TODO: how to chain this command after above?
-#; i3-msg notify-send Orientation "Next window will be vertical"
+#; notify-send Orientation "Next window will be vertical"
 
 # split in vertical orientation (horizontal in vim speak)
 # percent
@@ -107,7 +107,7 @@ bindsym Mod4+f fullscreen exit
 # bindsym $mod+w layout tabbed
 bindsym $mod+b layout tabbed
 # bindsym $mod+e layout toggle split
-# ↓ toggle existing split setup
+# ↓ toggle existing split setup to split, Vertical/horiZontal
 bindsym $mod+s layout toggle split
 
 # toggle tiling / floating
