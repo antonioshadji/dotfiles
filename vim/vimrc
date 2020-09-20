@@ -87,7 +87,7 @@ let g:netrw_liststyle=3     " tree view
 "let g:netrw_list_hide=',\(^\|\s\s\)\zs\.\S\+'
 "let g:netrw_winsize=-1
 
-if system('uname -s') ==# 'Linux'
+if trim(system('uname')) ==# 'Linux'
   let g:netrw_browsex_viewer= 'xdg-open'
 else
   " Mac OSX
@@ -229,6 +229,7 @@ endif
 " Abbreviations:
 iabbrev <expr> dts strftime('%F %T')
 
+" Mappings:
 " When you have a problem about vim mappings.
 " Check :verbose inoremap at the first.
 " If you know the keys which have problem,
@@ -322,6 +323,11 @@ map <F8> :!clear; java -ea -cp ../algs4.jar:. %:r<CR>
 " Revert with ":iunmap <C-U>".
 inoremap <C-U> <C-G>u<C-U>
 
+" workaround for netrw bug  :help netrw-debug
+" https://github.com/vim/vim/issues/4738#issuecomment-521506447
+" https://github.com/vim/vim/issues/4738#issuecomment-565330300
+let g:netrw_nogx=1
+nmap gx yiW:!xdg-open <cWORD><CR> <C-r>" & <CR><CR>
 " nnoremap <Leader>g :YcmCompleter GoTo<CR>
 "} end keyboard shortcuts
 
