@@ -19,23 +19,18 @@ sleep 3s
   --disable-netbeans \
   --disable-nls \
   --disable-rightleft  \
-  --enable-athena-check=no \
   --enable-autoservername \
-  --enable-carbon-check=no \
   --enable-cscope \
   --enable-fail-if-missing \
   --enable-fontset \
-  --enable-gnome-check \
-  --enable-gtk2-check=no \
-  --enable-gtk3-check=yes \
-  --enable-gui=gtk3 \
   --enable-luainterp=dynamic \
   --enable-multibyte \
   --enable-python3interp=dynamic \
   --enable-terminal \
   --with-compiledby="Antonios Hadjigeorgalis" \
   --with-lua-prefix="/usr/local" \
-  --with-luajit
+  --with-luajit \
+  --with-x
 # vim9 is changing the focus from embedded languages to communicating with external programs
 # https://github.com/brammool/vim9/blob/master/README.md
 # with manually installed racket in unix mode from racket.org
