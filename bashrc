@@ -375,13 +375,14 @@ fi
 # git clone --recursive (always want to recurse submodules)
 # git pull --recurse-submodules (always want latest submodule)
 
-#}}
-
-# 2.3) Text and editor commands{{
+# 2.3) Text and editor commands
 alias e='vim'
 alias vv='gvim --remote-silent'
 export EDITOR='vim'
 export VISUAL='vim'
+
+# open terminal in current cwd
+alias h='alacritty --working-directory $PWD --title $PWD'
 #}}
 
 # {{ 2.4) grep options
