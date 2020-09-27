@@ -238,9 +238,9 @@ bar {
 set $screenshot_file "/home/$USER/Pictures/screenshot-$(date +%FT%H-%M-%S).png"
 set $screenshot_sound "/usr/share/sounds/freedesktop/stereo/camera-shutter.oga"
 bindsym Print exec --no-startup-id import -window root $screenshot_file; exec cvlc --play-and-exit $screenshot_sound
-bindsym Shift+F10 exec --no-startup-id maim --select $screenshot_file
+bindsym Shift+F10 exec --no-startup-id maim --select $screenshot_file; exec cvlc --play-and-exit $screenshot_sound
 # not working
-# bindsym --release $Mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) $screenshot_file
+bindsym --release $Mod+Shift+F10 exec --no-startup-id maim --window $(xdotool getactivewindow) $screenshot_file; exec cvlc --play-and-exit $screenshot_sound
 
 # Clipboard Screenshots
 # bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
