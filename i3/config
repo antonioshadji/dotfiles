@@ -142,9 +142,24 @@ set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
-set $ws8 "8:Gnucash"
-set $ws9 "9:Zoom"
+set $ws8 "8:Zoom"
+set $ws9 "9:Gnucash"
 set $ws10 "10:Slack"
+
+assign [instance="first-Alacritty"] $ws2
+exec alacritty --class first-Alacritty
+# https://feeding.cloud.geek.nz/posts/creating-a-modern-tiling-desktop-environment-using-i3/
+# make zoom floating always
+# for_window [class="zoom"] floating enable
+# mod+shift+space to toggle floating mode
+# make zoom load in workspace 8
+assign [class="zoom"] $ws8
+# always launch gnucash  in workspace 9
+assign [class="Gnucash"] $ws9
+# gnucash every popup is showing up as tiled
+# for_window [class="Gnucash"] floating enable
+# always launch slack in workspace 10
+assign [class="Slack"] $ws10
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -261,9 +276,7 @@ exec --no-startup-id uvcdynctrl --set='Zoom, Absolute' 130
 
 # https://www.reddit.com/r/i3wm/comments/42i5r8/default_startup_workspace/
 # assign [class="Google-chrome"] 1
-assign [instance="first-Alacritty"] $ws2
 exec google-chrome
-exec alacritty --class first-Alacritty --title "$PWD"
 # ↓ this does nothing
 # exec --no-startup-id alacritty $ws3
 # ↓ puts ALL instances on workspace
@@ -280,15 +293,3 @@ for_window [window_role="Preferences"]  floating enable
 for_window [window_type="dialog"]       floating enable
 for_window [window_type="menu"]         floating enable
 for_window [title="^About.*"]           floating enable
-# https://feeding.cloud.geek.nz/posts/creating-a-modern-tiling-desktop-environment-using-i3/
-# make zoom floating always
-# for_window [class="zoom"] floating enable
-# mod+shift+space to toggle floating mode
-# make zoom load in workspace 5
-assign [class="zoom"] $ws5
-# gnucash every popup is showing up as tiled
-for_window [class="Gnucash"] floating enable
-assign [class="Gnucash"] $ws4
-
-# always launch slack in workspace 10
-assign [class="Slack"] $ws10
