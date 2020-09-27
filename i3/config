@@ -44,6 +44,9 @@ set $right l
 
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
+# The right mouse button over a titlebar kills the window
+# left1 middle2 right3 scroll up4 scroll down5
+bindsym button3 kill
 
 # start a terminal TODO: choose between default i3 and default iterm2 key
 bindsym $mod+Return exec alacritty --title "$PWD"
