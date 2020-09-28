@@ -755,8 +755,8 @@ source $VIMRUNTIME/ftplugin/man.vim
 " dark: ^[]11;rgb:0000/2b2b/3636^G
 " light: ^[]11;rgb:fd/f6/e3^G
 colorscheme solarized
-set background=dark
-" set background=light
+" set background=dark
+set background=light
 " https://github.com/lifepillar/vim-solarized8/blob/master/colors/solarized8.vim
 " set terminal so it shows same colors as background
 hi Terminal ctermfg=fg ctermbg=NONE cterm=NONE
