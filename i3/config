@@ -293,3 +293,7 @@ for_window [window_role="Preferences"]  floating enable
 for_window [window_type="dialog"]       floating enable
 for_window [window_type="menu"]         floating enable
 for_window [title="^About.*"]           floating enable
+# gnucash windows
+for_window [title="Import Preview"]     floating enable
+# TODO: this next line not necessary after previous line??
+# for_window [title="Transaction Import Assistant"] floating enable
