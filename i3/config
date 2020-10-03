@@ -8,6 +8,7 @@
 # To get a config file with the same key positions, but for your current
 # layout, use the i3-config-wizard
 # Mod1=Alt
+# Mod4=Start
 set $mod Mod1
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -22,7 +23,7 @@ font pango:Ubuntu Mono Regular 12
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -54,7 +55,7 @@ bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
-# most applications by default respond to this?
+# most applications by default respond to this? GTK?
 # bindsym Ctrl+q kill
 
 # start dmenu (a program launcher)
@@ -93,18 +94,14 @@ bindsym $mod+Shift+Right move right
 # bindcode $mod+Shift+24 split h
 # requires pressing this key combo, before $mod+Enter to create terminal
 # or other combo to open different window
-bindsym $mod+v split h
-# TODO: how to chain this command after above?
-#; notify-send Orientation "Next window will be vertical"
-
+bindsym $mod+v split h, exec notify-send Orientation "Next window will be vertical" -t 1000
 # split in vertical orientation (horizontal in vim speak)
 # percent
 # bindcode $mod+Shift+14 split v
-bindsym $mod+z split v
+bindsym $mod+z split v, , exec notify-send Orientation "Next window will be horizontal" -t 1000
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-bindsym Mod4+f fullscreen exit
 
 # change container layout (stacked, tabbed, toggle split)
 # bindsym $mod+s layout stacking
@@ -266,7 +263,7 @@ bindsym --release $Mod+Shift+F10 exec --no-startup-id maim --window $(xdotool ge
 bindsym XF86HomePage exec google-chrome
 
 # set background with feh
-exec --no-startup-id feh --no-fehbg --bg-max '/home/antonios/Pictures/background-discipline_1920x1080.png'
+exec --no-startup-id feh --no-fehbg --bg-max '$HOME/Pictures/background-discipline_1920x1080.png'
 # start unclutter https://github.com/Airblader/unclutter-xfixes
 exec --no-startup-id unclutter --timeout 5 --fork
 # notification daemon
