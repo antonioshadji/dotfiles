@@ -136,3 +136,25 @@
       - libnotify-dev
   tags:
     - i3
+
+- name: sway dependencies
+  become: true
+  apt:
+    name:
+      - libjson-c-dev
+      - libjson-c-doc
+      - libevdev-dev
+      - libevdev-doc
+      - libevdev-tools
+      - libinput-dev
+  tags:
+    - sway
+
+- name: wlroots dependencies
+  become: true
+  apt:
+    name:
+      - libdrm-dev
+      - libgbm-dev
+  tags:
+    - sway

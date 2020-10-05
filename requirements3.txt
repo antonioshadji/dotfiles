@@ -1,3 +1,4 @@
+# vim: set ft=conf:
 # --user installs to ~/.local/
 # python3 requires python3-distutils installed for get-pip.py
 # wget https://bootstrap.pypa.io/get-pip.py && python3 get-pip.py
@@ -17,6 +18,8 @@ pytest
 yamllint
 # used in ipython_config.py
 pygments-style-solarized
+# build tools
+meson
 
 # cli tools
 awscli
