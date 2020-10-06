@@ -269,7 +269,7 @@ exec --no-startup-id unclutter --timeout 5 --fork
 # notification daemon
 exec --no-startup-id dunst
 # set webcam zoom level
-exec --no-startup-id uvcdynctrl --set='Zoom, Absolute' 130
+# exec --no-startup-id uvcdynctrl --set='Zoom, Absolute' 130
 
 # https://www.reddit.com/r/i3wm/comments/42i5r8/default_startup_workspace/
 # assign [class="Google-chrome"] 1
