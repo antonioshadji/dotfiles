@@ -197,29 +197,29 @@ if !has('nvim')
     set undofile
     set undolevels=1000
     " no undo files left in CWD
-    if !isdirectory(expand('~/.vim/undo/'))
+    if !isdirectory(expand('/tmp/vim/undo/'))
       " help mkdir for more information on use
-      call mkdir(expand('~/.vim/undo/'), 'p')
+      call mkdir(expand('/tmp/vim/undo/'), 'p')
     endif
-    set undodir=~/.vim/undo//
+    set undodir=/tmp/vim/undo//
   endif
 
   set backup                  "See :help backup
   " no backup files left in CWD
-  if !isdirectory(expand('~/.vim/backup/'))
-    call mkdir(expand('~/.vim/backup/'), 'p')
+  if !isdirectory(expand('/tmp/vim/backup/'))
+    call mkdir(expand('/tmp/vim/backup/'), 'p')
   endif
-  set backupdir=~/.vim/backup//
+  set backupdir=/tmp/vim/backup//
   " no swap files left in CWD
-  if !isdirectory(expand('~/.vim/swap/'))
-    call mkdir(expand('~/.vim/swap/'), 'p')
+  if !isdirectory(expand('/tmp/vim/swap/'))
+    call mkdir(expand('/tmp/vim/swap/'), 'p')
   endif
-  set directory=~/.vim/swap//
+  set directory=/tmp/vim/swap//
 
   " https://vimhelp.appspot.com/usr_21.txt.html#21.3
   " move viminfo file to .vim directory, other settings default and required
   " this conflicts with nvim, disable in neovim
-  set viminfo='1000,f1,<500,n~/.vim/viminfo
+  set viminfo='1000,f1,<500,n/tmp/vim/viminfo
 endif
 
 "}
@@ -457,7 +457,7 @@ if !exists('g:autocommands_loaded')
   " html template to start with {
   augroup HTML
     au!
-    au BufNewFile *.html 0r ~/.vim/.skeleton.html
+    au BufNewFile *.html 0r ~/.vim/template/bootstrap.html
   augroup END
   " }
 endif
