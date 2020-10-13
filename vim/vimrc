@@ -383,8 +383,8 @@ if !exists('g:autocommands_loaded')
   augroup Shebang
     au!
     autocmd BufNewFile *.sh 0put =\"#!/usr/bin/env bash\<nl># -*- coding: utf-8 -*-\<nl>\"|$
-    autocmd BufNewFile *.py 0put =\"#!/usr/bin/env python3\<nl># -*- coding: utf-8 -*-\<nl>\"|$
-    autocmd BufNewFile *.c 0put =\"#include <stdio.h>\<nl>\<nl>int main()\<nl>{\<nl>}\<nl>\"|$
+    "autocmd BufNewFile *.py 0put =\"#!/usr/bin/env python3\<nl># -*- coding: utf-8 -*-\<nl>\"|$
+    "autocmd BufNewFile *.c 0put =\"#include <stdio.h>\<nl>\<nl>int main()\<nl>{\<nl>}\<nl>\"|$
   augroup END
   " }
 
