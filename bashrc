@@ -320,6 +320,9 @@ fi
 # [[ -d /opt/litecoin ]] && export PATH=$PATH:/opt/litecoin/bin
 # rocm tools
 [[ -d /opt/rocm ]] && export PATH=$PATH:/opt/rocm/bin
+
+# dart https://dart.dev/get-dart
+[[ -d /usr/lib/dart ]] && export PATH="$PATH:/usr/lib/dart/bin"
 #}}
 
 
