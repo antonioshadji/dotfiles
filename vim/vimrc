@@ -294,7 +294,8 @@ if has('nvim')
 endif
 " http://vimcasts.org/episodes/how-to-fold/
 " use space bar in normal mode to toggle folds
-nnoremap <Space> za
+" TODO: is there a better use for space bar?
+" nnoremap <Space> za
 "
 " This unsets the 'last search pattern' register by hitting return
 " http://stackoverflow.com/a/662914/2472798
@@ -327,8 +328,11 @@ inoremap <C-U> <C-G>u<C-U>
 " https://github.com/vim/vim/issues/4738#issuecomment-521506447
 " https://github.com/vim/vim/issues/4738#issuecomment-565330300
 let g:netrw_nogx=1
+" TODO: this only works on linux!!
 nmap gx yiW:!xdg-open <cWORD><CR> <C-r>" & <CR><CR>
 " nnoremap <Leader>g :YcmCompleter GoTo<CR>
+"
+nmap <Leader>e :ALENextWrap<CR>
 "} end keyboard shortcuts
 
 " Auto Commands: {
@@ -582,12 +586,13 @@ let g:ale_linters = {
 let g:ale_fixers = {
   \ 'python': ['isort', 'black'],
   \ 'c': ['clang-format'],
-  \ 'javascript': ['prettier_eslint'],
+  \ 'javascript': ['prettier'],
   \ 'yaml': ['prettier'],
   \ 'json': ['jq'],
   \ '*': ['trim_whitespace','remove_trailing_lines']
   \}
 let g:ale_fix_on_save = 1
+
 let g:ale_python_isort_options = '--use-parentheses'
 
 let g:ale_echo_msg_format = '%linter%[%code%]: %s'
