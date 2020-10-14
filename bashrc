@@ -481,6 +481,18 @@ if [[ $(uname -s) == 'Darwin' ]]; then
     # . "$DOCKER_ROOT/docker-machine.bash-completion"
   fi
 
+  test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+  [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+  # MacPorts Installer addition on 2019-08-11_at_09:59:35: adding an appropriate PATH variable for use with MacPorts.
+  export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+  # Finished adapting your PATH environment variable for use with MacPorts.
+
+  # Setting PATH for Python 3.8
+  PATH="/Library/Frameworks/Python.framework/Versions/3.8/bin:${PATH}"
+  PATH="${PATH}:/Applications/CMake.app/Contents/bin"
+  export PATH
+
 fi
 #}}
 
@@ -671,7 +683,7 @@ if [[ ${HOSTNAME} =~ comcast.net$|HQSML ]]; then
   export NODE_PATH=${HOME}/.npm/lib/node_modules:${NODE_PATH}
   export PATH=${HOME}/.npm/bin:$PATH
   export VAULT_ADDR=https://vault.apa.comcast.net
-  export AWS_REGION=us-east-1
+  export AWS_DEFAULT_REGION=us-east-1
   if command -v fly &> /dev/null; then
     source <(fly completion --shell bash)
   fi
