@@ -158,3 +158,14 @@
       - libgbm-dev
   tags:
     - sway
+
+- name: Sigil dependencies
+  become: true
+  tags: sigil
+  apt:
+    name:
+      - qtbase5-dev
+      - qttools5-dev
+      - qttools5-dev-tools
+      - qtwebengine5-dev
+      - python3-dev
