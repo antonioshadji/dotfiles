@@ -290,7 +290,7 @@ fi
 
 # gem install --user-install uses this location
 # Mac WARNING:  You don't have /Users/ahadji842/.gem/ruby/2.6.0/bin in your PATH,
-gemloc=( "$HOME/.gem/ruby/*/bin" )
+gemloc=("$HOME"/.gem/ruby/*/bin)
 [[ -d ${gemloc[0]} ]] && export PATH=${gemloc[0]}:$PATH
 unset gemloc
 
@@ -577,17 +577,17 @@ fi
 # specifically for pip command, does not offer completion for pip2 or pip3
 [[ $(command -v pip) ]] && eval "$(pip completion --bash)"
 
-# moved to /etc/bash_completion.d/ via cron job {{
-# https://docs.npmjs.com/cli/completion
+# https://docs.npmjs.com/cli/completion {{
+# moved to /etc/bash_completion.d/ via cron job
 # this was not working (2017-02-13) $(npm completion) > /etc/bash_completion.d/
-# setup in sudo crontab to write to /etc/bash_completion.d/
-# [ $(command -v npm) ] && eval "$(npm completion)"
+# TODO: setup in sudo crontab to write to /etc/bash_completion.d/
+[[ $(command -v npm) ]] && source <(npm completion)
+# }}
 
 
-# enable completion for pandoc
-# this was not working without "" surrounding $()
-# setup in sudo crontab to write to /etc/bash_completion.d/
-# [ $(command -v pandoc) ] && eval "$(pandoc --bash-completion)"
+# enable completion for pandoc {{
+# TODO: setup in sudo crontab to write to /etc/bash_completion.d/
+[[ $(command -v pandoc) ]] && eval "$(pandoc --bash-completion)"
 # }}
 #}}
 
