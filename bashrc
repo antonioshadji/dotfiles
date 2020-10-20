@@ -575,19 +575,22 @@ fi
 
 # https://pip.pypa.io/en/stable/user_guide/#command-completion
 # specifically for pip command, does not offer completion for pip2 or pip3
-[[ $(command -v pip) ]] && eval "$(pip completion --bash)"
+# installed in .local/share/bash-completion/completions/ 2020-10-19 19:20:18
+# [[ $(command -v pip) ]] && eval "$(pip completion --bash)"
 
 # https://docs.npmjs.com/cli/completion {{
 # moved to /etc/bash_completion.d/ via cron job
 # this was not working (2017-02-13) $(npm completion) > /etc/bash_completion.d/
 # TODO: setup in sudo crontab to write to /etc/bash_completion.d/
-[[ $(command -v npm) ]] && source <(npm completion)
+# installed in .local/share/bash-completion/completions/ 2020-10-19 19:20:18
+# [[ $(command -v npm) ]] && source <(npm completion)
 # }}
 
 
 # enable completion for pandoc {{
 # TODO: setup in sudo crontab to write to /etc/bash_completion.d/
-[[ $(command -v pandoc) ]] && eval "$(pandoc --bash-completion)"
+# installed in .local/share/bash-completion/completions/ 2020-10-19 19:20:18
+# [[ $(command -v pandoc) ]] && eval "$(pandoc --bash-completion)"
 # }}
 #}}
 
@@ -667,6 +670,8 @@ Extract () {
 
 # does a bashrc.local exist?
 [[ -r $HOME/.bashrc.local ]] && source "$HOME/.bashrc.local"
+# not frequently used, source when needed
+# [[ -r $HOME/.bashrc.antlr ]] && source "$HOME/.bashrc.antlr"
 
 # display that reboot is required after automatic update
 if [ -r /var/run/reboot-required ]; then
