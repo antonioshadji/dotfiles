@@ -653,9 +653,9 @@ key_bindings:
   #- { key: L,         mods: Control,             action: ClearLogNotice }
   #- { key: L,         mods: Control, mode: ~Vi,  chars: "\x0c"          }
   - { key: PageUp, mods: Shift, mode: ~Alt, action: ScrollPageUp }
-  - { key: PageUp, action: ScrollPageUp }
+  #- { key: PageUp, action: ScrollPageUp }
   - { key: PageDown, mods: Shift, mode: ~Alt, action: ScrollPageDown }
-  - { key: PageDown, action: ScrollPageDown }
+  #- { key: PageDown, action: ScrollPageDown }
   #- { key: Home, mods: Shift, mode: ~Alt, action: ScrollToTop }
   #- { key: Home, action: ScrollToTop }
   #- { key: End, mods: Shift, mode: ~Alt, action: ScrollToBottom }
