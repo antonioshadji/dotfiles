@@ -631,8 +631,6 @@ nmap <leader>gu :diffget //2<CR>
 " else
   " https://github.com/vim-airline/vim-airline {
   if v:version >= 800
-    packadd! vim-airline
-    packadd! vim-airline-themes
     let g:airline_theme='powerline'
     " Fancy arrow symbols, requires a patched font
     let g:airline_powerline_fonts = 1

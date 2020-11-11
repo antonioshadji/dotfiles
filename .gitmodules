@@ -79,3 +79,6 @@
 [submodule "vim/pack/plugins/start/gv.vim"]
 	path = vim/pack/plugins/start/gv.vim
 	url = https://github.com/junegunn/gv.vim.git
+[submodule "vim/pack/plugins/start/vim-airline"]
+	path = vim/pack/plugins/start/vim-airline
+	url = https://github.com/vim-airline/vim-airline.git
