@@ -30,7 +30,6 @@ sleep 3s
   --with-compiledby="Antonios Hadjigeorgalis" \
   --with-lua-prefix="/usr/local" \
   --with-luajit \
-  --with-x
 # vim9 is changing the focus from embedded languages to communicating with external programs
 # https://github.com/brammool/vim9/blob/master/README.md
 # with manually installed racket in unix mode from racket.org
