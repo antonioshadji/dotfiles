@@ -253,7 +253,7 @@ exec --no-startup-id unclutter --timeout 5 --fork
 # notification daemon
 exec --no-startup-id dunst
 # set webcam zoom level
-exec --no-startup-id uvcdynctrl --set='Zoom, Absolute' 130
+exec --no-startup-id uvcdynctrl --set='Zoom, Absolute' 120
 # start dropbox daemon
 exec --no-startup-id dropbox start
 # https://www.reddit.com/r/i3wm/comments/42i5r8/default_startup_workspace/
