@@ -12,8 +12,8 @@
 
 " Normal mode                                    " fg             & bg
 let s:N1 = [ '#005f00' , '#afd700' , 22  , 148 ] " darkestgreen   & brightgreen
-let s:N2 = [ '#9e9e9e' , '#303030' , 250 , 240 ] " gray8          & gray2
-let s:N3 = [ '#ffffff' , '#121212' , 250 , 236 ] " white          & gray4
+let s:N2 = [ '#9e9e9e' , '#303030' , 250 , 240 ] " TODO: changed,update gray8          & gray2
+let s:N3 = [ '#ffffff' , '#121212' , 250 , 236 ] " TODO: changed,update white          & gray4
 
 " Insert mode                                    " fg             & bg
 let s:I1 = [ '#005f5f' , '#ffffff' , 23  , 231 ] " darkestcyan    & white
