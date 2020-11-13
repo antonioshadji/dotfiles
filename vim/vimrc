@@ -646,7 +646,7 @@ else
     " Limit wordcount to where it makes sense
     let g:airline#extensions#wordcount#filetypes = '\vhelp|markdown|pandoc|rst|org'
     " Fancy stuff in tabline as well
-    let g:airline#extensions#tabline#enabled = 1
+    " let g:airline#extensions#tabline#enabled = 1
   endif
   " }
 endif
