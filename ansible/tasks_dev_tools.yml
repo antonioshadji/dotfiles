@@ -177,3 +177,16 @@
     name:
       - intltool
       - gtk-doc-tools
+      - libgirepository1.0-dev
+      - libbabl-dev
+      - libgegl-dev
+      - gegl
+      - libgexiv2-dev
+      - libappstream-glib-dev
+      - libmypaint-dev
+      - mypaint-brushes
+      - librsvg2-dev
+      - libpoppler-glib-dev
+      - liblcms2-dev
+      - libjson-glib-dev
+      - valac
