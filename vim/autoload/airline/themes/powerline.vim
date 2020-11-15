@@ -10,10 +10,13 @@
 " * Visual mode only changes the mode section. Otherwise
 "   it appears the same as normal mode
 
+" color names for all 256 colors
+" https://plumbum.readthedocs.io/en/latest/colors.html#color-support
 " Normal mode                                    " fg             & bg
-let s:N1 = [ '#005f00' , '#afd700' , 22  , 148 ] " darkestgreen   & brightgreen
-let s:N2 = [ '#9e9e9e' , '#303030' , 250 , 240 ] " TODO: changed,update gray8          & gray2
-let s:N3 = [ '#ffffff' , '#121212' , 250 , 236 ] " TODO: changed,update white          & gray4
+let s:N1 = [ '#005f00' , '#afd700' , 22  , 148 ] " darkgreen      & yellow3
+let s:N2 = [ '#bcbcbc' , '#585858' , 250 , 240 ] " gray74         & gray35
+let s:N3 = [ '#bcbcbc' , '#303030' , 250 , 236 ] " gray74         & gray19
+let s:N4 = [ '#000000' , '#d0d0d0' , 236 , 252 ] " z section color
 
 " Insert mode                                    " fg             & bg
 let s:I1 = [ '#005f5f' , '#ffffff' , 23  , 231 ] " darkestcyan    & white
@@ -29,7 +32,7 @@ let s:RE = [ '#ffffff' , '#d70000' , 231 , 160 ] " white          & brightred
 let g:airline#themes#powerline#palette = {}
 
 let g:airline#themes#powerline#palette.normal = airline#themes#generate_color_map(s:N1, s:N2, s:N3)
-let g:airline#themes#powerline#palette.normal.airline_z = [ '#000000' , '#d0d0d0' , 236 , 252 ]
+let g:airline#themes#powerline#palette.normal.airline_z = s:N4
 
 let g:airline#themes#powerline#palette.insert = airline#themes#generate_color_map(s:I1, s:I2, s:I3)
 let g:airline#themes#powerline#palette.insert_replace = {

@@ -166,8 +166,8 @@ if has('gui_running')
   " Set my preferred font with comma separated list(spaces must be escaped)
   if trim(system('uname')) ==# 'Linux'
     " linux
-    set guifont=Ubuntu\ Mono\ derivative\ Powerline\ Regular\ 14
-    set printfont=Ubuntu\ Mono\ derivative\ Powerline\ Regular\ 14
+    set guifont=Ubuntu\ Mono\ Regular\ 14
+    set printfont=Ubuntu\ Mono\ Regular\ 14
   else
     " mac osx guifont
     set guifont=UbuntuMonoDerivativePowerline-Regular:h18
@@ -767,7 +767,9 @@ set background=dark
 "set background=light
 " https://github.com/lifepillar/vim-solarized8/blob/master/colors/solarized8.vim
 " set terminal so it shows same colors as background
-hi Terminal ctermfg=fg ctermbg=NONE cterm=NONE
+if !has('gui')
+  hi Terminal ctermfg=fg ctermbg=NONE cterm=NONE
+endif
 
 "if len(matchstr(v:termrbgresp, '00/2b/36'))
 "  echom 'true'
