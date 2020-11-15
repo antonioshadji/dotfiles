@@ -169,3 +169,11 @@
       - qttools5-dev-tools
       - qtwebengine5-dev
       - python3-dev
+
+- name: Gimp dependencies
+  become: true
+  tags: gimp
+  apt:
+    name:
+      - intltool
+      - gtk-doc-tools
