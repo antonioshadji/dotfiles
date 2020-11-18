@@ -603,7 +603,7 @@ let g:all_c_clang_options = '-Wall -std=c11'
 let g:ale_c_clangd_options = '-Wall -std=c11'
 
 " change format options.  I want to train myself to prefer Google style code
-let g:ale_c_clangformat_options = "-style='{BasedOnStyle: Google}'"
+let g:ale_c_clangformat_options = '-style="{BasedOnStyle: Google}"'
 " Set this. Airline will handle the rest.
 let g:airline#extensions#ale#enabled = 1
 " }
