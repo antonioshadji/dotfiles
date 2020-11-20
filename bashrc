@@ -488,8 +488,6 @@ if [[ $(uname -s) == 'Darwin' ]]; then
   export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
   # Finished adapting your PATH environment variable for use with MacPorts.
 
-  # Setting PATH for Python 3.8
-  PATH="/Library/Frameworks/Python.framework/Versions/3.8/bin:${PATH}"
   PATH="${PATH}:/Applications/CMake.app/Contents/bin"
   export PATH
 
