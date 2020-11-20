@@ -679,6 +679,10 @@ let g:jedi#smart_auto_mappings = 1
 let g:jedi#show_call_signatures_delay = 200
 let g:jedi#use_splits_not_buffers = 'right'
 let g:jedi#goto_command = 'gd'
+if trim(system('uname')) == 'Darwin'
+  let g:python3_host_prog = '/usr/local/bin/python3'
+endif
+
 " }
 
 " git@github.com:nathanaelkane/vim-indent-guides.git {
