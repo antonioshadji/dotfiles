@@ -489,6 +489,7 @@ if [[ $(uname -s) == 'Darwin' ]]; then
   # Finished adapting your PATH environment variable for use with MacPorts.
 
   PATH="${PATH}:/Applications/CMake.app/Contents/bin"
+  PATH="${PATH}:/Library/Frameworks/Python.framework/Versions/Current/bin/"
   export PATH
 
 fi
