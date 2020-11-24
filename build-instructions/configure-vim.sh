@@ -20,9 +20,11 @@ sleep 3s
   --disable-nls \
   --disable-rightleft  \
   --enable-autoservername \
+  --enable-xim \
+  --enable-fontset \
+  --enable-gui=gtk3 \
   --enable-cscope \
   --enable-fail-if-missing \
-  --enable-fontset \
   --enable-luainterp=dynamic \
   --enable-multibyte \
   --enable-python3interp=dynamic \
@@ -211,3 +213,5 @@ vim --version
 # it to find libraries and programs with nonstandard names/locations.
 #
 # Report bugs to the package provider.
+# 2020-11-22 17:14:53
+# 8.2.2033, prior version 8.2.1976
