@@ -1,9 +1,7 @@
 " Theme to mimic the default colorscheme of powerline
-" Not 100% the same so it's powerline... .
 "
 " Differences from default powerline:
 " * Paste indicator isn't colored different
-" * Far right hand section matches the color of the mode indicator
 "
 " Differences from other airline themes:
 " * No color differences when you're in a modified buffer
@@ -48,8 +46,14 @@ let g:airline#themes#powerline#palette.replace.airline_a = [ s:RE[0] , s:RE[1] ,
 let g:airline#themes#powerline#palette.replace.airline_z = g:airline#themes#powerline#palette.replace.airline_a
 
 
-let s:IA = [ s:N2[0] , s:N3[1] , s:N2[2] , s:N3[3] , '' ]
+let s:IA = [ '#585858', '#303030' , 240 , 236 ]
 let g:airline#themes#powerline#palette.inactive = airline#themes#generate_color_map(s:IA, s:IA, s:IA)
+" below did NOT change a section  !! there is no section_a in inactive mode
+" let g:airline#themes#powerline#palette.inactive = {
+"     \ 'airline_a': ['#121212' , '#626262', 233, 241],
+"     \ 'airline_z': ['#121212' , '#626262', 233, 241] }
+" below changed z section
+" let g:airline#themes#powerline#palette.inactive.airline_z = ['#121212' , '#626262', 233, 241]
 
 
 " https://github.com/powerline/powerline/blob/master/powerline/colorscheme.py
