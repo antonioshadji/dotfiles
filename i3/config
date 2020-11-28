@@ -64,11 +64,11 @@ bindsym $mod+Shift+Right move right
 # bindcode $mod+Shift+24 split h
 # requires pressing this key combo, before $mod+Enter to create terminal
 # or other combo to open different window
-bindsym $mod+v split h, exec --no-startup-id notify-send Orientation "Next window will be vertical" -t 1000
+bindsym $mod+v split h, exec --no-startup-id notify-send "Orientation" "Next window will be vertical" -t 1000
 # split in vertical orientation (horizontal in vim speak)
 # percent
 # bindcode $mod+Shift+14 split v
-bindsym $mod+z split v, exec --no-startup-id notify-send Orientation "Next window will be horizontal" -t 1000
+bindsym $mod+z split v, exec --no-startup-id notify-send "Orientation" "Next window will be horizontal" -t 1000
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -269,9 +269,6 @@ exec google-chrome
 assign [instance="first-Alacritty"] $ws2
 exec alacritty --class first-Alacritty
 # https://feeding.cloud.geek.nz/posts/creating-a-modern-tiling-desktop-environment-using-i3/
-# make zoom floating always
-# for_window [class="zoom"] floating enable
-# mod+shift+space to toggle floating mode
 # make zoom load in workspace 8
 assign [class="zoom"] $ws8
 # always launch gnucash  in workspace 9
@@ -296,6 +293,9 @@ for_window [title="Import Preview"]     floating enable
 # for_window [title="Transaction Import Assistant"] floating enable
 
 # disable power management turning off monitor
-# TODO: if this doesn't stop black screen, try xset s off (turn off screensaver)
+# xset s off only tested after installing ppa from oibaf for gpu driver
 exec --no-startup-id xset -dpms
 exec --no-startup-id xset s off
+
+
+# mod+shift+space to toggle floating mode
