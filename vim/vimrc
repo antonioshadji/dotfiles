@@ -442,6 +442,8 @@ if !exists('g:autocommands_loaded')
     au!
     autocmd FileType python set foldlevel=99
   augroup END
+
+  nnoremap <buffer> H :<C-u>execute "!pydoc3 " . expand("<cword>")<CR>
   " }
 
   " Java Configuration {
