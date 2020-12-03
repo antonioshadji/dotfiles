@@ -835,3 +835,7 @@ endif
 " vv      vv     vv
 " ur  hh  uh  hh ul
 " arrows <- ← -> →  !- ↑ -v ↓
+" open daily journal file on Mac
+if trim(system('uname')) ==# 'Darwin'
+  :command! Daily :execute 'edit ' . $HOME . '/Dropbox\ (Leros\ Capital\ LLC)/Comcast/obsidian/daily/' . strftime("%F-%A") . '.md'
+endif
