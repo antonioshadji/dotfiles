@@ -39,7 +39,7 @@ let g:airline#themes#powerline#palette.insert_replace = {
 
 let g:airline#themes#powerline#palette.visual = {
       \ 'airline_a': [ s:V1[0]   , s:V1[1]   , s:V1[2]   , s:V1[3]   , ''     ],
-      \ 'airline_z': [ s:V1[0]   , s:V1[1]   , s:V1[2]   , s:V1[3]   , ''     ] }
+      \ 'airline_z': s:N4 }
 
 let g:airline#themes#powerline#palette.replace = copy(airline#themes#powerline#palette.normal)
 let g:airline#themes#powerline#palette.replace.airline_a = [ s:RE[0] , s:RE[1] , s:RE[2] , s:RE[3] , '' ]
