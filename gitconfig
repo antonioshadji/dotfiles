@@ -10,7 +10,6 @@
 [core]
   autocrlf = input
 [status]
-  branch = true
   submodulesummary = true
   short = true
 [alias]
@@ -23,7 +22,7 @@
   g = grep --break --heading --line-number
   l = for-each-ref --sort='-authordate:iso8601' --format=' %(authordate:relative)%09%(refname:short)' refs/heads
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-  s = status -uno
+  s = status
 # suggested by numpy https://docs.scipy.org/doc/numpy/dev/gitwash/configure_git.html#configure-git
 [merge]
   log = true
@@ -35,3 +34,5 @@
   decorate = full
 [pull]
   rebase = true
+[init]
+  defaultBranch = main
