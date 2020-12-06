@@ -74,7 +74,7 @@ bindsym $mod+z split v, exec --no-startup-id notify-send "Orientation" "Next win
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-# bindsym $mod+s layout stacking
+bindsym $mod+g layout stacking
 # bindsym $mod+w layout tabbed
 bindsym $mod+b layout tabbed
 # bindsym $mod+e layout toggle split
@@ -229,11 +229,11 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym $mod+Return exec alacritty
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+# bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -293,9 +293,16 @@ for_window [title="Import Preview"]     floating enable
 # for_window [title="Transaction Import Assistant"] floating enable
 
 # disable power management turning off monitor
-# xset s off only tested after installing ppa from oibaf for gpu driver
 exec --no-startup-id xset -dpms
-exec --no-startup-id xset s off
+# no black screen issues with this unset, and oibaf driver
+# this leaves monitor on 100% of time
+# exec --no-startup-id xset s off
 
 
-# mod+shift+space to toggle floating mode
+# mod+shift+space to toggle floating/tiling mode
+# mod+b tabbed
+# mod+g stacking
+# mod+f fullscreen
+# mod+s swap split vertical/horizontal
+#
+# ctrl-alt-FN[1-7] switches to tty[1-7]
