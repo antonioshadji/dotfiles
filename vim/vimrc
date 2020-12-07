@@ -683,6 +683,8 @@ let g:jedi#use_splits_not_buffers = 'right'
 let g:jedi#goto_command = 'gd'
 if trim(system('uname')) ==# 'Darwin'
   let g:python3_host_prog = '/usr/local/bin/python3'
+else
+  let g:python3_host_prog = '/usr/bin/python3'
 endif
 
 " }
