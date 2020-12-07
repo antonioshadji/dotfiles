@@ -635,6 +635,8 @@ if !has('nvim') && $POWERLINE
 else
   " https://github.com/vim-airline/vim-airline {
   if v:version >= 800
+    " do not show error/warning colors when no errors/warnings
+    let g:airline_skip_empty_sections = 1
     " overide default section z https://github.com/vim-airline/vim-airline/issues/272
     let g:airline_section_z = '%p%%'. " \ue0a1". '%l:%v'
     " choose custom theme in .vim/autoload/airline/themes/
