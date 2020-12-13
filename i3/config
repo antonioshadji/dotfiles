@@ -277,7 +277,7 @@ assign [class="Gnucash"] $ws9
 # for_window [class="Gnucash"] floating enable
 # always launch slack in workspace 10
 assign [class="Slack"] $ws10
-
+exec slack
 
 # https://www.reddit.com/r/i3wm/comments/apvta8/have_popup_windows_floated/
 for_window [window_role="pop-up"]       floating enable
