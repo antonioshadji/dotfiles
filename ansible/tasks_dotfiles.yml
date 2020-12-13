@@ -30,6 +30,7 @@
     - "tern-project"
     - "tmux.conf"
     - "vim"
+    - "xinitrc"
     # - 'dircolors'
     #    not needed no current ubuntu setup
 
