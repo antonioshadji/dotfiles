@@ -247,7 +247,7 @@ bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 exec --no-startup-id nm-applet
 
 # set background with feh
-exec --no-startup-id feh --no-fehbg --bg-max '$HOME/Pictures/background-discipline_1920x1080.png'
+exec --no-startup-id feh --no-fehbg --bg-max "$HOME/Pictures/background-discipline_1920x1080.png"
 # start unclutter https://github.com/Airblader/unclutter-xfixes
 exec --no-startup-id unclutter --timeout 5 --fork
 # notification daemon
