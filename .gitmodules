@@ -85,3 +85,6 @@
 [submodule "fzf"]
 	path = fzf
 	url = https://github.com/junegunn/fzf.git
+[submodule "vim/pack/plugins/start/notational-fzf-vim"]
+	path = vim/pack/plugins/start/notational-fzf-vim
+	url = https://github.com/alok/notational-fzf-vim.git

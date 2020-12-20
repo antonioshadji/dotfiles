@@ -761,7 +761,12 @@ let g:indent_guides_tab_guides = 0
 " Man {
 source $VIMRUNTIME/ftplugin/man.vim
 " }
-"
+
+" https://github.com/alok/notational-fzf-vim {
+let g:nv_search_paths = ['~/Documents/daily/', './docs' , './notes.md']
+"}
+
+
 " Plugins }
 
 " colors {
