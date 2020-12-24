@@ -150,8 +150,8 @@ set diffopt+=vertical,iwhite
 
 " Formatting {
 set nowrap              " do not wrap long lines, show indicator instead
-set shiftwidth=2        " number of spaces to use for autoindent
 set expandtab           " expands tabs to spaces
+set shiftwidth=2        " number of spaces to use for autoindent
 set tabstop=2           " actual tabs occupy # spaces
 set softtabstop=2       " insert mode tab and backspace
 set splitright          " puts new vsplit windows to the right
@@ -765,7 +765,6 @@ source $VIMRUNTIME/ftplugin/man.vim
 " https://github.com/alok/notational-fzf-vim {
 let g:nv_search_paths = ['~/Documents/daily/', './docs' , './notes.md']
 "}
-
 
 " Plugins }
 
