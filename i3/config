@@ -205,7 +205,7 @@ bar {
 set $screenshot_file "/home/$USER/Pictures/screenshot-$(date +%FT%H-%M-%S).png"
 set $screenshot_sound "/usr/share/sounds/freedesktop/stereo/camera-shutter.oga"
 bindsym Print exec --no-startup-id import -window root $screenshot_file; exec --no-startup-id cvlc --play-and-exit $screenshot_sound
-bindsym Shift+F10 exec --no-startup-id maim --select $screenshot_file; exec --no-startup-id cvlc --play-and-exit $screenshot_sound
+bindsym Shift+F10 exec --no-startup-id maim --select $screenshot_file && exec --no-startup-id cvlc --play-and-exit $screenshot_sound
 # not working
 bindsym --release $Mod+Shift+F10 exec --no-startup-id maim --window $(xdotool getactivewindow) $screenshot_file; exec --no-startup-id cvlc --play-and-exit $screenshot_sound
 
@@ -229,11 +229,11 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym $mod+Return exec alacritty
 
 # start dmenu (a program launcher)
-# bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -248,12 +248,12 @@ exec --no-startup-id nm-applet
 
 # set background with feh
 exec --no-startup-id feh --no-fehbg --bg-max "$HOME/Pictures/background-discipline_1920x1080.png"
+# set webcam zoom level
+exec --no-startup-id uvcdynctrl --set='Zoom, Absolute' 130
 # start unclutter https://github.com/Airblader/unclutter-xfixes
 exec --no-startup-id unclutter --timeout 5 --fork
 # notification daemon
 exec --no-startup-id dunst
-# set webcam zoom level
-exec --no-startup-id uvcdynctrl --set='Zoom, Absolute' 130
 # start dropbox daemon
 exec --no-startup-id dropbox start
 # https://www.reddit.com/r/i3wm/comments/42i5r8/default_startup_workspace/
@@ -292,11 +292,18 @@ for_window [title="Import Preview"]     floating enable
 # TODO: this next line not necessary after previous line??
 # for_window [title="Transaction Import Assistant"] floating enable
 
+# TODO: should these be in xsession? or xinitrc
+# this leaves monitor on 100% of time
+exec --no-startup-id xset s off
 # disable power management turning off monitor
 exec --no-startup-id xset -dpms
 # no black screen issues with this unset, and oibaf driver
-# this leaves monitor on 100% of time
-# exec --no-startup-id xset s off
+# 2020-12-25 15:35:27 screen blacking and not waking with oibaf driver
+# 2020-12-28 16:19:39 screen freezing / locking with oibaf driver
+# 2020-12-28:
+# -  switched back to latest amd driver
+# -  crashed machine when run with startx
+# -  re-enabled gdm
 
 
 # mod+shift+space to toggle floating/tiling mode

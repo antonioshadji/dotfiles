@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
-# from /etc/X11/xinit/xinitrc
-# . /etc/X11/Xsession
+# this leaves monitor on 100% of time
+xset s off
+# disable power management turning off monitor
+xset -dpms
 
 # exec i3
-i3
-
-
+# exec i3-with-shmlog
+i3 -V -d all >> ~/.i3/logfile
 # vim: set ft=sh:
