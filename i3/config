@@ -304,7 +304,7 @@ exec --no-startup-id xset -dpms
 # -  switched back to latest amd driver
 # -  crashed machine when run with startx
 # -  re-enabled gdm
-
+# 2021-01-02 re-enabled xset commands here, they did not seem to work in .xinitrc
 
 # mod+shift+space to toggle floating/tiling mode
 # mod+b tabbed
