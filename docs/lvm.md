@@ -143,3 +143,9 @@ vgimport vg2
 vgchange -a y vg2
 mount disk as shown above
 sudo blkid shows uuid of disk
+
+
+## Remove disk
+sudo vgremove vg_name
+sudo pvremove /dev/sdd
+
