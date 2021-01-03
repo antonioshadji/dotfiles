@@ -656,18 +656,18 @@ else
 endif
 " }
 
-" " git@github.com:ervandew/supertab.git {
-" let g:SuperTabDefaultCompletionType = 'context'
+" git@github.com:ervandew/supertab.git {
+" :help supertab-completioncontexts
+let g:SuperTabDefaultCompletionType = 'context'
 " " let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-" let g:SuperTabContextDefaultCompletionType = '<c-x><c-o>'
+let g:SuperTabContextDefaultCompletionType = '<c-x><c-o>'
 " "<c-n>" " default value <c-p>
-"
 " let g:SuperTabLongestEnhanced = 1 "(default value: 0)
 " " When enabled and 'longest' is in your |completeopt| setting, supertab will
 " " provide an enhanced longest match support where typing one or more letters and
 " " hitting tab again while in a completion mode will complete the longest common
 " " match using the new text in the buffer.
-"
+
 " let g:SuperTabLongestHighlight = 1 "(default value: 0)
 " " Sets whether or not to pre-highlight the first match when completeopt has the
 " " popup menu enabled and the 'longest' option as well. When enabled, <tab> will
