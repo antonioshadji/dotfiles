@@ -440,10 +440,12 @@ if !exists('g:autocommands_loaded')
   " python configuration {
   augroup PYTHON
     au!
-    autocmd FileType python set foldlevel=99
+    autocmd FileType python set foldlevel=0
   augroup END
 
   nnoremap <buffer> H :<C-u>execute "!pydoc3 " . expand("<cword>")<CR>
+  " ]] and [[ will stop at sections markers
+  set sections="def class"
   " }
 
   " Java Configuration {
@@ -591,7 +593,7 @@ let g:ale_fixers = {
   \ 'c': ['clang-format'],
   \ 'cpp': ['clang-format'],
   \ 'javascript': ['prettier'],
-  \ 'yaml': ['prettier'],
+  \ 'yaml': ['yamlfix'],
   \ 'json': ['jq'],
   \ '*': ['trim_whitespace','remove_trailing_lines']
   \}
