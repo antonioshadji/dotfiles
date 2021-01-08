@@ -12,10 +12,10 @@ flake8
 ipython
 isort
 jedi
-powerline-status
 pynvim
 pytest
 yamllint
+yamlfix
 # used in ipython_config.py
 pygments-style-solarized
 # build tools
