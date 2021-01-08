@@ -35,18 +35,20 @@ ethernet _first_ {
 #         format = "%status %percentage %remaining"
 # }
 
-disk "/" {
-  format = "DiskFree(%avail)"
-}
-
 load {
   format = "CPU: %1min"
 }
 
+disk "/" {
+  format = "HD: %avail"
+  low_threshold = "2"
+}
+
 memory {
-  format = "MEM: %used / %available"
-  threshold_degraded = "2G"
-  format_degraded = "MEMORY < %available"
+  format = "MEM: %free"
+  threshold_degraded = "10%"
+  threshold_critical = "5%"
+  # format_degraded = "MEM: %free"
 }
 
 tztime local {

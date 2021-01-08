@@ -10,7 +10,7 @@
 # exec i3-with-shmlog
 # dbus-run-session -- i3 -V -d all >> "$HOME/.i3/logfile_$(date +%FT%H%M).log"
 # i3 -V -d all >> "$HOME/.i3/logfile_$(date +%FT%H%M).log"
-i3
+exec i3
 # vim: set ft=sh:
 # awesome
 # https://dbus.freedesktop.org/doc/dbus-run-session.1.html
