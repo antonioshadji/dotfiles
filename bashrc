@@ -379,10 +379,10 @@ fi
 # git pull --recurse-submodules (always want latest submodule)
 
 # 2.3) Text and editor commands
-alias e='vim'
+alias e='nvim'
 alias vv='gvim --remote-silent'
-export EDITOR='vim'
-export VISUAL='vim'
+export EDITOR='nvim'
+export VISUAL='nvim'
 
 # open terminal in current cwd
 alias h='alacritty --working-directory $PWD --title $PWD'
