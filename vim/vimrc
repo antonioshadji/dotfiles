@@ -238,10 +238,8 @@ iabbrev <expr> dts strftime('%F %T')
 " http://vim.wikia.com/wiki/Avoid_the_escape_key
 " ** alt + any key will exit insert mode and execute key action hl jk etc
 " <C-c> is an alternative to Esc but does not run autocmd by default
+" this mapping makes <C-c> execute Esc so autocmd runs
 imap <C-c> <Esc>
-" there are no words with jj except for Hajj
-" i don't like this because i see the j character before it disappears
-" imap jj <Esc>
 " shift enter works in gvim, not in gnome-terminal
 " enter ^M, s-enter ^M, c-enter <NL>
 " https://stackoverflow.com/questions/598113/can-terminals-detect-shift-enter-or-control-enter
@@ -259,10 +257,11 @@ map Q q
 
 "force myself to use hjkl instead of arrow keys <nop> only normal mode
 " jk <down><up> hl<left><right>
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
+" with moonlander using arrows might be better than keys
+" map <up> <nop>
+" map <down> <nop>
+" map <left> <nop>
+" map <right> <nop>
 
 " Easy window navigation
 nnoremap <C-h> <C-w>h
@@ -618,43 +617,24 @@ nmap <leader>gh :diffget //3<CR>
 nmap <leader>gu :diffget //2<CR>
 " }
 
-" Status line {
-" https://github.com/powerline/powerline
-
-if !has('nvim') && $POWERLINE
-  let g:airline_disable_statusline = 1
-  " Check if python3 is available
-  if has('python3')
-    python3 import vim; from sys import version_info as v; vim.command("let pyV='%d.%d'" % (v[0], v[1]))
-    let p = expand('~/.local/lib/python' . pyV . '/site-packages/powerline/bindings/vim')
-  endif
-
-  if isdirectory(p)
-    set runtimepath+=~/.local/lib/python3.8/site-packages/powerline/bindings/vim
-  elseif isdirectory('/Library/Frameworks/Python.framework/Versions/' . pyV . '/lib/python' . pyV . '/site-packages/powerline') && !has('nvim')
-    set runtimepath+=/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/powerline/bindings/vim
-  endif
-else
-  " https://github.com/vim-airline/vim-airline {
-  if v:version >= 800
-    " do not show error/warning colors when no errors/warnings
-    let g:airline_skip_empty_sections = 1
-    " overide default section z https://github.com/vim-airline/vim-airline/issues/272
-    let g:airline_section_z = '%p%%'. " \ue0a1". '%l:%v'
-    " choose custom theme in .vim/autoload/airline/themes/
-    let g:airline_theme='powerline'
-    " Fancy arrow symbols, requires a patched font
-    let g:airline_powerline_fonts = 1
-    " Show PASTE if in paste mode
-    let g:airline_detect_paste=1
-    " Don't take up extra space with +/-/~ of 0
-    let g:airline#extensions#hunks#non_zero_only = 1
-    " Limit wordcount to where it makes sense
-    let g:airline#extensions#wordcount#filetypes = '\vhelp|markdown|pandoc|rst|org'
-    " Fancy stuff in tabline as well
-    " let g:airline#extensions#tabline#enabled = 1
-  endif
-  " }
+" Status line https://github.com/vim-airline/vim-airline {
+if v:version >= 800
+  " do not show error/warning colors when no errors/warnings
+  let g:airline_skip_empty_sections = 1
+  " overide default section z https://github.com/vim-airline/vim-airline/issues/272
+  let g:airline_section_z = '%p%%'. " \ue0a1". '%l:%v'
+  " choose custom theme in .vim/autoload/airline/themes/
+  let g:airline_theme='powerline'
+  " Fancy arrow symbols, requires a patched font
+  let g:airline_powerline_fonts = 1
+  " Show PASTE if in paste mode
+  let g:airline_detect_paste=1
+  " Don't take up extra space with +/-/~ of 0
+  let g:airline#extensions#hunks#non_zero_only = 1
+  " Limit wordcount to where it makes sense
+  let g:airline#extensions#wordcount#filetypes = '\vhelp|markdown|pandoc|rst|org'
+  " Fancy stuff in tabline as well
+  " let g:airline#extensions#tabline#enabled = 1
 endif
 " }
 
