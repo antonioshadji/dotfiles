@@ -94,3 +94,6 @@
 [submodule "vim/pack/plugins/start/vim-zettel"]
 	path = vim/pack/plugins/start/vim-zettel
 	url = https://github.com/michal-h21/vim-zettel
+[submodule "vim/pack/plugins/opt/tern_for_vim"]
+	path = vim/pack/plugins/opt/tern_for_vim
+	url = https://github.com/ternjs/tern_for_vim.git
