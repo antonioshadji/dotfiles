@@ -748,6 +748,8 @@ source $VIMRUNTIME/ftplugin/man.vim
 let g:nv_search_paths = ['~/Documents/daily/', './docs' , './notes.md']
 "}
 
+" https://github.com/ternjs/tern_for_vim
+let g:tern#command = ['tern', '--persistent']
 " Plugins }
 
 " colors {
