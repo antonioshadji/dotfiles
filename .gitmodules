@@ -97,3 +97,6 @@
 [submodule "vim/pack/plugins/opt/tern_for_vim"]
 	path = vim/pack/plugins/opt/tern_for_vim
 	url = https://github.com/ternjs/tern_for_vim.git
+[submodule "vim/pack/plugins/start/goyo.vim"]
+	path = vim/pack/plugins/start/goyo.vim
+	url = https://github.com/junegunn/goyo.vim.git
