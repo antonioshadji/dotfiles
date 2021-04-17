@@ -45,8 +45,8 @@ disk "/" {
 }
 
 memory {
-  format = "MEM: %free"
-  threshold_degraded = "10%"
+  format = "MEM: %available"
+  threshold_degraded = "20%"
   threshold_critical = "5%"
   # format_degraded = "MEM: %free"
 }
