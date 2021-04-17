@@ -1,10 +1,12 @@
 {
-    "extends": "prettier",
-    "parserOptions": {
-        "sourceType": "module"
-    },
-    "env": {
-        "es6": true,
-        "node": true
-    }
+  "extends": "prettier",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true,
+    "es2021": true
+  }
 }
