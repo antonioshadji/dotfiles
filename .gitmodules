@@ -64,6 +64,7 @@
 [submodule "vim/pack/plugins/start/jedi-vim"]
 	path = vim/pack/plugins/start/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim
+	fetchRecurseSubmodules = true
 [submodule "tmux/tmux-continuum"]
 	path = tmux/tmux-continuum
 	url = https://github.com/tmux-plugins/tmux-continuum
