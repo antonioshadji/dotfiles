@@ -13,3 +13,123 @@
   become: true
   apt:
     deb: https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
+
+
+- name: Build dependencies for Gnucash
+  become: true
+  tags: gnucash
+  apt:
+    name:
+      - cmake
+      - libglib2.0-dev
+      - libgtk-3-dev
+      - guile-2.2-dev
+      - libxml2-dev
+      - libxml2-utils
+      - xsltproc
+      - libxslt1-dev
+      - libicu-dev
+      - libboost1.71-all-dev
+      - libwebkit2gtk-4.0-dev
+      - swig
+      - libaqbanking-dev
+      - libgwenhywfar60-dev
+      - libktoblzcheck1-dev
+      - libdbi-dev
+      - libdbd-mysql
+      - libdbd-pgsql
+      - libdbd-sqlite3
+      - libofx-dev
+      - python3-dev
+      - libsecret-1-dev
+      - libfinance-quote-perl
+    state: latest
+    force_apt_get: true
+
+- name: Sigil dependencies
+  become: true
+  tags: sigil
+  apt:
+    name:
+      - qtbase5-dev
+      - qttools5-dev
+      - qttools5-dev-tools
+      - qtwebengine5-dev
+      - python3-dev
+
+- name: Gimp dependencies
+  become: true
+  tags: gimp
+  apt:
+    name:
+      - intltool
+      - gtk-doc-tools
+      - libgirepository1.0-dev
+      - libbabl-dev
+      - libgegl-dev
+      - gegl
+      - libgexiv2-dev
+      - libappstream-glib-dev
+      - libmypaint-dev
+      - mypaint-brushes
+      - librsvg2-dev
+      - libpoppler-glib-dev
+      - liblcms2-dev
+      - libjson-glib-dev
+      - valac
+
+
+- name: Python build dependencies
+  become: true
+  tags: build_python
+  apt:
+    name:
+      - blt-dev
+      - cpp-8
+      - g++-8
+      - gcc-8
+      - libasan5
+      - libbluetooth-dev
+      - libbz2-dev
+      - libdb-dev
+      - libdb5.3-dev
+      - libgcc-8-dev
+      - libgdbm-dev
+      - liblzma-dev
+      - libmpdec-dev
+      - libncursesw5-dev
+      - libstdc++-8-dev
+      - libubsan1
+      - libxss-dev
+      - locales-all
+      - sharutils
+      - systemtap-sdt-dev
+      - tcl
+      - tcl-dev
+      - tcl8.6
+      - tcl8.6-dev
+      - tk
+      - tk-dev
+      - tk8.6
+      - tk8.6-dev
+      - x11proto-scrnsaver-dev
+      - xvfb
+    state: latest
+    force_apt_get: true
+
+
+- name: Ubuntu Packaging Guide software install
+  # http://packaging.ubuntu.com/singlehtml/index.html#document-ubuntu-packaging-guide/getting-set-up
+  become: true
+  tags: packaging
+  apt:
+    name: "{{ packages }}"
+    state: latest
+    force_apt_get: true
+  vars:
+    packages:
+      - gnupg
+      - pbuilder
+      - ubuntu-dev-tools
+      - apt-file
+

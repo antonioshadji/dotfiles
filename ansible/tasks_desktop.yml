@@ -28,3 +28,88 @@
       - texlive-science-doc
     state: latest
     force_apt_get: true
+
+- name: Libraries for connecting to postgresql
+  when: ansible_distribution_file_variety == "Debian"
+  become: true
+  apt:
+    name: "{{ item }}"
+    state: latest
+    force_apt_get: true
+  loop:
+    - libpq-dev
+    - python3-dev
+
+- name: Tools for use with tiling wm
+  when: ansible_distribution_file_variety == "Debian"
+  become: true
+  apt:
+    name: "{{ item }}"
+    state: latest
+    force_apt_get: true
+  loop:
+    - maim
+    - feh
+    # import tool is related to inkscape? might be better
+  tags: i3
+
+- name: i3 build dependencies
+  become: true
+  apt:
+    name:
+      - libev-dev
+      - libyajl-dev
+  tags:
+    - i3
+
+- name: i3status build dependencies
+  become: true
+  apt:
+    name:
+      - libconfuse-dev
+      - libyajl-dev
+      - libasound2-dev
+      - libiw-dev
+      - asciidoc
+      - libpulse-dev
+      - libnl-genl-3-dev
+  tags:
+    - i3
+
+- name: i3-lock build dependencies
+  become: true
+  apt:
+    name:
+      - libpam-dev
+  tags:
+    - i3
+
+- name: i3 notifications via dunst
+  become: true
+  apt:
+    name:
+      - libnotify-dev
+  tags:
+    - i3
+
+- name: sway dependencies
+  become: true
+  apt:
+    name:
+      - libjson-c-dev
+      - libjson-c-doc
+      - libevdev-dev
+      - libevdev-doc
+      - libevdev-tools
+      - libinput-dev
+  tags:
+    - sway
+
+- name: wlroots dependencies
+  become: true
+  apt:
+    name:
+      - libdrm-dev
+      - libgbm-dev
+  tags:
+    - sway

@@ -34,8 +34,12 @@
   when: pip_version_output is failed and ansible_distribution == "Ubuntu"
 
 - name: Pip install standard python libs
+  tags:
+    - update
+    - python
   pip:
     executable: "$HOME/.local/bin/pip3"
-    requirements: "$HOME/.config/dotfiles/requirements3.txt"
+    requirements: "/home/antonios/.config/dotfiles/software/python3-global-requirements.txt"
     extra_args: --user --upgrade
   when: ansible_distribution == "Ubuntu"
+  

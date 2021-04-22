@@ -7,9 +7,14 @@ all:
           hosts:
             laptop.local:
               ansible_python_interpreter: /usr/bin/python3
+        primetrust:
+          hosts:
+            hadji-pt.local:
+              ansible_connection: local
+              ansible_python_interpreter: /usr/bin/python3
         workstation:
           hosts:
-            localhost:
+            hadji.local:
               ansible_connection: local
               ansible_python_interpreter: /usr/bin/python3
     webserver:

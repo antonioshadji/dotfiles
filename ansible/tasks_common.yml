@@ -17,32 +17,14 @@
     force_apt_get: true
   loop:
     - git
+    - vim
+    - pandoc
     - curl
     - tmux
     - tree
     - rename
-    - vim
     - openssh-server
-    - pandoc
     - shellcheck
     - fonts-powerline
     - net-tools
     - jq
-
-- name: Tools for use with tiling wm
-  when: ansible_distribution_file_variety == "Debian"
-  become: true
-  apt:
-    name: "{{ item }}"
-    state: latest
-    force_apt_get: true
-  loop:
-    - "maim"
-    - "feh"
-    # import tool is related to inkscape? might be better
-  tags: i3
-# install rust
-# install ripgrep
-# install fd
-# install alacritty
-# build vim

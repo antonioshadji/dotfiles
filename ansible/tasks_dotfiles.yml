@@ -5,14 +5,8 @@
     state: directory
   loop:
     # creates whole structure inside path above
-    - ".config/powerline/themes/vim"
-
-- name: Clone dotfiles git repo
-  git:
-    repo: git@github.com:AntoniosHadji/dotfiles.git
-    dest: "$HOME/.config/dotfiles"
-    accept_hostkey: true
-    recursive: true
+    - ".config/alacritty"
+    - ".config/i3"
 
 - name: Create symlinks
   file:
@@ -32,19 +26,17 @@
     - "vim"
     - "xinitrc"
     - "fzf"
-    # - 'dircolors'
-    #    not needed no current ubuntu setup
 
-- name: Create Powerline Config Symlink
+- name: Create i3 config symlinks
   file:
-    src: "$HOME/.config/dotfiles/powerline/config.json"
-    path: "$HOME/.config/powerline/config.json"
+    src: "$HOME/.config/dotfiles/i3/config"
+    path: "$HOME/.config/i3/config"
     state: link
     force: true
 
-- name: Create Powerline Theme Symlink
+- name: Create alacritty config symlinks
   file:
-    src: "$HOME/.config/dotfiles/powerline/themes/vim/default.json"
-    path: "$HOME/.config/powerline/themes/vim/default.json"
+    src: "$HOME/.config/dotfiles/alacritty.yml"
+    path: "$HOME/.config/alacritty/alacritty.yml"
     state: link
     force: true
