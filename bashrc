@@ -408,18 +408,9 @@ export GREP_COLOR='30;43' # match color of ag match
 #{{ Node setup and tools
 # [ -r file ] returns True if file exists and is readable.
 export NVM_DIR="$HOME/.config/nvm"
-[[ -s "$NVM_DIR/nvm.sh" ]] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[[ -r "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"  # This loads nvm
+[[ -r "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-if [[ -r $HOME/.nvm/nvm.sh ]]; then
-  NVM_DIR=$HOME/.nvm
-  source "$HOME/.nvm/nvm.sh"
-  np=$(nvm which current)
-  np="${np//bin/lib}"
-  export NODE_PATH=$np"_modules":$NODE_PATH
-fi
-
-[[ -d /opt/node/bin ]] && export PATH=$PATH:/opt/node/bin
 #}}
 
 # {{ Python setup and tools

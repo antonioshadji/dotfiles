@@ -9,6 +9,7 @@
     - bashrc
     - curlrc
     - eslintrc.json
+    - fzf
     - gitconfig
     - inputrc
     - pam_environment
@@ -16,7 +17,6 @@
     - tmux.conf
     - vim
     - xinitrc
-    - fzf
 
 - name: Create folder config symlinks
   file:
@@ -28,3 +28,4 @@
     - alacritty
     - i3
     - i3status
+    - nvm

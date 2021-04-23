@@ -101,3 +101,6 @@
 [submodule "vim/pack/plugins/start/goyo.vim"]
 	path = vim/pack/plugins/start/goyo.vim
 	url = https://github.com/junegunn/goyo.vim.git
+[submodule "nvm"]
+	path = nvm
+	url = https://github.com/nvm-sh/nvm.git
