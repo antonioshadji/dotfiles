@@ -21,9 +21,10 @@ pygments-style-solarized
 # build tools
 meson
 
-# cli tools
-awscli
+# aws; cli installed from software folder
 boto3
+
+# cli tools
 docker-compose
 ansible-lint
 
