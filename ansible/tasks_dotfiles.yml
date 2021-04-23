@@ -1,42 +1,30 @@
 ---
-- name: Create Directory Structures if they do not exist
-  file:
-    path: "$HOME/{{ item }}"
-    state: directory
-  loop:
-    # creates whole structure inside path above
-    - ".config/alacritty"
-    - ".config/i3"
-
 - name: Create symlinks
   file:
-    src: "$HOME/.config/dotfiles/{{ item }}"
-    path: "$HOME/.{{ item }}"
+    src: $HOME/.config/dotfiles/{{ item }}
+    path: $HOME/.{{ item }}
     state: link
     force: true
   loop:
-    - "bashrc"
-    - "curlrc"
-    - "eslintrc.json"
-    - "gitconfig"
-    - "inputrc"
-    - "pam_environment"
-    - "tern-project"
-    - "tmux.conf"
-    - "vim"
-    - "xinitrc"
-    - "fzf"
+    - bashrc
+    - curlrc
+    - eslintrc.json
+    - gitconfig
+    - inputrc
+    - pam_environment
+    - tern-project
+    - tmux.conf
+    - vim
+    - xinitrc
+    - fzf
 
-- name: Create i3 config symlinks
+- name: Create folder config symlinks
   file:
-    src: "$HOME/.config/dotfiles/i3/config"
-    path: "$HOME/.config/i3/config"
+    src: $HOME/.config/dotfiles/{{ item }}
+    path: $HOME/.config/{{ item }}
     state: link
     force: true
-
-- name: Create alacritty config symlinks
-  file:
-    src: "$HOME/.config/dotfiles/alacritty.yml"
-    path: "$HOME/.config/alacritty/alacritty.yml"
-    state: link
-    force: true
+  loop:
+    - alacritty
+    - i3
+    - i3status
