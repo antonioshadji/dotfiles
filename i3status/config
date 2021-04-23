@@ -18,7 +18,7 @@ order += "ethernet _first_"
 order += "load"
 order += "memory"
 order += "disk /"
-order += "battery all"
+order += "battery 0"
 order += "tztime local"
 
 wireless _first_ {
@@ -31,8 +31,8 @@ ethernet _first_ {
   format_down = ""
 }
 
-battery all {
-        format = "%status %percentage %remaining"
+battery 0 {
+  format = "%percentage"
 }
 
 load {
