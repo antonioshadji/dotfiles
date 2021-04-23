@@ -744,6 +744,10 @@ let g:indent_guides_tab_guides = 0
 source $VIMRUNTIME/ftplugin/man.vim
 " }
 
+if !isdirectory(expand('~/Documents/daily'))
+  echom "making daily directory"
+  silent !mkdir ~/Documents/daily > /dev/null 2>&1
+endif
 " https://github.com/alok/notational-fzf-vim {
 let g:nv_search_paths = ['~/Documents/daily/', './docs' , './notes.md']
 "}
