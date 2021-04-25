@@ -205,10 +205,10 @@ bar {
 # TODO: Can I use an environment variable here? set prefix for next series of shots
 set $screenshot_file "/home/$USER/Pictures/screenshot-$(date +%FT%H-%M-%S).png"
 set $screenshot_sound "/usr/share/sounds/freedesktop/stereo/camera-shutter.oga"
-bindsym Print exec --no-startup-id import -window root $screenshot_file; exec --no-startup-id cvlc --play-and-exit $screenshot_sound
-bindsym Shift+F10 exec --no-startup-id maim --select $screenshot_file && exec --no-startup-id cvlc --play-and-exit $screenshot_sound
+bindsym Print exec --no-startup-id import -window root $screenshot_file && exec --no-startup-id cvlc --play-and-exit $screenshot_sound
+bindsym Shift+Print exec --no-startup-id maim --select $screenshot_file && exec --no-startup-id cvlc --play-and-exit $screenshot_sound
 # not working
-bindsym --release $Mod+Shift+F10 exec --no-startup-id maim --window $(xdotool getactivewindow) $screenshot_file; exec --no-startup-id cvlc --play-and-exit $screenshot_sound
+bindsym Ctrl+Print exec --no-startup-id maim --window $(xdotool getactivewindow) $screenshot_file && exec --no-startup-id cvlc --play-and-exit $screenshot_sound
 
 # Clipboard Screenshots
 # bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
@@ -307,15 +307,16 @@ exec --no-startup-id xset -dpms
 # -  re-enabled gdm
 # 2021-01-02 re-enabled xset commands here, they did not seem to work in .xinitrc
 
+# no title bar
+default_border pixel
+
+# Notes
 # mod+shift+space to toggle floating/tiling mode
 # mod+b tabbed
 # mod+g stacking
 # mod+s swap split vertical/horizontal
 # mod+f fullscreen
 # mod4 + a focus up to parent
-# mod+shift+number moves to number
+# mod+shift+number moves to workspace number
 #
-# ctrl-alt-FN[1-7] switches to tty[1-7]
-
-# no title bar
-default_border pixel
+# ctrl-alt-FN[1-7] switches to tty[1-7]  tty2 is default desktop
