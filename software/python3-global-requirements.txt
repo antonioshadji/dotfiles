@@ -58,6 +58,10 @@ pgcli
 # postgresSQL driver most popular (installed in venv instead of globally)
 psycopg2
 
+## http libraries
+lxml
+requests
+
 
 # do not use sudo -H
 # sudo -H pip install --upgrade -r ~/dotfiles/requirements.txt
@@ -88,14 +92,10 @@ psycopg2
 ## installed by default with 3.6
 # pygments
 # setuptools
-## http libraries
-# requests
 ## certifi is used by requests and should be updated frequently
 ## http://docs.python-requests.org/en/master/user/advanced/#ca-certificates
 # certifi
 # httpie
-## used in calibre update script
-# lxml
 
 # 2018-07-20 13:28:14 -0400 Ubuntu 16.04
 # pip freeze --user
