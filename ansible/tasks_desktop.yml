@@ -26,6 +26,7 @@
       - texlive-pictures-doc
       - texlive-science
       - texlive-science-doc
+      - uvcdynctrl
     state: latest
     force_apt_get: true
 
