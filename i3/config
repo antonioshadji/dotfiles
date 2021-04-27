@@ -205,10 +205,9 @@ bar {
 # TODO: Can I use an environment variable here? set prefix for next series of shots
 set $screenshot_file "/home/$USER/Pictures/screenshot-$(date +%FT%H-%M-%S).png"
 set $screenshot_sound "/usr/share/sounds/freedesktop/stereo/camera-shutter.oga"
-bindsym Print exec --no-startup-id import -window root $screenshot_file && exec --no-startup-id cvlc --play-and-exit $screenshot_sound
-bindsym Shift+Print exec --no-startup-id maim --select $screenshot_file && exec --no-startup-id cvlc --play-and-exit $screenshot_sound
-# not working
-bindsym Ctrl+Print exec --no-startup-id maim --window $(xdotool getactivewindow) $screenshot_file && exec --no-startup-id cvlc --play-and-exit $screenshot_sound
+bindsym Print exec --no-startup-id maim $screenshot_file && cvlc --play-and-exit $screenshot_sound
+bindsym Shift+Print exec --no-startup-id maim --select $screenshot_file && cvlc --play-and-exit $screenshot_sound
+bindsym Ctrl+Print exec --no-startup-id maim --window $(xdotool getactivewindow) $screenshot_file && cvlc --play-and-exit $screenshot_sound
 
 # Clipboard Screenshots
 # bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
