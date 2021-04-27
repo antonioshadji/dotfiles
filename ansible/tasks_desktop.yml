@@ -34,7 +34,7 @@
   when: ansible_distribution_file_variety == "Debian"
   become: true
   apt:
-    name: "{{ item }}"
+    name: '{{ item }}'
     state: latest
     force_apt_get: true
   loop:
@@ -45,13 +45,14 @@
   when: ansible_distribution_file_variety == "Debian"
   become: true
   apt:
-    name: "{{ item }}"
+    name: '{{ item }}'
     state: latest
     force_apt_get: true
   loop:
+    # import tool is related to inkscape? might be better than maim
     - maim
     - feh
-    # import tool is related to inkscape? might be better
+    - xdotool
   tags: i3
 
 - name: i3 build dependencies
