@@ -2,7 +2,7 @@
 - name: Install frequently used software
   become: true
   apt:
-    name: "{{ packages }}"
+    name: '{{ packages }}'
     state: latest
     force_apt_get: true
   vars:
@@ -123,7 +123,7 @@
   become: true
   tags: packaging
   apt:
-    name: "{{ packages }}"
+    name: '{{ packages }}'
     state: latest
     force_apt_get: true
   vars:
@@ -132,4 +132,3 @@
       - pbuilder
       - ubuntu-dev-tools
       - apt-file
-

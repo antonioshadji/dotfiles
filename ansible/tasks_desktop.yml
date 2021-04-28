@@ -34,25 +34,23 @@
   when: ansible_distribution_file_variety == "Debian"
   become: true
   apt:
-    name: '{{ item }}'
+    name:
+      - libpq-dev
+      - python3-dev
     state: latest
     force_apt_get: true
-  loop:
-    - libpq-dev
-    - python3-dev
 
 - name: Tools for use with tiling wm
   when: ansible_distribution_file_variety == "Debian"
   become: true
   apt:
-    name: '{{ item }}'
+    name:
+      # import tool is related to inkscape? might be better than maim
+      - maim
+      - feh
+      - xdotool
     state: latest
     force_apt_get: true
-  loop:
-    # import tool is related to inkscape? might be better than maim
-    - maim
-    - feh
-    - xdotool
   tags: i3
 
 - name: i3 build dependencies

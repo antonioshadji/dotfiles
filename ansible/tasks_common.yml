@@ -3,7 +3,7 @@
   when: ansible_distribution_file_variety == "Debian"
   become: true
   apt:
-    upgrade: "dist"
+    upgrade: dist
     update_cache: true
     autoremove: true
     force_apt_get: true
@@ -12,19 +12,19 @@
   when: ansible_distribution_file_variety == "Debian"
   become: true
   apt:
-    name: "{{ item }}"
+    name:
+      - apt-transport-https
+      - curl
+      - fonts-powerline
+      - git
+      - jq
+      - net-tools
+      - openssh-server
+      - pandoc
+      - rename
+      - shellcheck
+      - tmux
+      - tree
+      - vim
     state: latest
     force_apt_get: true
-  loop:
-    - git
-    - vim
-    - pandoc
-    - curl
-    - tmux
-    - tree
-    - rename
-    - openssh-server
-    - shellcheck
-    - fonts-powerline
-    - net-tools
-    - jq
