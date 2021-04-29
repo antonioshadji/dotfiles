@@ -9,6 +9,6 @@ npm install -g eslint-config-prettier
 npm install -g neovim
 npm install -g vim-language-server
 # primetrust
-npm install -g @apidevtools/swagger-cli
+npm install -g @stoplight/spectral
 
 npm -g list --depth 0
