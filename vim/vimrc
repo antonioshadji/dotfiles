@@ -439,7 +439,7 @@ if !exists('g:autocommands_loaded')
   " python configuration {
   augroup PYTHON
     au!
-    autocmd FileType python set foldlevel=0
+    autocmd FileType python set foldlevel=99
   augroup END
 
   nnoremap <buffer> H :<C-u>execute "!pydoc3 " . expand("<cword>")<CR>
@@ -745,7 +745,7 @@ source $VIMRUNTIME/ftplugin/man.vim
 " }
 
 if !isdirectory(expand('~/Documents/daily'))
-  echom "making daily directory"
+  echom 'making daily directory'
   silent !mkdir ~/Documents/daily > /dev/null 2>&1
 endif
 " https://github.com/alok/notational-fzf-vim {
