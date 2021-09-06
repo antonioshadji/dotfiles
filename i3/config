@@ -103,11 +103,11 @@ bindsym $mod+minus scratchpad show
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:Chrome"
+set $ws1 "1:ChromePT"
 set $ws2 "2:Terminal"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
+set $ws3 "3:Firefox"
+set $ws4 "4:Postman"
+set $ws5 "5:ChromeAH"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8:Zoom"
@@ -248,8 +248,12 @@ exec --no-startup-id nm-applet
 
 # set background with feh
 exec --no-startup-id feh --no-fehbg --bg-max "$HOME/Pictures/background-discipline_1920x1080.png"
+
 # set webcam zoom level
 exec --no-startup-id uvcdynctrl --set='Zoom, Absolute' 130
+# set webcam to disable autofocus
+exec --no-startup-id v4l2-ctl -d /dev/video0 --set-ctrl=focus_auto=0
+
 # start unclutter https://github.com/Airblader/unclutter-xfixes
 exec --no-startup-id unclutter --timeout 5 --fork
 # notification daemon
@@ -279,6 +283,10 @@ assign [class="Gnucash"] $ws9
 assign [class="Slack"] $ws10
 exec slack
 
+assign [class="Firefox Developer Edition"] $ws3
+assign [class="Postman"] $ws4
+
+
 # https://www.reddit.com/r/i3wm/comments/apvta8/have_popup_windows_floated/
 for_window [window_role="pop-up"]       floating enable
 for_window [window_role="bubble"]       floating enable
@@ -294,9 +302,9 @@ for_window [title="Import Preview"]     floating enable
 
 # TODO: should these be in xsession? or xinitrc
 # this leaves monitor on 100% of time
-exec --no-startup-id xset s off
+# exec --no-startup-id xset s off
 # disable power management turning off monitor
-exec --no-startup-id xset -dpms
+# exec --no-startup-id xset -dpms
 # no black screen issues with this unset, and oibaf driver
 # 2020-12-25 15:35:27 screen blacking and not waking with oibaf driver
 # 2020-12-28 16:19:39 screen freezing / locking with oibaf driver
@@ -305,6 +313,7 @@ exec --no-startup-id xset -dpms
 # -  crashed machine when run with startx
 # -  re-enabled gdm
 # 2021-01-02 re-enabled xset commands here, they did not seem to work in .xinitrc
+# 2021-06-27 10:02:52 disabled both commands
 
 # no title bar
 default_border pixel
