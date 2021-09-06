@@ -355,8 +355,10 @@ if !exists('g:autocommands_loaded')
     " autocmd FocusLost * silent! wa
     " }
 
-    " automatically resize windows on vim resize
+    " automatically resize windows on vim resize {
     autocmd VimResized * :wincmd =
+    "}
+    "
     " jump to last known cursor position {
     " When editing a file, always jump to the last known cursor position.
     " Don't do it when the position is invalid or when inside an event handler
@@ -370,6 +372,12 @@ if !exists('g:autocommands_loaded')
     " set title bar to file location {
     autocmd BufEnter * let &titlestring = hostname() . "[vim(" . expand("%:t") . ")]"
     " }
+
+    " ALEDisable for openapi.json {
+    " TODO: not working
+    " autocmd BufRead openapi.json :ALEDisable
+    "}
+
   augroup END
   " Git autocmd {
   " Instead of reverting the cursor to the last position in the buffer, we
@@ -578,6 +586,10 @@ endif
 
 " https://github.com/w0rp/ale#2ii-fixing
 " check help ale-options for defaut settings and options available
+
+" turn ale off for specific file
+" let g:ale_pattern_options = {'.*openapi\.json$': {'ale_enabled': 0}}
+" let g:ale_enabled = 0
 
 " Use the global executables
 let g:ale_use_global_executables = 1
