@@ -86,13 +86,15 @@ UUID=1dbfcf45-eb43-424a-bdb1-23f08b741922 none swap sw 0 0
 ```
 
 ## Maintenance operations
+Show logical volumes
+`sudo lvdisplay`
 Add disk formated as LVM2 to an existing volume group
 `sudo vgextend vg1 /dev/sdb`
 Remove a not-used disk from a volume group
 `sudo vgreduce vg1 /dev/sdb`
 Resize larger is very quick and easy.  Smaller is much slower.
 +/-  means add/subtract size; no +/- means absolute size
-`sudo lvresize -L +100G --resizefs /dev/vg0/blockchain`
+`sudo lvresize --size +100G --resizefs /dev/vg0/blockchain`
 Rename volume groups
 `vgrename old_name new_name`
 Merge volume groups - logical volumes must be inactive before merging volume groups
