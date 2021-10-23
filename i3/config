@@ -260,6 +260,13 @@ exec --no-startup-id unclutter --timeout 5 --fork
 exec --no-startup-id dunst
 # start dropbox daemon
 exec --no-startup-id dropbox start
+
+# rotate vertical monitor
+exec --no-startup-id xrandr --output HDMI-A-1 --rotate right
+
+# redshift
+exec --no-startup-id redshift
+
 # https://www.reddit.com/r/i3wm/comments/42i5r8/default_startup_workspace/
 # assign [class="Google-chrome"] 1
 exec google-chrome
@@ -284,7 +291,10 @@ assign [class="Slack"] $ws10
 exec slack
 
 assign [class="Firefox Developer Edition"] $ws3
+exec FirefoxDeveloperEdition
+
 assign [class="Postman"] $ws4
+exec postman
 
 
 # https://www.reddit.com/r/i3wm/comments/apvta8/have_popup_windows_floated/
