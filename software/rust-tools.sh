@@ -9,6 +9,7 @@ ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 
 # shellcheck source=/dev/null
 source ~/.cargo/env
+rustup update
 
 cargo install fd-find
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR

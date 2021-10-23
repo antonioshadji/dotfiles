@@ -30,9 +30,13 @@ cmd1.append(fn)
 
 pw = getpass("sudo password: ")
 
+subprocess.run(["go", "version"])
+
 proc = subprocess.run(cmd0, capture_output=True, input=pw, encoding="ascii")
 print(proc)
 if proc.returncode == 0:
     proc = subprocess.run(cmd1, capture_output=True, input=pw, encoding="ascii")
     print(proc)
     os.remove(fn)
+
+subprocess.run(["go", "version"])
