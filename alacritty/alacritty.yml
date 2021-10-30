@@ -193,7 +193,6 @@ schemes:
       white: '#fdf6e3'  # base3
 
   solarized_dark: &dark
-                         # Default colors
     primary:
       background: '#002b36'  # base03
       foreground: '#839496'  # base0
@@ -412,7 +411,7 @@ colors: *dark
 # thickness: 0.15
 
 # Live config reload (changes require restart)
-# live_config_reload: true
+live_config_reload: true
 
 # Shell
 #
