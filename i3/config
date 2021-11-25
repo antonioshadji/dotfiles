@@ -110,7 +110,7 @@ set $ws4 "4:Postman"
 set $ws5 "5:ChromeAH"
 set $ws6 "6"
 set $ws7 "7"
-set $ws8 "8:Zoom"
+set $ws8 "8"
 set $ws9 "9:Gnucash"
 set $ws10 "10:Slack"
 
@@ -203,9 +203,10 @@ bar {
 # https://gist.github.com/dianjuar/ee774561a8bc02b077989bc17424a19f
 # Screenshots
 # TODO: Can I use an environment variable here? set prefix for next series of shots
-set $screenshot_file "/home/$USER/Pictures/screenshot-$(date +%FT%H-%M-%S).png"
+set $screenshot_file "/home/$USER/Pictures/zz-$(date +%FT%H-%M-%S).png"
 set $screenshot_sound "/usr/share/sounds/freedesktop/stereo/camera-shutter.oga"
-bindsym Print exec --no-startup-id maim $screenshot_file && cvlc --play-and-exit $screenshot_sound
+# geometry captures only main monitor, not side monitor.
+bindsym Print exec --no-startup-id maim --geometry 1920x1080 $screenshot_file && cvlc --play-and-exit $screenshot_sound
 bindsym Shift+Print exec --no-startup-id maim --select $screenshot_file && cvlc --play-and-exit $screenshot_sound
 bindsym Ctrl+Print exec --no-startup-id maim --window $(xdotool getactivewindow) $screenshot_file && cvlc --play-and-exit $screenshot_sound
 
@@ -263,13 +264,14 @@ exec --no-startup-id dropbox start
 
 # rotate vertical monitor
 exec --no-startup-id xrandr --output HDMI-A-1 --rotate right
+exec --no-startup-id xrandr --output HDMI-A-0 --primary
 
 # redshift
 exec --no-startup-id redshift
 
 # https://www.reddit.com/r/i3wm/comments/42i5r8/default_startup_workspace/
 # assign [class="Google-chrome"] 1
-exec google-chrome
+exec google-chrome --profile-directory="Profile 8"
 # ↓ this does nothing
 # exec --no-startup-id alacritty $ws3
 # ↓ puts ALL instances on workspace
@@ -279,9 +281,10 @@ exec google-chrome
 
 assign [instance="first-Alacritty"] $ws2
 exec alacritty --class first-Alacritty
+exec i3-msg "move $ws2 to output HDMI-A-0"
 # https://feeding.cloud.geek.nz/posts/creating-a-modern-tiling-desktop-environment-using-i3/
 # make zoom load in workspace 8
-assign [class="zoom"] $ws8
+# assign [class="zoom"] $ws8
 # always launch gnucash  in workspace 9
 assign [class="Gnucash"] $ws9
 # gnucash every popup is showing up as tiled
@@ -289,13 +292,18 @@ assign [class="Gnucash"] $ws9
 # always launch slack in workspace 10
 assign [class="Slack"] $ws10
 exec slack
+exec i3-msg "move $ws10 to output HDMI-A-0"
 
 assign [class="Firefox Developer Edition"] $ws3
 exec FirefoxDeveloperEdition
+exec i3-msg "move $ws3 to output HDMI-A-0"
 
 assign [class="Postman"] $ws4
 exec postman
+exec i3-msg "move $ws4 to output HDMI-A-0"
 
+# screenshot tool
+exec flameshot
 
 # https://www.reddit.com/r/i3wm/comments/apvta8/have_popup_windows_floated/
 for_window [window_role="pop-up"]       floating enable
