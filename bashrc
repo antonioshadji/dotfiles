@@ -142,9 +142,11 @@ fi
 # http://tldp.org/HOWTO/Xterm-Title-3.html
 # http://stackoverflow.com/a/25535717/2472798
 # pattern matching **requires** [[ ]]
-if [[ $TERM == xterm* ]]; then
-  PROMPT_COMMAND+='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/\~}\007"'
-fi
+case ${TERM} in
+  alacritty*|xterm*|rxvt*|Eterm|aterm|kterm|gnome*)
+    PROMPT_COMMAND+='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/\~}\007"'
+  ;;
+esac
 
 # 1.2) Set up bash prompt{{
 # ---------------------------------------------------------
