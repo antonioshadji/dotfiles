@@ -6,9 +6,8 @@ cmake \
   -D WITH_PYTHON=ON \
   -D CMAKE_BUILD_TYPE=RelWithDebInfo \
   ../gnucash
-#  "$(dirname "$(pwd)")/gnucash"
 
 
 # other options
 # -D CMAKE_INSTALL_PREFIX=/opt \
-# -D Ninja
+# -G Ninja
