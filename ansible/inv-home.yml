@@ -17,6 +17,6 @@ all:
             hadji.local:
               ansible_connection: local
               ansible_python_interpreter: /usr/bin/python3
-    webserver:
-      hosts:
-        alpha.sivantagemarketing.com: {}
+#       webserver:
+#         hosts:
+#           alpha.sivantagemarketing.com: {}

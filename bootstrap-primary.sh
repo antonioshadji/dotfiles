@@ -20,6 +20,8 @@ sudo apt install vim
 sudo apt install python3-distutils
 wget https://bootstrap.pypa.io/get-pip.py
 python3 get-pip.py --user
-~/.local/bin/pip install --user ansible
+rm -f ./get-pip.py
+python3 -m pip install --user ansible
 # now ansible can be ran to install symlinks
-# ~/.local/bin/ansible-playbook ansible/playbook.yml --limit "$(hostname).local"
+# comma after localhost distiguishes between file expected and list of hosts
+ansible-playbook --connection=local --inventory 'localhost,' ansible/playbook.yml --tags dotfiles,common --ask-become-pass
