@@ -26,5 +26,6 @@
       - tmux
       - tree
       - vim
+      - ffmpeg
     state: latest
     force_apt_get: true
