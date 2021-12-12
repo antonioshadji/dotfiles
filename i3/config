@@ -114,6 +114,7 @@ set $ws8 "8"
 set $ws9 "9:Gnucash"
 set $ws10 "10:Slack"
 
+
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -243,12 +244,23 @@ bindsym $mod+d exec dmenu_run
 # screen before suspend. Use loginctl lock-session to lock your screen.
 # exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
+# rotate vertical monitor
+exec --no-startup-id xrandr --output HDMI-A-1 --rotate right
+exec --no-startup-id xrandr --output HDMI-A-0 --primary
 
 # set background with feh
 exec --no-startup-id feh --no-fehbg --bg-max "$HOME/Pictures/background-discipline_1920x1080.png"
+
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+exec --no-startup-id nm-applet
+# redshift
+exec --no-startup-id redshift
+# start dropbox daemon
+exec --no-startup-id dropbox start
+# screenshot tool
+exec flameshot
+
 
 # set webcam zoom level
 exec --no-startup-id uvcdynctrl --set='Zoom, Absolute' 130
@@ -257,55 +269,42 @@ exec --no-startup-id v4l2-ctl -d /dev/video0 --set-ctrl=focus_auto=0
 
 # start unclutter https://github.com/Airblader/unclutter-xfixes
 exec --no-startup-id unclutter --timeout 5 --fork
+
 # notification daemon
 exec --no-startup-id dunst
 bindsym Ctrl+space exec --no-startup-id dunstctl close
 
-# start dropbox daemon
-exec --no-startup-id dropbox start
-
-# rotate vertical monitor
-exec --no-startup-id xrandr --output HDMI-A-1 --rotate right
-exec --no-startup-id xrandr --output HDMI-A-0 --primary
-
-# redshift
-exec --no-startup-id redshift
-
 # https://www.reddit.com/r/i3wm/comments/42i5r8/default_startup_workspace/
 # assign [class="Google-chrome"] 1
 exec google-chrome --profile-directory="Profile 8"
+exec google-chrome --profile-directory=Default
+
+# always launch slack in workspace 10
+assign [class="Slack"] $ws10
+exec slack
+
+assign [class="Firefox Developer Edition"] $ws3
+exec FirefoxDeveloperEdition
+
+assign [class="Postman"] $ws4
+exec postman
+
 # ↓ this does nothing
 # exec --no-startup-id alacritty $ws3
 # ↓ puts ALL instances on workspace
 # exec --no-startup-id i3-msg '[title="Alacritty"] move container to workspace 2: Terminal'
 # ↓ this line does not work to launch on specific workspace
 # exec --no-startup-id i3-msg 'workspace 2; exec alacritty; workspace 1'
-
 assign [instance="first-Alacritty"] $ws2
 exec alacritty --class first-Alacritty
-exec i3-msg "move $ws2 to output HDMI-A-0"
-# https://feeding.cloud.geek.nz/posts/creating-a-modern-tiling-desktop-environment-using-i3/
+
 # make zoom load in workspace 8
 # assign [class="zoom"] $ws8
+
 # always launch gnucash  in workspace 9
 assign [class="Gnucash"] $ws9
 # gnucash every popup is showing up as tiled
 # for_window [class="Gnucash"] floating enable
-# always launch slack in workspace 10
-assign [class="Slack"] $ws10
-exec slack
-exec i3-msg "move $ws10 to output HDMI-A-0"
-
-assign [class="Firefox Developer Edition"] $ws3
-exec FirefoxDeveloperEdition
-exec i3-msg "move $ws3 to output HDMI-A-0"
-
-assign [class="Postman"] $ws4
-exec postman
-exec i3-msg "move $ws4 to output HDMI-A-0"
-
-# screenshot tool
-exec flameshot
 
 # https://www.reddit.com/r/i3wm/comments/apvta8/have_popup_windows_floated/
 for_window [window_role="pop-up"]       floating enable
@@ -317,8 +316,7 @@ for_window [window_type="menu"]         floating enable
 for_window [title="^About.*"]           floating enable
 # gnucash windows
 for_window [title="Import Preview"]     floating enable
-# TODO: this next line not necessary after previous line??
-# for_window [title="Transaction Import Assistant"] floating enable
+for_window [title="Transaction Import Assistant"] floating enable
 
 # TODO: should these be in xsession? or xinitrc
 # this leaves monitor on 100% of time
@@ -348,3 +346,12 @@ default_border pixel
 # mod+shift+number moves to workspace number
 #
 # ctrl-alt-FN[1-7] switches to tty[1-7]  tty2 is default desktop
+#
+# https://feeding.cloud.geek.nz/posts/creating-a-modern-tiling-desktop-environment-using-i3/
+#
+# these lines do not work on startup
+# workspace 2 output primary
+# workspace 10 output right
+# after startup
+# i3-msg move workspace to output next
+# moves an entire workspace to the other monitor
