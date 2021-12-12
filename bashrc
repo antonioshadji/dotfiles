@@ -556,15 +556,17 @@ fi
 [[ -r $NVM_DIR/bash_completion ]] && source "$NVM_DIR/bash_completion"
 
 # http://wp-cli.org/ bash completion
-if [[ -r $HOME/.config/dotfiles/bash_completion/wp-completion.bash ]]; then
-  source "$HOME/.config/dotfiles/bash_completion/wp-completion.bash"
-fi
+# if [[ -r $HOME/.config/dotfiles/bash_completion/wp-completion.bash ]]; then
+#   source "$HOME/.config/dotfiles/bash_completion/wp-completion.bash"
+# fi
 
 # AWS CLI completion
 # http://docs.aws.amazon.com/cli/latest/userguide/cli-command-completion.html
 [[ $(command -v aws_completer) ]] && complete -C aws_completer aws
 
-[[ -r /opt/google-cloud-sdk/completion.bash.inc ]] && source /opt/google-cloud-sdk/completion.bash.inc
+
+# 2021-12-11 19:24:23 this is symlinked to /etc/bash_completion.d/
+# [[ -r /opt/google-cloud-sdk/completion.bash.inc ]] && source /opt/google-cloud-sdk/completion.bash.inc
 
 # https://pip.pypa.io/en/stable/user_guide/#command-completion
 # specifically for pip command, does not offer completion for pip2 or pip3
