@@ -709,7 +709,8 @@ ulimit -S -c 8192
 # use vim as manpager TODO: breaks when searching via rg
 # export MANPAGER="/bin/sh -c \"col -b | vim --noplugin -c 'set ft=man ts=8 laststatus=1 cc=\"\" nomod nolist nonu nornu noma' -\""
 
-
+# show if there is an existing tmux session when SSH into this machine
+[[ -n $SSH_CLIENT ]] && echo "tmux" && tmux ls
 # profile stop time start {{
 if [[ $DEBUG == 1 ]]; then
   set +x
