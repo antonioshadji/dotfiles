@@ -26,12 +26,14 @@ sleep 3s
   --enable-cscope \
   --enable-fail-if-missing \
   --enable-luainterp=dynamic \
+  --with-luajit \
   --enable-multibyte \
   --enable-python3interp=dynamic \
   --enable-terminal \
-  --with-compiledby="Antonios Hadjigeorgalis" \
-  --with-lua-prefix="/usr/local" \
-  --with-luajit \
+  --with-compiledby="Antonios Hadjigeorgalis"
+
+  # older version installed in /usr/local
+  # --with-lua-prefix="/usr/local" \
 # vim9 is changing the focus from embedded languages to communicating with external programs
 # https://github.com/brammool/vim9/blob/master/README.md
 # with manually installed racket in unix mode from racket.org
