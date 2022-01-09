@@ -382,7 +382,6 @@ fi
 
 # 2.3) Text and editor commands
 alias e='nvim'
-alias vim='nvim'
 alias vv='gvim --remote-silent'
 export EDITOR='nvim'
 export VISUAL='nvim'
