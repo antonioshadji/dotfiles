@@ -9,6 +9,5 @@ vim.cmd('packadd nvim-lspconfig')
 vim.cmd('packadd rust-tools.nvim')
 require('rust-tools').setup({})
 
-vim.cmd([[
-set omnifunc=v:lua.vim.lsp.omnifunc
-]])
+-- set omnifunc=v:lua.vim.lsp.omnifunc
+vim.opt.omnifunc='v:lua.vim.lsp.omnifunc'
