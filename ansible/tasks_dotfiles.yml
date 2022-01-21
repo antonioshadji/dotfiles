@@ -31,3 +31,4 @@
     - i3status
     - nvm
     - nvim
+    - flake8
