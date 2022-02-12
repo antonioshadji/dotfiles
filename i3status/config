@@ -20,7 +20,7 @@ order += "memory"
 order += "disk /"
 order += "disk /home"
 order += "tztime local"
-order += "battery 0"
+# order += "battery 0"
 
 wireless _first_ {
   format_up = "W: (%quality at %essid) %ip"
