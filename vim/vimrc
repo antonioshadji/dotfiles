@@ -598,7 +598,8 @@ let g:ale_linters = {
   \ 'javascript': ['eslint'],
   \ 'c': ['clang'],
   \ 'cpp': ['clang'],
-  \ 'json': ['jq']
+  \ 'json': ['jq'],
+  \ 'rust': ['rust-analyzer']
   \}
 let g:ale_fixers = {
   \ 'python': ['isort', 'black'],
