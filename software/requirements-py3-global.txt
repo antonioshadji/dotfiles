@@ -38,6 +38,7 @@ matplotlib
 jupyter
 pandas
 sympy
+dask[complete]
 
 # for pandas excel support
 xlrd
