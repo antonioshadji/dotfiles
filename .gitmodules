@@ -31,9 +31,6 @@
 [submodule "vim/pack/plugins/start/rust.vim"]
 	path = vim/pack/plugins/opt/rust.vim
 	url = https://github.com/rust-lang/rust.vim.git
-[submodule "vim/pack/plugins/start/vim-racer"]
-	path = vim/pack/plugins/opt/vim-racer
-	url = https://github.com/racer-rust/vim-racer.git
 [submodule "vim/pack/plugins/opt/vim-airline-themes"]
 	path = vim/pack/plugins/opt/vim-airline-themes
 	url = https://github.com/vim-airline/vim-airline-themes
@@ -49,9 +46,6 @@
 [submodule "vim/pack/plugins/start/fzf.vim"]
 	path = vim/pack/plugins/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
-[submodule "vim/pack/plugins/start/vim-dadbod"]
-	path = vim/pack/plugins/opt/vim-dadbod
-	url = https://github.com/tpope/vim-dadbod.git
 [submodule "vim/pack/plugins/start/vim-capslock"]
 	path = vim/pack/plugins/start/vim-capslock
 	url = https://github.com/tpope/vim-capslock.git
@@ -73,9 +67,6 @@
 [submodule "vim/pack/plugins/start/vim-orgmode"]
 	path = vim/pack/plugins/opt/vim-orgmode
 	url = https://github.com/jceb/vim-orgmode.git
-[submodule "vim/pack/plugins/start/fzf-checkout.vim"]
-	path = vim/pack/plugins/start/fzf-checkout.vim
-	url = https://github.com/stsewd/fzf-checkout.vim.git
 [submodule "vim/pack/plugins/start/gv.vim"]
 	path = vim/pack/plugins/start/gv.vim
 	url = https://github.com/junegunn/gv.vim.git
