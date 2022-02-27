@@ -2,9 +2,15 @@ vim.opt.runtimepath:prepend(vim.env.HOME .. '/.vim')
 -- not currently using the /after directory
 -- vim.opt.runtimepath:append(HOME .. '/.vim/after')
 
+-- statusline does not show powerline symbols when this is removed
 vim.cmd('source ~/.vim/vimrc')
 
 vim.opt.packpath = vim.opt.runtimepath:get()
+
+vim.cmd('syntax enable')
+vim.cmd('filetype plugin indent on')
+vim.cmd('colorscheme solarized')
+vim.opt.background = 'dark'
 
 -- vim.inspect prints tables
 -- print(vim.inspect(vim.opt.packpath))
@@ -97,11 +103,13 @@ vim.opt.omnifunc='v:lua.vim.lsp.omnifunc'
 
 -- Setup Completion
 -- See https://github.com/hrsh7th/nvim-cmp#basic-configuration
+--[[
+  completion = {
+    autocomplete = false, -- disable auto-completion, use tab instead ? doesn't show docs?
+  },
+--]]
 local cmp = require'cmp'
 cmp.setup({
-  completion = {
-    autocomplete = false, -- disable auto-completion, use tab instead
-  },
   snippet = {
     expand = function(args)
         vim.fn["vsnip#anonymous"](args.body)
