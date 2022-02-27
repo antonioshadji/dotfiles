@@ -273,24 +273,24 @@ nnoremap <C-down> <C-w>j
 nnoremap <C-up> <C-w>k
 nnoremap <C-right> <C-w>l
 " for Neovim terminal windows
-if has('nvim')
-  tnoremap <Esc> <C-\><C-n>
-  tnoremap <C-h> <C-\><C-n><C-w>h
-  tnoremap <C-j> <C-\><C-n><C-w>j
-  tnoremap <C-k> <C-\><C-n><C-w>k
-  tnoremap <C-l> <C-\><C-n><C-w>l
-
-  "   function! ClipboardYank()
-  "     call system('xclip -i -selection clipboard', @@)
-  "   endfunction
-  "   function! ClipboardPaste()
-  "     let @@ = system('xclip -o -selection clipboard')
-  "   endfunction
-  "
-  "   vnoremap <silent> y y:call ClipboardYank()<cr>
-  "   vnoremap <silent> d d:call ClipboardYank()<cr>
-  "   nnoremap <silent> p :call ClipboardPaste()<cr>p
-endif
+" if has('nvim')
+"   tnoremap <Esc> <C-\><C-n>
+"   tnoremap <C-h> <C-\><C-n><C-w>h
+"   tnoremap <C-j> <C-\><C-n><C-w>j
+"   tnoremap <C-k> <C-\><C-n><C-w>k
+"   tnoremap <C-l> <C-\><C-n><C-w>l
+"
+"   "   function! ClipboardYank()
+"   "     call system('xclip -i -selection clipboard', @@)
+"   "   endfunction
+"   "   function! ClipboardPaste()
+"   "     let @@ = system('xclip -o -selection clipboard')
+"   "   endfunction
+"   "
+"   "   vnoremap <silent> y y:call ClipboardYank()<cr>
+"   "   vnoremap <silent> d d:call ClipboardYank()<cr>
+"   "   nnoremap <silent> p :call ClipboardPaste()<cr>p
+" endif
 " http://vimcasts.org/episodes/how-to-fold/
 " use space bar in normal mode to toggle folds
 " TODO: is there a better use for space bar?
@@ -460,12 +460,6 @@ if !exists('g:autocommands_loaded')
   let java_highlight_functions='style'
   " }
 
-  " Neovim auto enter insert mode for terminal buffer {
-  if has('nvim')
-    augroup NVIM
-      autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
-    augroup END
-  endif
   "}
 
 
@@ -747,7 +741,7 @@ let g:rustfmt_autosave = 1
 
 " https://github.com/junegunn/fzf {
 if isdirectory(expand('~/.fzf'))
-  set runtimepath+=~/.fzf
+  set runtimepath^=~/.fzf
 endif
 " }
 
