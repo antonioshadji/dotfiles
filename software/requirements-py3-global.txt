@@ -12,6 +12,7 @@ flake8
 ipython
 isort
 jedi
+jedi-language-server
 pynvim
 pytest
 yamllint
@@ -23,7 +24,6 @@ meson
 
 # aws; cli installed from software folder
 boto3
-awscli
 
 # cli tools
 docker-compose
