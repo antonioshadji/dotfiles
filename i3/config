@@ -279,13 +279,6 @@ bindsym Ctrl+space exec --no-startup-id dunstctl close
 exec google-chrome --profile-directory="Profile 8"
 exec google-chrome --profile-directory=Default
 
-# https://i3wm.org/docs/userguide.html#workspace_screen
-# set workspace 10 to right Monitor
-workspace $ws10 output HDMI-A-1
-# always launch slack in workspace 10
-assign [class="Slack"] $ws10
-exec slack
-
 assign [class="Firefox Developer Edition"] $ws3
 exec FirefoxDeveloperEdition
 
@@ -358,3 +351,11 @@ default_border pixel
 # after startup
 # i3-msg move workspace to output next
 # moves an entire workspace to the other monitor
+
+# move this to EOF to ensure only slack is launched on second monitor ??
+# https://i3wm.org/docs/userguide.html#workspace_screen
+# set workspace 10 to right Monitor
+workspace $ws10 output HDMI-A-1
+# always launch slack in workspace 10
+assign [class="Slack"] $ws10
+exec slack
