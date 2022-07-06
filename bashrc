@@ -91,36 +91,9 @@ export PROMPT_COMMAND="history -a;"
 # and subsequent lines of a multi-line compound command are not tested, and
 # are added to the history regardless of the value of
 
-# Only for bash>=4.3 otherwise use HIST= format
-HISTSIZE=-1
-#              The number of commands to remember in the command history (see HIS‐
-#              TORY below).  If the value is 0, commands are not saved in the his‐
-#              tory  list.   Numeric values less than zero result in every command
-#              being saved on the history list (there is  no  limit).   The  shell
-#              sets the default value to 500 after reading any startup files.
-
-HISTFILESIZE=-1
-#              The  maximum  number  of lines contained in the history file.  When
-#              this variable is assigned a value, the history file  is  truncated,
-#              if  necessary,  to  contain  no  more  than that number of lines by
-#              removing the oldest entries.  The history file is also truncated to
-#              this  size after writing it when a shell exits.  If the value is 0,
-#              the history file is truncated to zero size.  Non-numeric values and
-#              numeric  values  less than zero inhibit truncation.  The shell sets
-#              the default value to  the  value  of  HISTSIZE  after  reading  any
-#              startup files.
-#
-#  The command number and the history number are usually different:
-#  the history number of a command is its position in the history
-#  list, which may include commands restored from the history file
-#  (see HISTORY below), while the command number is the position in
-#  the sequence of commands executed during the current shell session.
-#  After the string is decoded, it is expanded via parameter
-#  expansion, command substitution, arithmetic expansion, and quote
-#  removal, subject to the value of the promptvars shell option (see
-#  the description of the shopt command under SHELL BUILTIN COMMANDS
-#  below).
-#}}
+# https://www.gnu.org/software/bash/manual/html_node/Bash-History-Facilities.html
+HISTSIZE=10000
+unset HISTFILESIZE
 
 # https://www.gnu.org/software/bash/manual/bash.html#The-Shopt-Builtin
 # check the window size after each command and, if necessary,
@@ -299,6 +272,9 @@ unset gemloc
 # pip install --user installs into ~/.local/bin on linux
 [[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
 
+# yarn
+[[ -d $HOME/.yarn ]] && export PATH=$HOME/.yarn/bin:$PATH
+
 # Rust
 [[ -d $HOME/.cargo ]] && source "$HOME/.cargo/env"
 
@@ -423,9 +399,9 @@ export PYTEST_ADDOPTS="-vx --capture=tee-sys"
 # }}
 
 # Java setup {{
-[[ -d /usr/lib/jvm/java-8-openjdk-amd64/ ]] && export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+[[ -d /usr/lib/jvm/jdk-17 ]] && export JAVA_HOME=/usr/lib/jvm/jdk-17
+export PATH=$JAVA_HOME/bin:$PATH
 # https://class.coursera.org/algs4partI-010
-
 # export PATH=$PATH:$HOME/Documents/Dropbox/Projects/Algorithms/algs4/bin
 # alias java=java-algs4
 # alias javac=javac-algs4
