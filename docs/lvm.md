@@ -88,6 +88,10 @@ UUID=1dbfcf45-eb43-424a-bdb1-23f08b741922 none swap sw 0 0
 ## Maintenance operations
 Show logical volumes
 `sudo lvdisplay`
+Show physical volumes with logical volumes shown
+`sudo pvdisplay -m`
+Move logical volume from one pv to another
+`sudo pvmove -n logicalname --verbose pvfrom pvto`
 Add disk formated as LVM2 to an existing volume group
 `sudo vgextend vg1 /dev/sdb`
 Remove a not-used disk from a volume group
