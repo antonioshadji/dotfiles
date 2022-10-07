@@ -14,6 +14,10 @@ set $mod Mod1
 # is used in the bar {} block below.
 font pango:Ubuntu Mono Regular 12
 
+# no title bar
+default_border pixel
+hide_edge_borders smart
+
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
@@ -258,26 +262,23 @@ exec --no-startup-id nm-applet
 exec --no-startup-id redshift
 # start dropbox daemon
 exec --no-startup-id dropbox start
-# screenshot tool
-exec flameshot
-
 
 # set webcam zoom level
 exec --no-startup-id uvcdynctrl --set='Zoom, Absolute' 130
+# exec --no-startup-id v4l2-ctl -d /dev/video0 --set-ctrl=zoom_absolute=130
 # set webcam to disable autofocus
-exec --no-startup-id v4l2-ctl -d /dev/video0 --set-ctrl=focus_auto=0
+exec --no-startup-id uvcdynctrl --set='Focus, Auto' 0
+# exec --no-startup-id v4l2-ctl -d /dev/video0 --set-ctrl=focus_auto=0
 
 # start unclutter https://github.com/Airblader/unclutter-xfixes
 exec --no-startup-id unclutter --timeout 5 --fork
 
 # notification daemon
-exec --no-startup-id dunst -config "$HOME/.config/dunst/dustrc"
+exec --no-startup-id dunst -conf "$HOME/.config/dunst/dustrc"
 bindsym Ctrl+space exec --no-startup-id dunstctl close
 
-# https://www.reddit.com/r/i3wm/comments/42i5r8/default_startup_workspace/
-workspace $ws1 output HDMI-A-0
-for_window [title=".*antonios@primetrust.com.*"] $ws1
-exec google-chrome --profile-directory="Profile 8"
+# screenshot tool
+exec flameshot
 
 # ↓ this does nothing
 # exec --no-startup-id alacritty $ws3
@@ -285,6 +286,13 @@ exec google-chrome --profile-directory="Profile 8"
 # exec --no-startup-id i3-msg '[title="Alacritty"] move container to workspace 2: Terminal'
 # ↓ this line does not work to launch on specific workspace
 # exec --no-startup-id i3-msg 'workspace 2; exec alacritty; workspace 1'
+
+# TODO: these did not work
+# https://www.reddit.com/r/i3wm/comments/42i5r8/default_startup_workspace/
+workspace $ws1 output HDMI-A-0
+for_window [title=".*antonios@primetrust.com.*"] $ws1
+exec google-chrome --profile-directory="Profile 8"
+
 workspace $ws2 output HDMI-A-0
 assign [instance="first-Alacritty"] $ws2
 exec alacritty --class first-Alacritty
@@ -300,6 +308,14 @@ exec postman
 workspace $ws5 output HDMI-A-0
 for_window [title=".*antonios.hadji@gmail.com.*"] $ws5
 exec google-chrome --profile-directory=Default
+
+# move this to EOF to ensure only slack is launched on second monitor ??
+# https://i3wm.org/docs/userguide.html#workspace_screen
+# set workspace 10 to right Monitor
+workspace $ws10 output HDMI-A-1
+# always launch slack in workspace 10
+assign [class="Slack"] $ws10
+exec slack
 
 # make zoom load in workspace 8
 # assign [class="zoom"] $ws8
@@ -336,8 +352,6 @@ for_window [title="Transaction Import Assistant"] floating enable
 # 2021-01-02 re-enabled xset commands here, they did not seem to work in .xinitrc
 # 2021-06-27 10:02:52 disabled both commands
 
-# no title bar
-default_border pixel
 
 # Notes
 # mod+shift+space to toggle floating/tiling mode
@@ -358,11 +372,3 @@ default_border pixel
 # after startup
 # i3-msg move workspace to output next
 # moves an entire workspace to the other monitor
-
-# move this to EOF to ensure only slack is launched on second monitor ??
-# https://i3wm.org/docs/userguide.html#workspace_screen
-# set workspace 10 to right Monitor
-workspace $ws10 output HDMI-A-1
-# always launch slack in workspace 10
-assign [class="Slack"] $ws10
-exec slack
