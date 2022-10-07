@@ -94,6 +94,8 @@ export PROMPT_COMMAND="history -a;"
 # https://www.gnu.org/software/bash/manual/html_node/Bash-History-Facilities.html
 HISTSIZE=10000
 unset HISTFILESIZE
+# }}
+
 
 # https://www.gnu.org/software/bash/manual/bash.html#The-Shopt-Builtin
 # check the window size after each command and, if necessary,
@@ -399,7 +401,7 @@ export PYTEST_ADDOPTS="-vx --capture=tee-sys"
 # }}
 
 # Java setup {{
-[[ -d /usr/lib/jvm/jdk-17 ]] && export JAVA_HOME=/usr/lib/jvm/jdk-17
+[[ -d /usr/lib/jvm/jdk-19 ]] && export JAVA_HOME=/usr/lib/jvm/jdk-19
 export PATH=$JAVA_HOME/bin:$PATH
 # https://class.coursera.org/algs4partI-010
 # export PATH=$PATH:$HOME/Documents/Dropbox/Projects/Algorithms/algs4/bin
@@ -686,6 +688,12 @@ ulimit -S -c 8192
 
 # show if there is an existing tmux session when SSH into this machine
 [[ -n $SSH_CLIENT ]] && echo "tmux" && tmux ls
+
+# start tmux by default
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+    tmux attach -t 0 || tmux new
+fi
+
 # profile stop time start {{
 if [[ $DEBUG == 1 ]]; then
   set +x
