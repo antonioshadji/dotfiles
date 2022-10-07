@@ -69,6 +69,9 @@ sudo mount /dev/mapper/vg-blockchain /mnt/blockchain
 sudo mount /dev/mapper/vg-crypto /mnt/crypto
 
 ## Step 7: Edit fstab for permanent mount
+
+`sudo blkid` shows UUID for fstab file
+
 **0 2 at end of fstab is for secondary storage.  0 1 for primary drive**
 ```
 # HITACHI 1TB Drive /dev/mapper/vg0-blockchain
