@@ -18,7 +18,8 @@ pytest
 yamllint
 yamlfix
 # used in ipython_config.py
-pygments-style-solarized
+# no longer available
+# pygments-style-solarized
 # build tools
 meson
 
@@ -27,7 +28,7 @@ boto3
 
 # cli tools
 docker-compose
-ansible-lint
+# ansible-lint
 
 # Data Science Tools SciPy stack
 ## must apt-get install libpng12-dev libfreetype6-dev to install matplotlib
@@ -44,7 +45,7 @@ dask[complete]
 xlrd
 # machine learning
 # octave kernel for jupyter notebook and machine learning course
-octave-kernel
+# octave-kernel
 ## requires apt-get install libblas-dev liblapack-dev gfortran
 statsmodels
 scikit-learn
