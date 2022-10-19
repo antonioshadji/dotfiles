@@ -1,0 +1,5 @@
+# local mount point                    options         remote NFS
+/home/antonios/Documents/pt-docs       -fstype=nfs,rw  10.0.0.164:/home/antonios/Documents
+/home/antonios/Downloads/pt-downloads  -fstype=nfs,rw  10.0.0.164:/home/antonios/Downloads
+/home/antonios/Pictures/pt-pictures    -fstype=nfs,rw  10.0.0.164:/home/antonios/Pictures 
+/home/antonios/Videos/pt-videos        -fstype=nfs,rw  10.0.0.164:/home/antonios/Videos   
