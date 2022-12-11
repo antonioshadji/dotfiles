@@ -14,7 +14,7 @@ cd ..
 cd fzf || echo "Failed to find fzf folder."; exit 2
 git checkout "$(git describe --abbrev=0 --tags)"
 
-# update submodules to git committed version
-# git submodule update
-
 git submodule status
+
+# For broken submodules, update submodules to git committed version
+# git submodule update
