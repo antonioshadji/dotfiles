@@ -21,7 +21,8 @@ def get_content(url):
 
 
 def find_file(tree):
-    for link in tree.xpath("/html/body/main/article/a"):
+    # /html/body/main/article/div[1]/a[5]
+    for link in tree.xpath("/html/body/main/article/div[1]/a"):
         if "linux" in link.xpath("@href")[0]:
             return link.xpath("@href")[0]
 
@@ -29,6 +30,7 @@ def find_file(tree):
 def main():
     tree = get_content(BASE + "/dl/")
     url = find_file(tree)
+    print(url)
 
     fn = url.split("/")[-1]
     if not re.match(r"go1.*linux-amd64.tar.gz", fn):
