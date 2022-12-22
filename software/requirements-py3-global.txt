@@ -27,7 +27,7 @@ meson
 boto3
 
 # cli tools
-docker-compose
+# docker-compose
 # ansible-lint
 
 # Data Science Tools SciPy stack
