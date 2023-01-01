@@ -691,7 +691,7 @@ ulimit -S -c 8192
 
 # start tmux by default
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-  tmux attach -t 0 || if tmux ls; then tmux new; else tmux new -s home; fi
+  tmux attach -t "$(hostname)" || if tmux ls; then tmux new; else tmux new -s "$(hostname)"; fi
 fi
 
 # profile stop time start {{
