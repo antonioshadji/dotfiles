@@ -568,7 +568,7 @@ endif
 
 " Plugins {
 " must run this command when new plugins installed or no help available
-" helptags ALL
+helptags ALL
 " git@github.com:w0rp/ale.git {
 " Enable completion where available. TODO: Can this replace deoplete?
 " This setting must be set before ALE is loaded.
@@ -821,8 +821,6 @@ if v:version > 800
   tmap <C-j> <C-w>j
   tmap <C-k> <C-w>k
   tmap <C-l> <C-w>l
-  " must run this command when new plugins installed or no help available
-  helptags ALL
 
 endif
 
