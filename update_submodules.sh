@@ -20,6 +20,8 @@ echo -e "${GREEN}completed tmux-resurrect update.${NC}"
 
 (cd ./vim/pack/plugins/start/jedi-vim && git checkout "$(git describe --abbrev=0 --tags)")
 (cd ./vim/pack/plugins/start/jedi-vim/pythonx/jedi && git submodule update)
+(cd ./vim/pack/plugins/start/jedi-vim/pythonx/parso && git submodule update)
+(cd ./vim/pack/plugins/start/jedi-vim && git submodule update)
 echo -e "${GREEN}completed jedi-vim update.${NC}"
 
 echo "================================================================================"
