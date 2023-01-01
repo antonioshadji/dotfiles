@@ -67,7 +67,6 @@ local nvim_lsp = require'lspconfig'
 local opts = {
     tools = {
         autoSetHints = true,
-        hover_with_actions = true,
         runnables = {
             use_telescope = true
         },
@@ -84,6 +83,7 @@ local opts = {
     server = {
         -- on_attach is a callback called when the language server attachs to the buffer
         -- on_attach = on_attach,
+        -- TODO: replace with keybinding in on_attach -> hover_with_actions = true,
         settings = {
             -- to enable rust-analyzer settings visit:
             -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
