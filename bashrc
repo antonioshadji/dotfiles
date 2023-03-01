@@ -679,20 +679,8 @@ if command -v fd &> /dev/null; then
   export FZF_DEFAULT_COMMAND='fd --type f'
 fi
 
-# core dump max size Hard = ulimited, Soft set here 4MB (512k blocks)
-# TODO: is this really needed?
-ulimit -S -c 8192
-
-# use vim as manpager TODO: breaks when searching via rg
-# export MANPAGER="/bin/sh -c \"col -b | vim --noplugin -c 'set ft=man ts=8 laststatus=1 cc=\"\" nomod nolist nonu nornu noma' -\""
-
 # show if there is an existing tmux session when SSH into this machine
 [[ -n $SSH_CLIENT ]] && echo "tmux" && tmux ls
-
-# start tmux by default
-if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-  tmux attach -t "$(hostname)" || if tmux ls; then tmux new; else tmux new -s "$(hostname)"; fi
-fi
 
 # profile stop time start {{
 if [[ $DEBUG == 1 ]]; then
