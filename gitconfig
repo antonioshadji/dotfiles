@@ -14,7 +14,7 @@
   short = true
 [alias]
   # some ideas from: https://daniel.haxx.se/blog/2020/11/09/this-is-how-i-git/
-  b = branch
+  b = branch -vv
   com = commit
   co = checkout
   d = diff --minimal
