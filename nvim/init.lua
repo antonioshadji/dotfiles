@@ -142,8 +142,9 @@ cmp.setup({
 
 -- Code navigation shortcuts
 -- as found in :help lsp
+-- This line below breaks the help file navigation
+-- nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
 vim.cmd([[
-nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
