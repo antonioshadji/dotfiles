@@ -65,6 +65,9 @@ psycopg2
 lxml
 requests
 
+# writing Tools
+proselint
+
 
 # do not use sudo -H
 # sudo -H pip install --upgrade -r ~/dotfiles/requirements.txt
