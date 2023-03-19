@@ -124,3 +124,6 @@
 [submodule "vim/pack/plugins/opt/telescope.nvim"]
 	path = vim/pack/plugins/opt/telescope.nvim
 	url = git@github.com:nvim-telescope/telescope.nvim.git
+[submodule "vim/pack/plugins/opt/limelight.vim"]
+	path = vim/pack/plugins/opt/limelight.vim
+	url = https://github.com/junegunn/limelight.vim.git
