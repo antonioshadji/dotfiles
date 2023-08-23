@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
-export GTEST_ROOT=/mnt/projects/software/googletest
+export GTEST_ROOT=/mnt/projects/Environment/software/googletest
 # options found in CMakeList.txt in toplevel src directory
 cmake \
   -D WITH_PYTHON=ON \
