@@ -107,17 +107,16 @@ bindsym $mod+minus scratchpad show
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:ChromePT"
+set $ws1 "1:Chrome"
 set $ws2 "2:Terminal"
 set $ws3 "3:Firefox"
-set $ws4 "4:Postman"
-set $ws5 "5:ChromeAH"
+set $ws4 "4:PT"
+set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9:Gnucash"
 set $ws10 "10:Slack"
-
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -264,11 +263,14 @@ exec --no-startup-id redshift -l 40.000460:-75.292090
 exec --no-startup-id dropbox start
 
 # set webcam zoom level
-exec --no-startup-id uvcdynctrl --set='Zoom, Absolute' 130
-# exec --no-startup-id v4l2-ctl -d /dev/video0 --set-ctrl=zoom_absolute=130
+# exec --no-startup-id uvcdynctrl --set='Zoom, Absolute' 150
+# 150 for 1080p camera
+exec --no-startup-id v4l2-ctl --device /dev/video0 --set-ctrl=zoom_absolute=130
+
 # set webcam to disable autofocus
-exec --no-startup-id uvcdynctrl --set='Focus, Auto' 0
-# exec --no-startup-id v4l2-ctl -d /dev/video0 --set-ctrl=focus_auto=0
+# exec --no-startup-id uvcdynctrl --set='Focus, Auto' 0
+exec --no-startup-id v4l2-ctl --device /dev/video0 --set-ctrl=focus_automatic_continuous=0
+exec --no-startup-id v4l2-ctl --device /dev/video0 --set-ctrl=focus_absolute=1
 
 # start unclutter https://github.com/Airblader/unclutter-xfixes
 exec --no-startup-id unclutter --timeout 5 --fork
@@ -292,36 +294,31 @@ exec flameshot
 # TODO: these did not work
 # 11/26/22 commented out for_window/assign lines
 # https://www.reddit.com/r/i3wm/comments/42i5r8/default_startup_workspace/
+
 workspace $ws1 output HDMI-A-0
-# for_window [title=".*antonios@primetrust.com.*"] $ws1
-exec google-chrome --profile-directory="Profile 8"
-
-workspace $ws2 output HDMI-A-0
-# assign [instance="first-Alacritty"] $ws2
-exec alacritty --class first-Alacritty
-
-# starting in ws10
-workspace $ws3 output HDMI-A-0
-# assign [class="Firefox Developer Edition"] $ws3
-exec FirefoxDeveloperEdition
-
-workspace $ws4 output HDMI-A-0
-#assign [class="Postman"] $ws4
-exec postman
-
-# starting in ws1
-workspace $ws5 output HDMI-A-0
 # for_window [title=".*antonios.hadji@gmail.com.*"] $ws5
 exec google-chrome --profile-directory=Default
 
-# move this to EOF to ensure only slack is launched on second monitor ??
+workspace $ws2 output HDMI-A-0
+assign [instance="first-Alacritty"] $ws2
+exec alacritty --class first-Alacritty
+
+# workspace $ws5 output HDMI-A-0
+# # for_window [title=".*antonios@primetrust.com.*"] $ws1
+# exec google-chrome --profile-directory="Profile 8"
+
+# TODO: move this to EOF to ensure only slack is launched on second monitor ??
 # https://i3wm.org/docs/userguide.html#workspace_screen
 # set workspace 10 to right Monitor
 workspace $ws10 output HDMI-A-1
 # always launch slack in workspace 10
-# assign [class="Slack"] $ws10
+assign [class="Slack"] $ws10
 exec slack
-# ================================================
+
+# starting in ws8 on right output
+workspace $ws8 output HDMI-A-1
+assign [class="Firefox Developer Edition"] $ws8
+exec FirefoxDeveloperEdition
 
 # make zoom load in workspace 8
 # assign [class="zoom"] $ws8
