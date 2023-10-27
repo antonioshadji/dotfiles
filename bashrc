@@ -688,3 +688,4 @@ if [[ $DEBUG == 1 ]]; then
   exec 2>&3 3>&-
 fi
 # }}
+export TPM2_PKCS11_STORE=$HOME/.tpm2_pkcs11/
