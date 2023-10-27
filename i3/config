@@ -270,7 +270,6 @@ exec --no-startup-id v4l2-ctl --device /dev/video0 --set-ctrl=zoom_absolute=130
 # set webcam to disable autofocus
 # exec --no-startup-id uvcdynctrl --set='Focus, Auto' 0
 exec --no-startup-id v4l2-ctl --device /dev/video0 --set-ctrl=focus_automatic_continuous=0
-exec --no-startup-id v4l2-ctl --device /dev/video0 --set-ctrl=focus_absolute=1
 
 # start unclutter https://github.com/Airblader/unclutter-xfixes
 exec --no-startup-id unclutter --timeout 5 --fork
