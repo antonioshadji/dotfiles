@@ -5,6 +5,9 @@
 # pip install --user --upgrade -r ~/dotfiles/requirements3.txt
 pip
 
+# security
+ssh-audit
+
 # common files for all installs
 # coding tools
 black
