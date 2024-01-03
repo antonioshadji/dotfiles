@@ -16,6 +16,7 @@ scriptencoding utf-8
 " :set
 
 "Enable syntax highlighting and don't overwrite colorscheme
+" on by default in neovim
 syntax enable
 " Enable file type detection.  Use the default filetype settings
 " Also load indent files, to automatically do language-dependent indenting.
@@ -841,6 +842,6 @@ endif
 " ur  hh  uh  hh ul
 " arrows <- ← -> →  !- ↑ -v ↓
 " open daily journal file on Mac
-if trim(system('uname')) ==# 'Darwin'
-  :command! Daily :execute 'edit ' . $HOME . '/Dropbox\ (Leros\ Capital\ LLC)/Comcast/obsidian/daily/' . strftime("%F-%A") . '.md'
-endif
+" if trim(system('uname')) ==# 'Darwin'
+"   :command! Daily :execute 'edit ' . $HOME . '/Dropbox\ (Leros\ Capital\ LLC)/Comcast/obsidian/daily/' . strftime("%F-%A") . '.md'
+" endif

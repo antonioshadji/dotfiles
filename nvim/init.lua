@@ -7,7 +7,6 @@ vim.cmd('source ~/.vim/vimrc')
 
 vim.opt.packpath = vim.opt.runtimepath:get()
 
-vim.cmd('syntax enable')
 vim.cmd('filetype plugin indent on')
 vim.cmd('colorscheme solarized8')
 vim.opt.background = 'dark'
