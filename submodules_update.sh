@@ -4,7 +4,7 @@ GREEN='\033[0;32m'
 NC='\033[0m' # No Color#
 
 # Update all submodules to latest master
-git submodule update --recursive --remote
+git submodule update --remote
 
 # (cd ./bash-git-prompt && git checkout "$(git describe --abbrev=0 --tags)")
 # echo -e "${GREEN}completed bash-git-prompt update.${NC}"
