@@ -11,7 +11,7 @@ vim.cmd('filetype plugin indent on')
 vim.cmd('colorscheme solarized8')
 vim.opt.background = 'dark'
 
--- vim.inspect prints tables
+-- vim.inspect prints tables on startup
 -- print(vim.inspect(vim.opt.packpath))
 -- print(vim.inspect(vim.opt.runtimepath))
 
@@ -21,8 +21,6 @@ vim.opt.background = 'dark'
 " noinsert: Do not insert text until a selection is made
 " noselect: Do not select, force user to select one from the menu
 --]]
---vim.cmd('set completeopt=menuone,noinsert,noselect')
-vim.opt.completeopt = {'menuone', 'noinsert', 'noselect'}
 
 -- Avoid showing extra messages when using completion
 -- vim.cmd('set shortmess+=c')
@@ -36,16 +34,14 @@ vim.cmd('packadd rust-tools.nvim')
 
 vim.cmd([[
 " Autocompletion framework
-packadd nvim-cmp
-" cmp LSP completion
 packadd cmp-nvim-lsp
-" cmp Snippet completion
-packadd cmp-vsnip
-" cmp Path completion
-packadd cmp-path
 packadd cmp-buffer
+packadd cmp-path
+" packadd cmp-cmdline https://github.com/hrsh7th/cmp-cmdline 
+packadd nvim-cmp
 
 " Snippet engine
+packadd cmp-vsnip
 packadd vim-vsnip
 
 " Optional
@@ -53,6 +49,8 @@ packadd popup.nvim
 packadd plenary.nvim
 packadd telescope.nvim
 ]])
+
+vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
 
 -- https://github.com/sharksforarms/neovim-rust/blob/master/neovim-init-lsp-cmp-rust-tools.vim
 --[[" Configure LSP through rust-tools.nvim plugin.
@@ -138,6 +136,12 @@ cmp.setup({
     { name = 'buffer' },
   },
 })
+-- Set up lspconfig.
+--   local capabilities = require('cmp_nvim_lsp').default_capabilities()
+--   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+--   require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
+--     capabilities = capabilities
+--   }
 
 -- Code navigation shortcuts
 -- as found in :help lsp
@@ -182,3 +186,6 @@ vim.api.nvim_set_keymap("t", "<C-l>", [[<C-\><C-n><C-w>l]], { noremap = true})
 
 -- Limelight let g:limelight_conceal_ctermfg = 'darkgray'
 vim.g.limelight_conceal_ctermfg = 237
+
+-- TODO: tested, working with basic functionality
+require'lspconfig'.tsserver.setup{}
