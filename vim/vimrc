@@ -781,9 +781,9 @@ set background=dark
 "set background=light
 " https://github.com/lifepillar/vim-solarized8/blob/master/colors/solarized8.vim
 " set terminal so it shows same colors as background
-if !has('gui')
-  hi Terminal ctermfg=fg ctermbg=NONE cterm=NONE
-endif
+" if !has('gui')
+"   hi Terminal ctermfg=fg ctermbg=NONE cterm=NONE
+" endif
 
 "if len(matchstr(v:termrbgresp, '00/2b/36'))
 "  echom 'true'
