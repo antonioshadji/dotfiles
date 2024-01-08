@@ -31,3 +31,6 @@ echo "==========================================================================
 echo -e "${GREEN}finished.${NC}"
 # For broken submodules, update submodules to git committed version
 # git submodule update
+
+# https://github.com/nvim-telescope/telescope.nvim
+# telescope.nvim should be set to branch 0.1.x to follow releases

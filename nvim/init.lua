@@ -45,8 +45,9 @@ packadd cmp-vsnip
 packadd vim-vsnip
 
 " Optional
-packadd popup.nvim
 packadd plenary.nvim
+packadd popup.nvim
+
 packadd telescope.nvim
 ]])
 
