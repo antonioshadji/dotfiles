@@ -10,6 +10,7 @@ vim.opt.packpath = vim.opt.runtimepath:get()
 vim.cmd('filetype plugin indent on')
 vim.cmd('colorscheme solarized8')
 vim.opt.background = 'dark'
+vim.opt.termguicolors = true
 
 -- vim.inspect prints tables on startup
 -- print(vim.inspect(vim.opt.packpath))
@@ -37,7 +38,6 @@ vim.cmd([[
 packadd cmp-nvim-lsp
 packadd cmp-buffer
 packadd cmp-path
-" packadd cmp-cmdline https://github.com/hrsh7th/cmp-cmdline 
 packadd nvim-cmp
 
 " Snippet engine
