@@ -121,3 +121,6 @@
 [submodule "vim/pack/plugins/opt/limelight.vim"]
 	path = vim/pack/plugins/opt/limelight.vim
 	url = https://github.com/junegunn/limelight.vim.git
+[submodule "vim/pack/plugins/opt/gp.nvim"]
+	path = vim/pack/plugins/opt/gp.nvim
+	url = https://github.com/Robitx/gp.nvim
