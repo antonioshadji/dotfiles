@@ -27,29 +27,10 @@ vim.opt.termguicolors = true
 -- vim.cmd('set shortmess+=c')
 vim.opt.shortmess:append('c')
 
--- Collection of common configurations for the Nvim LSP client
-vim.cmd('packadd nvim-lspconfig')
 -- TODO move to file type loading
 -- Adds extra functionality over rust analyzer
-vim.cmd('packadd rust-tools.nvim')
+-- vim.cmd('packadd rust-tools.nvim')
 
-vim.cmd([[
-" Autocompletion framework
-packadd cmp-nvim-lsp
-packadd cmp-buffer
-packadd cmp-path
-packadd nvim-cmp
-
-" Snippet engine
-packadd cmp-vsnip
-packadd vim-vsnip
-
-" Optional
-packadd plenary.nvim
-packadd popup.nvim
-
-packadd telescope.nvim
-]])
 
 vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
 

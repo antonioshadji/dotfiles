@@ -86,7 +86,7 @@
 	path = nvm
 	url = https://github.com/nvm-sh/nvm.git
 [submodule "vim/pack/plugins/opt/nvim-lspconfig"]
-	path = vim/pack/plugins/opt/nvim-lspconfig
+	path = vim/pack/plugins/start/nvim-lspconfig
 	url = git@github.com:neovim/nvim-lspconfig.git
 [submodule "vim/pack/plugins/opt/rust-tools.nvim"]
 	path = vim/pack/plugins/opt/rust-tools.nvim
