@@ -29,7 +29,7 @@ vim.opt.shortmess:append('c')
 
 -- TODO move to file type loading
 -- Adds extra functionality over rust analyzer
--- vim.cmd('packadd rust-tools.nvim')
+vim.cmd('packadd rust-tools.nvim')
 
 
 vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
