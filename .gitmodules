@@ -124,3 +124,6 @@
 [submodule "vim/pack/plugins/opt/gp.nvim"]
 	path = vim/pack/plugins/opt/gp.nvim
 	url = https://github.com/Robitx/gp.nvim
+[submodule "vim/pack/plugins/start/nvim-treesitter"]
+	path = vim/pack/plugins/start/nvim-treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter.git
