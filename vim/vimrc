@@ -1,6 +1,9 @@
 " vim: set foldmarker={,} foldlevel=0 foldmethod=marker :
-set encoding=utf-8      " show buffer as utf-8 https://github.com/square/maximum-awesome (**MUST BE EARLY IN FILE**)
-scriptencoding utf-8
+" neovim defaults {
+" set encoding=utf-8      " show buffer as utf-8 https://github.com/square/maximum-awesome (**MUST BE EARLY IN FILE**)
+" scriptencoding utf-8
+" }
+"
 " Note:
 " online help file: https://vimhelp.appspot.com/
 
@@ -16,32 +19,35 @@ scriptencoding utf-8
 " :set
 
 "Enable syntax highlighting and don't overwrite colorscheme
-" on by default in neovim
-syntax enable
+" neovim default {
+" syntax enable
+" }
+"
 " Enable file type detection.  Use the default filetype settings
 " Also load indent files, to automatically do language-dependent indenting.
-filetype plugin indent on
+" neovim init.lua {
+" filetype plugin indent on
+" }
 
 " from defaults.vim {
 " (full line comments are related additional settings)
 " compatible' 'cp'	boolean	(default on, off when a |vimrc| file is found
+" neovim default {
 " set nocompatible                " nvim default, must be set for vim
-set backspace=indent,eol,start  " fix backspace
-set showcmd                     " display incomplete commands
-" disable all mouse usage, use keyboard only!!
-" set mouse=a                     " Automatically enable mouse usage
-" if !has('nvim')
-"     set ttymouse=xterm2
-" endif
+" set backspace=indent,eol,start  " fix backspace
+" set showcmd                     " display incomplete commands
+" set incsearch                   " search as you type
+" set wildmenu                    " Show list instead of just completing
+" }
+" Command <Tab> completion, list matches, then longest common part, then all.
+" 2024-01-26 12:44:59 experiment with neovim default 'full'
+" set wildmode=list:longest,full
 
-set incsearch                   " search as you type
 
 " Ctrl-A increments character under cursor
 " Ctrl-X decrements
 
-set wildmenu                    " Show list instead of just completing
-" Command <Tab> completion, list matches, then longest common part, then all.
-set wildmode=list:longest,full
+"
 " https://bitbucket.org/sjl/dotfiles/src/cbbbc897e9b3/vim/vimrc
 set wildignore+=netrw_gitignore#Hide()
 " set wildignore+=.hg,.git,.svn                    " Version control
@@ -105,11 +111,14 @@ endif
 " General Settings {
 set exrc                " Allow local vimrc files inside projects (for c/cpp)
 set secure              " do not allow autocmds in project specific vimrc
-set hidden              " Allow buffer switching without saving
-set mousehide           " Hide the mouse cursor while typing
+" neovim defaults {
+" set hidden              " Allow buffer switching without saving
+" set mousehide           " Hide the mouse cursor while typing
+" }
 set autowriteall        " Write files when many actions, including switching buffers see :help awa
 
-set virtualedit=onemore " Allow for cursor beyond last character
+" disabled 2024-01-26 12:57:12 I don't think I actually like this behavior.
+" set virtualedit=onemore " Allow for cursor beyond last character
 " reccommended to be turned off for no_plugins.vim default file browsing
 " set autochdir           " Always change to current file directory
 "}
@@ -129,39 +138,44 @@ set clipboard+=unnamedplus
 
 " Vim UI {
 set cursorline                  " Highlight current line
-set number                      " show line numbers
 set showmatch                   " jump cursor to matching brace when entered
 set ignorecase                  " case-insensitive search
 set smartcase                   " use case sensitive search if any caps present
-
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
-set foldenable                  " Auto fold code
 "  To insert special character - in insert mode CTRL-K two character code from :digraphs command
 set listchars=tab:›\ ,trail:∙,nbsp:†,extends:»,precedes:« "nvim defaults to tab:> ,trail:-,nbsp:+
 set list
 set colorcolumn=80              " highlight 80 character width for code files
-
 " status bar
 set noshowmode
-set laststatus=2
-set ruler
+
 " default:internal,filler,closeoff
 set diffopt+=vertical,iwhite
 "} end Vim UI
 
+" neovim default {
+" set foldenable                  " Auto fold code
+" status bar
+" set laststatus=2
+" set ruler
+"}
+
 " Formatting {
-set nowrap              " do not wrap long lines, show indicator instead
 set expandtab           " expands tabs to spaces
 set shiftwidth=2        " number of spaces to use for autoindent
 set tabstop=2           " actual tabs occupy # spaces
 set softtabstop=2       " insert mode tab and backspace
 set splitright          " puts new vsplit windows to the right
 set splitbelow          " puts new hsplit windows below current
-set pastetoggle=<F12>   " sane indentation on pastes
+" }
+
+" neovim defaut {
 " breaks nvim 0.10-dev
 " set printoptions=formfeed:y  "insert Ctrl-V Ctrl-L (^L) to create print pagebreak
-
+" set nowrap              " do not wrap long lines, show indicator instead
+" set pastetoggle=<F12>   " sane indentation on pastes
 " }
+
 
 " GUI Settings (here instead of .gvimrc) {
 if has('gui_running')
@@ -188,7 +202,7 @@ if has('gui_running')
 endif
 "} end GUI settings
 
-" Backup and undo settings {
+" Backup and undo settings VIM only{
 " - 'backupdir' defaults to .,~/.local/share/nvim/backup (|xdg|)
 " - 'directory' defaults to ~/.local/share/nvim/swap// (|xdg|), auto-created
 " - 'undodir' defaults to ~/.local/share/nvim/undo (|xdg|), auto-created
@@ -220,7 +234,7 @@ if !has('nvim')
 
   " https://vimhelp.appspot.com/usr_21.txt.html#21.3
   " move viminfo file to .vim directory, other settings default and required
-  " this conflicts with nvim, disable in neovim
+  " this conflicts with nvim
   set viminfo='1000,f1,<500,n/tmp/vim/viminfo
 endif
 
@@ -256,14 +270,6 @@ imap <Down> <Esc><Down>
 "http://www.bestofvim.com/tip/leave-ex-mode-good/
 " <Nop> is no operation
 map Q q
-
-"force myself to use hjkl instead of arrow keys <nop> only normal mode
-" jk <down><up> hl<left><right>
-" with moonlander using arrows might be better than keys
-" map <up> <nop>
-" map <down> <nop>
-" map <left> <nop>
-" map <right> <nop>
 
 " Easy window navigation
 nnoremap <C-h> <C-w>h
@@ -316,8 +322,8 @@ cmap w!! w !sudo tee %
 " https://docs.oracle.com/javase/8/docs/technotes/tools/windows/classpath.html
 " -ea = enableassertions
 " -cp = classpath
-map <F7> :!clear; javac -cp ../algs4.jar:. %<CR>
-map <F8> :!clear; java -ea -cp ../algs4.jar:. %:r<CR>
+" map <F7> :!clear; javac -cp ../algs4.jar:. %<CR>
+" map <F8> :!clear; java -ea -cp ../algs4.jar:. %:r<CR>
 
 "from defaults.vim
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
@@ -802,18 +808,6 @@ set background=dark
 " endif
 " colors }
 
-" MzScheme Support for Racket {
-" Auto-instantiation of vimext module (can be placed in your |vimrc|): >
-" function! MzRequire()
-"   mz (require (prefix-in vim- 'vimext))
-" endfunction
-" causes seg fault, although in can be called after startup
-" see error with lldb vim, compile with debug symbols for more info
-" mzquantum default value 100ms, time between polls for mzscheme threads
-" if has("mzscheme")
-"   call MzRequire()
-" endif
-" }
 
 if v:version > 800
   " add gitignore'd files to list
