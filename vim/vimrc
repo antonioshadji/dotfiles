@@ -22,23 +22,15 @@
 " neovim default {
 " syntax enable
 " }
-"
+" neovim init.lua {
 " Enable file type detection.  Use the default filetype settings
 " Also load indent files, to automatically do language-dependent indenting.
-" neovim init.lua {
 " filetype plugin indent on
 " }
 
 " from defaults.vim {
 " (full line comments are related additional settings)
 " compatible' 'cp'	boolean	(default on, off when a |vimrc| file is found
-" neovim default {
-" set nocompatible                " nvim default, must be set for vim
-" set backspace=indent,eol,start  " fix backspace
-" set showcmd                     " display incomplete commands
-" set incsearch                   " search as you type
-" set wildmenu                    " Show list instead of just completing
-" }
 " Command <Tab> completion, list matches, then longest common part, then all.
 " 2024-01-26 12:44:59 experiment with neovim default 'full'
 " set wildmode=list:longest,full
@@ -48,8 +40,17 @@
 " Ctrl-X decrements
 
 "
-" https://bitbucket.org/sjl/dotfiles/src/cbbbc897e9b3/vim/vimrc
-set wildignore+=netrw_gitignore#Hide()
+" set display+=lastline                          "tpope sensible ?? handled
+"}
+" neovim default {
+" set nocompatible                " nvim default, must be set for vim
+" set backspace=indent,eol,start  " fix backspace
+" set showcmd                     " display incomplete commands
+" set incsearch                   " search as you type
+" set wildmenu                    " Show list instead of just completing
+" used old cold to prevent from having to figure out
+" lua version of netrw_gitignore#Hide()
+" set wildignore+=netrw_gitignore#Hide()
 " set wildignore+=.hg,.git,.svn                    " Version control
 " set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
 " set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
@@ -59,69 +60,23 @@ set wildignore+=netrw_gitignore#Hide()
 " set wildignore+=*.luac                           " Lua byte code
 " set wildignore+=*.pyc                            " Python byte code
 " set wildignore+=*.class                          " Java byte code
-" set display+=lastline                          "tpope sensible ?? handled
-"}
-
-" no_plugins.vim settings to maximize Vim's built in functionality {
-" from https://github.com/mcantor/no_plugins/blob/master/no_plugins.vim
-"
-" Search down into subfolders
-" Provides tab-completion for all file-related tasks
-set path+=**
-" NOW WE CAN:
-" - Hit tab to :find by partial match
-" - Use * to make it fuzzy
-
-" TAG JUMPING:
-" Create the `tags` file (may need to install ctags first)
-command! MakeTags !ctags -R .
-
-" help ft-c-omni
-" ctags -R -f ~/.vim/systags /usr/include /usr/local/include
-set tags+=~/.vim/systags
-
-" NOW WE CAN:
-" - Use ^] to jump to tag under cursor
-" - Use g^] for ambiguous tags
-" - Use ^t to jump back up the tag stack
-" FILE BROWSING:
-
-" Tweaks for browsing
-let g:netrw_banner=0        " disable annoying banner
-let g:netrw_browse_split=4  " open in vertical split (4 = prior window)
-let g:netrw_liststyle=3     " tree view
-
-"let g:netrw_list_hide=',\(^\|\s\s\)\zs\.\S\+'
-let g:netrw_winsize=-200
-
-if trim(system('uname')) ==# 'Linux'
-  let g:netrw_browsex_viewer= 'xdg-open'
-else
-  " Mac OSX
-  let g:netrw_browsex_viewer= 'open'
-endif
-
-" NOW WE CAN:
-" - :edit a folder to open a file browser
-" - <CR>/v/t to open in an h-split/v-split/tab
-" - check |netrw-browse-maps| for more mappings
-
-"}
+" }
 
 " General Settings {
-set exrc                " Allow local vimrc files inside projects (for c/cpp)
-set secure              " do not allow autocmds in project specific vimrc
-" neovim defaults {
-" set hidden              " Allow buffer switching without saving
-" set mousehide           " Hide the mouse cursor while typing
-" }
-set autowriteall        " Write files when many actions, including switching buffers see :help awa
+  " 2024-01-26 16:04:11 move to init.lua
+" set exrc                " Allow local vimrc files inside projects (for c/cpp)
+" set secure              " do not allow autocmds in project specific vimrc
+" set autowriteall        " Write files when many actions, including switching buffers see :help awa
 
 " disabled 2024-01-26 12:57:12 I don't think I actually like this behavior.
 " set virtualedit=onemore " Allow for cursor beyond last character
 " reccommended to be turned off for no_plugins.vim default file browsing
 " set autochdir           " Always change to current file directory
 "}
+" neovim defaults {
+" set hidden              " Allow buffer switching without saving
+" set mousehide           " Hide the mouse cursor while typing
+" }
 
 " Setup clipboard to work with desktop copy / paste {
 " default registers: * is primary + is clipboard
@@ -129,30 +84,32 @@ set autowriteall        " Write files when many actions, including switching buf
 " unamed = * (primary X11) unnamedplus = + (clipboard X11)
 " Why would I want these to be different? separate yank from delete, change
 " help clipboard-unnamed clipboard-unnamedplus clipboard x11-selection
-set clipboard=unnamed
-set clipboard+=unnamedplus
 " if system('uname -s') == 'Darwin\n'  "has ('gui') On Mac & Win use * register for copy-paste
 "   set clipboard+=unnamed
 " endif
 " }
+" neovim init.lua {
+" set clipboard=unnamed
+" set clipboard+=unnamedplus
+" }
 
-" Vim UI {
-set cursorline                  " Highlight current line
-set showmatch                   " jump cursor to matching brace when entered
-set ignorecase                  " case-insensitive search
-set smartcase                   " use case sensitive search if any caps present
-set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
-"  To insert special character - in insert mode CTRL-K two character code from :digraphs command
-set listchars=tab:›\ ,trail:∙,nbsp:†,extends:»,precedes:« "nvim defaults to tab:> ,trail:-,nbsp:+
-set list
-set colorcolumn=80              " highlight 80 character width for code files
-" status bar
-set noshowmode
-
-" default:internal,filler,closeoff
-set diffopt+=vertical,iwhite
+" neovim init.lua Vim UI {
+" set cursorline                  " Highlight current line
+" set showmatch                   " jump cursor to matching brace when entered
+" set ignorecase                  " case-insensitive search
+" set smartcase                   " use case sensitive search if any caps present
+" " switch to default setting 2024-01-26 16:39:14
+" " set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
+" "  To insert special character - in insert mode CTRL-K two character code from :digraphs command
+" set listchars=tab:›\ ,trail:∙,nbsp:†,extends:»,precedes:« "nvim defaults to tab:> ,trail:-,nbsp:+
+" set list
+" set colorcolumn=80              " highlight 80 character width for code files
+" " status bar
+" set noshowmode
+"
+" " default:internal,filler,closeoff
+" set diffopt+=vertical,iwhite
 "} end Vim UI
-
 " neovim default {
 " set foldenable                  " Auto fold code
 " status bar
@@ -160,13 +117,13 @@ set diffopt+=vertical,iwhite
 " set ruler
 "}
 
-" Formatting {
-set expandtab           " expands tabs to spaces
-set shiftwidth=2        " number of spaces to use for autoindent
-set tabstop=2           " actual tabs occupy # spaces
-set softtabstop=2       " insert mode tab and backspace
-set splitright          " puts new vsplit windows to the right
-set splitbelow          " puts new hsplit windows below current
+" neovim init.lua Formatting {
+" set expandtab           " expands tabs to spaces
+" set shiftwidth=2        " number of spaces to use for autoindent
+" set tabstop=2           " actual tabs occupy # spaces
+" set softtabstop=2       " insert mode tab and backspace
+" set splitright          " puts new vsplit windows to the right
+" set splitbelow          " puts new hsplit windows below current
 " }
 
 " neovim defaut {
@@ -176,6 +133,51 @@ set splitbelow          " puts new hsplit windows below current
 " set pastetoggle=<F12>   " sane indentation on pastes
 " }
 
+" no_plugins.vim settings to maximize Vim's built in functionality {
+" " from https://github.com/mcantor/no_plugins/blob/master/no_plugins.vim
+" "
+" " Search down into subfolders
+" " Provides tab-completion for all file-related tasks
+" set path+=**
+" " NOW WE CAN:
+" " - Hit tab to :find by partial match
+" " - Use * to make it fuzzy
+"
+" " TAG JUMPING:
+" " Create the `tags` file (may need to install ctags first)
+" command! MakeTags !ctags -R .
+"
+" " help ft-c-omni
+" " ctags -R -f ~/.vim/systags /usr/include /usr/local/include
+" set tags+=~/.vim/systags
+"
+" " NOW WE CAN:
+" " - Use ^] to jump to tag under cursor
+" " - Use g^] for ambiguous tags
+" " - Use ^t to jump back up the tag stack
+" " FILE BROWSING:
+"
+" " Tweaks for browsing
+" let g:netrw_banner=0        " disable annoying banner
+" let g:netrw_browse_split=4  " open in vertical split (4 = prior window)
+" let g:netrw_liststyle=3     " tree view
+"
+" "let g:netrw_list_hide=',\(^\|\s\s\)\zs\.\S\+'
+" let g:netrw_winsize=-200
+"
+" if trim(system('uname')) ==# 'Linux'
+"   let g:netrw_browsex_viewer= 'xdg-open'
+" else
+"   " Mac OSX
+"   let g:netrw_browsex_viewer= 'open'
+" endif
+
+" NOW WE CAN:
+" - :edit a folder to open a file browser
+" - <CR>/v/t to open in an h-split/v-split/tab
+" - check |netrw-browse-maps| for more mappings
+
+"}
 
 " GUI Settings (here instead of .gvimrc) {
 if has('gui_running')
@@ -202,43 +204,7 @@ if has('gui_running')
 endif
 "} end GUI settings
 
-" Backup and undo settings VIM only{
-" - 'backupdir' defaults to .,~/.local/share/nvim/backup (|xdg|)
-" - 'directory' defaults to ~/.local/share/nvim/swap// (|xdg|), auto-created
-" - 'undodir' defaults to ~/.local/share/nvim/undo (|xdg|), auto-created
-" - 'viminfo' includes "!"
-if !has('nvim')
-  if has('persistent_undo')
-    " undodir set from spf13
-    set undofile
-    set undolevels=1000
-    " no undo files left in CWD
-    if !isdirectory(expand('/tmp/vim/undo/'))
-      " help mkdir for more information on use
-      call mkdir(expand('/tmp/vim/undo/'), 'p')
-    endif
-    set undodir=/tmp/vim/undo//
-  endif
-
-  set backup                  "See :help backup
-  " no backup files left in CWD
-  if !isdirectory(expand('/tmp/vim/backup/'))
-    call mkdir(expand('/tmp/vim/backup/'), 'p')
-  endif
-  set backupdir=/tmp/vim/backup//
-  " no swap files left in CWD
-  if !isdirectory(expand('/tmp/vim/swap/'))
-    call mkdir(expand('/tmp/vim/swap/'), 'p')
-  endif
-  set directory=/tmp/vim/swap//
-
-  " https://vimhelp.appspot.com/usr_21.txt.html#21.3
-  " move viminfo file to .vim directory, other settings default and required
-  " this conflicts with nvim
-  set viminfo='1000,f1,<500,n/tmp/vim/viminfo
-endif
-
-"}
+" Below configs copied to init.lua and this file is no longer sourced
 
 "Keyboard Shortcuts {
 " help abbreviate
@@ -468,15 +434,13 @@ if !exists('g:autocommands_loaded')
   let java_highlight_functions='style'
   " }
 
-  "}
-
-
   " html template to start with {
   augroup HTML
     au!
     au BufNewFile *.html 0r ~/.vim/template/bootstrap.html
   augroup END
   " }
+
 endif
 
 " end Auto Commands: }
@@ -539,8 +503,41 @@ command! FormatJSON %!python3 -m json.tool
 
 " }
 
-" Neovim settings to make latest vim work like Neovim {
+" VIM ONLY: Neovim settings to make latest vim work like Neovim {
 if !has('nvim')
+  " - 'backupdir' defaults to .,~/.local/share/nvim/backup (|xdg|)
+  " - 'directory' defaults to ~/.local/share/nvim/swap// (|xdg|), auto-created
+  " - 'undodir' defaults to ~/.local/share/nvim/undo (|xdg|), auto-created
+  " - 'viminfo' includes "!"
+  if has('persistent_undo')
+    " undodir set from spf13
+    set undofile
+    set undolevels=1000
+    " no undo files left in CWD
+    if !isdirectory(expand('/tmp/vim/undo/'))
+      " help mkdir for more information on use
+      call mkdir(expand('/tmp/vim/undo/'), 'p')
+    endif
+    set undodir=/tmp/vim/undo//
+  endif
+
+  set backup                  "See :help backup
+  " no backup files left in CWD
+  if !isdirectory(expand('/tmp/vim/backup/'))
+    call mkdir(expand('/tmp/vim/backup/'), 'p')
+  endif
+  set backupdir=/tmp/vim/backup//
+  " no swap files left in CWD
+  if !isdirectory(expand('/tmp/vim/swap/'))
+    call mkdir(expand('/tmp/vim/swap/'), 'p')
+  endif
+  set directory=/tmp/vim/swap//
+
+  " https://vimhelp.appspot.com/usr_21.txt.html#21.3
+  " move viminfo file to .vim directory, other settings default and required
+  " this conflicts with nvim
+  set viminfo='1000,f1,<500,n/tmp/vim/viminfo
+
   " nvim defaults {
   set autoindent          " always autoindent
   set autoread            " auto re-load files when changed on disk https://github.com/square/maximum-awesome
@@ -578,13 +575,6 @@ endif
 " must run this command when new plugins installed or no help available
 helptags ALL
 " git@github.com:w0rp/ale.git {
-" Enable completion where available. TODO: Can this replace deoplete?
-" This setting must be set before ALE is loaded.
-" let g:ale_completion_enabled = 1 " interferes with jedi
-" Use ALE's function for omnicompletion.
-" set omnifunc=ale#completion#OmniFunc
-" See :help ale-completion for more information.
-" let g:jedi#completions_enabled = 0
 
 " https://github.com/w0rp/ale#2ii-fixing
 " check help ale-options for defaut settings and options available
@@ -611,6 +601,7 @@ let g:ale_fixers = {
   \ 'yaml': ['yamlfix'],
   \ 'json': ['jq'],
   \ 'rust': ['rustfmt'],
+  \ 'lua' : ['stylua'],
   \ '*': ['trim_whitespace','remove_trailing_lines']
   \}
 let g:ale_fix_on_save = 1
@@ -782,8 +773,8 @@ let g:tern#command = ['tern', '--persistent']
 " dark: ^[]11;rgb:00/2b/36^G
 " dark: ^[]11;rgb:0000/2b2b/3636^G
 " light: ^[]11;rgb:fd/f6/e3^G
-colorscheme solarized
-set background=dark
+" colorscheme solarized
+" set background=dark
 "set background=light
 " https://github.com/lifepillar/vim-solarized8/blob/master/colors/solarized8.vim
 " set terminal so it shows same colors as background
@@ -808,17 +799,17 @@ set background=dark
 " endif
 " colors }
 
-
-if v:version > 800
-  " add gitignore'd files to list
-  let g:netrw_list_hide=netrw_gitignore#Hide()
-  " Easy window navigation
-  tmap <C-h> <C-w>h
-  tmap <C-j> <C-w>j
-  tmap <C-k> <C-w>k
-  tmap <C-l> <C-w>l
-
-endif
+" neovim  init.lua nvim_set_keymap
+" if v:version > 800
+"   " add gitignore'd files to list
+"   let g:netrw_list_hide=netrw_gitignore#Hide()
+"   " Easy window navigation
+"   tmap <C-h> <C-w>h
+"   tmap <C-j> <C-w>j
+"   tmap <C-k> <C-w>k
+"   tmap <C-l> <C-w>l
+"
+" endif
 
 if filereadable('Session.vim')
   :silent source Session.vim

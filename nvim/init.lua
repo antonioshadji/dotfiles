@@ -1,18 +1,55 @@
-vim.opt.runtimepath:prepend(vim.env.HOME .. '/.vim')
+vim.opt.runtimepath:prepend(vim.env.HOME .. "/.vim")
 -- not currently using the /after directory
 -- vim.opt.runtimepath:append(HOME .. '/.vim/after')
 
 -- statusline does not show powerline symbols when this is removed
-vim.cmd('source ~/.vim/vimrc')
+-- vim.cmd("source ~/.vim/vimrc")
 
 vim.opt.packpath = vim.opt.runtimepath:get()
 
-vim.cmd('filetype plugin indent on')
-vim.cmd('colorscheme solarized8')
-vim.opt.background = 'dark'
+-- on by default
+-- vim.cmd("filetype plugin indent on")
+-- dark is default
+-- vim.opt.background = "dark"
 vim.opt.termguicolors = true
 
--- vim.inspect prints tables on startup
+-- add files to ignore
+vim.opt.wildignore:append({ ".hg", ".git", ".svn" }) -- " Version control
+vim.opt.wildignore:append({ "*.jpg", "*.bmp", "*.gif", "*.png", "*.jpeg" }) -- " binary images
+vim.opt.wildignore:append({ "*.o", "*.obj", "*.exe", "*.dll", "*.manifest" }) -- " compiled object files
+vim.opt.wildignore:append({ "*.spl" }) -- " compiled spelling word lists
+vim.opt.wildignore:append({ "*.sw?" }) -- " Vim swap files
+vim.opt.wildignore:append({ "*.DS_Store" }) -- " OSX bullshit
+vim.opt.wildignore:append({ "*.luac" }) -- " Lua byte code
+vim.opt.wildignore:append({ "*.pyc" }) -- " Python byte code
+vim.opt.wildignore:append({ "*.class" }) -- " Java byte code
+
+vim.opt.exrc = true -- Allow local vimrc files inside projects (for c/cpp)
+vim.opt.secure = true -- do not allow autocmds in project specific vimrc
+vim.opt.autowriteall = true -- Write files when many actions, including switching buffers see :help awa
+
+vim.opt.clipboard = { "unnamed", "unnamedplus" }
+
+vim.opt.cursorline = true -- Highlight current line
+vim.opt.showmatch = true -- jump cursor to matching brace when entered
+vim.opt.ignorecase = true -- case-insensitive search
+vim.opt.smartcase = true -- use case sensitive search if any caps present
+vim.opt.wrap = false -- default is on
+
+vim.opt.listchars = { tab = "› ", trail = "∙", nbsp = "†", extends = "»", precedes = "«" } -- "nvim defaults to tab:> ,trail:-,nbsp:+
+vim.opt.list = true
+vim.opt.colorcolumn = "80"
+vim.opt.showmode = false
+vim.opt.diffopt:append({ "vertical", "iwhite" })
+
+vim.opt.expandtab = true -- expands tabs to spaces
+vim.opt.shiftwidth = 2 -- number of spaces to use for autoindent
+vim.opt.tabstop = 2 -- actual tabs occupy # spaces
+vim.opt.softtabstop = 2 -- insert mode tab and backspace
+vim.opt.splitright = true -- puts new vsplit windows to the right
+vim.opt.splitbelow = true -- puts new hsplit windows below current
+
+-- vim.inspect prints tables
 -- print(vim.inspect(vim.opt.packpath))
 -- print(vim.inspect(vim.opt.runtimepath))
 
@@ -25,14 +62,13 @@ vim.opt.termguicolors = true
 
 -- Avoid showing extra messages when using completion
 -- vim.cmd('set shortmess+=c')
-vim.opt.shortmess:append('c')
+-- vim.opt.shortmess:append("c")
 
 -- TODO move to file type loading
 -- Adds extra functionality over rust analyzer
-vim.cmd('packadd rust-tools.nvim')
+vim.cmd("packadd rust-tools.nvim")
 
-
-vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
 -- https://github.com/sharksforarms/neovim-rust/blob/master/neovim-init-lsp-cmp-rust-tools.vim
 --[[" Configure LSP through rust-tools.nvim plugin.
@@ -41,44 +77,44 @@ vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
 --]]
 
 -- nvim_lsp object
-local nvim_lsp = require'lspconfig'
+local nvim_lsp = require("lspconfig")
 
 local opts = {
-    tools = {
-        autoSetHints = true,
-        runnables = {
-            use_telescope = true
-        },
-        inlay_hints = {
-            show_parameter_hints = false,
-            parameter_hints_prefix = "",
-            other_hints_prefix = "",
-        },
-    },
+	tools = {
+		autoSetHints = true,
+		runnables = {
+			use_telescope = true,
+		},
+		inlay_hints = {
+			show_parameter_hints = false,
+			parameter_hints_prefix = "",
+			other_hints_prefix = "",
+		},
+	},
 
-    -- all the opts to send to nvim-lspconfig
-    -- these override the defaults set by rust-tools.nvim
-    -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
-    server = {
-        -- on_attach is a callback called when the language server attachs to the buffer
-        -- on_attach = on_attach,
-        -- TODO: replace with keybinding in on_attach -> hover_with_actions = true,
-        settings = {
-            -- to enable rust-analyzer settings visit:
-            -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-            ["rust-analyzer"] = {
-                -- enable clippy on save
-                checkOnSave = {
-                    command = "clippy"
-                },
-            }
-        }
-    },
+	-- all the opts to send to nvim-lspconfig
+	-- these override the defaults set by rust-tools.nvim
+	-- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
+	server = {
+		-- on_attach is a callback called when the language server attachs to the buffer
+		-- on_attach = on_attach,
+		-- TODO: replace with keybinding in on_attach -> hover_with_actions = true,
+		settings = {
+			-- to enable rust-analyzer settings visit:
+			-- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+			["rust-analyzer"] = {
+				-- enable clippy on save
+				checkOnSave = {
+					command = "clippy",
+				},
+			},
+		},
+	},
 }
 
-require('rust-tools').setup(opts)
+require("rust-tools").setup(opts)
 
-vim.opt.omnifunc='v:lua.vim.lsp.omnifunc'
+vim.opt.omnifunc = "v:lua.vim.lsp.omnifunc"
 
 -- Setup Completion
 -- See https://github.com/hrsh7th/nvim-cmp#basic-configuration
@@ -87,36 +123,36 @@ vim.opt.omnifunc='v:lua.vim.lsp.omnifunc'
     autocomplete = false, -- disable auto-completion, use tab instead ? doesn't show docs?
   },
 --]]
-local cmp = require'cmp'
+local cmp = require("cmp")
 cmp.setup({
-  snippet = {
-    expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body)
-    end,
-  },
-  mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    -- Add tab support
-    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-    ['<Tab>'] = cmp.mapping.select_next_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm({
-      behavior = cmp.ConfirmBehavior.Insert,
-      select = true,
-    })
-  },
+	snippet = {
+		expand = function(args)
+			vim.fn["vsnip#anonymous"](args.body)
+		end,
+	},
+	mapping = {
+		["<C-p>"] = cmp.mapping.select_prev_item(),
+		["<C-n>"] = cmp.mapping.select_next_item(),
+		-- Add tab support
+		["<S-Tab>"] = cmp.mapping.select_prev_item(),
+		["<Tab>"] = cmp.mapping.select_next_item(),
+		["<C-d>"] = cmp.mapping.scroll_docs(-4),
+		["<C-f>"] = cmp.mapping.scroll_docs(4),
+		["<C-Space>"] = cmp.mapping.complete(),
+		["<C-e>"] = cmp.mapping.close(),
+		["<CR>"] = cmp.mapping.confirm({
+			behavior = cmp.ConfirmBehavior.Insert,
+			select = true,
+		}),
+	},
 
-  -- Installed sources
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'vsnip' },
-    { name = 'path' },
-    { name = 'buffer' },
-  },
+	-- Installed sources
+	sources = {
+		{ name = "nvim_lsp" },
+		{ name = "vsnip" },
+		{ name = "path" },
+		{ name = "buffer" },
+	},
 })
 -- Set up lspconfig.
 --   local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -157,59 +193,545 @@ nnoremap <silent> g[ <cmd>lua vim.diagnostic.goto_prev()<CR>
 nnoremap <silent> g] <cmd>lua vim.diagnostic.goto_next()<CR>
 ]])
 
+-- Keyboard Shortcuts
+vim.cmd([[
+" help abbreviate
+" Abbreviations:
+iabbrev <expr> dts strftime('%F %T')
+
+" Mappings:
+" When you have a problem about vim mappings.
+" Check :verbose inoremap at the first.
+" If you know the keys which have problem,
+" then do it with specified key, for example :verbose inoremap <esc>.
+
+" http://vim.wikia.com/wiki/Avoid_the_escape_key
+" ** alt + any key will exit insert mode and execute key action hl jk etc
+" <C-c> is an alternative to Esc but does not run autocmd by default
+" this mapping makes <C-c> execute Esc so autocmd runs
+imap <C-c> <Esc>
+" shift enter works in gvim, not in gnome-terminal
+" enter ^M, s-enter ^M, c-enter <NL>
+" https://stackoverflow.com/questions/598113/can-terminals-detect-shift-enter-or-control-enter
+" imap <S-Enter> <Esc>
+" CTRL_J will replace <CR> in insert mode
+" imap <CR> <Esc><CR>
+
+" leave insert mode when moving between lines
+imap <Up> <Esc><Up>
+imap <Down> <Esc><Down>
+
+"http://www.bestofvim.com/tip/leave-ex-mode-good/
+" <Nop> is no operation
+map Q q
+
+" Easy window navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <C-left> <C-w>h
+nnoremap <C-down> <C-w>j
+nnoremap <C-up> <C-w>k
+nnoremap <C-right> <C-w>l
+
+" http://vimcasts.org/episodes/how-to-fold/
+" use space bar in normal mode to toggle folds
+" TODO: is there a better use for space bar?
+nnoremap <Space> za
+"
+" This unsets the 'last search pattern' register by hitting return
+" http://stackoverflow.com/a/662914/2472798
+nnoremap <silent> <CR> :noh<CR>
+
+" http://www.jovicailic.org/2015/05/saving-read-only-files-in-vim-sudo-trick/
+" http://www.geekyboy.com/archives/629
+" http://vim.wikia.com/wiki/Multiple_commands_at_once
+cmap w!! w !sudo tee %
+" vertical terminal
+" cmap vt vert terminal
+" terminal in new tab
+" issues when using search replace
+" cmap tt tab terminal
+
+" compile and run java code for algs4
+" https://docs.oracle.com/javase/8/docs/technotes/tools/windows/classpath.html
+" -ea = enableassertions
+" -cp = classpath
+" map <F7> :!clear; javac -cp ../algs4.jar:. %<CR>
+" map <F8> :!clear; java -ea -cp ../algs4.jar:. %:r<CR>
+
+"from defaults.vim
+" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
+" so that you can undo CTRL-U after inserting a line break.
+" Revert with ":iunmap <C-U>".
+inoremap <C-U> <C-G>u<C-U>
+
+" workaround for netrw bug  :help netrw-debug
+" https://github.com/vim/vim/issues/4738#issuecomment-521506447
+" https://github.com/vim/vim/issues/4738#issuecomment-565330300
+let g:netrw_nogx=1
+" TODO: this only works on linux!!
+nmap gx yiW:!xdg-open <cWORD><CR> <C-r>" & <CR><CR>
+" nnoremap <Leader>g :YcmCompleter GoTo<CR>
+"
+nmap <Leader>e :ALENextWrap<CR>
+]])
 
 -- for Terminal windows  (double square brackets do not require extra escaping)
-vim.api.nvim_set_keymap("t", "<Esc>", [[<C-\><C-n>]], { noremap = true})
-vim.api.nvim_set_keymap("t", "<C-h>", [[<C-\><C-n><C-w>h]], { noremap = true})
-vim.api.nvim_set_keymap("t", "<C-j>", [[<C-\><C-n><C-w>j]], { noremap = true})
-vim.api.nvim_set_keymap("t", "<C-k>", [[<C-\><C-n><C-w>k]], { noremap = true})
-vim.api.nvim_set_keymap("t", "<C-l>", [[<C-\><C-n><C-w>l]], { noremap = true})
-
+vim.api.nvim_set_keymap("t", "<Esc>", [[<C-\><C-n>]], { noremap = true })
+vim.api.nvim_set_keymap("t", "<C-h>", [[<C-\><C-n><C-w>h]], { noremap = true })
+vim.api.nvim_set_keymap("t", "<C-j>", [[<C-\><C-n><C-w>j]], { noremap = true })
+vim.api.nvim_set_keymap("t", "<C-k>", [[<C-\><C-n><C-w>k]], { noremap = true })
+vim.api.nvim_set_keymap("t", "<C-l>", [[<C-\><C-n><C-w>l]], { noremap = true })
 
 -- Limelight let g:limelight_conceal_ctermfg = 'darkgray'
 vim.g.limelight_conceal_ctermfg = 237
 
+-- Auto Commands
+vim.cmd([[
+if !exists('g:autocommands_loaded')
+  let g:autocommands_loaded = 1
+
+  augroup VIM
+    au!
+    " Close preview window when complete {
+    " http://stackoverflow.com/a/26022965/2472798
+    autocmd CompleteDone * pclose
+    " }
+    " write file when leaving insert mode if changes have been made {
+    " http://www.reddit.com/r/vim/comments/232j45/save_file_on_insert_mode_exit/
+    " autocmd InsertLeave * :silent! update
+    "}
+    " save on FocusLost {
+    " http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
+    " no longer working on ubuntu 18.04
+    autocmd FocusLost * :wa
+    " autocmd FocusLost * silent! wa
+    " }
+
+    " automatically resize windows on vim resize {
+    autocmd VimResized * :wincmd =
+    "}
+    "
+    " jump to last known cursor position {
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid or when inside an event handler
+    " (happens when dropping a file on gvim).
+    autocmd BufReadPost *
+          \ if line("'\"") >= 1 && line("'\"") <= line("$") |
+          \   exe "normal! g`\"" |
+          \ endif
+    "}
+
+    " set title bar to file location {
+    autocmd BufEnter * let &titlestring = hostname() . "[vim(" . expand("%:t") . ")]"
+    " }
+
+    " ALEDisable for openapi.json {
+    " TODO: not working
+    " autocmd BufRead openapi.json :ALEDisable
+    "}
+
+  augroup END
+  " Git autocmd {
+  " Instead of reverting the cursor to the last position in the buffer, we
+  " set it to the first line when editing a git commit message
+  augroup GIT
+    au!
+    autocmd FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+    " https://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message
+    autocmd Filetype gitcommit setlocal spell textwidth=72
+  augroup END
+  "}
+
+  " http://vim.wikia.com/wiki/Shebang_line_automatically_generated {
+  augroup Shebang
+    au!
+    autocmd BufNewFile *.sh 0put =\"#!/usr/bin/env bash\<nl># -*- coding: utf-8 -*-\<nl>\"|$
+    "autocmd BufNewFile *.py 0put =\"#!/usr/bin/env python3\<nl># -*- coding: utf-8 -*-\<nl>\"|$
+    "autocmd BufNewFile *.c 0put =\"#include <stdio.h>\<nl>\<nl>int main()\<nl>{\<nl>}\<nl>\"|$
+  augroup END
+  " }
+
+  " set foldmethod to syntax for javascript files {
+  augroup JS
+    au!
+    autocmd  BufRead,BufNewFile *.js set foldmethod=syntax foldlevel=99
+    autocmd  BufRead,BufNewFile *.json set foldmethod=syntax foldlevel=99
+  augroup END
+  "}
+
+  " md is markdown > use pandoc filetype {
+  augroup PANDOC
+    au!
+    autocmd BufRead,BufNewFile *.md set filetype=pandoc
+    autocmd BufRead,BufNewFile *.mkd set filetype=pandoc
+    autocmd BufRead,BufNewFile *.markdown set filetype=pandoc
+    autocmd BufRead,BufNewFile *.rst set filetype=pandoc
+    " Enable spellchecking for Markdown
+    autocmd FileType pandoc setlocal spell spelllang=en_us wrap linebreak
+    autocmd FileType pandoc setlocal tabstop=4
+    autocmd FileType pandoc setlocal shiftwidth=4
+    autocmd FileType pandoc setlocal softtabstop=4
+    autocmd FileType pandoc let b:ale_fix_on_save = 0
+    " call local function to update line begining with last modified
+    " autocmd BufWritePre *.md,*.markdown,*.mkd :call LastModified()
+  augroup END
+  " }
+
+  " Octave filetype {
+  " http://www.vim.org/scripts/script.php?script_id=3600
+  augroup OCTAVE
+    au!
+    autocmd BufRead,BufNewFile *.m,*.oct set filetype=octave
+    autocmd Filetype octave
+          \ if &omnifunc == "" |
+          \ setlocal omnifunc=syntaxcomplete#Complete |
+          \ endif
+  augroup END
+  " }
+
+  "http://ku1ik.com/2011/09/08/formatting-xml-in-vim-with-indent-command.html {
+  augroup XML
+    autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -
+  augroup END
+  "}
+
+
+  " python configuration {
+  augroup PYTHON
+    au!
+    autocmd FileType python set foldlevel=99
+  augroup END
+
+  nnoremap <buffer> H :<C-u>execute "!pydoc3 " . expand("<cword>")<CR>
+  
+  set sections="def class"
+  " }
+
+  " Java Configuration {
+  let java_highlight_java_lang_ids=1
+  let java_highlight_functions='style'
+  " }
+
+  " html template to start with {
+  augroup HTML
+    au!
+    au BufNewFile *.html 0r ~/.vim/template/bootstrap.html
+  augroup END
+  " }
+
+endif
+
+" end Auto Commands: }
+]])
+
+-- Custom commands & functions
+vim.cmd([[
+" Update Last Modified line when editing pandoc {
+" If buffer modified, update any 'modified: ' in the first 20 lines
+" 'modified: ' can have up to 10 characters before (they are retained).
+" Restores cursor and window position using save_cursor variable.
+" vim magic on by default - all lower case matches any case
+" . concatenates without a space between
+" getftime returns modified time of file name
+" @% returns active buffer file name
+function! LastModified()
+  " comment out &modified if using getftime()
+  "  if &modified
+  let save_cursor = getpos('.')
+  " minimum of 20 lines or file length
+  let n = min([20, line('$')])
+  " requires space after modified:
+  keepjump execute '1,' . n . 's#^\(.\{,10}modified: \).*#\1' .
+        \ strftime('%c') . '#e'
+  call histdel('search', -1)
+  call setpos('.', save_cursor)
+  echom 'updated last modified date'
+  "  endif
+endfunction
+"}
+" Searching with RipGrep {
+" https://robots.thoughtbot.com/faster-grepping-in-vim#override-to-use-the-silver-searcher
+" https://github.com/ggreer/the_silver_searcher
+if executable('rg')
+  " use rg instead of silver searcher
+  set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+  set grepformat="%f:%l:%c:%m"
+endif
+"}
+" Start/Stop nginx webserver in current pwd {
+" https://hub.docker.com/_/nginx/
+command! StartWebServer !docker run -d --name $(basename $(pwd)) -v $(pwd):/usr/share/nginx/html:ro -p 8080:80 nginx
+function WebServerStop()
+  let id = system('docker ps --filter ancestor=nginx -q')
+  let cmd = system('docker stop ' . id)
+endfunction
+command! StopWebServer call WebServerStop()
+"}
+
+" https://vi.stackexchange.com/questions/454/whats-the-simplest-way-to-strip-trailing-whitespace-from-all-lines-in-a-file
+" https://bitbucket.org/Carpetsmoker/sanitize_files/src
+" function TrimWhiteSpace()
+"     let l:save_cursor = getpos('.')
+"     %s/\s\+$//e
+"     call setpos('.', l:save_cursor)
+" endfunction
+" command! WhiteSpaceRemove :call TrimWhiteSpace()
+" 2020-06-17 15:44:16 replaced with ale '*': ['remove_trailing_lines', 'trim_whitespace']
+
+" http://dustinmartin.net/format-json-in-vim/
+command! FormatJSON %!python3 -m json.tool
+
+]])
+-- Plugins
+vim.cmd([[
+" must run this command when new plugins installed or no help available
+helptags ALL
+" git@github.com:w0rp/ale.git {
+
+" https://github.com/w0rp/ale#2ii-fixing
+" check help ale-options for defaut settings and options available
+
+" turn ale off for specific file
+" let g:ale_pattern_options = {'.*openapi\.json$': {'ale_enabled': 0}}
+" let g:ale_enabled = 0
+
+" Use the global executables
+let g:ale_use_global_executables = 1
+let g:ale_linters = {
+  \ 'python': ['flake8'],
+  \ 'javascript': ['eslint'],
+  \ 'c': ['clang'],
+  \ 'cpp': ['clang'],
+  \ 'json': ['jq'],
+  \ 'rust': ['rust-analyzer']
+  \}
+let g:ale_fixers = {
+  \ 'python': ['isort', 'black'],
+  \ 'c': ['clang-format'],
+  \ 'cpp': ['clang-format'],
+  \ 'javascript': ['prettier'],
+  \ 'yaml': ['yamlfix'],
+  \ 'json': ['jq'],
+  \ 'rust': ['rustfmt'],
+  \ 'lua' : ['stylua'],
+  \ '*': ['trim_whitespace','remove_trailing_lines']
+  \}
+let g:ale_fix_on_save = 1
+
+let g:ale_python_isort_options = '--use-parentheses'
+let g:ale_python_flake8_options = '--max-line-length=88'
+
+let g:ale_echo_msg_format = '%linter%[%code%]: %s'
+" https://clang.llvm.org/docs/UsersManual.html#command-line-options
+let g:all_c_clang_options = '-Wall -std=c11'
+let g:ale_c_clangd_options = '-Wall -std=c11'
+
+" change format options.  I want to train myself to prefer Google style code
+let g:ale_c_clangformat_options = '-style="{BasedOnStyle: Google}"'
+" Set this. Airline will handle the rest.
+let g:airline#extensions#ale#enabled = 1
+" }
+
+" fugitive https://github.com/tpope/vim-fugitive {
+nmap <leader>gs :G<CR>
+nmap <leader>gh :diffget //3<CR>
+nmap <leader>gu :diffget //2<CR>
+" }
+
+" Status line https://github.com/vim-airline/vim-airline {
+if v:version >= 800
+  " do not show error/warning colors when no errors/warnings
+  let g:airline_skip_empty_sections = 1
+  " overide default section z https://github.com/vim-airline/vim-airline/issues/272
+  let g:airline_section_z = '%p%%'. " \ue0a1". '%l:%v'
+  " choose custom theme in .vim/autoload/airline/themes/
+  let g:airline_theme='powerline'
+  " Fancy arrow symbols, requires a patched font
+  let g:airline_powerline_fonts = 1
+  " Show PASTE if in paste mode
+  let g:airline_detect_paste=1
+  " Don't take up extra space with +/-/~ of 0
+  let g:airline#extensions#hunks#non_zero_only = 1
+  " Limit wordcount to where it makes sense
+  let g:airline#extensions#wordcount#filetypes = '\vhelp|markdown|pandoc|rst|org'
+  " Fancy stuff in tabline as well
+  " let g:airline#extensions#tabline#enabled = 1
+endif
+" }
+
+" git@github.com:ervandew/supertab.git {
+" :help supertab-completioncontexts
+let g:SuperTabDefaultCompletionType = 'context'
+" " let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+let g:SuperTabContextDefaultCompletionType = '<c-x><c-o>'
+" "<c-n>" " default value <c-p>
+" let g:SuperTabLongestEnhanced = 1 "(default value: 0)
+" " When enabled and 'longest' is in your |completeopt| setting, supertab will
+" " provide an enhanced longest match support where typing one or more letters and
+" " hitting tab again while in a completion mode will complete the longest common
+" " match using the new text in the buffer.
+
+" let g:SuperTabLongestHighlight = 1 "(default value: 0)
+" " Sets whether or not to pre-highlight the first match when completeopt has the
+" " popup menu enabled and the 'longest' option as well. When enabled, <tab> will
+" " kick off completion and pre-select the first entry in the popup menu, allowing
+" " you to simply hit <enter> to use it.
+"
+" " https://github.com/ervandew/supertab#frequently-asked-questions
+" " autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+" "}
+
+" Jedi {
+let g:jedi#smart_auto_mappings = 1
+let g:jedi#show_call_signatures_delay = 200
+let g:jedi#use_splits_not_buffers = 'right'
+let g:jedi#goto_command = 'gd'
+if trim(system('uname')) ==# 'Darwin'
+  let g:python3_host_prog = '/usr/local/bin/python3'
+else
+  let g:python3_host_prog = '/usr/bin/python3'
+endif
+
+" }
+
+" git@github.com:nathanaelkane/vim-indent-guides.git {
+" highlighting of indented blocks
+let g:indent_guides_guide_size = 1
+let g:indent_guides_space_guides = 1
+let g:indent_guides_tab_guides = 0
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_exclude_filetypes = ['help', 'markdown', 'pandoc', 'man']
+" }
+
+" git@github.com:vim-pandoc/vim-pandoc.git {
+"   requires: git@github.com:vim-pandoc/vim-pandoc-syntax.git
+let g:pandoc#folding#level = 1
+
+" }
+
+" Go language {
+" vim-go installed in .vim/pack/plugins/start
+"   must also run (within vim) :GoUpdateBinaries
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+" }
+
+" git@github.com:Shougo/deoplete.nvim.git {
+" requires:
+"   git@github.com:roxma/vim-hug-neovim-rpc.git
+"   git@github.com:roxma/nvim-yarp.git
+" set completeopt=longest,menuone,preview
+" if v:version > 800
+"   " https://github.com/zchee/deoplete-go#sample-initvim
+"   set completeopt+=noselect
+" endif
+" let g:deoplete#enable_at_startup = 1
+" call deoplete#enable()
+"}
+
+" https://github.com/racer-rust/vim-racer {
+let g:racer_experimental_completer = 1
+let g:racer_insert_paren = 1
+augroup RUST
+  au FileType rust nmap gd <Plug>(rust-def)
+  au FileType rust nmap gs <Plug>(rust-def-split)
+  au FileType rust nmap gx <Plug>(rust-def-vertical)
+  au FileType rust nmap <leader>gd <Plug>(rust-doc)
+augroup END
+" }
+
+" https://github.com/rust-lang/rust.vim {
+" cargo fmt
+" cargo +nightly fmt
+let g:rustfmt_autosave = 1
+
+" Mac OSX
+" let g:rust_clip_command = 'pbcopy'
+" Linux
+" let g:rust_clip_command = 'xclip -selection clipboard'
+" }
+
+" https://github.com/junegunn/fzf {
+if isdirectory(expand('~/.fzf'))
+  set runtimepath^=~/.fzf
+endif
+" }
+
+" https://github.com/nathanaelkane/vim-indent-guides {
+let g:indent_guides_tab_guides = 0
+"}
+
+" Man {
+source $VIMRUNTIME/ftplugin/man.vim
+" }
+
+if !isdirectory(expand('~/Documents/daily'))
+  echom 'making daily directory'
+  silent !mkdir ~/Documents/daily > /dev/null 2>&1
+endif
+" https://github.com/alok/notational-fzf-vim {
+let g:nv_search_paths = ['~/Documents/daily/', './docs' , './notes.md']
+"}
+
+" https://github.com/ternjs/tern_for_vim
+let g:tern#command = ['tern', '--persistent']
+" Plugins }
+
+]])
+
+vim.cmd([[
+if filereadable('Session.vim')
+  :silent source Session.vim
+endif
+]])
+
 -- TODO: tested, working with basic functionality
-require'lspconfig'.tsserver.setup{}
+require("lspconfig").tsserver.setup({})
 
-require'nvim-treesitter.configs'.setup {
-  -- A list of parser names, or "all" (the five listed parsers should always be installed)
-  ensure_installed = { "python", "javascript", "go", "rust", "cpp", "sql", "c",  "lua", "vim", "vimdoc", "query" },
+require("nvim-treesitter.configs").setup({
+	-- A list of parser names, or "all" (the five listed parsers should always be installed)
+	ensure_installed = { "python", "javascript", "go", "rust", "cpp", "sql", "c", "lua", "vim", "vimdoc", "query" },
 
-  -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = false,
+	-- Install parsers synchronously (only applied to `ensure_installed`)
+	sync_install = false,
 
-  -- Automatically install missing parsers when entering buffer
-  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  auto_install = true,
+	-- Automatically install missing parsers when entering buffer
+	-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+	auto_install = true,
 
-  -- List of parsers to ignore installing (or "all")
-  ignore_install = {  },
+	-- List of parsers to ignore installing (or "all")
+	ignore_install = { "markdown" },
 
-  ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
-  -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
+	---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
+	-- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
 
-  highlight = {
-    enable = true,
+	highlight = {
+		enable = true,
 
-    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
-    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
-    -- the name of the parser)
-    -- list of language that will be disabled
-    -- disable = { "c", "rust" },
-    -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
-    disable = function(lang, buf)
-        local max_filesize = 100 * 1024 -- 100 KB
-        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-        if ok and stats and stats.size > max_filesize then
-            return true
-        end
-    end,
+		-- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
+		-- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
+		-- the name of the parser)
+		-- list of language that will be disabled
+		-- disable = { "c", "rust" },
+		-- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
+		disable = function(lang, buf)
+			local max_filesize = 100 * 1024 -- 100 KB
+			local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+			if ok and stats and stats.size > max_filesize then
+				return true
+			end
+		end,
 
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
-}
+		-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+		-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+		-- Using this option may slow down your editor, and you may see some duplicate highlights.
+		-- Instead of true it can also be a list of languages
+		additional_vim_regex_highlighting = false,
+	},
+})
+
+vim.cmd.colorscheme("solarized8")
+vim.opt.spellfile = ("%s/spell/spf.%s.add"):format(vim.fn.stdpath("config"), vim.o.encoding)
