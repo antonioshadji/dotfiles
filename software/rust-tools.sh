@@ -39,3 +39,6 @@ if [[ ! -f $FILE ]]; then
   # rm -f Alacritty.desktop
   sudo update-desktop-database
 fi
+
+# added 2024-01-26 15:57:30 to format lua files
+cargo install stylua
