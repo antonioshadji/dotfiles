@@ -548,6 +548,14 @@ require("lspconfig").jedi_language_server.setup({
 -- require("lspconfig").pyright.setup({
 -- capabilities = capabilities,
 -- })
+
+require("lspconfig").gopls.setup({
+	capabilities = capabilities,
+})
+require("lspconfig").rust_analyzer.setup({
+	capabilities = capabilities,
+})
+
 require("lspconfig").clangd.setup({
 	capabilities = capabilities,
 })
