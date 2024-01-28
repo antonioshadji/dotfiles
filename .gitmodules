@@ -1,102 +1,102 @@
 [submodule "bash-git-prompt"]
 	path = bash-git-prompt
 	url = https://github.com/magicmonty/bash-git-prompt.git
+[submodule "fzf"]
+	path = fzf
+	url = https://github.com/junegunn/fzf.git
+[submodule "nvm"]
+	path = nvm
+	url = https://github.com/nvm-sh/nvm.git
 [submodule "vim-go"]
 	path = vim/pack/plugins/start/vim-go
 	url = https://github.com/fatih/vim-go
-[submodule "vim/pack/plugins/start/ale"]
+[submodule "ale"]
 	path = vim/pack/plugins/start/ale
 	url = https://github.com/w0rp/ale.git
-[submodule "vim/pack/plugins/start/vim-tmux-navigator"]
+[submodule "vim-tmux-navigator"]
 	path = vim/pack/plugins/start/vim-tmux-navigator
 	url = https://github.com/christoomey/vim-tmux-navigator.git
-[submodule "vim/pack/plugins/start/vim-pandoc"]
+[submodule "vim-pandoc"]
 	path = vim/pack/plugins/start/vim-pandoc
 	url = https://github.com/vim-pandoc/vim-pandoc.git
-[submodule "vim/pack/plugins/start/vim-pandoc-syntax"]
+[submodule "vim-pandoc-syntax"]
 	path = vim/pack/plugins/start/vim-pandoc-syntax
 	url = https://github.com/vim-pandoc/vim-pandoc-syntax.git
-[submodule "vim/pack/plugins/start/SimpylFold"]
+[submodule "SimpylFold"]
 	path = vim/pack/plugins/start/SimpylFold
 	url = https://github.com/tmhedberg/SimpylFold.git
-[submodule "vim/pack/plugins/opt/vim-airline-themes"]
+[submodule "vim-airline-themes"]
 	path = vim/pack/plugins/opt/vim-airline-themes
 	url = https://github.com/vim-airline/vim-airline-themes
-[submodule "vim/pack/plugins/opt/vim-airline"]
+[submodule "vim-airline"]
 	path = vim/pack/plugins/opt/vim-airline
 	url = https://github.com/vim-airline/vim-airline
-[submodule "vim/pack/plugins/start/fzf.vim"]
+[submodule "fzf.vim"]
 	path = vim/pack/plugins/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
-[submodule "vim/pack/plugins/start/vim-capslock"]
+[submodule "vim-capslock"]
 	path = vim/pack/plugins/start/vim-capslock
 	url = https://github.com/tpope/vim-capslock.git
-[submodule "vim/pack/themes/opt/solarized8"]
+[submodule "solarized8"]
 	path = vim/pack/themes/opt/solarized8
 	url = https://github.com/lifepillar/vim-solarized8.git
-[submodule "vim/pack/plugins/start/vim-fugitive"]
+[submodule "vim-fugitive"]
 	path = vim/pack/plugins/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
 [submodule "jedi-vim"]
 	path = vim/pack/plugins/opt/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim
-[submodule "vim/pack/plugins/start/gv.vim"]
+[submodule "gv.vim"]
 	path = vim/pack/plugins/start/gv.vim
 	url = https://github.com/junegunn/gv.vim.git
-[submodule "vim/pack/plugins/start/vim-airline"]
+[submodule "vim-airline"]
 	path = vim/pack/plugins/start/vim-airline
 	url = https://github.com/vim-airline/vim-airline.git
-[submodule "fzf"]
-	path = fzf
-	url = https://github.com/junegunn/fzf.git
-[submodule "vim/pack/plugins/start/goyo.vim"]
+[submodule "goyo.vim"]
 	path = vim/pack/plugins/opt/goyo.vim
 	url = https://github.com/junegunn/goyo.vim.git
-[submodule "nvm"]
-	path = nvm
-	url = https://github.com/nvm-sh/nvm.git
-[submodule "vim/pack/plugins/opt/nvim-lspconfig"]
+[submodule "nvim-lspconfig"]
 	path = vim/pack/plugins/start/nvim-lspconfig
 	url = git@github.com:neovim/nvim-lspconfig.git
-[submodule "vim/pack/plugins/opt/nvim-cmp"]
+[submodule "nvim-cmp"]
 	path = vim/pack/plugins/start/nvim-cmp
 	url = git@github.com:hrsh7th/nvim-cmp.git
-[submodule "vim/pack/plugins/opt/cmp-nvim-lsp"]
+[submodule "cmp-nvim-lsp"]
 	path = vim/pack/plugins/start/cmp-nvim-lsp
 	url = git@github.com:hrsh7th/cmp-nvim-lsp.git
-[submodule "vim/pack/plugins/opt/cmp-vsnip"]
+[submodule "cmp-vsnip"]
 	path = vim/pack/plugins/start/cmp-vsnip
 	url = git@github.com:hrsh7th/cmp-vsnip.git
-[submodule "vim/pack/plugins/opt/cmp-path"]
+[submodule "cmp-path"]
 	path = vim/pack/plugins/start/cmp-path
 	url = git@github.com:hrsh7th/cmp-path.git
-[submodule "vim/pack/plugins/opt/cmp-buffer"]
+[submodule "cmp-buffer"]
 	path = vim/pack/plugins/start/cmp-buffer
 	url = git@github.com:hrsh7th/cmp-buffer.git
-[submodule "vim/pack/plugins/opt/vim-vsnip"]
+[submodule "vim-vsnip"]
 	path = vim/pack/plugins/start/vim-vsnip
 	url = git@github.com:hrsh7th/vim-vsnip.git
-[submodule "vim/pack/plugins/opt/popup.nvim"]
+[submodule "popup.nvim"]
 	path = vim/pack/plugins/start/popup.nvim
 	url = git@github.com:nvim-lua/popup.nvim.git
-[submodule "vim/pack/plugins/opt/plenary.nvim"]
+[submodule "plenary.nvim"]
 	path = vim/pack/plugins/start/plenary.nvim
 	url = git@github.com:nvim-lua/plenary.nvim.git
-[submodule "vim/pack/plugins/opt/telescope.nvim"]
+[submodule "telescope.nvim"]
 	path = vim/pack/plugins/start/telescope.nvim
 	url = git@github.com:nvim-telescope/telescope.nvim.git
-[submodule "vim/pack/plugins/opt/limelight.vim"]
+[submodule "limelight.vim"]
 	path = vim/pack/plugins/opt/limelight.vim
 	url = https://github.com/junegunn/limelight.vim.git
-[submodule "vim/pack/plugins/opt/gp.nvim"]
+[submodule "gp.nvim"]
 	path = vim/pack/plugins/opt/gp.nvim
 	url = https://github.com/Robitx/gp.nvim
-[submodule "vim/pack/plugins/start/nvim-treesitter"]
+[submodule "nvim-treesitter"]
 	path = vim/pack/plugins/start/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
-[submodule "vim/pack/plugins/start/rustaceanvim"]
+[submodule "rustaceanvim"]
 	path = vim/pack/plugins/opt/rustaceanvim
 	url = git@github.com:mrcjkb/rustaceanvim.git
-[submodule "nvim/pack/plugins/start/nvim-dap"]
+[submodule "nvim-dap"]
 	path = nvim/pack/plugins/start/nvim-dap
 	url = https://github.com/mfussenegger/nvim-dap.git
