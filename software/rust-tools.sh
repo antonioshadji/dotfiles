@@ -42,3 +42,5 @@ fi
 
 # added 2024-01-26 15:57:30 to format lua files
 cargo install stylua
+# 2024-01-28 12:12:13 for use with neovim tree-sitter functionality
+cargo install tree-sitter-cli

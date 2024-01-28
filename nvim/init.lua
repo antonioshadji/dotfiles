@@ -1,3 +1,6 @@
+-- good example init files
+-- https://github.com/potamides/dotfiles
+
 vim.opt.runtimepath:prepend(vim.env.HOME .. "/.vim")
 -- not currently using the /after directory
 -- vim.opt.runtimepath:append(HOME .. '/.vim/after')
@@ -64,55 +67,10 @@ vim.opt.splitbelow = true -- puts new hsplit windows below current
 -- vim.cmd('set shortmess+=c')
 -- vim.opt.shortmess:append("c")
 
--- TODO move to file type loading
--- Adds extra functionality over rust analyzer
-vim.cmd("packadd rust-tools.nvim")
-
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
-
--- https://github.com/sharksforarms/neovim-rust/blob/master/neovim-init-lsp-cmp-rust-tools.vim
---[[" Configure LSP through rust-tools.nvim plugin.
-" rust-tools will configure and enable certain LSP features for us.
-" See https://github.com/simrat39/rust-tools.nvim#configuration
---]]
 
 -- nvim_lsp object
 local nvim_lsp = require("lspconfig")
-
-local opts = {
-	tools = {
-		autoSetHints = true,
-		runnables = {
-			use_telescope = true,
-		},
-		inlay_hints = {
-			show_parameter_hints = false,
-			parameter_hints_prefix = "",
-			other_hints_prefix = "",
-		},
-	},
-
-	-- all the opts to send to nvim-lspconfig
-	-- these override the defaults set by rust-tools.nvim
-	-- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
-	server = {
-		-- on_attach is a callback called when the language server attachs to the buffer
-		-- on_attach = on_attach,
-		-- TODO: replace with keybinding in on_attach -> hover_with_actions = true,
-		settings = {
-			-- to enable rust-analyzer settings visit:
-			-- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-			["rust-analyzer"] = {
-				-- enable clippy on save
-				checkOnSave = {
-					command = "clippy",
-				},
-			},
-		},
-	},
-}
-
-require("rust-tools").setup(opts)
 
 vim.opt.omnifunc = "v:lua.vim.lsp.omnifunc"
 
@@ -288,6 +246,15 @@ vim.api.nvim_set_keymap("t", "<C-l>", [[<C-\><C-n><C-w>l]], { noremap = true })
 -- Limelight let g:limelight_conceal_ctermfg = 'darkgray'
 vim.g.limelight_conceal_ctermfg = 237
 
+-- miscellaneous settings, do they need to exist?
+vim.cmd([[
+if trim(system('uname')) ==# 'Darwin'
+  let g:python3_host_prog = '/usr/local/bin/python3'
+else
+  let g:python3_host_prog = '/usr/bin/python3'
+endif
+]])
+
 -- Auto Commands
 vim.cmd([[
 if !exists('g:autocommands_loaded')
@@ -399,16 +366,6 @@ if !exists('g:autocommands_loaded')
   "}
 
 
-  " python configuration {
-  augroup PYTHON
-    au!
-    autocmd FileType python set foldlevel=99
-  augroup END
-
-  nnoremap <buffer> H :<C-u>execute "!pydoc3 " . expand("<cword>")<CR>
-  
-  set sections="def class"
-  " }
 
   " Java Configuration {
   let java_highlight_java_lang_ids=1
@@ -489,6 +446,15 @@ command! FormatJSON %!python3 -m json.tool
 vim.cmd([[
 " must run this command when new plugins installed or no help available
 helptags ALL
+
+" Jedi {
+let g:jedi#smart_auto_mappings = 1
+let g:jedi#show_call_signatures_delay = 200
+let g:jedi#use_splits_not_buffers = 'right'
+let g:jedi#goto_command = 'gd'
+
+" }
+
 " git@github.com:w0rp/ale.git {
 
 " https://github.com/w0rp/ale#2ii-fixing
@@ -506,7 +472,8 @@ let g:ale_linters = {
   \ 'c': ['clang'],
   \ 'cpp': ['clang'],
   \ 'json': ['jq'],
-  \ 'rust': ['rust-analyzer']
+  \ 'rust': ['rust-analyzer'],
+  \ 'lua': ['luacheck'],
   \}
 let g:ale_fixers = {
   \ 'python': ['isort', 'black'],
@@ -584,18 +551,7 @@ let g:SuperTabContextDefaultCompletionType = '<c-x><c-o>'
 " " autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 " "}
 
-" Jedi {
-let g:jedi#smart_auto_mappings = 1
-let g:jedi#show_call_signatures_delay = 200
-let g:jedi#use_splits_not_buffers = 'right'
-let g:jedi#goto_command = 'gd'
-if trim(system('uname')) ==# 'Darwin'
-  let g:python3_host_prog = '/usr/local/bin/python3'
-else
-  let g:python3_host_prog = '/usr/bin/python3'
-endif
 
-" }
 
 " git@github.com:nathanaelkane/vim-indent-guides.git {
 " highlighting of indented blocks
@@ -632,27 +588,6 @@ let g:go_info_mode='gopls'
 " call deoplete#enable()
 "}
 
-" https://github.com/racer-rust/vim-racer {
-let g:racer_experimental_completer = 1
-let g:racer_insert_paren = 1
-augroup RUST
-  au FileType rust nmap gd <Plug>(rust-def)
-  au FileType rust nmap gs <Plug>(rust-def-split)
-  au FileType rust nmap gx <Plug>(rust-def-vertical)
-  au FileType rust nmap <leader>gd <Plug>(rust-doc)
-augroup END
-" }
-
-" https://github.com/rust-lang/rust.vim {
-" cargo fmt
-" cargo +nightly fmt
-let g:rustfmt_autosave = 1
-
-" Mac OSX
-" let g:rust_clip_command = 'pbcopy'
-" Linux
-" let g:rust_clip_command = 'xclip -selection clipboard'
-" }
 
 " https://github.com/junegunn/fzf {
 if isdirectory(expand('~/.fzf'))
@@ -688,8 +623,13 @@ if filereadable('Session.vim')
 endif
 ]])
 
--- TODO: tested, working with basic functionality
+vim.cmd.colorscheme("solarized8")
+vim.opt.spellfile = ("%s/spell/spf.%s.add"):format(vim.fn.stdpath("config"), vim.o.encoding)
+
+-- tested, working with basic functionality
 require("lspconfig").tsserver.setup({})
+-- require("lspconfig").pyright.setup({})
+require("lspconfig").jedi_language_server.setup({})
 
 require("nvim-treesitter.configs").setup({
 	-- A list of parser names, or "all" (the five listed parsers should always be installed)
@@ -732,6 +672,3 @@ require("nvim-treesitter.configs").setup({
 		additional_vim_regex_highlighting = false,
 	},
 })
-
-vim.cmd.colorscheme("solarized8")
-vim.opt.spellfile = ("%s/spell/spf.%s.add"):format(vim.fn.stdpath("config"), vim.o.encoding)

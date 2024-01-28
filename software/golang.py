@@ -14,21 +14,23 @@ from lxml import html
 BASE = "https://go.dev"
 
 
-def get_content(url):
+def get_content() -> str:
     r = requests.get(BASE + "/dl/")
     tree = html.fromstring(r.content)
     return tree
 
 
-def find_file(tree):
+def find_file(tree) -> str:
     # /html/body/main/article/div[1]/a[5]
     for link in tree.xpath("/html/body/main/article/div[1]/a"):
         if "linux" in link.xpath("@href")[0]:
-            return link.xpath("@href")[0]
+            return link.xpath("@href")[0].split("/")[-1]
+
+    return ""
 
 
 def main():
-    tree = get_content(BASE + "/dl/")
+    tree = get_content()
     url = find_file(tree)
     print(url)
 

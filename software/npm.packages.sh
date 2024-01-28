@@ -14,11 +14,11 @@ npm install -g typescript
 npm install -g neovim
 npm install -g typescript-language-server
 npm install -g @nomicfoundation/solidity-language-server
+npm install -g pyright
 
 # tools
 npm install -g pdfkit
 npm install -g puppeteer
-
 
 
 npm -g list --depth 0
