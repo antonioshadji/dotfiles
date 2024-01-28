@@ -24,7 +24,7 @@ def find_file(tree) -> str:
     # /html/body/main/article/div[1]/a[5]
     for link in tree.xpath("/html/body/main/article/div[1]/a"):
         if "linux" in link.xpath("@href")[0]:
-            return link.xpath("@href")[0].split("/")[-1]
+            return link.xpath("@href")[0]
 
     return ""
 
