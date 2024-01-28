@@ -28,9 +28,6 @@
 [submodule "vim/pack/plugins/start/SimpylFold"]
 	path = vim/pack/plugins/start/SimpylFold
 	url = https://github.com/tmhedberg/SimpylFold.git
-[submodule "vim/pack/plugins/start/rust.vim"]
-	path = vim/pack/plugins/opt/rust.vim
-	url = https://github.com/rust-lang/rust.vim.git
 [submodule "vim/pack/plugins/opt/vim-airline-themes"]
 	path = vim/pack/plugins/opt/vim-airline-themes
 	url = https://github.com/vim-airline/vim-airline-themes
@@ -88,9 +85,6 @@
 [submodule "vim/pack/plugins/opt/nvim-lspconfig"]
 	path = vim/pack/plugins/start/nvim-lspconfig
 	url = git@github.com:neovim/nvim-lspconfig.git
-[submodule "vim/pack/plugins/opt/rust-tools.nvim"]
-	path = vim/pack/plugins/opt/rust-tools.nvim
-	url = git@github.com:simrat39/rust-tools.nvim.git
 [submodule "vim/pack/plugins/opt/nvim-cmp"]
 	path = vim/pack/plugins/start/nvim-cmp
 	url = git@github.com:hrsh7th/nvim-cmp.git
