@@ -16,9 +16,6 @@
 [submodule "vim/pack/plugins/start/vim-tmux-navigator"]
 	path = vim/pack/plugins/start/vim-tmux-navigator
 	url = https://github.com/christoomey/vim-tmux-navigator.git
-[submodule "vim/pack/plugins/start/supertab"]
-	path = vim/pack/plugins/start/supertab
-	url = https://github.com/ervandew/supertab.git
 [submodule "vim/pack/plugins/start/vim-pandoc"]
 	path = vim/pack/plugins/start/vim-pandoc
 	url = https://github.com/vim-pandoc/vim-pandoc.git
