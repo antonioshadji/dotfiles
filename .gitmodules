@@ -2,7 +2,7 @@
 	path = bash-git-prompt
 	url = https://github.com/magicmonty/bash-git-prompt.git
 [submodule "vim-go"]
-	path = vim/pack/plugins/opt/vim-go
+	path = vim/pack/plugins/start/vim-go
 	url = https://github.com/fatih/vim-go
 [submodule "vim/pack/plugins/start/ale"]
 	path = vim/pack/plugins/start/ale
