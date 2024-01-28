@@ -113,7 +113,7 @@
 	path = vim/pack/plugins/start/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
 [submodule "vim/pack/plugins/start/rustaceanvim"]
-	path = vim/pack/plugins/start/rustaceanvim
+	path = vim/pack/plugins/opt/rustaceanvim
 	url = git@github.com:mrcjkb/rustaceanvim.git
 [submodule "nvim/pack/plugins/start/nvim-dap"]
 	path = nvim/pack/plugins/start/nvim-dap
