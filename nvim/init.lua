@@ -2,19 +2,12 @@
 -- https://github.com/potamides/dotfiles
 
 vim.opt.runtimepath:prepend(vim.env.HOME .. "/.vim")
--- not currently using the /after directory
--- vim.opt.runtimepath:append(HOME .. '/.vim/after')
-
--- statusline does not show powerline symbols when this is removed
--- vim.cmd("source ~/.vim/vimrc")
-
 vim.opt.packpath = vim.opt.runtimepath:get()
 
--- on by default
--- vim.cmd("filetype plugin indent on")
--- dark is default
--- vim.opt.background = "dark"
 vim.opt.termguicolors = true
+vim.cmd.colorscheme("solarized8")
+-- spell file location inside ~/.config/nvim
+vim.opt.spellfile = ("%s/spell/spf.%s.add"):format(vim.fn.stdpath("config"), vim.o.encoding)
 
 -- add files to ignore
 vim.opt.wildignore:append({ ".hg", ".git", ".svn" }) -- " Version control
@@ -53,8 +46,8 @@ vim.opt.splitright = true -- puts new vsplit windows to the right
 vim.opt.splitbelow = true -- puts new hsplit windows below current
 
 -- vim.inspect prints tables
--- print(vim.inspect(vim.opt.packpath))
--- print(vim.inspect(vim.opt.runtimepath))
+-- lua vim.print(vim.opt.packpath)
+-- lua vim.print(vim.opt.runtimepath)
 
 --[[ Set completeopt to have a better completion experience
 " :help completeopt
@@ -68,56 +61,8 @@ vim.opt.splitbelow = true -- puts new hsplit windows below current
 -- vim.opt.shortmess:append("c")
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
-
--- nvim_lsp object
-local nvim_lsp = require("lspconfig")
-
-vim.opt.omnifunc = "v:lua.vim.lsp.omnifunc"
-
--- Setup Completion
--- See https://github.com/hrsh7th/nvim-cmp#basic-configuration
---[[
-  completion = {
-    autocomplete = false, -- disable auto-completion, use tab instead ? doesn't show docs?
-  },
---]]
-local cmp = require("cmp")
-cmp.setup({
-	snippet = {
-		expand = function(args)
-			vim.fn["vsnip#anonymous"](args.body)
-		end,
-	},
-	mapping = {
-		["<C-p>"] = cmp.mapping.select_prev_item(),
-		["<C-n>"] = cmp.mapping.select_next_item(),
-		-- Add tab support
-		["<S-Tab>"] = cmp.mapping.select_prev_item(),
-		["<Tab>"] = cmp.mapping.select_next_item(),
-		["<C-d>"] = cmp.mapping.scroll_docs(-4),
-		["<C-f>"] = cmp.mapping.scroll_docs(4),
-		["<C-Space>"] = cmp.mapping.complete(),
-		["<C-e>"] = cmp.mapping.close(),
-		["<CR>"] = cmp.mapping.confirm({
-			behavior = cmp.ConfirmBehavior.Insert,
-			select = true,
-		}),
-	},
-
-	-- Installed sources
-	sources = {
-		{ name = "nvim_lsp" },
-		{ name = "vsnip" },
-		{ name = "path" },
-		{ name = "buffer" },
-	},
-})
--- Set up lspconfig.
---   local capabilities = require('cmp_nvim_lsp').default_capabilities()
---   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
---   require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
---     capabilities = capabilities
---   }
+vim.opt.number = true
+vim.opt.relativenumber = true
 
 -- Code navigation shortcuts
 -- as found in :help lsp
@@ -447,14 +392,6 @@ vim.cmd([[
 " must run this command when new plugins installed or no help available
 helptags ALL
 
-" Jedi {
-let g:jedi#smart_auto_mappings = 1
-let g:jedi#show_call_signatures_delay = 200
-let g:jedi#use_splits_not_buffers = 'right'
-let g:jedi#goto_command = 'gd'
-
-" }
-
 " git@github.com:w0rp/ale.git {
 
 " https://github.com/w0rp/ale#2ii-fixing
@@ -509,7 +446,6 @@ nmap <leader>gu :diffget //2<CR>
 " }
 
 " Status line https://github.com/vim-airline/vim-airline {
-if v:version >= 800
   " do not show error/warning colors when no errors/warnings
   let g:airline_skip_empty_sections = 1
   " overide default section z https://github.com/vim-airline/vim-airline/issues/272
@@ -526,40 +462,6 @@ if v:version >= 800
   let g:airline#extensions#wordcount#filetypes = '\vhelp|markdown|pandoc|rst|org'
   " Fancy stuff in tabline as well
   " let g:airline#extensions#tabline#enabled = 1
-endif
-" }
-
-" git@github.com:ervandew/supertab.git {
-" :help supertab-completioncontexts
-let g:SuperTabDefaultCompletionType = 'context'
-" " let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-let g:SuperTabContextDefaultCompletionType = '<c-x><c-o>'
-" "<c-n>" " default value <c-p>
-" let g:SuperTabLongestEnhanced = 1 "(default value: 0)
-" " When enabled and 'longest' is in your |completeopt| setting, supertab will
-" " provide an enhanced longest match support where typing one or more letters and
-" " hitting tab again while in a completion mode will complete the longest common
-" " match using the new text in the buffer.
-
-" let g:SuperTabLongestHighlight = 1 "(default value: 0)
-" " Sets whether or not to pre-highlight the first match when completeopt has the
-" " popup menu enabled and the 'longest' option as well. When enabled, <tab> will
-" " kick off completion and pre-select the first entry in the popup menu, allowing
-" " you to simply hit <enter> to use it.
-"
-" " https://github.com/ervandew/supertab#frequently-asked-questions
-" " autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-" "}
-
-
-
-" git@github.com:nathanaelkane/vim-indent-guides.git {
-" highlighting of indented blocks
-let g:indent_guides_guide_size = 1
-let g:indent_guides_space_guides = 1
-let g:indent_guides_tab_guides = 0
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_exclude_filetypes = ['help', 'markdown', 'pandoc', 'man']
 " }
 
 " git@github.com:vim-pandoc/vim-pandoc.git {
@@ -568,52 +470,11 @@ let g:pandoc#folding#level = 1
 
 " }
 
-" Go language {
-" vim-go installed in .vim/pack/plugins/start
-"   must also run (within vim) :GoUpdateBinaries
-let g:go_def_mode='gopls'
-let g:go_info_mode='gopls'
-" }
-
-" git@github.com:Shougo/deoplete.nvim.git {
-" requires:
-"   git@github.com:roxma/vim-hug-neovim-rpc.git
-"   git@github.com:roxma/nvim-yarp.git
-" set completeopt=longest,menuone,preview
-" if v:version > 800
-"   " https://github.com/zchee/deoplete-go#sample-initvim
-"   set completeopt+=noselect
-" endif
-" let g:deoplete#enable_at_startup = 1
-" call deoplete#enable()
-"}
-
-
 " https://github.com/junegunn/fzf {
 if isdirectory(expand('~/.fzf'))
   set runtimepath^=~/.fzf
 endif
 " }
-
-" https://github.com/nathanaelkane/vim-indent-guides {
-let g:indent_guides_tab_guides = 0
-"}
-
-" Man {
-source $VIMRUNTIME/ftplugin/man.vim
-" }
-
-if !isdirectory(expand('~/Documents/daily'))
-  echom 'making daily directory'
-  silent !mkdir ~/Documents/daily > /dev/null 2>&1
-endif
-" https://github.com/alok/notational-fzf-vim {
-let g:nv_search_paths = ['~/Documents/daily/', './docs' , './notes.md']
-"}
-
-" https://github.com/ternjs/tern_for_vim
-let g:tern#command = ['tern', '--persistent']
-" Plugins }
 
 ]])
 
@@ -623,13 +484,73 @@ if filereadable('Session.vim')
 endif
 ]])
 
-vim.cmd.colorscheme("solarized8")
-vim.opt.spellfile = ("%s/spell/spf.%s.add"):format(vim.fn.stdpath("config"), vim.o.encoding)
+-- nvim_lsp object
+local nvim_lsp = require("lspconfig")
 
--- tested, working with basic functionality
-require("lspconfig").tsserver.setup({})
--- require("lspconfig").pyright.setup({})
-require("lspconfig").jedi_language_server.setup({})
+vim.opt.omnifunc = "v:lua.vim.lsp.omnifunc"
+
+-- Setup Completion
+-- See https://github.com/hrsh7th/nvim-cmp#basic-configuration
+--[[
+  completion = {
+    autocomplete = false, -- disable auto-completion, use tab instead ? doesn't show docs?
+  },
+--]]
+local cmp = require("cmp")
+cmp.setup({
+	snippet = {
+		expand = function(args)
+			vim.fn["vsnip#anonymous"](args.body)
+		end,
+	},
+	window = {
+		-- completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
+	},
+	mapping = cmp.mapping.preset.insert({
+		["<C-p>"] = cmp.mapping.select_prev_item(),
+		["<C-n>"] = cmp.mapping.select_next_item(),
+		-- Add tab support
+		["<S-Tab>"] = cmp.mapping.select_prev_item(),
+		["<Tab>"] = cmp.mapping.select_next_item(),
+		["<C-d>"] = cmp.mapping.scroll_docs(-4),
+		["<C-f>"] = cmp.mapping.scroll_docs(4),
+		["<C-Space>"] = cmp.mapping.complete(),
+		-- ["<C-e>"] = cmp.mapping.close(),
+		["<C-e>"] = cmp.mapping.abort(),
+		["<CR>"] = cmp.mapping.confirm({
+			-- behavior = cmp.ConfirmBehavior.Insert,
+			select = true,
+		}),
+	}),
+	sources = cmp.config.sources({
+		{ name = "nvim_lsp" },
+		{ name = "vsnip" },
+		{ name = "path" },
+	}, {
+		{ name = "buffer" },
+	}),
+})
+
+-- Set up lspconfig.
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+--   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+--   require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
+--     capabilities = capabilities
+--   }
+
+require("lspconfig").tsserver.setup({
+	capabilities = capabilities,
+})
+require("lspconfig").jedi_language_server.setup({
+	capabilities = capabilities,
+})
+-- require("lspconfig").pyright.setup({
+-- capabilities = capabilities,
+-- })
+require("lspconfig").clangd.setup({
+	capabilities = capabilities,
+})
 
 require("nvim-treesitter.configs").setup({
 	-- A list of parser names, or "all" (the five listed parsers should always be installed)
