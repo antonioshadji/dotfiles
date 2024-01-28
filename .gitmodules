@@ -25,12 +25,6 @@
 [submodule "vim/pack/plugins/opt/vim-airline"]
 	path = vim/pack/plugins/opt/vim-airline
 	url = https://github.com/vim-airline/vim-airline
-[submodule "vim/pack/plugins/start/vim-racket"]
-	path = vim/pack/plugins/opt/vim-racket
-	url = https://github.com/wlangstroth/vim-racket.git
-[submodule "vim/pack/plugins/start/vim-css-color"]
-	path = vim/pack/plugins/opt/vim-css-color
-	url = https://github.com/ap/vim-css-color.git
 [submodule "vim/pack/plugins/start/fzf.vim"]
 	path = vim/pack/plugins/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
@@ -46,9 +40,6 @@
 [submodule "jedi-vim"]
 	path = vim/pack/plugins/opt/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim
-[submodule "vim/pack/plugins/start/vim-orgmode"]
-	path = vim/pack/plugins/opt/vim-orgmode
-	url = https://github.com/jceb/vim-orgmode.git
 [submodule "vim/pack/plugins/start/gv.vim"]
 	path = vim/pack/plugins/start/gv.vim
 	url = https://github.com/junegunn/gv.vim.git
@@ -58,15 +49,6 @@
 [submodule "fzf"]
 	path = fzf
 	url = https://github.com/junegunn/fzf.git
-[submodule "vim/pack/plugins/start/notational-fzf-vim"]
-	path = vim/pack/plugins/opt/notational-fzf-vim
-	url = https://github.com/alok/notational-fzf-vim.git
-[submodule "vim/pack/plugins/start/vim-zettel"]
-	path = vim/pack/plugins/opt/vim-zettel
-	url = https://github.com/michal-h21/vim-zettel
-[submodule "vim/pack/plugins/opt/tern_for_vim"]
-	path = vim/pack/plugins/opt/tern_for_vim
-	url = https://github.com/ternjs/tern_for_vim.git
 [submodule "vim/pack/plugins/start/goyo.vim"]
 	path = vim/pack/plugins/opt/goyo.vim
 	url = https://github.com/junegunn/goyo.vim.git
