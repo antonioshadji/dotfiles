@@ -2,13 +2,20 @@
 # run as
 # git submodule foreach bash $(pwd)/submodules_check_branch.sh
 # get the name of main branch
-main_branch=$(git branch -rl '*/HEAD' | awk -F'-> ' '{print $NF}')
-branch_hash=$(git rev-parse "$main_branch")
-HEAD_hash=$(git rev-parse HEAD)
+# main_branch=$(git branch -rl '*/HEAD' | awk -F'-> ' '{print $NF}')
+# branch_hash=$(git rev-parse "$main_branch")
+# HEAD_hash=$(git rev-parse HEAD)
+#
+# if [ "$branch_hash" = "$HEAD_hash" ]
+# then
+#   echo "Nothing to do."
+# else
+#   echo "Updates available"
+# fi
 
-if [ "$branch_hash" = "$HEAD_hash" ]
+if [[ $(git rev-parse --short HEAD) == $(git rev-parse --short "$(git branch -rl '*/HEAD' | awk '{print $NF}')") ]]
 then
-  echo "Nothing to do."
+  echo "On latest primary branch"
 else
   echo "Updates available"
 fi
