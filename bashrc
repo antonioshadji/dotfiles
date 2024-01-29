@@ -321,7 +321,8 @@ set -o noclobber
 alias ll='ls -AFlh --color --ignore=lost+found --ignore=.Trash-1000'
 # follow by -r to reverse sort order
 alias lt='ls -AFlhtr --color --ignore=lost+found --ignore=.Trash-1000'
-alias l='ls -F --color --ignore=lost+found --ignore=.Trash-1000'
+alias l='ls -aF --color --ignore=lost+found --ignore=.Trash-1000'
+alias ls='ls --color'
 alias ..='cd ..'
 alias md='mkdir'
 alias rd='rmdir'
