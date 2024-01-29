@@ -1,10 +1,14 @@
-T=vim/pack/plugins/$1
-for d in $(ls -1 $T);
-do
-  (
-  cd "$T/$d/" &&
-  echo "$d" &&
-  # git branch && git symbolic-ref --short HEAD
-  printf "%s %s\n" "$(git branch)" "$(git symbolic-ref --short HEAD)"
-  )
-done
+#!/usr/bin/env bash
+# run as
+# git submodule foreach bash $(pwd)/submodules_check_branch.sh
+# get the name of main branch
+main_branch=$(git branch -rl '*/HEAD' | awk -F'-> ' '{print $NF}')
+branch_hash=$(git rev-parse "$main_branch")
+HEAD_hash=$(git rev-parse HEAD)
+
+if [ "$branch_hash" = "$HEAD_hash" ]
+then
+  echo "Nothing to do."
+else
+  echo "Updates available"
+fi
