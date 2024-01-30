@@ -100,3 +100,6 @@
 [submodule "Neogit"]
 	path = nvim/pack/plugins/start/neogit
 	url = https://github.com/NeogitOrg/neogit.git
+[submodule "NeoSolarized"]
+	path = nvim/pack/themes/start/NeoSolarized.nvim
+	url = https://github.com/Tsuzat/NeoSolarized.nvim.git
