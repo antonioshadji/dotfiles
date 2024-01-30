@@ -56,10 +56,10 @@
 	path = vim/pack/plugins/opt/goyo.vim
 	url = https://github.com/junegunn/goyo.vim.git
 [submodule "nvim-lspconfig"]
-	path = vim/pack/plugins/start/nvim-lspconfig
+	path = nvim/pack/plugins/start/nvim-lspconfig
 	url = git@github.com:neovim/nvim-lspconfig.git
 [submodule "nvim-cmp"]
-	path = vim/pack/plugins/start/nvim-cmp
+	path = nvim/pack/plugins/start/nvim-cmp
 	url = git@github.com:hrsh7th/nvim-cmp.git
 [submodule "cmp-nvim-lsp"]
 	path = nvim/pack/plugins/start/cmp-nvim-lsp
@@ -77,13 +77,13 @@
 	path = vim/pack/plugins/start/vim-vsnip
 	url = git@github.com:hrsh7th/vim-vsnip.git
 [submodule "popup.nvim"]
-	path = vim/pack/plugins/start/popup.nvim
+	path = nvim/pack/plugins/start/popup.nvim
 	url = git@github.com:nvim-lua/popup.nvim.git
 [submodule "plenary.nvim"]
-	path = vim/pack/plugins/start/plenary.nvim
+	path = nvim/pack/plugins/start/plenary.nvim
 	url = git@github.com:nvim-lua/plenary.nvim.git
 [submodule "telescope.nvim"]
-	path = vim/pack/plugins/start/telescope.nvim
+	path = nvim/pack/plugins/start/telescope.nvim
 	url = git@github.com:nvim-telescope/telescope.nvim.git
 [submodule "limelight.vim"]
 	path = vim/pack/plugins/opt/limelight.vim
@@ -92,7 +92,7 @@
 	path = vim/pack/plugins/opt/gp.nvim
 	url = https://github.com/Robitx/gp.nvim
 [submodule "nvim-treesitter"]
-	path = vim/pack/plugins/start/nvim-treesitter
+	path = nvim/pack/plugins/start/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
 [submodule "rustaceanvim"]
 	path = nvim/pack/plugins/opt/rustaceanvim
