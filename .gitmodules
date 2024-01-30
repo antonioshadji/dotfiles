@@ -40,9 +40,6 @@
 [submodule "solarized8"]
 	path = vim/pack/themes/opt/solarized8
 	url = https://github.com/lifepillar/vim-solarized8.git
-[submodule "vim-fugitive"]
-	path = vim/pack/plugins/start/vim-fugitive
-	url = https://github.com/tpope/vim-fugitive.git
 [submodule "jedi-vim"]
 	path = vim/pack/plugins/opt/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim
@@ -100,3 +97,6 @@
 [submodule "nvim-dap"]
 	path = nvim/pack/plugins/start/nvim-dap
 	url = https://github.com/mfussenegger/nvim-dap.git
+[submodule "Neogit"]
+	path = nvim/pack/plugins/start/neogit
+	url = https://github.com/NeogitOrg/neogit.git
