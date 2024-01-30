@@ -267,11 +267,12 @@ if !exists('g:autocommands_loaded')
   " }
 
   " set foldmethod to syntax for javascript files {
-  augroup JS
-    au!
-    autocmd  BufRead,BufNewFile *.js set foldmethod=syntax foldlevel=99
-    autocmd  BufRead,BufNewFile *.json set foldmethod=syntax foldlevel=99
-  augroup END
+  " 2024-01-30 08:37:44 comment out after setting foldexpr to nvim_treesitter
+  " augroup JS
+  "   au!
+  "   autocmd  BufRead,BufNewFile *.js set foldmethod=syntax foldlevel=99
+  "   autocmd  BufRead,BufNewFile *.json set foldmethod=syntax foldlevel=99
+  " augroup END
   "}
 
   " md is markdown > use pandoc filetype {
@@ -466,7 +467,8 @@ nmap <leader>gu :diffget //2<CR>
 
 " git@github.com:vim-pandoc/vim-pandoc.git {
 "   requires: git@github.com:vim-pandoc/vim-pandoc-syntax.git
-let g:pandoc#folding#level = 1
+" 2024-01-30 08:38:43 comment out after setting foldexpr to nvim_treesitter
+" let g:pandoc#folding#level = 1
 
 " }
 
@@ -658,3 +660,6 @@ require("nvim-treesitter.configs").setup({
 		additional_vim_regex_highlighting = false,
 	},
 })
+
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
