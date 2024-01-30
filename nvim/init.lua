@@ -209,7 +209,7 @@ if !exists('g:autocommands_loaded')
     au!
     " Close preview window when complete {
     " http://stackoverflow.com/a/26022965/2472798
-    autocmd CompleteDone * pclose
+    " autocmd CompleteDone * pclose
     " }
     " write file when leaving insert mode if changes have been made {
     " http://www.reddit.com/r/vim/comments/232j45/save_file_on_insert_mode_exit/
@@ -218,32 +218,27 @@ if !exists('g:autocommands_loaded')
     " save on FocusLost {
     " http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
     " no longer working on ubuntu 18.04
-    autocmd FocusLost * :wa
+    " autocmd FocusLost * :wa
     " autocmd FocusLost * silent! wa
     " }
 
     " automatically resize windows on vim resize {
-    autocmd VimResized * :wincmd =
+    " autocmd VimResized * :wincmd =
     "}
     "
     " jump to last known cursor position {
     " When editing a file, always jump to the last known cursor position.
     " Don't do it when the position is invalid or when inside an event handler
     " (happens when dropping a file on gvim).
-    autocmd BufReadPost *
-          \ if line("'\"") >= 1 && line("'\"") <= line("$") |
-          \   exe "normal! g`\"" |
-          \ endif
+    " autocmd BufReadPost *
+    "       \ if line("'\"") >= 1 && line("'\"") <= line("$") |
+    "       \   exe "normal! g`\"" |
+    "       \ endif
     "}
 
     " set title bar to file location {
-    autocmd BufEnter * let &titlestring = hostname() . "[vim(" . expand("%:t") . ")]"
+    " autocmd BufEnter * let &titlestring = hostname() . "[vim(" . expand("%:t") . ")]"
     " }
-
-    " ALEDisable for openapi.json {
-    " TODO: not working
-    " autocmd BufRead openapi.json :ALEDisable
-    "}
 
   augroup END
   " Git autocmd {
@@ -261,27 +256,12 @@ if !exists('g:autocommands_loaded')
   augroup Shebang
     au!
     autocmd BufNewFile *.sh 0put =\"#!/usr/bin/env bash\<nl># -*- coding: utf-8 -*-\<nl>\"|$
-    "autocmd BufNewFile *.py 0put =\"#!/usr/bin/env python3\<nl># -*- coding: utf-8 -*-\<nl>\"|$
-    "autocmd BufNewFile *.c 0put =\"#include <stdio.h>\<nl>\<nl>int main()\<nl>{\<nl>}\<nl>\"|$
   augroup END
   " }
-
-  " set foldmethod to syntax for javascript files {
-  " 2024-01-30 08:37:44 comment out after setting foldexpr to nvim_treesitter
-  " augroup JS
-  "   au!
-  "   autocmd  BufRead,BufNewFile *.js set foldmethod=syntax foldlevel=99
-  "   autocmd  BufRead,BufNewFile *.json set foldmethod=syntax foldlevel=99
-  " augroup END
-  "}
 
   " md is markdown > use pandoc filetype {
   augroup PANDOC
     au!
-    autocmd BufRead,BufNewFile *.md set filetype=pandoc
-    autocmd BufRead,BufNewFile *.mkd set filetype=pandoc
-    autocmd BufRead,BufNewFile *.markdown set filetype=pandoc
-    autocmd BufRead,BufNewFile *.rst set filetype=pandoc
     " Enable spellchecking for Markdown
     autocmd FileType pandoc setlocal spell spelllang=en_us wrap linebreak
     autocmd FileType pandoc setlocal tabstop=4
@@ -291,31 +271,6 @@ if !exists('g:autocommands_loaded')
     " call local function to update line begining with last modified
     " autocmd BufWritePre *.md,*.markdown,*.mkd :call LastModified()
   augroup END
-  " }
-
-  " Octave filetype {
-  " http://www.vim.org/scripts/script.php?script_id=3600
-  augroup OCTAVE
-    au!
-    autocmd BufRead,BufNewFile *.m,*.oct set filetype=octave
-    autocmd Filetype octave
-          \ if &omnifunc == "" |
-          \ setlocal omnifunc=syntaxcomplete#Complete |
-          \ endif
-  augroup END
-  " }
-
-  "http://ku1ik.com/2011/09/08/formatting-xml-in-vim-with-indent-command.html {
-  augroup XML
-    autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -
-  augroup END
-  "}
-
-
-
-  " Java Configuration {
-  let java_highlight_java_lang_ids=1
-  let java_highlight_functions='style'
   " }
 
   " html template to start with {
@@ -440,12 +395,6 @@ let g:ale_c_clangformat_options = '-style="{BasedOnStyle: Google}"'
 let g:airline#extensions#ale#enabled = 1
 " }
 
-" fugitive https://github.com/tpope/vim-fugitive {
-nmap <leader>gs :G<CR>
-nmap <leader>gh :diffget //3<CR>
-nmap <leader>gu :diffget //2<CR>
-" }
-
 " Status line https://github.com/vim-airline/vim-airline {
   " do not show error/warning colors when no errors/warnings
   let g:airline_skip_empty_sections = 1
@@ -463,13 +412,6 @@ nmap <leader>gu :diffget //2<CR>
   let g:airline#extensions#wordcount#filetypes = '\vhelp|markdown|pandoc|rst|org'
   " Fancy stuff in tabline as well
   " let g:airline#extensions#tabline#enabled = 1
-" }
-
-" git@github.com:vim-pandoc/vim-pandoc.git {
-"   requires: git@github.com:vim-pandoc/vim-pandoc-syntax.git
-" 2024-01-30 08:38:43 comment out after setting foldexpr to nvim_treesitter
-" let g:pandoc#folding#level = 1
-
 " }
 
 " https://github.com/junegunn/fzf {
