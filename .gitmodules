@@ -62,16 +62,16 @@
 	path = vim/pack/plugins/start/nvim-cmp
 	url = git@github.com:hrsh7th/nvim-cmp.git
 [submodule "cmp-nvim-lsp"]
-	path = vim/pack/plugins/start/cmp-nvim-lsp
+	path = nvim/pack/plugins/start/cmp-nvim-lsp
 	url = git@github.com:hrsh7th/cmp-nvim-lsp.git
 [submodule "cmp-vsnip"]
-	path = vim/pack/plugins/start/cmp-vsnip
+	path = nvim/pack/plugins/start/cmp-vsnip
 	url = git@github.com:hrsh7th/cmp-vsnip.git
 [submodule "cmp-path"]
-	path = vim/pack/plugins/start/cmp-path
+	path = nvim/pack/plugins/start/cmp-path
 	url = git@github.com:hrsh7th/cmp-path.git
 [submodule "cmp-buffer"]
-	path = vim/pack/plugins/start/cmp-buffer
+	path = nvim/pack/plugins/start/cmp-buffer
 	url = git@github.com:hrsh7th/cmp-buffer.git
 [submodule "vim-vsnip"]
 	path = vim/pack/plugins/start/vim-vsnip
