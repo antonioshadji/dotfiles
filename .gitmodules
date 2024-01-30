@@ -103,3 +103,6 @@
 [submodule "NeoSolarized"]
 	path = nvim/pack/themes/start/NeoSolarized.nvim
 	url = https://github.com/Tsuzat/NeoSolarized.nvim.git
+[submodule "nvim-highlight-colors"]
+	path = nvim/pack/themes/opt/nvim-highlight-colors
+	url = https://github.com/brenoprata10/nvim-highlight-colors.git
