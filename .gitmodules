@@ -100,15 +100,6 @@
 [submodule "Neogit"]
 	path = nvim/pack/plugins/start/neogit
 	url = https://github.com/NeogitOrg/neogit.git
-[submodule "NeoSolarized"]
-	path = nvim/pack/themes/start/NeoSolarized.nvim
-	url = https://github.com/Tsuzat/NeoSolarized.nvim.git
 [submodule "nvim-highlight-colors"]
 	path = nvim/pack/themes/opt/nvim-highlight-colors
 	url = https://github.com/brenoprata10/nvim-highlight-colors.git
-[submodule "solarized.nvim"]
-	path = nvim/pack/themes/start/solarized.nvim
-	url = git@github.com:shaunsingh/solarized.nvim.git
-[submodule "nvim-solarized-lua"]
-	path = nvim/pack/themes/start/nvim-solarized-lua
-	url = https://github.com/ishan9299/nvim-solarized-lua
