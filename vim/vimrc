@@ -1,7 +1,7 @@
 " vim: set foldmarker={,} foldlevel=0 foldmethod=marker :
 " neovim defaults {
-" set encoding=utf-8      " show buffer as utf-8 https://github.com/square/maximum-awesome (**MUST BE EARLY IN FILE**)
-" scriptencoding utf-8
+set encoding=utf-8      " show buffer as utf-8 https://github.com/square/maximum-awesome (**MUST BE EARLY IN FILE**)
+scriptencoding utf-8
 " }
 "
 " Note:
@@ -20,12 +20,12 @@
 
 "Enable syntax highlighting and don't overwrite colorscheme
 " neovim default {
-" syntax enable
+syntax enable
 " }
 " neovim init.lua {
 " Enable file type detection.  Use the default filetype settings
 " Also load indent files, to automatically do language-dependent indenting.
-" filetype plugin indent on
+filetype plugin indent on
 " }
 
 " from defaults.vim {
@@ -33,7 +33,7 @@
 " compatible' 'cp'	boolean	(default on, off when a |vimrc| file is found
 " Command <Tab> completion, list matches, then longest common part, then all.
 " 2024-01-26 12:44:59 experiment with neovim default 'full'
-" set wildmode=list:longest,full
+set wildmode=list:longest,full
 
 
 " Ctrl-A increments character under cursor
@@ -43,14 +43,13 @@
 " set display+=lastline                          "tpope sensible ?? handled
 "}
 " neovim default {
-" set nocompatible                " nvim default, must be set for vim
-" set backspace=indent,eol,start  " fix backspace
-" set showcmd                     " display incomplete commands
-" set incsearch                   " search as you type
-" set wildmenu                    " Show list instead of just completing
-" used old cold to prevent from having to figure out
-" lua version of netrw_gitignore#Hide()
-" set wildignore+=netrw_gitignore#Hide()
+set nocompatible                " nvim default, must be set for vim
+set backspace=indent,eol,start  " fix backspace
+set showcmd                     " display incomplete commands
+set incsearch                   " search as you type
+set wildmenu                    " Show list instead of just completing
+" used old cold to prevent from having to figure out lua version of netrw_gitignore#Hide()
+set wildignore+=netrw_gitignore#Hide()
 " set wildignore+=.hg,.git,.svn                    " Version control
 " set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
 " set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
@@ -64,18 +63,18 @@
 
 " General Settings {
   " 2024-01-26 16:04:11 move to init.lua
-" set exrc                " Allow local vimrc files inside projects (for c/cpp)
-" set secure              " do not allow autocmds in project specific vimrc
-" set autowriteall        " Write files when many actions, including switching buffers see :help awa
+set exrc                " Allow local vimrc files inside projects (for c/cpp)
+set secure              " do not allow autocmds in project specific vimrc
+set autowriteall        " Write files when many actions, including switching buffers see :help awa
 
 " disabled 2024-01-26 12:57:12 I don't think I actually like this behavior.
-" set virtualedit=onemore " Allow for cursor beyond last character
+set virtualedit=onemore " Allow for cursor beyond last character
 " reccommended to be turned off for no_plugins.vim default file browsing
 " set autochdir           " Always change to current file directory
 "}
 " neovim defaults {
-" set hidden              " Allow buffer switching without saving
-" set mousehide           " Hide the mouse cursor while typing
+set hidden              " Allow buffer switching without saving
+set mousehide           " Hide the mouse cursor while typing
 " }
 
 " Setup clipboard to work with desktop copy / paste {
@@ -89,47 +88,47 @@
 " endif
 " }
 " neovim init.lua {
-" set clipboard=unnamed
-" set clipboard+=unnamedplus
+set clipboard=unnamed
+set clipboard+=unnamedplus
 " }
 
 " neovim init.lua Vim UI {
-" set cursorline                  " Highlight current line
-" set showmatch                   " jump cursor to matching brace when entered
-" set ignorecase                  " case-insensitive search
-" set smartcase                   " use case sensitive search if any caps present
-" " switch to default setting 2024-01-26 16:39:14
-" " set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
-" "  To insert special character - in insert mode CTRL-K two character code from :digraphs command
-" set listchars=tab:›\ ,trail:∙,nbsp:†,extends:»,precedes:« "nvim defaults to tab:> ,trail:-,nbsp:+
-" set list
-" set colorcolumn=80              " highlight 80 character width for code files
+set cursorline                  " Highlight current line
+set showmatch                   " jump cursor to matching brace when entered
+set ignorecase                  " case-insensitive search
+set smartcase                   " use case sensitive search if any caps present
+" switch to default setting 2024-01-26 16:39:14
+" set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
+"  To insert special character - in insert mode CTRL-K two character code from :digraphs command
+set listchars=tab:›\ ,trail:∙,nbsp:†,extends:»,precedes:« "nvim defaults to tab:> ,trail:-,nbsp:+
+set list
+set colorcolumn=80              " highlight 80 character width for code files
 " " status bar
-" set noshowmode
+set noshowmode
 "
 " " default:internal,filler,closeoff
-" set diffopt+=vertical,iwhite
+set diffopt+=vertical,iwhite
 "} end Vim UI
 " neovim default {
-" set foldenable                  " Auto fold code
+set foldenable                  " Auto fold code
 " status bar
-" set laststatus=2
-" set ruler
+set laststatus=2
+set ruler
 "}
 
 " neovim init.lua Formatting {
-" set expandtab           " expands tabs to spaces
-" set shiftwidth=2        " number of spaces to use for autoindent
-" set tabstop=2           " actual tabs occupy # spaces
-" set softtabstop=2       " insert mode tab and backspace
-" set splitright          " puts new vsplit windows to the right
-" set splitbelow          " puts new hsplit windows below current
+set expandtab           " expands tabs to spaces
+set shiftwidth=2        " number of spaces to use for autoindent
+set tabstop=2           " actual tabs occupy # spaces
+set softtabstop=2       " insert mode tab and backspace
+set splitright          " puts new vsplit windows to the right
+set splitbelow          " puts new hsplit windows below current
 " }
 
 " neovim defaut {
 " breaks nvim 0.10-dev
 " set printoptions=formfeed:y  "insert Ctrl-V Ctrl-L (^L) to create print pagebreak
-" set nowrap              " do not wrap long lines, show indicator instead
+set nowrap              " do not wrap long lines, show indicator instead
 " set pastetoggle=<F12>   " sane indentation on pastes
 " }
 
@@ -773,8 +772,8 @@ let g:tern#command = ['tern', '--persistent']
 " dark: ^[]11;rgb:00/2b/36^G
 " dark: ^[]11;rgb:0000/2b2b/3636^G
 " light: ^[]11;rgb:fd/f6/e3^G
-" colorscheme solarized
-" set background=dark
+colorscheme solarized
+set background=dark
 "set background=light
 " https://github.com/lifepillar/vim-solarized8/blob/master/colors/solarized8.vim
 " set terminal so it shows same colors as background
