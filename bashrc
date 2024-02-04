@@ -318,11 +318,10 @@ alias cp='cp -i'
 set -o noclobber
 
 # 2.2) Listing, directories, and motion
-alias ll='ls -AFlh --color --ignore=lost+found --ignore=.Trash-1000'
+alias ll='ls -Flh --color --ignore=lost+found --ignore=.Trash-1000'
 # follow by -r to reverse sort order
-alias lt='ls -AFlhtr --color --ignore=lost+found --ignore=.Trash-1000'
-alias l='ls -aF --color --ignore=lost+found --ignore=.Trash-1000'
-alias ls='ls --color'
+alias lt='ls -Flhtr --color --ignore=lost+found --ignore=.Trash-1000'
+alias l='ls -F --color --ignore=lost+found --ignore=.Trash-1000'
 alias ..='cd ..'
 alias md='mkdir'
 alias rd='rmdir'
