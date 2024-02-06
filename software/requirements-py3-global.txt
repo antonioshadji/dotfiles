@@ -11,7 +11,7 @@ ssh-audit
 # common files for all installs
 # coding tools
 black
-flake8
+ruff  # replaced flake8
 ipython
 isort
 jedi
@@ -24,7 +24,7 @@ yamlfix
 # no longer available
 # pygments-style-solarized
 # build tools
-meson
+# meson  # only used for i3 build
 
 # aws; cli installed from software folder
 boto3
