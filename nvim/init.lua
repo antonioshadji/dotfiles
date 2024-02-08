@@ -360,7 +360,7 @@ helptags ALL
 " Use the global executables
 let g:ale_use_global_executables = 1
 let g:ale_linters = {
-  \ 'python': ['flake8'],
+  \ 'python': ['ruff'],
   \ 'javascript': ['eslint'],
   \ 'c': ['clang'],
   \ 'cpp': ['clang'],
