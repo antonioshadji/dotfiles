@@ -604,6 +604,6 @@ require("nvim-treesitter.configs").setup({
 })
 
 vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 require("neogit").setup({})
