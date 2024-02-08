@@ -4,8 +4,6 @@
 vim.opt.runtimepath:prepend(vim.env.HOME .. "/.vim")
 vim.opt.packpath = vim.opt.runtimepath:get()
 
-vim.opt.termguicolors = true
-vim.cmd.colorscheme("solarized8")
 -- spell file location inside ~/.config/nvim
 vim.opt.spellfile = ("%s/spell/spf.%s.add"):format(vim.fn.stdpath("config"), vim.o.encoding)
 
@@ -607,3 +605,6 @@ vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 require("neogit").setup({})
+
+vim.opt.termguicolors = true
+vim.cmd.colorscheme("selenized")
