@@ -357,8 +357,8 @@ helptags ALL
 
 " Use the global executables
 let g:ale_use_global_executables = 1
+  "\ 'python': ['ruff'],
 let g:ale_linters = {
-  \ 'python': ['ruff'],
   \ 'javascript': ['eslint'],
   \ 'c': ['clang'],
   \ 'cpp': ['clang'],
@@ -366,8 +366,8 @@ let g:ale_linters = {
   \ 'rust': ['rust-analyzer'],
   \ 'lua': ['luacheck'],
   \}
+  " \ 'python': ['isort', 'black'],
 let g:ale_fixers = {
-  \ 'python': ['isort', 'black'],
   \ 'c': ['clang-format'],
   \ 'cpp': ['clang-format'],
   \ 'javascript': ['prettier'],
@@ -389,6 +389,8 @@ let g:ale_c_clangd_options = '-Wall -std=c11'
 
 " change format options.  I want to train myself to prefer Google style code
 let g:ale_c_clangformat_options = '-style="{BasedOnStyle: Google}"'
+" disable ale for python use ruff-lsp
+let g:ale_pattern_options = {'\.py$': {'ale_enabled': 0}}
 " Set this. Airline will handle the rest.
 let g:airline#extensions#ale#enabled = 1
 " }
@@ -613,3 +615,6 @@ require("neogit").setup({})
 
 vim.opt.termguicolors = true
 vim.cmd.colorscheme("solarized8")
+
+-- script to reset cursor to last position on last save
+require("lastplace")
