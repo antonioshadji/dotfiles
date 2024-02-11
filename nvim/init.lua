@@ -357,8 +357,8 @@ helptags ALL
 
 " Use the global executables
 let g:ale_use_global_executables = 1
-  "\ 'python': ['ruff'],
 let g:ale_linters = {
+  \ 'python': ['ruff'],
   \ 'javascript': ['eslint'],
   \ 'c': ['clang'],
   \ 'cpp': ['clang'],
@@ -366,8 +366,9 @@ let g:ale_linters = {
   \ 'rust': ['rust-analyzer'],
   \ 'lua': ['luacheck'],
   \}
-  " \ 'python': ['isort', 'black'],
+
 let g:ale_fixers = {
+  \ 'python': ['isort', 'ruff_format'],
   \ 'c': ['clang-format'],
   \ 'cpp': ['clang-format'],
   \ 'javascript': ['prettier'],
@@ -380,7 +381,6 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 
 let g:ale_python_isort_options = '--use-parentheses'
-let g:ale_python_flake8_options = '--max-line-length=88'
 
 let g:ale_echo_msg_format = '%linter%[%code%]: %s'
 " https://clang.llvm.org/docs/UsersManual.html#command-line-options
@@ -390,9 +390,7 @@ let g:ale_c_clangd_options = '-Wall -std=c11'
 " change format options.  I want to train myself to prefer Google style code
 let g:ale_c_clangformat_options = '-style="{BasedOnStyle: Google}"'
 " disable ale for python use ruff-lsp
-let g:ale_pattern_options = {'\.py$': {'ale_enabled': 0}}
-" Set this. Airline will handle the rest.
-let g:airline#extensions#ale#enabled = 1
+" let g:ale_pattern_options = {'\.py$': {'ale_enabled': 0}}
 " }
 
 " Status line https://github.com/vim-airline/vim-airline {
@@ -412,6 +410,8 @@ let g:airline#extensions#ale#enabled = 1
   let g:airline#extensions#wordcount#filetypes = '\vhelp|markdown|pandoc|rst|org'
   " Fancy stuff in tabline as well
   " let g:airline#extensions#tabline#enabled = 1
+
+  let g:airline_disable_statusline = 1
 " }
 
 " https://github.com/junegunn/fzf {
@@ -606,8 +606,15 @@ require("nvim-treesitter.configs").setup({
 		-- Instead of true it can also be a list of languages
 		additional_vim_regex_highlighting = false,
 	},
+	-- :h nvim-treesitter-modules
+	incremental_selection = { enable = true },
+	indent = { enable = true },
+	textobjects = { enable = true },
 })
 
+-- 2024-02-10 08:12:34 highly experimental zx should fix folding issues
+vim.opt.foldminlines = 2
+-- vim.opt.foldnestmax
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
@@ -618,3 +625,9 @@ vim.cmd.colorscheme("solarized8")
 
 -- script to reset cursor to last position on last save
 require("lastplace")
+
+-- vim.cmd([[ packadd nvim-highlight-colors ]])
+-- require("nvim-highlight-colors").setup({})
+-- require("nvim-highlight-colors").turnOn()
+--
+require("lualine").setup({ options = { theme = "powerline" } })

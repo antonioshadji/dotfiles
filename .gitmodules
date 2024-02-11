@@ -43,9 +43,6 @@
 [submodule "gv.vim"]
 	path = vim/pack/plugins/start/gv.vim
 	url = https://github.com/junegunn/gv.vim.git
-[submodule "vim-airline"]
-	path = vim/pack/plugins/start/vim-airline
-	url = https://github.com/vim-airline/vim-airline.git
 [submodule "goyo.vim"]
 	path = vim/pack/plugins/opt/goyo.vim
 	url = https://github.com/junegunn/goyo.vim.git
