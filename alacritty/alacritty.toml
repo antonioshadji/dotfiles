@@ -1,81 +1,12 @@
 live_config_reload = true
-
-[colors]
-draw_bold_text_with_bright_colors = true
-
-[colors.bright]
-# solarized_dark
-black = "#002b36"
-blue = "#839496"
-cyan = "#93a1a1"
-green = "#586e75"
-magenta = "#6c71c4"
-red = "#cb4b16"
-white = "#fdf6e3"
-yellow = "#657b83"
-# selenized
-# black=   '0x2d5b69'
-# red=     '0xff665c'
-# green=   '0x84c747'
-# yellow=  '0xebc13d'
-# blue=    '0x58a3ff'
-# magenta= '0xff84cd'
-# cyan=    '0x53d6c7'
-# white=   '0xcad8d9'
-
-[colors.cursor]
-cursor = "#839496"
-text = "#002b36"
-
-[colors.normal]
-# solarized_dark
-black = "#073642"
-blue = "#268bd2"
-cyan = "#2aa198"
-green = "#859900"
-magenta = "#d33682"
-red = "#dc322f"
-white = "#eee8d5"
-yellow = "#b58900"
-# selenized
-# black=   '0x184956'
-# red=     '0xfa5750'
-# green=   '0x75b938'
-# yellow=  '0xdbb32d'
-# blue=    '0x4695f7'
-# magenta= '0xf275be'
-# cyan=    '0x41c7b9'
-# white=   '0x72898f'
-
-[colors.primary]
-# solarized_dark
-background = "#002b36"
-foreground = "#839496"
-# selenized
-# background= '0x103c48'
-# foreground= '0xadbcbc'
+# https://alacritty.org/config-alacritty.html
+import = [
+  "~/.config/alacritty/colors.toml" ,
+  "~/.config/alacritty/font.toml" ,
+]
 
 [env]
 WINIT_X11_SCALE_FACTOR = "1.0"
-
-[font]
-size = 12
-
-[font.bold]
-family = "Ubuntu Mono"
-style = "Bold"
-
-[font.bold_italic]
-family = "Ubuntu Mono"
-style = "Bold Italic"
-
-[font.italic]
-family = "Ubuntu Mono"
-style = "Italic"
-
-[font.normal]
-family = "Ubuntu Mono"
-style = "Regular"
 
 [[keyboard.bindings]]
 action = "Paste"
