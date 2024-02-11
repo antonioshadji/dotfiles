@@ -97,3 +97,6 @@
 [submodule "nvim-highlight-colors"]
 	path = nvim/pack/themes/opt/nvim-highlight-colors
 	url = https://github.com/brenoprata10/nvim-highlight-colors.git
+[submodule "nvim/pack/plugins/start/lualine.nvim"]
+	path = nvim/pack/plugins/start/lualine.nvim
+	url = https://github.com/nvim-lualine/lualine.nvim.git
