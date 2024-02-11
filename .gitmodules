@@ -34,9 +34,6 @@
 [submodule "fzf.vim"]
 	path = vim/pack/plugins/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
-[submodule "vim-capslock"]
-	path = vim/pack/plugins/start/vim-capslock
-	url = https://github.com/tpope/vim-capslock.git
 [submodule "solarized8"]
 	path = vim/pack/themes/opt/solarized8
 	url = https://github.com/lifepillar/vim-solarized8.git
