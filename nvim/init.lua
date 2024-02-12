@@ -621,7 +621,7 @@ vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 require("neogit").setup({})
 
 vim.opt.termguicolors = true
-vim.cmd.colorscheme("solarized8")
+vim.cmd.colorscheme("hadji")
 
 -- script to reset cursor to last position on last save
 require("lastplace")
