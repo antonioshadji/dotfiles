@@ -28,9 +28,6 @@
 [submodule "vim-airline-themes"]
 	path = vim/pack/plugins/opt/vim-airline-themes
 	url = https://github.com/vim-airline/vim-airline-themes
-[submodule "vim-airline"]
-	path = vim/pack/plugins/opt/vim-airline
-	url = https://github.com/vim-airline/vim-airline
 [submodule "fzf.vim"]
 	path = vim/pack/plugins/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
