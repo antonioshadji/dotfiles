@@ -43,6 +43,7 @@ jupyter
 pandas
 sympy
 dask[complete]
+pyarrow
 
 # for pandas excel support
 xlrd
@@ -56,6 +57,8 @@ scikit-learn
 
 # database
 pymongo
+motor
+pymongoarrow
 # required for short uri in mongodb driver
 dnspython
 # enhanced clients with autocomplete
