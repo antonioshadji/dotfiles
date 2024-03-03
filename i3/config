@@ -232,7 +232,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 # start a terminal TODO: choose between default i3 and default iterm2 key
 # TODO: how to start in current working directory when current is terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec /home/antonios/.cargo/bin/alacritty
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
