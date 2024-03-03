@@ -483,13 +483,15 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 --     capabilities = capabilities
 --   }
 
-require("lspconfig").jedi_language_server.setup({
+-- require("lspconfig").jedi_language_server.setup({
+-- 	capabilities = capabilities,
+-- })
+-- require("lspconfig").pylsp.setup({
+-- 	capabilities = capabilities,
+-- })
+require("lspconfig").pyright.setup({
 	capabilities = capabilities,
 })
--- require("lspconfig").pyright.setup({
--- capabilities = capabilities,
--- })
-
 require("lspconfig").tsserver.setup({
 	capabilities = capabilities,
 })
