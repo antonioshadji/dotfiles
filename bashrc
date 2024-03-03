@@ -344,6 +344,8 @@ alias mp='multipass'
 alias apb='ansible-playbook'
 # 2.5 Docker
 alias di='docker images'
+# neovim test new config
+alias nvim-kickstart='NVIM_APPNAME=nvim-kickstart nvim'
 
 [[ $(command -v git-flow) ]] && alias gf='git-flow'
 # You may want to put all your additions into a separate file like
