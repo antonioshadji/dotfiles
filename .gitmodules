@@ -8,7 +8,7 @@
 	path = nvm
 	url = https://github.com/nvm-sh/nvm.git
 [submodule "vim-go"]
-	path = vim/pack/plugins/start/vim-go
+	path = vim/pack/plugins/opt/vim-go
 	url = https://github.com/fatih/vim-go
 [submodule "ale"]
 	path = vim/pack/plugins/start/ale
