@@ -1,7 +1,11 @@
-vim.cmd([[
-packadd vim-go
+vim.cmd.packadd("go.nvim")
 
-"   must also run (within vim) :GoUpdateBinaries
-let g:go_def_mode='gopls'
-let g:go_info_mode='gopls'
-]])
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = "*.go",
+	callback = function()
+		require("go.format").goimport()
+	end,
+	group = vim.api.nvim_create_augroup("GoFormat", {}),
+})
+
+require("go").setup()
