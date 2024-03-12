@@ -6,6 +6,7 @@
 npm install -g npm
 npm install -g eslint
 npm install -g prettier
+npm install -g @fsouza/prettierd
 npm install -g prettier-eslint
 npm install -g eslint-config-prettier
 npm install -g typescript
