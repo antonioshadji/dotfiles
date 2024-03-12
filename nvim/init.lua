@@ -634,12 +634,7 @@ require("lastplace")
 --
 require("lualine").setup({ options = { theme = "powerline" } })
 
--- TODO: creating function to parse text in vim format and translate to lua
--- elseif current_line:find(unchecked) then
--- 		new_line = string.gsub(current_line, unchecked, checked, 1)
--- 	else
--- 		local first_idx = string.len(current_line) - string.len(ltrim(current_line))
--- 		new_line = string.insert(current_line, unchecked, first_idx)
+-- Translate viml highlights to lua highlihts
 vim.api.nvim_create_user_command("Translate", function()
 	local current_line = vim.api.nvim_get_current_line()
 	local row, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -649,22 +644,31 @@ vim.api.nvim_create_user_command("Translate", function()
 	for k, v in string.gmatch(s, "([^%s]+)=([^%s]+)") do
 		t[k] = v
 	end
-	for k in string.gmatch(s, "hi ([^%s]+) ") do
+	for k in string.gmatch(s, "hi!* ([^%s]+) ") do
 		t["key"] = k
 	end
-	-- table has all data I need to recreat the line
-	new_line = string.format('vim.api.nvim_set_hl(0, "%s", { fg = "%s", bg = "%s"', t["key"], t["guifg"], t["guibg"])
+	if t["key"] ~= "link" then
+		new_line =
+			string.format('vim.api.nvim_set_hl(0, "%s", { fg = "%s", bg = "%s"', t["key"], t["guifg"], t["guibg"])
 
-	if t["guisp"] then
-		new_line = new_line .. string.format(', sp="%s"', t["guisp"])
+		if t["guisp"] then
+			new_line = new_line .. string.format(', sp="%s"', t["guisp"])
+		end
+		if t["gui"] and t["gui"] ~= "NONE" then
+			new_line = new_line .. string.format(", %s = true", t["gui"])
+		end
+		if t["cterm"] and t["cterm"] ~= "NONE" then
+			new_line = new_line .. string.format(", cterm = { %s = true }", t["cterm"])
+		end
+		new_line = new_line .. "})"
+	else
+		-- TODO: implement
+		for name, link in string.gmatch(current_line, "hi! link (%w+) (%w+)") do
+			t["name"] = name
+			t["link"] = link
+			new_line = string.format('vim.api.nvim_set_hl(0, "%s", { link = "%s"})', name, link)
+		end
 	end
-	if t["gui"] and t["gui"] ~= "NONE" then
-		new_line = new_line .. string.format(", %s = true", t["gui"])
-	end
-	if t["cterm"] and t["cterm"] ~= "NONE" then
-		new_line = new_line .. string.format(", cterm = { %s = true }", t["cterm"])
-	end
-	new_line = new_line .. "})"
 
 	-- new_line = string.gsub(current_line, "hi", "highlight", 1)
 	new_row = vim.fn.search("vim.cmd", "b")
@@ -674,3 +678,5 @@ vim.api.nvim_create_user_command("Translate", function()
 	vim.api.nvim_win_set_cursor(0, { row + 1, 0 })
 	vim.api.nvim_del_current_line()
 end, { range = true })
+
+vim.keymap.set("n", "t", vim.cmd.Translate)
