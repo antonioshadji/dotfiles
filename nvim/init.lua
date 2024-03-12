@@ -645,27 +645,24 @@ vim.api.nvim_create_user_command("Translate", function()
 		t[k] = v
 	end
 	for k in string.gmatch(s, "hi!* ([^%s]+) ") do
-		t["key"] = k
+		t.key = k
 	end
-	if t["key"] ~= "link" then
-		new_line =
-			string.format('vim.api.nvim_set_hl(0, "%s", { fg = "%s", bg = "%s"', t["key"], t["guifg"], t["guibg"])
+	if t.key ~= "link" then
+		new_line = string.format('vim.api.nvim_set_hl(0, "%s", { fg = "%s", bg = "%s"', t.key, t.guifg, t.guibg)
 
-		if t["guisp"] then
-			new_line = new_line .. string.format(', sp="%s"', t["guisp"])
+		if t.guisp then
+			new_line = new_line .. string.format(', sp="%s"', t.guisp)
 		end
-		if t["gui"] and t["gui"] ~= "NONE" then
-			new_line = new_line .. string.format(", %s = true", t["gui"])
+		if t.gui and t.gui ~= "NONE" then
+			new_line = new_line .. string.format(", %s = true", t.gui)
 		end
-		if t["cterm"] and t["cterm"] ~= "NONE" then
-			new_line = new_line .. string.format(", cterm = { %s = true }", t["cterm"])
+		if t.cterm and t.cterm ~= "NONE" then
+			new_line = new_line .. string.format(", cterm = { %s = true }", t.cterm)
 		end
 		new_line = new_line .. "})"
 	else
-		-- TODO: implement
+		-- loop over 1 item because gmatch returns an iterator
 		for name, link in string.gmatch(current_line, "hi! link (%w+) (%w+)") do
-			t["name"] = name
-			t["link"] = link
 			new_line = string.format('vim.api.nvim_set_hl(0, "%s", { link = "%s"})', name, link)
 		end
 	end
@@ -677,6 +674,6 @@ vim.api.nvim_create_user_command("Translate", function()
 	vim.cmd([[ call append(line('.'), '') ]])
 	vim.api.nvim_win_set_cursor(0, { row + 1, 0 })
 	vim.api.nvim_del_current_line()
-end, { range = true })
+end, {})
 
 vim.keymap.set("n", "t", vim.cmd.Translate)
