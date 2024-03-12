@@ -1,6 +1,50 @@
 vim.cmd.highlight("clear")
 
 vim.g.colors_name = "solarized_lua"
+-- vim.g.colors_name = "soluarized"
+
+-- Background: dark
+-- Color: base0    #839496   246     12
+-- Color: base00   #657b83   66      11
+-- Color: base01   #586e75   242     10
+-- Color: base02   #073642   236      0
+-- Color: base03   #002b36   235      8
+-- Color: base1    #93a1a1   247     14
+-- Color: base2    #eee8d5   254      7
+-- Color: base3    #fdf6e3   230     15
+-- Color: black     #002b36   235      8
+
+-- light
+-- Color: base0    #657b83   66        11
+-- Color: base00   #839496   246       12
+-- Color: base01   #93a1a1   247       14
+-- Color: base02   #eee8d5   254        7
+-- Color: base03   #fdf6e3   230       15
+-- Color: base1    #586e75   242       10
+-- Color: base2    #073642   236        0
+-- Color: base3    #002b36   235        8
+-- Color: black     #fdf6e3   230       15
+
+-- Color: blue     #268bd2   32         4
+-- Color: cyan     #2aa198   37         6
+-- Color: green    #859900   106        2
+-- Color: magenta  #d33682   162        5
+-- Color: orange   #cb4b16   166        9
+-- Color: red      #dc322f   160        1
+-- Color: violet   #6c71c4   61        13
+-- Color: yellow   #b58900   136        3
+local c = {
+	blue = "#268bd2",
+	cyan = "#2aa198",
+	green = "#859900",
+	magenta = "#d33682",
+	orange = "#cb4b16",
+	red = "#dc322f",
+	violet = "#6c71c4",
+	yellow = "#b58900",
+	d = { base0 = "#839496" },
+	l = { base0 = "#657b83" },
+}
 
 -- fzf settings :h terminal_color_0   dark/light
 vim.g.terminal_color_0 = "#073642" -- base02/base2
@@ -57,6 +101,8 @@ vim.api.nvim_set_hl(0, "debugPC", { link = "SignColumn" })
 vim.api.nvim_set_hl(0, "lCursor", { link = "Cursor" })
 
 if vim.opt.background:get() == "dark" then
+	-- hi Normal guifg=#586e75 guibg=#fdf6e3 gui=NONE cterm=NONE
+	-- https://neovim.io/doc/user/api.html#nvim_set_hl()
 	vim.api.nvim_set_hl(0, "Normal", { fg = "#93a1a1", bg = "#002b36" })
 	vim.api.nvim_set_hl(0, "FoldColumn", { fg = "#839496", bg = "#073642" })
 	vim.api.nvim_set_hl(0, "Folded", { fg = "#839496", bg = "#073642", bold = true })
@@ -65,31 +111,55 @@ if vim.opt.background:get() == "dark" then
 	vim.api.nvim_set_hl(0, "ToolbarButton", { fg = "#93a1a1", bg = "#073642", bold = true })
 	vim.api.nvim_set_hl(0, "ToolbarLine", { fg = "NONE", bg = "#073642" })
 	vim.api.nvim_set_hl(0, "LineNr", { fg = "#657b83", bg = "#073642" })
+	vim.api.nvim_set_hl(0, "NonText", { fg = "#657b83", bg = "NONE", bold = true, cterm = { bold = true } })
+	vim.api.nvim_set_hl(0, "SpecialKey", { fg = "#657b83", bg = "#073642", bold = true, cterm = { bold = true } })
+	vim.api.nvim_set_hl(
+		0,
+		"SpellBad",
+		{ fg = "#6c71c4", bg = "NONE", sp = "#6c71c4", undercurl = true, cterm = { underline = true } }
+	)
+	vim.api.nvim_set_hl(
+		0,
+		"SpellCap",
+		{ fg = "#6c71c4", bg = "NONE", sp = "#6c71c4", undercurl = true, cterm = { underline = true } }
+	)
+	vim.api.nvim_set_hl(
+		0,
+		"SpellLocal",
+		{ fg = "#b58900", bg = "NONE", sp = "#b58900", undercurl = true, cterm = { underline = true } }
+	)
+	vim.api.nvim_set_hl(
+		0,
+		"SpellRare",
+		{ fg = "#2aa198", bg = "NONE", sp = "#2aa198", undercurl = true, cterm = { underline = true } }
+	)
+	vim.api.nvim_set_hl(0, "Title", { fg = "#cb4b16", bg = "NONE", bold = true, cterm = { bold = true } })
+	vim.api.nvim_set_hl(0, "Cursor", { fg = "#fdf6e3", bg = "#268bd2" })
+	vim.api.nvim_set_hl(0, "DiffAdd", { fg = "#859900", bg = "#073642", sp = "#859900" })
+	vim.api.nvim_set_hl(0, "DiffChange", { fg = "#b58900", bg = "#073642", sp = "#b58900" })
+	vim.api.nvim_set_hl(0, "DiffDelete", { fg = "#dc322f", bg = "#073642", bold = true, cterm = { bold = true } })
+	vim.api.nvim_set_hl(0, "DiffText", { fg = "#268bd2", bg = "#073642", sp = "#268bd2" })
+	vim.api.nvim_set_hl(0, "StatusLine", { fg = "#839496", bg = "#073642", reverse = true, cterm = { reverse = true } })
+	vim.api.nvim_set_hl(
+		0,
+		"StatusLineNC",
+		{ fg = "#586e75", bg = "#073642", reverse = true, cterm = { reverse = true } }
+	)
+	vim.api.nvim_set_hl(0, "TabLine", { fg = "#586e75", bg = "#073642", reverse = true, cterm = { reverse = true } })
+	vim.api.nvim_set_hl(
+		0,
+		"TabLineFill",
+		{ fg = "#586e75", bg = "#073642", reverse = true, cterm = { reverse = true } }
+	)
+	vim.api.nvim_set_hl(0, "TabLineSel", { fg = "#839496", bg = "#073642", reverse = true, cterm = { reverse = true } })
+	vim.api.nvim_set_hl(0, "VertSplit", { fg = "#073642", bg = "#586e75" })
+	vim.api.nvim_set_hl(0, "ColorColumn", { fg = "NONE", bg = "#073642" })
+	vim.api.nvim_set_hl(0, "Conceal", { fg = "#268bd2", bg = "NONE" })
+	vim.api.nvim_set_hl(0, "CursorColumn", { fg = "NONE", bg = "#073642" })
+	vim.api.nvim_set_hl(0, "CursorLine", { fg = "NONE", bg = "#073642" })
 
 	vim.cmd([[
 
-        hi NonText guifg=#657b83 guibg=NONE gui=bold cterm=bold
-        hi SpecialKey guifg=#657b83 guibg=#073642 gui=bold cterm=bold
-        hi SpellBad guifg=#6c71c4 guibg=NONE guisp=#6c71c4 gui=undercurl cterm=underline
-        hi SpellCap guifg=#6c71c4 guibg=NONE guisp=#6c71c4 gui=undercurl cterm=underline
-        hi SpellLocal guifg=#b58900 guibg=NONE guisp=#b58900 gui=undercurl cterm=underline
-        hi SpellRare guifg=#2aa198 guibg=NONE guisp=#2aa198 gui=undercurl cterm=underline
-        hi Title guifg=#cb4b16 guibg=NONE gui=bold cterm=bold
-        hi Cursor guifg=#fdf6e3 guibg=#268bd2 gui=NONE cterm=NONE
-        hi DiffAdd guifg=#859900 guibg=#073642 guisp=#859900 gui=NONE cterm=NONE
-        hi DiffChange guifg=#b58900 guibg=#073642 guisp=#b58900 gui=NONE cterm=NONE
-        hi DiffDelete guifg=#dc322f guibg=#073642 gui=bold cterm=bold
-        hi DiffText guifg=#268bd2 guibg=#073642 guisp=#268bd2 gui=NONE cterm=NONE
-        hi StatusLine guifg=#839496 guibg=#073642 gui=reverse cterm=reverse
-        hi StatusLineNC guifg=#586e75 guibg=#073642 gui=reverse cterm=reverse
-        hi TabLine guifg=#586e75 guibg=#073642 gui=reverse cterm=reverse
-        hi TabLineFill guifg=#586e75 guibg=#073642 gui=reverse cterm=reverse
-        hi TabLineSel guifg=#839496 guibg=#073642 gui=reverse cterm=reverse
-        hi VertSplit guifg=#073642 guibg=#586e75 gui=NONE cterm=NONE
-        hi ColorColumn guifg=NONE guibg=#073642 gui=NONE cterm=NONE
-        hi Conceal guifg=#268bd2 guibg=NONE gui=NONE cterm=NONE
-        hi CursorColumn guifg=NONE guibg=#073642 gui=NONE cterm=NONE
-        hi CursorLine guifg=NONE guibg=#073642 gui=NONE cterm=NONE
         hi Directory guifg=#268bd2 guibg=NONE gui=NONE cterm=NONE
         hi EndOfBuffer guifg=NONE guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
         hi ErrorMsg guifg=#dc322f guibg=#fdf6e3 gui=reverse cterm=reverse

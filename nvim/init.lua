@@ -615,7 +615,7 @@ require("nvim-treesitter.configs").setup({
 })
 
 -- 2024-02-10 08:12:34 highly experimental zx should fix folding issues
-vim.opt.foldminlines = 2
+vim.opt.foldminlines = 4
 -- vim.opt.foldnestmax
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
@@ -633,3 +633,44 @@ require("lastplace")
 -- require("nvim-highlight-colors").turnOn()
 --
 require("lualine").setup({ options = { theme = "powerline" } })
+
+-- TODO: creating function to parse text in vim format and translate to lua
+-- elseif current_line:find(unchecked) then
+-- 		new_line = string.gsub(current_line, unchecked, checked, 1)
+-- 	else
+-- 		local first_idx = string.len(current_line) - string.len(ltrim(current_line))
+-- 		new_line = string.insert(current_line, unchecked, first_idx)
+vim.api.nvim_create_user_command("Translate", function()
+	local current_line = vim.api.nvim_get_current_line()
+	local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+	local new_line = ""
+	t = {}
+	s = current_line
+	for k, v in string.gmatch(s, "([^%s]+)=([^%s]+)") do
+		t[k] = v
+	end
+	for k in string.gmatch(s, "hi ([^%s]+) ") do
+		t["key"] = k
+	end
+	-- table has all data I need to recreat the line
+	new_line = string.format('vim.api.nvim_set_hl(0, "%s", { fg = "%s", bg = "%s"', t["key"], t["guifg"], t["guibg"])
+
+	if t["guisp"] then
+		new_line = new_line .. string.format(', sp="%s"', t["guisp"])
+	end
+	if t["gui"] and t["gui"] ~= "NONE" then
+		new_line = new_line .. string.format(", %s = true", t["gui"])
+	end
+	if t["cterm"] and t["cterm"] ~= "NONE" then
+		new_line = new_line .. string.format(", cterm = { %s = true }", t["cterm"])
+	end
+	new_line = new_line .. "})"
+
+	-- new_line = string.gsub(current_line, "hi", "highlight", 1)
+	new_row = vim.fn.search("vim.cmd", "b")
+	vim.api.nvim_buf_set_lines(0, new_row - 2, new_row - 1, true, { new_line })
+	vim.api.nvim_win_set_cursor(0, { new_row - 1, 0 })
+	vim.cmd([[ call append(line('.'), '') ]])
+	vim.api.nvim_win_set_cursor(0, { row + 1, 0 })
+	vim.api.nvim_del_current_line()
+end, { range = true })
