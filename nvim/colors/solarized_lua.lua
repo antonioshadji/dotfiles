@@ -3,6 +3,9 @@ vim.cmd.highlight("clear")
 vim.g.colors_name = "solarized_lua"
 -- vim.g.colors_name = "soluarized"
 
+-- NOTE: show colors and enbale TranslateHL function
+-- lua require("highlights")
+
 -- Background: dark
 -- Color: base0    #839496   246     12
 -- Color: base00   #657b83   66      11
@@ -12,7 +15,7 @@ vim.g.colors_name = "solarized_lua"
 -- Color: base1    #93a1a1   247     14
 -- Color: base2    #eee8d5   254      7
 -- Color: base3    #fdf6e3   230     15
--- Color: black     #002b36   235      8
+-- Color: black    #002b36   235      8
 
 -- light
 -- Color: base0    #657b83   66        11
@@ -23,7 +26,7 @@ vim.g.colors_name = "solarized_lua"
 -- Color: base1    #586e75   242       10
 -- Color: base2    #073642   236        0
 -- Color: base3    #002b36   235        8
--- Color: black     #fdf6e3   230       15
+-- Color: black    #fdf6e3   230       15
 
 -- Color: blue     #268bd2   32         4
 -- Color: cyan     #2aa198   37         6
@@ -33,6 +36,8 @@ vim.g.colors_name = "solarized_lua"
 -- Color: red      #dc322f   160        1
 -- Color: violet   #6c71c4   61        13
 -- Color: yellow   #b58900   136        3
+
+-- base03 == black
 local c = {
 	blue = "#268bd2",
 	cyan = "#2aa198",
@@ -42,8 +47,28 @@ local c = {
 	red = "#dc322f",
 	violet = "#6c71c4",
 	yellow = "#b58900",
-	d = { base0 = "#839496" },
-	l = { base0 = "#657b83" },
+	d = {
+		base0 = "#839496",
+		base00 = "#657b83",
+		base01 = "#586e75",
+		base02 = "#073642",
+		base03 = "#002b36",
+		base1 = "#93a1a1",
+		base2 = "#eee8d5",
+		base3 = "#fdf6e3",
+		black = "#002b36",
+	},
+	l = {
+		base0 = "#657b83",
+		base00 = "#839496",
+		base01 = "#93a1a1",
+		base02 = "#eee8d5",
+		base03 = "#fdf6e3",
+		base1 = "#586e75",
+		base2 = "#073642",
+		base3 = "#002b36",
+		black = "#fdf6e3",
+	},
 }
 
 -- fzf settings :h terminal_color_0   dark/light
@@ -55,14 +80,14 @@ vim.g.terminal_color_4 = "#268bd2"
 vim.g.terminal_color_5 = "#d33682"
 vim.g.terminal_color_6 = "#2aa198"
 vim.g.terminal_color_7 = "#eee8d5" -- base2/base02
-vim.g.terminal_color_8 = "#002b36" -- base03,black/base3
+vim.g.terminal_color_8 = "#002b36" -- base03/base3
 vim.g.terminal_color_9 = "#cb4b16"
 vim.g.terminal_color_10 = "#586e75" --base01/base1
 vim.g.terminal_color_11 = "#657b83" -- base00/base0
 vim.g.terminal_color_12 = "#839496" -- base0/base00
 vim.g.terminal_color_13 = "#6c71c4"
 vim.g.terminal_color_14 = "#93a1a1" -- base1/base01
-vim.g.terminal_color_15 = "#fdf6e3" -- base3/base03,black
+vim.g.terminal_color_15 = "#fdf6e3" -- base3/base03
 
 -- https://neovim.io/doc/user/api.html#nvim_set_hl()
 vim.api.nvim_set_hl(0, "Boolean", { link = "Constant" })
