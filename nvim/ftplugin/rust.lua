@@ -1,3 +1,1 @@
-vim.cmd([[
-packadd rustaceanvim
-]])
+vim.cmd.packadd("rustaceanvim")
