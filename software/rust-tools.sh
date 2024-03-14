@@ -19,6 +19,7 @@ ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 # only needed on desktop machines
 sudo apt install -y libfontconfig1-dev libx11-xcb-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev
 cargo install alacritty
+ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 
 # man page
 sudo mkdir -p /usr/local/share/man/man1
@@ -42,5 +43,7 @@ fi
 
 # added 2024-01-26 15:57:30 to format lua files
 cargo install stylua
+ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 # 2024-01-28 12:12:13 for use with neovim tree-sitter functionality
 cargo install tree-sitter-cli
+ERR=$?; [[ $ERR != 0 ]] && exit $ERR
