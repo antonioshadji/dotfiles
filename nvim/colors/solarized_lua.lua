@@ -162,6 +162,9 @@ vim.api.nvim_set_hl(0, "ALEStyleWarningSignLineNr", { link = "ALEWarningSignLine
 vim.api.nvim_set_hl(0, "CocMenuSel", { link = "PmenuSel" })
 
 if vim.opt.background:get() == "dark" then
+	-- custom colors I chose
+	vim.api.nvim_set_hl(0, "@variable", { fg = "NONE", bg = "NONE" })
+	-- from solarized8
 	vim.api.nvim_set_hl(0, "Normal", { fg = "#93a1a1", bg = "#002b36" })
 	vim.api.nvim_set_hl(0, "FoldColumn", { fg = "#839496", bg = "#073642" })
 	vim.api.nvim_set_hl(0, "Folded", { fg = "#839496", bg = "#073642", bold = true })
@@ -593,6 +596,8 @@ if vim.opt.background:get() == "dark" then
 	)
 	vim.api.nvim_set_hl(0, "ALEWarningLine", { fg = "NONE", bg = "NONE" })
 elseif vim.opt.background:get() == "light" then
+	-- custom colors I chose
+	vim.api.nvim_set_hl(0, "@variable", { fg = "NONE", bg = "NONE" })
 	vim.cmd([[
   hi Normal guifg=#586e75 guibg=#fdf6e3 gui=NONE cterm=NONE
   hi FoldColumn guifg=#657b83 guibg=#eee8d5 gui=NONE cterm=NONE
