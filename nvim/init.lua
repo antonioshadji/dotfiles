@@ -1,7 +1,8 @@
 -- good example init files
 -- https://github.com/potamides/dotfiles
 
-vim.opt.runtimepath:prepend(vim.env.HOME .. "/.vim")
+-- remove dependence on vim plugins 2024-03-26 13:26:40
+-- vim.opt.runtimepath:prepend(vim.env.HOME .. "/.vim")
 vim.opt.packpath = vim.opt.runtimepath:get()
 
 -- spell file location inside ~/.config/nvim
@@ -495,6 +496,22 @@ require("lspconfig").pyright.setup({
 require("lspconfig").tsserver.setup({
 	capabilities = capabilities,
 })
+
+-- this works for go only
+-- maybe use this plugin for others? https://github.com/lukas-reineke/lsp-format.nvim
+require("go").setup({
+	lsp_cfg = {
+		capabilities = capabilities,
+	},
+})
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = "*.go",
+	callback = function()
+		require("go.format").gofmt()
+	end,
+	group = vim.api.nvim_create_augroup("GoFormat", {}),
+})
+
 require("lspconfig").gopls.setup({
 	capabilities = capabilities,
 	settings = {
@@ -629,13 +646,3 @@ vim.cmd.colorscheme("solarized_lua")
 require("lastplace")
 
 require("lualine").setup({ options = { theme = "powerline" } })
-
-vim.cmd.packadd("go.nvim")
-require("go").setup()
-vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = "*.go",
-	callback = function()
-		require("go.format").goimport()
-	end,
-	group = vim.api.nvim_create_augroup("GoFormat", {}),
-})
