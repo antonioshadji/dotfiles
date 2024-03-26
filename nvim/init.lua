@@ -629,3 +629,13 @@ vim.cmd.colorscheme("solarized_lua")
 require("lastplace")
 
 require("lualine").setup({ options = { theme = "powerline" } })
+
+vim.cmd.packadd("go.nvim")
+require("go").setup()
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = "*.go",
+	callback = function()
+		require("go.format").goimport()
+	end,
+	group = vim.api.nvim_create_augroup("GoFormat", {}),
+})
