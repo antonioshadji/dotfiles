@@ -646,3 +646,7 @@ vim.cmd.colorscheme("solarized_lua")
 require("lastplace")
 
 require("lualine").setup({ options = { theme = "powerline" } })
+
+require'nvim-tmux-navigation'.setup {
+    disable_when_zoomed = true -- defaults to false
+}

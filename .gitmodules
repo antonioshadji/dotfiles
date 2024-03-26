@@ -100,3 +100,6 @@
 [submodule "go.nvim"]
 	path = nvim/pack/plugins/start/go.nvim
 	url = https://github.com/ray-x/go.nvim.git
+[submodule "nvim/pack/plugins/start/nvim-tmux-navigation"]
+	path = nvim/pack/plugins/start/nvim-tmux-navigation
+	url = https://github.com/alexghergh/nvim-tmux-navigation.git
