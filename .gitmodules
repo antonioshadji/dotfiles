@@ -83,7 +83,7 @@
 	path = nvim/pack/plugins/start/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
 [submodule "rustaceanvim"]
-	path = nvim/pack/plugins/opt/rustaceanvim
+	path = nvim/pack/plugins/start/rustaceanvim
 	url = git@github.com:mrcjkb/rustaceanvim.git
 [submodule "nvim-dap"]
 	path = nvim/pack/plugins/start/nvim-dap
@@ -98,5 +98,5 @@
 	path = nvim/pack/plugins/start/lualine.nvim
 	url = https://github.com/nvim-lualine/lualine.nvim.git
 [submodule "go.nvim"]
-	path = nvim/pack/plugins/opt/go.nvim
+	path = nvim/pack/plugins/start/go.nvim
 	url = https://github.com/ray-x/go.nvim.git
