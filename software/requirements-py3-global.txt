@@ -44,6 +44,7 @@ pandas
 sympy
 dask[complete]
 pyarrow
+seaborn[stats]
 
 # for pandas excel support
 xlrd
