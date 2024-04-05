@@ -75,7 +75,7 @@ HISTCONTROL=ignoreboth:erasedups
 # append to the history file, don't overwrite it
 shopt -s histappend
 # update after every command in every terminal
-export PROMPT_COMMAND="history -a;"
+export PROMPT_COMMAND='history -a;history -r;'
 
 # https://www.gnu.org/software/bash/manual/html_node/Bash-Variables.html#index-HISTCMD
 # A colon-separated list of values controlling how commands are saved on the
@@ -94,6 +94,7 @@ export PROMPT_COMMAND="history -a;"
 # https://www.gnu.org/software/bash/manual/html_node/Bash-History-Facilities.html
 HISTSIZE=10000
 unset HISTFILESIZE
+HISTIGNORE='history:pass'
 # }}
 
 
