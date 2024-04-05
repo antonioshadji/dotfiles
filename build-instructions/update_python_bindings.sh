@@ -11,7 +11,7 @@ then
   exit 0
 fi
 
-PYTHON="python3.10"
+PYTHON="python3.12"
 GNUCASH="${1}"
 
 mkdir -p "${HOME}/.local/lib/${PYTHON}/site-packages/gnucash"
