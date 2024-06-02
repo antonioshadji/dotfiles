@@ -191,13 +191,13 @@ vim.api.nvim_set_keymap("t", "<C-l>", [[<C-\><C-n><C-w>l]], { noremap = true })
 vim.g.limelight_conceal_ctermfg = 237
 
 -- miscellaneous settings, do they need to exist?
-vim.cmd([[
-if trim(system('uname')) ==# 'Darwin'
-  let g:python3_host_prog = '/usr/local/bin/python3'
-else
-  let g:python3_host_prog = '/usr/bin/python3'
-endif
-]])
+-- vim.cmd([[
+-- if trim(system('uname')) ==# 'Darwin'
+--   let g:python3_host_prog = '/usr/local/bin/python3'
+-- else
+--   let g:python3_host_prog = '/usr/bin/python3'
+-- endif
+-- ]])
 
 -- Auto Commands
 vim.cmd([[
@@ -530,6 +530,7 @@ require("lspconfig").clangd.setup({
 })
 
 require("lspconfig").lua_ls.setup({
+  cmd = {"/opt/local/bin/lua-language-server"},
 	capabilities = capabilities,
 	on_init = function(client)
 		local path = client.workspace_folders[1].name
