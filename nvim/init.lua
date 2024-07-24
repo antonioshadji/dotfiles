@@ -530,6 +530,13 @@ require("lspconfig").clangd.setup({
 })
 
 require("lspconfig").lua_ls.setup({
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = {'vim'}
+      }
+    }
+  },
   cmd = {"/opt/local/bin/lua-language-server"},
 	capabilities = capabilities,
 	on_init = function(client)
