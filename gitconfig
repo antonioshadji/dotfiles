@@ -36,3 +36,5 @@
   rebase = true
 [init]
   defaultBranch = main
+[user]
+	email = antonios.hadjigeorgalis@layer2financial.com
