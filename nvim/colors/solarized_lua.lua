@@ -249,7 +249,7 @@ if vim.opt.background:get() == "dark" then
 	vim.api.nvim_set_hl(
 		0,
 		"Error",
-		{ fg = "#dc322f", bg = "#fdf6e3", bold, reverse = true, cterm = { bold, reverse = true } }
+		{ fg = "#dc322f", bg = "#fdf6e3", bold=true, reverse = true, cterm = { bold = true, reverse = true } }
 	)
 	vim.api.nvim_set_hl(0, "Identifier", { fg = "#268bd2", bg = "NONE" })
 	vim.api.nvim_set_hl(0, "Ignore", { fg = "NONE", bg = "NONE" })
