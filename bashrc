@@ -348,6 +348,12 @@ alias apb='ansible-playbook'
 alias di='docker images'
 # neovim test new config
 alias nvim-kickstart='NVIM_APPNAME=nvim-kickstart nvim'
+# kubectl
+source <(kubectl completion bash)
+alias k='kubectl'
+# allow completion to work with alias
+complete -o default -F __start_kubectl k
+
 
 [[ $(command -v git-flow) ]] && alias gf='git-flow'
 # You may want to put all your additions into a separate file like
