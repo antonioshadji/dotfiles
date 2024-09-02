@@ -458,6 +458,7 @@ cmp.setup({
 		-- Add tab support
 		["<S-Tab>"] = cmp.mapping.select_prev_item(),
 		["<Tab>"] = cmp.mapping.select_next_item(),
+
 		["<C-d>"] = cmp.mapping.scroll_docs(-4),
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-Space>"] = cmp.mapping.complete(),
@@ -478,7 +479,9 @@ cmp.setup({
 })
 
 -- Set up lspconfig.
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+
 --   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 --   require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
 --     capabilities = capabilities
@@ -545,13 +548,16 @@ require("lspconfig").lua_ls.setup({
 					workspace = {
 						checkThirdParty = false,
 						library = {
-							vim.env.VIMRUNTIME,
-							-- "${3rd}/luv/library"
+							"${3rd}/luv/library",
+							unpack(vim.api.nvim_get_runtime_file("", true)),
 							-- "${3rd}/busted/library",
 						},
-						-- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-						-- library = vim.api.nvim_get_runtime_file("", true)
 					},
+					completion = {
+						callSnippet = "Replace",
+					},
+					-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+					-- diagnostics = { disable = { 'missing-fields' } },
 				},
 			})
 
@@ -636,6 +642,7 @@ vim.opt.foldminlines = 4
 -- vim.opt.foldnestmax
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldlevel=99
 
 require("neogit").setup({})
 
@@ -647,6 +654,10 @@ require("lastplace")
 
 require("lualine").setup({ options = { theme = "powerline" } })
 
-require'nvim-tmux-navigation'.setup {
-    disable_when_zoomed = true -- defaults to false
-}
+require("nvim-tmux-navigation").setup({
+	disable_when_zoomed = true, -- defaults to false
+})
+
+require("lspconfig").ruff_lsp.setup({})
+
+
