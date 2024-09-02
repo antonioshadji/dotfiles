@@ -301,20 +301,18 @@ exec google-chrome --profile-directory=Default
 
 workspace $ws2 output HDMI-A-0
 assign [instance="first-Alacritty"] $ws2
-exec alacritty --class first-Alacritty
-
-# workspace $ws5 output HDMI-A-0
-# # for_window [title=".*antonios@primetrust.com.*"] $ws1
-# exec google-chrome --profile-directory="Profile 8"
+exec "$HOME/.cargo/bin/alacritty --class first-Alacritty"
 
 # https://i3wm.org/docs/userguide.html#workspace_screen
 # set workspace 10 to right Monitor
 workspace $ws10 output HDMI-A-1
-# always launch slack in workspace 10
-assign [class="Slack"] $ws10
 assign [class="Firefox Developer Edition"] $ws10
-# exec slack
 exec FirefoxDeveloperEdition
+
+# always launch slack in workspace 8
+# workspace $ws8 output HDMI-A-1
+# assign [class="Slack"] $ws8
+# exec slack
 
 # make zoom load in workspace 8
 # assign [class="zoom"] $ws8
