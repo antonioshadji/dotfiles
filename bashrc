@@ -70,12 +70,13 @@ fi
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
-HISTCONTROL=ignoreboth:erasedups
+HISTCONTROL=ignorespace:erasedups
 
 # append to the history file, don't overwrite it
-shopt -s histappend
+# 2024-04-19 11:13:48 removed below line due to change in HISTCONTROL
+# shopt -s histappend
 # update after every command in every terminal
-export PROMPT_COMMAND='history -a;history -r;'
+# export PROMPT_COMMAND='history -a;history -r;'
 
 # https://www.gnu.org/software/bash/manual/html_node/Bash-Variables.html#index-HISTCMD
 # A colon-separated list of values controlling how commands are saved on the
