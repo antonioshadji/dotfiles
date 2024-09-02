@@ -1,0 +1,3 @@
+/home/antonios/Documents/ubuntu -fstype=nfs,rw,soft 10.0.0.99:/home/antonios/Documents
+# https://www.linuxtechi.com/how-to-install-nfs-server-on-debian/ 
+
