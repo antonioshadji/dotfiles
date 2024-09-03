@@ -14,7 +14,6 @@ npm install -g typescript
 # neovim
 npm install -g neovim
 npm install -g typescript-language-server
-npm install -g @nomicfoundation/solidity-language-server
 npm install -g pyright
 
 # tools
