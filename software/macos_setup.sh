@@ -122,3 +122,17 @@ sudo port install pandoc +texlive
 #     To customize wget, you can copy
 #     /opt/local/etc/wgetrc.sample to
 #     /opt/local/etc/wgetrc and then make changes.
+
+# Other installs
+# Alacritty-v0.13.2.dmg
+# Docker.dmg
+# LogiTuneInstaller.dmg
+# Loom-0.230.0-arm64.dmg
+# MacPorts-2.9.3-14-Sonoma.pkg
+# NerdFonts
+# Notion-3.9.3-universal.dmg
+# Postman for macOS (arm64).zip
+# SolarizedDark.terminal
+# go1.22.3.darwin-arm64.pkg
+# googlechrome.dmg
+# logioptionsplus_installer.zip
