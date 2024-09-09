@@ -33,3 +33,6 @@ notes/*
 
 # help tags
 tags*
+
+# mac
+.DS_Store
