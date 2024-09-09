@@ -103,3 +103,6 @@
 [submodule "nvim/pack/plugins/start/nvim-tmux-navigation"]
 	path = nvim/pack/plugins/start/nvim-tmux-navigation
 	url = https://github.com/alexghergh/nvim-tmux-navigation.git
+[submodule "software/macos/pure"]
+	path = software/macos/pure
+	url = https://github.com/sindresorhus/pure.git
