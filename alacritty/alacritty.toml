@@ -1,8 +1,8 @@
 live_config_reload = true
 # https://alacritty.org/config-alacritty.html
 import = [
-  # "~/.config/alacritty/colors.toml" ,
-  "~/.config/alacritty/solarized_light.toml" ,
+  "~/.config/alacritty/colors.toml" ,
+  # "~/.config/alacritty/solarized_light.toml" ,
   "~/.config/alacritty/font.toml" ,
 ]
 
