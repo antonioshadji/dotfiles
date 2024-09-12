@@ -15,17 +15,17 @@ xcode-select --install
 # install neovim
 sudo port install neovim
 sudo port install lua-language-server  # note shows cmd required in config
-sudo port install pyright typescript-language-server ruff
+sudo port install ruff
 
 # install tools
 sudo port install tmux
 sudo port install fd ripgrep
 sudo port install jq
 
-# install node
-sudo port install nodejs22
-sudo port install npm10
-sudo port install yarn
+# install node - used nvm for anaconda machine
+# sudo port install nodejs22
+# sudo port install npm10
+# sudo port install yarn
 
 
 #   yarn has the following notes:
@@ -136,3 +136,14 @@ sudo port install pandoc +texlive
 # go1.22.3.darwin-arm64.pkg
 # googlechrome.dmg
 # logioptionsplus_installer.zip
+
+# 2024-09-12 15:37:25 npm installed
+# /Users/ahadjigeorgalis/.nvm/versions/node/v22.8.0/lib
+# ├── @bitwarden/cli@2024.8.2
+# ├── bash-language-server@5.4.0
+# ├── corepack@0.29.3
+# ├── neovim@5.2.0
+# ├── npm@10.8.3
+# ├── pyright@1.1.380
+# ├── typescript-language-server@4.3.3
+# └── typescript@5.6.2
