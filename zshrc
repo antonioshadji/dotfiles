@@ -1,18 +1,22 @@
+# nvm lines producing SC1091 error
+# shellcheck disable=SC1091
+
 # prevent duplicates when hitting the up arrow in the shell
 setopt HIST_IGNORE_DUPS
 
 # starship
 # eval "$(starship init zsh)"
 # pure
-fpath+=($HOME/.config/dotfiles/software/macos/pure)
+fpath+=("$HOME/.config/dotfiles/software/macos/pure")
 autoload -U promptinit; promptinit
 zstyle :prompt:pure:git:stash show yes
 prompt pure
 
 # completion: https://thevaluable.dev/zsh-completion-guide-examples/
 # https://github.com/conda-incubator/conda-zsh-completion
-fpath+=($HOME/.config/dotfiles/conda-zsh-completion)
+fpath+=("$HOME/.config/dotfiles/conda-zsh-completion")
 autoload -U compinit; compinit
+# shellcheck disable=SC1090
 source <(kubectl completion zsh)
 
 export PATH="$HOME/go/bin:$PATH"
@@ -33,6 +37,7 @@ PROMPT='%D{%L:%M:%S}'$PROMPT
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/Users/ahadjigeorgalis/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# shellcheck disable=SC2181
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
