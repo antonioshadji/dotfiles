@@ -10,6 +10,8 @@ zstyle :prompt:pure:git:stash show yes
 prompt pure
 
 # completion: https://thevaluable.dev/zsh-completion-guide-examples/
+# https://github.com/conda-incubator/conda-zsh-completion
+fpath+=($HOME/.config/dotfiles/conda-zsh-completion)
 autoload -U compinit; compinit
 source <(kubectl completion zsh)
 

@@ -106,3 +106,6 @@
 [submodule "software/macos/pure"]
 	path = software/macos/pure
 	url = https://github.com/sindresorhus/pure.git
+[submodule "conda-zsh-completion"]
+	path = conda-zsh-completion
+	url = https://github.com/conda-incubator/conda-zsh-completion
