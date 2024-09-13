@@ -15,9 +15,8 @@ prompt pure
 # completion: https://thevaluable.dev/zsh-completion-guide-examples/
 # https://github.com/conda-incubator/conda-zsh-completion
 fpath+=("$HOME/.config/dotfiles/conda-zsh-completion")
+fpath+=("$HOME/.config/dotfiles/zsh/completions")
 autoload -U compinit; compinit
-# shellcheck disable=SC1090
-source <(kubectl completion zsh)
 
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$PATH"
