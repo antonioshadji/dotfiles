@@ -496,7 +496,7 @@ capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp"
 require("lspconfig").pyright.setup({
 	capabilities = capabilities,
 })
-require("lspconfig").tsserver.setup({
+require("lspconfig").ts_ls.setup({
 	capabilities = capabilities,
 })
 
