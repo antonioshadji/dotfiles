@@ -10,12 +10,11 @@ ssh-audit
 
 # common files for all installs
 # coding tools
-black
-ruff  # replaced flake8
+ruff  # replaced flake8, black, and isort
 ipython
-isort
-jedi
-jedi-language-server
+# replaced by pyright
+# jedi
+# jedi-language-server
 pynvim
 pytest
 yamllint
@@ -42,7 +41,6 @@ matplotlib
 jupyter
 pandas
 sympy
-dask[complete]
 pyarrow
 seaborn[stats]
 

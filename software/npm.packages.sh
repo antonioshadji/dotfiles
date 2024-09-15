@@ -7,14 +7,12 @@ npm install -g npm
 npm install -g eslint
 npm install -g prettier
 npm install -g @fsouza/prettierd
-npm install -g prettier-eslint
 npm install -g eslint-config-prettier
 npm install -g typescript
 
 # neovim
 npm install -g neovim
 npm install -g typescript-language-server
-npm install -g @nomicfoundation/solidity-language-server
 npm install -g pyright
 
 # tools
