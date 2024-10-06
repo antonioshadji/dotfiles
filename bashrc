@@ -707,6 +707,7 @@ export TPM2_PKCS11_STORE=$HOME/.tpm2_pkcs11/
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 if [[ -d /mnt/data/anaconda3 ]]; then
+  # echo "found anaconda3"
   __conda_setup="$('/mnt/data/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
   if [ $? -eq 0 ]; then
       eval "$__conda_setup"
@@ -720,6 +721,7 @@ if [[ -d /mnt/data/anaconda3 ]]; then
 fi
 
 if [[ -d /mnt/data/miniconda3 ]]; then
+  # echo "found miniconda3"
   __conda_setup="$('/mnt/data/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
   if [ $? -eq 0 ]; then
       eval "$__conda_setup"
