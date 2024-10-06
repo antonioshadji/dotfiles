@@ -305,6 +305,7 @@ fi
 
 # dart https://dart.dev/get-dart
 [[ -d /usr/lib/dart ]] && export PATH="$PATH:/usr/lib/dart/bin"
+
 #}}
 
 
@@ -376,6 +377,9 @@ export VISUAL='nvim'
 
 # open terminal in current cwd
 alias h='alacritty --working-directory $PWD --title $PWD'
+# kubernetes
+alias k='kubectl'
+
 #}}
 
 # {{ 2.4) grep options
@@ -663,22 +667,22 @@ if [ -r /var/run/reboot-required ]; then
 fi
 
 # Comcast Settings {{
-if [[ ${HOSTNAME} =~ comcast.net$|HQSML ]]; then
-  export GIT_AUTHOR_EMAIL="Antonios_Hadjigeorgalis@comcast.com"
-  export GIT_COMMITTER_EMAIL="Antonios_Hadjigeorgalis@comcast.com"
-  export ANSIBLE_VAULT_PASSWORD_FILE=~/.ansible/vault_password
-  export NODE_PATH=${HOME}/.npm/lib/node_modules:${NODE_PATH}
-  export PATH=${HOME}/.npm/bin:$PATH
-  export VAULT_ADDR=https://vault.apa.comcast.net
-  export AWS_DEFAULT_REGION=us-east-1
-  if command -v fly &> /dev/null; then
-    source <(fly completion --shell bash)
-  fi
-  # installed in /usr/local/etc/bash_completion.d/
-  # if command -v copilot &> /dev/null; then
-  #   source <(copilot completion bash)
-  # fi
-fi
+# if [[ ${HOSTNAME} =~ comcast.net$|HQSML ]]; then
+#   export GIT_AUTHOR_EMAIL="Antonios_Hadjigeorgalis@comcast.com"
+#   export GIT_COMMITTER_EMAIL="Antonios_Hadjigeorgalis@comcast.com"
+#   export ANSIBLE_VAULT_PASSWORD_FILE=~/.ansible/vault_password
+#   export NODE_PATH=${HOME}/.npm/lib/node_modules:${NODE_PATH}
+#   export PATH=${HOME}/.npm/bin:$PATH
+#   export VAULT_ADDR=https://vault.apa.comcast.net
+#   export AWS_DEFAULT_REGION=us-east-1
+#   if command -v fly &> /dev/null; then
+#     source <(fly completion --shell bash)
+#   fi
+#   # installed in /usr/local/etc/bash_completion.d/
+#   # if command -v copilot &> /dev/null; then
+#   #   source <(copilot completion bash)
+#   # fi
+# fi
 
 # }}
 
@@ -690,7 +694,7 @@ if command -v fd &> /dev/null; then
 fi
 
 # show if there is an existing tmux session when SSH into this machine
-[[ -n $SSH_CLIENT ]] && echo "tmux" && tmux ls
+# [[ -n $SSH_CLIENT ]] && tmux ls && tmux attach
 
 # profile stop time start {{
 if [[ $DEBUG == 1 ]]; then
@@ -702,16 +706,31 @@ export TPM2_PKCS11_STORE=$HOME/.tpm2_pkcs11/
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/mnt/data/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/mnt/data/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/mnt/data/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/mnt/data/anaconda3/bin:$PATH"
-    fi
+if [[ -d /mnt/data/anaconda3 ]]; then
+  __conda_setup="$('/mnt/data/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
+      eval "$__conda_setup"
+  else
+      if [ -f "/mnt/data/anaconda3/etc/profile.d/conda.sh" ]; then
+          . "/mnt/data/anaconda3/etc/profile.d/conda.sh"
+      else
+          export PATH="/mnt/data/anaconda3/bin:$PATH"
+      fi
+  fi
 fi
+
+if [[ -d /mnt/data/miniconda3 ]]; then
+  __conda_setup="$('/mnt/data/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
+      eval "$__conda_setup"
+  else
+      if [ -f "/mnt/data/miniconda3/etc/profile.d/conda.sh" ]; then
+          . "/mnt/data/miniconda3/etc/profile.d/conda.sh"
+      else
+          export PATH="/mnt/data/miniconda3/bin:$PATH"
+      fi
+  fi
+fi
+
 unset __conda_setup
 # <<< conda initialize <<<
-
