@@ -16,10 +16,11 @@ prompt pure
 # https://github.com/conda-incubator/conda-zsh-completion
 fpath+=("$HOME/.config/dotfiles/conda-zsh-completion")
 fpath+=("$HOME/.config/dotfiles/zsh/completions")
+fpath+=("/opt/local/share/zsh/site-functions")
 autoload -U compinit; compinit
 
 export PATH="$HOME/go/bin:$PATH"
-export PATH="$HOME/.yarn/bin:$PATH"
+# export PATH="$HOME/.yarn/bin:$PATH"
 
 # aliases same as bash
 alias l='ls'
@@ -53,3 +54,7 @@ conda activate local
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+source ~/.config/dotfiles/zsh/iterm2.zsh
+
+bindkey -v
