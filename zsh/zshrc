@@ -58,3 +58,5 @@ export NVM_DIR="$HOME/.nvm"
 source ~/.config/dotfiles/zsh/iterm2.zsh
 
 bindkey -v
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
