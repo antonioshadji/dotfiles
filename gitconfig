@@ -38,3 +38,7 @@
   defaultBranch = main
 [user]
 	email = ahadjigeorgalis@anaconda.com
+	name = Antonios Hadjigeorgalis
+	signingKey = /Users/ahadjigeorgalis/.ssh/id_ed25519.pub
+[gpg]
+	format = ssh
