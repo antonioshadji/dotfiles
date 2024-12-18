@@ -496,7 +496,9 @@ require("lspconfig").pyright.setup({
 require("lspconfig").tsserver.setup({
 	capabilities = capabilities,
 })
-
+require("lspconfig").bashls.setup({
+  capabilities = capabilities,
+})
 -- this works for go only
 -- maybe use this plugin for others? https://github.com/lukas-reineke/lsp-format.nvim
 require("go").setup({
