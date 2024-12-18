@@ -429,10 +429,10 @@ export DEBFULLNAME="Antonios Hadjigeorgalis"
 # }}
 
 # git configuration {{
-export GIT_AUTHOR_NAME="Antonios Hadjigeorgalis"
-export GIT_COMMITTER_NAME="Antonios Hadjigeorgalis"
-export GIT_AUTHOR_EMAIL="Antonios@Hadji.co"
-export GIT_COMMITTER_EMAIL="Antonios@Hadji.co"
+# export GIT_AUTHOR_NAME="Antonios Hadjigeorgalis"
+# export GIT_COMMITTER_NAME="Antonios Hadjigeorgalis"
+# export GIT_AUTHOR_EMAIL="Antonios@Hadji.co"
+# export GIT_COMMITTER_EMAIL="Antonios@Hadji.co"
 # }}
 
 # Darwin only setup {{
@@ -661,22 +661,22 @@ if [ -r /var/run/reboot-required ]; then
 fi
 
 # Comcast Settings {{
-if [[ ${HOSTNAME} =~ comcast.net$|HQSML ]]; then
-  export GIT_AUTHOR_EMAIL="Antonios_Hadjigeorgalis@comcast.com"
-  export GIT_COMMITTER_EMAIL="Antonios_Hadjigeorgalis@comcast.com"
-  export ANSIBLE_VAULT_PASSWORD_FILE=~/.ansible/vault_password
-  export NODE_PATH=${HOME}/.npm/lib/node_modules:${NODE_PATH}
-  export PATH=${HOME}/.npm/bin:$PATH
-  export VAULT_ADDR=https://vault.apa.comcast.net
-  export AWS_DEFAULT_REGION=us-east-1
-  if command -v fly &> /dev/null; then
-    source <(fly completion --shell bash)
-  fi
-  # installed in /usr/local/etc/bash_completion.d/
-  # if command -v copilot &> /dev/null; then
-  #   source <(copilot completion bash)
-  # fi
-fi
+# if [[ ${HOSTNAME} =~ comcast.net$|HQSML ]]; then
+#   export GIT_AUTHOR_EMAIL="Antonios_Hadjigeorgalis@comcast.com"
+#   export GIT_COMMITTER_EMAIL="Antonios_Hadjigeorgalis@comcast.com"
+#   export ANSIBLE_VAULT_PASSWORD_FILE=~/.ansible/vault_password
+#   export NODE_PATH=${HOME}/.npm/lib/node_modules:${NODE_PATH}
+#   export PATH=${HOME}/.npm/bin:$PATH
+#   export VAULT_ADDR=https://vault.apa.comcast.net
+#   export AWS_DEFAULT_REGION=us-east-1
+#   if command -v fly &> /dev/null; then
+#     source <(fly completion --shell bash)
+#   fi
+#   # installed in /usr/local/etc/bash_completion.d/
+#   # if command -v copilot &> /dev/null; then
+#   #   source <(copilot completion bash)
+#   # fi
+# fi
 
 # }}
 
