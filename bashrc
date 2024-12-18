@@ -219,8 +219,9 @@ if [[ -r $HOME/.config/dotfiles/bash-git-prompt/gitprompt.sh ]]; then
   # GIT_PROMPT_THEME=Custom # use custom theme specified in file GIT_PROMPT_THEME_FILE (default ~/.git-prompt-colors.sh)
   # GIT_PROMPT_THEME_FILE=~/.git-prompt-colors.sh
   export GIT_PROMPT_THEME=Solarized_Ubuntu
-  source "$HOME/.config/dotfiles/bash-git-prompt/gitprompt.sh"
+  source "${HOME}/.config/dotfiles/bash-git-prompt/gitprompt.sh"
 fi
+
 
 # powerline bash prompt
 # . $HOME/.local/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh
@@ -321,7 +322,7 @@ set -o noclobber
 # 2.2) Listing, directories, and motion
 alias ll='ls -Flh --color --ignore=lost+found --ignore=.Trash-1000'
 # follow by -r to reverse sort order
-alias lt='ls -Flhtr --color --ignore=lost+found --ignore=.Trash-1000'
+alias lt='ls -Flht --color --ignore=lost+found --ignore=.Trash-1000'
 alias l='ls -F --color --ignore=lost+found --ignore=.Trash-1000'
 alias ..='cd ..'
 alias md='mkdir'
@@ -390,7 +391,7 @@ export GREP_COLOR='30;43' # match color of ag match
 
 #{{ Node setup and tools
 # [ -r file ] returns True if file exists and is readable.
-export NVM_DIR="$HOME/.config/nvm"
+export NVM_DIR="$HOME/.nvm"
 [[ -r "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"  # This loads nvm
 [[ -r "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
@@ -531,6 +532,10 @@ fi
 if [[ -r $HOME/.config/dotfiles/git-completion.bash ]]; then
   source "$HOME/.config/dotfiles/git-completion.bash"
 fi
+# conda completion
+# https://github.com/tartansandal/conda-bash-completion/blob/master/conda
+f="$HOME/.config/dotfiles/conda.bash"
+[[ -r $f  ]] && source "$f"
 
 # enable completion for nvm
 [[ -r $NVM_DIR/bash_completion ]] && source "$NVM_DIR/bash_completion"
@@ -692,3 +697,31 @@ if [[ $DEBUG == 1 ]]; then
 fi
 # }}
 export TPM2_PKCS11_STORE=$HOME/.tpm2_pkcs11/
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/ahadjigeorgalis/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+# shellcheck disable=SC2181
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/ahadjigeorgalis/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/ahadjigeorgalis/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/ahadjigeorgalis/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+# echo "conda environment load time:"
+# time conda activate local
+
+
+if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
+    . /opt/local/etc/profile.d/bash_completion.sh
+fi
+
+[[ -d "${HOME}/.pixi/bin" ]] && export PATH="${HOME}/.pixi/bin:$PATH"
+
+# eval "$(starship init bash)"
