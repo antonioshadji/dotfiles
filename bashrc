@@ -717,7 +717,7 @@ unset __conda_setup
 # echo "conda environment load time:"
 # time conda activate local
 
-
+# macports bash-completion
 if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
     . /opt/local/etc/profile.d/bash_completion.sh
 fi
@@ -725,3 +725,4 @@ fi
 [[ -d "${HOME}/.pixi/bin" ]] && export PATH="${HOME}/.pixi/bin:$PATH"
 
 # eval "$(starship init bash)"
+. "$HOME/.cargo/env"
