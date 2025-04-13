@@ -199,6 +199,8 @@ else
 endif
 ]])
 
+-- on hadji workstation use 3.12 compiled python
+vim.g.python3_host_prog = '/usr/local/bin/python3.12'
 -- Auto Commands
 vim.cmd([[
 if !exists('g:autocommands_loaded')
@@ -420,6 +422,11 @@ capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp"
 
 require("lspconfig").pyright.setup({
   capabilities = capabilities,
+  settings = {
+    python = {
+      pythonPath = vim.fn.exepath('python3.12'),
+    },
+  }
 })
 require("lspconfig").ts_ls.setup({
   capabilities = capabilities,
