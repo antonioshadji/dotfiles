@@ -7,7 +7,7 @@ tar --extract --gzip --file="${filename}.tar.gz"   # -xzf
 sudo rm -rf /usr/share/nvim/runtime
 sudo rsync --archive "./${filename}/" /usr/
 sleep 1
-rm -rf "./${filename}*"
+rm -rf "${filename}*"
 nvim --version
 # sudo rsync --archive ./nvim-linux64/ debian:/usr/
 # sudo rsync --archive ./nvim-linux64/ ubuntu12:/usr/
