@@ -11,6 +11,7 @@ ssh-audit
 # common files for all installs
 # coding tools
 ruff  # replaced flake8, black, and isort
+pyrefly
 ipython
 # replaced by pyright
 # jedi
