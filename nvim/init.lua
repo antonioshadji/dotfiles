@@ -420,6 +420,8 @@ capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp"
 --     capabilities = capabilities
 --   }
 
+-- vim.lsp.enable({"pyrefly"})
+
 require("lspconfig").pyright.setup({
   capabilities = capabilities,
   settings = {
@@ -428,6 +430,7 @@ require("lspconfig").pyright.setup({
     },
   }
 })
+
 require("lspconfig").ts_ls.setup({
   capabilities = capabilities,
 })
