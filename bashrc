@@ -202,26 +202,26 @@ blue='\e[0;34m'    # blue      #268bd2  4/4 blue      33 #0087ff 55 -10 -45  38 
 ## --      Customized git prompt
 ## -----------------------------------------------------
 # gitprompt configuration
-if [[ -r $HOME/.config/dotfiles/bash-git-prompt/gitprompt.sh ]]; then
-  # Set config variables first
-  export GIT_PROMPT_ONLY_IN_REPO=0
-
-  # GIT_PROMPT_FETCH_REMOTE_STATUS=0   # uncomment to avoid fetching remote status
-  export GIT_PROMPT_IGNORE_SUBMODULES=1 # uncomment to avoid searching for changed files in submodules
-  # GIT_PROMPT_WITH_VIRTUAL_ENV=0 # uncomment to avoid setting virtual environment infos for node/python/conda environments
-  # GIT_PROMPT_SHOW_UPSTREAM=1 # uncomment to show upstream tracking branch
-  export GIT_PROMPT_SHOW_UNTRACKED_FILES=normal # can be no, normal or all; determines counting of untracked files
-  # GIT_PROMPT_SHOW_CHANGED_FILES_COUNT=0 # uncomment to avoid printing the number of changed files
-  # GIT_PROMPT_STATUS_COMMAND=gitstatus_pre-1.7.10.sh # uncomment to support Git older than 1.7.10
-  export GIT_PROMPT_START="_LAST_COMMAND_INDICATOR_ ${blue}${HOSTNAME%%.*}:${yellow}\w${Reset}"
-  # GIT_PROMPT_END=...      # uncomment for custom prompt end sequence
-
-  # as last entry source the gitprompt script
-  # GIT_PROMPT_THEME=Custom # use custom theme specified in file GIT_PROMPT_THEME_FILE (default ~/.git-prompt-colors.sh)
-  # GIT_PROMPT_THEME_FILE=~/.git-prompt-colors.sh
-  export GIT_PROMPT_THEME=Solarized_Ubuntu
-  source "$HOME/.config/dotfiles/bash-git-prompt/gitprompt.sh"
-fi
+# if [[ -r $HOME/.config/dotfiles/bash-git-prompt/gitprompt.sh ]]; then
+#   # Set config variables first
+#   export GIT_PROMPT_ONLY_IN_REPO=0
+# 
+#   # GIT_PROMPT_FETCH_REMOTE_STATUS=0   # uncomment to avoid fetching remote status
+#   export GIT_PROMPT_IGNORE_SUBMODULES=1 # uncomment to avoid searching for changed files in submodules
+#   # GIT_PROMPT_WITH_VIRTUAL_ENV=0 # uncomment to avoid setting virtual environment infos for node/python/conda environments
+#   # GIT_PROMPT_SHOW_UPSTREAM=1 # uncomment to show upstream tracking branch
+#   export GIT_PROMPT_SHOW_UNTRACKED_FILES=normal # can be no, normal or all; determines counting of untracked files
+#   # GIT_PROMPT_SHOW_CHANGED_FILES_COUNT=0 # uncomment to avoid printing the number of changed files
+#   # GIT_PROMPT_STATUS_COMMAND=gitstatus_pre-1.7.10.sh # uncomment to support Git older than 1.7.10
+#   export GIT_PROMPT_START="_LAST_COMMAND_INDICATOR_ ${blue}${HOSTNAME%%.*}:${yellow}\w${Reset}"
+#   # GIT_PROMPT_END=...      # uncomment for custom prompt end sequence
+# 
+#   # as last entry source the gitprompt script
+#   # GIT_PROMPT_THEME=Custom # use custom theme specified in file GIT_PROMPT_THEME_FILE (default ~/.git-prompt-colors.sh)
+#   # GIT_PROMPT_THEME_FILE=~/.git-prompt-colors.sh
+#   export GIT_PROMPT_THEME=Solarized_Ubuntu
+#   source "$HOME/.config/dotfiles/bash-git-prompt/gitprompt.sh"
+# fi
 
 # powerline bash prompt
 # . $HOME/.local/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh
@@ -736,3 +736,8 @@ fi
 
 unset __conda_setup
 # <<< conda initialize <<<
+
+# where did this come from and why?
+# . "$HOME/.local/share/../bin/env"
+
+eval "$(starship init bash)"
