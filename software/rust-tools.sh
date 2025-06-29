@@ -47,3 +47,11 @@ ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 # 2024-01-28 12:12:13 for use with neovim tree-sitter functionality
 cargo install tree-sitter-cli
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
+
+# added 2025-06-28 16:20:19 justfile and starship.rs
+cargo install starship
+ERR=$?; [[ $ERR != 0 ]] && exit $ERR
+cargo install just
+ERR=$?; [[ $ERR != 0 ]] && exit $ERR
+
+
