@@ -1,3 +1,4 @@
+-- vim: set fl=99:
 -- good example init files
 -- https://github.com/potamides/dotfiles
 
@@ -99,7 +100,7 @@ nnoremap <silent> g] <cmd>lua vim.diagnostic.goto_next()<CR>
 vim.cmd([[
 " help abbreviate
 " Abbreviations:
-iabbrev <expr> dts strftime('%F %T')
+iabbrev <expr> dts strftime('%F %T %A')
 
 " Mappings:
 " When you have a problem about vim mappings.
@@ -493,7 +494,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 require("lspconfig").pyright.setup({
 	capabilities = capabilities,
 })
-require("lspconfig").tsserver.setup({
+require("lspconfig").ts_ls.setup({
 	capabilities = capabilities,
 })
 require("lspconfig").bashls.setup({
@@ -539,7 +540,7 @@ require("lspconfig").lua_ls.setup({
       }
     }
   },
-  cmd = {"/opt/local/bin/lua-language-server"},
+  -- cmd = {"/Users/ahadjigeorgalis/.local/bin/lua-language-server"},
 	capabilities = capabilities,
 	on_init = function(client)
 		local path = client.workspace_folders[1].name
@@ -636,6 +637,7 @@ require("nvim-treesitter.configs").setup({
 		additional_vim_regex_highlighting = false,
 	},
 	-- :h nvim-treesitter-modules
+  modules = {},
 	incremental_selection = { enable = true },
 	indent = { enable = true },
 	textobjects = { enable = true },
@@ -660,3 +662,30 @@ require("lualine").setup({ options = { theme = "powerline" } })
 require'nvim-tmux-navigation'.setup {
     disable_when_zoomed = true -- defaults to false
 }
+
+-- -- Function to run Ruff
+-- local function run_ruff()
+--   local file = vim.fn.expand('%:p')  -- Get the full path of the current file
+--   local cmd = string.format('ruff format %s', file)
+-- 
+--   -- Run Ruff
+--   local output = vim.fn.system(cmd)
+-- 
+--   -- If Ruff made changes, reload the buffer
+--   if vim.v.shell_error == 0 and #output > 0 then
+--     vim.cmd('e!')
+--   end
+-- 
+--   -- Display any errors or warnings
+--   if #output > 0 then
+--     print(output)
+--   end
+-- end
+-- 
+-- -- Create the autocommand
+-- vim.api.nvim_create_autocmd({"BufWritePre"}, {
+--   pattern = {"*.py"},
+--   callback = function()
+--     run_ruff()
+--   end,
+-- }
