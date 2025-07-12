@@ -36,14 +36,14 @@ def main():
 
     fn = url.split("/")[-1]
     if not re.match(r"go1.*linux-amd64.tar.gz", fn):
-        print("Filename does not match expected pattern.")
+        print(f"Filename {fn} does not match expected pattern.")
         exit(1)
 
     r = requests.get(BASE + url, allow_redirects=True)
     open(fn, "wb").write(r.content)
 
-    cmd0 = "sudo rm -rf /usr/local/go".split()
-    cmd1 = "sudo tar -C /usr/local -xzf".split()
+    cmd0 = "sudo rm -rf /opt/go".split()
+    cmd1 = "sudo tar -C /opt -xzf".split()
     cmd1.append(fn)
 
     pw = getpass("sudo password: ")
