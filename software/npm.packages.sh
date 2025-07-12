@@ -14,6 +14,7 @@ npm install -g typescript
 npm install -g neovim
 npm install -g typescript-language-server
 npm install -g pyright
+npm install -g bash-language-server
 
 # tools
 npm install -g pdfkit

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # https://github.com/koalaman/shellcheck/wiki/SC1090
 # shellcheck disable=SC1090,SC1091
-# vim: set foldmarker={{,}} foldlevel=0 foldmethod=marker :
+# vim: set foldmarker={{,}} foldlevel=99 foldmethod=marker :
 
 # profile start time start {{
 DEBUG=0
@@ -171,7 +171,7 @@ esac
 #}}
 
 #{{ Color chart
-Reset='\e[0m'    # Text Reset
+# Reset='\e[0m'    # Text Reset
 
 # http://ethanschoonover.com/solarized
 # http://ethanschoonover.com/solarized/img/solarized-palette.png
@@ -180,8 +180,8 @@ Reset='\e[0m'    # Text Reset
 # base02='\e[0;30m'  # base02    #073642  0/4 black    235 #262626 20 -12 -12   7  54  66 192  90  26
 # red='\e[0;31m'     # red       #dc322f  1/1 red      160 #d70000 50  65  45 220  50  47   1  79  86
 # green='\e[0;32m'   # green     #859900  2/2 green     64 #5f8700 60 -20  65 133 153   0  68 100  60
-yellow='\e[0;33m'  # yellow    #b58900  3/3 yellow   136 #af8700 60  10  65 181 137   0  45 100  71
-blue='\e[0;34m'    # blue      #268bd2  4/4 blue      33 #0087ff 55 -10 -45  38 139 210 205  82  82
+# yellow='\e[0;33m'  # yellow    #b58900  3/3 yellow   136 #af8700 60  10  65 181 137   0  45 100  71
+# blue='\e[0;34m'    # blue      #268bd2  4/4 blue      33 #0087ff 55 -10 -45  38 139 210 205  82  82
 # magenta='\e[0;35m' # magenta   #d33682  5/5 magenta  125 #af005f 50  65 -05 211  54 130 331  74  83
 # cyan='\e[0;36m'    # cyan      #2aa198  6/6 cyan      37 #00afaf 60 -35 -05  42 161 152 175  74  63
 # base2='\e[0;37m'   # base2     #eee8d5  7/7 white    254 #e4e4e4 92 -00  10 238 232 213  44  11  93
@@ -283,10 +283,8 @@ unset gemloc
 [[ -d $HOME/.cargo ]] && source "$HOME/.cargo/env"
 
 # Golang
-if [[ ! "$PATH" == */usr/local/go/bin* ]]; then
-  # TODO: what is this expansion doing?
-  # export PATH="${PATH:+${PATH}:}/usr/local/go/bin:${HOME}/go/bin"
-  export PATH="${PATH}:/usr/local/go/bin"
+if [[ ! "$PATH" == */opt/go/bin* ]]; then
+  export PATH="${PATH}:/opt/go/bin"
 fi
 [[ -d $HOME/go/bin ]] && export PATH="$PATH:$HOME/go/bin"
 
@@ -355,7 +353,6 @@ alias k='kubectl'
 # allow completion to work with alias
 complete -o default -F __start_kubectl k
 
-
 [[ $(command -v git-flow) ]] && alias gf='git-flow'
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -380,6 +377,13 @@ alias h='alacritty --working-directory $PWD --title $PWD'
 # kubernetes
 alias k='kubectl'
 
+# terminal pager
+if command -v ov >/dev/null 2>&1
+then
+  alias more='ov'
+  alias less='ov'
+  export MANPAGER="ov --section-delimiter '^[^\s]' --section-header"
+fi
 #}}
 
 # {{ 2.4) grep options
@@ -708,8 +712,8 @@ export TPM2_PKCS11_STORE=$HOME/.tpm2_pkcs11/
 # !! Contents within this block are managed by 'conda init' !!
 if [[ -d /mnt/data/anaconda3 ]]; then
   # echo "found anaconda3"
-  __conda_setup="$('/mnt/data/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-  if [ $? -eq 0 ]; then
+  if __conda_setup="$('/mnt/data/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"; then
+  # if [ $? -eq 0 ]; then
       eval "$__conda_setup"
   else
       if [ -f "/mnt/data/anaconda3/etc/profile.d/conda.sh" ]; then
@@ -722,8 +726,7 @@ fi
 
 if [[ -d /mnt/data/miniconda3 ]]; then
   # echo "found miniconda3"
-  __conda_setup="$('/mnt/data/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-  if [ $? -eq 0 ]; then
+  if __conda_setup="$('/mnt/data/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"; then
       eval "$__conda_setup"
   else
       if [ -f "/mnt/data/miniconda3/etc/profile.d/conda.sh" ]; then
@@ -741,3 +744,4 @@ unset __conda_setup
 # . "$HOME/.local/share/../bin/env"
 
 eval "$(starship init bash)"
+
