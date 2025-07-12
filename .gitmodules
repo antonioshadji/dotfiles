@@ -1,48 +1,48 @@
 [submodule "cmp-nvim-lsp"]
-	path = nvim/pack/plugins/start/cmp-nvim-lsp
+	path = config/nvim/pack/plugins/start/cmp-nvim-lsp
 	url = git@github.com:hrsh7th/cmp-nvim-lsp.git
 [submodule "cmp-vsnip"]
-	path = nvim/pack/plugins/start/cmp-vsnip
+	path = config/nvim/pack/plugins/start/cmp-vsnip
 	url = git@github.com:hrsh7th/cmp-vsnip.git
 [submodule "cmp-path"]
-	path = nvim/pack/plugins/start/cmp-path
+	path = config/nvim/pack/plugins/start/cmp-path
 	url = git@github.com:hrsh7th/cmp-path.git
 [submodule "cmp-buffer"]
-	path = nvim/pack/plugins/start/cmp-buffer
+	path = config/nvim/pack/plugins/start/cmp-buffer
 	url = git@github.com:hrsh7th/cmp-buffer.git
 [submodule "go.nvim"]
-	path = nvim/pack/plugins/start/go.nvim
+	path = config/nvim/pack/plugins/start/go.nvim
 	url = https://github.com/ray-x/go.nvim.git
 [submodule "lualine.nvim"]
-	path = nvim/pack/plugins/start/lualine.nvim
+	path = config/nvim/pack/plugins/start/lualine.nvim
 	url = https://github.com/nvim-lualine/lualine.nvim.git
 [submodule "nvim-cmp"]
-	path = nvim/pack/plugins/start/nvim-cmp
+	path = config/nvim/pack/plugins/start/nvim-cmp
 	url = git@github.com:hrsh7th/nvim-cmp.git
 [submodule "nvim-dap"]
-	path = nvim/pack/plugins/start/nvim-dap
+	path = config/nvim/pack/plugins/start/nvim-dap
 	url = https://github.com/mfussenegger/nvim-dap.git
 [submodule "nvim-tmux-navigation"]
-	path = nvim/pack/plugins/start/nvim-tmux-navigation
+	path = config/nvim/pack/plugins/start/nvim-tmux-navigation
 	url = https://github.com/alexghergh/nvim-tmux-navigation.git
 [submodule "nvim-treesitter"]
-	path = nvim/pack/plugins/start/nvim-treesitter
+	path = config/nvim/pack/plugins/start/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
 [submodule "plenary.nvim"]
-	path = nvim/pack/plugins/start/plenary.nvim
+	path = config/nvim/pack/plugins/start/plenary.nvim
 	url = git@github.com:nvim-lua/plenary.nvim.git
 [submodule "popup.nvim"]
-	path = nvim/pack/plugins/start/popup.nvim
+	path = config/nvim/pack/plugins/start/popup.nvim
 	url = git@github.com:nvim-lua/popup.nvim.git
 [submodule "rustaceanvim"]
-	path = nvim/pack/plugins/start/rustaceanvim
+	path = config/nvim/pack/plugins/start/rustaceanvim
 	url = git@github.com:mrcjkb/rustaceanvim.git
 [submodule "telescope.nvim"]
-	path = nvim/pack/plugins/start/telescope.nvim
+	path = config/nvim/pack/plugins/start/telescope.nvim
 	url = git@github.com:nvim-telescope/telescope.nvim.git
 [submodule "nvim-highlight-colors"]
-	path = nvim/pack/themes/opt/nvim-highlight-colors
+	path = config/nvim/pack/themes/opt/nvim-highlight-colors
 	url = https://github.com/brenoprata10/nvim-highlight-colors.git
 [submodule "nvm"]
-	path = nvm
+	path = config/nvm
 	url = https://github.com/nvm-sh/nvm.git
