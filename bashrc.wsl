@@ -1,4 +1,0 @@
-umask 002
-
-# start tmux inside every terminal
-# [[ -z "$TMUX" ]] && { tmux attach || exec tmux new-session; }

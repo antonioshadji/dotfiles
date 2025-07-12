@@ -1,5 +1,0 @@
-# vim: set ft=sh :
-export CLASSPATH=".:/opt/antlr/antlr-4.8-complete.jar:$CLASSPATH"
-# Create aliases for the ANTLR Tool, and TestRig.
-alias antlr4='java -Xmx500M -cp "/opt/antlr/antlr-4.8-complete.jar:$CLASSPATH" org.antlr.v4.Tool'
-alias grun='java -Xmx500M -cp "/opt/antlr/antlr-4.8-complete.jar:$CLASSPATH" org.antlr.v4.gui.TestRig'
