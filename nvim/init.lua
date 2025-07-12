@@ -1,4 +1,4 @@
--- good example init files
+-- good example init fsiles
 -- https://github.com/potamides/dotfiles
 
 -- remove dependence on vim plugins 2024-03-26 13:26:40
@@ -9,19 +9,19 @@ vim.opt.packpath = vim.opt.runtimepath:get()
 vim.opt.spellfile = ("%s/spell/spf.%s.add"):format(vim.fn.stdpath("config"), vim.o.encoding)
 
 -- add files to ignore
-vim.opt.wildignore:append({ ".hg", ".git", ".svn" })                          -- " Version control
-vim.opt.wildignore:append({ "*.jpg", "*.bmp", "*.gif", "*.png", "*.jpeg" })   -- " binary images
+vim.opt.wildignore:append({ ".hg", ".git", ".svn" }) -- " Version control
+vim.opt.wildignore:append({ "*.jpg", "*.bmp", "*.gif", "*.png", "*.jpeg" }) -- " binary images
 vim.opt.wildignore:append({ "*.o", "*.obj", "*.exe", "*.dll", "*.manifest" }) -- " compiled object files
-vim.opt.wildignore:append({ "*.spl" })                                        -- " compiled spelling word lists
-vim.opt.wildignore:append({ "*.sw?" })                                        -- " Vim swap files
-vim.opt.wildignore:append({ "*.DS_Store" })                                   -- " OSX bullshit
-vim.opt.wildignore:append({ "*.luac" })                                       -- " Lua byte code
-vim.opt.wildignore:append({ "*.pyc" })                                        -- " Python byte code
-vim.opt.wildignore:append({ "*.class" })                                      -- " Java byte code
+vim.opt.wildignore:append({ "*.spl" }) -- " compiled spelling word lists
+vim.opt.wildignore:append({ "*.sw?" }) -- " Vim swap files
+vim.opt.wildignore:append({ "*.DS_Store" }) -- " OSX bullshit
+vim.opt.wildignore:append({ "*.luac" }) -- " Lua byte code
+vim.opt.wildignore:append({ "*.pyc" }) -- " Python byte code
+vim.opt.wildignore:append({ "*.class" }) -- " Java byte code
 
-vim.opt.exrc = true                                                           -- Allow local vimrc files inside projects (for c/cpp)
-vim.opt.secure = true                                                         -- do not allow autocmds in project specific vimrc
-vim.opt.autowriteall = true                                                   -- Write files when many actions, including switching buffers see :help awa
+vim.opt.exrc = true -- Allow local vimrc files inside projects (for c/cpp)
+vim.opt.secure = true -- do not allow autocmds in project specific vimrc
+vim.opt.autowriteall = true -- Write files when many actions, including switching buffers see :help awa
 
 vim.opt.clipboard = { "unnamed", "unnamedplus" }
 
@@ -37,10 +37,10 @@ vim.opt.colorcolumn = "80"
 vim.opt.showmode = false
 vim.opt.diffopt:append({ "vertical", "iwhite" })
 
-vim.opt.expandtab = true  -- expands tabs to spaces
-vim.opt.shiftwidth = 2    -- number of spaces to use for autoindent
-vim.opt.tabstop = 2       -- actual tabs occupy # spaces
-vim.opt.softtabstop = 2   -- insert mode tab and backspace
+vim.opt.expandtab = true -- expands tabs to spaces
+vim.opt.shiftwidth = 2 -- number of spaces to use for autoindent
+vim.opt.tabstop = 2 -- actual tabs occupy # spaces
+vim.opt.softtabstop = 2 -- insert mode tab and backspace
 vim.opt.splitright = true -- puts new vsplit windows to the right
 vim.opt.splitbelow = true -- puts new hsplit windows below current
 
@@ -62,26 +62,6 @@ vim.opt.splitbelow = true -- puts new hsplit windows below current
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.number = true
 vim.opt.relativenumber = true
-
--- Code navigation shortcuts
--- as found in :help lsp
--- This line below breaks the help file navigation
--- nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-vim.cmd([[
-nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
-]])
-
--- Quick-fix
-vim.cmd([[
-nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
-]])
 
 vim.cmd([[
 " Set updatetime for CursorHold
@@ -200,7 +180,7 @@ endif
 ]])
 
 -- on hadji workstation use 3.12 compiled python
-vim.g.python3_host_prog = '/usr/local/bin/python3.12'
+vim.g.python3_host_prog = "/usr/local/bin/python3.12"
 -- Auto Commands
 vim.cmd([[
 if !exists('g:autocommands_loaded')
@@ -362,8 +342,25 @@ if filereadable('Session.vim')
 endif
 ]])
 
--- nvim_lsp object
--- local nvim_lsp = require("lspconfig")
+-- Code navigation shortcuts
+-- as found in :help lsp
+-- This line below breaks the help file navigation
+-- nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+vim.cmd([[
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+]])
+
+-- Quick-fix
+vim.cmd([[
+nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
+]])
 
 vim.opt.omnifunc = "v:lua.vim.lsp.omnifunc"
 
@@ -376,204 +373,138 @@ vim.opt.omnifunc = "v:lua.vim.lsp.omnifunc"
 --]]
 local cmp = require("cmp")
 cmp.setup({
-  snippet = {
-    expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body)
-    end,
-  },
-  window = {
-    -- completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
-  },
-  mapping = cmp.mapping.preset.insert({
-    ["<C-p>"] = cmp.mapping.select_prev_item(),
-    ["<C-n>"] = cmp.mapping.select_next_item(),
-    -- Add tab support
-    ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-    ["<Tab>"] = cmp.mapping.select_next_item(),
+	snippet = {
+		expand = function(args)
+			vim.fn["vsnip#anonymous"](args.body)
+		end,
+	},
+	window = {
+		-- completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
+	},
+	mapping = cmp.mapping.preset.insert({
+		["<C-p>"] = cmp.mapping.select_prev_item(),
+		["<C-n>"] = cmp.mapping.select_next_item(),
+		-- Add tab support
+		["<S-Tab>"] = cmp.mapping.select_prev_item(),
+		["<Tab>"] = cmp.mapping.select_next_item(),
 
-    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-Space>"] = cmp.mapping.complete(),
-    -- ["<C-e>"] = cmp.mapping.close(),
-    ["<C-e>"] = cmp.mapping.abort(),
-    ["<CR>"] = cmp.mapping.confirm({
-      -- behavior = cmp.ConfirmBehavior.Insert,
-      select = true,
-    }),
-  }),
-  sources = cmp.config.sources({
-    { name = "nvim_lsp" },
-    { name = "vsnip" },
-    { name = "path" },
-  }, {
-    { name = "buffer" },
-  }),
+		["<C-d>"] = cmp.mapping.scroll_docs(-4),
+		["<C-f>"] = cmp.mapping.scroll_docs(4),
+		["<C-Space>"] = cmp.mapping.complete(),
+		-- ["<C-e>"] = cmp.mapping.close(),
+		["<C-e>"] = cmp.mapping.abort(),
+		["<CR>"] = cmp.mapping.confirm({
+			-- behavior = cmp.ConfirmBehavior.Insert,
+			select = true,
+		}),
+	}),
+	sources = cmp.config.sources({
+		{ name = "nvim_lsp" },
+		{ name = "vsnip" },
+		{ name = "path" },
+	}, {
+		{ name = "buffer" },
+	}),
 })
+
 
 -- Set up lspconfig.
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-
---   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
---   require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
---     capabilities = capabilities
---   }
-
--- vim.lsp.enable({"pyrefly"})
-
-require("lspconfig").pyright.setup({
-  capabilities = capabilities,
-  settings = {
-    python = {
-      pythonPath = vim.fn.exepath('python3.12'),
-    },
-  }
-})
-
-require("lspconfig").ts_ls.setup({
-  capabilities = capabilities,
-})
-
--- this works for go only
--- maybe use this plugin for others? https://github.com/lukas-reineke/lsp-format.nvim
-require("go").setup({
-  lsp_cfg = {
-    capabilities = capabilities,
-  },
+-- NOTE: new setup for v0.11+
+-- this line requires a bashls.lua in .config/nvim/lsp
+vim.lsp.enable({
+	"bashls",
+	"luals",
+	"ruff",
+	"pyright",
+	"pyrefly",
+	"ts_ls",
+	"gopls",
+	"rust_analyzer",
+	"clangd",
+	"dockerls",
 })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.go",
-  callback = function()
-    require("go.format").gofmt()
-  end,
-  group = vim.api.nvim_create_augroup("GoFormat", {}),
-})
-
-require("lspconfig").gopls.setup({
-  capabilities = capabilities,
-  settings = {
-    gopls = {
-      semanticTokens = true,
-    },
-  },
-})
-
--- require("lspconfig").rust_analyzer.setup({
--- 	capabilities = capabilities,
--- })
-
-require("lspconfig").clangd.setup({
-  capabilities = capabilities,
-})
-
-require("lspconfig").lua_ls.setup({
-  on_init = function(client)
-    local path = client.workspace_folders[1].name
-    if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then
-      return
-    end
-
-    client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
-      runtime = {
-        -- Tell the language server which version of Lua you're using
-        -- (most likely LuaJIT in the case of Neovim)
-        version = "LuaJIT",
-      },
-      -- Make the server aware of Neovim runtime files
-      workspace = {
-        checkThirdParty = false,
-        library = {
-          vim.env.VIMRUNTIME,
-          -- Depending on the usage, you might want to add additional paths here.
-          -- "${3rd}/luv/library"
-          -- "${3rd}/busted/library",
-        },
-        -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-        -- library = vim.api.nvim_get_runtime_file("", true)
-      },
-    })
-  end,
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = { "vim" },
-      },
-    },
-  },
+	pattern = "*.go",
+	callback = function()
+		require("go.format").gofmt()
+	end,
+	group = vim.api.nvim_create_augroup("GoFormat", {}),
 })
 
 require("nvim-treesitter.configs").setup({
-  -- A list of parser names, or "all" (the five listed parsers should always be installed)
-  ensure_installed = {
-    "c",
-    "cmake",
-    "comment",
-    "cpp",
-    "css",
-    "dockerfile",
-    "gitcommit",
-    "go",
-    "html",
-    "javascript",
-    "json",
-    "lua",
-    "make",
-    "markdown",
-    "python",
-    "query",
-    "rust",
-    "sql",
-    "toml",
-    "typescript",
-    "vim",
-    "vimdoc",
-    "yaml",
-  },
-  -- this got rid of a missing-fields error in lsp
-  modules = {},
+	-- A list of parser names, or "all" (the five listed parsers should always be installed)
+	ensure_installed = {
+		"c",
+		"cmake",
+		"comment",
+		"cpp",
+		"css",
+		"dockerfile",
+		"gitcommit",
+		"go",
+		"html",
+		"javascript",
+		"json",
+		"lua",
+		"make",
+		"markdown",
+		"python",
+		"query",
+		"rust",
+		"sql",
+		"toml",
+		"typescript",
+		"vim",
+		"vimdoc",
+		"yaml",
+	},
+	-- this got rid of a missing-fields error in lsp
+	modules = {},
 
-  -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = false,
+	-- Install parsers synchronously (only applied to `ensure_installed`)
+	sync_install = false,
 
-  -- Automatically install missing parsers when entering buffer
-  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  auto_install = true,
+	-- Automatically install missing parsers when entering buffer
+	-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+	auto_install = true,
 
-  -- List of parsers to ignore installing (or "all")
-  ignore_install = {},
+	-- List of parsers to ignore installing (or "all")
+	ignore_install = {},
 
-  -- If you need to change the installation directory of the parsers (see -> Advanced Setup)
-  -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
+	-- If you need to change the installation directory of the parsers (see -> Advanced Setup)
+	-- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
 
-  highlight = {
-    enable = true,
+	highlight = {
+		enable = true,
 
-    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
-    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
-    -- the name of the parser)
-    -- list of language that will be disabled
-    -- disable = { "c", "rust" },
-    -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
-    disable = function(lang, buf)
-      local max_filesize = 100 * 1024 -- 100 KB
-      local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
-      if ok and stats and stats.size > max_filesize then
-        return true
-      end
-    end,
+		-- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
+		-- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
+		-- the name of the parser)
+		-- list of language that will be disabled
+		-- disable = { "c", "rust" },
+		-- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
+    -- TODO: how to fix fs_stat not found error, but breaks vim api recognition
+    -- https://github.com/NvChad/NvChad/issues/2960
+		disable = function(lang, buf)
+			local max_filesize = 100 * 1024 -- 100 KB
+			local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
+			if ok and stats and stats.size > max_filesize then
+				return true
+			end
+		end,
 
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
-  -- :h nvim-treesitter-modules
-  incremental_selection = { enable = true },
-  indent = { enable = true },
-  textobjects = { enable = true },
+		-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+		-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+		-- Using this option may slow down your editor, and you may see some duplicate highlights.
+		-- Instead of true it can also be a list of languages
+		additional_vim_regex_highlighting = false,
+	},
+	-- :h nvim-treesitter-modules
+	incremental_selection = { enable = true },
+	indent = { enable = true },
+	textobjects = { enable = true },
 })
 
 -- 2024-02-10 08:12:34 highly experimental zx should fix folding issues
@@ -594,11 +525,8 @@ require("lastplace")
 require("lualine").setup({ options = { theme = "powerline" } })
 
 require("nvim-tmux-navigation").setup({
-  disable_when_zoomed = true, -- defaults to false
+	disable_when_zoomed = true, -- defaults to false
 })
-
-require("lspconfig").ruff.setup({})
-
 
 vim.cmd([[
 " must run this command when new plugins installed or no help available
