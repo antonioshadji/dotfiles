@@ -14,14 +14,6 @@ sudo apt install git
 # git submodule init
 # git submodule update
 
-# other software
-sudo add-apt-repository ppa:jonathonf/vim
-sudo apt install vim
-sudo apt install python3-distutils
-wget https://bootstrap.pypa.io/get-pip.py
-python3 get-pip.py --user
-rm -f ./get-pip.py
-python3 -m pip install --user ansible
 # now ansible can be ran to install symlinks
 # comma after localhost distiguishes between file expected and list of hosts
 ansible-playbook --connection=local --inventory 'localhost,' ansible/playbook.yml --tags dotfiles,common --ask-become-pass
