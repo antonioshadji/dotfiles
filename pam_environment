@@ -4,7 +4,9 @@
 LC_ALL
 # set
 LANG=en_US.UTF-8
+# week starts on Monday for en_GB
 LC_TIME=en_GB.UTF-8
+# metric system
 LC_MEASUREMENT=en_GB.UTF-8
 LC_COLLATE=C
 # is this neccessary?
