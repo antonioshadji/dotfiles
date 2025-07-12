@@ -7,6 +7,7 @@ import os
 import re
 import subprocess
 from getpass import getpass
+from typing import LiteralString, cast
 
 import requests
 from lxml import html
@@ -34,7 +35,7 @@ def main():
     url = find_file(tree)
     print(url)
 
-    fn = url.split("/")[-1]
+    fn: LiteralString = cast(LiteralString, url.split("/")[-1])
     if not re.match(r"go1.*linux-amd64.tar.gz", fn):
         print(f"Filename {fn} does not match expected pattern.")
         exit(1)
