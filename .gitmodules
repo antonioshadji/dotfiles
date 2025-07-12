@@ -1,18 +1,9 @@
-[submodule "bash-git-prompt"]
-	path = bash-git-prompt
-	url = https://github.com/magicmonty/bash-git-prompt.git
 [submodule "fzf"]
 	path = fzf
 	url = https://github.com/junegunn/fzf.git
 [submodule "nvm"]
 	path = nvm
 	url = https://github.com/nvm-sh/nvm.git
-[submodule "SimpylFold"]
-	path = vim/pack/plugins/start/SimpylFold
-	url = https://github.com/tmhedberg/SimpylFold.git
-[submodule "vim-airline-themes"]
-	path = vim/pack/plugins/opt/vim-airline-themes
-	url = https://github.com/vim-airline/vim-airline-themes
 [submodule "nvim-cmp"]
 	path = nvim/pack/plugins/start/nvim-cmp
 	url = git@github.com:hrsh7th/nvim-cmp.git
