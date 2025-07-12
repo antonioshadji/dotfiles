@@ -37,9 +37,6 @@
 [submodule "nvim-dap"]
 	path = nvim/pack/plugins/start/nvim-dap
 	url = https://github.com/mfussenegger/nvim-dap.git
-[submodule "Neogit"]
-	path = nvim/pack/plugins/start/neogit
-	url = https://github.com/NeogitOrg/neogit.git
 [submodule "nvim-highlight-colors"]
 	path = nvim/pack/themes/opt/nvim-highlight-colors
 	url = https://github.com/brenoprata10/nvim-highlight-colors.git

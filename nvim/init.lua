@@ -514,8 +514,6 @@ vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldlevel = 99
 
-require("neogit").setup({})
-
 vim.opt.termguicolors = true
 vim.cmd.colorscheme("solarized_lua")
 
