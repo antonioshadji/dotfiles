@@ -1,6 +1,3 @@
-[submodule "fzf"]
-	path = fzf
-	url = https://github.com/junegunn/fzf.git
 [submodule "cmp-nvim-lsp"]
 	path = nvim/pack/plugins/start/cmp-nvim-lsp
 	url = git@github.com:hrsh7th/cmp-nvim-lsp.git

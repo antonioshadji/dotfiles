@@ -744,4 +744,4 @@ unset __conda_setup
 # . "$HOME/.local/share/../bin/env"
 
 eval "$(starship init bash)"
-
+eval "$(fzf --bash)"
