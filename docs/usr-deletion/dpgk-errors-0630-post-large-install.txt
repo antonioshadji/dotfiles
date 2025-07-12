@@ -1,0 +1,54 @@
+
+Errors were encountered while processing:
+ python3
+ llvm-18-tools
+ sssd-common
+ sssd-proxy
+ reportbug
+ dblatex
+ clang-tidy-18
+ python3-zipp
+ python3-click
+ python3-xdg
+ python3-chm
+ python3-distupgrade
+ python3-markupsafe
+ python3-sss
+ debtags
+ printer-driver-postscript-hp
+ python3-webencodings
+ openprinting-ppds
+ software-properties-common
+ apport
+ dput
+ python3-tz
+ python3-bs4
+ python3-fonttools
+ python3-apport
+ netplan.io
+ python3-ifaddr
+ python3-cupshelpers
+ python3-matplotlib-inline
+ python3-monotonic
+ nfs-common
+ python3-fs
+ asciidoc-dblatex
+ python3-sgmllib3k
+ python3-serial
+ python3-sphinxcontrib.jquery
+ python3-async-timeout
+ asymptote
+ python3-routes
+ python3-six
+ grub-common
+ ibus-table
+ asciidoc-common
+ dex
+ python3-pil:amd64
+ sssd-ipa
+ python3-cups:amd64
+ python3-roman
+ python3-decorator
+ unattended-upgrades
+Processing was halted because there were too many errors.
+E: Sub-process /usr/bin/dpkg returned an error code (1)

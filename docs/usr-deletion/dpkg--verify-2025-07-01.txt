@@ -1,0 +1,720 @@
+??5??????   /usr/share/doc/libfido2-1/copyright
+??5?????? c /etc/apt/sources.list.d/teamviewer.list
+??5?????? c /etc/grub.d/40_custom
+missing     /lib/x86_64-linux-gnu/libhistory.so.7
+missing     /lib/x86_64-linux-gnu/libhistory.so.7.0
+missing     /lib/x86_64-linux-gnu/libidn.so.11
+missing     /lib/x86_64-linux-gnu/libidn.so.11.6.16
+missing     /lib/x86_64-linux-gnu/libjson-c.so.3
+missing     /lib/x86_64-linux-gnu/libjson-c.so.3.0.1
+missing     /lib/x86_64-linux-gnu/libncursesw.so.5
+missing     /lib/x86_64-linux-gnu/libncursesw.so.5.9
+missing     /lib/x86_64-linux-gnu/libreadline.so.7
+missing     /lib/x86_64-linux-gnu/libreadline.so.7.0
+missing     /lib/x86_64-linux-gnu/libsepol.so.1
+missing     /lib/x86_64-linux-gnu/libtinfo.so.5
+missing     /lib/x86_64-linux-gnu/libtinfo.so.5.9
+missing     /lib/x86_64-linux-gnu/security/pam_u2f.so
+missing     /opt/Simplenote
+missing     /opt/Simplenote/LICENSE.electron.txt
+missing     /opt/Simplenote/LICENSES.chromium.html
+missing     /opt/Simplenote/chrome-sandbox
+missing     /opt/Simplenote/chrome_100_percent.pak
+missing     /opt/Simplenote/chrome_200_percent.pak
+missing     /opt/Simplenote/icudtl.dat
+missing     /opt/Simplenote/libEGL.so
+missing     /opt/Simplenote/libGLESv2.so
+missing     /opt/Simplenote/libffmpeg.so
+missing     /opt/Simplenote/libvk_swiftshader.so
+missing     /opt/Simplenote/libvulkan.so
+missing     /opt/Simplenote/locales
+missing     /opt/Simplenote/locales/am.pak
+missing     /opt/Simplenote/locales/ar.pak
+missing     /opt/Simplenote/locales/bg.pak
+missing     /opt/Simplenote/locales/bn.pak
+missing     /opt/Simplenote/locales/ca.pak
+missing     /opt/Simplenote/locales/cs.pak
+missing     /opt/Simplenote/locales/da.pak
+missing     /opt/Simplenote/locales/de.pak
+missing     /opt/Simplenote/locales/el.pak
+missing     /opt/Simplenote/locales/en-GB.pak
+missing     /opt/Simplenote/locales/en-US.pak
+missing     /opt/Simplenote/locales/es-419.pak
+missing     /opt/Simplenote/locales/es.pak
+missing     /opt/Simplenote/locales/et.pak
+missing     /opt/Simplenote/locales/fa.pak
+missing     /opt/Simplenote/locales/fi.pak
+missing     /opt/Simplenote/locales/fil.pak
+missing     /opt/Simplenote/locales/fr.pak
+missing     /opt/Simplenote/locales/gu.pak
+missing     /opt/Simplenote/locales/he.pak
+missing     /opt/Simplenote/locales/hi.pak
+missing     /opt/Simplenote/locales/hr.pak
+missing     /opt/Simplenote/locales/hu.pak
+missing     /opt/Simplenote/locales/id.pak
+missing     /opt/Simplenote/locales/it.pak
+missing     /opt/Simplenote/locales/ja.pak
+missing     /opt/Simplenote/locales/kn.pak
+missing     /opt/Simplenote/locales/ko.pak
+missing     /opt/Simplenote/locales/lt.pak
+missing     /opt/Simplenote/locales/lv.pak
+missing     /opt/Simplenote/locales/ml.pak
+missing     /opt/Simplenote/locales/mr.pak
+missing     /opt/Simplenote/locales/ms.pak
+missing     /opt/Simplenote/locales/nb.pak
+missing     /opt/Simplenote/locales/nl.pak
+missing     /opt/Simplenote/locales/pl.pak
+missing     /opt/Simplenote/locales/pt-BR.pak
+missing     /opt/Simplenote/locales/pt-PT.pak
+missing     /opt/Simplenote/locales/ro.pak
+missing     /opt/Simplenote/locales/ru.pak
+missing     /opt/Simplenote/locales/sk.pak
+missing     /opt/Simplenote/locales/sl.pak
+missing     /opt/Simplenote/locales/sr.pak
+missing     /opt/Simplenote/locales/sv.pak
+missing     /opt/Simplenote/locales/sw.pak
+missing     /opt/Simplenote/locales/ta.pak
+missing     /opt/Simplenote/locales/te.pak
+missing     /opt/Simplenote/locales/th.pak
+missing     /opt/Simplenote/locales/tr.pak
+missing     /opt/Simplenote/locales/uk.pak
+missing     /opt/Simplenote/locales/vi.pak
+missing     /opt/Simplenote/locales/zh-CN.pak
+missing     /opt/Simplenote/locales/zh-TW.pak
+missing     /opt/Simplenote/resources
+missing     /opt/Simplenote/resources.pak
+missing     /opt/Simplenote/resources/app.asar
+missing     /opt/Simplenote/simplenote
+missing     /opt/Simplenote/snapshot_blob.bin
+missing     /opt/Simplenote/swiftshader
+missing     /opt/Simplenote/swiftshader/libEGL.so
+missing     /opt/Simplenote/swiftshader/libGLESv2.so
+missing     /opt/Simplenote/v8_context_snapshot.bin
+missing     /opt/Simplenote/vk_swiftshader_icd.json
+missing     /opt/Terra Station
+missing     /opt/Terra Station/LICENSE.electron.txt
+missing     /opt/Terra Station/LICENSES.chromium.html
+missing     /opt/Terra Station/chrome-sandbox
+missing     /opt/Terra Station/chrome_100_percent.pak
+missing     /opt/Terra Station/chrome_200_percent.pak
+missing     /opt/Terra Station/chrome_crashpad_handler
+missing     /opt/Terra Station/icudtl.dat
+missing     /opt/Terra Station/libEGL.so
+missing     /opt/Terra Station/libGLESv2.so
+missing     /opt/Terra Station/libffmpeg.so
+missing     /opt/Terra Station/libvk_swiftshader.so
+missing     /opt/Terra Station/libvulkan.so.1
+missing     /opt/Terra Station/locales
+missing     /opt/Terra Station/locales/am.pak
+missing     /opt/Terra Station/locales/ar.pak
+missing     /opt/Terra Station/locales/bg.pak
+missing     /opt/Terra Station/locales/bn.pak
+missing     /opt/Terra Station/locales/ca.pak
+missing     /opt/Terra Station/locales/cs.pak
+missing     /opt/Terra Station/locales/da.pak
+missing     /opt/Terra Station/locales/de.pak
+missing     /opt/Terra Station/locales/el.pak
+missing     /opt/Terra Station/locales/en-GB.pak
+missing     /opt/Terra Station/locales/en-US.pak
+missing     /opt/Terra Station/locales/es-419.pak
+missing     /opt/Terra Station/locales/es.pak
+missing     /opt/Terra Station/locales/et.pak
+missing     /opt/Terra Station/locales/fa.pak
+missing     /opt/Terra Station/locales/fi.pak
+missing     /opt/Terra Station/locales/fil.pak
+missing     /opt/Terra Station/locales/fr.pak
+missing     /opt/Terra Station/locales/gu.pak
+missing     /opt/Terra Station/locales/he.pak
+missing     /opt/Terra Station/locales/hi.pak
+missing     /opt/Terra Station/locales/hr.pak
+missing     /opt/Terra Station/locales/hu.pak
+missing     /opt/Terra Station/locales/id.pak
+missing     /opt/Terra Station/locales/it.pak
+missing     /opt/Terra Station/locales/ja.pak
+missing     /opt/Terra Station/locales/kn.pak
+missing     /opt/Terra Station/locales/ko.pak
+missing     /opt/Terra Station/locales/lt.pak
+missing     /opt/Terra Station/locales/lv.pak
+missing     /opt/Terra Station/locales/ml.pak
+missing     /opt/Terra Station/locales/mr.pak
+missing     /opt/Terra Station/locales/ms.pak
+missing     /opt/Terra Station/locales/nb.pak
+missing     /opt/Terra Station/locales/nl.pak
+missing     /opt/Terra Station/locales/pl.pak
+missing     /opt/Terra Station/locales/pt-BR.pak
+missing     /opt/Terra Station/locales/pt-PT.pak
+missing     /opt/Terra Station/locales/ro.pak
+missing     /opt/Terra Station/locales/ru.pak
+missing     /opt/Terra Station/locales/sk.pak
+missing     /opt/Terra Station/locales/sl.pak
+missing     /opt/Terra Station/locales/sr.pak
+missing     /opt/Terra Station/locales/sv.pak
+missing     /opt/Terra Station/locales/sw.pak
+missing     /opt/Terra Station/locales/ta.pak
+missing     /opt/Terra Station/locales/te.pak
+missing     /opt/Terra Station/locales/th.pak
+missing     /opt/Terra Station/locales/tr.pak
+missing     /opt/Terra Station/locales/uk.pak
+missing     /opt/Terra Station/locales/vi.pak
+missing     /opt/Terra Station/locales/zh-CN.pak
+missing     /opt/Terra Station/locales/zh-TW.pak
+missing     /opt/Terra Station/resources
+missing     /opt/Terra Station/resources.pak
+missing     /opt/Terra Station/resources/app.asar
+missing     /opt/Terra Station/snapshot_blob.bin
+missing     /opt/Terra Station/station-electron
+missing     /opt/Terra Station/swiftshader
+missing     /opt/Terra Station/swiftshader/libEGL.so
+missing     /opt/Terra Station/swiftshader/libGLESv2.so
+missing     /opt/Terra Station/v8_context_snapshot.bin
+missing     /opt/Terra Station/vk_swiftshader_icd.json
+missing     /usr/bin/amdgpu-install
+missing     /usr/bin/amdgpu-setup
+missing     /usr/bin/discord
+missing     /usr/bin/gconf-merge-tree
+missing     /usr/bin/gconftool
+missing     /usr/bin/gconftool-2
+missing     /usr/bin/gen-preseed
+missing     /usr/bin/gsettings-data-convert
+missing     /usr/bin/gsettings-schema-convert
+missing     /usr/bin/pamu2fcfg
+missing     /usr/bin/pandoc
+missing     /usr/bin/pandoc-lua
+missing     /usr/bin/pandoc-server
+missing     /usr/bin/report-hw
+missing     /usr/bin/update-gconf-defaults
+missing     /usr/bin/ykman
+missing     /usr/include/sysprof-4
+missing     /usr/include/sysprof-4/sysprof-address.h
+missing     /usr/include/sysprof-4/sysprof-battery-source.h
+missing     /usr/include/sysprof-4/sysprof-callgraph-profile.h
+missing     /usr/include/sysprof-4/sysprof-capture-autocleanups.h
+missing     /usr/include/sysprof-4/sysprof-capture-condition.h
+missing     /usr/include/sysprof-4/sysprof-capture-cursor.h
+missing     /usr/include/sysprof-4/sysprof-capture-gobject.h
+missing     /usr/include/sysprof-4/sysprof-capture-reader.h
+missing     /usr/include/sysprof-4/sysprof-capture-symbol-resolver.h
+missing     /usr/include/sysprof-4/sysprof-capture-types.h
+missing     /usr/include/sysprof-4/sysprof-capture-writer.h
+missing     /usr/include/sysprof-4/sysprof-capture.h
+missing     /usr/include/sysprof-4/sysprof-check.h
+missing     /usr/include/sysprof-4/sysprof-clock.h
+missing     /usr/include/sysprof-4/sysprof-collector.h
+missing     /usr/include/sysprof-4/sysprof-control-source.h
+missing     /usr/include/sysprof-4/sysprof-diskstat-source.h
+missing     /usr/include/sysprof-4/sysprof-display.h
+missing     /usr/include/sysprof-4/sysprof-elf-symbol-resolver.h
+missing     /usr/include/sysprof-4/sysprof-gjs-source.h
+missing     /usr/include/sysprof-4/sysprof-governor-source.h
+missing     /usr/include/sysprof-4/sysprof-hostinfo-source.h
+missing     /usr/include/sysprof-4/sysprof-jitmap-symbol-resolver.h
+missing     /usr/include/sysprof-4/sysprof-kernel-symbol-resolver.h
+missing     /usr/include/sysprof-4/sysprof-kernel-symbol.h
+missing     /usr/include/sysprof-4/sysprof-local-profiler.h
+missing     /usr/include/sysprof-4/sysprof-macros.h
+missing     /usr/include/sysprof-4/sysprof-memory-source.h
+missing     /usr/include/sysprof-4/sysprof-memprof-profile.h
+missing     /usr/include/sysprof-4/sysprof-memprof-source.h
+missing     /usr/include/sysprof-4/sysprof-model-filter.h
+missing     /usr/include/sysprof-4/sysprof-netdev-source.h
+missing     /usr/include/sysprof-4/sysprof-notebook.h
+missing     /usr/include/sysprof-4/sysprof-page.h
+missing     /usr/include/sysprof-4/sysprof-perf-counter.h
+missing     /usr/include/sysprof-4/sysprof-perf-source.h
+missing     /usr/include/sysprof-4/sysprof-platform.h
+missing     /usr/include/sysprof-4/sysprof-preload-source.h
+missing     /usr/include/sysprof-4/sysprof-proc-source.h
+missing     /usr/include/sysprof-4/sysprof-process-model-item.h
+missing     /usr/include/sysprof-4/sysprof-process-model-row.h
+missing     /usr/include/sysprof-4/sysprof-process-model.h
+missing     /usr/include/sysprof-4/sysprof-profile.h
+missing     /usr/include/sysprof-4/sysprof-profiler.h
+missing     /usr/include/sysprof-4/sysprof-proxy-source.h
+missing     /usr/include/sysprof-4/sysprof-selection.h
+missing     /usr/include/sysprof-4/sysprof-source.h
+missing     /usr/include/sysprof-4/sysprof-spawnable.h
+missing     /usr/include/sysprof-4/sysprof-symbol-resolver.h
+missing     /usr/include/sysprof-4/sysprof-symbols-source.h
+missing     /usr/include/sysprof-4/sysprof-tracefd-source.h
+missing     /usr/include/sysprof-4/sysprof-ui.h
+missing     /usr/include/sysprof-4/sysprof-version-macros.h
+missing     /usr/include/sysprof-4/sysprof-version.h
+missing     /usr/include/sysprof-4/sysprof-visualizer-group.h
+missing     /usr/include/sysprof-4/sysprof-visualizer.h
+missing     /usr/include/sysprof-4/sysprof-zoom-manager.h
+missing     /usr/include/sysprof-4/sysprof.h
+missing     /usr/lib/x86_64-linux-gnu/engines-1.1
+missing     /usr/lib/x86_64-linux-gnu/engines-1.1/afalg.so
+missing     /usr/lib/x86_64-linux-gnu/engines-1.1/capi.so
+missing     /usr/lib/x86_64-linux-gnu/engines-1.1/padlock.so
+missing     /usr/lib/x86_64-linux-gnu/gconf
+missing     /usr/lib/x86_64-linux-gnu/gconf/2
+missing     /usr/lib/x86_64-linux-gnu/gconf/2/libgconfbackend-evoldap.so
+missing     /usr/lib/x86_64-linux-gnu/gconf/2/libgconfbackend-oldxml.so
+missing     /usr/lib/x86_64-linux-gnu/gconf/2/libgconfbackend-xml.so
+missing     /usr/lib/x86_64-linux-gnu/gconf/gconfd-2
+missing     /usr/lib/x86_64-linux-gnu/libavcodec.so.58
+missing     /usr/lib/x86_64-linux-gnu/libavcodec.so.58.134.100
+missing     /usr/lib/x86_64-linux-gnu/libavformat.so.58
+missing     /usr/lib/x86_64-linux-gnu/libavformat.so.58.76.100
+missing     /usr/lib/x86_64-linux-gnu/libavutil.so.56
+missing     /usr/lib/x86_64-linux-gnu/libavutil.so.56.70.100
+missing     /usr/lib/x86_64-linux-gnu/libcbor.so.0.8
+missing     /usr/lib/x86_64-linux-gnu/libcbor.so.0.8.0
+missing     /usr/lib/x86_64-linux-gnu/libcodec2.so.1.0
+missing     /usr/lib/x86_64-linux-gnu/libcrypto.so.1.1
+missing     /usr/lib/x86_64-linux-gnu/libdav1d.so.5
+missing     /usr/lib/x86_64-linux-gnu/libdav1d.so.5.1.1
+missing     /usr/lib/x86_64-linux-gnu/libffi.so.6
+missing     /usr/lib/x86_64-linux-gnu/libffi.so.6.0.4
+missing     /usr/lib/x86_64-linux-gnu/libffi.so.7
+missing     /usr/lib/x86_64-linux-gnu/libffi.so.7.1.0
+missing     /usr/lib/x86_64-linux-gnu/libfido2.so.1.15.0
+missing     /usr/lib/x86_64-linux-gnu/libformw.so.5
+missing     /usr/lib/x86_64-linux-gnu/libformw.so.5.9
+missing     /usr/lib/x86_64-linux-gnu/libgconf-2.so.4
+missing     /usr/lib/x86_64-linux-gnu/libgconf-2.so.4.1.5
+missing     /usr/lib/x86_64-linux-gnu/liblber-2.5.so.0
+missing     /usr/lib/x86_64-linux-gnu/liblber-2.5.so.0.1.13
+missing     /usr/lib/x86_64-linux-gnu/libldap-2.5.so.0
+missing     /usr/lib/x86_64-linux-gnu/libldap-2.5.so.0.1.13
+missing     /usr/lib/x86_64-linux-gnu/libmenuw.so.5
+missing     /usr/lib/x86_64-linux-gnu/libmenuw.so.5.9
+missing     /usr/lib/x86_64-linux-gnu/libmpdec.so.2
+missing     /usr/lib/x86_64-linux-gnu/libmpdec.so.2.4.2
+missing     /usr/lib/x86_64-linux-gnu/libpanelw.so.5
+missing     /usr/lib/x86_64-linux-gnu/libpanelw.so.5.9
+missing     /usr/lib/x86_64-linux-gnu/libsrt-gnutls.so.1.4
+missing     /usr/lib/x86_64-linux-gnu/libsrt-gnutls.so.1.4.4
+missing     /usr/lib/x86_64-linux-gnu/libssl.so.1.1
+missing     /usr/lib/x86_64-linux-gnu/libswresample.so.3
+missing     /usr/lib/x86_64-linux-gnu/libswresample.so.3.9.100
+missing     /usr/lib/x86_64-linux-gnu/libsysprof-4.so
+missing     /usr/lib/x86_64-linux-gnu/libsysprof-capture-4.a
+missing     /usr/lib/x86_64-linux-gnu/libsysprof-memory-4.so
+missing     /usr/lib/x86_64-linux-gnu/libsysprof-speedtrack-4.so
+missing     /usr/lib/x86_64-linux-gnu/libsysprof-ui-4.so
+missing     /usr/lib/x86_64-linux-gnu/libtic.so.5
+missing     /usr/lib/x86_64-linux-gnu/libtic.so.5.9
+missing     /usr/lib/x86_64-linux-gnu/libunistring.so.2
+missing     /usr/lib/x86_64-linux-gnu/libunistring.so.2.2.0
+missing     /usr/lib/x86_64-linux-gnu/libvpx.so.7
+missing     /usr/lib/x86_64-linux-gnu/libvpx.so.7.0
+missing     /usr/lib/x86_64-linux-gnu/libvpx.so.7.0.0
+missing     /usr/lib/x86_64-linux-gnu/libx264.so.163
+missing     /usr/lib/x86_64-linux-gnu/pkgconfig/sysprof-4.pc
+missing     /usr/lib/x86_64-linux-gnu/pkgconfig/sysprof-capture-4.pc
+missing     /usr/lib/x86_64-linux-gnu/pkgconfig/sysprof-ui-4.pc
+missing     /usr/sbin/gconf-schemas
+missing     /usr/share/amdgpu-install
+missing     /usr/share/amdgpu-install/AMDGPUPROEULA
+missing     /usr/share/amdgpu-install/amdgpu.list.template
+missing     /usr/share/amdgpu-install/orig
+missing     /usr/share/amdgpu-install/orig/amdgpu.list
+missing     /usr/share/amdgpu-install/orig/rocm.list
+missing     /usr/share/amdgpu-install/rocm.list.template
+missing     /usr/share/app-install
+missing     /usr/share/app-install/channels
+missing     /usr/share/app-install/channels/disco-partner.eula
+missing     /usr/share/app-install/channels/disco-partner.list
+missing     /usr/share/app-install/desktop
+missing     /usr/share/applications/discord.desktop
+missing     /usr/share/applications/signal-desktop.desktop
+missing     /usr/share/applications/simplenote.desktop
+missing     /usr/share/applications/station-electron.desktop
+missing     /usr/share/bug/installation-report
+missing     /usr/share/bug/installation-report/control
+missing     /usr/share/bug/installation-report/script
+missing     /usr/share/bug/installation-reports
+missing     /usr/share/bug/installation-reports/script
+missing     /usr/share/dbus-1/services/org.gnome.GConf.service
+missing     /usr/share/discord
+missing     /usr/share/discord/Discord
+missing     /usr/share/discord/chrome-sandbox
+missing     /usr/share/discord/chrome_100_percent.pak
+missing     /usr/share/discord/chrome_200_percent.pak
+missing     /usr/share/discord/chrome_crashpad_handler
+missing     /usr/share/discord/discord.desktop
+missing     /usr/share/discord/discord.png
+missing     /usr/share/discord/icudtl.dat
+missing     /usr/share/discord/libEGL.so
+missing     /usr/share/discord/libGLESv2.so
+missing     /usr/share/discord/libffmpeg.so
+missing     /usr/share/discord/libvk_swiftshader.so
+missing     /usr/share/discord/libvulkan.so.1
+missing     /usr/share/discord/locales
+missing     /usr/share/discord/locales/af.pak
+missing     /usr/share/discord/locales/am.pak
+missing     /usr/share/discord/locales/ar.pak
+missing     /usr/share/discord/locales/bg.pak
+missing     /usr/share/discord/locales/bn.pak
+missing     /usr/share/discord/locales/ca.pak
+missing     /usr/share/discord/locales/cs.pak
+missing     /usr/share/discord/locales/da.pak
+missing     /usr/share/discord/locales/de.pak
+missing     /usr/share/discord/locales/el.pak
+missing     /usr/share/discord/locales/en-GB.pak
+missing     /usr/share/discord/locales/en-US.pak
+missing     /usr/share/discord/locales/es-419.pak
+missing     /usr/share/discord/locales/es.pak
+missing     /usr/share/discord/locales/et.pak
+missing     /usr/share/discord/locales/fa.pak
+missing     /usr/share/discord/locales/fi.pak
+missing     /usr/share/discord/locales/fil.pak
+missing     /usr/share/discord/locales/fr.pak
+missing     /usr/share/discord/locales/gu.pak
+missing     /usr/share/discord/locales/he.pak
+missing     /usr/share/discord/locales/hi.pak
+missing     /usr/share/discord/locales/hr.pak
+missing     /usr/share/discord/locales/hu.pak
+missing     /usr/share/discord/locales/id.pak
+missing     /usr/share/discord/locales/it.pak
+missing     /usr/share/discord/locales/ja.pak
+missing     /usr/share/discord/locales/kn.pak
+missing     /usr/share/discord/locales/ko.pak
+missing     /usr/share/discord/locales/lt.pak
+missing     /usr/share/discord/locales/lv.pak
+missing     /usr/share/discord/locales/ml.pak
+missing     /usr/share/discord/locales/mr.pak
+missing     /usr/share/discord/locales/ms.pak
+missing     /usr/share/discord/locales/nb.pak
+missing     /usr/share/discord/locales/nl.pak
+missing     /usr/share/discord/locales/pl.pak
+missing     /usr/share/discord/locales/pt-BR.pak
+missing     /usr/share/discord/locales/pt-PT.pak
+missing     /usr/share/discord/locales/ro.pak
+missing     /usr/share/discord/locales/ru.pak
+missing     /usr/share/discord/locales/sk.pak
+missing     /usr/share/discord/locales/sl.pak
+missing     /usr/share/discord/locales/sr.pak
+missing     /usr/share/discord/locales/sv.pak
+missing     /usr/share/discord/locales/sw.pak
+missing     /usr/share/discord/locales/ta.pak
+missing     /usr/share/discord/locales/te.pak
+missing     /usr/share/discord/locales/th.pak
+missing     /usr/share/discord/locales/tr.pak
+missing     /usr/share/discord/locales/uk.pak
+missing     /usr/share/discord/locales/ur.pak
+missing     /usr/share/discord/locales/vi.pak
+missing     /usr/share/discord/locales/zh-CN.pak
+missing     /usr/share/discord/locales/zh-TW.pak
+missing     /usr/share/discord/postinst.sh
+missing     /usr/share/discord/resources
+missing     /usr/share/discord/resources.pak
+missing     /usr/share/discord/resources/app.asar
+missing     /usr/share/discord/resources/bootstrap
+missing     /usr/share/discord/resources/bootstrap/manifest.json
+missing     /usr/share/discord/resources/build_info.json
+missing     /usr/share/discord/snapshot_blob.bin
+missing     /usr/share/discord/v8_context_snapshot.bin
+missing     /usr/share/discord/vk_swiftshader_icd.json
+missing     /usr/share/doc/1password/changelog.gz
+missing     /usr/share/doc/amdgpu-install
+missing     /usr/share/doc/amdgpu-install/changelog.Debian.gz
+missing     /usr/share/doc/amdgpu-install/copyright
+missing     /usr/share/doc/app-install-data-partner
+missing     /usr/share/doc/app-install-data-partner/changelog.gz
+missing     /usr/share/doc/app-install-data-partner/copyright
+missing     /usr/share/doc/discord
+missing     /usr/share/doc/discord/copyright
+missing     /usr/share/doc/gconf-service
+missing     /usr/share/doc/gconf-service-backend
+missing     /usr/share/doc/gconf-service-backend/AUTHORS
+missing     /usr/share/doc/gconf-service-backend/NEWS.Debian.gz
+missing     /usr/share/doc/gconf-service-backend/NEWS.gz
+missing     /usr/share/doc/gconf-service-backend/README
+missing     /usr/share/doc/gconf-service-backend/TODO
+missing     /usr/share/doc/gconf-service-backend/changelog.Debian.gz
+missing     /usr/share/doc/gconf-service-backend/copyright
+missing     /usr/share/doc/gconf-service/AUTHORS
+missing     /usr/share/doc/gconf-service/NEWS.Debian.gz
+missing     /usr/share/doc/gconf-service/NEWS.gz
+missing     /usr/share/doc/gconf-service/README
+missing     /usr/share/doc/gconf-service/TODO
+missing     /usr/share/doc/gconf-service/changelog.Debian.gz
+missing     /usr/share/doc/gconf-service/copyright
+missing     /usr/share/doc/gconf2
+missing     /usr/share/doc/gconf2-common
+missing     /usr/share/doc/gconf2-common/AUTHORS
+missing     /usr/share/doc/gconf2-common/NEWS.Debian.gz
+missing     /usr/share/doc/gconf2-common/NEWS.gz
+missing     /usr/share/doc/gconf2-common/README
+missing     /usr/share/doc/gconf2-common/TODO
+missing     /usr/share/doc/gconf2-common/changelog.Debian.gz
+missing     /usr/share/doc/gconf2-common/copyright
+missing     /usr/share/doc/gconf2-common/evoldap.schema
+missing     /usr/share/doc/gconf2/AUTHORS
+missing     /usr/share/doc/gconf2/FAQ.txt.gz
+missing     /usr/share/doc/gconf2/NEWS.Debian.gz
+missing     /usr/share/doc/gconf2/NEWS.gz
+missing     /usr/share/doc/gconf2/README
+missing     /usr/share/doc/gconf2/README.Debian
+missing     /usr/share/doc/gconf2/TODO
+missing     /usr/share/doc/gconf2/changelog.Debian.gz
+missing     /usr/share/doc/gconf2/copyright
+missing     /usr/share/doc/installation-report
+missing     /usr/share/doc/installation-report/README.Debian
+missing     /usr/share/doc/installation-report/changelog.gz
+missing     /usr/share/doc/installation-report/copyright
+missing     /usr/share/doc/installation-report/install-report.template
+missing     /usr/share/doc/libavcodec58
+missing     /usr/share/doc/libavcodec58/changelog.Debian.gz
+missing     /usr/share/doc/libavcodec58/copyright
+missing     /usr/share/doc/libavformat58
+missing     /usr/share/doc/libavformat58/changelog.Debian.gz
+missing     /usr/share/doc/libavformat58/copyright
+missing     /usr/share/doc/libavutil56
+missing     /usr/share/doc/libavutil56/changelog.Debian.gz
+missing     /usr/share/doc/libavutil56/copyright
+missing     /usr/share/doc/libcbor0.8
+missing     /usr/share/doc/libcbor0.8/README.md
+missing     /usr/share/doc/libcbor0.8/changelog.Debian.gz
+missing     /usr/share/doc/libcbor0.8/copyright
+missing     /usr/share/doc/libcodec2-1.0
+missing     /usr/share/doc/libcodec2-1.0/changelog.Debian.gz
+missing     /usr/share/doc/libcodec2-1.0/copyright
+missing     /usr/share/doc/libdav1d5
+missing     /usr/share/doc/libdav1d5/changelog.Debian.gz
+missing     /usr/share/doc/libdav1d5/copyright
+missing     /usr/share/doc/libffi6
+missing     /usr/share/doc/libffi6/changelog.Debian.gz
+missing     /usr/share/doc/libffi6/copyright
+missing     /usr/share/doc/libffi7
+missing     /usr/share/doc/libffi7/changelog.Debian.gz
+missing     /usr/share/doc/libffi7/copyright
+missing     /usr/share/doc/libfido2-1/changelog.gz
+missing     /usr/share/doc/libgconf-2-4
+missing     /usr/share/doc/libgconf-2-4/AUTHORS
+missing     /usr/share/doc/libgconf-2-4/NEWS.Debian.gz
+missing     /usr/share/doc/libgconf-2-4/NEWS.gz
+missing     /usr/share/doc/libgconf-2-4/README
+missing     /usr/share/doc/libgconf-2-4/TODO
+missing     /usr/share/doc/libgconf-2-4/changelog.Debian.gz
+missing     /usr/share/doc/libgconf-2-4/copyright
+missing     /usr/share/doc/libidn11
+missing     /usr/share/doc/libidn11/changelog.Debian.gz
+missing     /usr/share/doc/libidn11/copyright
+missing     /usr/share/doc/libjson-c3
+missing     /usr/share/doc/libjson-c3/README
+missing     /usr/share/doc/libjson-c3/README.html
+missing     /usr/share/doc/libjson-c3/changelog.Debian.gz
+missing     /usr/share/doc/libjson-c3/copyright
+missing     /usr/share/doc/libldap-2.5-0
+missing     /usr/share/doc/libldap-2.5-0/README.Debian
+missing     /usr/share/doc/libldap-2.5-0/changelog.Debian.gz
+missing     /usr/share/doc/libldap-2.5-0/copyright
+missing     /usr/share/doc/libmpdec2
+missing     /usr/share/doc/libmpdec2/changelog.Debian.gz
+missing     /usr/share/doc/libmpdec2/copyright
+missing     /usr/share/doc/libncursesw5
+missing     /usr/share/doc/libpam-u2f
+missing     /usr/share/doc/libpam-u2f/README.gz
+missing     /usr/share/doc/libpam-u2f/changelog.Debian.gz
+missing     /usr/share/doc/libpam-u2f/copyright
+missing     /usr/share/doc/libpango1.0-0
+missing     /usr/share/doc/libpango1.0-0/changelog.Debian.gz
+missing     /usr/share/doc/libpango1.0-0/copyright
+missing     /usr/share/doc/libreadline7
+missing     /usr/share/doc/libreadline7/README.Debian
+missing     /usr/share/doc/libreadline7/USAGE
+missing     /usr/share/doc/libreadline7/changelog.Debian.gz
+missing     /usr/share/doc/libreadline7/copyright
+missing     /usr/share/doc/libreadline7/examples
+missing     /usr/share/doc/libreadline7/examples/Inputrc
+missing     /usr/share/doc/libreadline7/inputrc.arrows
+missing     /usr/share/doc/libsepol1
+missing     /usr/share/doc/libsepol1/changelog.Debian.gz
+missing     /usr/share/doc/libsepol1/copyright
+missing     /usr/share/doc/libsrt1.4-gnutls
+missing     /usr/share/doc/libsrt1.4-gnutls/changelog.Debian.gz
+missing     /usr/share/doc/libsrt1.4-gnutls/copyright
+missing     /usr/share/doc/libssl1.1
+missing     /usr/share/doc/libssl1.1/NEWS.Debian.gz
+missing     /usr/share/doc/libssl1.1/changelog.Debian.gz
+missing     /usr/share/doc/libssl1.1/copyright
+missing     /usr/share/doc/libswresample3
+missing     /usr/share/doc/libswresample3/changelog.Debian.gz
+missing     /usr/share/doc/libswresample3/copyright
+missing     /usr/share/doc/libsysprof-4
+missing     /usr/share/doc/libsysprof-4-dev
+missing     /usr/share/doc/libsysprof-4-dev/changelog.Debian.gz
+missing     /usr/share/doc/libsysprof-4-dev/copyright
+missing     /usr/share/doc/libsysprof-4/changelog.Debian.gz
+missing     /usr/share/doc/libsysprof-4/copyright
+missing     /usr/share/doc/libsysprof-ui-4
+missing     /usr/share/doc/libsysprof-ui-4/changelog.Debian.gz
+missing     /usr/share/doc/libsysprof-ui-4/copyright
+missing     /usr/share/doc/libtinfo5
+missing     /usr/share/doc/libtinfo5/changelog.Debian.gz
+missing     /usr/share/doc/libtinfo5/copyright
+missing     /usr/share/doc/libunistring2
+missing     /usr/share/doc/libunistring2/changelog.Debian.gz
+missing     /usr/share/doc/libunistring2/copyright
+missing     /usr/share/doc/libvpx7
+missing     /usr/share/doc/libvpx7/changelog.Debian.gz
+missing     /usr/share/doc/libvpx7/copyright
+missing     /usr/share/doc/libx264-163
+missing     /usr/share/doc/libx264-163/changelog.Debian.gz
+missing     /usr/share/doc/libx264-163/copyright
+missing     /usr/share/doc/mime-support
+missing     /usr/share/doc/mime-support/changelog.gz
+missing     /usr/share/doc/mime-support/copyright
+missing     /usr/share/doc/pamu2fcfg
+missing     /usr/share/doc/pamu2fcfg/changelog.Debian.gz
+missing     /usr/share/doc/pamu2fcfg/copyright
+missing     /usr/share/doc/pandoc
+missing     /usr/share/doc/pandoc/copyright
+missing     /usr/share/doc/signal-desktop
+missing     /usr/share/doc/signal-desktop/changelog.gz
+missing     /usr/share/doc/simplenote
+missing     /usr/share/doc/simplenote/changelog.gz
+missing     /usr/share/doc/station-electron
+missing     /usr/share/doc/station-electron/changelog.gz
+missing     /usr/share/doc/yubikey-manager
+missing     /usr/share/doc/yubikey-manager/changelog.Debian.gz
+missing     /usr/share/doc/yubikey-manager/changelog.gz
+missing     /usr/share/gconf
+missing     /usr/share/gconf/default.path
+missing     /usr/share/gconf/defaults
+missing     /usr/share/gconf/mandatory
+missing     /usr/share/gconf/schemas
+missing     /usr/share/icons/hicolor/0x0
+missing     /usr/share/icons/hicolor/0x0/apps
+missing     /usr/share/icons/hicolor/0x0/apps/station-electron.png
+missing     /usr/share/icons/hicolor/1024x1024
+missing     /usr/share/icons/hicolor/1024x1024
+missing     /usr/share/icons/hicolor/1024x1024/apps
+missing     /usr/share/icons/hicolor/1024x1024/apps
+missing     /usr/share/icons/hicolor/1024x1024/apps/signal-desktop.png
+missing     /usr/share/icons/hicolor/1024x1024/apps/simplenote.png
+missing     /usr/share/icons/hicolor/128x128/apps/signal-desktop.png
+missing     /usr/share/icons/hicolor/128x128/apps/simplenote.png
+missing     /usr/share/icons/hicolor/16x16/apps/signal-desktop.png
+missing     /usr/share/icons/hicolor/16x16/apps/simplenote.png
+missing     /usr/share/icons/hicolor/24x24/apps/signal-desktop.png
+missing     /usr/share/icons/hicolor/256x256/apps/signal-desktop.png
+missing     /usr/share/icons/hicolor/256x256/apps/simplenote.png
+missing     /usr/share/icons/hicolor/32x32/apps/signal-desktop.png
+missing     /usr/share/icons/hicolor/32x32/apps/simplenote.png
+missing     /usr/share/icons/hicolor/48x48/apps/signal-desktop.png
+missing     /usr/share/icons/hicolor/48x48/apps/simplenote.png
+missing     /usr/share/icons/hicolor/512x512/apps/signal-desktop.png
+missing     /usr/share/icons/hicolor/512x512/apps/simplenote.png
+missing     /usr/share/icons/hicolor/64x64/apps/signal-desktop.png
+missing     /usr/share/icons/hicolor/64x64/apps/simplenote.png
+missing     /usr/share/installation-report
+missing     /usr/share/installation-report/install-report.template
+missing     /usr/share/lintian/overrides/discord
+missing     /usr/share/lintian/overrides/libavcodec58
+missing     /usr/share/lintian/overrides/libavutil56
+missing     /usr/share/lintian/overrides/libldap-2.5-0
+missing     /usr/share/lintian/overrides/libsrt1.4-gnutls
+missing     /usr/share/lintian/overrides/libswresample3
+missing     /usr/share/locale/am/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/ar/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/as/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/ast/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/az/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/be/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/bg/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/bn/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/bn_IN/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/bs/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/ca/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/ca@valencia/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/cs/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/cy/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/da/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/de/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/dz/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/el/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/en@shaw/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/en_CA/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/en_GB/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/eo/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/es/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/et/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/eu/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/fa/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/fi/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/fr/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/ga/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/gl/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/gu/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/he/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/hi/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/hr/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/hu/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/hy/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/id/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/is/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/it/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/ja/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/ka/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/km/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/kn/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/ko/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/ku/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/lt/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/lv/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/mai/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/mg/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/mk/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/ml/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/mn/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/mr/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/ms/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/nb/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/ne/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/nl/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/nn/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/oc/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/or/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/pa/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/pl/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/pt/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/pt_BR/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/ro/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/ru/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/rw/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/si/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/sk/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/sl/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/sq/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/sr/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/sr@latin/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/sv/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/ta/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/te/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/th/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/tr/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/ug/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/uk/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/vi/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/xh/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/yi/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/zh_CN/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/zh_HK/LC_MESSAGES/GConf2.mo
+missing     /usr/share/locale/zh_TW/LC_MESSAGES/GConf2.mo
+missing     /usr/share/man/man1/gconftool-2.1.gz
+missing     /usr/share/man/man1/gconftool.1.gz
+missing     /usr/share/man/man1/gsettings-data-convert.1.gz
+missing     /usr/share/man/man1/gsettings-schema-convert.1.gz
+missing     /usr/share/man/man1/pamu2fcfg.1.gz
+missing     /usr/share/man/man1/pandoc-lua.1.gz
+missing     /usr/share/man/man1/pandoc-server.1.gz
+missing     /usr/share/man/man1/pandoc.1.gz
+missing     /usr/share/man/man1/report-hw.1.gz
+missing     /usr/share/man/man8/gconf-schemas.8.gz
+missing     /usr/share/man/man8/pam_u2f.8.gz
+missing     /usr/share/man/man8/update-gconf-defaults.8.gz
+missing     /usr/share/pixmaps/discord.png
+missing     /usr/share/sgml/gconf
+missing     /usr/share/sgml/gconf/gconf-1.0.dtd
+missing     /var/lib/texmf
+missing     /var/lib/texmf/tex
+missing     /var/lib/texmf/tex/generic
+missing     /var/lib/texmf/tex/generic/config
+missing     /var/lib/texmf/web2c
+missing   c /etc/apt/sources.list.d/amdgpu.list
+missing   c /etc/apt/sources.list.d/rocm.list

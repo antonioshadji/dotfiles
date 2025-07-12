@@ -1,0 +1,9 @@
+??5?????? c /etc/apt/sources.list.d/teamviewer.list
+??5?????? c /etc/grub.d/40_custom
+missing   c /etc/apparmor.d/signal-desktop
+missing     /var/lib/texmf
+missing     /var/lib/texmf/tex
+missing     /var/lib/texmf/tex/generic
+missing     /var/lib/texmf/tex/generic/config
+missing     /var/lib/texmf/web2c
+missing     /usr/share/doc/1password/changelog.gz
