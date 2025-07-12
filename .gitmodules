@@ -13,9 +13,6 @@
 [submodule "vim-airline-themes"]
 	path = vim/pack/plugins/opt/vim-airline-themes
 	url = https://github.com/vim-airline/vim-airline-themes
-[submodule "nvim-lspconfig"]
-	path = nvim/pack/plugins/start/nvim-lspconfig
-	url = git@github.com:neovim/nvim-lspconfig.git
 [submodule "nvim-cmp"]
 	path = nvim/pack/plugins/start/nvim-cmp
 	url = git@github.com:hrsh7th/nvim-cmp.git
