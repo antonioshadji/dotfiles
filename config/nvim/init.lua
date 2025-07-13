@@ -9,15 +9,15 @@ vim.opt.packpath = vim.opt.runtimepath:get()
 vim.opt.spellfile = ("%s/spell/spf.%s.add"):format(vim.fn.stdpath("config"), vim.o.encoding)
 
 -- add files to ignore
-vim.opt.wildignore:append({ ".hg", ".git", ".svn" }) -- " Version control
-vim.opt.wildignore:append({ "*.jpg", "*.bmp", "*.gif", "*.png", "*.jpeg" }) -- " binary images
-vim.opt.wildignore:append({ "*.o", "*.obj", "*.exe", "*.dll", "*.manifest" }) -- " compiled object files
-vim.opt.wildignore:append({ "*.spl" }) -- " compiled spelling word lists
-vim.opt.wildignore:append({ "*.sw?" }) -- " Vim swap files
-vim.opt.wildignore:append({ "*.DS_Store" }) -- " OSX bullshit
-vim.opt.wildignore:append({ "*.luac" }) -- " Lua byte code
-vim.opt.wildignore:append({ "*.pyc" }) -- " Python byte code
-vim.opt.wildignore:append({ "*.class" }) -- " Java byte code
+-- vim.opt.wildignore:append({ ".hg", ".git", ".svn" }) -- " Version control
+-- vim.opt.wildignore:append({ "*.jpg", "*.bmp", "*.gif", "*.png", "*.jpeg" }) -- " binary images
+-- vim.opt.wildignore:append({ "*.o", "*.obj", "*.exe", "*.dll", "*.manifest" }) -- " compiled object files
+-- vim.opt.wildignore:append({ "*.spl" }) -- " compiled spelling word lists
+-- vim.opt.wildignore:append({ "*.sw?" }) -- " Vim swap files
+-- vim.opt.wildignore:append({ "*.DS_Store" }) -- " OSX bullshit
+-- vim.opt.wildignore:append({ "*.luac" }) -- " Lua byte code
+-- vim.opt.wildignore:append({ "*.pyc" }) -- " Python byte code
+-- vim.opt.wildignore:append({ "*.class" }) -- " Java byte code
 
 vim.opt.exrc = true -- Allow local vimrc files inside projects (for c/cpp)
 vim.opt.secure = true -- do not allow autocmds in project specific vimrc
@@ -25,9 +25,9 @@ vim.opt.autowriteall = true -- Write files when many actions, including switchin
 
 vim.opt.clipboard = { "unnamed", "unnamedplus" }
 
-vim.opt.cursorline = true -- Highlight current line
-vim.opt.showmatch = true -- jump cursor to matching brace when entered
-vim.opt.ignorecase = true -- case-insensitive search
+vim.opt.cursorline = true -- Highlight current line default is off
+vim.opt.showmatch = true -- jump cursor to matching brace when entered default is off
+vim.opt.ignorecase = true -- case-insensitive search  \C at end to force case-sensitive
 vim.opt.smartcase = true -- use case sensitive search if any caps present
 vim.opt.wrap = false -- default is on
 
@@ -47,6 +47,7 @@ vim.opt.splitbelow = true -- puts new hsplit windows below current
 -- vim.inspect prints tables
 -- lua vim.print(vim.opt.packpath)
 -- lua vim.print(vim.opt.runtimepath)
+-- lua =vim.opt.runtimepath
 
 --[[ Set completeopt to have a better completion experience
 " :help completeopt
@@ -59,14 +60,15 @@ vim.opt.splitbelow = true -- puts new hsplit windows below current
 -- vim.cmd('set shortmess+=c')
 -- vim.opt.shortmess:append("c")
 
-vim.opt.completeopt = { "menu", "menuone", "noselect" }
+vim.opt.completeopt = { "fuzzy", "menu", "menuone", "noinsert", "noselect" }
+
 vim.opt.number = true
 vim.opt.relativenumber = true
 
 vim.cmd([[
 " Set updatetime for CursorHold
 " 300ms of no cursor movement to trigger CursorHold
-set updatetime=300
+" set updatetime=300
 " Show diagnostic popup on cursor hover
 autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 
@@ -120,7 +122,7 @@ nnoremap <C-right> <C-w>l
 " http://vimcasts.org/episodes/how-to-fold/
 " use space bar in normal mode to toggle folds
 " TODO: is there a better use for space bar?
-nnoremap <Space> za
+" nnoremap <Space> za
 "
 " This unsets the 'last search pattern' register by hitting return
 " http://stackoverflow.com/a/662914/2472798
@@ -136,28 +138,20 @@ cmap w!! w !sudo tee %
 " issues when using search replace
 " cmap tt tab terminal
 
-" compile and run java code for algs4
-" https://docs.oracle.com/javase/8/docs/technotes/tools/windows/classpath.html
-" -ea = enableassertions
-" -cp = classpath
-" map <F7> :!clear; javac -cp ../algs4.jar:. %<CR>
-" map <F8> :!clear; java -ea -cp ../algs4.jar:. %:r<CR>
-
 "from defaults.vim
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 " Revert with ":iunmap <C-U>".
-inoremap <C-U> <C-G>u<C-U>
+" TODO: verify if this is needed
+" inoremap <C-U> <C-G>u<C-U>
 
 " workaround for netrw bug  :help netrw-debug
 " https://github.com/vim/vim/issues/4738#issuecomment-521506447
 " https://github.com/vim/vim/issues/4738#issuecomment-565330300
-let g:netrw_nogx=1
+" TODO: verify if this is needed
+" let g:netrw_nogx=1
 " TODO: this only works on linux!!
 nmap gx yiW:!xdg-open <cWORD><CR> <C-r>" & <CR><CR>
-" nnoremap <Leader>g :YcmCompleter GoTo<CR>
-"
-nmap <Leader>e :ALENextWrap<CR>
 ]])
 
 -- for Terminal windows  (double square brackets do not require extra escaping)
@@ -170,17 +164,6 @@ vim.api.nvim_set_keymap("t", "<C-l>", [[<C-\><C-n><C-w>l]], { noremap = true })
 -- Limelight let g:limelight_conceal_ctermfg = 'darkgray'
 vim.g.limelight_conceal_ctermfg = 237
 
--- miscellaneous settings, do they need to exist?
-vim.cmd([[
-if trim(system('uname')) ==# 'Darwin'
-  let g:python3_host_prog = '/usr/local/bin/python3'
-else
-  let g:python3_host_prog = '/usr/bin/python3'
-endif
-]])
-
--- on hadji workstation use 3.12 compiled python
-vim.g.python3_host_prog = "/usr/local/bin/python3.12"
 -- Auto Commands
 vim.cmd([[
 if !exists('g:autocommands_loaded')
@@ -326,21 +309,19 @@ command! FormatJSON %!python3 -m json.tool
 ]])
 -- Plugins
 
-vim.cmd([[
+-- vim.cmd([[
+-- 
+-- " https://github.com/junegunn/fzf {
+-- if isdirectory(expand('~/.fzf'))
+--   set runtimepath^=~/.fzf
+-- endif
+-- " }
+-- 
+-- ]])
 
-" https://github.com/junegunn/fzf {
-if isdirectory(expand('~/.fzf'))
-  set runtimepath^=~/.fzf
-endif
-" }
-
-]])
-
-vim.cmd([[
-if filereadable('Session.vim')
-  :silent source Session.vim
-endif
-]])
+-- if vim.fn.isdirectory(vim.fn.expand("$HOME/.fzf")) then 
+--   vim.opt.runtimepath:append(vim.fn.expand("$HOME/.fzf"))
+-- end
 
 -- Code navigation shortcuts
 -- as found in :help lsp
