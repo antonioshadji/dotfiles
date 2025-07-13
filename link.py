@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-from datetime import datetime
-from pathlib import Path
 import shutil
 import sys
+from datetime import datetime
+from pathlib import Path
 
-path = Path('local/share')
+path = Path("local/share")
 
 for f in path.iterdir():
     temp = Path.home() / Path(f".{f}-new")
@@ -18,7 +18,6 @@ for f in path.iterdir():
 
     # Backup existing link or directory at link
     if link.exists() and link.is_dir():
-
         try:
             if link.is_dir() and not link.is_symlink():
                 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -40,8 +39,7 @@ for f in path.iterdir():
         sys.exit(1)
 
 
-
-path = Path('home')
+path = Path("home")
 
 for f in path.iterdir():
     link = Path.home() / Path(f".{f.name}")
@@ -49,13 +47,12 @@ for f in path.iterdir():
     target = Path.cwd() / Path(f)
 
     temp.symlink_to(target)
-    temp.rename(link) 
+    temp.rename(link)
 
     print(f"Symbolic link '{link}' created, pointing to '{target}'.")
 
 
-
-path = Path('config')
+path = Path("config")
 
 for f in path.iterdir():
     temp = Path.home() / Path(f".{f}-new")
@@ -63,7 +60,6 @@ for f in path.iterdir():
     target = Path.cwd() / Path(f)
 
     temp.symlink_to(target)
-    temp.rename(link) 
+    temp.rename(link)
 
     print(f"Symbolic link '{link}' created, pointing to '{target}'.")
-
