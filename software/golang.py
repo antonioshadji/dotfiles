@@ -35,7 +35,7 @@ def main():
     url = find_file(tree)
     print(url)
 
-    fn: LiteralString = cast(LiteralString, url.split("/")[-1])
+    fn: LiteralString = cast(LiteralString, url.split("/")[-1])  # this is one way to fix typing error, TODO: how to disable for all servers?
     if not re.match(r"go1.*linux-amd64.tar.gz", fn):
         print(f"Filename {fn} does not match expected pattern.")
         exit(1)
