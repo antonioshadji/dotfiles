@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # https://github.com/koalaman/shellcheck/wiki/SC1090
 # shellcheck disable=SC1090,SC1091
-# vim: set foldmarker={{,}} foldlevel=0 foldmethod=marker :
+# vim: set foldmarker={{,}} foldlevel=99 foldmethod=marker :
 
 # profile start time start {{
 DEBUG=0
@@ -318,9 +318,10 @@ alias cp='cp -i'
 set -o noclobber
 
 # 2.2) Listing, directories, and motion
-alias ll='ls -Flh --color --ignore=lost+found --ignore=.Trash-1000'
+# -h show hidden removed in favor of only specifically asking for hidden files
+alias ll='ls -Fl --color --ignore=lost+found --ignore=.Trash-1000'
 # follow by -r to reverse sort order
-alias lt='ls -Flht --color --ignore=lost+found --ignore=.Trash-1000'
+alias lt='ls -Flt --color --ignore=lost+found --ignore=.Trash-1000'
 alias l='ls -F --color --ignore=lost+found --ignore=.Trash-1000'
 alias ..='cd ..'
 alias md='mkdir'
@@ -583,6 +584,11 @@ f="$HOME/.local/bin/bash/share/bash-completion/completions/conda"
 # installed in .local/share/bash-completion/completions/ 2020-10-19 19:20:18
 # [[ $(command -v pandoc) ]] && eval "$(pandoc --bash-completion)"
 # }}
+
+# enable completion for uv {{
+f="$HOME/.local/share/bash-completion/completions/uv.bash"
+[[ -r $f  ]] && source "$f"
+# }}
 #}}
 
 # bash functions {{
@@ -743,3 +749,30 @@ complete -D -F _completion_loader -o bashdefault -o default
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep"
 
 eval "$(starship init bash)"
+
+# Anaconda claude code setup
+export AWS_PROFILE=Sandbox-621741996708
+export CLAUDE_CODE_USE_BEDROCK=1
+export AWS_REGION=us-east-1
+export ANTHROPIC_MODEL='us.anthropic.claude-sonnet-4-20250514-v1:0'
+
+# activate python environments
+activate() {
+  if [[ -n "$1" ]]; then
+    conda activate "$1"
+  else
+    [[ -d .venv ]] && source .venv/bin/activate
+  fi
+}
+
+
+# Define the completion function
+_activate_function_completion() {
+    local cur prev words cword
+    _init_completion || return
+
+    COMPREPLY=($(compgen -d -- "$cur"))
+}
+
+# Associate the completion function with your custom function
+complete -o filenames -o nospace -F _activate_function_completion activate
