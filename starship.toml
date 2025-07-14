@@ -3,11 +3,11 @@
 
 # $all is shorthand for $username$hostname$localip$shlvl$singularity$kubernetes$nats$directory$vcsh$fossil_branch$fossil_metrics$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$pijul_channel$docker_context$package$bun$c$cmake$cobol$daml$dart$deno$dotnet$elixir$elm$erlang$fennel$gleam$golang$gradle$haskell$haxe$helm$java$julia$kotlin$lua$mojo$nim$nodejs$ocaml$odin$opa$perl$php$pulumi$purescript$python$quarto$raku$rlang$red$ruby$rust$scala$solidity$swift$terraform$typst$vlang$vagrant$zig$buf$guix_shell$nix_shell$conda$meson$spack$memory_usage$aws$gcloud$openstack$azure$direnv$env_var$crystal$custom$sudo$cmd_duration$line_break$jobs$battery$time$status$container$os$shell$character
 "$schema" = "https://starship.rs/config-schema.json"
-format = "$conda$all"
+format = "$all"
 right_format = ""
 continuation_prompt = "[∙](bright-black) "
 scan_timeout = 30
-command_timeout = 500
+command_timeout = 600
 add_newline = true
 follow_symlinks = true
 
@@ -152,9 +152,9 @@ detect_folders = []
 
 [conda]
 truncation_length = 1
-format = "[$symbol$environment]($style) "
+format = '[\($symbol$environment\)]($style) '
 symbol = "🅒 "
-style = "blue"
+style = "yellow"
 ignore_base = false
 disabled = false
 
@@ -829,7 +829,7 @@ Windows = "🪟 "
 [package]
 format = "is [$symbol$version]($style) "
 symbol = "📦 "
-style = "208 bold"
+style = "208"
 display_private = false
 disabled = false
 version_format = "v${raw}"
@@ -909,7 +909,7 @@ python_binary = [
 ]
 format = 'via [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 version_format = "v${raw}"
-style = "yellow bold"
+style = "yellow"
 symbol = "🐍 "
 disabled = false
 detect_extensions = [
