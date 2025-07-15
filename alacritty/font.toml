@@ -3,7 +3,7 @@
 size = 16
 
 [font.bold]
-family = "UbuntuMono Nerd Font"
+family = "ComicShannsMono Nerd Font"
 style = "Bold"
 
 [font.bold_italic]
@@ -15,5 +15,5 @@ family = "UbuntuMono Nerd Font"
 style = "Italic"
 
 [font.normal]
-family = "UbuntuMono Nerd Font"
+family = "ComicShannsMono Nerd Font"
 style = "Regular"
