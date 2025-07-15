@@ -451,8 +451,6 @@ if [[ $(uname -s) == 'Darwin' ]]; then
   if [[ -d $DOCKER_ROOT ]]; then
     . "$DOCKER_ROOT/docker.bash-completion"
     . "$DOCKER_ROOT/docker-compose.bash-completion"
-    # TODO: why is this not on mac?
-    # . "$DOCKER_ROOT/docker-machine.bash-completion"
   fi
 
   [[ -r "${HOME}/.iterm2_shell_integration.bash" ]] && source "${HOME}/.iterm2_shell_integration.bash"
@@ -528,22 +526,17 @@ if ! shopt -oq posix; then
     source /usr/share/bash-completion/bash_completion
   elif [[ -r /etc/bash_completion ]]; then
     source /etc/bash_completion
-  elif [[ -r "$HOME/.local/bin/bash/etc/profile.d/bash_completion.sh" ]]; then
-    source "$HOME/.local/bin/bash/etc/profile.d/bash_completion.sh"
   fi
 fi
 
-# git completion
+# git bash_completion
 # https://github.com/git/git/blob/master/contrib/completion/git-completion.bash
 if [[ -r $HOME/.config/dotfiles/git-completion.bash ]]; then
   source "$HOME/.config/dotfiles/git-completion.bash"
 fi
-# conda completion
+
+# conda bash_completion
 # https://github.com/tartansandal/conda-bash-completion/blob/master/conda
-# 2025-03-28 17:48:23 Friday installed via conda leroscapital channel
-# f="$HOME/.config/dotfiles/conda.bash"
-f="$HOME/.local/bin/bash/share/bash-completion/completions/conda"
-[[ -r $f  ]] && source "$f"
 
 # for file in "$HOME"/anaconda3/share/bash-completion/completions/*; do
 #     # echo "DEBUG: $file"
@@ -585,9 +578,15 @@ f="$HOME/.local/bin/bash/share/bash-completion/completions/conda"
 # [[ $(command -v pandoc) ]] && eval "$(pandoc --bash-completion)"
 # }}
 
-# enable completion for uv {{
-f="$HOME/.local/share/bash-completion/completions/uv.bash"
-[[ -r $f  ]] && source "$f"
+# enable bash_completion in local files {{
+completion_files=(~/.config/dotfiles/bash/bash_completion)
+completion_files+=(~/.config/dotfiles/bash/000_bash_completion_compat.bash)
+completion_files+=(~/.local/share/bash-completion/completions/*)
+
+for f in ${completion_files[@]}; do
+  echo $f
+  [[ -r $f  ]] && source "$f"
+done
 # }}
 #}}
 
@@ -677,27 +676,6 @@ if [ -r /var/run/reboot-required ]; then
   uptime
 fi
 
-# Comcast Settings {{
-# if [[ ${HOSTNAME} =~ comcast.net$|HQSML ]]; then
-#   export GIT_AUTHOR_EMAIL="Antonios_Hadjigeorgalis@comcast.com"
-#   export GIT_COMMITTER_EMAIL="Antonios_Hadjigeorgalis@comcast.com"
-#   export ANSIBLE_VAULT_PASSWORD_FILE=~/.ansible/vault_password
-#   export NODE_PATH=${HOME}/.npm/lib/node_modules:${NODE_PATH}
-#   export PATH=${HOME}/.npm/bin:$PATH
-#   export VAULT_ADDR=https://vault.apa.comcast.net
-#   export AWS_DEFAULT_REGION=us-east-1
-#   if command -v fly &> /dev/null; then
-#     source <(fly completion --shell bash)
-#   fi
-#   # installed in /usr/local/etc/bash_completion.d/
-#   # if command -v copilot &> /dev/null; then
-#   #   source <(copilot completion bash)
-#   # fi
-# fi
-
-# }}
-
-
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
 # Setting fd as the default source for fzf
 if command -v fd &> /dev/null; then
@@ -715,26 +693,6 @@ fi
 # }}
 export TPM2_PKCS11_STORE=$HOME/.tpm2_pkcs11/
 
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/Users/ahadjigeorgalis/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-# # shellcheck disable=SC2181
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/Users/ahadjigeorgalis/anaconda3/etc/profile.d/conda.sh" ]; then
-#         . "/Users/ahadjigeorgalis/anaconda3/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/Users/ahadjigeorgalis/anaconda3/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# <<< conda initialize <<<
-# echo "conda environment load time:"
-# time conda activate local
-
-
 [[ -d "${HOME}/.pixi/bin" ]] && export PATH="${HOME}/.pixi/bin:$PATH"
 
 . "$HOME/.cargo/env"
@@ -750,13 +708,15 @@ export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep"
 
 eval "$(starship init bash)"
 
-# Anaconda claude code setup
+# Anaconda claude code setup {{
 export AWS_PROFILE=Sandbox-621741996708
 export CLAUDE_CODE_USE_BEDROCK=1
 export AWS_REGION=us-east-1
 export ANTHROPIC_MODEL='us.anthropic.claude-sonnet-4-20250514-v1:0'
+# }}
 
-# activate python environments
+
+# activate python environments {{
 activate() {
   if [[ -n "$1" ]]; then
     conda activate "$1"
@@ -776,3 +736,4 @@ _activate_function_completion() {
 
 # Associate the completion function with your custom function
 complete -o filenames -o nospace -F _activate_function_completion activate
+# }}
