@@ -1,4 +1,4 @@
--- vim: set fl=99:
+-- vim: set fdl=99:
 -- good example init files
 -- https://github.com/potamides/dotfiles
 
