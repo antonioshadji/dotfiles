@@ -7,7 +7,7 @@ format = "$all"
 right_format = ""
 continuation_prompt = "[∙](bright-black) "
 scan_timeout = 30
-command_timeout = 600
+command_timeout = 1000
 add_newline = true
 follow_symlinks = true
 
