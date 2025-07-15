@@ -1,0 +1,38 @@
+[push]
+  default = simple
+[color]
+  ui = true
+[credential]
+  helper = cache --timeout=3600
+[grep]
+  linenumber = true
+  extendregexp = true
+[core]
+  autocrlf = input
+[status]
+  submodulesummary = true
+  short = true
+[alias]
+  # some ideas from: https://daniel.haxx.se/blog/2020/11/09/this-is-how-i-git/
+  b = branch -vv
+  com = commit
+  co = checkout
+  d = diff --minimal
+  ds = diff --stat
+  g = grep --break --heading --line-number
+  l = for-each-ref --sort='-authordate:iso8601' --format=' %(authordate:relative)%09%(refname:short)' refs/heads
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  s = status
+# suggested by numpy https://docs.scipy.org/doc/numpy/dev/gitwash/configure_git.html#configure-git
+[merge]
+  log = true
+[diff]
+  submodule = log
+[fetch]
+  prune = true
+[log]
+  decorate = full
+[pull]
+  rebase = true
+[init]
+  defaultBranch = main
