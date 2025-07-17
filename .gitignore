@@ -1,26 +1,11 @@
-# vim folders under .vim
-vim/view
-# No need to track linked neovim config
-vim/init.vim
-# viminfo file could be source controled but might break
-vim/viminfo
-# eclim files
-vim/plugin
-vim/black
-vim/eclim
-vim/undo/
-vim/.VimballRecord
-# ctags file for system libraries
-vim/systags
+#mac
+.DS_Store
 # Compiled python
 *.pyc
 
 # Compiled spelling list files
 *.spl
 *.sug
-
-# all source controlled notes will go in README.md
-notes/*
 
 # log files
 *.log
