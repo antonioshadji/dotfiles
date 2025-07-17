@@ -34,4 +34,4 @@ echo -e "${GREEN}finished.${NC}"
 
 # https://github.com/nvim-telescope/telescope.nvim
 # telescope.nvim should be set to branch 0.1.x to follow releases
-(cd ./nvim/pack/plugins/start/telescope.nvim/ && git switch 0.1.x)
+(cd ./config/nvim/pack/plugins/start/telescope.nvim/ && git switch 0.1.x)
