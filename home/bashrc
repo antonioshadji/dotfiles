@@ -440,10 +440,19 @@ export DEBFULLNAME="Antonios Hadjigeorgalis"
 # }}
 
 #  git configuration {{
-# export GIT_AUTHOR_NAME="Antonios Hadjigeorgalis"
-# export GIT_COMMITTER_NAME="Antonios Hadjigeorgalis"
-# export GIT_AUTHOR_EMAIL="Antonios@Hadji.co"
-# export GIT_COMMITTER_EMAIL="Antonios@Hadji.co"
+export GIT_AUTHOR_NAME="Antonios Hadjigeorgalis"
+export GIT_COMMITTER_NAME="Antonios Hadjigeorgalis"
+
+case "$HOSTNAME" in
+  hadji)
+    export GIT_AUTHOR_EMAIL="Antonios@Hadji.co"
+    export GIT_COMMITTER_EMAIL="Antonios@Hadji.co"
+    ;;
+  Antonioss-MacBook-Pro.local)
+    export GIT_AUTHOR_EMAIL="ahadjigeorgalis@anaconda.com"
+    export GIT_COMMITTER_EMAIL="ahadjigeorgalis@anaconda.com"
+esac
+
 # }}
 
 # Darwin only setup {{
