@@ -60,7 +60,7 @@ vim.opt.splitbelow = true -- puts new hsplit windows below current
 -- vim.cmd('set shortmess+=c')
 -- vim.opt.shortmess:append("c")
 
-vim.opt.completeopt = { "menuone", "noselect" ,"popup"}  -- "fuzzy" "menu"
+vim.opt.completeopt = { "menuone", "noselect", "popup" } -- "fuzzy" "menu"
 
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -310,16 +310,16 @@ command! FormatJSON %!python3 -m json.tool
 -- Plugins
 
 -- vim.cmd([[
--- 
+--
 -- " https://github.com/junegunn/fzf {
 -- if isdirectory(expand('~/.fzf'))
 --   set runtimepath^=~/.fzf
 -- endif
 -- " }
--- 
+--
 -- ]])
 
--- if vim.fn.isdirectory(vim.fn.expand("$HOME/.fzf")) then 
+-- if vim.fn.isdirectory(vim.fn.expand("$HOME/.fzf")) then
 --   vim.opt.runtimepath:append(vim.fn.expand("$HOME/.fzf"))
 -- end
 
@@ -356,43 +356,41 @@ vim.opt.omnifunc = "v:lua.vim.lsp.omnifunc"
     autocomplete = false, -- disable auto-completion, use tab instead ? doesn't show docs?
   },
 --]]
--- local cmp = require("cmp")
--- cmp.setup({
--- 	snippet = {
--- 		expand = function(args)
--- 			vim.fn["vsnip#anonymous"](args.body)
--- 		end,
--- 	},
--- 	window = {
--- 		-- completion = cmp.config.window.bordered(),
--- 		documentation = cmp.config.window.bordered(),
--- 	},
--- 	mapping = cmp.mapping.preset.insert({
--- 		["<C-p>"] = cmp.mapping.select_prev_item(),
--- 		["<C-n>"] = cmp.mapping.select_next_item(),
--- 		-- Add tab support
--- 		["<S-Tab>"] = cmp.mapping.select_prev_item(),
--- 		["<Tab>"] = cmp.mapping.select_next_item(),
--- 
--- 		["<C-d>"] = cmp.mapping.scroll_docs(-4),
--- 		["<C-f>"] = cmp.mapping.scroll_docs(4),
--- 		["<C-Space>"] = cmp.mapping.complete(),
--- 		-- ["<C-e>"] = cmp.mapping.close(),
--- 		["<C-e>"] = cmp.mapping.abort(),
--- 		["<CR>"] = cmp.mapping.confirm({
--- 			-- behavior = cmp.ConfirmBehavior.Insert,
--- 			select = true,
--- 		}),
--- 	}),
--- 	sources = cmp.config.sources({
--- 		{ name = "nvim_lsp" },
--- 		{ name = "vsnip" },
--- 		{ name = "path" },
--- 	}, {
--- 		{ name = "buffer" },
--- 	}),
--- })
+local cmp = require("cmp")
+cmp.setup({
+	--	snippet = {
+	--		expand = function(args)
+	--			vim.fn["vsnip#anonymous"](args.body)
+	--		end,
+	--	},
+	window = {
+		-- completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
+	},
+	mapping = cmp.mapping.preset.insert({
+		["<C-p>"] = cmp.mapping.select_prev_item(),
+		["<C-n>"] = cmp.mapping.select_next_item(),
+		-- Add tab support
+		["<S-Tab>"] = cmp.mapping.select_prev_item(),
+		["<Tab>"] = cmp.mapping.select_next_item(),
 
+		["<C-d>"] = cmp.mapping.scroll_docs(-4),
+		["<C-f>"] = cmp.mapping.scroll_docs(4),
+		["<C-Space>"] = cmp.mapping.complete(),
+		-- ["<C-e>"] = cmp.mapping.close(),
+		["<C-e>"] = cmp.mapping.abort(),
+		["<CR>"] = cmp.mapping.confirm({
+			-- behavior = cmp.ConfirmBehavior.Insert,
+			select = true,
+		}),
+	}),
+	sources = cmp.config.sources({
+		{ name = "nvim_lsp" },
+		{ name = "path" },
+	}, {
+		{ name = "buffer" },
+	}),
+})
 
 -- Set up lspconfig.
 -- NOTE: new setup for v0.11+
@@ -402,7 +400,7 @@ vim.lsp.enable({
 	"luals",
 	"ruff",
 	"pyright",
-	"pyrefly",
+	--	"pyrefly",
 	"ts_ls",
 	"gopls",
 	"rust_analyzer",
@@ -470,8 +468,8 @@ require("nvim-treesitter.configs").setup({
 		-- list of language that will be disabled
 		-- disable = { "c", "rust" },
 		-- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
-    -- TODO: how to fix fs_stat not found error, but breaks vim api recognition
-    -- https://github.com/NvChad/NvChad/issues/2960
+		-- TODO: how to fix fs_stat not found error, but breaks vim api recognition
+		-- https://github.com/NvChad/NvChad/issues/2960
 		disable = function(lang, buf)
 			local max_filesize = 100 * 1024 -- 100 KB
 			local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
