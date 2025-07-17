@@ -1,3 +1,8 @@
+- goal: main branch handles both linux and macos
+- [ ] find changes that need to be added to main for mac to work on main same as it does now
+
+
+
 * [x] install my custom airline theme and remove airline themes submodule
 - [] add fd install/update to ansible setup
 - [] add centos packages for centos machines at work

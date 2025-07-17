@@ -644,8 +644,9 @@ require("nvim-treesitter.configs").setup({
 })
 
 -- 2024-02-10 08:12:34 highly experimental zx should fix folding issues
-vim.opt.foldminlines = 4
+-- vim.opt.foldminlines = 4
 -- vim.opt.foldnestmax
+-- vim.opt.foldlevel=99 by default files will open with all code folded
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 

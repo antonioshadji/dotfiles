@@ -171,7 +171,7 @@ fi
 #}}
 
 #{{ Color chart
-Reset='\e[0m'    # Text Reset
+# Reset='\e[0m'    # Text Reset
 
 # http://ethanschoonover.com/solarized
 # http://ethanschoonover.com/solarized/img/solarized-palette.png
@@ -180,8 +180,8 @@ Reset='\e[0m'    # Text Reset
 # base02='\e[0;30m'  # base02    #073642  0/4 black    235 #262626 20 -12 -12   7  54  66 192  90  26
 # red='\e[0;31m'     # red       #dc322f  1/1 red      160 #d70000 50  65  45 220  50  47   1  79  86
 # green='\e[0;32m'   # green     #859900  2/2 green     64 #5f8700 60 -20  65 133 153   0  68 100  60
-yellow='\e[0;33m'  # yellow    #b58900  3/3 yellow   136 #af8700 60  10  65 181 137   0  45 100  71
-blue='\e[0;34m'    # blue      #268bd2  4/4 blue      33 #0087ff 55 -10 -45  38 139 210 205  82  82
+# yellow='\e[0;33m'  # yellow    #b58900  3/3 yellow   136 #af8700 60  10  65 181 137   0  45 100  71
+# blue='\e[0;34m'    # blue      #268bd2  4/4 blue      33 #0087ff 55 -10 -45  38 139 210 205  82  82
 # magenta='\e[0;35m' # magenta   #d33682  5/5 magenta  125 #af005f 50  65 -05 211  54 130 331  74  83
 # cyan='\e[0;36m'    # cyan      #2aa198  6/6 cyan      37 #00afaf 60 -35 -05  42 161 152 175  74  63
 # base2='\e[0;37m'   # base2     #eee8d5  7/7 white    254 #e4e4e4 92 -00  10 238 232 213  44  11  93
@@ -584,7 +584,6 @@ completion_files+=(~/.config/dotfiles/bash/000_bash_completion_compat.bash)
 completion_files+=(~/.local/share/bash-completion/completions/*)
 
 for f in ${completion_files[@]}; do
-  echo $f
   [[ -r $f  ]] && source "$f"
 done
 # }}
@@ -683,7 +682,7 @@ if command -v fd &> /dev/null; then
 fi
 
 # show if there is an existing tmux session when SSH into this machine
-[[ -n $SSH_CLIENT ]] && echo "tmux" && tmux ls
+# [[ -n $SSH_CLIENT ]] && tmux ls && tmux attach
 
 # profile stop time start {{
 if [[ $DEBUG == 1 ]]; then
