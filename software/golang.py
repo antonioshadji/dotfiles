@@ -5,6 +5,8 @@
 
 import os
 import re
+import sys
+import platform
 import subprocess
 from getpass import getpass
 from typing import LiteralString, cast
@@ -21,10 +23,10 @@ def get_content() -> str:
     return tree
 
 
-def find_file(tree) -> str:
+def find_file(tree, os) -> str:
     # /html/body/main/article/div[1]/a[5]
     for link in tree.xpath("/html/body/main/article/div[1]/a"):
-        if "linux" in link.xpath("@href")[0]:
+        if os in link.xpath("@href")[0]:
             return link.xpath("@href")[0]
 
     return ""
@@ -32,7 +34,9 @@ def find_file(tree) -> str:
 
 def main():
     tree = get_content()
-    url = find_file(tree)
+    os = sys.platform
+    arch = platform.machine()
+    url = find_file(tree, os)
     print(url)
 
     fn: LiteralString = cast(
