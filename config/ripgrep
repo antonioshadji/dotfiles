@@ -1,0 +1,3 @@
+# https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#common-options
+# use smart-case: like --ignore-case but disabled when search string contains any upper case
+--smart-case
