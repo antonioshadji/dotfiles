@@ -474,20 +474,23 @@ if [[ $(uname -s) == 'Darwin' ]]; then
   if [[ -d $DOCKER_ROOT ]]; then
     . "$DOCKER_ROOT/docker.bash-completion"
     . "$DOCKER_ROOT/docker-compose.bash-completion"
-    # TODO: why is this not on mac?
-    # . "$DOCKER_ROOT/docker-machine.bash-completion"
   fi
 
   [[ -r "${HOME}/.iterm2_shell_integration.bash" ]] && source "${HOME}/.iterm2_shell_integration.bash"
 
   [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
   # MacPorts Installer addition on 2019-08-11_at_09:59:35: adding an appropriate PATH variable for use with MacPorts.
-  export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+  if [[ -d /opt/local ]]; then
+    export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+  fi
   # Finished adapting your PATH environment variable for use with MacPorts.
 
-  PATH="${PATH}:/Applications/CMake.app/Contents/bin"
-  PATH="${PATH}:/Library/Frameworks/Python.framework/Versions/Current/bin/"
-  export PATH
+  if [[ -d /Applications/CMake.app/ ]]; then
+    export PATH="${PATH}:/Applications/CMake.app/Contents/bin"
+  fi
+  if [[ -d /Library/Frameworks/Python.framework ]]; then
+    export PATH="${PATH}:/Library/Frameworks/Python.framework/Versions/Current/bin/"
+  fi
 
 fi
 #}}
@@ -549,12 +552,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# git completion
-# https://github.com/git/git/blob/master/contrib/completion/git-completion.bash
-if [[ -r $HOME/.config/dotfiles/git-completion.bash ]]; then
-  source "$HOME/.config/dotfiles/git-completion.bash"
-fi
-
 # enable completion for nvm
 [[ -r $NVM_DIR/bash_completion ]] && source "$NVM_DIR/bash_completion"
 
@@ -591,6 +588,13 @@ fi
 # [[ $(command -v pandoc) ]] && eval "$(pandoc --bash-completion)"
 # }}
 # enable bash_completion in local files {{
+#
+# git completion
+# https://github.com/git/git/blob/master/contrib/completion/git-completion.bash
+# if [[ -r $HOME/.config/dotfiles/git-completion.bash ]]; then
+#   source "$HOME/.config/dotfiles/git-completion.bash"
+# fi
+
 completion_files=(~/.config/dotfiles/bash/bash_completion)
 completion_files+=(~/.config/dotfiles/bash/000_bash_completion_compat.bash)
 completion_files+=(~/.local/share/bash-completion/completions/*)
@@ -736,7 +740,6 @@ activate() {
   fi
 }
 
-
 # Define the completion function
 _activate_function_completion() {
     local cur prev words cword
@@ -747,4 +750,4 @@ _activate_function_completion() {
 
 # Associate the completion function with your custom function
 complete -o filenames -o nospace -F _activate_function_completion activate
-# }}
+#}}
