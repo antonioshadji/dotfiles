@@ -46,3 +46,6 @@
 [submodule "nvm"]
 	path = config/nvm
 	url = https://github.com/nvm-sh/nvm.git
+[submodule "config/nvim/pack/plugins/start/nvim-colorizer.lua"]
+	path = config/nvim/pack/plugins/start/nvim-colorizer.lua
+	url = git@github.com:norcalli/nvim-colorizer.lua.git
