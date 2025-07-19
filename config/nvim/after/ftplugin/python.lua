@@ -25,7 +25,7 @@
 -- 		{lnum} is used like with |getline()|.  Thus "." is the current
 -- 		line, "'m" mark m, etc.
 
-vim.opt_local.foldlevel = 99
+-- vim.opt_local.foldlevel = 99
 
 -- 						*'sections'* *'sect'*
 -- 'sections' 'sect'	string	(default "SHNHH HUnhsh")
