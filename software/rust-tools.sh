@@ -53,5 +53,9 @@ cargo install starship
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 cargo install just
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
+# 2025-07-19 11:10:07 added
+cargo install lsd
+ERR=$?; [[ $ERR != 0 ]] && exit $ERR
+
 
 
