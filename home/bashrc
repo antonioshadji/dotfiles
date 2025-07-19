@@ -519,65 +519,6 @@ fi
 # fi
 #}}
 
-# {{ bash completion
-# https://superuser.com/questions/288714/bash-autocomplete-like-zsh
-# https://www.gnu.org/software/bash/manual/html_node/Readline-Init-File-Syntax.html
-# do 'bind -v' to see all variable names and values
-
-# This alters the default behavior of the completion functions. If set to ‘on’,
-# words which have more than one possible completion cause the matches to be
-# listed immediately instead of ringing the bell. The default value is ‘off’.
-bind 'set show-all-if-ambiguous on'
-# If set to ‘on’, Readline displays possible completions using different colors
-# to indicate their file type. The color definitions are taken from the value
-# of the LS_COLORS environment variable. The default is ‘off’.
-bind 'set colored-stats on'
-# If set to ‘on’, completed names which are symbolic links to directories have
-# a slash appended (subject to the value of mark-directories). The default is ‘off’.
-bind 'set mark-symlinked-directories on'
-bind 'TAB:menu-complete'
-
-# Turn on bash command completion
-# from Ubuntu 16.04 bashrc
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [[ -r /usr/share/bash-completion/bash_completion ]]; then
-    source /usr/share/bash-completion/bash_completion
-  elif [[ -r /etc/bash_completion ]]; then
-    # ubuntu 24.04 this sources file above
-    source /etc/bash_completion
-  fi
-fi
-
-
-# enable bash_completion in local files {{
-
-completion_files=(~/.local/share/bash-completion/completions/*)
-
-for f in "${completion_files[@]}"; do
-  [[ -r $f  ]] && source "$f"
-done
-# }}
-
-# AWS CLI completion
-# http://docs.aws.amazon.com/cli/latest/userguide/cli-command-completion.html
-[[ $(command -v aws_completer) ]] && complete -C aws_completer aws
-
-# nvm completion
-[[ -r "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
-# kubectl completion
-[[ $(command -v kubectl) ]] && source <(kubectl completion bash)
-# allow completion to work with alias
-complete -o default -F __start_kubectl k
-# Notes:
-# Create completion files for tools with these commands
-# pip completion --bash
-# npm completion
-# https://github.com/git/git/blob/master/contrib/completion/git-completion.bash
-# pandoc --bash-completion
-#}}
 
 # bash functions {{
 # https://www.gnu.org/software/bash/manual/bash.html#Shell-Functions
@@ -686,11 +627,11 @@ export TPM2_PKCS11_STORE=$HOME/.tpm2_pkcs11/
 
 . "$HOME/.cargo/env"
 
-_completion_loader()
-{
-    . "$HOME/.local/share/bash_completions.d/$1.sh" >/dev/null 2>&1 && return 124
-}
-complete -D -F _completion_loader -o bashdefault -o default
+# _completion_loader()
+# {
+#     . "$HOME/.local/share/bash_completions.d/$1.sh" >/dev/null 2>&1 && return 124
+# }
+# complete -D -F _completion_loader -o bashdefault -o default
 
 # ripgrep config https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep"
@@ -724,4 +665,54 @@ _activate_function_completion() {
 
 # Associate the completion function with your custom function
 complete -o filenames -o nospace -F _activate_function_completion activate
+# complete -o filenames -o nospace activate
 #}}
+
+# {{ bash completion
+# https://superuser.com/questions/288714/bash-autocomplete-like-zsh
+# https://www.gnu.org/software/bash/manual/html_node/Readline-Init-File-Syntax.html
+# do 'bind -v' to see all variable names and values
+
+# This alters the default behavior of the completion functions. If set to ‘on’,
+# words which have more than one possible completion cause the matches to be
+# listed immediately instead of ringing the bell. The default value is ‘off’.
+bind 'set show-all-if-ambiguous on'
+# If set to ‘on’, Readline displays possible completions using different colors
+# to indicate their file type. The color definitions are taken from the value
+# of the LS_COLORS environment variable. The default is ‘off’.
+bind 'set colored-stats on'
+# If set to ‘on’, completed names which are symbolic links to directories have
+# a slash appended (subject to the value of mark-directories). The default is ‘off’.
+bind 'set mark-symlinked-directories on'
+bind 'TAB:menu-complete'
+
+# Turn on bash command completion
+[[ -r /usr/share/bash-completion/bash_completion ]] && source /usr/share/bash-completion/bash_completion
+
+# enable bash_completion in local files {{
+
+completion_files=(~/.local/share/bash-completion/completions/*)
+
+for f in "${completion_files[@]}"; do
+  [[ -r $f  ]] && source "$f"
+done
+# }}
+
+# AWS CLI completion
+# http://docs.aws.amazon.com/cli/latest/userguide/cli-command-completion.html
+[[ $(command -v aws_completer) ]] && complete -C aws_completer aws
+
+# nvm completion
+[[ -r "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
+# kubectl completion
+[[ $(command -v kubectl) ]] && source <(kubectl completion bash)
+# allow completion to work with alias
+complete -o default -F __start_kubectl k
+# Notes:
+# Create completion files for tools with these commands
+# pip completion --bash
+# npm completion
+# https://github.com/git/git/blob/master/contrib/completion/git-completion.bash
+# pandoc --bash-completion
+#}}
+
