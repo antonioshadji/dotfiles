@@ -417,9 +417,11 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 require("nvim-treesitter.configs").setup({
+	-- missing-fields error in lsp without this
+	modules = {},
 	-- A list of parser names, or "all" (the five listed parsers should always be installed)
 	ensure_installed = {
-		"c",
+		"c", -- required
 		"cmake",
 		"comment",
 		"cpp",
@@ -430,21 +432,20 @@ require("nvim-treesitter.configs").setup({
 		"html",
 		"javascript",
 		"json",
-		"lua",
+		"lua", --required
 		"make",
-		"markdown",
+		"markdown", --required
 		"python",
 		"query",
 		"rust",
 		"sql",
 		"toml",
 		"typescript",
-		"vim",
-		"vimdoc",
+		"vim", --required
+		"vimdoc", --required
 		"yaml",
+		"markdown_inline", --required
 	},
-	-- this got rid of a missing-fields error in lsp
-	modules = {},
 
 	-- Install parsers synchronously (only applied to `ensure_installed`)
 	sync_install = false,
@@ -469,20 +470,16 @@ require("nvim-treesitter.configs").setup({
 		-- disable = { "c", "rust" },
 		-- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
 		-- TODO: how to fix fs_stat not found error, but breaks vim api recognition
-		-- https://github.com/NvChad/NvChad/issues/2960
-		disable = function(lang, buf)
+		--
+		-- signature: (language, buffer)
+		disable = function(_, buf)
 			local max_filesize = 100 * 1024 -- 100 KB
-			local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
+			-- https://neovim.io/doc/user/luaref.html#pcall()
+			local ok, stats = pcall(vim.fs.exists, vim.api.nvim_buf_get_name(buf))
 			if ok and stats and stats.size > max_filesize then
 				return true
 			end
 		end,
-
-		-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-		-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-		-- Using this option may slow down your editor, and you may see some duplicate highlights.
-		-- Instead of true it can also be a list of languages
-		additional_vim_regex_highlighting = false,
 	},
 	-- :h nvim-treesitter-modules
 	incremental_selection = { enable = true },
