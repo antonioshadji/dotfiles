@@ -40,9 +40,6 @@
 [submodule "telescope.nvim"]
 	path = config/nvim/pack/plugins/start/telescope.nvim
 	url = git@github.com:nvim-telescope/telescope.nvim.git
-[submodule "nvim-highlight-colors"]
-	path = config/nvim/pack/themes/opt/nvim-highlight-colors
-	url = https://github.com/brenoprata10/nvim-highlight-colors.git
 [submodule "nvm"]
 	path = config/nvm
 	url = https://github.com/nvm-sh/nvm.git
