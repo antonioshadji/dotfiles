@@ -349,10 +349,7 @@ alias di='docker images'
 # neovim test new config
 alias nvim-kickstart='NVIM_APPNAME=nvim-kickstart nvim'
 # kubectl
-[[ $(command -v kubectl) ]] && source <(kubectl completion bash)
 alias k='kubectl'
-# allow completion to work with alias
-complete -o default -F __start_kubectl k
 
 [[ $(command -v git-flow) ]] && alias gf='git-flow'
 # You may want to put all your additions into a separate file like
@@ -404,9 +401,8 @@ export GREP_COLOR='30;43' # match color of ag match
 
 #{{ Node setup and tools
 # [ -r file ] returns True if file exists and is readable.
-export NVM_DIR="$HOME/.config/nvm"
+[[ -d "$HOME/.config/nvm" ]] && export NVM_DIR="$HOME/.config/nvm"
 [[ -r "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"  # This loads nvm
-[[ -r "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 #}}
 
@@ -478,7 +474,6 @@ if [[ $(uname -s) == 'Darwin' ]]; then
 
   [[ -r "${HOME}/.iterm2_shell_integration.bash" ]] && source "${HOME}/.iterm2_shell_integration.bash"
 
-  [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
   # MacPorts Installer addition on 2019-08-11_at_09:59:35: adding an appropriate PATH variable for use with MacPorts.
   if [[ -d /opt/local ]]; then
     export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
@@ -492,6 +487,12 @@ if [[ $(uname -s) == 'Darwin' ]]; then
     export PATH="${PATH}:/Library/Frameworks/Python.framework/Versions/Current/bin/"
   fi
 
+  completion_files=(~/.config/dotfiles/bash/bash_completion)
+  completion_files+=(~/.config/dotfiles/bash/000_bash_completion_compat.bash)
+
+  for f in "${completion_files[@]}"; do
+    [[ -r $f  ]] && source "$f"
+  done
 fi
 #}}
 
@@ -542,67 +543,40 @@ bind 'TAB:menu-complete'
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-  # homebrew installation
-  if [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]]; then
-    source "/usr/local/etc/profile.d/bash_completion.sh"
-  elif [[ -r /usr/share/bash-completion/bash_completion ]]; then
+  if [[ -r /usr/share/bash-completion/bash_completion ]]; then
     source /usr/share/bash-completion/bash_completion
   elif [[ -r /etc/bash_completion ]]; then
+    # ubuntu 24.04 this sources file above
     source /etc/bash_completion
   fi
 fi
 
-# enable completion for nvm
-[[ -r $NVM_DIR/bash_completion ]] && source "$NVM_DIR/bash_completion"
 
-# http://wp-cli.org/ bash completion
-# if [[ -r $HOME/.config/dotfiles/bash_completion/wp-completion.bash ]]; then
-#   source "$HOME/.config/dotfiles/bash_completion/wp-completion.bash"
-# fi
+# enable bash_completion in local files {{
+
+completion_files=(~/.local/share/bash-completion/completions/*)
+
+for f in "${completion_files[@]}"; do
+  [[ -r $f  ]] && source "$f"
+done
+# }}
 
 # AWS CLI completion
 # http://docs.aws.amazon.com/cli/latest/userguide/cli-command-completion.html
 [[ $(command -v aws_completer) ]] && complete -C aws_completer aws
 
-
-# 2021-12-11 19:24:23 this is symlinked to /etc/bash_completion.d/
-# [[ -r /opt/google-cloud-sdk/completion.bash.inc ]] && source /opt/google-cloud-sdk/completion.bash.inc
-
-# https://pip.pypa.io/en/stable/user_guide/#command-completion
-# specifically for pip command, does not offer completion for pip2 or pip3
-# installed in .local/share/bash-completion/completions/ 2020-10-19 19:20:18
-# [[ $(command -v pip) ]] && eval "$(pip completion --bash)"
-
-# https://docs.npmjs.com/cli/completion {{
-# moved to /etc/bash_completion.d/ via cron job
-# this was not working (2017-02-13) $(npm completion) > /etc/bash_completion.d/
-# TODO: setup in sudo crontab to write to /etc/bash_completion.d/
-# installed in .local/share/bash-completion/completions/ 2020-10-19 19:20:18
-# [[ $(command -v npm) ]] && source <(npm completion)
-# }}
-
-
-# enable completion for pandoc {{
-# TODO: setup in sudo crontab to write to /etc/bash_completion.d/
-# installed in .local/share/bash-completion/completions/ 2020-10-19 19:20:18
-# [[ $(command -v pandoc) ]] && eval "$(pandoc --bash-completion)"
-# }}
-# enable bash_completion in local files {{
-#
-# git completion
+# nvm completion
+[[ -r "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
+# kubectl completion
+[[ $(command -v kubectl) ]] && source <(kubectl completion bash)
+# allow completion to work with alias
+complete -o default -F __start_kubectl k
+# Notes:
+# Create completion files for tools with these commands
+# pip completion --bash
+# npm completion
 # https://github.com/git/git/blob/master/contrib/completion/git-completion.bash
-# if [[ -r $HOME/.config/dotfiles/git-completion.bash ]]; then
-#   source "$HOME/.config/dotfiles/git-completion.bash"
-# fi
-
-completion_files=(~/.config/dotfiles/bash/bash_completion)
-completion_files+=(~/.config/dotfiles/bash/000_bash_completion_compat.bash)
-completion_files+=(~/.local/share/bash-completion/completions/*)
-
-for f in ${completion_files[@]}; do
-  [[ -r $f  ]] && source "$f"
-done
-# }}
+# pandoc --bash-completion
 #}}
 
 # bash functions {{
