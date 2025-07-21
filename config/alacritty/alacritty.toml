@@ -4,6 +4,7 @@ live_config_reload = true
 import = [
   "~/.config/alacritty/colors.toml" ,
   "~/.config/alacritty/font.toml" ,
+  "~/.config/alacritty/os.toml" ,
 ]
 
 [env]
