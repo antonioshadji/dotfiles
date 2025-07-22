@@ -7,9 +7,6 @@ import = [
   "~/.config/alacritty/os.toml" ,
 ]
 
-[env]
-# WINIT_X11_SCALE_FACTOR = "1.0"
-
 [[keyboard.bindings]]
 action = "Paste"
 key = "Paste"
