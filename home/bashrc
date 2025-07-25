@@ -442,7 +442,7 @@ export GIT_AUTHOR_NAME="Antonios Hadjigeorgalis"
 export GIT_COMMITTER_NAME="Antonios Hadjigeorgalis"
 
 case "$HOSTNAME" in
-  hadji)
+  hadji|ubuntu12)
     export GIT_AUTHOR_EMAIL="Antonios@Hadji.co"
     export GIT_COMMITTER_EMAIL="Antonios@Hadji.co"
     ;;
