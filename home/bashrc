@@ -303,6 +303,12 @@ fi
 # dart https://dart.dev/get-dart
 [[ -d /usr/lib/dart ]] && export PATH="$PATH:/usr/lib/dart/bin"
 
+# MacPorts Installer addition on 2019-08-11_at_09:59:35: adding an appropriate PATH variable for use with MacPorts.
+# also set for Linux, use /opt/local instead of /usr/local
+if [[ -d /opt/local ]]; then
+  export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+fi
+
 #}}
 
 
@@ -473,12 +479,6 @@ if [[ $(uname -s) == 'Darwin' ]]; then
   fi
 
   [[ -r "${HOME}/.iterm2_shell_integration.bash" ]] && source "${HOME}/.iterm2_shell_integration.bash"
-
-  # MacPorts Installer addition on 2019-08-11_at_09:59:35: adding an appropriate PATH variable for use with MacPorts.
-  if [[ -d /opt/local ]]; then
-    export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-  fi
-  # Finished adapting your PATH environment variable for use with MacPorts.
 
   if [[ -d /Applications/CMake.app/ ]]; then
     export PATH="${PATH}:/Applications/CMake.app/Contents/bin"
