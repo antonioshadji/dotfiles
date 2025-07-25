@@ -3,6 +3,8 @@
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color#
 
+# init new submodules
+git submodule init
 # Update all submodules to latest master
 git submodule update --remote
 
