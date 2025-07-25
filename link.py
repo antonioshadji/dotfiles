@@ -61,6 +61,7 @@ def linux_home():
 
 
 def linux_config():
+    # TODO: existing actual directory (nvm) causes error in this script
     path = Path("config")
     print(f"Linking {path}")
 
