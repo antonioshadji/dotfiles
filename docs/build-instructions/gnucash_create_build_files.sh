@@ -29,10 +29,6 @@ cmake \
   -D WITH_PYTHON=ON \
   -D WITH_AQBANKING=OFF \
   -D WITH_OFX=OFF \
+  -D CMAKE_INSTALL_PREFIX=/opt \
   -D CMAKE_BUILD_TYPE=RelWithDebInfo \
   ../gnucash
-
-
-# other options
-# -D CMAKE_INSTALL_PREFIX=/opt \
-# -G Ninja
