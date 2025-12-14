@@ -716,3 +716,7 @@ complete -o default -F __start_kubectl k
 # pandoc --bash-completion
 #}}
 
+export OLLAMA_MODELS=/mnt/data/ollama
+export OLLAMA_HOST=$(hostname -I|awk '{print $1}'):11434
+
+export UV_LINK_MODE=copy
