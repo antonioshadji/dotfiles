@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 # xpath
 # /html/body/main/div/a[3]
-
 import os
 import re
 import sys
@@ -23,10 +22,10 @@ def get_content() -> str:
     return tree
 
 
-def find_file(tree, os) -> str:
+def find_file(tree, osname) -> str:
     # /html/body/main/article/div[1]/a[5]
     for link in tree.xpath("/html/body/main/article/div[1]/a"):
-        if os in link.xpath("@href")[0]:
+        if osname in link.xpath("@href")[0]:
             return link.xpath("@href")[0]
 
     return ""
@@ -34,9 +33,10 @@ def find_file(tree, os) -> str:
 
 def main():
     tree = get_content()
-    os = sys.platform
+    osname = sys.platform
     arch = platform.machine()
-    url = find_file(tree, os)
+    print(arch, osname)
+    url = find_file(tree, osname)
     print(url)
 
     fn: LiteralString = cast(
