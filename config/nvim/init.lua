@@ -240,7 +240,7 @@ if !exists('g:autocommands_loaded')
   " html template to start with {
   augroup HTML
     au!
-    au BufNewFile *.html 0r ~/.vim/template/bootstrap.html
+    au BufNewFile *.html 0r ~/.config/nvim/templates/bootstrap.html
   augroup END
   " }
 
