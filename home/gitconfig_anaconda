@@ -1,0 +1,6 @@
+[credential]
+  helper = !aws codecommit credential-helper $@
+  UseHttpPath = true
+[user]
+  email = ahadjigeorgalis@anaconda.com
+  name = Antonios Hadjigeorgalis
