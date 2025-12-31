@@ -2,7 +2,8 @@
 [general]
 live_config_reload = true
 import = [
-  "~/.config/alacritty/colors.toml" ,
+  "~/.config/alacritty/solarized_dark.toml" ,
+  # "~/.config/alacritty/solarized_light.toml",
   "~/.config/alacritty/font.toml" ,
   "~/.config/alacritty/os.toml" ,
 ]
