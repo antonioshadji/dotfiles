@@ -1194,3 +1194,6 @@ detect_folders = []
 
 [custom]
 
+[pixi]
+# default .pixi shows pixi in home directory
+detect_folders = []
