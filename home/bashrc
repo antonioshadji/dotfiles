@@ -434,6 +434,8 @@ if [[ $(uname -s) == Linux ]]; then
   export XDG_DATA_HOME=$HOME/.local/share
   export XDG_CONFIG_HOME=$HOME/.config
   export XDG_CACHE_HOME=$HOME/.cache
+  # uv on machine with logical volumes
+  export UV_LINK_MODE=copy
 fi
 #}}
 
@@ -489,6 +491,9 @@ if [[ $(uname -s) == 'Darwin' ]]; then
 
   completion_files=(~/.config/dotfiles/bash/bash_completion)
   completion_files+=(~/.config/dotfiles/bash/000_bash_completion_compat.bash)
+  if [[ -d /opt/homebrew/etc/bash_completion.d ]]; then
+    completion_files+=(/opt/homebrew/etc/bash_completion.d/*)
+  fi
 
   for f in "${completion_files[@]}"; do
     [[ -r $f  ]] && source "$f"
@@ -527,7 +532,8 @@ fi
 cd () {
   builtin cd "$@" || return
   echo -e "\e]0;$(pwd)\a"
-  # ls -F --color --ignore=lost+found
+  activate
+  # ls -F --color # linux only --ignore=lost+found
 }
 
 # use command -v to find path
@@ -592,6 +598,18 @@ Extract () {
  fi
 }
 
+# Set terminal title to current directory
+set_terminal_title() {
+    # Get the basename of current directory
+    local dir_name="${PWD##*/}"
+    # If in home directory, use ~
+    [[ "$PWD" == "$HOME" ]] && dir_name="~"
+
+    # Set title using OSC escape sequence
+    echo -ne "\033]0;${dir_name}\007"
+}
+starship_precmd_user_func="set_terminal_title"
+
 #}}
 
 # does a bashrc.local exist?
@@ -640,7 +658,8 @@ export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep"
 export AWS_PROFILE=Sandbox-621741996708
 export CLAUDE_CODE_USE_BEDROCK=1
 export AWS_REGION=us-east-1
-export ANTHROPIC_MODEL='us.anthropic.claude-sonnet-4-20250514-v1:0'
+# export ANTHROPIC_MODEL='us.anthropic.claude-sonnet-4-20250514-v1:0'
+export ANTHROPIC_MODEL='us.anthropic.claude-opus-4-5-20251101-v1:0'
 # }}
 
 eval "$(starship init bash)"
@@ -650,8 +669,11 @@ eval "$(fzf --bash)"
 activate() {
   if [[ -n "$1" ]]; then
     conda activate "$1"
-  else
-    [[ -d .venv ]] && source .venv/bin/activate
+  elif [[ -d .venv ]]; then
+    source .venv/bin/activate
+  # TODO: deactivate whene leaving virtual env
+  # elif declare -F deactivate > /dev/null; then
+  #   deactivate
   fi
 }
 
@@ -716,7 +738,7 @@ complete -o default -F __start_kubectl k
 # pandoc --bash-completion
 #}}
 
-export OLLAMA_MODELS=/mnt/data/ollama
+[[ -d /mnt/data/ollama ]] && export OLLAMA_MODELS=/mnt/data/ollama
 export OLLAMA_HOST=$(hostname -I|awk '{print $1}'):11434
 
-export UV_LINK_MODE=copy
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path bash)"
