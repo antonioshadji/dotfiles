@@ -18,9 +18,6 @@ rustup update
 if [[ "$OS" = "Linux" ]]; then
   sudo apt install -y libfontconfig1-dev libx11-xcb-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev
 
-  cargo install alacritty
-  ERR=$?; [[ $ERR != 0 ]] && exit $ERR
-
   # man page
   sudo mkdir -p /usr/local/share/man/man1
   URL=https://raw.githubusercontent.com/alacritty/alacritty/master/extra/alacritty.man
@@ -41,6 +38,9 @@ if [[ "$OS" = "Linux" ]]; then
     sudo update-desktop-database
   fi
 fi
+
+cargo install alacritty
+ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 
 cargo install fd-find
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
@@ -63,5 +63,7 @@ ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 cargo install lsd
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 
-
-
+# 2025-12-30 11:31:51 added
+# https://github.com/spider-rs/spider/blob/main/spider_cli/README.md
+cargo install -F smart spider_cli
+ERR=$?; [[ $ERR != 0 ]] && exit $ERR
