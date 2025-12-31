@@ -65,248 +65,163 @@ vim.opt.completeopt = { "menuone", "noselect", "popup" } -- "fuzzy" "menu"
 vim.opt.number = true
 vim.opt.relativenumber = true
 
-vim.cmd([[
-" Set updatetime for CursorHold
-" 300ms of no cursor movement to trigger CursorHold
-" set updatetime=300
-" Show diagnostic popup on cursor hover
-autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+if vim.fn.has('mac') == 1 then
+  vim.g.netrw_browser_viewer = 'open'
+  -- ('open' for macOS, 'xdg-open' for Linux, 'start' for Windows).
+end
 
-" Goto previous/next diagnostic warning/error
-nnoremap <silent> g[ <cmd>lua vim.diagnostic.goto_prev()<CR>
-nnoremap <silent> g] <cmd>lua vim.diagnostic.goto_next()<CR>
-]])
+
+-- vim.cmd([[
+-- " Set updatetime for CursorHold
+-- " 300ms of no cursor movement to trigger CursorHold
+-- " set updatetime=300
+-- " Show diagnostic popup on cursor hover
+-- " autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+-- 
+-- " Goto previous/next diagnostic warning/error
+-- " nnoremap <silent> g[ <cmd>lua vim.diagnostic.goto_prev()<CR>
+-- " nnoremap <silent> g] <cmd>lua vim.diagnostic.goto_next()<CR>
+-- ]])
 
 -- Keyboard Shortcuts
-vim.cmd([[
-" help abbreviate
-" Abbreviations:
-iabbrev <expr> dts strftime('%F %T')
+-- vim.cmd([[
+-- " help abbreviate
+-- " Abbreviations:
+-- " iabbrev <expr> dts strftime('%F %T')
+-- 
+-- " Mappings:
+-- " When you have a problem about vim mappings.
+-- " Check :verbose inoremap at the first.
+-- " If you know the keys which have problem,
+-- " then do it with specified key, for example :verbose inoremap <esc>.
+-- 
+-- " http://vim.wikia.com/wiki/Avoid_the_escape_key
+-- " ** alt + any key will exit insert mode and execute key action hl jk etc
+-- " <C-c> is an alternative to Esc but does not run autocmd by default
+-- " this mapping makes <C-c> execute Esc so autocmd runs
+-- " imap <C-c> <Esc>
+-- " shift enter works in gvim, not in gnome-terminal
+-- " enter ^M, s-enter ^M, c-enter <NL>
+-- " https://stackoverflow.com/questions/598113/can-terminals-detect-shift-enter-or-control-enter
+-- " imap <S-Enter> <Esc>
+-- " CTRL_J will replace <CR> in insert mode
+-- " imap <CR> <Esc><CR>
+-- 
+-- " leave insert mode when moving between lines
+-- " imap <Up> <Esc><Up>
+-- " imap <Down> <Esc><Down>
+-- 
+-- "http://www.bestofvim.com/tip/leave-ex-mode-good/
+-- " <Nop> is no operation
+-- " map Q q
+-- 
+-- " Easy window navigation
+-- " nnoremap <C-h> <C-w>h
+-- " nnoremap <C-j> <C-w>j
+-- " nnoremap <C-k> <C-w>k
+-- " nnoremap <C-l> <C-w>l
+-- " nnoremap <C-left> <C-w>h
+-- " nnoremap <C-down> <C-w>j
+-- " nnoremap <C-up> <C-w>k
+-- " nnoremap <C-right> <C-w>l
+-- 
+-- " http://vimcasts.org/episodes/how-to-fold/
+-- " use space bar in normal mode to toggle folds
+-- " TODO: is there a better use for space bar?
+-- " nnoremap <Space> za
+-- "
+-- " This unsets the 'last search pattern' register by hitting return
+-- " http://stackoverflow.com/a/662914/2472798
+-- " nnoremap <silent> <CR> :noh<CR>
+-- 
+-- " http://www.jovicailic.org/2015/05/saving-read-only-files-in-vim-sudo-trick/
+-- " http://www.geekyboy.com/archives/629
+-- " http://vim.wikia.com/wiki/Multiple_commands_at_once
+-- " cmap w!! w !sudo tee %
+-- " vertical terminal
+-- " cmap vt vert terminal
+-- " terminal in new tab
+-- " issues when using search replace
+-- " cmap tt tab terminal
+-- 
+-- "from defaults.vim
+-- " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
+-- " so that you can undo CTRL-U after inserting a line break.
+-- " Revert with ":iunmap <C-U>".
+-- " TODO: verify if this is needed
+-- " inoremap <C-U> <C-G>u<C-U>
+-- 
+-- " workaround for netrw bug  :help netrw-debug
+-- " https://github.com/vim/vim/issues/4738#issuecomment-521506447
+-- " https://github.com/vim/vim/issues/4738#issuecomment-565330300
+-- " TODO: verify if this is needed
+-- " let g:netrw_nogx=1
+-- " TODO: this only works on linux!!
+-- " nmap gx yiW:!xdg-open <cWORD><CR> <C-r>" & <CR><CR>
+-- ]])
 
-" Mappings:
-" When you have a problem about vim mappings.
-" Check :verbose inoremap at the first.
-" If you know the keys which have problem,
-" then do it with specified key, for example :verbose inoremap <esc>.
-
-" http://vim.wikia.com/wiki/Avoid_the_escape_key
-" ** alt + any key will exit insert mode and execute key action hl jk etc
-" <C-c> is an alternative to Esc but does not run autocmd by default
-" this mapping makes <C-c> execute Esc so autocmd runs
-imap <C-c> <Esc>
-" shift enter works in gvim, not in gnome-terminal
-" enter ^M, s-enter ^M, c-enter <NL>
-" https://stackoverflow.com/questions/598113/can-terminals-detect-shift-enter-or-control-enter
-" imap <S-Enter> <Esc>
-" CTRL_J will replace <CR> in insert mode
-" imap <CR> <Esc><CR>
-
-" leave insert mode when moving between lines
-imap <Up> <Esc><Up>
-imap <Down> <Esc><Down>
-
-"http://www.bestofvim.com/tip/leave-ex-mode-good/
-" <Nop> is no operation
-map Q q
-
-" Easy window navigation
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-nnoremap <C-left> <C-w>h
-nnoremap <C-down> <C-w>j
-nnoremap <C-up> <C-w>k
-nnoremap <C-right> <C-w>l
-
-" http://vimcasts.org/episodes/how-to-fold/
-" use space bar in normal mode to toggle folds
-" TODO: is there a better use for space bar?
-" nnoremap <Space> za
-"
-" This unsets the 'last search pattern' register by hitting return
-" http://stackoverflow.com/a/662914/2472798
-nnoremap <silent> <CR> :noh<CR>
-
-" http://www.jovicailic.org/2015/05/saving-read-only-files-in-vim-sudo-trick/
-" http://www.geekyboy.com/archives/629
-" http://vim.wikia.com/wiki/Multiple_commands_at_once
-cmap w!! w !sudo tee %
-" vertical terminal
-" cmap vt vert terminal
-" terminal in new tab
-" issues when using search replace
-" cmap tt tab terminal
-
-"from defaults.vim
-" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
-" so that you can undo CTRL-U after inserting a line break.
-" Revert with ":iunmap <C-U>".
-" TODO: verify if this is needed
-" inoremap <C-U> <C-G>u<C-U>
-
-" workaround for netrw bug  :help netrw-debug
-" https://github.com/vim/vim/issues/4738#issuecomment-521506447
-" https://github.com/vim/vim/issues/4738#issuecomment-565330300
-" TODO: verify if this is needed
-" let g:netrw_nogx=1
-" TODO: this only works on linux!!
-nmap gx yiW:!xdg-open <cWORD><CR> <C-r>" & <CR><CR>
-]])
-
--- for Terminal windows  (double square brackets do not require extra escaping)
-vim.api.nvim_set_keymap("t", "<Esc>", [[<C-\><C-n>]], { noremap = true })
-vim.api.nvim_set_keymap("t", "<C-h>", [[<C-\><C-n><C-w>h]], { noremap = true })
-vim.api.nvim_set_keymap("t", "<C-j>", [[<C-\><C-n><C-w>j]], { noremap = true })
-vim.api.nvim_set_keymap("t", "<C-k>", [[<C-\><C-n><C-w>k]], { noremap = true })
-vim.api.nvim_set_keymap("t", "<C-l>", [[<C-\><C-n><C-w>l]], { noremap = true })
-
--- Limelight let g:limelight_conceal_ctermfg = 'darkgray'
-vim.g.limelight_conceal_ctermfg = 237
-
--- Auto Commands
-vim.cmd([[
-if !exists('g:autocommands_loaded')
-  let g:autocommands_loaded = 1
-
-  augroup VIM
-    au!
-    " Close preview window when complete {
-    " http://stackoverflow.com/a/26022965/2472798
-    " autocmd CompleteDone * pclose
-    " }
-    " write file when leaving insert mode if changes have been made {
-    " http://www.reddit.com/r/vim/comments/232j45/save_file_on_insert_mode_exit/
-    " autocmd InsertLeave * :silent! update
-    "}
-    " save on FocusLost {
-    " http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
-    " no longer working on ubuntu 18.04
-    " autocmd FocusLost * :wa
-    " autocmd FocusLost * silent! wa
-    " }
-
-    " automatically resize windows on vim resize {
-    " autocmd VimResized * :wincmd =
-    "}
-    "
-    " jump to last known cursor position {
-    " When editing a file, always jump to the last known cursor position.
-    " Don't do it when the position is invalid or when inside an event handler
-    " (happens when dropping a file on gvim).
-    " autocmd BufReadPost *
-    "       \ if line("'\"") >= 1 && line("'\"") <= line("$") |
-    "       \   exe "normal! g`\"" |
-    "       \ endif
-    "}
-
-    " set title bar to file location {
-    " autocmd BufEnter * let &titlestring = hostname() . "[vim(" . expand("%:t") . ")]"
-    " }
-
-  augroup END
-  " Git autocmd {
-  " Instead of reverting the cursor to the last position in the buffer, we
-  " set it to the first line when editing a git commit message
-  augroup GIT
-    au!
-    autocmd FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
-    " https://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message
-    autocmd Filetype gitcommit setlocal spell textwidth=72
-  augroup END
-  "}
-
-  " http://vim.wikia.com/wiki/Shebang_line_automatically_generated {
-  augroup Shebang
-    au!
-    autocmd BufNewFile *.sh 0put =\"#!/usr/bin/env bash\<nl># -*- coding: utf-8 -*-\<nl>\"|$
-  augroup END
-  " }
-
-  " md is markdown > use pandoc filetype {
-  augroup PANDOC
-    au!
-    " Enable spellchecking for Markdown
-    autocmd FileType pandoc setlocal spell spelllang=en_us wrap linebreak
-    autocmd FileType pandoc setlocal tabstop=4
-    autocmd FileType pandoc setlocal shiftwidth=4
-    autocmd FileType pandoc setlocal softtabstop=4
-    autocmd FileType pandoc let b:ale_fix_on_save = 0
-    " call local function to update line begining with last modified
-    " autocmd BufWritePre *.md,*.markdown,*.mkd :call LastModified()
-  augroup END
-  " }
-
-  " html template to start with {
-  augroup HTML
-    au!
-    au BufNewFile *.html 0r ~/.config/nvim/templates/bootstrap.html
-  augroup END
-  " }
-
-endif
-
-" end Auto Commands: }
-]])
 
 -- Custom commands & functions
-vim.cmd([[
-" Update Last Modified line when editing pandoc {
-" If buffer modified, update any 'modified: ' in the first 20 lines
-" 'modified: ' can have up to 10 characters before (they are retained).
-" Restores cursor and window position using save_cursor variable.
-" vim magic on by default - all lower case matches any case
-" . concatenates without a space between
-" getftime returns modified time of file name
-" @% returns active buffer file name
-function! LastModified()
-  " comment out &modified if using getftime()
-  "  if &modified
-  let save_cursor = getpos('.')
-  " minimum of 20 lines or file length
-  let n = min([20, line('$')])
-  " requires space after modified:
-  keepjump execute '1,' . n . 's#^\(.\{,10}modified: \).*#\1' .
-        \ strftime('%c') . '#e'
-  call histdel('search', -1)
-  call setpos('.', save_cursor)
-  echom 'updated last modified date'
-  "  endif
-endfunction
-"}
-" Searching with RipGrep {
-" https://robots.thoughtbot.com/faster-grepping-in-vim#override-to-use-the-silver-searcher
-" https://github.com/ggreer/the_silver_searcher
-if executable('rg')
-  " use rg instead of silver searcher
-  set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
-  set grepformat="%f:%l:%c:%m"
-endif
-"}
-" Start/Stop nginx webserver in current pwd {
-" https://hub.docker.com/_/nginx/
-command! StartWebServer !docker run -d --name $(basename $(pwd)) -v $(pwd):/usr/share/nginx/html:ro -p 8080:80 nginx
-function WebServerStop()
-  let id = system('docker ps --filter ancestor=nginx -q')
-  let cmd = system('docker stop ' . id)
-endfunction
-command! StopWebServer call WebServerStop()
-"}
-
-" https://vi.stackexchange.com/questions/454/whats-the-simplest-way-to-strip-trailing-whitespace-from-all-lines-in-a-file
-" https://bitbucket.org/Carpetsmoker/sanitize_files/src
-" function TrimWhiteSpace()
-"     let l:save_cursor = getpos('.')
-"     %s/\s\+$//e
-"     call setpos('.', l:save_cursor)
-" endfunction
-" command! WhiteSpaceRemove :call TrimWhiteSpace()
-" 2020-06-17 15:44:16 replaced with ale '*': ['remove_trailing_lines', 'trim_whitespace']
-
-" http://dustinmartin.net/format-json-in-vim/
-command! FormatJSON %!python3 -m json.tool
-
-]])
+-- vim.cmd([[
+-- " Update Last Modified line when editing pandoc {
+-- " If buffer modified, update any 'modified: ' in the first 20 lines
+-- " 'modified: ' can have up to 10 characters before (they are retained).
+-- " Restores cursor and window position using save_cursor variable.
+-- " vim magic on by default - all lower case matches any case
+-- " . concatenates without a space between
+-- " getftime returns modified time of file name
+-- " @% returns active buffer file name
+-- " function! LastModified()
+-- "   " comment out &modified if using getftime()
+-- "   "  if &modified
+-- "   let save_cursor = getpos('.')
+-- "   " minimum of 20 lines or file length
+-- "   let n = min([20, line('$')])
+-- "   " requires space after modified:
+-- "   keepjump execute '1,' . n . 's#^\(.\{,10}modified: \).*#\1' .
+-- "         \ strftime('%c') . '#e'
+-- "   call histdel('search', -1)
+-- "   call setpos('.', save_cursor)
+-- "   echom 'updated last modified date'
+-- "   "  endif
+-- " endfunction
+-- "}
+-- " DEPRECATED: use telescope live grep
+-- " Searching with RipGrep {
+-- " https://robots.thoughtbot.com/faster-grepping-in-vim#override-to-use-the-silver-searcher
+-- " https://github.com/ggreer/the_silver_searcher
+-- " if executable('rg')
+-- "   " use rg instead of silver searcher
+-- "   set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+-- "   set grepformat="%f:%l:%c:%m"
+-- " endif
+-- "}
+-- " DEPRECATED: use Justfile for start/stop webserver
+-- " Start/Stop nginx webserver in current pwd {
+-- " https://hub.docker.com/_/nginx/
+-- " command! StartWebServer !docker run -d --name $(basename $(pwd)) -v $(pwd):/usr/share/nginx/html:ro -p 8080:80 nginx
+-- " function WebServerStop()
+-- "   let id = system('docker ps --filter ancestor=nginx -q')
+-- "   let cmd = system('docker stop ' . id)
+-- " endfunction
+-- " command! StopWebServer call WebServerStop()
+-- "}
+-- 
+-- " https://vi.stackexchange.com/questions/454/whats-the-simplest-way-to-strip-trailing-whitespace-from-all-lines-in-a-file
+-- " https://bitbucket.org/Carpetsmoker/sanitize_files/src
+-- " function TrimWhiteSpace()
+-- "     let l:save_cursor = getpos('.')
+-- "     %s/\s\+$//e
+-- "     call setpos('.', l:save_cursor)
+-- " endfunction
+-- " command! WhiteSpaceRemove :call TrimWhiteSpace()
+-- " 2020-06-17 15:44:16 replaced with ale '*': ['remove_trailing_lines', 'trim_whitespace']
+-- 
+-- " Use jq instead
+-- " http://dustinmartin.net/format-json-in-vim/
+-- " command! FormatJSON %!python3 -m json.tool
+-- 
+-- ]])
 -- Plugins
 
 -- vim.cmd([[
@@ -327,21 +242,24 @@ command! FormatJSON %!python3 -m json.tool
 -- as found in :help lsp
 -- This line below breaks the help file navigation
 -- nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-vim.cmd([[
-nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
-]])
+-- vim.cmd([[
+-- nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+-- nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+-- nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+-- nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+-- nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+-- nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+-- nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+-- nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+-- ]])
 
 -- Quick-fix
-vim.cmd([[
-nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
-]])
+-- vim.cmd([[
+-- nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
+-- ]])
+
+-- Limelight let g:limelight_conceal_ctermfg = 'darkgray'
+vim.g.limelight_conceal_ctermfg = 237
 
 vim.opt.omnifunc = "v:lua.vim.lsp.omnifunc"
 
@@ -408,13 +326,6 @@ vim.lsp.enable({
   "dockerls",
 })
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.go",
-  callback = function()
-    require("go.format").gofmt()
-  end,
-  group = vim.api.nvim_create_augroup("GoFormat", {}),
-})
 
 require("nvim-treesitter.configs").setup({
   -- missing-fields error in lsp without this
@@ -521,7 +432,27 @@ require("colorizer").setup(
   { mode = "foreground" }
 )
 
-vim.cmd([[
-" must run this command when new plugins installed or no help available
-helptags ALL
-]])
+require('autocmds')
+require('keymaps')
+-- Load telescope setup first
+require('plugins.telescope')
+-- Then load keymaps (requires telescope to be setup)
+require('config.telescope_keys')
+
+-- ## Alternative: Even More Modular
+--
+-- If you have many plugins, you could go further:
+--
+-- lua/
+-- ├── core/
+-- │   └── keymaps.lua           # All global keymaps
+-- ├── plugins/
+-- │   ├── telescope.lua
+-- │   ├── lsp.lua
+-- │   └── treesitter.lua
+-- └── config/
+--     ├── telescope/
+--     │   ├── setup.lua         # Telescope setup
+--     │   ├── keymaps.lua       # Telescope keymaps
+--     │   └── pickers.lua       # Custom picker functions
+--     └── options.lua           # Vim options
