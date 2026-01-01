@@ -532,7 +532,7 @@ fi
 cd () {
   builtin cd "$@" || return
   echo -e "\e]0;$(pwd)\a"
-  activate
+  activate "$@"
   # ls -F --color # linux only --ignore=lost+found
 }
 
@@ -608,7 +608,7 @@ set_terminal_title() {
     # Set title using OSC escape sequence
     echo -ne "\033]0;${dir_name}\007"
 }
-starship_precmd_user_func="set_terminal_title"
+export starship_precmd_user_func="set_terminal_title"
 
 #}}
 
@@ -682,7 +682,7 @@ _activate_function_completion() {
     local cur prev words cword
     _init_completion || return
 
-    COMPREPLY=($(compgen -d -- "$cur"))
+    mapfile -t COMPREPLY < <(compgen -d -- "$cur")
 }
 
 # Associate the completion function with your custom function
@@ -739,6 +739,11 @@ complete -o default -F __start_kubectl k
 #}}
 
 [[ -d /mnt/data/ollama ]] && export OLLAMA_MODELS=/mnt/data/ollama
-export OLLAMA_HOST=$(hostname -I|awk '{print $1}'):11434
+HOST_IP="$(hostname -I|awk '{print $1}')"
+export OLLAMA_HOST="${HOST_IP}:11434"
 
+# this is standard add from kiro install.  && returns false (failure code)
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path bash)"
+
+# : is bash builtin that does nothing and always returns 0
+:
