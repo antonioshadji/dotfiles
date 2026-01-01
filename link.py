@@ -80,9 +80,11 @@ def linux_config():
 
     alacritty_config()
 
+
 def alacritty_config():
     # TODO: symlink linux or macos to os.toml
     pass
+
 
 if __name__ == "__main__":
     if platform.system() == "Linux":

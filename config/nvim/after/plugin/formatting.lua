@@ -1,4 +1,4 @@
--- Safely try to require conform. 
+-- Safely try to require conform.
 -- This prevents Neovim from crashing if you haven't cloned the repo yet.
 local status, conform = pcall(require, "conform")
 if not status then
