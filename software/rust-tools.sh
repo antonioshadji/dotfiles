@@ -67,3 +67,7 @@ ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 # https://github.com/spider-rs/spider/blob/main/spider_cli/README.md
 cargo install -F smart spider_cli
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
+
+# 2026-01-01 12:26:35 Thursday added
+cargo install taplo-cli
+ERR=$?; [[ $ERR != 0 ]] && exit $ERR

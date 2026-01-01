@@ -20,6 +20,7 @@ npm install -g bash-language-server
 npm install -g pdfkit
 npm install -g puppeteer
 npm install -g @google/gemini-cli
+npm install -g @anthropic-ai/claude-code
 npm install -g wrangler  # cloudflare
 
 npm -g list --depth 0
