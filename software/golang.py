@@ -7,6 +7,7 @@ import platform
 import subprocess
 import sys
 from getpass import getpass
+from pathlib import Path
 from typing import LiteralString, cast
 
 import httpx
@@ -44,9 +45,76 @@ def find_file(tree) -> str:
     return ""
 
 
-def mac_install(fn: LiteralString) -> None:
-    """Not Implemented"""
-    print(fn)
+def mac_install(fn: LiteralString) -> subprocess.CompletedProcess:
+    """
+    Install a macOS .pkg file with sudo privileges.
+
+    Args:
+        fn: Path to the .pkg file
+
+    Returns:
+        subprocess.CompletedProcess object with returncode, stdout, stderr
+
+    Raises:
+        FileNotFoundError: If the .pkg file doesn't exist
+        ValueError: If filename doesn't end with .pkg
+        RuntimeError: If not running on macOS
+
+    macOS installer requires target parameter
+        target: Target volume (default: "/" for root volume)
+
+    This function written by Claude
+    """
+    target = "/"
+    # Validate the package file
+    pkg_path = Path(fn)
+
+    if not pkg_path.exists():
+        raise FileNotFoundError(f"Package file not found: {fn}")
+
+    if not pkg_path.suffix.lower() == ".pkg":
+        raise ValueError(f"File must be a .pkg file: {fn}")
+
+    # Prompt for sudo password
+    print(f"Installing {pkg_path.name}...")
+    sudo_password = getpass("sudo password: ")
+
+    # Build the installer command
+    cmd = [
+        "sudo",
+        "-S",
+        "installer",
+        "-pkg",
+        str(pkg_path.absolute()),
+        "-target",
+        target,
+    ]
+
+    # Run the installer
+    try:
+        proc = subprocess.run(
+            cmd,
+            input=sudo_password + "\n",
+            capture_output=True,
+            encoding="ascii",
+            text=True,
+        )
+
+        # Print output for user feedback
+        if proc.stdout:
+            print(proc.stdout)
+
+        if proc.returncode != 0:
+            print(f"Installation failed with return code {proc.returncode}")
+            if proc.stderr:
+                print(f"Error: {proc.stderr}")
+        else:
+            print(f"Successfully installed {pkg_path.name}")
+
+        return proc
+
+    except Exception as e:
+        raise RuntimeError(f"Failed to run installer: {e}")
 
 
 def linux_install(fn: LiteralString) -> None:
