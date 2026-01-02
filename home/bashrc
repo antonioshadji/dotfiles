@@ -207,7 +207,7 @@ fi
 # if [[ -r $HOME/.config/dotfiles/bash-git-prompt/gitprompt.sh ]]; then
 #   # Set config variables first
 #   export GIT_PROMPT_ONLY_IN_REPO=0
-# 
+#
 #   # GIT_PROMPT_FETCH_REMOTE_STATUS=0   # uncomment to avoid fetching remote status
 #   export GIT_PROMPT_IGNORE_SUBMODULES=1 # uncomment to avoid searching for changed files in submodules
 #   # GIT_PROMPT_WITH_VIRTUAL_ENV=0 # uncomment to avoid setting virtual environment infos for node/python/conda environments
@@ -217,7 +217,7 @@ fi
 #   # GIT_PROMPT_STATUS_COMMAND=gitstatus_pre-1.7.10.sh # uncomment to support Git older than 1.7.10
 #   export GIT_PROMPT_START="_LAST_COMMAND_INDICATOR_ ${blue}${HOSTNAME%%.*}:${yellow}\w${Reset}"
 #   # GIT_PROMPT_END=...      # uncomment for custom prompt end sequence
-# 
+#
 #   # as last entry source the gitprompt script
 #   # GIT_PROMPT_THEME=Custom # use custom theme specified in file GIT_PROMPT_THEME_FILE (default ~/.git-prompt-colors.sh)
 #   # GIT_PROMPT_THEME_FILE=~/.git-prompt-colors.sh
@@ -428,16 +428,6 @@ export PATH=$JAVA_HOME/bin:$PATH
 # alias javac=javac-algs4
 # }}
 
-# freedesktop.org Environment Variables {{
-# https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html#variables
-if [[ $(uname -s) == Linux ]]; then
-  export XDG_DATA_HOME=$HOME/.local/share
-  export XDG_CONFIG_HOME=$HOME/.config
-  export XDG_CACHE_HOME=$HOME/.cache
-  # uv on machine with logical volumes
-  export UV_LINK_MODE=copy
-fi
-#}}
 
 # Launchpad setup {{
 export UBUMAIL="Antonios Hadjigeorgalis <Antonios@Hadji.co>"
@@ -738,9 +728,18 @@ complete -o default -F __start_kubectl k
 # pandoc --bash-completion
 #}}
 
-[[ -d /mnt/data/ollama ]] && export OLLAMA_MODELS=/mnt/data/ollama
-HOST_IP="$(hostname -I|awk '{print $1}')"
-export OLLAMA_HOST="${HOST_IP}:11434"
+# Linux specific config {{
+if [[ $(uname -s) == Linux ]]; then
+  # https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html#variables
+  export XDG_DATA_HOME=$HOME/.local/share
+  export XDG_CONFIG_HOME=$HOME/.config
+  export XDG_CACHE_HOME=$HOME/.cache
+  # uv on machine with logical volumes
+  export UV_LINK_MODE=copy
+  [[ -d /mnt/data/ollama ]] && export OLLAMA_MODELS=/mnt/data/ollama
+  export OLLAMA_HOST=$(hostname -I|awk '{print $1}'):11434
+fi
+#}}
 
 # this is standard add from kiro install.  && returns false (failure code)
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path bash)"
