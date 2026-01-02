@@ -3,59 +3,58 @@
 # xpath
 # /html/body/main/div/a[3]
 import os
-import re
-import sys
 import platform
 import subprocess
+import sys
 from getpass import getpass
 from typing import LiteralString, cast
 
-import requests
+import httpx
 from lxml import html
 
 BASE = "https://go.dev"
+client = httpx.Client(follow_redirects=True)
 
 
 def get_content() -> str:
-    r = requests.get(BASE + "/dl/")
+    r = client.get(f"{BASE}/dl/")
     tree = html.fromstring(r.content)
     return tree
 
 
-def find_file(tree, osname) -> str:
+def construct_file_specifier():
+    osname = sys.platform
+    arch = platform.machine()
+    specifier = f"{osname}-{arch}"
+
+    if specifier != "linux-amd64":
+        print(f"This script only works for {specifier} at this time.")
+        exit()
+
+    return specifier
+
+
+def find_file(tree) -> str:
+    file_specifier = construct_file_specifier()
     # /html/body/main/article/div[1]/a[5]
     for link in tree.xpath("/html/body/main/article/div[1]/a"):
-        if osname in link.xpath("@href")[0]:
+        if file_specifier in link.xpath("@href")[0]:
             return link.xpath("@href")[0]
 
     return ""
 
 
-def main():
-    tree = get_content()
-    osname = sys.platform
-    arch = platform.machine()
-    print(arch, osname)
-    url = find_file(tree, osname)
-    print(url)
+def mac_install(fn: LiteralString) -> None:
+    """Not Implemented"""
+    print(fn)
 
-    fn: LiteralString = cast(
-        LiteralString, url.split("/")[-1]
-    )  # this is one way to fix typing error, TODO: how to disable for all servers?
-    if not re.match(r"go1.*linux-amd64.tar.gz", fn):
-        print(f"Filename {fn} does not match expected pattern.")
-        exit(1)
 
-    r = requests.get(BASE + url, allow_redirects=True)
-    open(fn, "wb").write(r.content)
-
-    cmd0 = "sudo rm -rf /opt/go".split()
+def linux_install(fn: LiteralString) -> None:
+    cmd0 = "sudo mv /opt/go /opt/go_old".split()
     cmd1 = "sudo tar -C /opt -xzf".split()
     cmd1.append(fn)
 
     pw = getpass("sudo password: ")
-
-    subprocess.run(["go", "version"])
 
     proc = subprocess.run(cmd0, capture_output=True, input=pw, encoding="ascii")
     print(proc)
@@ -63,6 +62,30 @@ def main():
         proc = subprocess.run(cmd1, capture_output=True, input=pw, encoding="ascii")
         print(proc)
         os.remove(fn)
+
+
+def execute_installer(fn: LiteralString) -> None:
+    if construct_file_specifier() == "linux-amd64":
+        linux_install(fn)
+    else:
+        mac_install(fn)
+
+
+def main():
+    tree = get_content()
+    url = find_file(tree)
+    print(url)
+
+    fn: LiteralString = cast(
+        LiteralString, url.split("/")[-1]
+    )  # this is one way to fix typing error, TODO: how to disable for all servers?
+
+    r = client.get(f"{BASE}url")
+    open(fn, "wb").write(r.content)
+
+    subprocess.run(["go", "version"])
+
+    execute_installer(fn)
 
     subprocess.run(["go", "version"])
 
