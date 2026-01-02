@@ -522,7 +522,7 @@ fi
 cd () {
   builtin cd "$@" || return
   echo -e "\e]0;$(pwd)\a"
-  activate "$@"
+  activate
   # ls -F --color # linux only --ignore=lost+found
 }
 
@@ -656,6 +656,7 @@ eval "$(starship init bash)"
 eval "$(fzf --bash)"
 
 # activate python environments {{
+# shellcheck disable=SC2120
 activate() {
   if [[ -n "$1" ]]; then
     conda activate "$1"
@@ -669,7 +670,7 @@ activate() {
 
 # Define the completion function
 _activate_function_completion() {
-    local cur prev words cword
+    local cur # prev words cword
     _init_completion || return
 
     mapfile -t COMPREPLY < <(compgen -d -- "$cur")
@@ -737,7 +738,8 @@ if [[ $(uname -s) == Linux ]]; then
   # uv on machine with logical volumes
   export UV_LINK_MODE=copy
   [[ -d /mnt/data/ollama ]] && export OLLAMA_MODELS=/mnt/data/ollama
-  export OLLAMA_HOST=$(hostname -I|awk '{print $1}'):11434
+  HOST_IP="$(hostname -I|awk '{print $1}')"
+  export OLLAMA_HOST="${HOST_IP}:11434"
 fi
 #}}
 
