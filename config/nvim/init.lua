@@ -65,11 +65,10 @@ vim.opt.completeopt = { "menuone", "noselect", "popup" } -- "fuzzy" "menu"
 vim.opt.number = true
 vim.opt.relativenumber = true
 
-if vim.fn.has('mac') == 1 then
-  vim.g.netrw_browser_viewer = 'open'
+if vim.fn.has("mac") == 1 then
+  vim.g.netrw_browser_viewer = "open"
   -- ('open' for macOS, 'xdg-open' for Linux, 'start' for Windows).
 end
-
 
 -- vim.cmd([[
 -- " Set updatetime for CursorHold
@@ -77,7 +76,7 @@ end
 -- " set updatetime=300
 -- " Show diagnostic popup on cursor hover
 -- " autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
--- 
+--
 -- " Goto previous/next diagnostic warning/error
 -- " nnoremap <silent> g[ <cmd>lua vim.diagnostic.goto_prev()<CR>
 -- " nnoremap <silent> g] <cmd>lua vim.diagnostic.goto_next()<CR>
@@ -88,13 +87,13 @@ end
 -- " help abbreviate
 -- " Abbreviations:
 -- " iabbrev <expr> dts strftime('%F %T')
--- 
+--
 -- " Mappings:
 -- " When you have a problem about vim mappings.
 -- " Check :verbose inoremap at the first.
 -- " If you know the keys which have problem,
 -- " then do it with specified key, for example :verbose inoremap <esc>.
--- 
+--
 -- " http://vim.wikia.com/wiki/Avoid_the_escape_key
 -- " ** alt + any key will exit insert mode and execute key action hl jk etc
 -- " <C-c> is an alternative to Esc but does not run autocmd by default
@@ -106,15 +105,15 @@ end
 -- " imap <S-Enter> <Esc>
 -- " CTRL_J will replace <CR> in insert mode
 -- " imap <CR> <Esc><CR>
--- 
+--
 -- " leave insert mode when moving between lines
 -- " imap <Up> <Esc><Up>
 -- " imap <Down> <Esc><Down>
--- 
+--
 -- "http://www.bestofvim.com/tip/leave-ex-mode-good/
 -- " <Nop> is no operation
 -- " map Q q
--- 
+--
 -- " Easy window navigation
 -- " nnoremap <C-h> <C-w>h
 -- " nnoremap <C-j> <C-w>j
@@ -124,7 +123,7 @@ end
 -- " nnoremap <C-down> <C-w>j
 -- " nnoremap <C-up> <C-w>k
 -- " nnoremap <C-right> <C-w>l
--- 
+--
 -- " http://vimcasts.org/episodes/how-to-fold/
 -- " use space bar in normal mode to toggle folds
 -- " TODO: is there a better use for space bar?
@@ -133,7 +132,7 @@ end
 -- " This unsets the 'last search pattern' register by hitting return
 -- " http://stackoverflow.com/a/662914/2472798
 -- " nnoremap <silent> <CR> :noh<CR>
--- 
+--
 -- " http://www.jovicailic.org/2015/05/saving-read-only-files-in-vim-sudo-trick/
 -- " http://www.geekyboy.com/archives/629
 -- " http://vim.wikia.com/wiki/Multiple_commands_at_once
@@ -143,14 +142,14 @@ end
 -- " terminal in new tab
 -- " issues when using search replace
 -- " cmap tt tab terminal
--- 
+--
 -- "from defaults.vim
 -- " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 -- " so that you can undo CTRL-U after inserting a line break.
 -- " Revert with ":iunmap <C-U>".
 -- " TODO: verify if this is needed
 -- " inoremap <C-U> <C-G>u<C-U>
--- 
+--
 -- " workaround for netrw bug  :help netrw-debug
 -- " https://github.com/vim/vim/issues/4738#issuecomment-521506447
 -- " https://github.com/vim/vim/issues/4738#issuecomment-565330300
@@ -159,7 +158,6 @@ end
 -- " TODO: this only works on linux!!
 -- " nmap gx yiW:!xdg-open <cWORD><CR> <C-r>" & <CR><CR>
 -- ]])
-
 
 -- Custom commands & functions
 -- vim.cmd([[
@@ -206,7 +204,7 @@ end
 -- " endfunction
 -- " command! StopWebServer call WebServerStop()
 -- "}
--- 
+--
 -- " https://vi.stackexchange.com/questions/454/whats-the-simplest-way-to-strip-trailing-whitespace-from-all-lines-in-a-file
 -- " https://bitbucket.org/Carpetsmoker/sanitize_files/src
 -- " function TrimWhiteSpace()
@@ -216,11 +214,11 @@ end
 -- " endfunction
 -- " command! WhiteSpaceRemove :call TrimWhiteSpace()
 -- " 2020-06-17 15:44:16 replaced with ale '*': ['remove_trailing_lines', 'trim_whitespace']
--- 
+--
 -- " Use jq instead
 -- " http://dustinmartin.net/format-json-in-vim/
 -- " command! FormatJSON %!python3 -m json.tool
--- 
+--
 -- ]])
 -- Plugins
 
@@ -325,7 +323,6 @@ vim.lsp.enable({
   "clangd",
   "dockerls",
 })
-
 
 require("nvim-treesitter.configs").setup({
   -- missing-fields error in lsp without this
@@ -432,12 +429,12 @@ require("colorizer").setup(
   { mode = "foreground" }
 )
 
-require('autocmds')
-require('keymaps')
+require("autocmds")
+require("keymaps")
 -- Load telescope setup first
-require('plugins.telescope')
+require("plugins.telescope")
 -- Then load keymaps (requires telescope to be setup)
-require('config.telescope_keys')
+require("plugins.telescope_keys")
 
 -- ## Alternative: Even More Modular
 --
