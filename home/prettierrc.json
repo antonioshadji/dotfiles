@@ -1,0 +1,10 @@
+{
+  "overrides": [
+    {
+      "files": ".condarc",
+      "options": {
+        "parser": "yaml"
+      }
+    }
+  ]
+}
