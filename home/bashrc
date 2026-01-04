@@ -746,5 +746,11 @@ fi
 # this is standard add from kiro install.  && returns false (failure code)
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path bash)"
 
+if [[ -d $HOME/.bun ]]; then
+  # bun
+  export BUN_INSTALL="$HOME/.bun"
+  export PATH="$BUN_INSTALL/bin:$PATH"
+fi
+
 # : is bash builtin that does nothing and always returns 0
 :
