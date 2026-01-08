@@ -405,8 +405,16 @@ vim.opt.foldlevel = 99
 vim.opt.termguicolors = true
 vim.cmd.colorscheme("solarized_lua")
 
+-- Set leader keys (must be set before any keymaps)
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+require("keymaps")
+require("autocmds")
 -- script to reset cursor to last position on last save
 require("lastplace")
+-- daily note configuration
+require("dailynotes")
 
 require("lualine").setup({ options = { theme = "powerline" } })
 require("nvim-tmux-navigation").setup({
@@ -429,8 +437,6 @@ require("colorizer").setup(
   { mode = "foreground" }
 )
 
-require("autocmds")
-require("keymaps")
 -- Load telescope setup first
 require("plugins.telescope")
 -- Then load keymaps (requires telescope to be setup)
