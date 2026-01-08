@@ -646,8 +646,9 @@ export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep"
 
 # Anaconda claude code setup {{
 export AWS_PROFILE=Sandbox-621741996708
-export CLAUDE_CODE_USE_BEDROCK=1
 export AWS_REGION=us-east-1
+export BEDROCK_AWS_REGION=$AWS_REGION
+export CLAUDE_CODE_USE_BEDROCK=1
 # export ANTHROPIC_MODEL='us.anthropic.claude-sonnet-4-20250514-v1:0'
 export ANTHROPIC_MODEL='us.anthropic.claude-opus-4-5-20251101-v1:0'
 # }}
