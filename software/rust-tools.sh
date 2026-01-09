@@ -71,3 +71,7 @@ ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 # 2026-01-01 12:26:35 Thursday added
 cargo install taplo-cli
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
+
+# 2026-01-08 17:44:26 Thursday  added recommended by Anaconda Engineering
+cargo install bat
+ERR=$?; [[ $ERR != 0 ]] && exit $ERR
