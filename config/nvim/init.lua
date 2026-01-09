@@ -1,6 +1,8 @@
 -- good example init fsiles
 -- https://github.com/potamides/dotfiles
-
+if vim.g.vscode then
+  return
+end
 -- remove dependence on vim plugins 2024-03-26 13:26:40
 -- vim.opt.runtimepath:prepend(vim.env.HOME .. "/.vim")
 vim.opt.packpath = vim.opt.runtimepath:get()
