@@ -53,18 +53,6 @@ vim.api.nvim_create_autocmd("BufNewFile", {
   end,
 })
 
-local function LastModified()
-  local save_cursor = vim.fn.getpos(".")
-  local n = math.min(20, vim.fn.line("$"))
-
-  -- Execute the substitution command
-  vim.cmd(string.format("keepjump 1,%d s#^\\(.\\{,10}modified: \\).*#\\1%s#e", n, vim.fn.strftime("%c")))
-
-  vim.fn.histdel("search", -1)
-  vim.fn.setpos(".", save_cursor)
-  vim.api.nvim_echo({ { "updated last modified date", "None" } }, false, {})
-end
-
 vim.api.nvim_create_augroup("PANDOC", { clear = true })
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -81,6 +69,18 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.b.ale_fix_on_save = 0
   end,
 })
+
+local function LastModified()
+  local save_cursor = vim.fn.getpos(".")
+  local n = math.min(20, vim.fn.line("$"))
+
+  -- Execute the substitution command
+  vim.cmd(string.format("keepjump 1,%d s#^\\(.\\{,10}modified: \\).*#\\1%s#e", n, vim.fn.strftime("%c")))
+
+  vim.fn.histdel("search", -1)
+  vim.fn.setpos(".", save_cursor)
+  vim.api.nvim_echo({ { "updated last modified date", "None" } }, false, {})
+end
 
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = "PANDOC",
