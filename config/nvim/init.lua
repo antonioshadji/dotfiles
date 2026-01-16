@@ -71,6 +71,9 @@ if vim.fn.has("mac") == 1 then
   vim.g.netrw_browser_viewer = "open"
   -- ('open' for macOS, 'xdg-open' for Linux, 'start' for Windows).
 end
+if vim.fn.has("linux") == 1 then
+  vim.g.netrw_browser_viewer = "xdg-open"
+end
 
 -- vim.cmd([[
 -- " Set updatetime for CursorHold
