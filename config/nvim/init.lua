@@ -327,6 +327,7 @@ vim.lsp.enable({
   -- "rust_analyzer", https://github.com/mrcjkb/rustaceanvim?tab=readme-ov-file#zap-quick-setup
   "clangd",
   "dockerls",
+  "racket_langserver", -- https://raw.githubusercontent.com/neovim/nvim-lspconfig/refs/heads/master/lsp/racket_langserver.lua
 })
 
 require("nvim-treesitter.configs").setup({
