@@ -651,8 +651,10 @@ export AWS_REGION=us-east-1
 export BEDROCK_AWS_REGION=$AWS_REGION
 export CLAUDE_CODE_USE_BEDROCK=1
 # https://us-east-1.console.aws.amazon.com/bedrock/home?region=us-east-1#/inference-profiles
-# export ANTHROPIC_MODEL='us.anthropic.claude-opus-4-5-20251101-v1:0'
 export ANTHROPIC_MODEL='us.anthropic.claude-sonnet-4-5-20250929-v1:0'
+export ANTHROPIC_DEFAULT_OPUS_MODEL='us.anthropic.claude-opus-4-5-20251101-v1:0'
+export ANTHROPIC_DEFAULT_SONNET_MODEL='us.anthropic.claude-sonnet-4-5-20250929-v1:0'
+export ANTHROPIC_DEFAULT_HAIKU_MODEL='us.anthropic.claude-haiku-4-5-20251001-v1:0'
 # }}
 
 eval "$(starship init bash)"
