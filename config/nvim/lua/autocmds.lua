@@ -1,11 +1,11 @@
 vim.api.nvim_create_augroup("GoFormat", { clear = true })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
+  group = "GoFormat",
   pattern = "*.go",
   callback = function()
     require("go.format").gofmt()
   end,
-  group = "GoFormat",
 })
 
 vim.api.nvim_create_augroup("DiagnosticFloat", { clear = true })
@@ -70,20 +70,30 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-local function LastModified()
-  local save_cursor = vim.fn.getpos(".")
-  local n = math.min(20, vim.fn.line("$"))
-
-  -- Execute the substitution command
-  vim.cmd(string.format("keepjump 1,%d s#^\\(.\\{,10}modified: \\).*#\\1%s#e", n, vim.fn.strftime("%c")))
-
-  vim.fn.histdel("search", -1)
-  vim.fn.setpos(".", save_cursor)
-  vim.api.nvim_echo({ { "updated last modified date", "None" } }, false, {})
-end
-
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = "PANDOC",
   pattern = { "*.md", "*.markdown", "*.mkd" },
-  callback = LastModified,
+  callback = function()
+    local save_cursor = vim.fn.getpos(".")
+    local n = math.min(20, vim.fn.line("$"))
+
+    -- Execute the substitution command
+    vim.cmd(string.format("keepjump 1,%d s#^\\(.\\{,10}modified: \\).*#\\1%s#e", n, vim.fn.strftime("%c")))
+
+    vim.fn.histdel("search", -1)
+    vim.fn.setpos(".", save_cursor)
+    vim.api.nvim_echo({ { "updated last modified date", "None" } }, false, {})
+  end,
+})
+
+vim.api.nvim_create_augroup("Templates", { clear = true })
+
+-- Construct the portable path: ~/.config/nvim/templates/bootstrap.html
+local template_path = table.concat({ vim.fn.stdpath("config"), "templates", "bootstrap.html" }, "/")
+
+vim.api.nvim_create_autocmd("BufNewFile", {
+  group = "Templates",
+  pattern = "*.html",
+  -- Execute the Vim command '0r' to read the file into the buffer
+  command = "0r " .. template_path,
 })
