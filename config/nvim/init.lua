@@ -443,11 +443,6 @@ require("colorizer").setup(
   { mode = "foreground" }
 )
 
--- Load telescope setup first
-require("plugins.telescope")
--- Then load keymaps (requires telescope to be setup)
-require("plugins.telescope_keys")
-
 -- ## Alternative: Even More Modular
 --
 -- If you have many plugins, you could go further:
