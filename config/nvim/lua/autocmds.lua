@@ -17,6 +17,10 @@ vim.api.nvim_create_autocmd("CursorHold", {
     vim.diagnostic.open_float(nil, { focusable = false })
   end,
 })
+-- Set updatetime for CursorHold
+-- 300ms of no cursor movement to trigger CursorHold
+-- set updatetime=300, default 4000
+vim.g.updatetime = 500
 
 vim.api.nvim_create_augroup("GIT", { clear = true })
 

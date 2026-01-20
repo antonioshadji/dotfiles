@@ -1,6 +1,11 @@
 -- =============================================================================
 -- General Key Mappings
 -- =============================================================================
+-- When you have a problem about vim mappings.
+-- Check :verbose inoremap at the first.
+-- If you know the keys which have problem,
+-- then do it with specified key, for example :verbose inoremap <esc>.
+-- -----------------------------------------------------------------------------
 
 -- Clear search highlighting with <CR> (Enter)
 -- Note: This overrides default Enter behavior in Normal mode
@@ -16,6 +21,10 @@ end, { expr = true, desc = "Insert date timestamp" })
 
 -- Save file with sudo (useful for editing system config files)
 vim.keymap.set("c", "w!!", "w !sudo tee %", { desc = "Save file with sudo" })
+-- vertical terminal
+vim.keymap.set("c", "vt", "vertical terminal", { desc = "vert terminal shortcut" })
+-- tab terminal
+vim.keymap.set("c", "tt", "tab terminal", { desc = "tab terminal shortcut" })
 
 -- =============================================================================
 -- Insert Mode Tweaks
