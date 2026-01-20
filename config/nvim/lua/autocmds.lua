@@ -78,15 +78,46 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = "PANDOC",
   pattern = { "*.md", "*.markdown", "*.mkd" },
   callback = function()
-    local save_cursor = vim.fn.getpos(".")
-    local n = math.min(20, vim.fn.line("$"))
+    -- Configuration
+    local scan_limit = 20
+    local bufnr = vim.api.nvim_get_current_buf()
 
-    -- Execute the substitution command
-    vim.cmd(string.format("keepjump 1,%d s#^\\(.\\{,10}modified: \\).*#\\1%s#e", n, vim.fn.strftime("%c")))
+    -- 1. Pure Transformation Function
+    -- Returns: new_lines (table), was_updated (bool)
+    local function apply_timestamp(lines)
+      local new_lines = {}
+      local updated = false
+      local current_time = os.date("%c")
 
-    vim.fn.histdel("search", -1)
-    vim.fn.setpos(".", save_cursor)
-    vim.api.nvim_echo({ { "updated last modified date", "None" } }, false, {})
+      for _, line in ipairs(lines) do
+        -- Capture the prefix: Start of line -> anything non-greedy -> "modified: "
+        local prefix = line:match("^(.-modified: )")
+
+        -- Mimic regex \{,10}: Check if prefix length is reasonable
+        -- "modified: " is 10 chars + max 10 chars context = max 20 chars total
+        if prefix and #prefix <= 20 then
+          table.insert(new_lines, prefix .. current_time)
+          updated = true
+        else
+          table.insert(new_lines, line)
+        end
+      end
+      return new_lines, updated
+    end
+
+    -- 2. IO: Read Buffer
+    local line_count = vim.api.nvim_buf_line_count(bufnr)
+    local end_range = math.min(scan_limit, line_count)
+    local lines = vim.api.nvim_buf_get_lines(bufnr, 0, end_range, false)
+
+    -- 3. Logic: Transform
+    local result_lines, changed = apply_timestamp(lines)
+
+    -- 4. IO: Write Buffer (Only if needed)
+    if changed then
+      vim.api.nvim_buf_set_lines(bufnr, 0, end_range, false, result_lines)
+      vim.api.nvim_echo({ { "updated last modified date", "None" } }, false, {})
+    end
   end,
 })
 
