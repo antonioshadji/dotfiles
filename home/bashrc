@@ -758,5 +758,8 @@ if [[ -d $HOME/.bun ]]; then
   export PATH="$BUN_INSTALL/bin:$PATH"
 fi
 
+# https://cryptography.io/en/latest/openssl/#legacy-provider-in-openssl-3-x
+# anaconda-ai required env var
+export CRYPTOGRAPHY_OPENSSL_NO_LEGACY='1'
 # : is bash builtin that does nothing and always returns 0
 :
