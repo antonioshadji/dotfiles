@@ -3,7 +3,7 @@
 # requires build tools to be installed first
 OS=$(uname -s)
 if [[ "$OS" = "Linux" ]]; then
-  sudo apt install -y curl gcc make cmake g++
+  sudo apt install -y curl gcc make cmake g++ clang libssl-dev
 fi
 if [[ ! -d ~/.cargo ]]; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh

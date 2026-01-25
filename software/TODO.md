@@ -1,3 +1,14 @@
+debian setup
+* nvim install?
+* git install if not installed?
+* git clone --recursive git@github.com:antonioshadji/dotfiles.git
+* link.py
+* ./rust-tools.sh
+* ./golang.py doesn't work unless httpx is installed in default python
+* ./npm.packages.sh
+* ./uv_tools.sh
+* ./docker_install.sh
+
 Automate installation of:
 * postman
 * telegram
