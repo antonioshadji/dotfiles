@@ -634,8 +634,6 @@ export TPM2_PKCS11_STORE=$HOME/.tpm2_pkcs11/
 
 [[ -d "${HOME}/.pixi/bin" ]] && export PATH="${HOME}/.pixi/bin:$PATH"
 
-. "$HOME/.cargo/env"
-
 # _completion_loader()
 # {
 #     . "$HOME/.local/share/bash_completions.d/$1.sh" >/dev/null 2>&1 && return 124
