@@ -658,6 +658,7 @@ export ANTHROPIC_DEFAULT_HAIKU_MODEL='us.anthropic.claude-haiku-4-5-20251001-v1:
 
 eval "$(starship init bash)"
 eval "$(fzf --bash)"
+eval "$(opencode completion)"
 
 # activate python environments {{
 # shellcheck disable=SC2120
@@ -758,6 +759,12 @@ fi
 
 # https://cryptography.io/en/latest/openssl/#legacy-provider-in-openssl-3-x
 # anaconda-ai required env var
-export CRYPTOGRAPHY_OPENSSL_NO_LEGACY='1'
+export CRYPTOGRAPHY_OPENSSL_NO_LEGACY=1
+# llama-server env vars
+# https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md
+# --jinja enabled by default according to docs, but not working as such with opencode
+export LLAMA_ARG_JINJA=1
+export LLAMA_ARG_CTX_SIZE=32768
+
 # : is bash builtin that does nothing and always returns 0
 :
