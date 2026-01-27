@@ -21,5 +21,7 @@ tar --extract --gzip --file="${filename}.tar.gz"   # -xzf
 sudo rm -rf /opt/nvim-*
 sudo mv "${filename}/" /opt/.
 rm "${filename}.tar.gz"
-
+sudo ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim
+# rehash bash to update nvim reference cached
+hash -r
 nvim --version
