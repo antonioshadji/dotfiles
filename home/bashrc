@@ -240,7 +240,7 @@ pathmunge "${gemloc[0]}" after
 unset gemloc
 
 # yarn
-pathmunge "$HOME/.yarn"
+pathmunge "$HOME/.yarn" after
 
 # Golang
 pathmunge "/opt/go/bin" after
