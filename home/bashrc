@@ -572,14 +572,7 @@ _complete_ssh_hosts ()
 {
         COMPREPLY=()
         cur="${COMP_WORDS[COMP_CWORD]}"
-        comp_ssh_hosts=$(cut -f 1 -d ' ' ~/.ssh/known_hosts | \
-                        sed -e s/,.*//g | \
-                        grep -v ^# | \
-                        uniq | \
-                        grep -v "\[" ;
-                        grep "^Host " ~/.ssh/config | \
-                        awk '{print $2}'
-                )
+        comp_ssh_hosts=$(grep "^Host " ~/.ssh/config | awk '{print $2}')
         mapfile -t COMPREPLY < <(compgen -W "${comp_ssh_hosts}" -- "$cur")
         return 0
 }
