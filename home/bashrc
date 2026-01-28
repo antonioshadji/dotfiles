@@ -31,7 +31,6 @@ fi
 # Do 'man bashrc' for the long version or see here:
 # https://www.gnu.org/software/bash/manual/bash.html#Bash-Startup-Files
 # http://en.wikipedia.org/wiki/Bash#Startup_scripts
-
 # https://www.gnu.org/software/bash/manual/bash.html#Conditional-Constructs
 # [[…]]
 # [[ expression ]]
@@ -50,20 +49,20 @@ fi
 # Conditional operators such as ‘-f’ must be unquoted to be recognized as primaries.
 
 # https://www.gnu.org/software/bash/manual/bash.html#Bash-Builtins
-# test
-# [
-# test expr
 # Evaluate a conditional expression expr and return a status of 0 (true) or 1 (false).
 # Each operator and operand must be a separate argument.
 # Expressions are composed of the primaries described below in Bash Conditional Expressions.
 # https://www.gnu.org/software/bash/manual/bash.html#Bash-Conditional-Expressions
-
 # https://www.gnu.org/software/bash/manual/bash.html#Shell-Arithmetic
 # }}
 
 # If not running interactively, don't do anything
 # -z = True if the length of string is zero.
 [ -z "$PS1" ] && return
+
+# set vi mode to edit like vim
+# insert mode by default esc to go to command mode
+set -o vi
 
 # {{ History setup
 # See:  http://www.ukuug.org/events/linux2003/papers/bash_tips/
@@ -119,61 +118,24 @@ fi
 # http://tldp.org/HOWTO/Xterm-Title-3.html
 # http://stackoverflow.com/a/25535717/2472798
 # pattern matching **requires** [[ ]]
-# starship deprecated
-# case ${TERM} in
-#   alacritty*|xterm*|rxvt*|Eterm|aterm|kterm|gnome*)
-#     PROMPT_COMMAND+='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/\~}\007"'
-#   ;;
-# esac
 
-# 1.2) Set up bash prompt{{
-# ---------------------------------------------------------
+# 1.2) Set up bash prompt{{ using starship
+eval "$(starship init bash)"
+# Set terminal title to current directory
+set_terminal_title() {
+    # Get the basename of current directory
+    local dir_name="${PWD##*/}"
+    # If in home directory, use ~
+    [[ "$PWD" == "$HOME" ]] && dir_name="~"
 
-#{{ Bash Prompt escapes
-##################################################
-
-# Bash allows these prompt strings to be customized by inserting a
-# number of backslash-escaped special characters that are
-# decoded as follows:
-
-#  \a         an ASCII bell character (07)
-#  \d         the date in "Weekday Month Date" format (e.g., "Tue May 26")
-#  \D{format} the format is passed to strftime(3) and the result
-#             is inserted into the prompt string an empty format
-#             results in a locale-specific time representation.
-#             The braces are required
-#  \e         an ASCII escape character (033)
-#  \h         the hostname up to the first `.'
-#  \H         the hostname
-#  \j         the number of jobs currently managed by the shell
-#  \l         the basename of the shell's terminal device name
-#  \n         newline
-#  \r         carriage return
-#  \s         the name of the shell, the basename of $0 (the portion following
-#             the final slash)
-#  \t         the current time in 24-hour HH:MM:SS format
-#  \T         the current time in 12-hour HH:MM:SS format
-#  \@         the current time in 12-hour am/pm format
-#  \A         the current time in 24-hour HH:MM format
-#  \u         the username of the current user
-#  \v         the version of bash (e.g., 2.00)
-#  \V         the release of bash, version + patch level (e.g., 2.00.0)
-#  \w         the current working directory, with $HOME abbreviated with a tilde
-#  \W         the basename of the current working directory, with $HOME
-#             abbreviated with a tilde
-#  \!         the history number of this command
-#  \#         the command number of this command
-#  \$         if the effective UID is 0, a #, otherwise a $
-#  \nnn       the character corresponding to the octal number nnn
-#  \\         a backslash
-#  \[         begin a sequence of non-printing characters, which could be used
-#             to embed a terminal control sequence into the prompt
-#  \]         end a sequence of non-printing characters
-#}}
+    # Set title using OSC escape sequence
+    echo -ne "\033]0;${dir_name}\007"
+}
+export starship_precmd_user_func="set_terminal_title"
+# }}
 
 #{{ Color chart
 # Reset='\e[0m'    # Text Reset
-
 # http://ethanschoonover.com/solarized
 # http://ethanschoonover.com/solarized/img/solarized-palette.png
                    # SOLARIZED HEX     16/8 TERMCOL  XTERM/HEX   L*A*B      RGB         HSB
@@ -197,34 +159,28 @@ fi
 # color palette top row in gnome configure screen is 30-37 [0;30m
 # color palette bottom row in gnome configure screen is bold 30-37 [1;30m
 #}}
-
-## -----------------------------------------------------
-## -- 1.3) https://github.com/magicmonty/bash-git-prompt
-## --      Customized git prompt
-## -----------------------------------------------------
-# starship deprecated
-# gitprompt configuration
-# if [[ -r $HOME/.config/dotfiles/bash-git-prompt/gitprompt.sh ]]; then
-#   # Set config variables first
-#   export GIT_PROMPT_ONLY_IN_REPO=0
-#
-#   # GIT_PROMPT_FETCH_REMOTE_STATUS=0   # uncomment to avoid fetching remote status
-#   export GIT_PROMPT_IGNORE_SUBMODULES=1 # uncomment to avoid searching for changed files in submodules
-#   # GIT_PROMPT_WITH_VIRTUAL_ENV=0 # uncomment to avoid setting virtual environment infos for node/python/conda environments
-#   # GIT_PROMPT_SHOW_UPSTREAM=1 # uncomment to show upstream tracking branch
-#   export GIT_PROMPT_SHOW_UNTRACKED_FILES=normal # can be no, normal or all; determines counting of untracked files
-#   # GIT_PROMPT_SHOW_CHANGED_FILES_COUNT=0 # uncomment to avoid printing the number of changed files
-#   # GIT_PROMPT_STATUS_COMMAND=gitstatus_pre-1.7.10.sh # uncomment to support Git older than 1.7.10
-#   export GIT_PROMPT_START="_LAST_COMMAND_INDICATOR_ ${blue}${HOSTNAME%%.*}:${yellow}\w${Reset}"
-#   # GIT_PROMPT_END=...      # uncomment for custom prompt end sequence
-#
-#   # as last entry source the gitprompt script
-#   # GIT_PROMPT_THEME=Custom # use custom theme specified in file GIT_PROMPT_THEME_FILE (default ~/.git-prompt-colors.sh)
-#   # GIT_PROMPT_THEME_FILE=~/.git-prompt-colors.sh
-#   export GIT_PROMPT_THEME=Solarized_Ubuntu
-#   source "$HOME/.config/dotfiles/bash-git-prompt/gitprompt.sh"
+# {{ Virtual terminal tty colors
+# https://acceptsocket.wordpress.com/2014/08/12/set-solarized-dark-as-default-color-scheme-for-linux-virtual-console/
+# if [ $TERM = "linux" ]; then
+#   echo -en "\e]P0073642" # base02    #073642  0
+#   echo -en "\e]P8002b36" # base03    #002b36  8
+#   echo -en "\e]P1dc322f" # red       #dc322f  1
+#   echo -en "\e]P9cb4b16" # orange    #cb4b16  9
+#   echo -en "\e]P2859900" # green     #859900  2
+#   echo -en "\e]PA586e75" # base01    #586e75 10A
+#   echo -en "\e]P3b58900" # yellow    #b58900  3
+#   echo -en "\e]PB657b83" # base00    #657b83 11B
+#   echo -en "\e]P4268bd2" # blue      #268bd2  4
+#   echo -en "\e]PC839496" # base0     #839496 12C
+#   echo -en "\e]P5d33682" # magenta   #d33682  5
+#   echo -en "\e]PD6c71c4" # violet    #6c71c4 13D
+#   echo -en "\e]P62aa198" # cyan      #2aa198  6
+#   echo -en "\e]PE93a1a1" # base1     #93a1a1 14E
+#   echo -en "\e]P7eee8d5" # base2     #eee8d5  7
+#   echo -en "\e]PFfdf6e3" # base3     #fdf6e3 15F
+#   clear #for background artifacting
 # fi
-
+#}}
 
 # Colors {{
 ## Define any user-specific variables you want here.
@@ -237,80 +193,96 @@ export LS_COLORS
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# Gnome Terminal Profiles
-# Solarized Light: 4eac76ef-bf32-4958-aa16-8adfc529ac3b
-# Solarized Dark: 8c65ed44-bbfa-4913-98a4-07f69fed680a
-# Default: b1dcc9dd-5262-4d8d-a863-c897e6d979b9
-#}}
+# === PATH Construction === {{
+# Build PATH once at login to avoid duplication
 
+# Helper function to add to PATH only if not present
+pathmunge() {
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+        if [ "$2" = "after" ]; then
+            PATH="$PATH:$1"
+        else
+            PATH="$1:$PATH"
+        fi
+    fi
+}
 
-# set vi mode to edit like vim
-# insert mode by default esc to go to command mode
-set -o vi
-
-# Configure PATH {{
 #  - These are line by line so that you can kill one without affecting the others.
 #  - Lowest priority first, highest priority last.
-export PATH=$PATH
 # https://www.gnu.org/software/bash/manual/bash.html#Pattern-Matching
 # https://askubuntu.com/questions/299710/how-to-determine-if-a-string-is-a-substring-of-another-in-bash
+# Prefixed to default PATH
 # set PATH so it includes user's private bin if it exists
-# only [[]] allows multiple tests and pattern matching
-if [[ ! $PATH == *$HOME/bin* && -d $HOME/bin ]]; then
-  export PATH=$HOME/bin:$PATH
-fi
+pathmunge "$HOME/.local/bin"
+pathmunge "$HOME/bin"
 
-# set PATH to include latest version of pandoc
-[[ -d $HOME/.cabal/bin ]] && export PATH=$HOME/.cabal/bin:$PATH
+# MacPorts Installer addition on 2019-08-11_at_09:59:35: adding an appropriate PATH variable for use with MacPorts.
+# also set for Linux, use /opt/local instead of /usr/local
+pathmunge /opt/local/bin
+pathmunge /opt/local/sbin
+
+# Appended to default PATH
+# set PATH to include latest version of pandoc if installed via cabal
+pathmunge "$HOME/.cabal/bin" after
 
 # android studio manually installed in this location
-[[ -d $HOME/code/Android/android-studio/bin ]] && export PATH=$HOME/code/Android/android-studio/bin:$PATH
+pathmunge "$HOME/code/Android/android-studio/bin" after
 
 # gem install --user-install uses this location
-# Mac WARNING:  You don't have /Users/ahadji842/.gem/ruby/2.6.0/bin in your PATH,
+# ruby version replaced by *
 gemloc=("$HOME"/.gem/ruby/*/bin)
-[[ -d ${gemloc[0]} ]] && export PATH=${gemloc[0]}:$PATH
+pathmunge "${gemloc[0]}" after
 unset gemloc
 
-# pip install --user installs into ~/.local/bin on linux
-[[ -d $HOME/.local/bin ]] && export PATH=$HOME/.local/bin:$PATH
-
 # yarn
-[[ -d $HOME/.yarn ]] && export PATH=$HOME/.yarn/bin:$PATH
-
-# Rust
-[[ -d $HOME/.cargo ]] && source "$HOME/.cargo/env"
+pathmunge "$HOME/.yarn"
 
 # Golang
-if [[ ! "$PATH" == */opt/go/bin* ]]; then
-  export PATH="${PATH}:/opt/go/bin"
-fi
-[[ -d $HOME/go/bin ]] && export PATH="$PATH:$HOME/go/bin"
+pathmunge "/opt/go/bin" after
+pathmunge "$HOME/go/bin" after
 
 # amdgpu
-[ -d /opt/amdgpu-pro/bin ] && export PATH=$PATH:/opt/amdgpu-pro/bin
+pathmunge /opt/amdgpu-pro/bin after
+# rocm tools
+pathmunge /opt/rocm/bin after
 
+# dart https://dart.dev/get-dart
+pathmunge /usr/lib/dart after
+
+# Added by Windsurf
+pathmunge "$HOME/.codeium/windsurf/bin" after
+
+# pixi
+pathmunge "${HOME}/.pixi/bin" after
+# Java setup
+pathmunge /usr/lib/jvm/jdk-19/bin after
+
+# source path related files installed by these tools
 # ==> Source [/opt/google-cloud-sdk/path.bash.inc] in your profile to add the Google Cloud SDK command line tools to your $PATH.
 if [[ -r /opt/google-cloud-sdk/path.bash.inc ]]; then
   source /opt/google-cloud-sdk/path.bash.inc
 fi
 
-# litecoin in opt
-# [[ -d /opt/litecoin ]] && export PATH=$PATH:/opt/litecoin/bin
-# rocm tools
-[[ -d /opt/rocm ]] && export PATH=$PATH:/opt/rocm/bin
+# Rust
+[[ -d $HOME/.cargo ]] && source "$HOME/.cargo/env"
 
-# dart https://dart.dev/get-dart
-[[ -d /usr/lib/dart ]] && export PATH="$PATH:/usr/lib/dart/bin"
-
-# MacPorts Installer addition on 2019-08-11_at_09:59:35: adding an appropriate PATH variable for use with MacPorts.
-# also set for Linux, use /opt/local instead of /usr/local
-if [[ -d /opt/local ]]; then
-  export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+if [[ -d $HOME/.bun ]]; then
+  # bun
+  export BUN_INSTALL="$HOME/.bun"
+  pathmunge "$BUN_INSTALL/bin" after
 fi
 
-#}}
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  # add specific bash only environment (for anaconda mac)
+  pathmunge /opt/bash/bin
+  pathmunge /Library/Frameworks/Python.framework/Versions/Current/bin
 
+  # added by Snowflake SnowflakeCLI installer v1.0
+  pathmunge /Applications/SnowflakeCLI.app/Contents/MacOS/ after
+  pathmunge /Applications/CMake.app/Contents/bin after
+
+fi
+#}}
 
 #  2.0) Set up aliases {{
 # -----------------------
@@ -343,7 +315,7 @@ alias tree='tree -I node_modules -sh'
 [[ $(command -v lsd) ]] && alias tree='lsd --tree --depth 1 --icon never -F'
 
 # syntax colored cat replacement
-[[ $(command -v pygmentize) ]] && alias p='pygmentize -g'
+[[ $(command -v bat) ]] && alias cat='bat'
 # open files in graphic workspace based on mime-type
 [[ $(command -v xdg-open) ]] && alias o='xdg-open'
 alias mp='multipass'
@@ -389,13 +361,6 @@ then
 fi
 #}}
 
-# {{ 2.4) grep options
-# GREP_OPTIONS is deprecated
-# export GREP_OPTIONS='--color=auto'
-# export GREP_COLOR='0;32' # green for matches
-export GREP_COLOR='30;43' # match color of ag match
-#}}
-
 # 2.5) sort options{{
 # https://unix.stackexchange.com/questions/88201/whats-the-best-distro-shell-agnostic-way-to-set-environment-variables/88266#88266
 # set in .pam_environment
@@ -419,16 +384,6 @@ export GREP_COLOR='30;43' # match color of ag match
 export PYTHONDONTWRITEBYTECODE=1
 export PYTEST_ADDOPTS="-vx --capture=tee-sys"
 # }}
-
-# Java setup {{
-[[ -d /usr/lib/jvm/jdk-19 ]] && export JAVA_HOME=/usr/lib/jvm/jdk-19
-export PATH=$JAVA_HOME/bin:$PATH
-# https://class.coursera.org/algs4partI-010
-# export PATH=$PATH:$HOME/Documents/Dropbox/Projects/Algorithms/algs4/bin
-# alias java=java-algs4
-# alias javac=javac-algs4
-# }}
-
 
 # Launchpad setup {{
 export UBUMAIL="Antonios Hadjigeorgalis <Antonios@Hadji.co>"
@@ -473,13 +428,6 @@ if [[ $(uname -s) == 'Darwin' ]]; then
 
   [[ -r "${HOME}/.iterm2_shell_integration.bash" ]] && source "${HOME}/.iterm2_shell_integration.bash"
 
-  if [[ -d /Applications/CMake.app/ ]]; then
-    export PATH="${PATH}:/Applications/CMake.app/Contents/bin"
-  fi
-  if [[ -d /Library/Frameworks/Python.framework ]]; then
-    export PATH="${PATH}:/Library/Frameworks/Python.framework/Versions/Current/bin/"
-  fi
-
   completion_files=(~/.config/dotfiles/bash/bash_completion)
   completion_files+=(~/.config/dotfiles/bash/000_bash_completion_compat.bash)
   if [[ -d /opt/homebrew/etc/bash_completion.d ]]; then
@@ -492,173 +440,18 @@ if [[ $(uname -s) == 'Darwin' ]]; then
 fi
 #}}
 
-# {{ Virtual terminal tty colors
-# https://acceptsocket.wordpress.com/2014/08/12/set-solarized-dark-as-default-color-scheme-for-linux-virtual-console/
-# if [ $TERM = "linux" ]; then
-#   echo -en "\e]P0073642" # base02    #073642  0
-#   echo -en "\e]P8002b36" # base03    #002b36  8
-#   echo -en "\e]P1dc322f" # red       #dc322f  1
-#   echo -en "\e]P9cb4b16" # orange    #cb4b16  9
-#   echo -en "\e]P2859900" # green     #859900  2
-#   echo -en "\e]PA586e75" # base01    #586e75 10A
-#   echo -en "\e]P3b58900" # yellow    #b58900  3
-#   echo -en "\e]PB657b83" # base00    #657b83 11B
-#   echo -en "\e]P4268bd2" # blue      #268bd2  4
-#   echo -en "\e]PC839496" # base0     #839496 12C
-#   echo -en "\e]P5d33682" # magenta   #d33682  5
-#   echo -en "\e]PD6c71c4" # violet    #6c71c4 13D
-#   echo -en "\e]P62aa198" # cyan      #2aa198  6
-#   echo -en "\e]PE93a1a1" # base1     #93a1a1 14E
-#   echo -en "\e]P7eee8d5" # base2     #eee8d5  7
-#   echo -en "\e]PFfdf6e3" # base3     #fdf6e3 15F
-#   clear #for background artifacting
-# fi
-#}}
 
 
 # bash functions {{
 # https://www.gnu.org/software/bash/manual/bash.html#Shell-Functions
 
-# show files after cd
+# custom behaviour when entering directory
 cd () {
   builtin cd "$@" || return
   echo -e "\e]0;$(pwd)\a"
   activate
   # ls -F --color # linux only --ignore=lost+found
 }
-
-# use command -v to find path
-# # enhanced which command to show if exectable is symbolic link
-# which () {
-#   result="$(command -v $1)"
-#   # $? exit status of last command.  should be zero if succesfull
-#   if [[ $? == 0 ]]; then
-#     stat $(/usr/bin/which $1) | head -n 1 | cut -c 9-
-#   else
-#     echo "$1 not found. exit code: $?"
-#   fi
-# }
-
-# create random 10 character password and place on clipboard
-# CreateRandomPassword () {
-#   apg -MSNCL -a 1 -n 1 -m 12 -E \/\?\\\|\'\"\`\+\-\_\[\]\{\}\,\.\;\: | xclip -i -selection clipboard
-#   #openssl rand -base64 7 | sed s/=//g | xclip -i -selection clipboard
-# }
-
-ShrinkPDF() {
- if [ -z "$1" ]; then
-  # display usage if no parameters given
-  echo "Usage: ShrinkPDF <path/file_name>.<pdf>"
- else
-  if [ -f "$1" ] ; then
-    gs -o "sm$1" -sDEVICE=pdfwrite -dPDFFitPage -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen "$1"
-  fi
-fi
-}
-# function Extract for common file formats
-# https://github.com/xvoland/Extract/blob/master/extract.sh
-Extract () {
- if [ -z "$1" ]; then
-    # display usage if no parameters given
-    echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
- else
-    if [ -f "$1" ] ; then
-      local nameInLowerCase
-      nameInLowerCase=$(echo "$1" | awk '{print tolower($0)}')
-        case "$nameInLowerCase" in
-          *.tar.bz2)   tar xvjf ./"$1"    ;;
-          *.tar.gz)    tar xvzf ./"$1"    ;;
-          *.tar.xz)    tar xvJf ./"$1"    ;;
-          *.lzma)      unlzma ./"$1"      ;;
-          *.bz2)       bunzip2 ./"$1"     ;;
-          *.rar)       unrar x -ad ./"$1" ;;
-          *.gz)        gunzip ./"$1"      ;;
-          *.tar)       tar xvf ./"$1"     ;;
-          *.tbz2)      tar xvjf ./"$1"    ;;
-          *.tgz)       tar xvzf ./"$1"    ;;
-          *.zip)       unzip ./"$1"       ;;
-          *.Z)         uncompress ./"$1"  ;;
-          *.7z)        7z x ./"$1"        ;;
-          *.xz)        unxz ./"$1"        ;;
-          *.exe)       cabextract ./"$1"  ;;
-          *)           echo "extract: '$1' - unknown archive method" ;;
-        esac
-    else
-        echo "'$1' - file does not exist"
-    fi
- fi
-}
-
-# Set terminal title to current directory
-set_terminal_title() {
-    # Get the basename of current directory
-    local dir_name="${PWD##*/}"
-    # If in home directory, use ~
-    [[ "$PWD" == "$HOME" ]] && dir_name="~"
-
-    # Set title using OSC escape sequence
-    echo -ne "\033]0;${dir_name}\007"
-}
-export starship_precmd_user_func="set_terminal_title"
-
-#}}
-
-# does a bashrc.local exist?
-[[ -r $HOME/.bashrc.local ]] && source "$HOME/.bashrc.local"
-# not frequently used, source when needed
-# [[ -r $HOME/.bashrc.antlr ]] && source "$HOME/.bashrc.antlr"
-
-# display that reboot is required after automatic update
-if [ -r /var/run/reboot-required ]; then
-  echo 'Reboot required'
-  cat /var/run/reboot-required.pkgs
-  uptime
-fi
-
-[[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
-# Setting fd as the default source for fzf
-if command -v fd &> /dev/null; then
-  export FZF_DEFAULT_COMMAND='fd --type f'
-fi
-
-# show if there is an existing tmux session when SSH into this machine
-# [[ -n $SSH_CLIENT ]] && tmux ls && tmux attach
-
-# profile stop time start {{
-if [[ $DEBUG == 1 ]]; then
-  set +x
-  exec 2>&3 3>&-
-fi
-# }}
-export TPM2_PKCS11_STORE=$HOME/.tpm2_pkcs11/
-
-[[ -d "${HOME}/.pixi/bin" ]] && export PATH="${HOME}/.pixi/bin:$PATH"
-
-# _completion_loader()
-# {
-#     . "$HOME/.local/share/bash_completions.d/$1.sh" >/dev/null 2>&1 && return 124
-# }
-# complete -D -F _completion_loader -o bashdefault -o default
-
-# ripgrep config https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
-export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep"
-
-# Anaconda claude code setup {{
-# using aws config [default]
-# export AWS_PROFILE=Sandbox-621741996708
-export AWS_REGION=us-east-1
-export BEDROCK_AWS_REGION=$AWS_REGION
-export CLAUDE_CODE_USE_BEDROCK=1
-# https://us-east-1.console.aws.amazon.com/bedrock/home?region=us-east-1#/inference-profiles
-export ANTHROPIC_MODEL='us.anthropic.claude-sonnet-4-5-20250929-v1:0'
-export ANTHROPIC_DEFAULT_OPUS_MODEL='us.anthropic.claude-opus-4-5-20251101-v1:0'
-export ANTHROPIC_DEFAULT_SONNET_MODEL='us.anthropic.claude-sonnet-4-5-20250929-v1:0'
-export ANTHROPIC_DEFAULT_HAIKU_MODEL='us.anthropic.claude-haiku-4-5-20251001-v1:0'
-# }}
-
-eval "$(starship init bash)"
-eval "$(fzf --bash)"
-eval "$(opencode completion)"
 
 # activate python environments {{
 # shellcheck disable=SC2120
@@ -686,6 +479,50 @@ complete -o filenames -o nospace -F _activate_function_completion activate
 # complete -o filenames -o nospace activate
 #}}
 
+#}}
+
+# does a bashrc.local exist?
+[[ -r $HOME/.bashrc.local ]] && source "$HOME/.bashrc.local"
+# not frequently used, source when needed
+# [[ -r $HOME/.bashrc.antlr ]] && source "$HOME/.bashrc.antlr"
+
+# display that reboot is required after automatic update
+if [ -r /var/run/reboot-required ]; then
+  echo 'Reboot required'
+  cat /var/run/reboot-required.pkgs
+  uptime
+fi
+
+export TPM2_PKCS11_STORE=$HOME/.tpm2_pkcs11/
+
+# ripgrep config https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep"
+
+# Anaconda claude code setup {{
+# using aws config [default]
+# export AWS_PROFILE=Sandbox-621741996708
+export AWS_REGION=us-east-1
+export BEDROCK_AWS_REGION=$AWS_REGION
+export CLAUDE_CODE_USE_BEDROCK=1
+# https://us-east-1.console.aws.amazon.com/bedrock/home?region=us-east-1#/inference-profiles
+export ANTHROPIC_MODEL='us.anthropic.claude-sonnet-4-5-20250929-v1:0'
+export ANTHROPIC_DEFAULT_OPUS_MODEL='us.anthropic.claude-opus-4-5-20251101-v1:0'
+export ANTHROPIC_DEFAULT_SONNET_MODEL='us.anthropic.claude-sonnet-4-5-20250929-v1:0'
+export ANTHROPIC_DEFAULT_HAIKU_MODEL='us.anthropic.claude-haiku-4-5-20251001-v1:0'
+# }}
+
+# Setting fd as the default source for fzf
+if command -v fd &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='fd --type f'
+fi
+# fzf setup
+if [[ -f ~/.fzf.bash ]]; then
+  source ~/.fzf.bash
+else
+  eval "$(fzf --bash)"
+fi
+
+
 # {{ bash completion
 # https://superuser.com/questions/288714/bash-autocomplete-like-zsh
 # https://www.gnu.org/software/bash/manual/html_node/Readline-Init-File-Syntax.html
@@ -712,8 +549,95 @@ bind 'TAB:menu-complete'
 completion_files=(~/.local/share/bash-completion/completions/*)
 
 for f in "${completion_files[@]}"; do
+  # case "$f" in
+  #   uv.bash)
+  #     continue
+  #     ;;
+  # esac
   [[ -r $f  ]] && source "$f"
 done
+
+# _completion_loader()
+# {
+#     . "$HOME/.local/share/bash_completions.d/$1.sh" >/dev/null 2>&1 && return 124
+# }
+# complete -D -F _completion_loader -o bashdefault -o default
+
+_complete_ssh_hosts ()
+{
+        COMPREPLY=()
+        cur="${COMP_WORDS[COMP_CWORD]}"
+        comp_ssh_hosts=$(cut -f 1 -d ' ' ~/.ssh/known_hosts | \
+                        sed -e s/,.*//g | \
+                        grep -v ^# | \
+                        uniq | \
+                        grep -v "\[" ;
+                        grep "^Host " ~/.ssh/config | \
+                        awk '{print $2}'
+                )
+        COMPREPLY=( $(compgen -W "${comp_ssh_hosts}" -- $cur))
+        return 0
+}
+complete -F _complete_ssh_hosts ssh
+# === Lazy Loading for Multiple Completions {{
+
+# Define completion directory
+# LAZY_COMPLETION_DIR="$HOME/.local/share/bash-completion/completions"
+#
+# # Lazy loader function
+# _lazy_completion_loader() {
+#     local cmd="$1"
+#     local completion_file
+#
+#     # Try different file naming patterns
+#     for pattern in "${cmd}.bash" "${cmd}" "_${cmd}"; do
+#         completion_file="${LAZY_COMPLETION_DIR}/${pattern}"
+#         if [ -f "$completion_file" ]; then
+#             # Remove temporary completion
+#             complete -r "$cmd" 2>/dev/null
+#
+#             # Source the real completion
+#             source "$completion_file" 2>/dev/null && {
+#                 # Try to call the real completion
+#                 _completion_loader "$cmd" 2>/dev/null || return 0
+#             }
+#             return 0
+#         fi
+#     done
+#
+#     # If no completion file found, use default completion
+#     return 1
+# }
+
+# Register lazy loading for specific commands
+# for f in "${completion_files[@]}"; do
+#   f="$(basename "$f")"
+#   complete -F _lazy_completion_loader "${f%.*}"
+# done
+# TODO: this generates bash completion, how to use this instead of file
+# uv generate-shell-completion bash
+# }}
+
+# === Lazy Loading for uv Completion {{
+
+# Define the lazy loader for uv
+# _uv_lazy_loader() {
+#     # Remove the temporary completion
+#     complete -r uv 2>/dev/null
+#
+#     # Source the actual completion file
+#     if [ -f "$HOME/.local/share/bash-completion/completions/uv.bash" ]; then
+#         source "$HOME/.local/share/bash-completion/completions/uv.bash" 2>/dev/null
+#     fi
+#
+#     # Re-trigger completion with the now-loaded function
+#     # COMP_WORDS and COMP_CWORD are set by bash
+#     _completion_loader uv 2>/dev/null || return 0
+# }
+#
+# # Register the lazy loader for uv only
+# complete -F _uv_lazy_loader uv
+# }}
 # }}
 
 # AWS CLI completion
@@ -742,6 +666,7 @@ if [[ $(uname -s) == Linux ]]; then
   export XDG_CACHE_HOME=$HOME/.cache
   # uv on machine with logical volumes
   export UV_LINK_MODE=copy
+  # ollama config
   [[ -d /mnt/data/ollama ]] && export OLLAMA_MODELS=/mnt/data/ollama
   HOST_IP="$(hostname -I|awk '{print $1}')"
   export OLLAMA_HOST="${HOST_IP}:11434"
@@ -750,12 +675,6 @@ fi
 
 # this is standard add from kiro install.  && returns false (failure code)
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path bash)"
-
-if [[ -d $HOME/.bun ]]; then
-  # bun
-  export BUN_INSTALL="$HOME/.bun"
-  export PATH="$BUN_INSTALL/bin:$PATH"
-fi
 
 # https://cryptography.io/en/latest/openssl/#legacy-provider-in-openssl-3-x
 # anaconda-ai required env var
@@ -766,66 +685,64 @@ export CRYPTOGRAPHY_OPENSSL_NO_LEGACY=1
 export LLAMA_ARG_JINJA=1
 export LLAMA_ARG_CTX_SIZE=32768
 
-_complete_ssh_hosts ()
-{
-        COMPREPLY=()
-        cur="${COMP_WORDS[COMP_CWORD]}"
-        comp_ssh_hosts=$(cut -f 1 -d ' ' ~/.ssh/known_hosts | \
-                        sed -e s/,.*//g | \
-                        grep -v ^# | \
-                        uniq | \
-                        grep -v "\[" ;
-                        grep "^Host " ~/.ssh/config | \
-                        awk '{print $2}'
-                )
-        COMPREPLY=( $(compgen -W "${comp_ssh_hosts}" -- $cur))
-        return 0
-}
-complete -F _complete_ssh_hosts ssh
+# === Lazy-Loaded Conda Initialization ===
+# This speeds up shell startup significantly
+# Conda will initialize on first use of 'conda' command
 
-. "$HOME/.local/bin/env"
+# Lazy loading function for conda
+if [ -d "$_CONDA_ROOT" ]; then
+    __conda_lazy_init() {
+        # Remove the lazy wrapper
+        unset -f conda __conda_lazy_init
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-if __conda_setup="$('/opt/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/miniconda3/bin:$PATH"
-    fi
+        # Initialize conda properly
+        if __conda_setup="$("${_CONDA_ROOT}/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"; then
+            eval "$__conda_setup"
+        else
+            if [ -f "${_CONDA_ROOT}/etc/profile.d/conda.sh" ]; then
+                . "${_CONDA_ROOT}/etc/profile.d/conda.sh"
+            else
+                export PATH="${_CONDA_ROOT}/bin:$PATH"
+            fi
+        fi
+        unset __conda_setup
+
+        # Call conda with original arguments
+        conda "$@"
+    }
+
+    # Create conda alias that triggers lazy loading
+    conda() {
+        __conda_lazy_init "$@"
+    }
 fi
-unset __conda_setup
-# <<< conda initialize <<<
 
 
 
-# Added by Windsurf
-export PATH="$HOME/.codeium/windsurf/bin:$PATH"
-
-# added by Snowflake SnowflakeCLI installer v1.0
-export PATH=/Applications/SnowflakeCLI.app/Contents/MacOS/:$PATH
-
-# add specific bash only environment
-export PATH="/opt/bash/bin:$PATH"
 
 # gh cli completion
 # eval "$($HOME/Code/gitapi/git_env/bin/gh completion -s bash)"
-
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 # >>> nvwb
 # Sourcing the nvwb wrapper function was added during the NVIDIA AI Workbench installation and
 # is required for NVIDIA AI Workbench to function properly. When uninstalling
 # NVIDIA AI Workbench, it will be removed.
-source $HOME/.local/share/nvwb/nvwb-wrapper.sh
+if [ -f "$HOME/.local/share/nvwb/nvwb-wrapper.sh" ]; then
+    source "$HOME/.local/share/nvwb/nvwb-wrapper.sh"
+fi
 # >>> nvwb
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Added by Antigravity
 export PATH="/Users/ahadjigeorgalis/.antigravity/antigravity/bin:$PATH"
+
+# profile stop time start {{
+if [[ $DEBUG == 1 ]]; then
+  set +x
+  exec 2>&3 3>&-
+fi
+# }}
 
 # : is bash builtin that does nothing and always returns 0
 :

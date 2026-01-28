@@ -1,2 +1,5 @@
 # shellcheck source=/dev/null # https://www.shellcheck.net/wiki/SC1091
 source "$HOME/.bashrc"
+
+# show if there is an existing tmux session when SSH into this machine
+[[ -n $SSH_CLIENT ]] && tmux ls # && tmux attach
