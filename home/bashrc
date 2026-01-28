@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC1091,SC1090
+
+# Kiro CLI pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.pre.bash" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.pre.bash"
+
 # https://github.com/koalaman/shellcheck/wiki/SC1090
 # shellcheck disable=SC1090,SC1091
 # vim: set foldmarker={{,}} foldlevel=99 foldmethod=marker :
@@ -746,3 +751,7 @@ fi
 
 # : is bash builtin that does nothing and always returns 0
 :
+
+
+# Kiro CLI post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.post.bash" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.post.bash"
