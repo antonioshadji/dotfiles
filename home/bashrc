@@ -554,89 +554,8 @@ bind 'TAB:menu-complete'
 completion_files=(~/.local/share/bash-completion/completions/*)
 
 for f in "${completion_files[@]}"; do
-  # case "$f" in
-  #   uv.bash)
-  #     continue
-  #     ;;
-  # esac
   [[ -r $f  ]] && source "$f"
 done
-
-# _completion_loader()
-# {
-#     . "$HOME/.local/share/bash_completions.d/$1.sh" >/dev/null 2>&1 && return 124
-# }
-# complete -D -F _completion_loader -o bashdefault -o default
-
-_complete_ssh_hosts ()
-{
-        COMPREPLY=()
-        cur="${COMP_WORDS[COMP_CWORD]}"
-        comp_ssh_hosts=$(grep "^Host " ~/.ssh/config | awk '{print $2}')
-        mapfile -t COMPREPLY < <(compgen -W "${comp_ssh_hosts}" -- "$cur")
-        return 0
-}
-complete -F _complete_ssh_hosts ssh
-# === Lazy Loading for Multiple Completions {{
-
-# Define completion directory
-# LAZY_COMPLETION_DIR="$HOME/.local/share/bash-completion/completions"
-#
-# # Lazy loader function
-# _lazy_completion_loader() {
-#     local cmd="$1"
-#     local completion_file
-#
-#     # Try different file naming patterns
-#     for pattern in "${cmd}.bash" "${cmd}" "_${cmd}"; do
-#         completion_file="${LAZY_COMPLETION_DIR}/${pattern}"
-#         if [ -f "$completion_file" ]; then
-#             # Remove temporary completion
-#             complete -r "$cmd" 2>/dev/null
-#
-#             # Source the real completion
-#             source "$completion_file" 2>/dev/null && {
-#                 # Try to call the real completion
-#                 _completion_loader "$cmd" 2>/dev/null || return 0
-#             }
-#             return 0
-#         fi
-#     done
-#
-#     # If no completion file found, use default completion
-#     return 1
-# }
-
-# Register lazy loading for specific commands
-# for f in "${completion_files[@]}"; do
-#   f="$(basename "$f")"
-#   complete -F _lazy_completion_loader "${f%.*}"
-# done
-# TODO: this generates bash completion, how to use this instead of file
-# uv generate-shell-completion bash
-# }}
-
-# === Lazy Loading for uv Completion {{
-
-# Define the lazy loader for uv
-# _uv_lazy_loader() {
-#     # Remove the temporary completion
-#     complete -r uv 2>/dev/null
-#
-#     # Source the actual completion file
-#     if [ -f "$HOME/.local/share/bash-completion/completions/uv.bash" ]; then
-#         source "$HOME/.local/share/bash-completion/completions/uv.bash" 2>/dev/null
-#     fi
-#
-#     # Re-trigger completion with the now-loaded function
-#     # COMP_WORDS and COMP_CWORD are set by bash
-#     _completion_loader uv 2>/dev/null || return 0
-# }
-#
-# # Register the lazy loader for uv only
-# complete -F _uv_lazy_loader uv
-# }}
-# }}
 
 # AWS CLI completion
 # http://docs.aws.amazon.com/cli/latest/userguide/cli-command-completion.html
@@ -648,12 +567,6 @@ complete -F _complete_ssh_hosts ssh
 [[ $(command -v kubectl) ]] && source <(kubectl completion bash)
 # allow completion to work with alias
 complete -o default -F __start_kubectl k
-# Notes:
-# Create completion files for tools with these commands
-# pip completion --bash
-# npm completion
-# https://github.com/git/git/blob/master/contrib/completion/git-completion.bash
-# pandoc --bash-completion
 #}}
 
 # Linux specific config {{
