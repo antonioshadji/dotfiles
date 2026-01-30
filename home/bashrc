@@ -505,7 +505,7 @@ export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep"
 
 # Anaconda claude code setup {{
 # using aws config [default]
-# export AWS_PROFILE=Sandbox-621741996708
+export AWS_PROFILE=Sandbox-621741996708
 export AWS_REGION=us-east-1
 export BEDROCK_AWS_REGION=$AWS_REGION
 export CLAUDE_CODE_USE_BEDROCK=1
