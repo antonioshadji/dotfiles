@@ -17,7 +17,7 @@ package_list=(
 
 # tools
  pdfkit
- puppeteer
+ playwright@latest
  @google/gemini-cli
  # @anthropic-ai/claude-code  install only once, then install native build
  wrangler  # cloudflare
