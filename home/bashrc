@@ -124,20 +124,6 @@ fi
 # http://stackoverflow.com/a/25535717/2472798
 # pattern matching **requires** [[ ]]
 
-# 1.2) Set up bash prompt{{ using starship
-eval "$(starship init bash)"
-# Set terminal title to current directory
-set_terminal_title() {
-    # Get the basename of current directory
-    local dir_name="${PWD##*/}"
-    # If in home directory, use ~
-    [[ "$PWD" == "$HOME" ]] && dir_name="~"
-
-    # Set title using OSC escape sequence
-    echo -ne "\033]0;${dir_name}\007"
-}
-export starship_precmd_user_func="set_terminal_title"
-# }}
 
 #{{ Color chart
 # Reset='\e[0m'    # Text Reset
@@ -262,6 +248,9 @@ pathmunge "${HOME}/.pixi/bin" after
 # Java setup
 pathmunge /usr/lib/jvm/jdk-19/bin after
 
+# Antigravity
+pathmunge "${HOME}/.antigravity/antigravity/bin" after
+
 # source path related files installed by these tools
 # ==> Source [/opt/google-cloud-sdk/path.bash.inc] in your profile to add the Google Cloud SDK command line tools to your $PATH.
 if [[ -r /opt/google-cloud-sdk/path.bash.inc ]]; then
@@ -288,6 +277,21 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
 fi
 #}}
+
+# 1.2) Set up bash prompt{{ using starship
+eval "$(starship init bash)"
+# Set terminal title to current directory
+set_terminal_title() {
+    # Get the basename of current directory
+    local dir_name="${PWD##*/}"
+    # If in home directory, use ~
+    [[ "$PWD" == "$HOME" ]] && dir_name="~"
+
+    # Set title using OSC escape sequence
+    echo -ne "\033]0;${dir_name}\007"
+}
+export starship_precmd_user_func="set_terminal_title"
+# }}
 
 #  2.0) Set up aliases {{
 # -----------------------
@@ -642,11 +646,11 @@ if [ -f "$HOME/.local/share/nvwb/nvwb-wrapper.sh" ]; then
     source "$HOME/.local/share/nvwb/nvwb-wrapper.sh"
 fi
 # >>> nvwb
+#
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-# Added by Antigravity
-export PATH="/Users/ahadjigeorgalis/.antigravity/antigravity/bin:$PATH"
 
 # profile stop time start {{
 if [[ $DEBUG == 1 ]]; then
@@ -655,9 +659,8 @@ if [[ $DEBUG == 1 ]]; then
 fi
 # }}
 
-# : is bash builtin that does nothing and always returns 0
-:
-
-
 # Kiro CLI post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.post.bash" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.post.bash"
+
+# : is bash builtin that does nothing and always returns 0
+:
