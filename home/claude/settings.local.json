@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "WebFetch(domain:www.anaconda.com)",
-      "mcp__playwright__browser_navigate"
-    ]
-  }
-}
