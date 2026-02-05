@@ -125,9 +125,9 @@ vim.lsp.enable({
   "bashls",
   "luals",
   "ruff",
-  "basedpyright",
-  -- "pyright",
-  -- "pyrefly",
+  -- "basedpyright",
+  "pyright",
+  "pyrefly",
   "ts_ls",
   "gopls",
   -- "rust_analyzer", https://github.com/mrcjkb/rustaceanvim?tab=readme-ov-file#zap-quick-setup
