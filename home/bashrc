@@ -251,6 +251,9 @@ pathmunge /usr/lib/jvm/jdk-19/bin after
 # Antigravity
 pathmunge "${HOME}/.antigravity/antigravity/bin" after
 
+# opencode
+pathmunge "${HOME}/.opencode/bin" after
+
 # source path related files installed by these tools
 # ==> Source [/opt/google-cloud-sdk/path.bash.inc] in your profile to add the Google Cloud SDK command line tools to your $PATH.
 if [[ -r /opt/google-cloud-sdk/path.bash.inc ]]; then
@@ -664,3 +667,10 @@ fi
 
 # : is bash builtin that does nothing and always returns 0
 :
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/mnt/data/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/mnt/data/Downloads/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/mnt/data/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/mnt/data/Downloads/google-cloud-sdk/completion.bash.inc'; fi
