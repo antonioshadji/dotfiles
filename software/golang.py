@@ -26,6 +26,9 @@ def get_content() -> str:
 def construct_file_specifier():
     osname = sys.platform
     arch = platform.machine()
+    if arch == "x86_64":
+        arch = "amd64"
+
     specifier = f"{osname}-{arch}"
 
     if specifier != "linux-amd64":
@@ -148,7 +151,7 @@ def main():
         LiteralString, url.split("/")[-1]
     )  # this is one way to fix typing error, TODO: how to disable for all servers?
 
-    r = client.get(f"{BASE}url")
+    r = client.get(f"{BASE}{url}")
     open(fn, "wb").write(r.content)
 
     subprocess.run(["go", "version"])
