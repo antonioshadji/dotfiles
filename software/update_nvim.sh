@@ -14,7 +14,7 @@ else
     exit 1
 fi
 
-nvim --version
+nvim --version 2> /dev/null
 
 curl --location --remote-name "https://github.com/neovim/neovim/releases/latest/download/${filename}.tar.gz"
 tar --extract --gzip --file="${filename}.tar.gz"   # -xzf
