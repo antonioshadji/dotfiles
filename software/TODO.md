@@ -1,10 +1,10 @@
 debian setup
-* nvim install?
 * git install if not installed?
 * git clone --recursive git@github.com:antonioshadji/dotfiles.git
 * link.py
 * ./rust-tools.sh
 * ./golang.py doesn't work unless httpx is installed in default python
+    * use pure python no dependencies
 * ./npm.packages.sh
 * ./uv_tools.sh
 * ./docker_install.sh
