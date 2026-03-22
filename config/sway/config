@@ -207,10 +207,11 @@ bar {
 set $screenshot_file "/home/$USER/Pictures/zz-$(date +%FT%H-%M-%S).png"
 set $screenshot_sound "/usr/share/sounds/freedesktop/stereo/camera-shutter.oga"
 # geometry captures only main monitor, not side monitor.
-bindsym Print exec --no-startup-id maim --geometry 1920x1080 $screenshot_file && cvlc --play-and-exit $screenshot_sound
-bindsym Shift+Print exec --no-startup-id maim --select $screenshot_file && cvlc --play-and-exit $screenshot_sound
-bindsym Ctrl+Print exec --no-startup-id maim --window $(xdotool getactivewindow) $screenshot_file && cvlc --play-and-exit $screenshot_sound
-
+# bindsym Print exec --no-startup-id maim --geometry 1920x1080 $screenshot_file && mpv $screenshot_sound
+# ~/Pictures/zz-$(date +'%Y-%m-%d-%H%M%S').png
+bindsym Print exec sh -c 'grim -o HDMI-A-1 $screenshot_file && paplay $screenshot_sound'
+bindsym Shift+Print exec sh -c 'grim -g "$(slurp)" $screenshot_file && paplay $screenshot_sound'
+bindsym Ctrl+Print exec sh -c 'grim -g "$(swaymsg -t get_tree | jq -r '"'"'.. | select(.focused?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"'"'"')" ~/Pictures/active-window-$(date +"%Y-%m-%d-%H%M%S").png && paplay /usr/share/sounds/freedesktop/stereo/camera-shutter.oga'
 # Clipboard Screenshots
 # bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
 # bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
@@ -251,7 +252,6 @@ output HDMI-A-2 transform 90
 
 # set background with feh(x11 only)
 # exec --no-startup-id feh --no-fehbg --bg-max "$HOME/Pictures/background-discipline.png"
-output * bg #000000 solid_color
 output * bg ~/.config/dotfiles/images/background-discipline-black.png stretch
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
