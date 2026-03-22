@@ -75,3 +75,6 @@ ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 # 2026-01-08 17:44:26 Thursday  added recommended by Anaconda Engineering
 cargo install bat
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
+# 2026-03-21 13:30:58 Saturday
+cargo install --git https://github.com/googleworkspace/cli --locked
+ERR=$?; [[ $ERR != 0 ]] && exit $ERR
