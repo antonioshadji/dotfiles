@@ -253,25 +253,6 @@ output HDMI-A-2 transform 90
 # set background with feh(x11 only)
 # exec --no-startup-id feh --no-fehbg --bg-max "$HOME/Pictures/background-discipline.png"
 output * bg ~/.config/dotfiles/images/background-discipline-black.png stretch
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec nm-applet --indicator
-# redshift
-# exec --no-startup-id redshift -l 40.000460:-75.292090
-# start dropbox daemon
-exec env XDG_CURRENT_DESKTOP=Unity dropbox start -i
-
-# 1password
-exec 1password --silent
-
-# set webcam zoom level
-# exec --no-startup-id uvcdynctrl --set='Zoom, Absolute' 150
-# 150 for 1080p camera
-exec --no-startup-id v4l2-ctl --device /dev/video0 --set-ctrl=zoom_absolute=130
-
-# set webcam to disable autofocus
-# exec --no-startup-id uvcdynctrl --set='Focus, Auto' 0
-exec --no-startup-id v4l2-ctl --device /dev/video0 --set-ctrl=focus_automatic_continuous=0
 
 seat * hide_cursor 3000
 
@@ -293,6 +274,26 @@ workspace $ws10 output HDMI-A-2
 assign [app_id="firefox-dev"] $ws10
 exec firefox-devedition
 
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+exec nm-applet --indicator
+# redshift
+# exec --no-startup-id redshift -l 40.000460:-75.292090
+# start dropbox daemon
+exec env XDG_CURRENT_DESKTOP=Unity dropbox start -i
+
+
+# set webcam zoom level
+# exec --no-startup-id uvcdynctrl --set='Zoom, Absolute' 150
+# 150 for 1080p camera
+exec --no-startup-id v4l2-ctl --device /dev/video0 --set-ctrl=zoom_absolute=130
+
+# set webcam to disable autofocus
+# exec --no-startup-id uvcdynctrl --set='Focus, Auto' 0
+exec --no-startup-id v4l2-ctl --device /dev/video0 --set-ctrl=focus_automatic_continuous=0
+
+# 1password
+exec sh -c 'sleep 5 && (1password --silent || notify-send -u critical "System Alert" "1Password failed to start")'
 # Notes
 # mod+shift+space to toggle floating/tiling mode
 # mod+b tabbed
@@ -303,3 +304,4 @@ exec firefox-devedition
 # mod+shift+number moves to workspace number
 #
 # ctrl-alt-FN[1-7] switches to tty[1-7]  tty2 is default desktop
+
