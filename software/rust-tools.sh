@@ -78,3 +78,13 @@ ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 # 2026-03-21 13:30:58 Saturday
 cargo install --git https://github.com/googleworkspace/cli --locked
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
+# 2026-03-22 18:23:12 Sunday replace GDM
+# not available via this method
+# cargo install tuigreet
+cargo install --git https://github.com/apognu/tuigreet --locked
+ERR=$?; [[ $ERR != 0 ]] && exit $ERR
+# must be in path for greeter to work
+sudo mv ~/.cargo/bin/tuigreet /usr/local/bin/tuigreet
+sudo mkdir -p /var/cache/tuigreet
+sudo chown _greetd:_greetd /var/cache/tuigreet
+sudo chmod 0755 /var/cache/tuigreet
