@@ -39,7 +39,7 @@ def linux_local():
             print(f"Created -> {link}")
         except Exception as e:
             print(f"Error creating symlink: {e}")
-            sys.exit(1)
+            # sys.exit(1)
 
 
 def linux_home():
@@ -47,6 +47,9 @@ def linux_home():
     print(f"Linking {path}")
 
     for f in path.iterdir():
+        if f.name in ["claude", "gemini"]:
+            print(f"\033[31mNot Implemented: {f.name}\033[0m")
+            continue
         link = Path.home() / Path(f".{f.name}")
         temp = Path.home() / Path(f".{f.name}-new")
         target = Path.cwd() / Path(f)
@@ -57,7 +60,7 @@ def linux_home():
             print(f"Created -> {link}")
         except Exception as e:
             print(f"Error creating symlink: {e}")
-            sys.exit(1)
+            # sys.exit(1)
 
 
 def linux_config():
@@ -76,7 +79,7 @@ def linux_config():
             print(f"Created -> {link}")
         except Exception as e:
             print(f"Error creating symlink: {e}")
-            sys.exit(1)
+            # sys.exit(1)
 
     alacritty_config()
 
