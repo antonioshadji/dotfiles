@@ -14,8 +14,8 @@ ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 source ~/.cargo/env
 rustup update
 
-# Alacritty only needed on desktop machines
 if [[ "$OS" = "Linux" ]]; then
+  # Alacritty desktop configuration
   sudo apt install -y libfontconfig1-dev libx11-xcb-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev
 
   # man page
@@ -37,6 +37,16 @@ if [[ "$OS" = "Linux" ]]; then
     # rm -f Alacritty.desktop
     sudo update-desktop-database
   fi
+  # 2026-03-22 18:23:12 Sunday replace GDM
+  # not available via this method
+  # cargo install tuigreet
+  cargo install --git https://github.com/apognu/tuigreet --locked
+  ERR=$?; [[ $ERR != 0 ]] && exit $ERR
+  # must be in path for greeter to work
+  sudo mv ~/.cargo/bin/tuigreet /usr/local/bin/tuigreet
+  sudo mkdir -p /var/cache/tuigreet
+  sudo chown _greetd:_greetd /var/cache/tuigreet
+  sudo chmod 0755 /var/cache/tuigreet
 fi
 
 cargo install alacritty
@@ -78,13 +88,9 @@ ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 # 2026-03-21 13:30:58 Saturday
 cargo install --git https://github.com/googleworkspace/cli --locked
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
-# 2026-03-22 18:23:12 Sunday replace GDM
-# not available via this method
-# cargo install tuigreet
-cargo install --git https://github.com/apognu/tuigreet --locked
+
+# 2026-03-26 13:15:36 Thursday added to work with asciinema
+cargo install --locked --git https://github.com/asciinema/asciinema
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
-# must be in path for greeter to work
-sudo mv ~/.cargo/bin/tuigreet /usr/local/bin/tuigreet
-sudo mkdir -p /var/cache/tuigreet
-sudo chown _greetd:_greetd /var/cache/tuigreet
-sudo chmod 0755 /var/cache/tuigreet
+cargo install --git https://github.com/asciinema/agg
+ERR=$?; [[ $ERR != 0 ]] && exit $ERR
