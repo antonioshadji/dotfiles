@@ -256,6 +256,14 @@ output * bg ~/.config/dotfiles/images/background-discipline-black.png stretch
 
 seat * hide_cursor 3000
 
+### Monitor Configuration
+# Primary Horizontal Monitor (Left)
+output HDMI-A-1 pos 0 0 res 1920x1080
+
+# Vertical Monitor (Right)
+# We rotate it 90 degrees and place it at the end of the first monitor (x=1920)
+output HDMI-A-2 pos 1920 0 res 1920x1080 transform 90
+
 # notification daemon
 exec dunst -conf "$HOME/.config/dunst/dustrc"
 # --- Notification Management (Dunst) ---
