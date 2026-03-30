@@ -1,51 +1,19 @@
----
+add_anaconda_token: true
+anaconda_upload: false
+auto_activate: false
+changeps1: false
+# channel_alias: https://playground.se.sb.anacondaconnect.com/api/repo
 channel_priority: strict
+channel_settings:
+  - auth: anaconda-auth
+    channel: https://playground.se.sb.anacondaconnect.com/*
 channels:
   - https://conda.anaconda.org/anaconda-cloud/label/dev
   - https://conda.anaconda.org/anaconda-cloud
-  # - https://demo.sb.anacondaconnect.com/api/repo/anaconda-main
-  - https://ahadji1.sb.anacondaconnect.com/api/repo/anaconda-cloud-main
-  - https://ahadji1.sb.anacondaconnect.com/api/repo/anaconda-cloud-community
-  - https://ahadji1.sb.anacondaconnect.com/api/repo/ahadjigeorgalis
-  # - https://demo.sb.anacondaconnect.com/api/repo/cloud-main
-  # - https://demo.sb.anacondaconnect.com/api/repo/anaconda-community
-  # - https://demo.sb.anacondaconnect.com/api/repo/ahadjigeorgalis
-  # - https://repo.anaconda.cloud/repo/se-demo/main
-  # - https://repo.anaconda.cloud/repo/se-demo/community
-  # - https://repo.anaconda.com/pkgs/snowflake/
-  # - https://demo.as.anacondaconnect.com/api/repo/metacortex-custom
-  # - https://conda.anaconda.org/conda-forge
-  # - tested fake_defaults
-  # - file:///opt/miniconda3/fake_defaults
-
-channel_settings:
-  - channel: https://repo.anaconda.cloud/*
-    auth: anaconda-auth
-  - channel: https://ahadji1.sb.anacondaconnect.com/*
-    auth: anaconda-auth
-
-restore_free_channel: false
-
-auto_activate: false
-changeps1: false # using starship prompt that does not require this feature
+  - https://playground.se.sb.anacondaconnect.com/api/repo/anaconda-cloud-main
+  - https://playground.se.sb.anacondaconnect.com/api/repo/anaconda-cloud-community
+  - https://playground.se.sb.anacondaconnect.com/api/repo/ahadjigeorgalis
+  - https://conda.anaconda.org/conda-forge
 
 report_errors: true
-anaconda_upload: false
-
-# added by anaconda token install 2025-11-20 14:33:19 ??
-add_anaconda_token: true
-# default_channels:
-#   - https://repo.anaconda.cloud/repo/main
-#   - https://repo.anaconda.cloud/repo/r
-#   - https://repo.anaconda.cloud/repo/msys2
-
-# Undocumented
-# https://docs.conda.io/projects/conda/en/stable/dev-guide/api/conda/base/context/index.html#conda.base.context.Context.add_pip_as_python_dependency
-# do not automatically install pip as a python dependency
-# add_pip_as_python_dependency: false
-
-# NOTE: seems to be breaking many things
-# plugins:
-#   use_sharded_repodata: true
-
-# vim: set ft=yaml fdl=99:
+restore_free_channel: false
