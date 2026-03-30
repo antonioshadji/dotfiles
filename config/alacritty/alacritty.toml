@@ -8,10 +8,6 @@ import = [
   "~/.config/alacritty/os.toml",
 ]
 
-[bell]
-duration = 1000
-command = { program = "notify-send", args = ["Shell Bell"] }
-
 [[keyboard.bindings]]
 action = "Paste"
 key = "Paste"

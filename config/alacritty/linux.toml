@@ -1,6 +1,9 @@
 [font]
 size = 12
 
+[bell]
+duration = 1000
+command = { program = "notify-send", args = ["Shell Bell"] }
+
 # [env]
 # WINIT_X11_SCALE_FACTOR = "1.0"
-
