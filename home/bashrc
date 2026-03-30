@@ -460,7 +460,6 @@ fi
 # custom behaviour when entering directory
 cd () {
   builtin cd "$@" || return
-  echo -e "\e]0;$(pwd)\a"
   activate
   # ls -F --color # linux only --ignore=lost+found
 }
@@ -505,22 +504,16 @@ if [ -r /var/run/reboot-required ]; then
   uptime
 fi
 
-export TPM2_PKCS11_STORE=$HOME/.tpm2_pkcs11/
-
 # ripgrep config https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep"
 
 # Anaconda claude code setup {{
 # using aws config [default]
 export AWS_PROFILE=Sandbox-621741996708
-export AWS_REGION=us-east-1
+export AWS_DEFAULT_REGION=us-east-1
+export AWS_REGION=$AWS_DEFAULT_REGION
 export BEDROCK_AWS_REGION=$AWS_REGION
-export CLAUDE_CODE_USE_BEDROCK=1
-# https://us-east-1.console.aws.amazon.com/bedrock/home?region=us-east-1#/inference-profiles
-export ANTHROPIC_DEFAULT_OPUS_MODEL='us.anthropic.claude-opus-4-5-20251101-v1:0'
-export ANTHROPIC_DEFAULT_SONNET_MODEL='us.anthropic.claude-sonnet-4-5-20250929-v1:0'
-export ANTHROPIC_DEFAULT_HAIKU_MODEL='us.anthropic.claude-haiku-4-5-20251001-v1:0'
-export ANTHROPIC_MODEL=$ANTHROPIC_DEFAULT_OPUS_MODEL
+export AWS_ACCOUNT_ID=621741996708
 # }}
 
 # Setting fd as the default source for fzf
@@ -588,6 +581,8 @@ if [[ $(uname -s) == Linux ]]; then
   [[ -d /mnt/data/ollama ]] && export OLLAMA_MODELS=/mnt/data/ollama
   HOST_IP="$(hostname -I|awk '{print $1}')"
   export OLLAMA_HOST="${HOST_IP}:11434"
+  # using TPM secure storage
+  export TPM2_PKCS11_STORE=$HOME/.tpm2_pkcs11/
 fi
 #}}
 
@@ -635,6 +630,16 @@ if [ -d "$_CONDA_ROOT" ]; then
     }
 fi
 
+cactivate() {
+  local env_path="${1:-.cenv}"
+  conda activate "$env_path"
+  if [[ "$(basename "$CONDA_PREFIX")" == ".cenv" ]]; then
+    local parent_dir
+    parent_dir="$(basename "$(dirname "$CONDA_PREFIX")")"
+    export CONDA_PROMPT_MODIFIER="(${parent_dir}) "
+    PS1="(${parent_dir}) ${PS1##\(*\) }"
+  fi
+}
 
 
 
