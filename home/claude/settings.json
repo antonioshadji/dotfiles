@@ -1,8 +1,15 @@
 {
+  "awsAuthRefresh": "aws sso login --profile Sandbox-621741996708",
+  "env": {
+    "CLAUDE_CODE_USE_BEDROCK": "1",
+    "AWS_PROFILE": "Sandbox-621741996708",
+    "AWS_REGION": "us-east-1",
+    "ANTHROPIC_MODEL": "us.anthropic.claude-opus-4-6-v1"
+  },
   "permissions": {
     "allow": [
       "Bash",
-      "Write(**/*.md)",
+      "Write",
       "Edit(**/*.md)",
       "Read",
       "WebFetch"
@@ -11,6 +18,7 @@
       "Bash(rm:*)"
     ]
   },
+  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "bash ~/.claude/statusline-command.sh"
@@ -22,23 +30,36 @@
     "claude-md-management@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": true,
     "commit-commands@claude-plugins-official": true,
-    "explanatory-output-style@claude-plugins-official": true,
     "feature-dev@claude-plugins-official": true,
     "figma@claude-plugins-official": true,
     "frontend-design@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
-    "greptile@claude-plugins-official": true,
     "huggingface-skills@claude-plugins-official": true,
-    "learning-output-style@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true,
     "playground@claude-plugins-official": true,
     "playwright@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
-    "ralph-loop@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
     "security-guidance@claude-plugins-official": true,
     "superpowers@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true
+    "typescript-lsp@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true,
+    "github@claude-plugins-official": true,
+    "pr-review-toolkit@claude-plugins-official": true,
+    "atlassian@claude-plugins-official": true,
+    "plugin-dev@claude-plugins-official": true,
+    "hookify@claude-plugins-official": true,
+    "slack@claude-plugins-official": true,
+    "claude-notifications-go@claude-notifications-go": true
+  },
+  "extraKnownMarketplaces": {
+    "claude-notifications-go": {
+      "source": {
+        "source": "github",
+        "repo": "777genius/claude-notifications-go"
+      }
+    }
   },
   "alwaysThinkingEnabled": true
 }
