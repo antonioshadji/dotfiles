@@ -7,5 +7,7 @@ go install github.com/noborus/ov@latest
 # Install Fabric directly from the repo
 go install github.com/danielmiessler/fabric/cmd/fabric@latest
 
+# kubernetes tools
 # NOTE: The dev version will be in effect!
 go install github.com/derailed/k9s@latest
+go install github.com/stern/stern@latest
