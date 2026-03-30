@@ -1,0 +1,23 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "llamacpp/my-model",
+  "provider": {
+    "llamacpp": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Qwen2.5-7B-Instruct-01",
+      "options": {
+        "baseURL": "https://se-demo.sb.anacondaconnect.com/api/ai/inference/serve/15ef7186-65d5-4e5c-804b-44a98c0d93c5/v1",
+        "apiKey": "{env:LLAMACPP_API_KEY}"
+      },
+      "models": {
+        "my-model": {
+          "name": "Qwen2.5-7B-Instruct-01",
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          }
+        }
+      }
+    }
+  }
+}

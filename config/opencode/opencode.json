@@ -1,0 +1,29 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "qwen/qwen2.5-coder-7b-instruct",
+  "provider": {
+    "qwen": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Qwen2.5-Coder-7B-Instruct",
+      "options": {
+        "baseURL": "https://playground.se.sb.anacondaconnect.com/api/ai/inference/serve/2e62a9e9-c3a7-4d29-856c-9b264617fd78/v1",
+        "apiKey": "{env:LLAMA3_API_KEY}"
+      },
+      "models": {
+        "qwen2.5-coder-7b-instruct": {
+          "name": "Qwen2.5-Coder-7B-Instruct | q8_0",
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          }
+        }
+      }
+    }
+  },
+  "permission": {
+    "edit": "allow",
+    "bash": "allow",
+    "webfetch": "allow"
+  },
+  "plugin": ["superpowers@git+https://github.com/obra/superpowers.git"]
+}

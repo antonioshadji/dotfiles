@@ -1,0 +1,68 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
+  "agents": {
+    "sisyphus": {
+      "model": "amazon-bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0"
+    },
+    "hephaestus": {
+      "model": "amazon-bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0"
+    },
+    "oracle": {
+      "model": "amazon-bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+      "variant": "max"
+    },
+    "librarian": {
+      "model": "amazon-bedrock/us.anthropic.claude-sonnet-4-5-20250929-v1:0"
+    },
+    "explore": {
+      "model": "amazon-bedrock/us.anthropic.claude-sonnet-4-5-20250929-v1:0"
+    },
+    "multimodal-looker": {
+      "model": "amazon-bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0"
+    },
+    "prometheus": {
+      "model": "amazon-bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+      "variant": "max"
+    },
+    "metis": {
+      "model": "amazon-bedrock/us.anthropic.claude-sonnet-4-5-20250929-v1:0"
+    },
+    "momus": {
+      "model": "amazon-bedrock/us.anthropic.claude-sonnet-4-5-20250929-v1:0"
+    },
+    "atlas": {
+      "model": "amazon-bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+      "variant": "max"
+    }
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "amazon-bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+      "variant": "max"
+    },
+    "ultrabrain": {
+      "model": "amazon-bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+      "variant": "max"
+    },
+    "deep": {
+      "model": "amazon-bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+      "variant": "max"
+    },
+    "artistry": {
+      "model": "amazon-bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0",
+      "variant": "max"
+    },
+    "quick": {
+      "model": "amazon-bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0"
+    },
+    "unspecified-low": {
+      "model": "amazon-bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0"
+    },
+    "unspecified-high": {
+      "model": "amazon-bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0"
+    },
+    "writing": {
+      "model": "amazon-bedrock/us.anthropic.claude-opus-4-5-20251101-v1:0"
+    }
+  }
+}
