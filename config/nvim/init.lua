@@ -124,10 +124,10 @@ cmp.setup({
 vim.lsp.enable({
   "bashls",
   "luals",
-  "ruff",
   -- "basedpyright",
   "pyright",
-  "pyrefly",
+  -- "pyrefly",
+  "ruff",
   "ts_ls",
   "gopls",
   -- "rust_analyzer", https://github.com/mrcjkb/rustaceanvim?tab=readme-ov-file#zap-quick-setup
