@@ -11,3 +11,6 @@ go install github.com/danielmiessler/fabric/cmd/fabric@latest
 # NOTE: The dev version will be in effect!
 go install github.com/derailed/k9s@latest
 go install github.com/stern/stern@latest
+
+# markdown rendering in terminal
+go install github.com/charmbracelet/glow/v2@latest
