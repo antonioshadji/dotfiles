@@ -300,8 +300,17 @@ exec --no-startup-id v4l2-ctl --device /dev/video0 --set-ctrl=zoom_absolute=130
 # exec --no-startup-id uvcdynctrl --set='Focus, Auto' 0
 exec --no-startup-id v4l2-ctl --device /dev/video0 --set-ctrl=focus_automatic_continuous=0
 
+### Idle Configuration
+
+# Power down the screens after 5 minutes (300 seconds) of inactivity.
+# Restore power the moment activity is detected.
+exec swayidle -w \
+    timeout 300 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"'
+
 # 1password
-exec sh -c 'sleep 5 && (1password --silent || notify-send -u critical "System Alert" "1Password failed to start")'
+exec sh -c 'sleep 10 && (1password --silent || notify-send -u critical "System Alert" "1Password failed to start")'
+
 # Notes
 # mod+shift+space to toggle floating/tiling mode
 # mod+b tabbed
