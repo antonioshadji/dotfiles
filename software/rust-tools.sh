@@ -94,3 +94,7 @@ cargo install --locked --git https://github.com/asciinema/asciinema
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 cargo install --git https://github.com/asciinema/agg
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
+
+# 2026-04-04 12:07:35 Saturday cli email client
+cargo install himalaya --locked
+ERR=$?; [[ $ERR != 0 ]] && exit $ERR
