@@ -40,7 +40,7 @@ if [[ "$OS" = "Linux" ]]; then
   # 2026-03-22 18:23:12 Sunday replace GDM
   # not available via this method
   # cargo install tuigreet
-  cargo install --git https://github.com/apognu/tuigreet --locked
+  cargo install --locked --git https://github.com/apognu/tuigreet
   ERR=$?; [[ $ERR != 0 ]] && exit $ERR
   # must be in path for greeter to work
   sudo mv ~/.cargo/bin/tuigreet /usr/local/bin/tuigreet
@@ -85,16 +85,17 @@ ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 # 2026-01-08 17:44:26 Thursday  added recommended by Anaconda Engineering
 cargo install bat
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
-# 2026-03-21 13:30:58 Saturday
-cargo install --git https://github.com/googleworkspace/cli --locked
-ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 
 # 2026-03-26 13:15:36 Thursday added to work with asciinema
 cargo install --locked --git https://github.com/asciinema/asciinema
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
-cargo install --git https://github.com/asciinema/agg
+cargo install --locked --git https://github.com/asciinema/agg
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 
 # 2026-04-04 12:07:35 Saturday cli email client
-cargo install himalaya --locked
+cargo install --locked himalaya
+ERR=$?; [[ $ERR != 0 ]] && exit $ERR
+
+# 2026-03-21 13:30:58 Saturday
+cargo install --locked --git https://github.com/googleworkspace/cli
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
