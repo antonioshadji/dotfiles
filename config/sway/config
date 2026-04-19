@@ -119,7 +119,7 @@ set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
-set $ws9 "9"
+set $ws9 "9:IB"
 set $ws10 "10"
 
 # switch to workspace
@@ -282,6 +282,15 @@ workspace $ws10 output HDMI-A-2
 assign [app_id="firefox-dev"] $ws10
 exec firefox-devedition
 
+# Automatically move Nautilus to Workspace on the vertical monitor
+for_window [app_id="org.gnome.Nautilus"] move container to workspace 10
+# Route the Java client to workspace 9
+assign [class="install4j-jclient-Launcher"] workspace number 9
+
+# Force the layout to tabbed when the application opens
+for_window [class="install4j-jclient-Launcher"] layout tabbed
+for_window [class="install4j-jclient-Launcher"] floating enable
+
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec nm-applet --indicator
@@ -308,9 +317,11 @@ exec swayidle -w \
     timeout 300 'swaymsg "output * dpms off"' \
     resume 'swaymsg "output * dpms on"'
 
+# Upload Wayland variables to D-Bus to prevent GTK application timeouts
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
 # 1password
 exec sh -c 'sleep 10 && (1password --silent || notify-send -u critical "System Alert" "1Password failed to start")'
-
 # Notes
 # mod+shift+space to toggle floating/tiling mode
 # mod+b tabbed
