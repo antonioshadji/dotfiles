@@ -2,18 +2,25 @@ add_anaconda_token: true
 anaconda_upload: false
 auto_activate: false
 changeps1: false
-# channel_alias: https://playground.se.sb.anacondaconnect.com/api/repo
+# channel_settings:
+#   - auth: anaconda-auth
+#     channel: https://demo.se.sb.anacondaconnect.com/*
+#   - auth: anaconda-auth
+#     channel: https://repo.anaconda.cloud/repo/se-demo/*
+# this must be disabled for conda-pypi-test
 channel_priority: strict
-channel_settings:
-  - auth: anaconda-auth
-    channel: https://playground.se.sb.anacondaconnect.com/*
+# solver: rattler
 channels:
+  # - https://repo.anaconda.cloud/repo/anacondabusiness/python-specific
   - https://conda.anaconda.org/anaconda-cloud/label/dev
   - https://conda.anaconda.org/anaconda-cloud
-  - https://playground.se.sb.anacondaconnect.com/api/repo/anaconda-cloud-main
-  - https://playground.se.sb.anacondaconnect.com/api/repo/anaconda-cloud-community
-  - https://playground.se.sb.anacondaconnect.com/api/repo/ahadjigeorgalis
+  - https://repo.anaconda.cloud/repo/se-demo/main
+  - https://repo.anaconda.cloud/repo/main-x
+  - https://demo.se.sb.anacondaconnect.com/api/repo/ahadjigeorgalis
+  - https://repo.anaconda.com/pkgs/main
+  # Pro Serv built packages
+  - https://conda.anaconda.org/services
+  # - https://github.com/conda-incubator/conda-pypi-test/releases/download
   - https://conda.anaconda.org/conda-forge
-
 report_errors: true
 restore_free_channel: false
