@@ -99,3 +99,7 @@ ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 # 2026-03-21 13:30:58 Saturday
 cargo install --locked --git https://github.com/googleworkspace/cli
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
+
+# 2026-04-13 14:31:24 Monday
+cargo install du-dust
+ERR=$?; [[ $ERR != 0 ]] && exit $ERR

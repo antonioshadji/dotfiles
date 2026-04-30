@@ -32,7 +32,7 @@ def construct_file_specifier():
     specifier = f"{osname}-{arch}"
 
     if specifier != "linux-amd64":
-        print(f"This script only works for {specifier} at this time.")
+        print(f"Only works for linux-amd64 at this time. System is {specifier}")
         exit()
 
     return specifier
