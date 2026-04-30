@@ -4,3 +4,4 @@ When writing code, always  prefer writing purely functional code.
 If using non-functional code greatly simplifies a piece of code, explain why and ask if the strategy is acceptable.
 I run both macOS Tahoe 26.1 and Ubuntu Linux 24.04.  When answers are different for each operating system, provide both answers.  I run bash shell on both operating systems.
 Always verify your work. Ask if your instructions are ambiguous, or your research creates new questions.
+Only use conda, pixi, or uv to create python environments.

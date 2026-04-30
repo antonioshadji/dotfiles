@@ -4,7 +4,11 @@
     "CLAUDE_CODE_USE_BEDROCK": "1",
     "AWS_PROFILE": "Sandbox-621741996708",
     "AWS_REGION": "us-east-1",
-    "ANTHROPIC_MODEL": "us.anthropic.claude-opus-4-6-v1"
+    "ANTHROPIC_MODEL": "global.anthropic.claude-opus-4-7",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "global.anthropic.claude-opus-4-7",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "global.anthropic.claude-sonnet-4-6",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "global.anthropic.claude-haiku-4-5-20251001-v1:0",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "global.anthropic.claude-sonnet-4-6"
   },
   "permissions": {
     "allow": [
@@ -16,7 +20,8 @@
     ],
     "ask": [
       "Bash(rm:*)"
-    ]
+    ],
+    "defaultMode": "acceptEdits"
   },
   "model": "opus",
   "statusLine": {
@@ -51,7 +56,8 @@
     "plugin-dev@claude-plugins-official": true,
     "hookify@claude-plugins-official": true,
     "slack@claude-plugins-official": true,
-    "claude-notifications-go@claude-notifications-go": true
+    "claude-notifications-go@claude-notifications-go": true,
+    "zoom-plugin@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "claude-notifications-go": {
@@ -61,5 +67,6 @@
       }
     }
   },
-  "alwaysThinkingEnabled": true
+  "alwaysThinkingEnabled": true,
+  "editorMode": "vim"
 }
