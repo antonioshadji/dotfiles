@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC1091,SC1090
 
 # Kiro CLI pre block. Keep at the top of this file.
 [[ -f "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.pre.bash" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.pre.bash"
+
+# shellcheck disable=SC1091,SC1090
+
 
 # https://github.com/koalaman/shellcheck/wiki/SC1090
 # shellcheck disable=SC1090,SC1091
@@ -257,6 +259,7 @@ pathmunge "${HOME}/.opencode/bin" after
 # source path related files installed by these tools
 # ==> Source [/opt/google-cloud-sdk/path.bash.inc] in your profile to add the Google Cloud SDK command line tools to your $PATH.
 if [[ -r /opt/google-cloud-sdk/path.bash.inc ]]; then
+  # shellcheck source=/dev/null
   source /opt/google-cloud-sdk/path.bash.inc
 fi
 
@@ -347,7 +350,8 @@ alias k='kubectl'
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+    # shellcheck source=/dev/null
+    source ~/.bash_aliases
 fi
 # http://haacked.com/archive/2014/07/28/github-flow-aliases/
 # TODO: create aliases for
@@ -357,9 +361,14 @@ fi
 # 2.3) Text and editor commands
 alias e='nvim'
 alias vv='gvim --remote-silent'
-export EDITOR=/opt/nvim-linux-x86_64/bin/nvim
-export VISUAL=/opt/nvim-linux-x86_64/bin/nvim
-export SYSTEMD_EDITOR=/opt/nvim-linux-x86_64/bin/nvim
+if [[ "$OSTYPE" == "linux"* ]]; then
+  export EDITOR=/opt/nvim-linux-x86_64/bin/nvim
+  export VISUAL=/opt/nvim-linux-x86_64/bin/nvim
+  export SYSTEMD_EDITOR=/opt/nvim-linux-x86_64/bin/nvim
+else
+  export EDITOR=/opt/nvim-macos-arm64/bin/nvim
+  export VISUAL=/opt/nvim-macos-arm64/bin/nvim
+fi
 export MYVIMRC="$HOME/.config/nvim/init.lua"
 
 # open terminal in current cwd
@@ -387,6 +396,7 @@ fi
 #{{ Node setup and tools
 # [ -r file ] returns True if file exists and is readable.
 [[ -d "$HOME/.config/nvm" ]] && export NVM_DIR="$HOME/.config/nvm"
+# shellcheck source=/dev/null
 [[ -r "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"  # This loads nvm
 
 #}}
@@ -424,7 +434,7 @@ esac
 # }}
 
 # Darwin only setup {{
-if [[ $(uname -s) == 'Darwin' ]]; then
+if [[ "$OSTYPE" == "darwin"* ]]; then
   # add all mac osx specific bits inside an if statement like this.
   alias ll='ls -AFlhG'
   alias lt='ls -AFlhrtG'
@@ -438,8 +448,10 @@ if [[ $(uname -s) == 'Darwin' ]]; then
   export LSCOLORS=FxgxdadacxDaDahbadacec
   DOCKER_ROOT='/Applications/Docker.app/Contents/Resources/etc'
   if [[ -d $DOCKER_ROOT ]]; then
-    . "$DOCKER_ROOT/docker.bash-completion"
-    . "$DOCKER_ROOT/docker-compose.bash-completion"
+    # shellcheck source=/dev/null
+    source "$DOCKER_ROOT/docker.bash-completion"
+    # shellcheck source=/dev/null
+    source "$DOCKER_ROOT/docker-compose.bash-completion"
   fi
 
   [[ -r "${HOME}/.iterm2_shell_integration.bash" ]] && source "${HOME}/.iterm2_shell_integration.bash"
@@ -451,6 +463,7 @@ if [[ $(uname -s) == 'Darwin' ]]; then
   fi
 
   for f in "${completion_files[@]}"; do
+    # shellcheck source=/dev/null
     [[ -r $f  ]] && source "$f"
   done
 
@@ -474,7 +487,12 @@ cd () {
 activate() {
   if [[ -n "$1" ]]; then
     conda activate "$1"
+    # this breaks when activating from a directory other than local directory
+    # local PROMPT
+    # PROMPT=$(basename "$(pwd)")
+    # export CONDA_DEFAULT_ENV=$PROMPT
   elif [[ -d .venv ]]; then
+    # shellcheck source=/dev/null
     source .venv/bin/activate
   # TODO: deactivate whene leaving virtual env
   # elif declare -F deactivate > /dev/null; then
@@ -525,7 +543,7 @@ if command -v fd &> /dev/null; then
 fi
 # fzf setup
 if [[ -f ~/.fzf.bash ]]; then
-  source ~/.fzf.bash
+  source "$HOME/.fzf.bash"
 else
   eval "$(fzf --bash)"
 fi
@@ -550,6 +568,7 @@ bind 'set mark-symlinked-directories on'
 bind 'TAB:menu-complete'
 
 # Turn on bash command completion
+# shellcheck source=/dev/null
 [[ -r /usr/share/bash-completion/bash_completion ]] && source /usr/share/bash-completion/bash_completion
 
 # enable bash_completion in local files {{
@@ -557,6 +576,7 @@ bind 'TAB:menu-complete'
 completion_files=(~/.local/share/bash-completion/completions/*)
 
 for f in "${completion_files[@]}"; do
+  # shellcheck source=/dev/null
   [[ -r $f  ]] && source "$f"
 done
 
@@ -565,8 +585,10 @@ done
 [[ $(command -v aws_completer) ]] && complete -C aws_completer aws
 
 # nvm completion
+# shellcheck source=/dev/null
 [[ -r "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
 # kubectl completion
+# shellcheck source=/dev/null
 [[ $(command -v kubectl) ]] && source <(kubectl completion bash)
 # allow completion to work with alias
 complete -o default -F __start_kubectl k
@@ -590,7 +612,8 @@ fi
 #}}
 
 # this is standard add from kiro install.  && returns false (failure code)
-[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path bash)"
+# shellcheck source=/dev/null
+[[ "$TERM_PROGRAM" == "kiro" ]] && source "$(kiro --locate-shell-integration-path bash)"
 
 # https://cryptography.io/en/latest/openssl/#legacy-provider-in-openssl-3-x
 # anaconda-ai required env var
@@ -616,7 +639,8 @@ if [ -d "$_CONDA_ROOT" ]; then
             eval "$__conda_setup"
         else
             if [ -f "${_CONDA_ROOT}/etc/profile.d/conda.sh" ]; then
-                . "${_CONDA_ROOT}/etc/profile.d/conda.sh"
+                # shellcheck source=/dev/null
+                source "${_CONDA_ROOT}/etc/profile.d/conda.sh"
             else
                 export PATH="${_CONDA_ROOT}/bin:$PATH"
             fi
@@ -670,8 +694,21 @@ if [[ $DEBUG == 1 ]]; then
 fi
 # }}
 
-# Kiro CLI post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.post.bash" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.post.bash"
 
 # : is bash builtin that does nothing and always returns 0
 :
+
+# added by Snowflake SnowflakeCLI installer v1.0
+export PATH=/Applications/SnowflakeCLI.app/Contents/MacOS/:$PATH
+
+# Created by `conda-global` on 2026-04-08 16:09:11
+export PATH="$PATH:$HOME/.cg/bin"
+
+
+# Kiro CLI post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.post.bash" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.post.bash"
+
+# Added by LM Studio CLI tool (lms)
+export PATH="$PATH:/Users/ahadjigeorgalis/.lmstudio/bin"
+
+export PATH="/Users/ahadjigeorgalis/.ana/bin:$PATH"
