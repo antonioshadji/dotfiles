@@ -49,41 +49,41 @@ if [[ "$OS" = "Linux" ]]; then
   sudo chmod 0755 /var/cache/tuigreet
 fi
 
-cargo install alacritty
+cargo install alacritty --locked
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 
-cargo install fd-find
+cargo install fd-find --locked
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
-cargo install ripgrep
+cargo install ripgrep --locked
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 
 # added 2024-01-26 15:57:30 to format lua files
-cargo install stylua
+cargo install stylua --locked
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 # 2024-01-28 12:12:13 for use with neovim tree-sitter functionality
-cargo install tree-sitter-cli
+cargo install tree-sitter-cli --locked
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 
 # added 2025-06-28 16:20:19 justfile and starship.rs
-cargo install starship
+cargo install starship --locked
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
-cargo install just
+cargo install just --locked
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 # 2025-07-19 11:10:07 added
-cargo install lsd
+cargo install lsd --locked
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 
 # 2025-12-30 11:31:51 added
 # https://github.com/spider-rs/spider/blob/main/spider_cli/README.md
-cargo install -F smart spider_cli
+cargo install -F smart spider_cli --locked
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 
 # 2026-01-01 12:26:35 Thursday added
-cargo install taplo-cli
+cargo install taplo-cli --locked
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 
 # 2026-01-08 17:44:26 Thursday  added recommended by Anaconda Engineering
-cargo install bat
+cargo install bat --locked
 ERR=$?; [[ $ERR != 0 ]] && exit $ERR
 
 # 2026-03-26 13:15:36 Thursday added to work with asciinema
