@@ -288,8 +288,8 @@ for_window [app_id="org.gnome.Nautilus"] move container to workspace 10
 assign [class="install4j-jclient-Launcher"] workspace number 9
 
 # Force the layout to tabbed when the application opens
-for_window [class="install4j-jclient-Launcher"] layout tabbed
-for_window [class="install4j-jclient-Launcher"] floating enable
+# for_window [class="install4j-jclient-Launcher"] layout tabbed
+# for_window [class="install4j-jclient-Launcher"] floating enable
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
