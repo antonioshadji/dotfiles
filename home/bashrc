@@ -3,6 +3,8 @@
 # Kiro CLI pre block. Keep at the top of this file.
 [[ -f "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.pre.bash" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.pre.bash"
 
+
+
 # shellcheck disable=SC1091,SC1090
 
 
@@ -398,7 +400,9 @@ fi
 [[ -d "$HOME/.config/nvm" ]] && export NVM_DIR="$HOME/.config/nvm"
 # shellcheck source=/dev/null
 [[ -r "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"  # This loads nvm
-
+# nvm completion
+# shellcheck source=/dev/null
+[[ -r "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
 #}}
 
 # {{ Python setup and tools
@@ -435,6 +439,8 @@ esac
 
 # Darwin only setup {{
 if [[ "$OSTYPE" == "darwin"* ]]; then
+  export PIP_CONFIG_FILE=$HOME/.config/pip/pip.conf
+
   # add all mac osx specific bits inside an if statement like this.
   alias ll='ls -AFlhG'
   alias lt='ls -AFlhrtG'
@@ -483,7 +489,7 @@ cd () {
 }
 
 # activate python environments {{
-# shellcheck disable=SC2120
+# shellcheck disable=SC2120,SC2144
 activate() {
   if [[ -n "$1" ]]; then
     conda activate "$1"
@@ -491,6 +497,11 @@ activate() {
     # local PROMPT
     # PROMPT=$(basename "$(pwd)")
     # export CONDA_DEFAULT_ENV=$PROMPT
+  elif [ -d .cenv* ]; then
+    # If you are sure there will only ever be exactly 0 or 1 matches
+    # -- and nullglob is not enabled
+    # -- then the test happens to work.
+    conda activate .cenv*/
   elif [[ -d .venv ]]; then
     # shellcheck source=/dev/null
     source .venv/bin/activate
@@ -584,9 +595,6 @@ done
 # http://docs.aws.amazon.com/cli/latest/userguide/cli-command-completion.html
 [[ $(command -v aws_completer) ]] && complete -C aws_completer aws
 
-# nvm completion
-# shellcheck source=/dev/null
-[[ -r "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
 # kubectl completion
 # shellcheck source=/dev/null
 [[ $(command -v kubectl) ]] && source <(kubectl completion bash)
@@ -705,10 +713,21 @@ export PATH=/Applications/SnowflakeCLI.app/Contents/MacOS/:$PATH
 export PATH="$PATH:$HOME/.cg/bin"
 
 
-# Kiro CLI post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.post.bash" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.post.bash"
 
 # Added by LM Studio CLI tool (lms)
 export PATH="$PATH:/Users/ahadjigeorgalis/.lmstudio/bin"
 
 export PATH="/Users/ahadjigeorgalis/.ana/bin:$PATH"
+# export PATH="/Users/ahadjigeorgalis/.pixi/bin:$PATH"
+
+# added by Snowflake SnowflakeCLI installer v1.0
+export PATH=/Applications/SnowflakeCLI.app/Contents/MacOS/:$PATH
+
+# Kiro CLI post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.post.bash" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.post.bash"
+
+export METAFLOW_PROFILE=gtm01
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/ahadjigeorgalis/.local/bin:$PATH"
