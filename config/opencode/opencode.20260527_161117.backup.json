@@ -25,30 +25,5 @@
     "bash": "allow",
     "webfetch": "allow"
   },
-  "plugin": [
-    "superpowers@git+https://github.com/obra/superpowers.git"
-  ],
-  "mcp": {
-    "anaconda-mcp": {
-      "type": "local",
-      "command": [
-        "/opt/miniconda3/envs/mcp/bin/python3.13",
-        "-m",
-        "anaconda_mcp",
-        "serve"
-      ],
-      "enabled": true,
-      "environment": {}
-    },
-    "aws-mcp": {
-      "type": "local",
-      "command": [
-        "uvx",
-        "mcp-proxy-for-aws@latest",
-        "https://aws-mcp.us-east-1.api.aws/mcp",
-        "--metadata",
-        "INSTALL_SOURCE=aws-cli"
-      ]
-    }
-  }
+  "plugin": ["superpowers@git+https://github.com/obra/superpowers.git"]
 }
