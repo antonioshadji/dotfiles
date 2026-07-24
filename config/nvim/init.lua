@@ -254,3 +254,5 @@ require("colorizer").setup(
 --     │   ├── keymaps.lua       # Telescope keymaps
 --     │   └── pickers.lua       # Custom picker functions
 --     └── options.lua           # Vim options
+--
+-- Issues on Mac solution: https://anaconda.slack.com/archives/CB84ZLW31/p1771956191169279
