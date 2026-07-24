@@ -1,3 +1,4 @@
+# font size lives in os specific config
 [font.bold]
 family = "ComicShannsMono Nerd Font"
 style = "Bold"
