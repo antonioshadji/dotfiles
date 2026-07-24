@@ -20,9 +20,10 @@ package_list=(
 # tools
  pdfkit
  playwright@latest
- @google/gemini-cli
+ @kilocode/cli
  opencode-ai
  wrangler  # cloudflare
+ @marp-team/marp-cli # markdown presentations
 )
 
 for pkg in "${package_list[@]}"; do
