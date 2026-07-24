@@ -1,26 +1,18 @@
 add_anaconda_token: true
+add_pip_as_python_dependency: false
 anaconda_upload: false
 auto_activate: false
 changeps1: false
-# channel_settings:
-#   - auth: anaconda-auth
-#     channel: https://demo.se.sb.anacondaconnect.com/*
-#   - auth: anaconda-auth
-#     channel: https://repo.anaconda.cloud/repo/se-demo/*
-# this must be disabled for conda-pypi-test
-channel_priority: strict
-# solver: rattler
+
+channel_alias: https://demo.as.anacondaconnect.com/api/repo
+channel_priority: flexible
+channel_settings:
+  - auth: anaconda-auth
+    channel: https://demo.as.anacondaconnect.com/*
 channels:
-  # - https://repo.anaconda.cloud/repo/anacondabusiness/python-specific
-  - https://conda.anaconda.org/anaconda-cloud/label/dev
-  - https://conda.anaconda.org/anaconda-cloud
-  - https://repo.anaconda.cloud/repo/se-demo/main
-  - https://repo.anaconda.cloud/repo/main-x
-  - https://demo.se.sb.anacondaconnect.com/api/repo/ahadjigeorgalis
-  - https://repo.anaconda.com/pkgs/main
-  # Pro Serv built packages
-  - https://conda.anaconda.org/services
-  # - https://github.com/conda-incubator/conda-pypi-test/releases/download
-  - https://conda.anaconda.org/conda-forge
+  - anaconda-premium
+  - nvidia-anaconda-org
+  - pypi-admin-approved
 report_errors: true
 restore_free_channel: false
+solver: rattler
