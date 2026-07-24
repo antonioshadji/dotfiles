@@ -59,21 +59,6 @@ vim.api.nvim_create_autocmd("BufNewFile", {
 
 vim.api.nvim_create_augroup("PANDOC", { clear = true })
 
-vim.api.nvim_create_autocmd("FileType", {
-  group = "PANDOC",
-  pattern = "pandoc",
-  callback = function()
-    vim.opt_local.spell = true
-    vim.opt_local.spelllang = "en_us"
-    vim.opt_local.wrap = true
-    vim.opt_local.linebreak = true
-    vim.opt_local.tabstop = 4
-    vim.opt_local.shiftwidth = 4
-    vim.opt_local.softtabstop = 4
-    vim.b.ale_fix_on_save = 0
-  end,
-})
-
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = "PANDOC",
   pattern = { "*.md", "*.markdown", "*.mkd" },
