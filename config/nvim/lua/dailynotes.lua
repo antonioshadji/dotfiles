@@ -17,9 +17,10 @@ local function get_previous_daily_file()
   -- Calculate previous day timestamp
   local prev_time = os.time(today) - (days_back * 24 * 60 * 60)
   local prev_date = os.date("*t", prev_time) --[[@as osdate]]
-  local prev_filename = string.format("%02d%02d.md", prev_date.month, prev_date.day)
+  -- New layout: daily/YYYY/MM/DD.md
+  local prev_path = string.format("%04d/%02d/%02d.md", prev_date.year, prev_date.month, prev_date.day)
 
-  return vim.fn.expand("~") .. "/Documents/daily/" .. prev_filename
+  return vim.fn.expand("~") .. "/Documents/daily/" .. prev_path
 end
 
 local function migrate_todos()
@@ -95,19 +96,19 @@ end
 
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost" }, {
   group = daily_note_group,
-  pattern = vim.fn.expand("~") .. "/Documents/daily/*.md",
+  pattern = vim.fn.expand("~") .. "/Documents/daily/*/*/*.md",
   callback = insert_daily_header,
   desc = "Insert timestamp header in daily notes",
 })
 
 -- Command to open today's daily note
 vim.api.nvim_create_user_command("DailyNote", function()
-  local daily_dir = vim.fn.expand("~/Documents/daily")
-  local filename = os.date("%m%d") .. ".md"
-  local filepath = daily_dir .. "/" .. filename
+  -- New layout: daily/YYYY/MM/DD.md
+  local month_dir = vim.fn.expand("~/Documents/daily/" .. os.date("%Y/%m"))
+  local filepath = month_dir .. "/" .. os.date("%d") .. ".md"
 
   -- Ensure directory exists
-  vim.fn.mkdir(daily_dir, "p")
+  vim.fn.mkdir(month_dir, "p")
 
   -- Open the file
   vim.cmd.edit(filepath)
