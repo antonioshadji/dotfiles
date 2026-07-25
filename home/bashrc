@@ -608,6 +608,8 @@ if [[ $(uname -s) == Linux ]]; then
   export XDG_DATA_HOME=$HOME/.local/share
   export XDG_CONFIG_HOME=$HOME/.config
   export XDG_CACHE_HOME=$HOME/.cache
+  export XDG_SESSION_TYPE=wayland
+  export XDG_CURRENT_DESKTOP=sway
   # uv on machine with logical volumes
   export UV_LINK_MODE=copy
   # ollama config

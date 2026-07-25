@@ -321,7 +321,7 @@ exec swayidle -w \
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 # 1password
-exec sh -c 'sleep 10 && (1password --silent || notify-send -u critical "System Alert" "1Password failed to start")'
+exec sh -c '(sleep 10 && (1password --silent || notify-send -u critical "System Alert" "1Password failed to start")) &'
 # Notes
 # mod+shift+space to toggle floating/tiling mode
 # mod+b tabbed
