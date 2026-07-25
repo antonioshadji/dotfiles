@@ -473,6 +473,21 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     [[ -r $f  ]] && source "$f"
   done
 
+  # added by Snowflake SnowflakeCLI installer v1.0
+  export PATH=/Applications/SnowflakeCLI.app/Contents/MacOS/:$PATH
+
+  export PATH="/Users/ahadjigeorgalis/.ana/bin:$PATH"
+  # export PATH="/Users/ahadjigeorgalis/.pixi/bin:$PATH"
+
+  # Added by LM Studio CLI tool (lms)
+  export PATH="$PATH:/Users/ahadjigeorgalis/.lmstudio/bin"
+  # added by Snowflake SnowflakeCLI installer v1.0
+  export PATH=/Applications/SnowflakeCLI.app/Contents/MacOS/:$PATH
+  # Added by Antigravity CLI installer
+  export PATH="/Users/ahadjigeorgalis/.local/bin:$PATH"
+
+  # Kiro CLI post block. Keep at the bottom of this file.
+  [[ -f "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.post.bash" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.post.bash"
 fi
 #}}
 
@@ -705,31 +720,15 @@ fi
 # }}
 
 
-# : is bash builtin that does nothing and always returns 0
-:
-
-# added by Snowflake SnowflakeCLI installer v1.0
-export PATH=/Applications/SnowflakeCLI.app/Contents/MacOS/:$PATH
-
 # Created by `conda-global` on 2026-04-08 16:09:11
 export PATH="$PATH:$HOME/.cg/bin"
 
-
-
-# Added by LM Studio CLI tool (lms)
-export PATH="$PATH:/Users/ahadjigeorgalis/.lmstudio/bin"
-
-export PATH="/Users/ahadjigeorgalis/.ana/bin:$PATH"
-# export PATH="/Users/ahadjigeorgalis/.pixi/bin:$PATH"
-
-# added by Snowflake SnowflakeCLI installer v1.0
-export PATH=/Applications/SnowflakeCLI.app/Contents/MacOS/:$PATH
-
-# Kiro CLI post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.post.bash" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.post.bash"
-
 export METAFLOW_PROFILE=gtm01
 
+# >>> grok installer >>>
+export PATH="$HOME/.grok/bin:$PATH"
+[[ -r "$HOME/.grok/completions/bash/grok.bash" ]] && source "$HOME/.grok/completions/bash/grok.bash"
+# <<< grok installer <<<
 
-# Added by Antigravity CLI installer
-export PATH="/Users/ahadjigeorgalis/.local/bin:$PATH"
+# : is bash builtin that does nothing and always returns 0
+:
