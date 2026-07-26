@@ -21,7 +21,7 @@ package_list=(
  pdfkit
  playwright@latest
  @kilocode/cli
- opencode-ai
+ @earendil-works/pi-coding-agent
  wrangler  # cloudflare
  @marp-team/marp-cli # markdown presentations
 )
