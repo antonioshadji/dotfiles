@@ -8,14 +8,14 @@ FILENAME_DATE=$(date +%dT%H-%M-%S)
 
 case "$1" in
   full)
-    grim -o HDMI-A-1 "$TARGET_DIR/zz-$FILENAME_DATE.png" && paplay "$SOUND"
+    grim -o HDMI-A-1 "$TARGET_DIR/$FILENAME_DATE.png" && paplay "$SOUND"
     ;;
   region)
-    grim -g "$(slurp)" "$TARGET_DIR/zz-$FILENAME_DATE.png" && paplay "$SOUND"
+    grim -g "$(slurp)" "$TARGET_DIR/$FILENAME_DATE.png" && paplay "$SOUND"
     ;;
   window)
     GEOM=$(swaymsg -t get_tree | jq -r '.. | select(.focused?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"')
-    grim -g "$GEOM" "$TARGET_DIR/active-window-$FILENAME_DATE.png" && paplay "$SOUND"
+    grim -g "$GEOM" "$TARGET_DIR/$FILENAME_DATE.png" && paplay "$SOUND"
     ;;
   *)
     echo "Usage: $0 {full|region|window}"
