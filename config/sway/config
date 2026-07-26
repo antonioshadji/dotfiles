@@ -202,16 +202,10 @@ bar {
 # in ~/.config/i3/config (or $XDG_CONFIG_HOME/i3/config if set) or
 # ~/.i3/config.
 #
-# https://gist.github.com/dianjuar/ee774561a8bc02b077989bc17424a19f
 # Screenshots
-set $screenshot_file "/home/$USER/Pictures/zz-$(date +%FT%H-%M-%S).png"
-set $screenshot_sound "/usr/share/sounds/freedesktop/stereo/camera-shutter.oga"
-# geometry captures only main monitor, not side monitor.
-# bindsym Print exec --no-startup-id maim --geometry 1920x1080 $screenshot_file && mpv $screenshot_sound
-# ~/Pictures/zz-$(date +'%Y-%m-%d-%H%M%S').png
-bindsym Print exec sh -c 'grim -o HDMI-A-1 $screenshot_file && paplay $screenshot_sound'
-bindsym Shift+Print exec sh -c 'grim -g "$(slurp)" $screenshot_file && paplay $screenshot_sound'
-bindsym Ctrl+Print exec sh -c 'grim -g "$(swaymsg -t get_tree | jq -r '"'"'.. | select(.focused?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"'"'"')" ~/Pictures/active-window-$(date +"%Y-%m-%d-%H%M%S").png && paplay /usr/share/sounds/freedesktop/stereo/camera-shutter.oga'
+bindsym Print exec ~/.config/sway/scripts/screenshot.sh full
+bindsym Shift+Print exec ~/.config/sway/scripts/screenshot.sh region
+bindsym Ctrl+Print exec ~/.config/sway/scripts/screenshot.sh window
 # Clipboard Screenshots
 # bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
 # bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
