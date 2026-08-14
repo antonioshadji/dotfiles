@@ -24,6 +24,8 @@ package_list=(
  @earendil-works/pi-coding-agent
  wrangler  # cloudflare
  @marp-team/marp-cli # markdown presentations
+ @mermaid-js/mermaid-cli
+ @fission-ai/openspec@latest
 )
 
 for pkg in "${package_list[@]}"; do
