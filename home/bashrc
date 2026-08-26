@@ -216,6 +216,7 @@ pathmunge "$HOME/bin"
 pathmunge /opt/local/bin
 pathmunge /opt/local/sbin
 
+
 # Appended to default PATH
 # set PATH to include latest version of pandoc if installed via cabal
 pathmunge "$HOME/.cabal/bin" after
@@ -283,6 +284,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   pathmunge /Applications/SnowflakeCLI.app/Contents/MacOS/ after
   pathmunge /Applications/CMake.app/Contents/bin after
 
+  # https://github.com/vllm-project/vllm-metal#installation
+  pathmunge "$HOME/.venv-vllm-metal/bin"
 fi
 #}}
 
@@ -724,6 +727,8 @@ fi
 export PATH="$PATH:$HOME/.cg/bin"
 
 export METAFLOW_PROFILE=gtm01
+export METAFLOW_DEFAULT_ENVIRONMENT=fast-bakery
+# export METAFLOW_RUN_OPTIONS="--with kubernetes"
 
 # >>> grok installer >>>
 export PATH="$HOME/.grok/bin:$PATH"
