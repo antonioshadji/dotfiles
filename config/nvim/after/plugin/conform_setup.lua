@@ -35,16 +35,8 @@ conform.setup({
     json = { "prettierd", "prettier", stop_after_first = true },
     toml = { "taplo" },
 
-    -- Markdown: don't trim trailing whitespace (it can be meaningful, e.g. line breaks)
-    markdown = {},
-
-    -- Fallback (skip markdown, which is excluded above)
-    ["*"] = function(bufnr)
-      if vim.bo[bufnr].filetype == "markdown" then
-        return {}
-      end
-      return { "trim_whitespace" }
-    end,
+    -- Fallback
+    ["*"] = { "trim_whitespace" },
   },
 
   format_on_save = {
