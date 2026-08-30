@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 # NOTE: yarn is part of corepack installed by default in latest nodejs
 npm -g list --depth 0

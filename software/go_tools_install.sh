@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
-# -*- coding: utf-8 -*-
+set -euo pipefail
+
+# Ensure go build temp directory uses /var/tmp to prevent out-of-space errors on small /tmp partitions
+export GOTMPDIR="${GOTMPDIR:-/var/tmp}"
+
 printf "\tfzf:\n"
 go install github.com/junegunn/fzf@latest
 printf "\tdocker-language-server:\n"

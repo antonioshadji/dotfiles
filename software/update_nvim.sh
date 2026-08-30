@@ -1,27 +1,49 @@
 #!/usr/bin/env bash
+set -euo pipefail
+
 OS="$(uname -s)"
+ARCH="$(uname -m)"
 
 if [[ "$OS" == "Darwin" ]]; then
-  # Do something for macOS
-  echo "Running on macOS"
-  filename=nvim-macos-arm64
+  echo "==> Running on macOS ($ARCH)"
+  if [[ "$ARCH" == "arm64" ]]; then
+    filename="nvim-macos-arm64"
+  else
+    filename="nvim-macos-x86_64"
+  fi
 elif [[ "$OS" == "Linux" ]]; then
-  # Do something for Linux
-  echo "Running on Linux"
-  filename=nvim-linux-x86_64
+  echo "==> Running on Linux ($ARCH)"
+  if [[ "$ARCH" == "x86_64" ]]; then
+    filename="nvim-linux-x86_64"
+  elif [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
+    filename="nvim-linux-arm64"
+  else
+    filename="nvim-linux-${ARCH}"
+  fi
 else
-    echo "Unknown Operating System: $OS"
-    exit 1
+  echo "Error: Unknown Operating System: $OS" >&2
+  exit 1
 fi
 
-nvim --version 2> /dev/null
+echo "==> Current Neovim version:"
+nvim --version 2>/dev/null | head -n 2 || echo "Neovim not found"
 
-curl --location --remote-name "https://github.com/neovim/neovim/releases/latest/download/${filename}.tar.gz"
-tar --extract --gzip --file="${filename}.tar.gz"   # -xzf
-sudo rm -rf /opt/nvim-*
-sudo mv "${filename}/" /opt/.
-rm "${filename}.tar.gz"
-sudo ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim
+TMP_DIR="$(mktemp -d)"
+trap 'rm -rf "$TMP_DIR"' EXIT
+
+echo "==> Downloading latest Neovim (${filename})..."
+curl -fsSL "https://github.com/neovim/neovim/releases/latest/download/${filename}.tar.gz" -o "${TMP_DIR}/${filename}.tar.gz"
+
+echo "==> Extracting Neovim..."
+tar -xzf "${TMP_DIR}/${filename}.tar.gz" -C "$TMP_DIR"
+
+echo "==> Installing to /opt/${filename}..."
+sudo rm -rf "/opt/${filename}"
+sudo mv "${TMP_DIR}/${filename}" /opt/
+sudo ln -sf "/opt/${filename}/bin/nvim" /usr/local/bin/nvim
+
 # rehash bash to update nvim reference cached
-hash -r
-nvim --version
+hash -r 2>/dev/null || true
+
+echo "==> Updated Neovim version:"
+nvim --version | head -n 2

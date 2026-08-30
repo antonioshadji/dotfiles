@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
-previous=$(aws --version)
+set -euo pipefail
 
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
-sudo ./aws/install --update
-rm -f ./awscliv2.zip
-rm -rf ./aws
+previous="$(aws --version 2>&1 || echo 'none')"
+
+TMP_DIR="$(mktemp -d)"
+trap 'rm -rf "$TMP_DIR"' EXIT
+
+curl -fsSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "${TMP_DIR}/awscliv2.zip"
+unzip -q -o "${TMP_DIR}/awscliv2.zip" -d "$TMP_DIR"
+sudo "${TMP_DIR}/aws/install" --update
 
 echo "Previous version was:"
 echo "$previous"
