@@ -95,3 +95,6 @@ cargo install --locked --git https://github.com/googleworkspace/cli
 
 # 2026-04-13 14:31:24 Monday
 cargo install du-dust --locked
+
+# 2026-08-30 14:57:02 Sunday rec by DHH
+cargo install caligula
