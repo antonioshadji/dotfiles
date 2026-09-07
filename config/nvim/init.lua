@@ -196,4 +196,8 @@ require("lualine").setup({ options = { theme = "powerline" } })
 require("nvim-tmux-navigation").setup({
   disable_when_zoomed = true, -- defaults to false
 })
-require("colorizer").setup({ "*" }, { mode = "foreground" })
+require("colorizer").setup({
+  user_default_options = {
+    mode = "foreground",
+  },
+})
