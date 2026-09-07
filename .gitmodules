@@ -1,24 +1,9 @@
-[submodule "cmp-nvim-lsp"]
-	path = config/nvim/pack/plugins/start/cmp-nvim-lsp
-	url = git@github.com:hrsh7th/cmp-nvim-lsp.git
-[submodule "cmp-vsnip"]
-	path = config/nvim/pack/plugins/start/cmp-vsnip
-	url = git@github.com:hrsh7th/cmp-vsnip.git
-[submodule "cmp-path"]
-	path = config/nvim/pack/plugins/start/cmp-path
-	url = git@github.com:hrsh7th/cmp-path.git
-[submodule "cmp-buffer"]
-	path = config/nvim/pack/plugins/start/cmp-buffer
-	url = git@github.com:hrsh7th/cmp-buffer.git
 [submodule "go.nvim"]
 	path = config/nvim/pack/plugins/start/go.nvim
 	url = https://github.com/ray-x/go.nvim.git
 [submodule "lualine.nvim"]
 	path = config/nvim/pack/plugins/start/lualine.nvim
 	url = https://github.com/nvim-lualine/lualine.nvim.git
-[submodule "nvim-cmp"]
-	path = config/nvim/pack/plugins/start/nvim-cmp
-	url = git@github.com:hrsh7th/nvim-cmp.git
 [submodule "nvim-dap"]
 	path = config/nvim/pack/plugins/start/nvim-dap
 	url = https://github.com/mfussenegger/nvim-dap.git
@@ -31,9 +16,6 @@
 [submodule "plenary.nvim"]
 	path = config/nvim/pack/plugins/start/plenary.nvim
 	url = git@github.com:nvim-lua/plenary.nvim.git
-[submodule "popup.nvim"]
-	path = config/nvim/pack/plugins/start/popup.nvim
-	url = git@github.com:nvim-lua/popup.nvim.git
 [submodule "rustaceanvim"]
 	path = config/nvim/pack/plugins/start/rustaceanvim
 	url = git@github.com:mrcjkb/rustaceanvim.git
@@ -43,12 +25,18 @@
 [submodule "nvm"]
 	path = config/nvm
 	url = https://github.com/nvm-sh/nvm.git
-[submodule "config/nvim/pack/plugins/start/nvim-colorizer.lua"]
-	path = config/nvim/pack/plugins/start/nvim-colorizer.lua
-	url = git@github.com:norcalli/nvim-colorizer.lua.git
 [submodule "config/nvim/pack/plugins/start/telescope-fzf-native.nvim"]
 	path = config/nvim/pack/plugins/start/telescope-fzf-native.nvim
 	url = https://github.com/nvim-telescope/telescope-fzf-native.nvim
 [submodule "config/nvim/pack/plugins/start/conform.nvim"]
 	path = config/nvim/pack/plugins/start/conform.nvim
 	url = https://github.com/stevearc/conform.nvim
+[submodule "config/nvim/pack/plugins/start/nvim-colorizer.lua"]
+	path = config/nvim/pack/plugins/start/nvim-colorizer.lua
+	url = https://github.com/NvChad/nvim-colorizer.lua.git
+[submodule "config/nvim/pack/plugins/start/blink.cmp"]
+	path = config/nvim/pack/plugins/start/blink.cmp
+	url = https://github.com/Saghen/blink.cmp.git
+[submodule "config/nvim/pack/plugins/start/blink.lib"]
+	path = config/nvim/pack/plugins/start/blink.lib
+	url = https://github.com/Saghen/blink.lib.git

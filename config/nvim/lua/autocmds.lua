@@ -1,13 +1,3 @@
-vim.api.nvim_create_augroup("GoFormat", { clear = true })
-
-vim.api.nvim_create_autocmd("BufWritePre", {
-  group = "GoFormat",
-  pattern = "*.go",
-  callback = function()
-    require("go.format").gofmt()
-  end,
-})
-
 vim.api.nvim_create_augroup("DiagnosticFloat", { clear = true })
 
 vim.api.nvim_create_autocmd("CursorHold", {
@@ -18,9 +8,8 @@ vim.api.nvim_create_autocmd("CursorHold", {
   end,
 })
 -- Set updatetime for CursorHold
--- 300ms of no cursor movement to trigger CursorHold
--- set updatetime=300, default 4000
-vim.g.updatetime = 500
+-- 500ms of no cursor movement to trigger CursorHold (default 4000)
+vim.o.updatetime = 500
 
 vim.api.nvim_create_augroup("GIT", { clear = true })
 

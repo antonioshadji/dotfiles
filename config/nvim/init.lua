@@ -1,4 +1,4 @@
--- good example init fsiles
+-- good example init files
 -- https://github.com/potamides/dotfiles
 
 -- vim.inspect prints tables
@@ -28,10 +28,22 @@ end
 vim.opt.spellfile = ("%s/spell/spf.%s.add"):format(vim.fn.stdpath("config"), vim.o.encoding)
 
 -- add files to ignore
-vim.opt.wildignore:append({ ".hg", ".git", ".svn" }) -- " Version control
-vim.opt.wildignore:append({ "*.jpg", "*.bmp", "*.gif", "*.png", "*.jpeg" }) -- " binary images
-vim.opt.wildignore:append({ "*.o", "*.obj", "*.exe", "*.dll", "*.manifest" }) -- " compiled object files
-vim.opt.wildignore:append({ "*.DS_Store" }) -- " OSX bullshit
+vim.opt.wildignore:append({
+  ".hg",
+  ".git",
+  ".svn",
+  "*.jpg",
+  "*.bmp",
+  "*.gif",
+  "*.png",
+  "*.jpeg",
+  "*.o",
+  "*.obj",
+  "*.exe",
+  "*.dll",
+  "*.manifest",
+  "*.DS_Store",
+})
 
 -- Write files when many actions, including switching buffers see :help awa
 vim.opt.autowriteall = true
@@ -79,44 +91,40 @@ vim.opt.foldlevel = 99
 vim.opt.termguicolors = true
 vim.cmd.colorscheme("solarized_lua")
 
--- Setup Completion
--- https://neovim.io/doc/user/lsp.html#lsp-completion
+-- Setup Completion with blink.cmp
+local blink = require("blink.cmp")
+blink.setup({
+  keymap = {
+    preset = "default",
+    ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+    ["<C-e>"] = { "hide", "fallback" },
+    ["<CR>"] = { "accept", "fallback" },
 
--- See https://github.com/hrsh7th/nvim-cmp#basic-configuration
-local cmp = require("cmp")
-cmp.setup({
-  --  snippet = {
-  --    expand = function(args)
-  --      vim.fn["vsnip#anonymous"](args.body)
-  --    end,
-  --  },
-  window = {
-    -- completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
+    ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+    ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+
+    ["<C-p>"] = { "select_prev", "fallback" },
+    ["<C-n>"] = { "select_next", "fallback" },
+
+    ["<C-d>"] = { "scroll_documentation_down", "fallback" },
+    ["<C-f>"] = { "scroll_documentation_up", "fallback" },
   },
-  mapping = cmp.mapping.preset.insert({
-    ["<C-p>"] = cmp.mapping.select_prev_item(),
-    ["<C-n>"] = cmp.mapping.select_next_item(),
-    -- Add tab support
-    ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-    ["<Tab>"] = cmp.mapping.select_next_item(),
 
-    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-Space>"] = cmp.mapping.complete(),
-    -- ["<C-e>"] = cmp.mapping.close(),
-    ["<C-e>"] = cmp.mapping.abort(),
-    ["<CR>"] = cmp.mapping.confirm({
-      -- behavior = cmp.ConfirmBehavior.Insert,
-      select = true,
-    }),
-  }),
-  sources = cmp.config.sources({
-    { name = "nvim_lsp" },
-    { name = "path" },
-  }, {
-    { name = "buffer" },
-  }),
+  appearance = {
+    use_nvim_cmp_as_default = false,
+    nerd_font_variant = "mono",
+  },
+
+  sources = {
+    default = { "lsp", "path", "snippets", "buffer" },
+  },
+
+  signature = { enabled = true },
+})
+
+-- Apply blink.cmp capabilities to all LSP servers in Neovim 0.11/0.12
+vim.lsp.config("*", {
+  capabilities = blink.get_lsp_capabilities(),
 })
 
 require("go").setup({})
@@ -166,9 +174,14 @@ require("nvim-treesitter").install({
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "<filetype>" },
-  callback = function()
-    vim.treesitter.start()
+  group = vim.api.nvim_create_augroup("TreesitterAutoStart", { clear = true }),
+  callback = function(args)
+    local max_filesize = 100 * 1024 -- 100 KB
+    local ok, stat = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(args.buf))
+    if ok and stat and stat.size > max_filesize then
+      return
+    end
+    pcall(vim.treesitter.start, args.buf)
   end,
 })
 
@@ -183,39 +196,4 @@ require("lualine").setup({ options = { theme = "powerline" } })
 require("nvim-tmux-navigation").setup({
   disable_when_zoomed = true, -- defaults to false
 })
-require("colorizer").setup(
-  --   DEFAULT_OPTIONS = {
-  --  RGB      = true;         -- #RGB hex codes
-  --  RRGGBB   = true;         -- #RRGGBB hex codes
-  --  names    = true;         -- "Name" codes like Blue
-  --  RRGGBBAA = false;        -- #RRGGBBAA hex codes
-  --  rgb_fn   = false;        -- CSS rgb() and rgba() functions
-  --  hsl_fn   = false;        -- CSS hsl() and hsla() functions
-  --  css      = false;        -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-  --  css_fn   = false;        -- Enable all CSS *functions*: rgb_fn, hsl_fn
-  --  -- Available modes: foreground, background
-  --  mode     = 'background'; -- Set the display mode.
-  --   }
-  { "*" },
-  { mode = "foreground" }
-)
-
--- ## Alternative: Even More Modular
---
--- If you have many plugins, you could go further:
---
--- lua/
--- ├── core/
--- │   └── keymaps.lua           # All global keymaps
--- ├── plugins/
--- │   ├── telescope.lua
--- │   ├── lsp.lua
--- │   └── treesitter.lua
--- └── config/
---     ├── telescope/
---     │   ├── setup.lua         # Telescope setup
---     │   ├── keymaps.lua       # Telescope keymaps
---     │   └── pickers.lua       # Custom picker functions
---     └── options.lua           # Vim options
---
--- Issues on Mac solution: https://anaconda.slack.com/archives/CB84ZLW31/p1771956191169279
+require("colorizer").setup({ "*" }, { mode = "foreground" })

@@ -7,11 +7,9 @@
 -- then do it with specified key, for example :verbose inoremap <esc>.
 -- -----------------------------------------------------------------------------
 
--- Clear search highlighting with <CR> (Enter)
--- Note: This overrides default Enter behavior in Normal mode
-vim.keymap.set("n", "<CR>", ":noh<CR>", {
-  silent = true,
-  desc = "Clear search highlighting",
+-- Clear search highlighting with <Esc> (avoids breaking Enter in Quickfix/Help/Loclist)
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR><Esc>", {
+  desc = "Clear search highlighting and send Esc",
 })
 
 -- Date Timestamp: "2025-12-31 14:30:45 Tuesday"
@@ -19,12 +17,10 @@ vim.keymap.set("ia", "dts", function()
   return vim.fn.strftime("%F %T %A")
 end, { expr = true, desc = "Insert date timestamp" })
 
--- Save file with sudo (useful for editing system config files)
-vim.keymap.set("c", "w!!", "w !sudo tee %", { desc = "Save file with sudo" })
--- vertical terminal
-vim.keymap.set("c", "vt", "vertical terminal", { desc = "vert terminal shortcut" })
--- tab terminal
-vim.keymap.set("c", "tt", "tab terminal", { desc = "tab terminal shortcut" })
+-- Command-line abbreviations (only trigger on word boundaries, won't mangle paths)
+vim.cmd.cabbrev("w!! w !sudo tee % >/dev/null")
+vim.cmd.cabbrev("vt vertical terminal")
+vim.cmd.cabbrev("tt tab terminal")
 
 -- =============================================================================
 -- Insert Mode Tweaks
@@ -91,46 +87,29 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, {
 })
 
 -- =============================================================================
--- LSP (Language Server Protocol)
 -- =============================================================================
--- Note: These are global mappings. In advanced configs, these are often moved
--- to an LspAttach autocommand, but they work perfectly fine here as well.
+-- LSP (Language Server Protocol) - Scoped to LspAttach
+-- =============================================================================
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
+  callback = function(event)
+    local bufnr = event.buf
+    local map = function(mode, lhs, rhs, desc)
+      vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, silent = true, desc = desc })
+    end
 
-vim.keymap.set("n", "ga", vim.lsp.buf.code_action, {
-  silent = true,
-  desc = "LSP code action",
-})
-vim.keymap.set("n", "K", vim.lsp.buf.hover, {
-  silent = true,
-  desc = "LSP hover documentation",
-})
-vim.keymap.set("n", "gd", vim.lsp.buf.definition, {
-  silent = true,
-  desc = "LSP go to definition",
-})
-vim.keymap.set("n", "gD", vim.lsp.buf.implementation, {
-  silent = true,
-  desc = "LSP go to implementation",
-})
-vim.keymap.set("n", "1gD", vim.lsp.buf.type_definition, {
-  silent = true,
-  desc = "LSP type definition",
-})
-vim.keymap.set("n", "gr", vim.lsp.buf.references, {
-  silent = true,
-  desc = "LSP references",
-})
-vim.keymap.set("n", "<C-s>", vim.lsp.buf.signature_help, {
-  silent = true,
-  desc = "LSP signature help",
-})
+    map("n", "ga", vim.lsp.buf.code_action, "LSP code action")
+    map("n", "K", vim.lsp.buf.hover, "LSP hover documentation")
+    map("n", "gd", vim.lsp.buf.definition, "LSP go to definition")
+    map("n", "gD", vim.lsp.buf.implementation, "LSP go to implementation")
+    map("n", "1gD", vim.lsp.buf.type_definition, "LSP type definition")
+    map("n", "gr", vim.lsp.buf.references, "LSP references")
+    map("n", "<C-s>", vim.lsp.buf.signature_help, "LSP signature help")
+    map("i", "<C-s>", vim.lsp.buf.signature_help, "LSP signature help")
+    map("n", "<leader>rn", vim.lsp.buf.rename, "LSP rename")
 
--- Symbol Navigation
-vim.keymap.set("n", "g0", vim.lsp.buf.document_symbol, {
-  silent = true,
-  desc = "LSP document symbols",
-})
-vim.keymap.set("n", "gW", vim.lsp.buf.workspace_symbol, {
-  silent = true,
-  desc = "LSP workspace symbols",
+    -- Symbol Navigation
+    map("n", "g0", vim.lsp.buf.document_symbol, "LSP document symbols")
+    map("n", "gW", vim.lsp.buf.workspace_symbol, "LSP workspace symbols")
+  end,
 })
