@@ -138,75 +138,38 @@ vim.lsp.enable({
   "racket_langserver", -- https://raw.githubusercontent.com/neovim/nvim-lspconfig/refs/heads/master/lsp/racket_langserver.lua
 })
 
-require("nvim-treesitter.configs").setup({
-  -- missing-fields error in lsp without this
-  modules = {},
-  -- A list of parser names, or "all" (the five listed parsers should always be installed)
-  ensure_installed = {
-    "c", -- required
-    "cmake",
-    "comment",
-    "cpp",
-    "css",
-    "dockerfile",
-    "gitcommit",
-    "go",
-    "html",
-    "javascript",
-    "json",
-    "lua", --required
-    "make",
-    "markdown", --required
-    "python",
-    "query",
-    "rust",
-    "sql",
-    "toml",
-    "typescript",
-    "vim", --required
-    "vimdoc", --required
-    "yaml",
-    "markdown_inline", --required
-  },
+require("nvim-treesitter").install({
+  "c", -- required
+  "cmake",
+  "comment",
+  "cpp",
+  "css",
+  "dockerfile",
+  "gitcommit",
+  "go",
+  "html",
+  "javascript",
+  "json",
+  "lua", --required
+  "make",
+  "markdown", --required
+  "python",
+  "query",
+  "rust",
+  "sql",
+  "toml",
+  "typescript",
+  "vim", --required
+  "vimdoc", --required
+  "yaml",
+  "markdown_inline", --required
+})
 
-  -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = false,
-
-  -- Automatically install missing parsers when entering buffer
-  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  auto_install = true,
-
-  -- List of parsers to ignore installing (or "all")
-  ignore_install = {},
-
-  -- If you need to change the installation directory of the parsers (see -> Advanced Setup)
-  -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
-
-  highlight = {
-    enable = true,
-
-    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
-    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
-    -- the name of the parser)
-    -- list of language that will be disabled
-    -- disable = { "c", "rust" },
-    -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
-    -- TODO: how to fix fs_stat not found error, but breaks vim api recognition
-    --
-    -- signature: (language, buffer)
-    disable = function(_, buf)
-      local max_filesize = 100 * 1024 -- 100 KB
-      -- https://neovim.io/doc/user/luaref.html#pcall()
-      local ok, stats = pcall(vim.fs.exists, vim.api.nvim_buf_get_name(buf))
-      if ok and stats and stats.size > max_filesize then
-        return true
-      end
-    end,
-  },
-  -- :h nvim-treesitter-modules
-  incremental_selection = { enable = true },
-  indent = { enable = true },
-  textobjects = { enable = true },
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "<filetype>" },
+  callback = function()
+    vim.treesitter.start()
+  end,
 })
 
 require("keymaps")

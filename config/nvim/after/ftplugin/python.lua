@@ -35,3 +35,8 @@
 -- 	at the nroff macros ".SH", ".NH", ".H", ".HU", ".nh" and ".sh".
 
 vim.opt_local.sections = "def class"
+
+vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.wo[0][0].foldmethod = "expr"
+
+vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
