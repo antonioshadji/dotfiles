@@ -13,6 +13,7 @@
 [submodule "nvim-treesitter"]
 	path = config/nvim/pack/plugins/start/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
+	branch = main
 [submodule "plenary.nvim"]
 	path = config/nvim/pack/plugins/start/plenary.nvim
 	url = git@github.com:nvim-lua/plenary.nvim.git

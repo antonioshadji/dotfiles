@@ -30,6 +30,42 @@ echo "==========================================================================
 git submodule status
 echo "================================================================================"
 
+get_shared_lib_ext() {
+  case "$(uname -s)" in
+    Darwin*) echo "dylib" ;;
+    *) echo "so" ;;
+  esac
+}
+
+build_blink_cmp() {
+  local target_dir="$1"
+  local ext="$2"
+  if [ -d "${target_dir}" ]; then
+    echo "Building blink.cmp native library..."
+    (
+      cd "${target_dir}" || exit 1
+      cargo build --release
+      mkdir -p lib
+      ln -sf "../target/release/libblink_cmp_fuzzy.${ext}" "lib/libblink_cmp_fuzzy.${ext}"
+    )
+  fi
+}
+
+build_telescope_fzf() {
+  local target_dir="$1"
+  if [ -d "${target_dir}" ]; then
+    echo "Building telescope-fzf-native..."
+    (
+      cd "${target_dir}" || exit 1
+      make
+    )
+  fi
+}
+
+ext="$(get_shared_lib_ext)"
+build_blink_cmp "./config/nvim/pack/plugins/start/blink.cmp" "${ext}"
+build_telescope_fzf "./config/nvim/pack/plugins/start/telescope-fzf-native.nvim"
+
 echo -e "${GREEN}finished.${NC}"
 # For broken submodules, update submodules to git committed version
 # git submodule update
