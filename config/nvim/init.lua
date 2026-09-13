@@ -138,7 +138,8 @@ vim.lsp.enable({
   "pyright",
   -- "pyrefly",
   "ruff",
-  "ts_ls",
+  -- "ts_ls",
+  "ts_go",
   "gopls",
   -- "rust_analyzer", https://github.com/mrcjkb/rustaceanvim?tab=readme-ov-file#zap-quick-setup
   "clangd",
