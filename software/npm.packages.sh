@@ -21,12 +21,12 @@ package_list=(
 # tools
  pdfkit
  playwright@latest
- @kilocode/cli
  @earendil-works/pi-coding-agent
- wrangler  # cloudflare
+ # wrangler  # cloudflare  install per project, frequent updates
  @marp-team/marp-cli # markdown presentations
  @mermaid-js/mermaid-cli
  @fission-ai/openspec@latest
+ chrome-devtools-mcp@latest
 )
 
 for pkg in "${package_list[@]}"; do
