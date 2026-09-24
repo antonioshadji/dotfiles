@@ -1,33 +1,34 @@
 {
-    "layer": "top",
-    "position": "top",
-    "height": 30,
-    "spacing": 4,
+  "layer": "top",
+  "position": "top",
+  "height": 30,
+  "spacing": 4,
 
-    // Choose which modules to display in the Left, Center, and Right zones
-    "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["sway/window"],
-    "modules-right": ["cpu", "memory", "clock", "tray"],
+  // Choose which modules to display in the Left, Center, and Right zones
+  "modules-left": ["sway/workspaces", "sway/mode"],
+  "modules-center": ["sway/window"],
+  "modules-right": ["cpu", "memory", "clock", "tray"],
 
-    // Module specific configurations
-    "sway/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": false, // Only show workspaces active on the current monitor
-        "format": "{name}"
-    },
-    "clock": {
-        "format": "{:%Y-%m-%d %H:%M}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
-    },
-    "cpu": {
-        "format": "CPU: {usage}%",
-        "tooltip": false
-    },
-    "memory": {
-        "format": "RAM: {}%"
-    },
-    "tray": {
-        "icon-size": 18,
-        "spacing": 10
-    }
+  // Module specific configurations
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": false, // Only show workspaces active on the current monitor
+    "format": "{name}",
+  },
+  "clock": {
+    "format": "{:%Y-%m-%d %H:%M:%S}",
+    "interval": 1, // refresh every second
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+  },
+  "cpu": {
+    "format": "CPU: {usage}%",
+    "tooltip": false,
+  },
+  "memory": {
+    "format": "RAM: {}%",
+  },
+  "tray": {
+    "icon-size": 18,
+    "spacing": 10,
+  },
 }
