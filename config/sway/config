@@ -12,7 +12,6 @@
 # Mod4=Start
 set $mod Mod1
 
-set $menu bemenu-run -p "Run:" --ff 1
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
@@ -111,15 +110,15 @@ bindsym $mod+minus scratchpad show
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:Chrome"
-set $ws2 "2:Terminal"
+set $ws1 "1"
+set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
-set $ws9 "9:IB"
+set $ws9 "9"
 set $ws10 "10"
 
 # switch to workspace
@@ -221,10 +220,10 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 # start a terminal TODO: choose between default i3 and default iterm2 key
 # TODO: how to start in current working directory when current is terminal
-bindsym $mod+Return exec /home/antonios/.cargo/bin/alacritty
+bindsym $mod+Return exec ~/.cargo/bin/alacritty
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+# start bemenu (a program launcher popup)
+bindsym $mod+d exec ~/.config/sway/scripts/bemenu.sh
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
