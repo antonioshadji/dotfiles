@@ -40,7 +40,9 @@
   smudge = git-lfs smudge -- %f
   process = git-lfs filter-process
   required = true
+[user]
+  name = Antonios Hadjigeorgalis
 [includeIf "gitdir:/Users/ahadjigeorgalis"]
   path = /Users/ahadjigeorgalis/.config/dotfiles/home/gitconfig_anaconda
-[includeIf "gitdir:/home/antonios"]
-  path = /home/antonios/.config/dotfiles/home/gitconfig_home
+[includeIf "gitdir:/home/antonios/"]
+	path = /home/antonios/.config/dotfiles/home/gitconfig_home
