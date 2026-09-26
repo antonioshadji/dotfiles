@@ -11,3 +11,6 @@ source "$HOME/.bashrc"
 
 # show if there is an existing tmux session when SSH into this machine
 [[ -n $SSH_CLIENT ]] && tmux ls # && tmux attach
+
+# Vite+ bin (https://viteplus.dev)
+. "/home/antonios/.config/vite-plus/env"

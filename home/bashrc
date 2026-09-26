@@ -207,9 +207,6 @@ pathmunge() {
 # https://www.gnu.org/software/bash/manual/bash.html#Pattern-Matching
 # https://askubuntu.com/questions/299710/how-to-determine-if-a-string-is-a-substring-of-another-in-bash
 # Prefixed to default PATH
-# set PATH so it includes user's private bin if it exists
-pathmunge "$HOME/.local/bin"
-pathmunge "$HOME/bin"
 
 # MacPorts Installer addition on 2019-08-11_at_09:59:35: adding an appropriate PATH variable for use with MacPorts.
 # also set for Linux, use /opt/local instead of /usr/local
@@ -259,6 +256,10 @@ pathmunge "${HOME}/.antigravity/antigravity/bin" after
 # opencode
 pathmunge "${HOME}/.opencode/bin" after
 
+# set PATH so it includes user's private bin if it exists
+pathmunge "$HOME/.local/bin"
+pathmunge "$HOME/bin"
+
 # source path related files installed by these tools
 # ==> Source [/opt/google-cloud-sdk/path.bash.inc] in your profile to add the Google Cloud SDK command line tools to your $PATH.
 if [[ -r /opt/google-cloud-sdk/path.bash.inc ]]; then
@@ -267,7 +268,7 @@ if [[ -r /opt/google-cloud-sdk/path.bash.inc ]]; then
 fi
 
 # Rust
-[[ -d $HOME/.cargo ]] && source "$HOME/.cargo/env"
+pathmunge "$HOME/.cargo/bin"
 
 if [[ -d $HOME/.bun ]]; then
   # bun
@@ -462,7 +463,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # shellcheck source=/dev/null
     source "$DOCKER_ROOT/docker-compose.bash-completion"
   fi
-
+  # shellcheck source=/dev/null
   [[ -r "${HOME}/.iterm2_shell_integration.bash" ]] && source "${HOME}/.iterm2_shell_integration.bash"
 
   completion_files=(~/.config/dotfiles/bash/bash_completion)
@@ -487,7 +488,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   # added by Snowflake SnowflakeCLI installer v1.0
   export PATH=/Applications/SnowflakeCLI.app/Contents/MacOS/:$PATH
   # Added by Antigravity CLI installer
-  export PATH="/Users/ahadjigeorgalis/.local/bin:$PATH"
+  # export PATH="/Users/ahadjigeorgalis/.local/bin:$PATH"
 
   # Kiro CLI post block. Keep at the bottom of this file.
   [[ -f "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.post.bash" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.post.bash"
@@ -545,6 +546,7 @@ complete -o filenames -o nospace -F _activate_function_completion activate
 #}}
 
 # does a bashrc.local exist?
+# shellcheck source=/dev/null
 [[ -r $HOME/.bashrc.local ]] && source "$HOME/.bashrc.local"
 # not frequently used, source when needed
 # [[ -r $HOME/.bashrc.antlr ]] && source "$HOME/.bashrc.antlr"
@@ -572,6 +574,7 @@ if command -v fd &> /dev/null; then
 fi
 # fzf setup
 if [[ -f ~/.fzf.bash ]]; then
+  # shellcheck source=/dev/null
   source "$HOME/.fzf.bash"
 else
   eval "$(fzf --bash)"
@@ -706,6 +709,7 @@ cactivate() {
 # is required for NVIDIA AI Workbench to function properly. When uninstalling
 # NVIDIA AI Workbench, it will be removed.
 if [ -f "$HOME/.local/share/nvwb/nvwb-wrapper.sh" ]; then
+    # shellcheck source=/dev/null
     source "$HOME/.local/share/nvwb/nvwb-wrapper.sh"
 fi
 # >>> nvwb
@@ -724,16 +728,30 @@ fi
 
 
 # Created by `conda-global` on 2026-04-08 16:09:11
-export PATH="$PATH:$HOME/.cg/bin"
+pathmunge "$HOME/.cg/bin" after
 
 export METAFLOW_PROFILE=gtm01
 export METAFLOW_DEFAULT_ENVIRONMENT=fast-bakery
 # export METAFLOW_RUN_OPTIONS="--with kubernetes"
 
 # >>> grok installer >>>
-export PATH="$HOME/.grok/bin:$PATH"
+pathmunge "$HOME/.grok/bin"
 [[ -r "$HOME/.grok/completions/bash/grok.bash" ]] && source "$HOME/.grok/completions/bash/grok.bash"
 # <<< grok installer <<<
 
+
+# pnpm
+# export PNPM_HOME='/home/antonios/.local/share/pnpm'
+# case ":$PATH:" in
+#   *":$PNPM_HOME/bin:"*) ;;
+#   *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+# esac
+# pnpm end
+
+
+# Vite+ bin (https://viteplus.dev)
+if [ -f "$HOME/.config/vite-plus/env" ]; then
+  source "/home/antonios/.config/vite-plus/env"
+fi
 # : is bash builtin that does nothing and always returns 0
 :
