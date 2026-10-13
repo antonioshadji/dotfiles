@@ -22,3 +22,5 @@ printf "\tmarkdown rendering in terminal with glow:\n"
 go install github.com/charmbracelet/glow/v2@latest
 printf "\tOfficial X API tool:\n"
 go install github.com/xdevplatform/xurl@latest
+printf "\troborev - continuous code review:\n"
+go install go.kenn.io/roborev/cmd/roborev@latest
