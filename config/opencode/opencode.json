@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "kilo/claude-sonnet-4-6",
+  "model": "kilo-auto/org",
   "providers": {
     "kilo": {
       "name": "Kilo Gateway",
@@ -68,15 +68,13 @@
   },
   "mcp": {
     "anaconda-mcp": {
-      "type": "local",
-      "command": [
-        "/opt/miniconda3/envs/mcp/bin/python3.13",
-        "-m",
-        "anaconda_mcp",
-        "serve"
-      ],
+      "type": "remote",
+      "url": "https://anaconda.com/api/mcp",
       "enabled": true,
-      "environment": {}
+      "oauth": false,
+      "headers": {
+        "Authorization": "Bearer {file:~/.secrets/anaconda-mcp-token}"
+      }
     },
     "aws-mcp": {
       "type": "local",
@@ -88,5 +86,6 @@
         "INSTALL_SOURCE=aws-cli"
       ]
     }
-  }
+  },
+  "shell": "/opt/bash/bin/bash"
 }

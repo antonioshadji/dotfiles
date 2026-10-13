@@ -4,9 +4,18 @@
     "name": "solarized"
   },
   "session": {
-    "sidebar": "hide",
+    "sidebar": "auto",
     "scrollbar": false,
-    "thinking": "show"
+    "thinking": "show",
+    "verbosity": "low",
+    "permissions": "autoaccept"
   },
-  "animations": true
+  "animations": true,
+  "attention": {
+    "notifications": true,
+    "sound": true
+  },
+  "debug": {
+    "devtools": false
+  }
 }
