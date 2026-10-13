@@ -243,7 +243,7 @@ pathmunge /opt/rocm/bin after
 pathmunge /usr/lib/dart after
 
 # Added by Windsurf
-pathmunge "$HOME/.codeium/windsurf/bin" after
+# pathmunge "$HOME/.codeium/windsurf/bin" after
 
 # pixi
 pathmunge "${HOME}/.pixi/bin" after
@@ -259,6 +259,12 @@ pathmunge "${HOME}/.opencode/bin" after
 # set PATH so it includes user's private bin if it exists
 pathmunge "$HOME/.local/bin"
 pathmunge "$HOME/bin"
+
+# Created by `conda-global` (moved from raw export at bottom of file)
+pathmunge "$HOME/.cg/bin" after
+
+# grok CLI (moved from grok installer block at bottom of file)
+pathmunge "$HOME/.grok/bin"
 
 # source path related files installed by these tools
 # ==> Source [/opt/google-cloud-sdk/path.bash.inc] in your profile to add the Google Cloud SDK command line tools to your $PATH.
@@ -287,6 +293,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
   # https://github.com/vllm-project/vllm-metal#installation
   pathmunge "$HOME/.venv-vllm-metal/bin"
+
+  # Anaconda tooling (moved from raw export further below)
+  pathmunge "$HOME/.ana/bin"
 fi
 #}}
 
@@ -477,18 +486,11 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     [[ -r $f  ]] && source "$f"
   done
 
+  # PATH entries formerly here (SnowflakeCLI x2, ~/.ana/bin, ~/.local/bin)
+  # are consolidated into the pathmunge section near the top of this file.
+
   # added by Snowflake SnowflakeCLI installer v1.0
   export PATH=/Applications/SnowflakeCLI.app/Contents/MacOS/:$PATH
-
-  export PATH="/Users/ahadjigeorgalis/.ana/bin:$PATH"
-  # export PATH="/Users/ahadjigeorgalis/.pixi/bin:$PATH"
-
-  # Added by LM Studio CLI tool (lms)
-  export PATH="$PATH:/Users/ahadjigeorgalis/.lmstudio/bin"
-  # added by Snowflake SnowflakeCLI installer v1.0
-  export PATH=/Applications/SnowflakeCLI.app/Contents/MacOS/:$PATH
-  # Added by Antigravity CLI installer
-  # export PATH="/Users/ahadjigeorgalis/.local/bin:$PATH"
 
   # Kiro CLI post block. Keep at the bottom of this file.
   [[ -f "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.post.bash" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.post.bash"
@@ -727,15 +729,14 @@ fi
 # }}
 
 
-# Created by `conda-global` on 2026-04-08 16:09:11
-pathmunge "$HOME/.cg/bin" after
-
 export METAFLOW_PROFILE=gtm01
 export METAFLOW_DEFAULT_ENVIRONMENT=fast-bakery
-# export METAFLOW_RUN_OPTIONS="--with kubernetes"
+export METAFLOW_RUN_OPTIONS="kubernetes"
 
 # >>> grok installer >>>
 pathmunge "$HOME/.grok/bin"
+# PATH for ~/.grok/bin is handled by pathmunge in the PATH Construction section
+# shellcheck disable=SC1091
 [[ -r "$HOME/.grok/completions/bash/grok.bash" ]] && source "$HOME/.grok/completions/bash/grok.bash"
 # <<< grok installer <<<
 
@@ -751,6 +752,7 @@ pathmunge "$HOME/.grok/bin"
 
 # Vite+ bin (https://viteplus.dev)
 if [ -f "$HOME/.config/vite-plus/env" ]; then
+  # shellcheck disable=SC1091
   source "/home/antonios/.config/vite-plus/env"
 fi
 # : is bash builtin that does nothing and always returns 0
