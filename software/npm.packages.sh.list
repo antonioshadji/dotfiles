@@ -23,7 +23,7 @@ package_list=(
  playwright@latest
  @earendil-works/pi-coding-agent
  # wrangler  # cloudflare  install per project, frequent updates
- @marp-team/marp-cli # markdown presentations
+ # @marp-team/marp-cli # markdown presentations
  @mermaid-js/mermaid-cli
  @fission-ai/openspec@latest
  chrome-devtools-mcp@latest

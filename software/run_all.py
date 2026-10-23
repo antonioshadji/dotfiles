@@ -36,7 +36,6 @@ def discover_scripts(base_dir: Path) -> list[Path]:
     """
     priority_order = [
         "update_python.sh",
-        "npm.packages.sh",
         "golang.py",
         "aws.sh",
         "update_glab.sh",
