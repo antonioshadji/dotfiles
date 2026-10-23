@@ -251,7 +251,7 @@ pathmunge "${HOME}/.pixi/bin" after
 pathmunge /usr/lib/jvm/jdk-19/bin after
 
 # Antigravity
-pathmunge "${HOME}/.antigravity/antigravity/bin" after
+pathmunge /opt/Antigravity-x64 after
 
 # opencode
 pathmunge "${HOME}/.opencode/bin" after
@@ -298,6 +298,21 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   pathmunge "$HOME/.ana/bin"
 fi
 #}}
+
+# Created by `conda-global` on 2026-04-08 16:09:11
+pathmunge "$HOME/.cg/bin" after
+
+# >>> grok installer >>>
+pathmunge "$HOME/.grok/bin"
+[[ -r "$HOME/.grok/completions/bash/grok.bash" ]] && source "$HOME/.grok/completions/bash/grok.bash"
+# <<< grok installer <<<
+
+# set PATH so it includes user's private bin if it exists
+pathmunge "$HOME/.local/bin"
+pathmunge "$HOME/bin"
+
+
+
 
 # 1.2) Set up bash prompt{{ using starship
 eval "$(starship init bash)"
@@ -410,12 +425,12 @@ fi
 
 #{{ Node setup and tools
 # [ -r file ] returns True if file exists and is readable.
-[[ -d "$HOME/.config/nvm" ]] && export NVM_DIR="$HOME/.config/nvm"
-# shellcheck source=/dev/null
-[[ -r "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"  # This loads nvm
-# nvm completion
-# shellcheck source=/dev/null
-[[ -r "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
+# [[ -d "$HOME/.config/nvm" ]] && export NVM_DIR="$HOME/.config/nvm"
+# # shellcheck source=/dev/null
+# [[ -r "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"  # This loads nvm
+# # nvm completion
+# # shellcheck source=/dev/null
+# [[ -r "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
 #}}
 
 # {{ Python setup and tools
@@ -728,32 +743,21 @@ if [[ $DEBUG == 1 ]]; then
 fi
 # }}
 
-
 export METAFLOW_PROFILE=gtm01
 export METAFLOW_DEFAULT_ENVIRONMENT=fast-bakery
 export METAFLOW_RUN_OPTIONS="kubernetes"
 
 # >>> grok installer >>>
-pathmunge "$HOME/.grok/bin"
 # PATH for ~/.grok/bin is handled by pathmunge in the PATH Construction section
 # shellcheck disable=SC1091
 [[ -r "$HOME/.grok/completions/bash/grok.bash" ]] && source "$HOME/.grok/completions/bash/grok.bash"
 # <<< grok installer <<<
-
-
-# pnpm
-# export PNPM_HOME='/home/antonios/.local/share/pnpm'
-# case ":$PATH:" in
-#   *":$PNPM_HOME/bin:"*) ;;
-#   *) export PATH="$PNPM_HOME/bin:$PATH" ;;
-# esac
-# pnpm end
-
 
 # Vite+ bin (https://viteplus.dev)
 if [ -f "$HOME/.config/vite-plus/env" ]; then
   # shellcheck disable=SC1091
   source "/home/antonios/.config/vite-plus/env"
 fi
+
 # : is bash builtin that does nothing and always returns 0
 :

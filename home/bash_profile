@@ -14,3 +14,4 @@ source "$HOME/.bashrc"
 
 # Vite+ bin (https://viteplus.dev)
 . "/home/antonios/.config/vite-plus/env"
+
