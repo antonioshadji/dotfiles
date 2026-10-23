@@ -8,12 +8,13 @@
   "modules-left": ["sway/workspaces", "sway/mode"],
   "modules-center": ["sway/window"],
   "modules-right": ["cpu", "memory", "clock", "tray"],
+  // "modules-right": ["cpu", "memory", "disk", "clock", "tray"],
 
   // Module specific configurations
   "sway/workspaces": {
     "disable-scroll": true,
     "all-outputs": false, // Only show workspaces active on the current monitor
-    "format": "{name}",
+    "format": "{value}",
   },
   "clock": {
     "format": "{:%Y-%m-%d %H:%M:%S}",
@@ -27,6 +28,11 @@
   "memory": {
     "format": "RAM: {}%",
   },
+  // TODO: how to show /home partition only?
+  // "disk": {
+  //   "interval": 60,
+  //   "format": "{percentage_free}% {path}"
+  // },
   "tray": {
     "icon-size": 18,
     "spacing": 10,
