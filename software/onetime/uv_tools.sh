@@ -13,3 +13,6 @@ source $HOME/.local/share/../bin/env
 
 uv tool install ruff
 uv tool install pyrefly
+uv tool install ty
+uv tool install pgcli
+uv tool install ipython
