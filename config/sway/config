@@ -256,6 +256,7 @@ exec dunst -conf "$HOME/.config/dunst/dustrc"
 bindsym Ctrl+space exec dunstctl close-all
 
 workspace $ws1 output HDMI-A-1
+assign [app_id="google-chrome"] $ws1
 exec google-chrome --profile-directory=Default
 
 workspace $ws2 output HDMI-A-1
