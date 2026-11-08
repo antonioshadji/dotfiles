@@ -1,0 +1,53 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "formatter": {},
+  "model": "cloudflare/router",
+  "providers": {
+    "cloudflare": {
+      "name": "Cloudflare AI Gateway",
+      "package": "@opencode/ai/providers/openai-compatible",
+      "env": ["CLOUDFLARE_API_TOKEN"],
+      "settings": {
+        // Cloudflare-recommended endpoint for new integrations (REST API).
+        // OpenCode appends /chat/completions; apiKey is sent as Authorization: Bearer.
+        // Account ID is hardcoded: it is an identifier, not a secret, and hardcoding
+        // avoids depending on env vars being present in the OpenCode server process.
+        "baseURL": "https://api.cloudflare.com/client/v4/accounts/9caf9558d9e72b1bce15c5490c934243/ai/v1",
+        "apiKey": "{env:CLOUDFLARE_API_TOKEN}",
+      },
+      "headers": {
+        // Required on the REST endpoint so dynamic routes resolve to gateway "default".
+        "cf-aig-gateway-id": "default",
+      },
+      "models": {
+        "router": {
+          "modelID": "dynamic/leros_router",
+          "name": "Leros Router",
+          "capabilities": {
+            "tools": true,
+            "input": ["text"],
+            "output": ["text"],
+          },
+        },
+      },
+    },
+  },
+  "plugins": ["@cloudflare/aig-opencode-plugin"],
+  "permissions": [
+    { "action": "shell", "resource": "rm -rf *", "effect": "deny" },
+    { "action": "shell", "resource": "*", "effect": "allow" },
+    { "action": "read", "resource": "*", "effect": "allow" },
+    { "action": "edit", "resource": "*", "effect": "allow" },
+    { "action": "glob", "resource": "*", "effect": "allow" },
+    { "action": "grep", "resource": "*", "effect": "allow" },
+    { "action": "subagent", "resource": "*", "effect": "allow" },
+    { "action": "skill", "resource": "*", "effect": "allow" },
+    { "action": "question", "resource": "*", "effect": "allow" },
+    { "action": "webfetch", "resource": "*", "effect": "allow" },
+    { "action": "websearch", "resource": "*", "effect": "allow" },
+  ],
+  "policies": [{ "action": "provider.use", "resource": "cloudflare", "effect": "allow" }],
+  "mcp": {
+    "cloudflare": { "type": "remote", "url": "https://mcp.cloudflare.com/mcp", "enabled": true },
+  },
+}

@@ -3,10 +3,37 @@
   "theme": {
     "name": "solarized"
   },
+  "diffs": {
+    "wrap": "word"
+  },
   "session": {
     "sidebar": "hide",
-    "scrollbar": false,
-    "thinking": "show"
+    "scrollbar": true,
+    "thinking": "show",
+    "markdown": "rendered",
+    "grouping": "auto",
+    "permissions": "autoaccept"
   },
-  "animations": true
+  "animations": true,
+  "plugins": [
+    "./herdr-opencode"
+  ],
+  "tabs": {
+    "mode": "auto",
+    "layout": "horizontal",
+    "indicators": "status"
+  },
+  "scroll": {
+    "acceleration": true
+  },
+  "attention": {
+    "notifications": true,
+    "sound": true
+  },
+  "terminal": {
+    "copy": "select"
+  },
+  "debug": {
+    "devtools": true
+  }
 }
