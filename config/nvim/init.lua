@@ -9,6 +9,11 @@ if vim.g.vscode then
   return
 end
 
+-- disable loading language plugins that are not necessary
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+
 -- Set leader keys (must be set before any keymaps)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
