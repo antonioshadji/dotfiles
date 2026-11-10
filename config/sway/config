@@ -225,6 +225,9 @@ bindsym $mod+Return exec ~/.cargo/bin/alacritty
 
 # start bemenu (a program launcher popup)
 bindsym $mod+d exec ~/.config/sway/scripts/bemenu.sh
+
+# display sway keyboard shortcuts popup
+bindsym $mod+F1 exec ~/.config/sway/scripts/sway-shortcuts.sh --menu
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
