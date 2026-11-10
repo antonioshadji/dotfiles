@@ -10,7 +10,7 @@
 # layout, use the i3-config-wizard
 # Mod1=Alt
 # Mod4=Start
-set $mod Mod1
+set $mod Mod4
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -95,11 +95,12 @@ bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
+# never used this 2026-11-10 14:16:26 Tuesday TODO: Should I be using?
 # focus the parent container
-bindsym Mod4+a focus parent
+# bindsym Mod4+a focus parent
 
 # focus the child container
-bindsym Mod4+d focus child
+# bindsym Mod4+d focus child
 
 # move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
