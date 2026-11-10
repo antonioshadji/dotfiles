@@ -274,25 +274,37 @@ exec firefox-devedition
 
 # Automatically move Nautilus to Workspace on the vertical monitor
 assign [app_id="org.gnome.Nautilus"] $ws10
-# Route the Java client (TWS) to workspace 9 (normal windows only)
-assign [class="install4j-jclient-Launcher" window_type="normal"] workspace number 9
 
-# Java / TWS popup and dialog rules: prevent focus stealing and force floating
-# no_focus [window_type="popup_menu"]
-# no_focus [window_type="dropdown_menu"]
-# no_focus [window_type="menu"]
-# no_focus [window_type="tooltip"]
-# no_focus [class="install4j-jclient-Launcher" window_type="utility"]
-# no_focus [class="install4j-jclient-Launcher" window_type="dialog"]
+# Route the Java client (TWS) to workspace 9 (normal windows only)
+assign [class="install4j-jclient-Launcher" window_type="normal"] workspace number $ws9
+# for_window [class="install4j-jclient-Launcher" instance="sun-awt-X11-XDialogPeer"] floating enable
+# # Match Java Swing dynamic popup windows (win0, win1, win2, ...)
+# for_window [class="install4j-jclient-Launcher" title="^win[0-9]+$"] {
+#     floating enable
+#     border none
+#     # Move the popup under the current mouse pointer so it remains reachable
+#     move position mouse
+# }
+#
+# # Prevent the popup from stealing keyboard focus and breaking menu traversal
+# no_focus [class="install4j-jclient-Launcher" title="^win[0-9]+$"]
+
 
 for_window [app_id="com.onepassword.OnePassword"] floating enable
-for_window [window_type="popup_menu"] floating enable
-for_window [window_type="dropdown_menu"] floating enable
-for_window [window_type="menu"] floating enable
-for_window [window_type="tooltip"] floating enable
-for_window [window_type="dialog"] floating enable
-for_window [window_type="utility"] floating enable
-for_window [class="install4j-jclient-Launcher" instance="sun-awt-X11-XDialogPeer"] floating enable
+# example config for 1password
+# bindsym Ctrl+P exec 1password --show
+# bindsym Ctrl+Shift+space exec 1password --quick-access
+# bindsym Ctrl+Shift+l exec 1password --lock
+
+# for_window [window_type="dropdown_menu"] floating enable
+# for_window [window_type="popup_menu"] floating enable
+# for_window [window_type="menu"] floating enable
+# for_window [window_type="tooltip"] floating enable
+# for_window [window_type="dialog"] floating enable
+# for_window [window_type="utility"] floating enable
+# for_window [window_type="toolbar"] floating enable
+# for_window [window_type="splash"] floating enable
+# for_window [window_type="notification"] floating enable
 
 # Force the layout to tabbed when the application opens
 # 2026-08-21 11:20:41 Friday not working
