@@ -132,8 +132,6 @@ vim.lsp.config("*", {
   capabilities = blink.get_lsp_capabilities(),
 })
 
-require("go").setup({})
-
 -- Set up lspconfig.
 -- NOTE: new setup for v0.11+
 vim.lsp.enable({
