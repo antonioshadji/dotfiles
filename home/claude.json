@@ -1,5 +1,5 @@
 {
-  "numStartups": 277,
+  "numStartups": 279,
   "installMethod": "native",
   "autoUpdates": true,
   "editorMode": "vim",
@@ -18,7 +18,7 @@
     "# for memory": 14,
     "install-github-app": 201,
     "drag-and-drop-images": 277,
-    "paste-images-mac": 266,
+    "paste-images-mac": 279,
     "double-esc-code-restore": 267,
     "continue": 267,
     "shift-tab": 268,
@@ -32,7 +32,7 @@
     "shift-enter": 273,
     "ide-upsell-external-terminal": 191,
     "default-permission-mode-config": 185,
-    "rename-conversation": 263,
+    "rename-conversation": 279,
     "config-thinking-mode": 21,
     "desktop-app": 194,
     "web-app": 194,
@@ -3664,14 +3664,34 @@
       "hasTrustDialogAccepted": true,
       "hasClaudeMdExternalIncludesApproved": false,
       "hasClaudeMdExternalIncludesWarningShown": false
+    },
+    "/Users/ahadjigeorgalis/Code/agents/mattpocock/ai-coding-crash-course": {
+      "allowedTools": [],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": true,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "lastGracefulShutdown": false,
+      "lastVersionBase": "2.1.322",
+      "exampleFiles": [
+        "agents.ts",
+        "index.ts",
+        "install.ts",
+        "api.set-dev-country.ts",
+        "quizScoringService.ts"
+      ],
+      "exampleFilesGeneratedAt": 1794422385496
     }
   },
   "sonnet45MigrationComplete": true,
-  "changelogLastFetched": 1789417799327,
+  "changelogLastFetched": 1794422372280,
   "hasCompletedOnboarding": true,
   "lastOnboardingVersion": "2.0.1",
   "hasOpusPlanDefault": false,
-  "lastReleaseNotesSeen": "2.1.270",
+  "lastReleaseNotesSeen": "2.1.322",
   "shiftEnterKeyBindingInstalled": true,
   "lastPlanModeUse": 1770051217265,
   "opus45MigrationComplete": true,
@@ -3818,6 +3838,9 @@
     ],
     "anaconda-sandbox/metaflow-docs-examples": [
       "/Users/ahadjigeorgalis/Code/Outerbounds/docs/flows"
+    ],
+    "ai-hero-dev/ai-coding-crash-course": [
+      "/Users/ahadjigeorgalis/Code/agents/mattpocock/ai-coding-crash-course"
     ]
   },
   "clientDataCache": {
@@ -3888,7 +3911,7 @@
   "ideHintShownCount": 5,
   "effortCalloutV2Dismissed": true,
   "slackAppInstallCount": 2,
-  "migrationVersion": 14,
+  "migrationVersion": 15,
   "deepLinkTerminal": "Ghostty",
   "seenNotifications": {},
   "mcpServers": {
@@ -4041,9 +4064,9 @@
       "lastUsedNumStartups": 224
     },
     "claude-notifications-go@claude-notifications-go": {
-      "usageCount": 289,
-      "lastUsedAt": 1791831502418,
-      "lastUsedNumStartups": 277
+      "usageCount": 292,
+      "lastUsedAt": 1794423323400,
+      "lastUsedNumStartups": 279
     },
     "skill-reviewer@anaconda-plugins": {
       "usageCount": 0,
@@ -4157,8 +4180,8 @@
     "shift-enter": 5,
     "permissions": 5,
     "drag-and-drop-images": 5,
-    "rename-conversation": 3,
-    "paste-images-mac": 4,
+    "rename-conversation": 4,
+    "paste-images-mac": 5,
     "agents-view-multiclauding": 3,
     "color-when-multi-clauding": 3,
     "theme-command": 2,
@@ -4176,10 +4199,12 @@
   ],
   "hasResetAutoModeOptInForDefaultOffer": true,
   "fullscreenUpsellSeenCount": 3,
-  "lastClawdEntranceVersion": "2.1.270",
+  "lastClawdEntranceVersion": "2.1.322",
   "oauthAccount": {
     "accountUuid": "8fe8e284-01f8-4627-96f1-9e2dcf5aaead",
     "emailAddress": "ahadjigeorgalis@anaconda.com",
     "organizationUuid": "ec18fcdf-128d-4dfd-bc43-35dfe74d3d89"
-  }
+  },
+  "hasSeenAutoDefaultNudge": true,
+  "hasSeenAutoModeEntryWarning": true
 }
