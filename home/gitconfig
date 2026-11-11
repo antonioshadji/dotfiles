@@ -45,4 +45,4 @@
 [includeIf "gitdir:/Users/ahadjigeorgalis"]
   path = /Users/ahadjigeorgalis/.config/dotfiles/home/gitconfig_anaconda
 [includeIf "gitdir:/home/antonios/"]
-	path = /home/antonios/.config/dotfiles/home/gitconfig_home
+  path = /home/antonios/.config/dotfiles/home/gitconfig_home
