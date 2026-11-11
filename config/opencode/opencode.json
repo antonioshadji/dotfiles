@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "kilo-auto/org",
+  "model": "kilo/frontier",
   "providers": {
     "kilo": {
       "name": "Kilo Gateway",
@@ -61,30 +61,59 @@
       }
     }
   },
-  "permission": {
-    "edit": "allow",
-    "bash": "allow",
-    "webfetch": "allow"
-  },
+  "permissions": [
+    { "action": "shell", "resource": "*", "effect": "allow" },
+    { "action": "edit", "resource": "*", "effect": "allow" },
+    { "action": "webfetch", "resource": "*", "effect": "allow" }
+  ],
   "mcp": {
-    "anaconda-mcp": {
-      "type": "remote",
-      "url": "https://anaconda.com/api/mcp",
-      "enabled": true,
-      "oauth": false,
-      "headers": {
-        "Authorization": "Bearer {file:~/.secrets/anaconda-mcp-token}"
+    "servers": {
+      "anaconda-mcp": {
+        "type": "remote",
+        "url": "https://anaconda.com/api/mcp",
+        "oauth": false,
+        "headers": {
+          "Authorization": "Bearer {file:~/.secrets/anaconda-mcp-token}"
+        }
+      },
+      "cursor_oracle": {
+        "type": "local",
+        "command": [
+          "uv",
+          "run",
+          "--python",
+          "3.12",
+          "--with",
+          "anthropic",
+          "--with",
+          "arize-phoenix-otel",
+          "--with",
+          "claude-agent-sdk",
+          "--with",
+          "click",
+          "--with",
+          "fastmcp",
+          "--with",
+          "openinference-instrumentation-anthropic",
+          "--with",
+          "opentelemetry-api",
+          "--with",
+          "opentelemetry-exporter-otlp",
+          "--with",
+          "opentelemetry-sdk",
+          "--with",
+          "outerbounds",
+          "fastmcp",
+          "run",
+          "/Users/ahadjigeorgalis/Code/Outerbounds/ob-claude-trippin/cc_flows/cursor_oracle.py"
+        ],
+        "environment": {
+          "METAFLOW_DOCS_DIR": "/Users/ahadjigeorgalis/Code/Outerbounds/ob-claude-trippin/metaflow_system_prompt/ask_metaflow_resources",
+          "ANTHROPIC_API_KEY": "",
+          "METAFLOW_PROFILE": "gtm01",
+          "METAFLOW_ORACLE_MAX_TURNS": "100"
+        }
       }
-    },
-    "aws-mcp": {
-      "type": "local",
-      "command": [
-        "uvx",
-        "mcp-proxy-for-aws@latest",
-        "https://aws-mcp.us-east-1.api.aws/mcp",
-        "--metadata",
-        "INSTALL_SOURCE=aws-cli"
-      ]
     }
   },
   "shell": "/opt/bash/bin/bash"
