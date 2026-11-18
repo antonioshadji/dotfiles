@@ -1,0 +1,23 @@
+Host ubuntu12
+  # %% needed due to % used for substitutions
+  # mac assigns every network interface to local link so need to specify network
+  # search for interfaces starting with fe80 to find the locallink to use
+  # 2025-07-16 15:08:12 Wednesday I was seeing en0 and en6 on fe80, en0 did not work
+  HostName fe80::ca60:ff:fe98:fd7a%%en6
+  User antonios
+  Port 4937
+  LocalForward 8899 127.0.0.1:8888
+  LocalForward 8898 [::1]:8888
+
+Host hadji
+  HostName fe80::e9d:92ff:fec1:a1e6%%en6
+  User antonios
+
+Host laptop
+  HostName fe80::5962:81ac:6683:2a47%%en6
+  User antonios
+
+Host awsec2
+  HostName ec2-32-197-190-38.compute-1.amazonaws.com
+  User ubuntu
+  IdentityFile /Users/ahadjigeorgalis/.ssh/ahadjigeorgalis.pem
