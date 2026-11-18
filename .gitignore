@@ -21,3 +21,6 @@ tags*
 
 # secrets
 .env
+
+# opencode
+oh-my-openagent/
