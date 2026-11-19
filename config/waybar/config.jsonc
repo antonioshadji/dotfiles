@@ -1,8 +1,8 @@
 {
-  "layer": "top",
-  "position": "top",
   "height": 30,
   "spacing": 4,
+  "layer": "top",
+  "position": "top",
 
   // Choose which modules to display in the Left, Center, and Right zones
   "modules-left": ["sway/workspaces", "sway/mode"],
@@ -19,20 +19,15 @@
   "clock": {
     "format": "{:%Y-%m-%d %H:%M:%S}",
     "interval": 1, // refresh every second
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "tooltip-format": "<tt><big>{calendar}</big></tt>",
   },
   "cpu": {
     "format": "CPU: {usage}%",
-    "tooltip": false,
+    "tooltip": true,
   },
   "memory": {
     "format": "RAM: {}%",
   },
-  // TODO: how to show /home partition only?
-  // "disk": {
-  //   "interval": 60,
-  //   "format": "{percentage_free}% {path}"
-  // },
   "tray": {
     "icon-size": 18,
     "spacing": 10,
