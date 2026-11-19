@@ -1,6 +1,8 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "formatter": {},
+  "formatter": true,
+  "lsp": true,
+  "update": "auto",
   "model": "cloudflare/router",
   "providers": {
     "cloudflare": {
@@ -34,7 +36,10 @@
   },
   "plugins": ["@cloudflare/aig-opencode-plugin"],
   "permissions": [
-    { "action": "shell", "resource": "rm -rf *", "effect": "deny" },
+    { "action": "shell", "resource": "rm -rf *", "effect": "ask" },
+    { "action": "shell", "resource": "rmdir", "effect": "ask" },
+    { "action": "shell", "resource": "git push *", "effect": "ask" },
+    { "action": "shell", "resource": "git checkout *", "effect": "ask" },
     { "action": "shell", "resource": "*", "effect": "allow" },
     { "action": "read", "resource": "*", "effect": "allow" },
     { "action": "edit", "resource": "*", "effect": "allow" },
@@ -48,6 +53,19 @@
   ],
   "policies": [{ "action": "provider.use", "resource": "cloudflare", "effect": "allow" }],
   "mcp": {
-    "cloudflare": { "type": "remote", "url": "https://mcp.cloudflare.com/mcp", "enabled": true },
+    "cloudflare": {
+      "type": "remote",
+      "url": "https://mcp.cloudflare.com/mcp",
+      "enabled": true,
+    },
+    "servers": {
+      "browse": {
+        "type": "local",
+        "command": ["/home/antonios/.local/bin/browse", "mcp"],
+        "environment": {
+          "OPENCODE_BROWSER_RUNTIME": "auto-update",
+        },
+      },
+    },
   },
 }
